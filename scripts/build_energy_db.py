@@ -89,7 +89,7 @@ def parse_date(value: str) -> str:
         raise ValueError("reading_date is blank")
     try:
         dt = datetime.strptime(date_str, "%Y-%m-%d")
-      except:
+    except:
         dt = datetime.strptime(date_str, "%d/%m/%Y")
     return text
 
