@@ -9,7 +9,7 @@
       "Main",
       "SCB21"
     ],
-    "generated_at": "2026-05-21T07:14:25",
+    "generated_at": "2026-05-21T07:56:02",
     "generated_from": [
       "forms/*.csv",
       "data/meter_master.csv",
@@ -2441,12 +2441,3317 @@
       "source_sheet": "MeterData2569รายเดือน(แยกฝ่าย)"
     }
   ],
-  "normalized_readings": [],
+  "normalized_readings": [
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "D.0026__FL01__MDB",
+      "raw_reading": 6500.88,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "D.0026",
+      "subb_code": "MDB",
+      "building_name": "ต.0026 อาคารระบบประปา",
+      "normalized_kwh": 6500.88,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0020__FL01__AP23",
+      "raw_reading": 46.97,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0020",
+      "subb_code": "AP23",
+      "building_name": "ท.0020 อาคาร ศูนย์รับรองสมรรถนะฯ ระบบเครื่องปรับอากาศ 3",
+      "normalized_kwh": 46.97,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0020__FL03__PPAC_3",
+      "raw_reading": 403448.71,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0020",
+      "subb_code": "PPAC 3",
+      "building_name": "ท.0020 แอร์รวม",
+      "normalized_kwh": 403448.71,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "D.0017__FL01__MDB",
+      "raw_reading": 9363.81,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "D.0017",
+      "subb_code": "MDB",
+      "building_name": "ต.0017 อาคาร โรงอาหาร",
+      "normalized_kwh": 9363.81,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "D.0017__FL01__ร้านค้า_1",
+      "raw_reading": 9319.0,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "D.0017",
+      "subb_code": "ร้านค้า 1",
+      "building_name": "ต.0017 ร้านอาหาร 1 (จ๊ายตี๋)",
+      "normalized_kwh": 9319.0,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "D.0017__FL01__ร้านค้า_2",
+      "raw_reading": 5182.0,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "D.0017",
+      "subb_code": "ร้านค้า 2",
+      "building_name": "ต.0017 ร้านอาหาร 2 (ก๋วยเตี๋ยวสะบัดเส้น)",
+      "normalized_kwh": 5182.0,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "D.0017__FL01__ร้านค้า_4",
+      "raw_reading": 2196.0,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "D.0017",
+      "subb_code": "ร้านค้า 4",
+      "building_name": "ต.0017 ตู้ ATM ธนาคารกรุงไทย",
+      "normalized_kwh": 2196.0,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "D.0017__FL01__ร้านค้า_5",
+      "raw_reading": 1886.0,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "D.0017",
+      "subb_code": "ร้านค้า 5",
+      "building_name": "ต.0017 ร้านกาแฟ ใหม่",
+      "normalized_kwh": 1886.0,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0014__FL01__MDB",
+      "raw_reading": 425461.0,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0014",
+      "subb_code": "MDB",
+      "building_name": "ท.0014 อาคาร ปฏิบัติการฝ่ายบำรุงรักษาไฟฟ้าและโยธา",
+      "normalized_kwh": 425461.0,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0015__FL01__MDB",
+      "raw_reading": 538249.0,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0015",
+      "subb_code": "MDB",
+      "building_name": "ท.0015 อาคาศูนย์ปฏิบัติการทดสอบเคมี 2",
+      "normalized_kwh": 538249.0,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0017__FL01__MDB",
+      "raw_reading": 337647.0,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0017",
+      "subb_code": "MDB",
+      "building_name": "ท.0017 อาคาร ศูนย์พัฒนางานเชื่อมและทดสอบฝีมือช่างเชื่อมสากล",
+      "normalized_kwh": 337647.0,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0018__FL01__MDB",
+      "raw_reading": 292180.0,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0018",
+      "subb_code": "MDB",
+      "building_name": "ท.0018 อาคารศูนย์มาตรวิทยาและสอบเทียบเครื่องมือวัด",
+      "normalized_kwh": 292180.0,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "D.0019__FL01__MDB",
+      "raw_reading": 194851.0,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "D.0019",
+      "subb_code": "MDB",
+      "building_name": "ต.0019 อาคารนันทนาการพร้อมอาคารจอดรถ",
+      "normalized_kwh": 194851.0,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "D.0019__FL01__ร้านค้า_1",
+      "raw_reading": 7414.0,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "D.0019",
+      "subb_code": "ร้านค้า 1",
+      "building_name": "ต.0019 ร้านอาหาร 4 (ครัวเทคแคร์)",
+      "normalized_kwh": 7414.0,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "D.0019__FL01__ร้านค้า_3",
+      "raw_reading": 1242.0,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "D.0019",
+      "subb_code": "ร้านค้า 3",
+      "building_name": "ต.0019 ร้านอาหาร 6 (ก๋วยเตี๋ยวแก้วขวัญ)",
+      "normalized_kwh": 1242.0,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "D.0019__FL01__ร้านค้า_4",
+      "raw_reading": 5905.0,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "D.0019",
+      "subb_code": "ร้านค้า 4",
+      "building_name": "ต.0019 ร้านอาหาร 7 (ต้อมผลไม้สด)",
+      "normalized_kwh": 5905.0,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "D.0019__FL01__ร้านค้า_5",
+      "raw_reading": 4537.0,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "D.0019",
+      "subb_code": "ร้านค้า 5",
+      "building_name": "ต.0019 ร้านอาหาร 8 (ปั้นไปเรื่อย)",
+      "normalized_kwh": 4537.0,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "D.0019__FL01__ร้านค้า_6",
+      "raw_reading": 1578.0,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "D.0019",
+      "subb_code": "ร้านค้า 6",
+      "building_name": "ต.0019 ร้านอาหาร 9 (อาอิซะห์อาหารอิสลาม)",
+      "normalized_kwh": 1578.0,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0006__FL01__MDB",
+      "raw_reading": 5.573,
+      "raw_unit": "MWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0006",
+      "subb_code": "MDB",
+      "building_name": "ท.0006 อาคาร บริหารอะไหล่กังหันก๊าซ1 อรอ.",
+      "normalized_kwh": 5573.0,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "D.0025__FL01__MDB",
+      "raw_reading": 24.462,
+      "raw_unit": "MWh",
+      "reader": "",
+      "note": "",
+      "b_code": "D.0025",
+      "subb_code": "MDB",
+      "building_name": "ต.0025 อาคารอเนกประสงค์",
+      "normalized_kwh": 24462.0,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0022__FL01__MDB",
+      "raw_reading": 1122.0,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0022",
+      "subb_code": "MDB",
+      "building_name": "ท.0022 อาคารห้องกัมตภาพรังสี อบค.",
+      "normalized_kwh": 1122.0,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0023__FL01__MDB",
+      "raw_reading": 5793.0,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0023",
+      "subb_code": "MDB",
+      "building_name": "ท.0023 อาคาร Construction Shop อบค.",
+      "normalized_kwh": 5793.0,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0025__FL01__MDB",
+      "raw_reading": 3083.0,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0025",
+      "subb_code": "MDB",
+      "building_name": "ท.0025 อาคารเก็บอุปกรณ์ อสร.",
+      "normalized_kwh": 3083.0,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0026__FL01__MDB",
+      "raw_reading": 674.11,
+      "raw_unit": "MWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0026",
+      "subb_code": "MDB",
+      "building_name": "ท.0026 อาคารบริหารการขนส่ง",
+      "normalized_kwh": 674110.0,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0027__FL01__MDB",
+      "raw_reading": 273.9,
+      "raw_unit": "MWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0027",
+      "subb_code": "MDB",
+      "building_name": "ท.0027 อาคารปฏิบัติการกองขนส่ง",
+      "normalized_kwh": 273900.0,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0028__FL01__MDB",
+      "raw_reading": 284.29,
+      "raw_unit": "MWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0028",
+      "subb_code": "MDB",
+      "building_name": "ท.0028 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 1",
+      "normalized_kwh": 284290.0,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0029__FL01__MDB",
+      "raw_reading": 362.05,
+      "raw_unit": "MWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0029",
+      "subb_code": "MDB",
+      "building_name": "ท.0029 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 2",
+      "normalized_kwh": 362050.0,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "D.0031__FL01__MDB",
+      "raw_reading": 43.1,
+      "raw_unit": "MWh",
+      "reader": "",
+      "note": "",
+      "b_code": "D.0031",
+      "subb_code": "MDB",
+      "building_name": "ต.0031 อาคารโรงอาหาร",
+      "normalized_kwh": 43100.0,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0007__FL01__MDB",
+      "raw_reading": 17.015,
+      "raw_unit": "MWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0007",
+      "subb_code": "MDB",
+      "building_name": "ท.0007 อาคาร กองบริหาร ชธธ.",
+      "normalized_kwh": 17015.0,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "D.0031__FL01__ร้านค้า_1",
+      "raw_reading": 3377.0,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "D.0031",
+      "subb_code": "ร้านค้า 1",
+      "building_name": "ต.0031 ร้านข้าวแกงคุณเพ็ญศรี",
+      "normalized_kwh": 3377.0,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "B.0001__FL01__MDB",
+      "raw_reading": 8051.0,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "B.0001",
+      "subb_code": "MDB",
+      "building_name": "บ.0001 อาคาร แฟลต อบค.",
+      "normalized_kwh": 8051.0,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0019__FL01__Main",
+      "raw_reading": 786075.82,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0019",
+      "subb_code": "Main",
+      "building_name": "ท.0019 ชั้นที่ 1 อาคารทำการ ชธธ.",
+      "normalized_kwh": 786075.82,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0019__FL01__LP1",
+      "raw_reading": 97198.89,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0019",
+      "subb_code": "LP1",
+      "building_name": "ท.0019 ชั้นที่ 1 อาคารทำการ ชธธ. ระบบแสงสว่าง 1",
+      "normalized_kwh": 97198.89,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0019__FL01__PP1",
+      "raw_reading": 239494.27,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0019",
+      "subb_code": "PP1",
+      "building_name": "ท.0019 ชั้นที่ 1 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 1",
+      "normalized_kwh": 239494.27,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0019__FL01__AP1",
+      "raw_reading": 186766.37,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0019",
+      "subb_code": "AP1",
+      "building_name": "ท.0019 ชั้นที่ 1 อาคารทำการ ชธธ. ระบบเครื่องปรับอากาศ 1",
+      "normalized_kwh": 186766.37,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0019__FL01__EMDB_1",
+      "raw_reading": 193292.65,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0019",
+      "subb_code": "EMDB 1",
+      "building_name": "ท.0019 ชั้นที่ 1 อาคารทำการ ชธธ. (EMDB)",
+      "normalized_kwh": 193292.65,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0019__FL03__SCB_3",
+      "raw_reading": 117006.44,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0019",
+      "subb_code": "SCB 3",
+      "building_name": "ท.0019 ชั้นที่ 3 อาคารทำการ ชธธ.",
+      "normalized_kwh": 117006.44,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0019__FL03__LP3",
+      "raw_reading": 19131.41,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0019",
+      "subb_code": "LP3",
+      "building_name": "ท.0019 ชั้นที่ 3 อาคารทำการ ชธธ. ระบบแสงสว่าง 3",
+      "normalized_kwh": 19131.41,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0008__FL01__MDB",
+      "raw_reading": 2.0911,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0008",
+      "subb_code": "MDB",
+      "building_name": "ท.0008 อาคาร บริหารอะไหล่กังหันก๊าซ2 อรอ.",
+      "normalized_kwh": 2.091,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0019__FL03__PP3",
+      "raw_reading": 27367.76,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0019",
+      "subb_code": "PP3",
+      "building_name": "ท.0019 ชั้นที่ 3 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 3",
+      "normalized_kwh": 27367.76,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0019__FL03__AP3",
+      "raw_reading": 36041.04,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0019",
+      "subb_code": "AP3",
+      "building_name": "ท.0019 ชั้นที่ 3 อาคารทำการ ชธธ. ระบบเครื่องปรับอากาศ 3",
+      "normalized_kwh": 36041.04,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0019__FL04__SCB_4",
+      "raw_reading": 348812.28,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0019",
+      "subb_code": "SCB 4",
+      "building_name": "ท.0019 ชั้นที่ 4 อบย.",
+      "normalized_kwh": 348812.28,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0019__FL04__LP4",
+      "raw_reading": 119897.18,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0019",
+      "subb_code": "LP4",
+      "building_name": "ท.0019 ชั้นที่ 4 อาคารทำการ ชธธ. ระบบแสงสว่าง 4",
+      "normalized_kwh": 119897.18,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0019__FL04__PP41",
+      "raw_reading": 66552.68,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0019",
+      "subb_code": "PP41",
+      "building_name": "ท.0019 ชั้นที่ 4 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 4/1",
+      "normalized_kwh": 66552.68,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0019__FL04__PP42",
+      "raw_reading": 33058.86,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0019",
+      "subb_code": "PP42",
+      "building_name": "ท.0019 ชั้นที่ 4 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 4/2",
+      "normalized_kwh": 33058.86,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0019__FL04__AP4",
+      "raw_reading": 73943.42,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0019",
+      "subb_code": "AP4",
+      "building_name": "ท.0019 ชั้นที่ 4 อาคารทำการ ชธธ. ระบบเครื่องปรับอากาศ 4",
+      "normalized_kwh": 73943.42,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0019__FL05__SCB_5",
+      "raw_reading": 218989.96,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0019",
+      "subb_code": "SCB 5",
+      "building_name": "ท.0019 ชั้นที่ 5 อคม.,อบฟ.",
+      "normalized_kwh": 218989.96,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0019__FL05__LP5",
+      "raw_reading": 78394.2,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0019",
+      "subb_code": "LP5",
+      "building_name": "ท.0019 ชั้นที่ 5 อาคารทำการ ชธธ. ระบบแสงสว่าง 5",
+      "normalized_kwh": 78394.2,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0019__FL05__PP51",
+      "raw_reading": 18241.36,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0019",
+      "subb_code": "PP51",
+      "building_name": "ท.0019 ชั้นที่ 5 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 5/1",
+      "normalized_kwh": 18241.36,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0019__FL05__PP52",
+      "raw_reading": 20775.95,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0019",
+      "subb_code": "PP52",
+      "building_name": "ท.0019 ชั้นที่ 5 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 5/2",
+      "normalized_kwh": 20775.95,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0019__FL05__AP5",
+      "raw_reading": 67074.08,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0019",
+      "subb_code": "AP5",
+      "building_name": "ท.0019 ชั้นที่ 5 อาคารทำการ ชธธ. ระบบเครื่องปรับอากาศ 5",
+      "normalized_kwh": 67074.08,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0019__FL06__SCB_6",
+      "raw_reading": 212344.21,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0019",
+      "subb_code": "SCB 6",
+      "building_name": "ท.0019 ชั้นที่ 6 อบฟ.",
+      "normalized_kwh": 212344.21,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0019__FL06__LP6",
+      "raw_reading": 71639.02,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0019",
+      "subb_code": "LP6",
+      "building_name": "ท.0019 ชั้นที่ 6 อาคารทำการ ชธธ. ระบบแสงสว่าง 6",
+      "normalized_kwh": 71639.02,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0019__FL06__PP61",
+      "raw_reading": 18888.38,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0019",
+      "subb_code": "PP61",
+      "building_name": "ท.0019 ชั้นที่ 6 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 6/1",
+      "normalized_kwh": 18888.38,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0019__FL06__PP62",
+      "raw_reading": 9188.56,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0019",
+      "subb_code": "PP62",
+      "building_name": "ท.0019 ชั้นที่ 6 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 6/2",
+      "normalized_kwh": 9188.56,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0019__FL06__AP6",
+      "raw_reading": 63738.05,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0019",
+      "subb_code": "AP6",
+      "building_name": "ท.0019 ชั้นที่ 6 อาคารทำการ ชธธ. ระบบเครื่องปรับอากาศ 6",
+      "normalized_kwh": 63738.05,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0019__FL07__SCB_7",
+      "raw_reading": 272622.69,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0019",
+      "subb_code": "SCB 7",
+      "building_name": "ท.0019 ชั้นที่ 7 อบฟ.",
+      "normalized_kwh": 272622.69,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0019__FL07__LP7",
+      "raw_reading": 102699.43,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0019",
+      "subb_code": "LP7",
+      "building_name": "ท.0019 ชั้นที่ 7 อาคารทำการ ชธธ. ระบบแสงสว่าง 7",
+      "normalized_kwh": 102699.43,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0010__FL01__MDB",
+      "raw_reading": 77.598,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0010",
+      "subb_code": "MDB",
+      "building_name": "ท.0010 อาคาร ทดสอบเครื่องกล อรอ.",
+      "normalized_kwh": 77.598,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0019__FL07__PP71",
+      "raw_reading": 31000.07,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0019",
+      "subb_code": "PP71",
+      "building_name": "ท.0019 ชั้นที่ 7 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 7/1",
+      "normalized_kwh": 31000.07,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0019__FL07__PP72",
+      "raw_reading": 30048.07,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0019",
+      "subb_code": "PP72",
+      "building_name": "ท.0019 ชั้นที่ 7 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 7/2",
+      "normalized_kwh": 30048.07,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0019__FL07__AP7",
+      "raw_reading": 33503.17,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0019",
+      "subb_code": "AP7",
+      "building_name": "ท.0019 ชั้นที่ 7 อาคารทำการ ชธธ. ระบบเครื่องปรับอากาศ 7",
+      "normalized_kwh": 33503.17,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0019__FL08__SCB_8",
+      "raw_reading": 257974.05,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0019",
+      "subb_code": "SCB 8",
+      "building_name": "ท.0019 ชั้นที่ 8 อบค.",
+      "normalized_kwh": 257974.05,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0019__FL08__LP8",
+      "raw_reading": 76209.87,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0019",
+      "subb_code": "LP8",
+      "building_name": "ท.0019 ชั้นที่ 8 อาคารทำการ ชธธ. ระบบแสงสว่าง 8",
+      "normalized_kwh": 76209.87,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0019__FL08__PP81",
+      "raw_reading": 49694.91,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0019",
+      "subb_code": "PP81",
+      "building_name": "ท.0019 ชั้นที่ 8 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 8/1",
+      "normalized_kwh": 49694.91,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0019__FL08__PP82",
+      "raw_reading": 5940.51,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0019",
+      "subb_code": "PP82",
+      "building_name": "ท.0019 ชั้นที่ 8 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 8/2",
+      "normalized_kwh": 5940.51,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0019__FL08__AP8",
+      "raw_reading": 61997.45,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0019",
+      "subb_code": "AP8",
+      "building_name": "ท.0019 ชั้นที่ 8 อาคารทำการ ชธธ. ระบบเครื่องปรับอากาศ 8",
+      "normalized_kwh": 61997.45,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0019__FL09__SCB_9",
+      "raw_reading": 411249.24,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0019",
+      "subb_code": "SCB 9",
+      "building_name": "ท.0019 ชั้นที่ 9 (รวม)",
+      "normalized_kwh": 411249.24,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0019__FL09__LP9",
+      "raw_reading": 41069.97,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0019",
+      "subb_code": "LP9",
+      "building_name": "ท.0019 ชั้นที่ 9 อาคารทำการ ชธธ. ระบบแสงสว่าง 9",
+      "normalized_kwh": 41069.97,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0019__FL09__PP91",
+      "raw_reading": 26689.87,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0019",
+      "subb_code": "PP91",
+      "building_name": "ท.0019 ชั้นที่ 9 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 9/1",
+      "normalized_kwh": 26689.87,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0019__FL09__PP92",
+      "raw_reading": 29432.53,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0019",
+      "subb_code": "PP92",
+      "building_name": "ท.0019 ชั้นที่ 9 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 9/2",
+      "normalized_kwh": 29432.53,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0019__FL09__AP9",
+      "raw_reading": 64568.58,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0019",
+      "subb_code": "AP9",
+      "building_name": "ท.0019 ชั้นที่ 9 อาคารทำการ ชธธ. ระบบเครื่องปรับอากาศ 9",
+      "normalized_kwh": 64568.58,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0019__FL09__PPD",
+      "raw_reading": 252694.28,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0019",
+      "subb_code": "PPD",
+      "building_name": "ท.0019 ชั้นที่ 9 PPD",
+      "normalized_kwh": 252694.28,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0019__FL09__PPAC_1",
+      "raw_reading": 119185.28,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0019",
+      "subb_code": "PPAC 1",
+      "building_name": "ท.0019 ชั้นที่ 9 อาคารทำการ ชธธ. แอร์รวม 1",
+      "normalized_kwh": 119185.28,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0019__FL09__PPAC_2",
+      "raw_reading": 110863.53,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0019",
+      "subb_code": "PPAC 2",
+      "building_name": "ท.0019 ชั้นที่ 9 อาคารทำการ ชธธ. แอร์รวม 2",
+      "normalized_kwh": 110863.53,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0019__FL09__PPAC_3",
+      "raw_reading": 44533.15,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0019",
+      "subb_code": "PPAC 3",
+      "building_name": "ท.0019 ชั้นที่ 9 อาคารทำการ ชธธ. แอร์รวม 3",
+      "normalized_kwh": 44533.15,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0019__FL09__BP",
+      "raw_reading": 11511.14,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0019",
+      "subb_code": "BP",
+      "building_name": "ท.0019 Booster Pump",
+      "normalized_kwh": 11511.14,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0019__FL09__PPL",
+      "raw_reading": 111188.35,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0019",
+      "subb_code": "PPL",
+      "building_name": "ท.0019 PPL (Lift)",
+      "normalized_kwh": 111188.35,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0020__FL01__SCB_21",
+      "raw_reading": 64254.54,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0020",
+      "subb_code": "SCB 21",
+      "building_name": "ท.0020 อาคาร ศูนย์รับรองสมรรถนะงานเดิมเครื่องและบำรุงรักษา",
+      "normalized_kwh": 64254.54,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0012__FL01__MDB",
+      "raw_reading": 312939.85,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0012",
+      "subb_code": "MDB",
+      "building_name": "ท.0012 อาคาร บำรุงรักษาเครื่องกล อบค.",
+      "normalized_kwh": 312939.85,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0020__FL01__LP21",
+      "raw_reading": 36906.76,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0020",
+      "subb_code": "LP21",
+      "building_name": "ท.0020 อาคาร ศูนย์รับรองสมรรถนะฯ ระบบแสงสว่าง 1",
+      "normalized_kwh": 36906.76,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0020__FL01__PP21",
+      "raw_reading": 52390.9,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0020",
+      "subb_code": "PP21",
+      "building_name": "ท.0020 อาคาร ศูนย์รับรองสมรรถนะฯ ระบบเครื่องใช้ไฟฟ้า 1",
+      "normalized_kwh": 52390.9,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0020__FL01__AP21",
+      "raw_reading": 24092.69,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0020",
+      "subb_code": "AP21",
+      "building_name": "ท.0020 อาคาร ศูนย์รับรองสมรรถนะฯ ระบบเครื่องปรับอากาศ 1",
+      "normalized_kwh": 24092.69,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0020__FL02__SCB_22",
+      "raw_reading": 126461.49,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0020",
+      "subb_code": "SCB 22",
+      "building_name": "ท.0020 ชั้นที่ 2",
+      "normalized_kwh": 126461.49,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0020__FL01__LP22",
+      "raw_reading": 0.64,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0020",
+      "subb_code": "LP22",
+      "building_name": "ท.0020 อาคาร ศูนย์รับรองสมรรถนะฯ ระบบแสงสว่าง 2",
+      "normalized_kwh": 0.64,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0020__FL01__PP22",
+      "raw_reading": 2.55,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0020",
+      "subb_code": "PP22",
+      "building_name": "ท.0020 อาคาร ศูนย์รับรองสมรรถนะฯ ระบบเครื่องใช้ไฟฟ้า 2",
+      "normalized_kwh": 2.55,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0020__FL01__AP22",
+      "raw_reading": 29.79,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0020",
+      "subb_code": "AP22",
+      "building_name": "ท.0020 อาคาร ศูนย์รับรองสมรรถนะฯ ระบบเครื่องปรับอากาศ 2",
+      "normalized_kwh": 29.79,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0020__FL03__SCB_23",
+      "raw_reading": 95710.86,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0020",
+      "subb_code": "SCB 23",
+      "building_name": "ท.0020 ชั้นที่ 3",
+      "normalized_kwh": 95710.86,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0020__FL01__LP23",
+      "raw_reading": 0.0,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0020",
+      "subb_code": "LP23",
+      "building_name": "ท.0020 อาคาร ศูนย์รับรองสมรรถนะฯ ระบบแสงสว่าง 3",
+      "normalized_kwh": 0.0,
+      "flags": []
+    },
+    {
+      "source_form": "forms/2026-W20.csv",
+      "reading_date": "2026-05-15",
+      "week_id": "2026-W20",
+      "meter_id": "T.0020__FL01__PP23",
+      "raw_reading": 35.33,
+      "raw_unit": "kWh",
+      "reader": "",
+      "note": "",
+      "b_code": "T.0020",
+      "subb_code": "PP23",
+      "building_name": "ท.0020 อาคาร ศูนย์รับรองสมรรถนะฯ ระบบเครื่องใช้ไฟฟ้า 3",
+      "normalized_kwh": 35.33,
+      "flags": []
+    }
+  ],
   "weekly_consumption": [],
   "department_weekly": [],
   "monthly_by_department": {},
   "validation": {
-    "errors": [],
+    "errors": [
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 4,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0006__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 5,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0007__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 8,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0010__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 10,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0012__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 11,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0026__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 12,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0017__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 13,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0017__FL01__ร้านค้า_1"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 14,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0017__FL01__ร้านค้า_2"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 16,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0017__FL01__ร้านค้า_4"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 17,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0017__FL01__ร้านค้า_5"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 18,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0014__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 19,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0015__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 21,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0017__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 22,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0018__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 23,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0019__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 24,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0019__FL01__ร้านค้า_1"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 25,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0019__FL01__ร้านค้า_2"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 26,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0019__FL01__ร้านค้า_3"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 27,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0019__FL01__ร้านค้า_4"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 28,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0019__FL01__ร้านค้า_5"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 29,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0019__FL01__ร้านค้า_6"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 30,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0019__FL01__ร้านค้า_7"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 31,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0025__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 32,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0015__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 33,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0022__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 34,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0023__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 35,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0025__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 36,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0026__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 37,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0027__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 38,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0028__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 39,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0029__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 40,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0031__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 41,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0031__FL01__ร้านค้า_1"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 43,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "B.0001__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 44,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL01__Main"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 45,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL01__LP1"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 46,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL01__PP1"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 47,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL01__AP1"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 48,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL01__EMDB_1"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 49,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL03__SCB_3"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 50,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL03__LP3"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 51,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL03__PP3"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 52,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL03__AP3"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 54,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL04__SCB_4"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 55,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL04__LP4"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 56,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL04__PP41"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 57,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL04__PP42"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 58,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL04__AP4"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 59,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL05__SCB_5"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 60,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL05__LP5"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 61,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL05__PP51"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 62,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL05__PP52"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 63,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL05__AP5"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 64,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL06__SCB_6"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 65,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL06__LP6"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 66,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL06__PP61"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 67,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL06__PP62"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 68,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL06__AP6"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 69,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL07__SCB_7"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 70,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL07__LP7"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 71,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL07__PP71"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 72,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL07__PP72"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 73,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL07__AP7"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 74,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL08__SCB_8"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 75,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL08__LP8"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 76,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL08__PP81"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 77,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL08__PP82"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 78,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL08__AP8"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 79,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL09__SCB_9"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 80,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL09__LP9"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 81,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL09__PP91"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 82,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL09__PP92"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 83,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL09__AP9"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 84,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL09__PPD"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 85,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL09__PPAC_1"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 86,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL09__PPAC_2"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 87,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL09__PPAC_3"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 88,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL09__BP"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 89,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL09__PPL"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 90,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0020__FL01__SCB_21"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 91,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0020__FL01__LP21"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 92,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0020__FL01__PP21"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 93,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0020__FL01__AP21"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 94,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0020__FL02__SCB_22"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 95,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0020__FL01__LP22"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 96,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0020__FL01__PP22"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 97,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0020__FL01__AP22"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 98,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0020__FL03__SCB_23"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 99,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0020__FL01__LP23"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 100,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0020__FL01__PP23"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 101,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0020__FL01__AP23"
+      },
+      {
+        "file": "forms/2026-W17.csv",
+        "row": 102,
+        "error": "INVALID_DATE",
+        "detail": "time data '24/04/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0020__FL03__PPAC_3"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 4,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0006__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 5,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0007__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 6,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0008__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 8,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0010__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 9,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0011__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 10,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0012__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 11,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0026__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 12,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0017__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 13,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0017__FL01__ร้านค้า_1"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 14,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0017__FL01__ร้านค้า_2"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 16,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0017__FL01__ร้านค้า_4"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 17,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0017__FL01__ร้านค้า_5"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 18,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0014__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 19,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0015__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 21,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0017__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 22,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0018__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 23,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0019__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 24,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0019__FL01__ร้านค้า_1"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 25,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0019__FL01__ร้านค้า_2"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 26,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0019__FL01__ร้านค้า_3"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 27,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0019__FL01__ร้านค้า_4"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 28,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0019__FL01__ร้านค้า_5"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 29,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0019__FL01__ร้านค้า_6"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 30,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0019__FL01__ร้านค้า_7"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 31,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0025__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 33,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0022__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 34,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0023__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 35,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0025__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 36,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0026__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 37,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0027__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 38,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0028__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 39,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0029__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 40,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0031__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 41,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0031__FL01__ร้านค้า_1"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 43,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "B.0001__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 44,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL01__Main"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 45,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL01__LP1"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 46,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL01__PP1"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 47,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL01__AP1"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 48,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL01__EMDB_1"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 49,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL03__SCB_3"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 50,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL03__LP3"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 51,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL03__PP3"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 52,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL03__AP3"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 54,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL04__SCB_4"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 55,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL04__LP4"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 56,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL04__PP41"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 57,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL04__PP42"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 58,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL04__AP4"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 59,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL05__SCB_5"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 60,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL05__LP5"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 61,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL05__PP51"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 62,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL05__PP52"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 63,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL05__AP5"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 64,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL06__SCB_6"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 65,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL06__LP6"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 66,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL06__PP61"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 67,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL06__PP62"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 68,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL06__AP6"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 69,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL07__SCB_7"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 70,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL07__LP7"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 71,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL07__PP71"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 72,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL07__PP72"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 73,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL07__AP7"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 74,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL08__SCB_8"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 75,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL08__LP8"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 76,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL08__PP81"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 77,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL08__PP82"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 78,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL08__AP8"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 79,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL09__SCB_9"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 80,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL09__LP9"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 81,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL09__PP91"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 82,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL09__PP92"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 83,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL09__AP9"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 84,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL09__PPD"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 85,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL09__PPAC_1"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 86,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL09__PPAC_2"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 87,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL09__PPAC_3"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 88,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL09__BP"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 89,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL09__PPL"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 90,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0020__FL01__SCB_21"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 91,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0020__FL01__LP21"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 92,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0020__FL01__PP21"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 93,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0020__FL01__AP21"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 94,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0020__FL02__SCB_22"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 95,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0020__FL01__LP22"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 96,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0020__FL01__PP22"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 97,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0020__FL01__AP22"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 98,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0020__FL03__SCB_23"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 99,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0020__FL01__LP23"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 100,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0020__FL01__PP23"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 101,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0020__FL01__AP23"
+      },
+      {
+        "file": "forms/2026-W18.csv",
+        "row": 102,
+        "error": "INVALID_DATE",
+        "detail": "time data '01/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0020__FL03__PPAC_3"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 4,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0006__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 5,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0007__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 8,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0010__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 9,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0011__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 10,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0012__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 11,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0026__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 12,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0017__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 13,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0017__FL01__ร้านค้า_1"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 14,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0017__FL01__ร้านค้า_2"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 16,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0017__FL01__ร้านค้า_4"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 17,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0017__FL01__ร้านค้า_5"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 18,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0014__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 19,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0015__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 21,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0017__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 22,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0018__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 23,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0019__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 24,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0019__FL01__ร้านค้า_1"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 25,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0019__FL01__ร้านค้า_2"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 26,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0019__FL01__ร้านค้า_3"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 27,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0019__FL01__ร้านค้า_4"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 28,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0019__FL01__ร้านค้า_5"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 29,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0019__FL01__ร้านค้า_6"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 30,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0019__FL01__ร้านค้า_7"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 31,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0025__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 32,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0015__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 33,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0022__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 34,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0023__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 35,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0025__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 36,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0026__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 37,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0027__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 38,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0028__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 39,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0029__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 40,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0031__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 41,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0031__FL01__ร้านค้า_1"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 42,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "D.0033__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 43,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "B.0001__FL01__MDB"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 44,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL01__Main"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 45,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL01__LP1"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 46,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL01__PP1"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 47,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL01__AP1"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 48,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL01__EMDB_1"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 49,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL03__SCB_3"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 50,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL03__LP3"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 51,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL03__PP3"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 52,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL03__AP3"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 54,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL04__SCB_4"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 55,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL04__LP4"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 56,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL04__PP41"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 57,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL04__PP42"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 58,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL04__AP4"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 59,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL05__SCB_5"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 60,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL05__LP5"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 61,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL05__PP51"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 62,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL05__PP52"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 63,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL05__AP5"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 64,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL06__SCB_6"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 65,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL06__LP6"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 66,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL06__PP61"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 67,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL06__PP62"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 68,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL06__AP6"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 69,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL07__SCB_7"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 70,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL07__LP7"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 71,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL07__PP71"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 72,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL07__PP72"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 73,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL07__AP7"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 74,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL08__SCB_8"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 75,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL08__LP8"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 76,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL08__PP81"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 77,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL08__PP82"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 78,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL08__AP8"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 79,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL09__SCB_9"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 80,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL09__LP9"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 81,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL09__PP91"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 82,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL09__PP92"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 83,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL09__AP9"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 84,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL09__PPD"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 85,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL09__PPAC_1"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 86,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL09__PPAC_2"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 87,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL09__PPAC_3"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 88,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL09__BP"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 89,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0019__FL09__PPL"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 90,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0020__FL01__SCB_21"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 91,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0020__FL01__LP21"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 92,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0020__FL01__PP21"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 93,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0020__FL01__AP21"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 94,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0020__FL02__SCB_22"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 95,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0020__FL01__LP22"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 96,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0020__FL01__PP22"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 97,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0020__FL01__AP22"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 98,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0020__FL03__SCB_23"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 99,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0020__FL01__LP23"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 100,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0020__FL01__PP23"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 101,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0020__FL01__AP23"
+      },
+      {
+        "file": "forms/2026-W19.csv",
+        "row": 102,
+        "error": "INVALID_DATE",
+        "detail": "time data '08/05/2026' does not match format '%Y-%m-%d'",
+        "meter_id": "T.0020__FL03__PPAC_3"
+      }
+    ],
     "warnings": [
       {
         "row": 113,
@@ -2463,8 +5768,8 @@
     ],
     "stats": {
       "meters": 101,
-      "weekly_forms_rows_used": 0,
-      "normalized_readings": 0,
+      "weekly_forms_rows_used": 90,
+      "normalized_readings": 90,
       "weekly_consumption_rows": 0,
       "department_weekly_rows": 0,
       "main_meter_codes": [
@@ -2472,7 +5777,7 @@
         "Main",
         "SCB21"
       ],
-      "form_files_read": 3
+      "form_files_read": 5
     }
   }
 }
