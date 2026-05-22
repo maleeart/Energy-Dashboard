@@ -105,8 +105,24 @@ def normalize_by_continuity(raw_value, raw_unit, previous_kwh, default_unit=None
 
     if previous_kwh is None or reset_flag:
         if reset_flag:
-            flags.append("METER_RESET_MANUAL")
-        return round(declared, 3), flags
+    usage = current
+
+elif current < previous:
+
+    ratio = previous / max(current,1)
+
+    if ratio > 100:
+        # reset จริง
+        usage = current
+        flag = RESET
+
+    else:
+        # suspect bad normalize
+        usage = 0
+        flag = NEGATIVE_DELTA
+
+else:
+    usage = current - previous
 
     scored = []
     for label, value in unique:
