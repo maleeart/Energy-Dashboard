@@ -2786,6 +2786,7 @@
       "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
       "previous_normalized_kwh": 26864.0,
       "current_normalized_kwh": 26468000.0,
+      "reset_ratio": "",
       "kwh": 26441136.0
     },
     {
@@ -2794,6 +2795,7 @@
       "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
       "previous_normalized_kwh": 26468000.0,
       "current_normalized_kwh": 26864000.0,
+      "reset_ratio": "",
       "kwh": 396000.0
     },
     {
@@ -2802,6 +2804,7 @@
       "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
       "previous_normalized_kwh": 26864000.0,
       "current_normalized_kwh": 26864000.0,
+      "reset_ratio": "",
       "kwh": 0.0
     },
     {
@@ -2810,6 +2813,7 @@
       "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
       "previous_normalized_kwh": 26864000.0,
       "current_normalized_kwh": 26864000.0,
+      "reset_ratio": "",
       "kwh": 0.0
     },
     {
@@ -2818,6 +2822,7 @@
       "warning": "NON_WEEKLY_GAP_14_DAYS,RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
       "previous_normalized_kwh": 26864000.0,
       "current_normalized_kwh": 26864000.0,
+      "reset_ratio": "",
       "kwh": 0.0
     },
     {
@@ -2826,6 +2831,7 @@
       "warning": "NON_WEEKLY_GAP_21_DAYS",
       "previous_normalized_kwh": 8900.0,
       "current_normalized_kwh": 9069.0,
+      "reset_ratio": "",
       "kwh": 169.0
     },
     {
@@ -2834,6 +2840,7 @@
       "warning": "NON_WEEKLY_GAP_14_DAYS",
       "previous_normalized_kwh": 5760.0,
       "current_normalized_kwh": 5760.0,
+      "reset_ratio": "",
       "kwh": 0.0
     },
     {
@@ -2842,6 +2849,7 @@
       "warning": "NON_WEEKLY_GAP_14_DAYS",
       "previous_normalized_kwh": 5760.0,
       "current_normalized_kwh": 5760.0,
+      "reset_ratio": "",
       "kwh": 0.0
     },
     {
@@ -2850,6 +2858,7 @@
       "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,SPIKE_SUSPECT_OVER_5X_MEDIAN,UNIT_SUSPECT_AUTO_CORRECTED",
       "previous_normalized_kwh": 9980.0,
       "current_normalized_kwh": 203000.0,
+      "reset_ratio": "",
       "kwh": 193020.0
     },
     {
@@ -2858,6 +2867,7 @@
       "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,SPIKE_SUSPECT_OVER_5X_MEDIAN,UNIT_SUSPECT_AUTO_CORRECTED",
       "previous_normalized_kwh": 203000.0,
       "current_normalized_kwh": 442000.0,
+      "reset_ratio": "",
       "kwh": 239000.0
     },
     {
@@ -2866,6 +2876,7 @@
       "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,SPIKE_SUSPECT_OVER_5X_MEDIAN,UNIT_SUSPECT_AUTO_CORRECTED",
       "previous_normalized_kwh": 442000.0,
       "current_normalized_kwh": 703000.0,
+      "reset_ratio": "",
       "kwh": 261000.0
     },
     {
@@ -2874,6 +2885,7 @@
       "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,SPIKE_SUSPECT_OVER_5X_MEDIAN,UNIT_SUSPECT_AUTO_CORRECTED",
       "previous_normalized_kwh": 703000.0,
       "current_normalized_kwh": 1002000.0,
+      "reset_ratio": "",
       "kwh": 299000.0
     },
     {
@@ -2882,6 +2894,7 @@
       "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
       "previous_normalized_kwh": 1002000.0,
       "current_normalized_kwh": 1254000.0,
+      "reset_ratio": "",
       "kwh": 252000.0
     },
     {
@@ -2890,6 +2903,7 @@
       "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
       "previous_normalized_kwh": 1254000.0,
       "current_normalized_kwh": 1550000.0,
+      "reset_ratio": "",
       "kwh": 296000.0
     },
     {
@@ -2898,6 +2912,7 @@
       "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
       "previous_normalized_kwh": 1550000.0,
       "current_normalized_kwh": 1838000.0,
+      "reset_ratio": "",
       "kwh": 288000.0
     },
     {
@@ -2906,6 +2921,7 @@
       "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
       "previous_normalized_kwh": 1838000.0,
       "current_normalized_kwh": 2151000.0,
+      "reset_ratio": "",
       "kwh": 313000.0
     },
     {
@@ -2914,6 +2930,7 @@
       "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
       "previous_normalized_kwh": 2151000.0,
       "current_normalized_kwh": 2469000.0,
+      "reset_ratio": "",
       "kwh": 318000.0
     },
     {
@@ -2922,6 +2939,7 @@
       "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
       "previous_normalized_kwh": 2469000.0,
       "current_normalized_kwh": 2760000.0,
+      "reset_ratio": "",
       "kwh": 291000.0
     },
     {
@@ -2930,6 +2948,7 @@
       "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
       "previous_normalized_kwh": 2760000.0,
       "current_normalized_kwh": 2979000.0,
+      "reset_ratio": "",
       "kwh": 219000.0
     },
     {
@@ -2938,6 +2957,7 @@
       "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
       "previous_normalized_kwh": 2979000.0,
       "current_normalized_kwh": 3285000.0,
+      "reset_ratio": "",
       "kwh": 306000.0
     },
     {
@@ -2946,6 +2966,7 @@
       "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
       "previous_normalized_kwh": 3285000.0,
       "current_normalized_kwh": 3679000.0,
+      "reset_ratio": "",
       "kwh": 394000.0
     },
     {
@@ -2954,15 +2975,17 @@
       "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
       "previous_normalized_kwh": 3679000.0,
       "current_normalized_kwh": 3835000.0,
+      "reset_ratio": "",
       "kwh": 156000.0
     },
     {
       "week_end_date": "2026-02-20",
       "meter_id": "D.0025__FL01__MDB",
-      "warning": "METER_RESET_AUTO_USAGE_EQUALS_CURRENT,SPIKE_SUSPECT_OVER_5X_MEDIAN",
+      "warning": "NEGATIVE_DELTA_NOT_RESET_USAGE_ZERO",
       "previous_normalized_kwh": 19920.0,
       "current_normalized_kwh": 19450.0,
-      "kwh": 19450.0
+      "reset_ratio": 1.024,
+      "kwh": 0
     },
     {
       "week_end_date": "2026-04-17",
@@ -2970,6 +2993,7 @@
       "warning": "NON_WEEKLY_GAP_14_DAYS",
       "previous_normalized_kwh": 0.0,
       "current_normalized_kwh": 0.0,
+      "reset_ratio": "",
       "kwh": 0.0
     },
     {
@@ -2978,15 +3002,17 @@
       "warning": "NON_WEEKLY_GAP_21_DAYS",
       "previous_normalized_kwh": 0.0,
       "current_normalized_kwh": 0.0,
+      "reset_ratio": "",
       "kwh": 0.0
     },
     {
       "week_end_date": "2026-04-17",
       "meter_id": "T.0006__FL01__MDB",
-      "warning": "METER_RESET_AUTO_USAGE_EQUALS_CURRENT,SPIKE_SUSPECT_OVER_5X_MEDIAN",
+      "warning": "NEGATIVE_DELTA_NOT_RESET_USAGE_ZERO",
       "previous_normalized_kwh": 982282.4,
       "current_normalized_kwh": 549874.0,
-      "kwh": 549874.0
+      "reset_ratio": 1.786,
+      "kwh": 0
     },
     {
       "week_end_date": "2026-04-24",
@@ -2994,6 +3020,7 @@
       "warning": "METER_RESET_AUTO_USAGE_EQUALS_CURRENT",
       "previous_normalized_kwh": 549874.0,
       "current_normalized_kwh": 2013.529,
+      "reset_ratio": 273.09,
       "kwh": 2013.529
     },
     {
@@ -3002,15 +3029,17 @@
       "warning": "SPIKE_SUSPECT_OVER_5X_MEDIAN",
       "previous_normalized_kwh": 1994.3,
       "current_normalized_kwh": 3080.0,
+      "reset_ratio": "",
       "kwh": 1085.7
     },
     {
       "week_end_date": "2026-02-20",
       "meter_id": "T.0008__FL01__MDB",
-      "warning": "METER_RESET_AUTO_USAGE_EQUALS_CURRENT,RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,SPIKE_SUSPECT_OVER_5X_MEDIAN,UNIT_SUSPECT_AUTO_CORRECTED",
+      "warning": "NEGATIVE_DELTA_NOT_RESET_USAGE_ZERO,RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
       "previous_normalized_kwh": 358366.08,
       "current_normalized_kwh": 19870.0,
-      "kwh": 19870.0
+      "reset_ratio": 18.036,
+      "kwh": 0
     },
     {
       "week_end_date": "2026-02-27",
@@ -3018,6 +3047,7 @@
       "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,SPIKE_SUSPECT_OVER_5X_MEDIAN,UNIT_SUSPECT_AUTO_CORRECTED",
       "previous_normalized_kwh": 19870.0,
       "current_normalized_kwh": 171550.0,
+      "reset_ratio": "",
       "kwh": 151680.0
     },
     {
@@ -3026,6 +3056,7 @@
       "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,SPIKE_SUSPECT_OVER_5X_MEDIAN,UNIT_SUSPECT_AUTO_CORRECTED",
       "previous_normalized_kwh": 171550.0,
       "current_normalized_kwh": 337170.0,
+      "reset_ratio": "",
       "kwh": 165620.0
     },
     {
@@ -3034,6 +3065,7 @@
       "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,SPIKE_SUSPECT_OVER_5X_MEDIAN,UNIT_SUSPECT_AUTO_CORRECTED",
       "previous_normalized_kwh": 337170.0,
       "current_normalized_kwh": 515350.0,
+      "reset_ratio": "",
       "kwh": 178180.0
     },
     {
@@ -3042,6 +3074,7 @@
       "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,SPIKE_SUSPECT_OVER_5X_MEDIAN,UNIT_SUSPECT_AUTO_CORRECTED",
       "previous_normalized_kwh": 515350.0,
       "current_normalized_kwh": 680890.0,
+      "reset_ratio": "",
       "kwh": 165540.0
     },
     {
@@ -3050,6 +3083,7 @@
       "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
       "previous_normalized_kwh": 680890.0,
       "current_normalized_kwh": 886000.0,
+      "reset_ratio": "",
       "kwh": 205110.0
     },
     {
@@ -3058,6 +3092,7 @@
       "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
       "previous_normalized_kwh": 886000.0,
       "current_normalized_kwh": 920000.0,
+      "reset_ratio": "",
       "kwh": 34000.0
     },
     {
@@ -3066,6 +3101,7 @@
       "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
       "previous_normalized_kwh": 920000.0,
       "current_normalized_kwh": 1150000.0,
+      "reset_ratio": "",
       "kwh": 230000.0
     },
     {
@@ -3074,6 +3110,7 @@
       "warning": "METER_RESET_AUTO_USAGE_EQUALS_CURRENT,RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
       "previous_normalized_kwh": 1150000.0,
       "current_normalized_kwh": 1340.0,
+      "reset_ratio": 858.209,
       "kwh": 1340.0
     },
     {
@@ -3082,6 +3119,7 @@
       "warning": "NON_WEEKLY_GAP_14_DAYS,RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
       "previous_normalized_kwh": 1340.0,
       "current_normalized_kwh": 1806.0,
+      "reset_ratio": "",
       "kwh": 466.0
     },
     {
@@ -3090,6 +3128,7 @@
       "warning": "NON_WEEKLY_GAP_14_DAYS,RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
       "previous_normalized_kwh": 1806.0,
       "current_normalized_kwh": 2091.1,
+      "reset_ratio": "",
       "kwh": 285.1
     },
     {
@@ -3098,6 +3137,7 @@
       "warning": "SPIKE_SUSPECT_OVER_5X_MEDIAN",
       "previous_normalized_kwh": 238440.62,
       "current_normalized_kwh": 238854.44,
+      "reset_ratio": "",
       "kwh": 413.82
     },
     {
@@ -3106,6 +3146,7 @@
       "warning": "SPIKE_SUSPECT_OVER_5X_MEDIAN",
       "previous_normalized_kwh": 238854.44,
       "current_normalized_kwh": 239596.23,
+      "reset_ratio": "",
       "kwh": 741.79
     },
     {
@@ -3114,6 +3155,7 @@
       "warning": "SPIKE_SUSPECT_OVER_5X_MEDIAN",
       "previous_normalized_kwh": 239596.23,
       "current_normalized_kwh": 240426.39,
+      "reset_ratio": "",
       "kwh": 830.16
     },
     {
@@ -3122,6 +3164,7 @@
       "warning": "SPIKE_SUSPECT_OVER_5X_MEDIAN",
       "previous_normalized_kwh": 240426.39,
       "current_normalized_kwh": 241268.41,
+      "reset_ratio": "",
       "kwh": 842.02
     },
     {
@@ -3130,6 +3173,7 @@
       "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
       "previous_normalized_kwh": 29.69,
       "current_normalized_kwh": 29660.0,
+      "reset_ratio": "",
       "kwh": 29630.31
     },
     {
@@ -3138,6 +3182,7 @@
       "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
       "previous_normalized_kwh": 29660.0,
       "current_normalized_kwh": 29700.0,
+      "reset_ratio": "",
       "kwh": 40.0
     },
     {
@@ -3146,6 +3191,7 @@
       "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,SPIKE_SUSPECT_OVER_5X_MEDIAN,UNIT_SUSPECT_AUTO_CORRECTED",
       "previous_normalized_kwh": 29700.0,
       "current_normalized_kwh": 29720.0,
+      "reset_ratio": "",
       "kwh": 20.0
     },
     {
@@ -3154,6 +3200,7 @@
       "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
       "previous_normalized_kwh": 29720.0,
       "current_normalized_kwh": 29720.0,
+      "reset_ratio": "",
       "kwh": 0.0
     },
     {
@@ -3162,6 +3209,7 @@
       "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,SPIKE_SUSPECT_OVER_5X_MEDIAN,UNIT_SUSPECT_AUTO_CORRECTED",
       "previous_normalized_kwh": 29720.0,
       "current_normalized_kwh": 29730.0,
+      "reset_ratio": "",
       "kwh": 10.0
     },
     {
@@ -3170,6 +3218,7 @@
       "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,SPIKE_SUSPECT_OVER_5X_MEDIAN,UNIT_SUSPECT_AUTO_CORRECTED",
       "previous_normalized_kwh": 29730.0,
       "current_normalized_kwh": 29770.0,
+      "reset_ratio": "",
       "kwh": 40.0
     },
     {
@@ -3178,6 +3227,7 @@
       "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
       "previous_normalized_kwh": 29770.0,
       "current_normalized_kwh": 29790.0,
+      "reset_ratio": "",
       "kwh": 20.0
     },
     {
@@ -3186,6 +3236,7 @@
       "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
       "previous_normalized_kwh": 29790.0,
       "current_normalized_kwh": 29790.0,
+      "reset_ratio": "",
       "kwh": 0.0
     },
     {
@@ -3194,6 +3245,7 @@
       "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
       "previous_normalized_kwh": 29790.0,
       "current_normalized_kwh": 29790.0,
+      "reset_ratio": "",
       "kwh": 0.0
     },
     {
@@ -3202,6 +3254,7 @@
       "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
       "previous_normalized_kwh": 29790.0,
       "current_normalized_kwh": 29790.0,
+      "reset_ratio": "",
       "kwh": 0.0
     },
     {
@@ -3210,6 +3263,7 @@
       "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
       "previous_normalized_kwh": 29790.0,
       "current_normalized_kwh": 29790.0,
+      "reset_ratio": "",
       "kwh": 0.0
     },
     {
@@ -3218,6 +3272,7 @@
       "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
       "previous_normalized_kwh": 29790.0,
       "current_normalized_kwh": 29790.0,
+      "reset_ratio": "",
       "kwh": 0.0
     },
     {
@@ -3226,6 +3281,7 @@
       "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
       "previous_normalized_kwh": 29790.0,
       "current_normalized_kwh": 29790.0,
+      "reset_ratio": "",
       "kwh": 0.0
     },
     {
@@ -3234,6 +3290,7 @@
       "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
       "previous_normalized_kwh": 47.01,
       "current_normalized_kwh": 46970.0,
+      "reset_ratio": "",
       "kwh": 46922.99
     },
     {
@@ -3242,6 +3299,7 @@
       "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
       "previous_normalized_kwh": 46970.0,
       "current_normalized_kwh": 46970.0,
+      "reset_ratio": "",
       "kwh": 0.0
     },
     {
@@ -3250,6 +3308,7 @@
       "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
       "previous_normalized_kwh": 46970.0,
       "current_normalized_kwh": 46970.0,
+      "reset_ratio": "",
       "kwh": 0.0
     },
     {
@@ -3258,6 +3317,7 @@
       "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
       "previous_normalized_kwh": 46970.0,
       "current_normalized_kwh": 46970.0,
+      "reset_ratio": "",
       "kwh": 0.0
     },
     {
@@ -3266,6 +3326,7 @@
       "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
       "previous_normalized_kwh": 46970.0,
       "current_normalized_kwh": 46970.0,
+      "reset_ratio": "",
       "kwh": 0.0
     },
     {
@@ -3274,6 +3335,7 @@
       "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
       "previous_normalized_kwh": 46970.0,
       "current_normalized_kwh": 46970.0,
+      "reset_ratio": "",
       "kwh": 0.0
     },
     {
@@ -3282,6 +3344,7 @@
       "warning": "SPIKE_SUSPECT_OVER_5X_MEDIAN",
       "previous_normalized_kwh": 33.81,
       "current_normalized_kwh": 34.25,
+      "reset_ratio": "",
       "kwh": 0.44
     },
     {
@@ -3290,6 +3353,7 @@
       "warning": "SPIKE_SUSPECT_OVER_5X_MEDIAN",
       "previous_normalized_kwh": 34.25,
       "current_normalized_kwh": 34.87,
+      "reset_ratio": "",
       "kwh": 0.62
     },
     {
@@ -3298,6 +3362,7 @@
       "warning": "SPIKE_SUSPECT_OVER_5X_MEDIAN",
       "previous_normalized_kwh": 34.87,
       "current_normalized_kwh": 35.01,
+      "reset_ratio": "",
       "kwh": 0.14
     },
     {
@@ -3306,6 +3371,7 @@
       "warning": "SPIKE_SUSPECT_OVER_5X_MEDIAN",
       "previous_normalized_kwh": 35.02,
       "current_normalized_kwh": 35.33,
+      "reset_ratio": "",
       "kwh": 0.31
     }
   ],
@@ -3321,6 +3387,7 @@
       "Main",
       "SCB21"
     ],
-    "form_files_read": 21
+    "form_files_read": 21,
+    "auto_reset_ratio_threshold": 100
   }
 }
