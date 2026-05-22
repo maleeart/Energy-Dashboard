@@ -545,6 +545,7 @@
     "allocation_rows_used": 41,
     "building_allocation_rows_used": 0,
     "fallback_allocation_rows_available": 41,
+    "allocation_mode": "fallback_old_department_allocations",
     "main_meter_codes": [
       "MDB",
       "Main",

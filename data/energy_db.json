@@ -1,16 +1,16 @@
 {
   "meta": {
     "site": "กฟผ. สำนักงานไทรน้อย",
-    "version": "energy-auto-db-working-base-plus-narrow-reset-v9",
+    "version": "energy-auto-db-working-base-reset-plus-v5-allocation-v10",
     "base_unit": "kWh",
     "main_meter_codes": [
       "MDB",
       "Main",
       "SCB21"
     ],
-    "generated_at": "2026-05-22T07:59:47",
+    "generated_at": "2026-05-22T08:39:55",
     "reset_logic": "Working-base logic plus narrow reset only. If declared current collapses from previous by ratio >= 100, previous is treated as 0 and usage=current.",
-    "allocation_logic": "Use building allocation per meter when available; fallback to original allocation per meter. Only rows with department are used. kWh = weekly_usage * allocation_ratio."
+    "allocation_logic": "Correct-flow allocation: building/floor allocation only when available. Blank department rows are ignored. kWh = weekly_usage * allocation_ratio."
   },
   "departments": [
     "สก.ชธธ.",
@@ -99753,6 +99753,7 @@
       "allocation_rows_used": 41,
       "building_allocation_rows_used": 0,
       "fallback_allocation_rows_available": 41,
+      "allocation_mode": "fallback_old_department_allocations",
       "main_meter_codes": [
         "MDB",
         "Main",
