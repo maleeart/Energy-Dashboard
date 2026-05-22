@@ -2,30 +2,2489 @@
   "errors": [],
   "warnings": [
     {
-      "file": "department_allocation_buildings.csv",
-      "row": 113,
-      "warning": "UNKNOWN_DEPARTMENT",
-      "department": "อสร.",
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "B.0001__FL01__MDB",
+      "building_name": "บ.0001 อาคาร แฟลต อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "B.0001__FL01__MDB",
+      "building_name": "บ.0001 อาคาร แฟลต อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "B.0001__FL01__MDB",
+      "building_name": "บ.0001 อาคาร แฟลต อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "B.0001__FL01__MDB",
+      "building_name": "บ.0001 อาคาร แฟลต อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "B.0001__FL01__MDB",
+      "building_name": "บ.0001 อาคาร แฟลต อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "B.0001__FL01__MDB",
+      "building_name": "บ.0001 อาคาร แฟลต อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "B.0001__FL01__MDB",
+      "building_name": "บ.0001 อาคาร แฟลต อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "B.0001__FL01__MDB",
+      "building_name": "บ.0001 อาคาร แฟลต อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "B.0001__FL01__MDB",
+      "building_name": "บ.0001 อาคาร แฟลต อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "B.0001__FL01__MDB",
+      "building_name": "บ.0001 อาคาร แฟลต อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "B.0001__FL01__MDB",
+      "building_name": "บ.0001 อาคาร แฟลต อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "B.0001__FL01__MDB",
+      "building_name": "บ.0001 อาคาร แฟลต อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "B.0001__FL01__MDB",
+      "building_name": "บ.0001 อาคาร แฟลต อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "B.0001__FL01__MDB",
+      "building_name": "บ.0001 อาคาร แฟลต อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "B.0001__FL01__MDB",
+      "building_name": "บ.0001 อาคาร แฟลต อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "B.0001__FL01__MDB",
+      "building_name": "บ.0001 อาคาร แฟลต อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "B.0001__FL01__MDB",
+      "building_name": "บ.0001 อาคาร แฟลต อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "B.0001__FL01__MDB",
+      "building_name": "บ.0001 อาคาร แฟลต อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "B.0001__FL01__MDB",
+      "building_name": "บ.0001 อาคาร แฟลต อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0015__FL01__MDB",
       "building_name": "ต.0015 อาคารโรงซ่อมเครื่องกล อสร."
     },
     {
-      "file": "department_allocation_buildings.csv",
-      "row": 114,
-      "warning": "UNKNOWN_DEPARTMENT",
-      "department": "อสร.",
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0015__FL01__MDB",
+      "building_name": "ต.0015 อาคารโรงซ่อมเครื่องกล อสร."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0015__FL01__MDB",
+      "building_name": "ต.0015 อาคารโรงซ่อมเครื่องกล อสร."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0015__FL01__MDB",
+      "building_name": "ต.0015 อาคารโรงซ่อมเครื่องกล อสร."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0015__FL01__MDB",
+      "building_name": "ต.0015 อาคารโรงซ่อมเครื่องกล อสร."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0015__FL01__MDB",
+      "building_name": "ต.0015 อาคารโรงซ่อมเครื่องกล อสร."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0015__FL01__MDB",
+      "building_name": "ต.0015 อาคารโรงซ่อมเครื่องกล อสร."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0015__FL01__MDB",
+      "building_name": "ต.0015 อาคารโรงซ่อมเครื่องกล อสร."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0015__FL01__MDB",
+      "building_name": "ต.0015 อาคารโรงซ่อมเครื่องกล อสร."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0015__FL01__MDB",
+      "building_name": "ต.0015 อาคารโรงซ่อมเครื่องกล อสร."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0015__FL01__MDB",
+      "building_name": "ต.0015 อาคารโรงซ่อมเครื่องกล อสร."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0015__FL01__MDB",
+      "building_name": "ต.0015 อาคารโรงซ่อมเครื่องกล อสร."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0015__FL01__MDB",
+      "building_name": "ต.0015 อาคารโรงซ่อมเครื่องกล อสร."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0015__FL01__MDB",
+      "building_name": "ต.0015 อาคารโรงซ่อมเครื่องกล อสร."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0015__FL01__MDB",
+      "building_name": "ต.0015 อาคารโรงซ่อมเครื่องกล อสร."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0015__FL01__MDB",
+      "building_name": "ต.0015 อาคารโรงซ่อมเครื่องกล อสร."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0015__FL01__MDB",
+      "building_name": "ต.0015 อาคารโรงซ่อมเครื่องกล อสร."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0017__FL01__MDB",
+      "building_name": "ต.0017 อาคาร โรงอาหาร"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0017__FL01__MDB",
+      "building_name": "ต.0017 อาคาร โรงอาหาร"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0017__FL01__MDB",
+      "building_name": "ต.0017 อาคาร โรงอาหาร"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0017__FL01__MDB",
+      "building_name": "ต.0017 อาคาร โรงอาหาร"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0017__FL01__MDB",
+      "building_name": "ต.0017 อาคาร โรงอาหาร"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0017__FL01__MDB",
+      "building_name": "ต.0017 อาคาร โรงอาหาร"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0017__FL01__MDB",
+      "building_name": "ต.0017 อาคาร โรงอาหาร"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0017__FL01__MDB",
+      "building_name": "ต.0017 อาคาร โรงอาหาร"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0017__FL01__MDB",
+      "building_name": "ต.0017 อาคาร โรงอาหาร"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0017__FL01__MDB",
+      "building_name": "ต.0017 อาคาร โรงอาหาร"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0017__FL01__MDB",
+      "building_name": "ต.0017 อาคาร โรงอาหาร"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0017__FL01__MDB",
+      "building_name": "ต.0017 อาคาร โรงอาหาร"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0017__FL01__MDB",
+      "building_name": "ต.0017 อาคาร โรงอาหาร"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0017__FL01__MDB",
+      "building_name": "ต.0017 อาคาร โรงอาหาร"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0017__FL01__MDB",
+      "building_name": "ต.0017 อาคาร โรงอาหาร"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0017__FL01__MDB",
+      "building_name": "ต.0017 อาคาร โรงอาหาร"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0017__FL01__MDB",
+      "building_name": "ต.0017 อาคาร โรงอาหาร"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0017__FL01__MDB",
+      "building_name": "ต.0017 อาคาร โรงอาหาร"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0017__FL01__MDB",
+      "building_name": "ต.0017 อาคาร โรงอาหาร"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0019__FL01__MDB",
+      "building_name": "ต.0019 อาคารนันทนาการพร้อมอาคารจอดรถ"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0019__FL01__MDB",
+      "building_name": "ต.0019 อาคารนันทนาการพร้อมอาคารจอดรถ"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0019__FL01__MDB",
+      "building_name": "ต.0019 อาคารนันทนาการพร้อมอาคารจอดรถ"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0019__FL01__MDB",
+      "building_name": "ต.0019 อาคารนันทนาการพร้อมอาคารจอดรถ"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0019__FL01__MDB",
+      "building_name": "ต.0019 อาคารนันทนาการพร้อมอาคารจอดรถ"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0019__FL01__MDB",
+      "building_name": "ต.0019 อาคารนันทนาการพร้อมอาคารจอดรถ"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0019__FL01__MDB",
+      "building_name": "ต.0019 อาคารนันทนาการพร้อมอาคารจอดรถ"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0019__FL01__MDB",
+      "building_name": "ต.0019 อาคารนันทนาการพร้อมอาคารจอดรถ"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0019__FL01__MDB",
+      "building_name": "ต.0019 อาคารนันทนาการพร้อมอาคารจอดรถ"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0019__FL01__MDB",
+      "building_name": "ต.0019 อาคารนันทนาการพร้อมอาคารจอดรถ"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0019__FL01__MDB",
+      "building_name": "ต.0019 อาคารนันทนาการพร้อมอาคารจอดรถ"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0019__FL01__MDB",
+      "building_name": "ต.0019 อาคารนันทนาการพร้อมอาคารจอดรถ"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0019__FL01__MDB",
+      "building_name": "ต.0019 อาคารนันทนาการพร้อมอาคารจอดรถ"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0019__FL01__MDB",
+      "building_name": "ต.0019 อาคารนันทนาการพร้อมอาคารจอดรถ"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0019__FL01__MDB",
+      "building_name": "ต.0019 อาคารนันทนาการพร้อมอาคารจอดรถ"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0019__FL01__MDB",
+      "building_name": "ต.0019 อาคารนันทนาการพร้อมอาคารจอดรถ"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0019__FL01__MDB",
+      "building_name": "ต.0019 อาคารนันทนาการพร้อมอาคารจอดรถ"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0019__FL01__MDB",
+      "building_name": "ต.0019 อาคารนันทนาการพร้อมอาคารจอดรถ"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0019__FL01__MDB",
+      "building_name": "ต.0019 อาคารนันทนาการพร้อมอาคารจอดรถ"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0025__FL01__MDB",
+      "building_name": "ต.0025 อาคารอเนกประสงค์"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0025__FL01__MDB",
+      "building_name": "ต.0025 อาคารอเนกประสงค์"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0025__FL01__MDB",
+      "building_name": "ต.0025 อาคารอเนกประสงค์"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0025__FL01__MDB",
+      "building_name": "ต.0025 อาคารอเนกประสงค์"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0025__FL01__MDB",
+      "building_name": "ต.0025 อาคารอเนกประสงค์"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0025__FL01__MDB",
+      "building_name": "ต.0025 อาคารอเนกประสงค์"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0025__FL01__MDB",
+      "building_name": "ต.0025 อาคารอเนกประสงค์"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0025__FL01__MDB",
+      "building_name": "ต.0025 อาคารอเนกประสงค์"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0025__FL01__MDB",
+      "building_name": "ต.0025 อาคารอเนกประสงค์"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0025__FL01__MDB",
+      "building_name": "ต.0025 อาคารอเนกประสงค์"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0025__FL01__MDB",
+      "building_name": "ต.0025 อาคารอเนกประสงค์"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0025__FL01__MDB",
+      "building_name": "ต.0025 อาคารอเนกประสงค์"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0025__FL01__MDB",
+      "building_name": "ต.0025 อาคารอเนกประสงค์"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0025__FL01__MDB",
+      "building_name": "ต.0025 อาคารอเนกประสงค์"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0025__FL01__MDB",
+      "building_name": "ต.0025 อาคารอเนกประสงค์"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0025__FL01__MDB",
+      "building_name": "ต.0025 อาคารอเนกประสงค์"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0025__FL01__MDB",
+      "building_name": "ต.0025 อาคารอเนกประสงค์"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0025__FL01__MDB",
+      "building_name": "ต.0025 อาคารอเนกประสงค์"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0025__FL01__MDB",
+      "building_name": "ต.0025 อาคารอเนกประสงค์"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0026__FL01__MDB",
+      "building_name": "ต.0026 อาคารระบบประปา"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0026__FL01__MDB",
+      "building_name": "ต.0026 อาคารระบบประปา"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0026__FL01__MDB",
+      "building_name": "ต.0026 อาคารระบบประปา"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0026__FL01__MDB",
+      "building_name": "ต.0026 อาคารระบบประปา"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0026__FL01__MDB",
+      "building_name": "ต.0026 อาคารระบบประปา"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0026__FL01__MDB",
+      "building_name": "ต.0026 อาคารระบบประปา"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0026__FL01__MDB",
+      "building_name": "ต.0026 อาคารระบบประปา"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0026__FL01__MDB",
+      "building_name": "ต.0026 อาคารระบบประปา"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0026__FL01__MDB",
+      "building_name": "ต.0026 อาคารระบบประปา"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0026__FL01__MDB",
+      "building_name": "ต.0026 อาคารระบบประปา"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0026__FL01__MDB",
+      "building_name": "ต.0026 อาคารระบบประปา"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0026__FL01__MDB",
+      "building_name": "ต.0026 อาคารระบบประปา"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0026__FL01__MDB",
+      "building_name": "ต.0026 อาคารระบบประปา"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0026__FL01__MDB",
+      "building_name": "ต.0026 อาคารระบบประปา"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0026__FL01__MDB",
+      "building_name": "ต.0026 อาคารระบบประปา"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0026__FL01__MDB",
+      "building_name": "ต.0026 อาคารระบบประปา"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0026__FL01__MDB",
+      "building_name": "ต.0026 อาคารระบบประปา"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0026__FL01__MDB",
+      "building_name": "ต.0026 อาคารระบบประปา"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0026__FL01__MDB",
+      "building_name": "ต.0026 อาคารระบบประปา"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0031__FL01__MDB",
+      "building_name": "ต.0031 อาคารโรงอาหาร"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0031__FL01__MDB",
+      "building_name": "ต.0031 อาคารโรงอาหาร"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0031__FL01__MDB",
+      "building_name": "ต.0031 อาคารโรงอาหาร"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0031__FL01__MDB",
+      "building_name": "ต.0031 อาคารโรงอาหาร"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0031__FL01__MDB",
+      "building_name": "ต.0031 อาคารโรงอาหาร"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0031__FL01__MDB",
+      "building_name": "ต.0031 อาคารโรงอาหาร"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0031__FL01__MDB",
+      "building_name": "ต.0031 อาคารโรงอาหาร"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0031__FL01__MDB",
+      "building_name": "ต.0031 อาคารโรงอาหาร"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0031__FL01__MDB",
+      "building_name": "ต.0031 อาคารโรงอาหาร"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0031__FL01__MDB",
+      "building_name": "ต.0031 อาคารโรงอาหาร"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0031__FL01__MDB",
+      "building_name": "ต.0031 อาคารโรงอาหาร"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0031__FL01__MDB",
+      "building_name": "ต.0031 อาคารโรงอาหาร"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0031__FL01__MDB",
+      "building_name": "ต.0031 อาคารโรงอาหาร"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0031__FL01__MDB",
+      "building_name": "ต.0031 อาคารโรงอาหาร"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0031__FL01__MDB",
+      "building_name": "ต.0031 อาคารโรงอาหาร"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0031__FL01__MDB",
+      "building_name": "ต.0031 อาคารโรงอาหาร"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0031__FL01__MDB",
+      "building_name": "ต.0031 อาคารโรงอาหาร"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0031__FL01__MDB",
+      "building_name": "ต.0031 อาคารโรงอาหาร"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0031__FL01__MDB",
+      "building_name": "ต.0031 อาคารโรงอาหาร"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0033__FL01__MDB",
+      "building_name": "ต.0033 อาคารปฏิบัติการงานเชื่อม"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0033__FL01__MDB",
+      "building_name": "ต.0033 อาคารปฏิบัติการงานเชื่อม"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0033__FL01__MDB",
+      "building_name": "ต.0033 อาคารปฏิบัติการงานเชื่อม"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0033__FL01__MDB",
+      "building_name": "ต.0033 อาคารปฏิบัติการงานเชื่อม"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0033__FL01__MDB",
+      "building_name": "ต.0033 อาคารปฏิบัติการงานเชื่อม"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0033__FL01__MDB",
+      "building_name": "ต.0033 อาคารปฏิบัติการงานเชื่อม"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0033__FL01__MDB",
+      "building_name": "ต.0033 อาคารปฏิบัติการงานเชื่อม"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0033__FL01__MDB",
+      "building_name": "ต.0033 อาคารปฏิบัติการงานเชื่อม"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0033__FL01__MDB",
+      "building_name": "ต.0033 อาคารปฏิบัติการงานเชื่อม"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0033__FL01__MDB",
+      "building_name": "ต.0033 อาคารปฏิบัติการงานเชื่อม"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0033__FL01__MDB",
+      "building_name": "ต.0033 อาคารปฏิบัติการงานเชื่อม"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0033__FL01__MDB",
+      "building_name": "ต.0033 อาคารปฏิบัติการงานเชื่อม"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0033__FL01__MDB",
+      "building_name": "ต.0033 อาคารปฏิบัติการงานเชื่อม"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "D.0033__FL01__MDB",
+      "building_name": "ต.0033 อาคารปฏิบัติการงานเชื่อม"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0006__FL01__MDB",
+      "building_name": "ท.0006 อาคาร บริหารอะไหล่กังหันก๊าซ1 อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0006__FL01__MDB",
+      "building_name": "ท.0006 อาคาร บริหารอะไหล่กังหันก๊าซ1 อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0006__FL01__MDB",
+      "building_name": "ท.0006 อาคาร บริหารอะไหล่กังหันก๊าซ1 อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0006__FL01__MDB",
+      "building_name": "ท.0006 อาคาร บริหารอะไหล่กังหันก๊าซ1 อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0006__FL01__MDB",
+      "building_name": "ท.0006 อาคาร บริหารอะไหล่กังหันก๊าซ1 อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0006__FL01__MDB",
+      "building_name": "ท.0006 อาคาร บริหารอะไหล่กังหันก๊าซ1 อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0006__FL01__MDB",
+      "building_name": "ท.0006 อาคาร บริหารอะไหล่กังหันก๊าซ1 อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0006__FL01__MDB",
+      "building_name": "ท.0006 อาคาร บริหารอะไหล่กังหันก๊าซ1 อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0006__FL01__MDB",
+      "building_name": "ท.0006 อาคาร บริหารอะไหล่กังหันก๊าซ1 อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0006__FL01__MDB",
+      "building_name": "ท.0006 อาคาร บริหารอะไหล่กังหันก๊าซ1 อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0006__FL01__MDB",
+      "building_name": "ท.0006 อาคาร บริหารอะไหล่กังหันก๊าซ1 อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0006__FL01__MDB",
+      "building_name": "ท.0006 อาคาร บริหารอะไหล่กังหันก๊าซ1 อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0006__FL01__MDB",
+      "building_name": "ท.0006 อาคาร บริหารอะไหล่กังหันก๊าซ1 อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0006__FL01__MDB",
+      "building_name": "ท.0006 อาคาร บริหารอะไหล่กังหันก๊าซ1 อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0006__FL01__MDB",
+      "building_name": "ท.0006 อาคาร บริหารอะไหล่กังหันก๊าซ1 อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0006__FL01__MDB",
+      "building_name": "ท.0006 อาคาร บริหารอะไหล่กังหันก๊าซ1 อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0006__FL01__MDB",
+      "building_name": "ท.0006 อาคาร บริหารอะไหล่กังหันก๊าซ1 อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0006__FL01__MDB",
+      "building_name": "ท.0006 อาคาร บริหารอะไหล่กังหันก๊าซ1 อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0006__FL01__MDB",
+      "building_name": "ท.0006 อาคาร บริหารอะไหล่กังหันก๊าซ1 อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0007__FL01__MDB",
+      "building_name": "ท.0007 อาคาร กองบริหาร ชธธ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0007__FL01__MDB",
+      "building_name": "ท.0007 อาคาร กองบริหาร ชธธ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0007__FL01__MDB",
+      "building_name": "ท.0007 อาคาร กองบริหาร ชธธ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0007__FL01__MDB",
+      "building_name": "ท.0007 อาคาร กองบริหาร ชธธ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0007__FL01__MDB",
+      "building_name": "ท.0007 อาคาร กองบริหาร ชธธ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0007__FL01__MDB",
+      "building_name": "ท.0007 อาคาร กองบริหาร ชธธ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0007__FL01__MDB",
+      "building_name": "ท.0007 อาคาร กองบริหาร ชธธ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0007__FL01__MDB",
+      "building_name": "ท.0007 อาคาร กองบริหาร ชธธ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0007__FL01__MDB",
+      "building_name": "ท.0007 อาคาร กองบริหาร ชธธ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0007__FL01__MDB",
+      "building_name": "ท.0007 อาคาร กองบริหาร ชธธ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0007__FL01__MDB",
+      "building_name": "ท.0007 อาคาร กองบริหาร ชธธ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0007__FL01__MDB",
+      "building_name": "ท.0007 อาคาร กองบริหาร ชธธ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0007__FL01__MDB",
+      "building_name": "ท.0007 อาคาร กองบริหาร ชธธ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0007__FL01__MDB",
+      "building_name": "ท.0007 อาคาร กองบริหาร ชธธ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0007__FL01__MDB",
+      "building_name": "ท.0007 อาคาร กองบริหาร ชธธ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0007__FL01__MDB",
+      "building_name": "ท.0007 อาคาร กองบริหาร ชธธ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0007__FL01__MDB",
+      "building_name": "ท.0007 อาคาร กองบริหาร ชธธ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0007__FL01__MDB",
+      "building_name": "ท.0007 อาคาร กองบริหาร ชธธ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0007__FL01__MDB",
+      "building_name": "ท.0007 อาคาร กองบริหาร ชธธ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0008__FL01__MDB",
+      "building_name": "ท.0008 อาคาร บริหารอะไหล่กังหันก๊าซ2 อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0008__FL01__MDB",
+      "building_name": "ท.0008 อาคาร บริหารอะไหล่กังหันก๊าซ2 อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0008__FL01__MDB",
+      "building_name": "ท.0008 อาคาร บริหารอะไหล่กังหันก๊าซ2 อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0008__FL01__MDB",
+      "building_name": "ท.0008 อาคาร บริหารอะไหล่กังหันก๊าซ2 อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0008__FL01__MDB",
+      "building_name": "ท.0008 อาคาร บริหารอะไหล่กังหันก๊าซ2 อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0008__FL01__MDB",
+      "building_name": "ท.0008 อาคาร บริหารอะไหล่กังหันก๊าซ2 อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0008__FL01__MDB",
+      "building_name": "ท.0008 อาคาร บริหารอะไหล่กังหันก๊าซ2 อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0008__FL01__MDB",
+      "building_name": "ท.0008 อาคาร บริหารอะไหล่กังหันก๊าซ2 อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0008__FL01__MDB",
+      "building_name": "ท.0008 อาคาร บริหารอะไหล่กังหันก๊าซ2 อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0008__FL01__MDB",
+      "building_name": "ท.0008 อาคาร บริหารอะไหล่กังหันก๊าซ2 อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0008__FL01__MDB",
+      "building_name": "ท.0008 อาคาร บริหารอะไหล่กังหันก๊าซ2 อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0008__FL01__MDB",
+      "building_name": "ท.0008 อาคาร บริหารอะไหล่กังหันก๊าซ2 อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0008__FL01__MDB",
+      "building_name": "ท.0008 อาคาร บริหารอะไหล่กังหันก๊าซ2 อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0008__FL01__MDB",
+      "building_name": "ท.0008 อาคาร บริหารอะไหล่กังหันก๊าซ2 อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0008__FL01__MDB",
+      "building_name": "ท.0008 อาคาร บริหารอะไหล่กังหันก๊าซ2 อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0008__FL01__MDB",
+      "building_name": "ท.0008 อาคาร บริหารอะไหล่กังหันก๊าซ2 อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0008__FL01__MDB",
+      "building_name": "ท.0008 อาคาร บริหารอะไหล่กังหันก๊าซ2 อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0009__FL01__MDB",
+      "building_name": "ท.0009 อาคาร ปฏิบัติการพิเศษ"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0009__FL01__MDB",
+      "building_name": "ท.0009 อาคาร ปฏิบัติการพิเศษ"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0009__FL01__MDB",
+      "building_name": "ท.0009 อาคาร ปฏิบัติการพิเศษ"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0009__FL01__MDB",
+      "building_name": "ท.0009 อาคาร ปฏิบัติการพิเศษ"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0009__FL01__MDB",
+      "building_name": "ท.0009 อาคาร ปฏิบัติการพิเศษ"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0009__FL01__MDB",
+      "building_name": "ท.0009 อาคาร ปฏิบัติการพิเศษ"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0009__FL01__MDB",
+      "building_name": "ท.0009 อาคาร ปฏิบัติการพิเศษ"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0009__FL01__MDB",
+      "building_name": "ท.0009 อาคาร ปฏิบัติการพิเศษ"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0009__FL01__MDB",
+      "building_name": "ท.0009 อาคาร ปฏิบัติการพิเศษ"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0009__FL01__MDB",
+      "building_name": "ท.0009 อาคาร ปฏิบัติการพิเศษ"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0009__FL01__MDB",
+      "building_name": "ท.0009 อาคาร ปฏิบัติการพิเศษ"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0009__FL01__MDB",
+      "building_name": "ท.0009 อาคาร ปฏิบัติการพิเศษ"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0009__FL01__MDB",
+      "building_name": "ท.0009 อาคาร ปฏิบัติการพิเศษ"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0009__FL01__MDB",
+      "building_name": "ท.0009 อาคาร ปฏิบัติการพิเศษ"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0009__FL01__MDB",
+      "building_name": "ท.0009 อาคาร ปฏิบัติการพิเศษ"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0010__FL01__MDB",
+      "building_name": "ท.0010 อาคาร ทดสอบเครื่องกล อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0010__FL01__MDB",
+      "building_name": "ท.0010 อาคาร ทดสอบเครื่องกล อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0010__FL01__MDB",
+      "building_name": "ท.0010 อาคาร ทดสอบเครื่องกล อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0010__FL01__MDB",
+      "building_name": "ท.0010 อาคาร ทดสอบเครื่องกล อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0010__FL01__MDB",
+      "building_name": "ท.0010 อาคาร ทดสอบเครื่องกล อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0010__FL01__MDB",
+      "building_name": "ท.0010 อาคาร ทดสอบเครื่องกล อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0010__FL01__MDB",
+      "building_name": "ท.0010 อาคาร ทดสอบเครื่องกล อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0010__FL01__MDB",
+      "building_name": "ท.0010 อาคาร ทดสอบเครื่องกล อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0010__FL01__MDB",
+      "building_name": "ท.0010 อาคาร ทดสอบเครื่องกล อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0010__FL01__MDB",
+      "building_name": "ท.0010 อาคาร ทดสอบเครื่องกล อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0010__FL01__MDB",
+      "building_name": "ท.0010 อาคาร ทดสอบเครื่องกล อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0010__FL01__MDB",
+      "building_name": "ท.0010 อาคาร ทดสอบเครื่องกล อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0010__FL01__MDB",
+      "building_name": "ท.0010 อาคาร ทดสอบเครื่องกล อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0010__FL01__MDB",
+      "building_name": "ท.0010 อาคาร ทดสอบเครื่องกล อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0010__FL01__MDB",
+      "building_name": "ท.0010 อาคาร ทดสอบเครื่องกล อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0010__FL01__MDB",
+      "building_name": "ท.0010 อาคาร ทดสอบเครื่องกล อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0010__FL01__MDB",
+      "building_name": "ท.0010 อาคาร ทดสอบเครื่องกล อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0010__FL01__MDB",
+      "building_name": "ท.0010 อาคาร ทดสอบเครื่องกล อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0010__FL01__MDB",
+      "building_name": "ท.0010 อาคาร ทดสอบเครื่องกล อรอ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0011__FL01__MDB",
+      "building_name": "ท.0011 อาคาร เครื่องมือ อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0012__FL01__MDB",
+      "building_name": "ท.0012 อาคาร บำรุงรักษาเครื่องกล อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0012__FL01__MDB",
+      "building_name": "ท.0012 อาคาร บำรุงรักษาเครื่องกล อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0012__FL01__MDB",
+      "building_name": "ท.0012 อาคาร บำรุงรักษาเครื่องกล อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0012__FL01__MDB",
+      "building_name": "ท.0012 อาคาร บำรุงรักษาเครื่องกล อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0012__FL01__MDB",
+      "building_name": "ท.0012 อาคาร บำรุงรักษาเครื่องกล อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0012__FL01__MDB",
+      "building_name": "ท.0012 อาคาร บำรุงรักษาเครื่องกล อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0012__FL01__MDB",
+      "building_name": "ท.0012 อาคาร บำรุงรักษาเครื่องกล อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0012__FL01__MDB",
+      "building_name": "ท.0012 อาคาร บำรุงรักษาเครื่องกล อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0012__FL01__MDB",
+      "building_name": "ท.0012 อาคาร บำรุงรักษาเครื่องกล อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0012__FL01__MDB",
+      "building_name": "ท.0012 อาคาร บำรุงรักษาเครื่องกล อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0012__FL01__MDB",
+      "building_name": "ท.0012 อาคาร บำรุงรักษาเครื่องกล อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0012__FL01__MDB",
+      "building_name": "ท.0012 อาคาร บำรุงรักษาเครื่องกล อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0012__FL01__MDB",
+      "building_name": "ท.0012 อาคาร บำรุงรักษาเครื่องกล อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0012__FL01__MDB",
+      "building_name": "ท.0012 อาคาร บำรุงรักษาเครื่องกล อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0012__FL01__MDB",
+      "building_name": "ท.0012 อาคาร บำรุงรักษาเครื่องกล อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0012__FL01__MDB",
+      "building_name": "ท.0012 อาคาร บำรุงรักษาเครื่องกล อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0012__FL01__MDB",
+      "building_name": "ท.0012 อาคาร บำรุงรักษาเครื่องกล อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0012__FL01__MDB",
+      "building_name": "ท.0012 อาคาร บำรุงรักษาเครื่องกล อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0012__FL01__MDB",
+      "building_name": "ท.0012 อาคาร บำรุงรักษาเครื่องกล อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0014__FL01__MDB",
+      "building_name": "ท.0014 อาคาร ปฏิบัติการฝ่ายบำรุงรักษาไฟฟ้าและโยธา"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0014__FL01__MDB",
+      "building_name": "ท.0014 อาคาร ปฏิบัติการฝ่ายบำรุงรักษาไฟฟ้าและโยธา"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0014__FL01__MDB",
+      "building_name": "ท.0014 อาคาร ปฏิบัติการฝ่ายบำรุงรักษาไฟฟ้าและโยธา"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0014__FL01__MDB",
+      "building_name": "ท.0014 อาคาร ปฏิบัติการฝ่ายบำรุงรักษาไฟฟ้าและโยธา"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0014__FL01__MDB",
+      "building_name": "ท.0014 อาคาร ปฏิบัติการฝ่ายบำรุงรักษาไฟฟ้าและโยธา"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0014__FL01__MDB",
+      "building_name": "ท.0014 อาคาร ปฏิบัติการฝ่ายบำรุงรักษาไฟฟ้าและโยธา"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0014__FL01__MDB",
+      "building_name": "ท.0014 อาคาร ปฏิบัติการฝ่ายบำรุงรักษาไฟฟ้าและโยธา"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0014__FL01__MDB",
+      "building_name": "ท.0014 อาคาร ปฏิบัติการฝ่ายบำรุงรักษาไฟฟ้าและโยธา"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0014__FL01__MDB",
+      "building_name": "ท.0014 อาคาร ปฏิบัติการฝ่ายบำรุงรักษาไฟฟ้าและโยธา"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0014__FL01__MDB",
+      "building_name": "ท.0014 อาคาร ปฏิบัติการฝ่ายบำรุงรักษาไฟฟ้าและโยธา"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0014__FL01__MDB",
+      "building_name": "ท.0014 อาคาร ปฏิบัติการฝ่ายบำรุงรักษาไฟฟ้าและโยธา"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0014__FL01__MDB",
+      "building_name": "ท.0014 อาคาร ปฏิบัติการฝ่ายบำรุงรักษาไฟฟ้าและโยธา"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0014__FL01__MDB",
+      "building_name": "ท.0014 อาคาร ปฏิบัติการฝ่ายบำรุงรักษาไฟฟ้าและโยธา"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0014__FL01__MDB",
+      "building_name": "ท.0014 อาคาร ปฏิบัติการฝ่ายบำรุงรักษาไฟฟ้าและโยธา"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0014__FL01__MDB",
+      "building_name": "ท.0014 อาคาร ปฏิบัติการฝ่ายบำรุงรักษาไฟฟ้าและโยธา"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0014__FL01__MDB",
+      "building_name": "ท.0014 อาคาร ปฏิบัติการฝ่ายบำรุงรักษาไฟฟ้าและโยธา"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0014__FL01__MDB",
+      "building_name": "ท.0014 อาคาร ปฏิบัติการฝ่ายบำรุงรักษาไฟฟ้าและโยธา"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0014__FL01__MDB",
+      "building_name": "ท.0014 อาคาร ปฏิบัติการฝ่ายบำรุงรักษาไฟฟ้าและโยธา"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0014__FL01__MDB",
+      "building_name": "ท.0014 อาคาร ปฏิบัติการฝ่ายบำรุงรักษาไฟฟ้าและโยธา"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0015__FL01__MDB",
+      "building_name": "ท.0015 อาคาศูนย์ปฏิบัติการทดสอบเคมี 2"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0015__FL01__MDB",
+      "building_name": "ท.0015 อาคาศูนย์ปฏิบัติการทดสอบเคมี 2"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0015__FL01__MDB",
+      "building_name": "ท.0015 อาคาศูนย์ปฏิบัติการทดสอบเคมี 2"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0015__FL01__MDB",
+      "building_name": "ท.0015 อาคาศูนย์ปฏิบัติการทดสอบเคมี 2"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0015__FL01__MDB",
+      "building_name": "ท.0015 อาคาศูนย์ปฏิบัติการทดสอบเคมี 2"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0015__FL01__MDB",
+      "building_name": "ท.0015 อาคาศูนย์ปฏิบัติการทดสอบเคมี 2"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0015__FL01__MDB",
+      "building_name": "ท.0015 อาคาศูนย์ปฏิบัติการทดสอบเคมี 2"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0015__FL01__MDB",
+      "building_name": "ท.0015 อาคาศูนย์ปฏิบัติการทดสอบเคมี 2"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0015__FL01__MDB",
+      "building_name": "ท.0015 อาคาศูนย์ปฏิบัติการทดสอบเคมี 2"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0015__FL01__MDB",
+      "building_name": "ท.0015 อาคาศูนย์ปฏิบัติการทดสอบเคมี 2"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0015__FL01__MDB",
+      "building_name": "ท.0015 อาคาศูนย์ปฏิบัติการทดสอบเคมี 2"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0015__FL01__MDB",
+      "building_name": "ท.0015 อาคาศูนย์ปฏิบัติการทดสอบเคมี 2"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0015__FL01__MDB",
+      "building_name": "ท.0015 อาคาศูนย์ปฏิบัติการทดสอบเคมี 2"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0015__FL01__MDB",
+      "building_name": "ท.0015 อาคาศูนย์ปฏิบัติการทดสอบเคมี 2"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0015__FL01__MDB",
+      "building_name": "ท.0015 อาคาศูนย์ปฏิบัติการทดสอบเคมี 2"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0015__FL01__MDB",
+      "building_name": "ท.0015 อาคาศูนย์ปฏิบัติการทดสอบเคมี 2"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0015__FL01__MDB",
+      "building_name": "ท.0015 อาคาศูนย์ปฏิบัติการทดสอบเคมี 2"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0015__FL01__MDB",
+      "building_name": "ท.0015 อาคาศูนย์ปฏิบัติการทดสอบเคมี 2"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0015__FL01__MDB",
+      "building_name": "ท.0015 อาคาศูนย์ปฏิบัติการทดสอบเคมี 2"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0016__FL01__MDB",
+      "building_name": "ท.0016 อาคารปฏิบัติการเคมี 1 อคม."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0016__FL01__MDB",
+      "building_name": "ท.0016 อาคารปฏิบัติการเคมี 1 อคม."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0016__FL01__MDB",
+      "building_name": "ท.0016 อาคารปฏิบัติการเคมี 1 อคม."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0016__FL01__MDB",
+      "building_name": "ท.0016 อาคารปฏิบัติการเคมี 1 อคม."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0016__FL01__MDB",
+      "building_name": "ท.0016 อาคารปฏิบัติการเคมี 1 อคม."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0016__FL01__MDB",
+      "building_name": "ท.0016 อาคารปฏิบัติการเคมี 1 อคม."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0016__FL01__MDB",
+      "building_name": "ท.0016 อาคารปฏิบัติการเคมี 1 อคม."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0016__FL01__MDB",
+      "building_name": "ท.0016 อาคารปฏิบัติการเคมี 1 อคม."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0016__FL01__MDB",
+      "building_name": "ท.0016 อาคารปฏิบัติการเคมี 1 อคม."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0016__FL01__MDB",
+      "building_name": "ท.0016 อาคารปฏิบัติการเคมี 1 อคม."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0016__FL01__MDB",
+      "building_name": "ท.0016 อาคารปฏิบัติการเคมี 1 อคม."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0016__FL01__MDB",
+      "building_name": "ท.0016 อาคารปฏิบัติการเคมี 1 อคม."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0016__FL01__MDB",
+      "building_name": "ท.0016 อาคารปฏิบัติการเคมี 1 อคม."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0016__FL01__MDB",
+      "building_name": "ท.0016 อาคารปฏิบัติการเคมี 1 อคม."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0016__FL01__MDB",
+      "building_name": "ท.0016 อาคารปฏิบัติการเคมี 1 อคม."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0017__FL01__MDB",
+      "building_name": "ท.0017 อาคาร ศูนย์พัฒนางานเชื่อมและทดสอบฝีมือช่างเชื่อมสากล"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0017__FL01__MDB",
+      "building_name": "ท.0017 อาคาร ศูนย์พัฒนางานเชื่อมและทดสอบฝีมือช่างเชื่อมสากล"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0017__FL01__MDB",
+      "building_name": "ท.0017 อาคาร ศูนย์พัฒนางานเชื่อมและทดสอบฝีมือช่างเชื่อมสากล"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0017__FL01__MDB",
+      "building_name": "ท.0017 อาคาร ศูนย์พัฒนางานเชื่อมและทดสอบฝีมือช่างเชื่อมสากล"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0017__FL01__MDB",
+      "building_name": "ท.0017 อาคาร ศูนย์พัฒนางานเชื่อมและทดสอบฝีมือช่างเชื่อมสากล"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0017__FL01__MDB",
+      "building_name": "ท.0017 อาคาร ศูนย์พัฒนางานเชื่อมและทดสอบฝีมือช่างเชื่อมสากล"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0017__FL01__MDB",
+      "building_name": "ท.0017 อาคาร ศูนย์พัฒนางานเชื่อมและทดสอบฝีมือช่างเชื่อมสากล"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0017__FL01__MDB",
+      "building_name": "ท.0017 อาคาร ศูนย์พัฒนางานเชื่อมและทดสอบฝีมือช่างเชื่อมสากล"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0017__FL01__MDB",
+      "building_name": "ท.0017 อาคาร ศูนย์พัฒนางานเชื่อมและทดสอบฝีมือช่างเชื่อมสากล"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0017__FL01__MDB",
+      "building_name": "ท.0017 อาคาร ศูนย์พัฒนางานเชื่อมและทดสอบฝีมือช่างเชื่อมสากล"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0017__FL01__MDB",
+      "building_name": "ท.0017 อาคาร ศูนย์พัฒนางานเชื่อมและทดสอบฝีมือช่างเชื่อมสากล"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0017__FL01__MDB",
+      "building_name": "ท.0017 อาคาร ศูนย์พัฒนางานเชื่อมและทดสอบฝีมือช่างเชื่อมสากล"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0017__FL01__MDB",
+      "building_name": "ท.0017 อาคาร ศูนย์พัฒนางานเชื่อมและทดสอบฝีมือช่างเชื่อมสากล"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0017__FL01__MDB",
+      "building_name": "ท.0017 อาคาร ศูนย์พัฒนางานเชื่อมและทดสอบฝีมือช่างเชื่อมสากล"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0017__FL01__MDB",
+      "building_name": "ท.0017 อาคาร ศูนย์พัฒนางานเชื่อมและทดสอบฝีมือช่างเชื่อมสากล"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0017__FL01__MDB",
+      "building_name": "ท.0017 อาคาร ศูนย์พัฒนางานเชื่อมและทดสอบฝีมือช่างเชื่อมสากล"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0017__FL01__MDB",
+      "building_name": "ท.0017 อาคาร ศูนย์พัฒนางานเชื่อมและทดสอบฝีมือช่างเชื่อมสากล"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0017__FL01__MDB",
+      "building_name": "ท.0017 อาคาร ศูนย์พัฒนางานเชื่อมและทดสอบฝีมือช่างเชื่อมสากล"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0017__FL01__MDB",
+      "building_name": "ท.0017 อาคาร ศูนย์พัฒนางานเชื่อมและทดสอบฝีมือช่างเชื่อมสากล"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0018__FL01__MDB",
+      "building_name": "ท.0018 อาคารศูนย์มาตรวิทยาและสอบเทียบเครื่องมือวัด"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0018__FL01__MDB",
+      "building_name": "ท.0018 อาคารศูนย์มาตรวิทยาและสอบเทียบเครื่องมือวัด"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0018__FL01__MDB",
+      "building_name": "ท.0018 อาคารศูนย์มาตรวิทยาและสอบเทียบเครื่องมือวัด"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0018__FL01__MDB",
+      "building_name": "ท.0018 อาคารศูนย์มาตรวิทยาและสอบเทียบเครื่องมือวัด"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0018__FL01__MDB",
+      "building_name": "ท.0018 อาคารศูนย์มาตรวิทยาและสอบเทียบเครื่องมือวัด"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0018__FL01__MDB",
+      "building_name": "ท.0018 อาคารศูนย์มาตรวิทยาและสอบเทียบเครื่องมือวัด"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0018__FL01__MDB",
+      "building_name": "ท.0018 อาคารศูนย์มาตรวิทยาและสอบเทียบเครื่องมือวัด"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0018__FL01__MDB",
+      "building_name": "ท.0018 อาคารศูนย์มาตรวิทยาและสอบเทียบเครื่องมือวัด"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0018__FL01__MDB",
+      "building_name": "ท.0018 อาคารศูนย์มาตรวิทยาและสอบเทียบเครื่องมือวัด"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0018__FL01__MDB",
+      "building_name": "ท.0018 อาคารศูนย์มาตรวิทยาและสอบเทียบเครื่องมือวัด"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0018__FL01__MDB",
+      "building_name": "ท.0018 อาคารศูนย์มาตรวิทยาและสอบเทียบเครื่องมือวัด"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0018__FL01__MDB",
+      "building_name": "ท.0018 อาคารศูนย์มาตรวิทยาและสอบเทียบเครื่องมือวัด"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0018__FL01__MDB",
+      "building_name": "ท.0018 อาคารศูนย์มาตรวิทยาและสอบเทียบเครื่องมือวัด"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0018__FL01__MDB",
+      "building_name": "ท.0018 อาคารศูนย์มาตรวิทยาและสอบเทียบเครื่องมือวัด"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0018__FL01__MDB",
+      "building_name": "ท.0018 อาคารศูนย์มาตรวิทยาและสอบเทียบเครื่องมือวัด"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0018__FL01__MDB",
+      "building_name": "ท.0018 อาคารศูนย์มาตรวิทยาและสอบเทียบเครื่องมือวัด"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0018__FL01__MDB",
+      "building_name": "ท.0018 อาคารศูนย์มาตรวิทยาและสอบเทียบเครื่องมือวัด"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0018__FL01__MDB",
+      "building_name": "ท.0018 อาคารศูนย์มาตรวิทยาและสอบเทียบเครื่องมือวัด"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0018__FL01__MDB",
+      "building_name": "ท.0018 อาคารศูนย์มาตรวิทยาและสอบเทียบเครื่องมือวัด"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0019__FL01__Main",
+      "building_name": "ท.0019 ชั้นที่ 1 อาคารทำการ ชธธ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0019__FL01__Main",
+      "building_name": "ท.0019 ชั้นที่ 1 อาคารทำการ ชธธ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0019__FL01__Main",
+      "building_name": "ท.0019 ชั้นที่ 1 อาคารทำการ ชธธ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0019__FL01__Main",
+      "building_name": "ท.0019 ชั้นที่ 1 อาคารทำการ ชธธ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0019__FL01__Main",
+      "building_name": "ท.0019 ชั้นที่ 1 อาคารทำการ ชธธ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0019__FL01__Main",
+      "building_name": "ท.0019 ชั้นที่ 1 อาคารทำการ ชธธ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0019__FL01__Main",
+      "building_name": "ท.0019 ชั้นที่ 1 อาคารทำการ ชธธ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0019__FL01__Main",
+      "building_name": "ท.0019 ชั้นที่ 1 อาคารทำการ ชธธ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0019__FL01__Main",
+      "building_name": "ท.0019 ชั้นที่ 1 อาคารทำการ ชธธ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0019__FL01__Main",
+      "building_name": "ท.0019 ชั้นที่ 1 อาคารทำการ ชธธ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0019__FL01__Main",
+      "building_name": "ท.0019 ชั้นที่ 1 อาคารทำการ ชธธ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0019__FL01__Main",
+      "building_name": "ท.0019 ชั้นที่ 1 อาคารทำการ ชธธ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0019__FL01__Main",
+      "building_name": "ท.0019 ชั้นที่ 1 อาคารทำการ ชธธ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0019__FL01__Main",
+      "building_name": "ท.0019 ชั้นที่ 1 อาคารทำการ ชธธ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0019__FL01__Main",
+      "building_name": "ท.0019 ชั้นที่ 1 อาคารทำการ ชธธ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0019__FL01__Main",
+      "building_name": "ท.0019 ชั้นที่ 1 อาคารทำการ ชธธ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0019__FL01__Main",
+      "building_name": "ท.0019 ชั้นที่ 1 อาคารทำการ ชธธ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0019__FL01__Main",
+      "building_name": "ท.0019 ชั้นที่ 1 อาคารทำการ ชธธ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0019__FL01__Main",
+      "building_name": "ท.0019 ชั้นที่ 1 อาคารทำการ ชธธ."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0022__FL01__MDB",
+      "building_name": "ท.0022 อาคารห้องกัมตภาพรังสี อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0022__FL01__MDB",
+      "building_name": "ท.0022 อาคารห้องกัมตภาพรังสี อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0022__FL01__MDB",
+      "building_name": "ท.0022 อาคารห้องกัมตภาพรังสี อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0022__FL01__MDB",
+      "building_name": "ท.0022 อาคารห้องกัมตภาพรังสี อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0022__FL01__MDB",
+      "building_name": "ท.0022 อาคารห้องกัมตภาพรังสี อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0022__FL01__MDB",
+      "building_name": "ท.0022 อาคารห้องกัมตภาพรังสี อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0022__FL01__MDB",
+      "building_name": "ท.0022 อาคารห้องกัมตภาพรังสี อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0022__FL01__MDB",
+      "building_name": "ท.0022 อาคารห้องกัมตภาพรังสี อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0022__FL01__MDB",
+      "building_name": "ท.0022 อาคารห้องกัมตภาพรังสี อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0022__FL01__MDB",
+      "building_name": "ท.0022 อาคารห้องกัมตภาพรังสี อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0022__FL01__MDB",
+      "building_name": "ท.0022 อาคารห้องกัมตภาพรังสี อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0022__FL01__MDB",
+      "building_name": "ท.0022 อาคารห้องกัมตภาพรังสี อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0022__FL01__MDB",
+      "building_name": "ท.0022 อาคารห้องกัมตภาพรังสี อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0022__FL01__MDB",
+      "building_name": "ท.0022 อาคารห้องกัมตภาพรังสี อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0022__FL01__MDB",
+      "building_name": "ท.0022 อาคารห้องกัมตภาพรังสี อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0022__FL01__MDB",
+      "building_name": "ท.0022 อาคารห้องกัมตภาพรังสี อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0022__FL01__MDB",
+      "building_name": "ท.0022 อาคารห้องกัมตภาพรังสี อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0022__FL01__MDB",
+      "building_name": "ท.0022 อาคารห้องกัมตภาพรังสี อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0022__FL01__MDB",
+      "building_name": "ท.0022 อาคารห้องกัมตภาพรังสี อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0023__FL01__MDB",
+      "building_name": "ท.0023 อาคาร Construction Shop อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0023__FL01__MDB",
+      "building_name": "ท.0023 อาคาร Construction Shop อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0023__FL01__MDB",
+      "building_name": "ท.0023 อาคาร Construction Shop อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0023__FL01__MDB",
+      "building_name": "ท.0023 อาคาร Construction Shop อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0023__FL01__MDB",
+      "building_name": "ท.0023 อาคาร Construction Shop อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0023__FL01__MDB",
+      "building_name": "ท.0023 อาคาร Construction Shop อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0023__FL01__MDB",
+      "building_name": "ท.0023 อาคาร Construction Shop อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0023__FL01__MDB",
+      "building_name": "ท.0023 อาคาร Construction Shop อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0023__FL01__MDB",
+      "building_name": "ท.0023 อาคาร Construction Shop อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0023__FL01__MDB",
+      "building_name": "ท.0023 อาคาร Construction Shop อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0023__FL01__MDB",
+      "building_name": "ท.0023 อาคาร Construction Shop อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0023__FL01__MDB",
+      "building_name": "ท.0023 อาคาร Construction Shop อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0023__FL01__MDB",
+      "building_name": "ท.0023 อาคาร Construction Shop อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0023__FL01__MDB",
+      "building_name": "ท.0023 อาคาร Construction Shop อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0023__FL01__MDB",
+      "building_name": "ท.0023 อาคาร Construction Shop อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0023__FL01__MDB",
+      "building_name": "ท.0023 อาคาร Construction Shop อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0023__FL01__MDB",
+      "building_name": "ท.0023 อาคาร Construction Shop อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0023__FL01__MDB",
+      "building_name": "ท.0023 อาคาร Construction Shop อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0023__FL01__MDB",
+      "building_name": "ท.0023 อาคาร Construction Shop อบค."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0025__FL01__MDB",
       "building_name": "ท.0025 อาคารเก็บอุปกรณ์ อสร."
     },
     {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "B.0001__FL01__MDB",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0025__FL01__MDB",
+      "building_name": "ท.0025 อาคารเก็บอุปกรณ์ อสร."
     },
     {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "D.0015__FL01__MDB",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0025__FL01__MDB",
+      "building_name": "ท.0025 อาคารเก็บอุปกรณ์ อสร."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0025__FL01__MDB",
+      "building_name": "ท.0025 อาคารเก็บอุปกรณ์ อสร."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0025__FL01__MDB",
+      "building_name": "ท.0025 อาคารเก็บอุปกรณ์ อสร."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0025__FL01__MDB",
+      "building_name": "ท.0025 อาคารเก็บอุปกรณ์ อสร."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0025__FL01__MDB",
+      "building_name": "ท.0025 อาคารเก็บอุปกรณ์ อสร."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0025__FL01__MDB",
+      "building_name": "ท.0025 อาคารเก็บอุปกรณ์ อสร."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0025__FL01__MDB",
+      "building_name": "ท.0025 อาคารเก็บอุปกรณ์ อสร."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0025__FL01__MDB",
+      "building_name": "ท.0025 อาคารเก็บอุปกรณ์ อสร."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0025__FL01__MDB",
+      "building_name": "ท.0025 อาคารเก็บอุปกรณ์ อสร."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0025__FL01__MDB",
+      "building_name": "ท.0025 อาคารเก็บอุปกรณ์ อสร."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0025__FL01__MDB",
+      "building_name": "ท.0025 อาคารเก็บอุปกรณ์ อสร."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0025__FL01__MDB",
+      "building_name": "ท.0025 อาคารเก็บอุปกรณ์ อสร."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0025__FL01__MDB",
+      "building_name": "ท.0025 อาคารเก็บอุปกรณ์ อสร."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0025__FL01__MDB",
+      "building_name": "ท.0025 อาคารเก็บอุปกรณ์ อสร."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0025__FL01__MDB",
+      "building_name": "ท.0025 อาคารเก็บอุปกรณ์ อสร."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0025__FL01__MDB",
+      "building_name": "ท.0025 อาคารเก็บอุปกรณ์ อสร."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0025__FL01__MDB",
+      "building_name": "ท.0025 อาคารเก็บอุปกรณ์ อสร."
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0026__FL01__MDB",
+      "building_name": "ท.0026 อาคารบริหารการขนส่ง"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0026__FL01__MDB",
+      "building_name": "ท.0026 อาคารบริหารการขนส่ง"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0026__FL01__MDB",
+      "building_name": "ท.0026 อาคารบริหารการขนส่ง"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0026__FL01__MDB",
+      "building_name": "ท.0026 อาคารบริหารการขนส่ง"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0026__FL01__MDB",
+      "building_name": "ท.0026 อาคารบริหารการขนส่ง"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0026__FL01__MDB",
+      "building_name": "ท.0026 อาคารบริหารการขนส่ง"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0026__FL01__MDB",
+      "building_name": "ท.0026 อาคารบริหารการขนส่ง"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0026__FL01__MDB",
+      "building_name": "ท.0026 อาคารบริหารการขนส่ง"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0026__FL01__MDB",
+      "building_name": "ท.0026 อาคารบริหารการขนส่ง"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0026__FL01__MDB",
+      "building_name": "ท.0026 อาคารบริหารการขนส่ง"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0026__FL01__MDB",
+      "building_name": "ท.0026 อาคารบริหารการขนส่ง"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0026__FL01__MDB",
+      "building_name": "ท.0026 อาคารบริหารการขนส่ง"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0026__FL01__MDB",
+      "building_name": "ท.0026 อาคารบริหารการขนส่ง"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0026__FL01__MDB",
+      "building_name": "ท.0026 อาคารบริหารการขนส่ง"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0026__FL01__MDB",
+      "building_name": "ท.0026 อาคารบริหารการขนส่ง"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0026__FL01__MDB",
+      "building_name": "ท.0026 อาคารบริหารการขนส่ง"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0026__FL01__MDB",
+      "building_name": "ท.0026 อาคารบริหารการขนส่ง"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0026__FL01__MDB",
+      "building_name": "ท.0026 อาคารบริหารการขนส่ง"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0026__FL01__MDB",
+      "building_name": "ท.0026 อาคารบริหารการขนส่ง"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0027__FL01__MDB",
+      "building_name": "ท.0027 อาคารปฏิบัติการกองขนส่ง"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0027__FL01__MDB",
+      "building_name": "ท.0027 อาคารปฏิบัติการกองขนส่ง"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0027__FL01__MDB",
+      "building_name": "ท.0027 อาคารปฏิบัติการกองขนส่ง"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0027__FL01__MDB",
+      "building_name": "ท.0027 อาคารปฏิบัติการกองขนส่ง"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0027__FL01__MDB",
+      "building_name": "ท.0027 อาคารปฏิบัติการกองขนส่ง"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0027__FL01__MDB",
+      "building_name": "ท.0027 อาคารปฏิบัติการกองขนส่ง"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0027__FL01__MDB",
+      "building_name": "ท.0027 อาคารปฏิบัติการกองขนส่ง"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0027__FL01__MDB",
+      "building_name": "ท.0027 อาคารปฏิบัติการกองขนส่ง"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0027__FL01__MDB",
+      "building_name": "ท.0027 อาคารปฏิบัติการกองขนส่ง"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0027__FL01__MDB",
+      "building_name": "ท.0027 อาคารปฏิบัติการกองขนส่ง"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0027__FL01__MDB",
+      "building_name": "ท.0027 อาคารปฏิบัติการกองขนส่ง"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0027__FL01__MDB",
+      "building_name": "ท.0027 อาคารปฏิบัติการกองขนส่ง"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0027__FL01__MDB",
+      "building_name": "ท.0027 อาคารปฏิบัติการกองขนส่ง"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0027__FL01__MDB",
+      "building_name": "ท.0027 อาคารปฏิบัติการกองขนส่ง"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0027__FL01__MDB",
+      "building_name": "ท.0027 อาคารปฏิบัติการกองขนส่ง"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0027__FL01__MDB",
+      "building_name": "ท.0027 อาคารปฏิบัติการกองขนส่ง"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0027__FL01__MDB",
+      "building_name": "ท.0027 อาคารปฏิบัติการกองขนส่ง"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0027__FL01__MDB",
+      "building_name": "ท.0027 อาคารปฏิบัติการกองขนส่ง"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0027__FL01__MDB",
+      "building_name": "ท.0027 อาคารปฏิบัติการกองขนส่ง"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0028__FL01__MDB",
+      "building_name": "ท.0028 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 1"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0028__FL01__MDB",
+      "building_name": "ท.0028 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 1"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0028__FL01__MDB",
+      "building_name": "ท.0028 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 1"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0028__FL01__MDB",
+      "building_name": "ท.0028 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 1"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0028__FL01__MDB",
+      "building_name": "ท.0028 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 1"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0028__FL01__MDB",
+      "building_name": "ท.0028 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 1"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0028__FL01__MDB",
+      "building_name": "ท.0028 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 1"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0028__FL01__MDB",
+      "building_name": "ท.0028 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 1"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0028__FL01__MDB",
+      "building_name": "ท.0028 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 1"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0028__FL01__MDB",
+      "building_name": "ท.0028 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 1"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0028__FL01__MDB",
+      "building_name": "ท.0028 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 1"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0028__FL01__MDB",
+      "building_name": "ท.0028 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 1"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0028__FL01__MDB",
+      "building_name": "ท.0028 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 1"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0028__FL01__MDB",
+      "building_name": "ท.0028 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 1"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0028__FL01__MDB",
+      "building_name": "ท.0028 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 1"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0028__FL01__MDB",
+      "building_name": "ท.0028 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 1"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0028__FL01__MDB",
+      "building_name": "ท.0028 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 1"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0028__FL01__MDB",
+      "building_name": "ท.0028 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 1"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0028__FL01__MDB",
+      "building_name": "ท.0028 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 1"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0029__FL01__MDB",
+      "building_name": "ท.0029 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 2"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0029__FL01__MDB",
+      "building_name": "ท.0029 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 2"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0029__FL01__MDB",
+      "building_name": "ท.0029 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 2"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0029__FL01__MDB",
+      "building_name": "ท.0029 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 2"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0029__FL01__MDB",
+      "building_name": "ท.0029 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 2"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0029__FL01__MDB",
+      "building_name": "ท.0029 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 2"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0029__FL01__MDB",
+      "building_name": "ท.0029 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 2"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0029__FL01__MDB",
+      "building_name": "ท.0029 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 2"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0029__FL01__MDB",
+      "building_name": "ท.0029 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 2"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0029__FL01__MDB",
+      "building_name": "ท.0029 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 2"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0029__FL01__MDB",
+      "building_name": "ท.0029 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 2"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0029__FL01__MDB",
+      "building_name": "ท.0029 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 2"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0029__FL01__MDB",
+      "building_name": "ท.0029 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 2"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0029__FL01__MDB",
+      "building_name": "ท.0029 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 2"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0029__FL01__MDB",
+      "building_name": "ท.0029 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 2"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0029__FL01__MDB",
+      "building_name": "ท.0029 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 2"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0029__FL01__MDB",
+      "building_name": "ท.0029 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 2"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0029__FL01__MDB",
+      "building_name": "ท.0029 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 2"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "T.0029__FL01__MDB",
+      "building_name": "ท.0029 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 2"
     },
     {
       "source_form": "forms/2026-W14.csv",
@@ -56,84 +2515,6 @@
       "reading_date": "2026-05-08",
       "meter_id": "D.0015__FL01__MDB",
       "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "D.0017__FL01__MDB",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W02.csv",
-      "reading_date": "2026-01-09",
-      "meter_id": "D.0017__FL01__ร้านค้า_1",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "D.0017__FL01__ร้านค้า_2",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "D.0017__FL01__ร้านค้า_4",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "D.0017__FL01__ร้านค้า_5",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "D.0019__FL01__MDB",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "D.0019__FL01__ร้านค้า_1",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "D.0019__FL01__ร้านค้า_2",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "D.0019__FL01__ร้านค้า_3",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "D.0019__FL01__ร้านค้า_4",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "D.0019__FL01__ร้านค้า_5",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "D.0019__FL01__ร้านค้า_6",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "D.0019__FL01__ร้านค้า_7",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
     },
     {
       "source_form": "forms/2026-W06.csv",
@@ -220,76 +2601,10 @@
       "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED"
     },
     {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "D.0025__FL01__MDB",
-      "warning": "FIRST_READING_USED_MWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W08.csv",
-      "reading_date": "2026-02-20",
-      "meter_id": "D.0025__FL01__MDB",
-      "warning": "NEGATIVE_DELTA_AFTER_AUTO_NORMALIZE"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "D.0026__FL01__MDB",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "D.0031__FL01__MDB",
-      "warning": "FIRST_READING_USED_MWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "D.0031__FL01__ร้านค้า_1",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W02.csv",
-      "reading_date": "2026-01-09",
-      "meter_id": "D.0033__FL01__MDB",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0006__FL01__MDB",
-      "warning": "FIRST_READING_USED_MWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W16.csv",
-      "reading_date": "2026-04-17",
-      "meter_id": "T.0006__FL01__MDB",
-      "warning": "NEGATIVE_DELTA_AFTER_AUTO_NORMALIZE"
-    },
-    {
-      "source_form": "forms/2026-W17.csv",
-      "reading_date": "2026-04-24",
-      "meter_id": "T.0006__FL01__MDB",
-      "warning": "NEGATIVE_DELTA_AFTER_AUTO_NORMALIZE"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0007__FL01__MDB",
-      "warning": "FIRST_READING_USED_MWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0008__FL01__MDB",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
       "source_form": "forms/2026-W08.csv",
       "reading_date": "2026-02-20",
       "meter_id": "T.0008__FL01__MDB",
-      "warning": "NEGATIVE_DELTA_AFTER_AUTO_NORMALIZE,RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED"
+      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED"
     },
     {
       "source_form": "forms/2026-W09.csv",
@@ -337,7 +2652,7 @@
       "source_form": "forms/2026-W16.csv",
       "reading_date": "2026-04-17",
       "meter_id": "T.0008__FL01__MDB",
-      "warning": "NEGATIVE_DELTA_AFTER_AUTO_NORMALIZE,RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED"
+      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED"
     },
     {
       "source_form": "forms/2026-W18.csv",
@@ -350,342 +2665,6 @@
       "reading_date": "2026-05-15",
       "meter_id": "T.0008__FL01__MDB",
       "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0009__FL01__MDB",
-      "warning": "FIRST_READING_USED_MWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0010__FL01__MDB",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W18.csv",
-      "reading_date": "2026-05-01",
-      "meter_id": "T.0011__FL01__MDB",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0012__FL01__MDB",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0014__FL01__MDB",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0015__FL01__MDB",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0016__FL01__MDB",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0017__FL01__MDB",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0018__FL01__MDB",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0019__FL01__AP1",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0019__FL01__EMDB_1",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0019__FL01__LP1",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0019__FL01__Main",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0019__FL01__PP1",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0019__FL03__AP3",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0019__FL03__LP3",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0019__FL03__PP3",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0019__FL03__SCB_3",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0019__FL04__AP4",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0019__FL04__LP4",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0019__FL04__PP41",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0019__FL04__PP42",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0019__FL04__SCB_4",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0019__FL05__AP5",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0019__FL05__LP5",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0019__FL05__PP51",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0019__FL05__PP52",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0019__FL05__SCB_5",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0019__FL06__AP6",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0019__FL06__LP6",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0019__FL06__PP61",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0019__FL06__PP62",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0019__FL06__SCB_6",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0019__FL07__AP7",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0019__FL07__LP7",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0019__FL07__PP71",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0019__FL07__PP72",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0019__FL07__SCB_7",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0019__FL08__AP8",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0019__FL08__LP8",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0019__FL08__PP81",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0019__FL08__PP82",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0019__FL08__SCB_8",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0019__FL09__AP9",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0019__FL09__BP",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0019__FL09__LP9",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0019__FL09__PP91",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0019__FL09__PP92",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0019__FL09__PPAC_1",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0019__FL09__PPAC_2",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0019__FL09__PPAC_3",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0019__FL09__PPD",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0019__FL09__PPL",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0019__FL09__SCB_9",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0020__FL01__AP21",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0020__FL01__AP22",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
     },
     {
       "source_form": "forms/2026-W08.csv",
@@ -766,12 +2745,6 @@
       "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED"
     },
     {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0020__FL01__AP23",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
       "source_form": "forms/2026-W15.csv",
       "reading_date": "2026-04-10",
       "meter_id": "T.0020__FL01__AP23",
@@ -806,455 +2779,548 @@
       "reading_date": "2026-05-15",
       "meter_id": "T.0020__FL01__AP23",
       "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0020__FL01__LP21",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0020__FL01__LP22",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0020__FL01__LP23",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0020__FL01__PP21",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0020__FL01__PP22",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0020__FL01__PP23",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0020__FL01__SCB_21",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0020__FL02__SCB_22",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0020__FL03__PPAC_3",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0020__FL03__SCB_23",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0022__FL01__MDB",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0023__FL01__MDB",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0025__FL01__MDB",
-      "warning": "FIRST_READING_USED_KWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0026__FL01__MDB",
-      "warning": "FIRST_READING_USED_MWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0027__FL01__MDB",
-      "warning": "FIRST_READING_USED_MWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0028__FL01__MDB",
-      "warning": "FIRST_READING_USED_MWH_UNIT"
-    },
-    {
-      "source_form": "forms/2026-W01.csv",
-      "reading_date": "2026-01-02",
-      "meter_id": "T.0029__FL01__MDB",
-      "warning": "FIRST_READING_USED_MWH_UNIT"
     },
     {
       "week_end_date": "2026-04-03",
       "meter_id": "D.0015__FL01__MDB",
-      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED"
+      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
+      "previous_normalized_kwh": 26864.0,
+      "current_normalized_kwh": 26468000.0,
+      "kwh": 26441136.0
     },
     {
       "week_end_date": "2026-04-10",
       "meter_id": "D.0015__FL01__MDB",
-      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED"
+      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
+      "previous_normalized_kwh": 26468000.0,
+      "current_normalized_kwh": 26864000.0,
+      "kwh": 396000.0
     },
     {
       "week_end_date": "2026-04-17",
       "meter_id": "D.0015__FL01__MDB",
-      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED"
+      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
+      "previous_normalized_kwh": 26864000.0,
+      "current_normalized_kwh": 26864000.0,
+      "kwh": 0.0
     },
     {
       "week_end_date": "2026-04-24",
       "meter_id": "D.0015__FL01__MDB",
-      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED"
+      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
+      "previous_normalized_kwh": 26864000.0,
+      "current_normalized_kwh": 26864000.0,
+      "kwh": 0.0
     },
     {
       "week_end_date": "2026-05-08",
       "meter_id": "D.0015__FL01__MDB",
-      "warning": "NON_WEEKLY_GAP_14_DAYS,RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED"
+      "warning": "NON_WEEKLY_GAP_14_DAYS,RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
+      "previous_normalized_kwh": 26864000.0,
+      "current_normalized_kwh": 26864000.0,
+      "kwh": 0.0
     },
     {
       "week_end_date": "2026-04-24",
       "meter_id": "D.0017__FL01__ร้านค้า_1",
-      "warning": "NON_WEEKLY_GAP_21_DAYS"
+      "warning": "NON_WEEKLY_GAP_21_DAYS",
+      "previous_normalized_kwh": 8900.0,
+      "current_normalized_kwh": 9069.0,
+      "kwh": 169.0
     },
     {
       "week_end_date": "2026-03-13",
       "meter_id": "D.0019__FL01__ร้านค้า_2",
-      "warning": "NON_WEEKLY_GAP_14_DAYS"
+      "warning": "NON_WEEKLY_GAP_14_DAYS",
+      "previous_normalized_kwh": 5760.0,
+      "current_normalized_kwh": 5760.0,
+      "kwh": 0.0
     },
     {
       "week_end_date": "2026-04-10",
       "meter_id": "D.0019__FL01__ร้านค้า_2",
-      "warning": "NON_WEEKLY_GAP_14_DAYS"
+      "warning": "NON_WEEKLY_GAP_14_DAYS",
+      "previous_normalized_kwh": 5760.0,
+      "current_normalized_kwh": 5760.0,
+      "kwh": 0.0
     },
     {
       "week_end_date": "2026-02-06",
       "meter_id": "D.0019__FL01__ร้านค้า_7",
-      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,SPIKE_SUSPECT_OVER_5X_RECENT_MEDIAN,UNIT_SUSPECT_AUTO_CORRECTED"
+      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,SPIKE_SUSPECT_OVER_5X_MEDIAN,UNIT_SUSPECT_AUTO_CORRECTED",
+      "previous_normalized_kwh": 9980.0,
+      "current_normalized_kwh": 203000.0,
+      "kwh": 193020.0
     },
     {
       "week_end_date": "2026-02-13",
       "meter_id": "D.0019__FL01__ร้านค้า_7",
-      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,SPIKE_SUSPECT_OVER_5X_RECENT_MEDIAN,UNIT_SUSPECT_AUTO_CORRECTED"
+      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,SPIKE_SUSPECT_OVER_5X_MEDIAN,UNIT_SUSPECT_AUTO_CORRECTED",
+      "previous_normalized_kwh": 203000.0,
+      "current_normalized_kwh": 442000.0,
+      "kwh": 239000.0
     },
     {
       "week_end_date": "2026-02-20",
       "meter_id": "D.0019__FL01__ร้านค้า_7",
-      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,SPIKE_SUSPECT_OVER_5X_RECENT_MEDIAN,UNIT_SUSPECT_AUTO_CORRECTED"
+      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,SPIKE_SUSPECT_OVER_5X_MEDIAN,UNIT_SUSPECT_AUTO_CORRECTED",
+      "previous_normalized_kwh": 442000.0,
+      "current_normalized_kwh": 703000.0,
+      "kwh": 261000.0
     },
     {
       "week_end_date": "2026-02-27",
       "meter_id": "D.0019__FL01__ร้านค้า_7",
-      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,SPIKE_SUSPECT_OVER_5X_RECENT_MEDIAN,UNIT_SUSPECT_AUTO_CORRECTED"
+      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,SPIKE_SUSPECT_OVER_5X_MEDIAN,UNIT_SUSPECT_AUTO_CORRECTED",
+      "previous_normalized_kwh": 703000.0,
+      "current_normalized_kwh": 1002000.0,
+      "kwh": 299000.0
     },
     {
       "week_end_date": "2026-03-06",
       "meter_id": "D.0019__FL01__ร้านค้า_7",
-      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED"
+      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
+      "previous_normalized_kwh": 1002000.0,
+      "current_normalized_kwh": 1254000.0,
+      "kwh": 252000.0
     },
     {
       "week_end_date": "2026-03-13",
       "meter_id": "D.0019__FL01__ร้านค้า_7",
-      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED"
+      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
+      "previous_normalized_kwh": 1254000.0,
+      "current_normalized_kwh": 1550000.0,
+      "kwh": 296000.0
     },
     {
       "week_end_date": "2026-03-20",
       "meter_id": "D.0019__FL01__ร้านค้า_7",
-      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED"
+      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
+      "previous_normalized_kwh": 1550000.0,
+      "current_normalized_kwh": 1838000.0,
+      "kwh": 288000.0
     },
     {
       "week_end_date": "2026-03-27",
       "meter_id": "D.0019__FL01__ร้านค้า_7",
-      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED"
+      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
+      "previous_normalized_kwh": 1838000.0,
+      "current_normalized_kwh": 2151000.0,
+      "kwh": 313000.0
     },
     {
       "week_end_date": "2026-04-03",
       "meter_id": "D.0019__FL01__ร้านค้า_7",
-      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED"
+      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
+      "previous_normalized_kwh": 2151000.0,
+      "current_normalized_kwh": 2469000.0,
+      "kwh": 318000.0
     },
     {
       "week_end_date": "2026-04-10",
       "meter_id": "D.0019__FL01__ร้านค้า_7",
-      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED"
+      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
+      "previous_normalized_kwh": 2469000.0,
+      "current_normalized_kwh": 2760000.0,
+      "kwh": 291000.0
     },
     {
       "week_end_date": "2026-04-17",
       "meter_id": "D.0019__FL01__ร้านค้า_7",
-      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED"
+      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
+      "previous_normalized_kwh": 2760000.0,
+      "current_normalized_kwh": 2979000.0,
+      "kwh": 219000.0
     },
     {
       "week_end_date": "2026-04-24",
       "meter_id": "D.0019__FL01__ร้านค้า_7",
-      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED"
+      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
+      "previous_normalized_kwh": 2979000.0,
+      "current_normalized_kwh": 3285000.0,
+      "kwh": 306000.0
     },
     {
       "week_end_date": "2026-05-01",
       "meter_id": "D.0019__FL01__ร้านค้า_7",
-      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED"
+      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
+      "previous_normalized_kwh": 3285000.0,
+      "current_normalized_kwh": 3679000.0,
+      "kwh": 394000.0
     },
     {
       "week_end_date": "2026-05-08",
       "meter_id": "D.0019__FL01__ร้านค้า_7",
-      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED"
+      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
+      "previous_normalized_kwh": 3679000.0,
+      "current_normalized_kwh": 3835000.0,
+      "kwh": 156000.0
     },
     {
       "week_end_date": "2026-02-20",
       "meter_id": "D.0025__FL01__MDB",
-      "warning": "NEGATIVE_DELTA,NEGATIVE_DELTA_AFTER_AUTO_NORMALIZE"
+      "warning": "METER_RESET_AUTO_USAGE_EQUALS_CURRENT,SPIKE_SUSPECT_OVER_5X_MEDIAN",
+      "previous_normalized_kwh": 19920.0,
+      "current_normalized_kwh": 19450.0,
+      "kwh": 19450.0
     },
     {
       "week_end_date": "2026-04-17",
       "meter_id": "D.0033__FL01__MDB",
-      "warning": "NON_WEEKLY_GAP_14_DAYS"
+      "warning": "NON_WEEKLY_GAP_14_DAYS",
+      "previous_normalized_kwh": 0.0,
+      "current_normalized_kwh": 0.0,
+      "kwh": 0.0
     },
     {
       "week_end_date": "2026-05-08",
       "meter_id": "D.0033__FL01__MDB",
-      "warning": "NON_WEEKLY_GAP_21_DAYS"
+      "warning": "NON_WEEKLY_GAP_21_DAYS",
+      "previous_normalized_kwh": 0.0,
+      "current_normalized_kwh": 0.0,
+      "kwh": 0.0
     },
     {
       "week_end_date": "2026-04-17",
       "meter_id": "T.0006__FL01__MDB",
-      "warning": "NEGATIVE_DELTA,NEGATIVE_DELTA_AFTER_AUTO_NORMALIZE"
+      "warning": "METER_RESET_AUTO_USAGE_EQUALS_CURRENT,SPIKE_SUSPECT_OVER_5X_MEDIAN",
+      "previous_normalized_kwh": 982282.4,
+      "current_normalized_kwh": 549874.0,
+      "kwh": 549874.0
     },
     {
       "week_end_date": "2026-04-24",
       "meter_id": "T.0006__FL01__MDB",
-      "warning": "NEGATIVE_DELTA,NEGATIVE_DELTA_AFTER_AUTO_NORMALIZE"
+      "warning": "METER_RESET_AUTO_USAGE_EQUALS_CURRENT",
+      "previous_normalized_kwh": 549874.0,
+      "current_normalized_kwh": 2013.529,
+      "kwh": 2013.529
     },
     {
       "week_end_date": "2026-02-13",
       "meter_id": "T.0007__FL01__MDB",
-      "warning": "SPIKE_SUSPECT_OVER_5X_RECENT_MEDIAN"
+      "warning": "SPIKE_SUSPECT_OVER_5X_MEDIAN",
+      "previous_normalized_kwh": 1994.3,
+      "current_normalized_kwh": 3080.0,
+      "kwh": 1085.7
     },
     {
       "week_end_date": "2026-02-20",
       "meter_id": "T.0008__FL01__MDB",
-      "warning": "NEGATIVE_DELTA,NEGATIVE_DELTA_AFTER_AUTO_NORMALIZE,RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED"
+      "warning": "METER_RESET_AUTO_USAGE_EQUALS_CURRENT,RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,SPIKE_SUSPECT_OVER_5X_MEDIAN,UNIT_SUSPECT_AUTO_CORRECTED",
+      "previous_normalized_kwh": 358366.08,
+      "current_normalized_kwh": 19870.0,
+      "kwh": 19870.0
     },
     {
       "week_end_date": "2026-02-27",
       "meter_id": "T.0008__FL01__MDB",
-      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,SPIKE_SUSPECT_OVER_5X_RECENT_MEDIAN,UNIT_SUSPECT_AUTO_CORRECTED"
+      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,SPIKE_SUSPECT_OVER_5X_MEDIAN,UNIT_SUSPECT_AUTO_CORRECTED",
+      "previous_normalized_kwh": 19870.0,
+      "current_normalized_kwh": 171550.0,
+      "kwh": 151680.0
     },
     {
       "week_end_date": "2026-03-06",
       "meter_id": "T.0008__FL01__MDB",
-      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,SPIKE_SUSPECT_OVER_5X_RECENT_MEDIAN,UNIT_SUSPECT_AUTO_CORRECTED"
+      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,SPIKE_SUSPECT_OVER_5X_MEDIAN,UNIT_SUSPECT_AUTO_CORRECTED",
+      "previous_normalized_kwh": 171550.0,
+      "current_normalized_kwh": 337170.0,
+      "kwh": 165620.0
     },
     {
       "week_end_date": "2026-03-13",
       "meter_id": "T.0008__FL01__MDB",
-      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,SPIKE_SUSPECT_OVER_5X_RECENT_MEDIAN,UNIT_SUSPECT_AUTO_CORRECTED"
+      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,SPIKE_SUSPECT_OVER_5X_MEDIAN,UNIT_SUSPECT_AUTO_CORRECTED",
+      "previous_normalized_kwh": 337170.0,
+      "current_normalized_kwh": 515350.0,
+      "kwh": 178180.0
     },
     {
       "week_end_date": "2026-03-20",
       "meter_id": "T.0008__FL01__MDB",
-      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,SPIKE_SUSPECT_OVER_5X_RECENT_MEDIAN,UNIT_SUSPECT_AUTO_CORRECTED"
+      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,SPIKE_SUSPECT_OVER_5X_MEDIAN,UNIT_SUSPECT_AUTO_CORRECTED",
+      "previous_normalized_kwh": 515350.0,
+      "current_normalized_kwh": 680890.0,
+      "kwh": 165540.0
     },
     {
       "week_end_date": "2026-03-27",
       "meter_id": "T.0008__FL01__MDB",
-      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED"
+      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
+      "previous_normalized_kwh": 680890.0,
+      "current_normalized_kwh": 886000.0,
+      "kwh": 205110.0
     },
     {
       "week_end_date": "2026-04-03",
       "meter_id": "T.0008__FL01__MDB",
-      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED"
+      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
+      "previous_normalized_kwh": 886000.0,
+      "current_normalized_kwh": 920000.0,
+      "kwh": 34000.0
     },
     {
       "week_end_date": "2026-04-10",
       "meter_id": "T.0008__FL01__MDB",
-      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED"
+      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
+      "previous_normalized_kwh": 920000.0,
+      "current_normalized_kwh": 1150000.0,
+      "kwh": 230000.0
     },
     {
       "week_end_date": "2026-04-17",
       "meter_id": "T.0008__FL01__MDB",
-      "warning": "NEGATIVE_DELTA,NEGATIVE_DELTA_AFTER_AUTO_NORMALIZE,RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED"
+      "warning": "METER_RESET_AUTO_USAGE_EQUALS_CURRENT,RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
+      "previous_normalized_kwh": 1150000.0,
+      "current_normalized_kwh": 1340.0,
+      "kwh": 1340.0
     },
     {
       "week_end_date": "2026-05-01",
       "meter_id": "T.0008__FL01__MDB",
-      "warning": "NON_WEEKLY_GAP_14_DAYS,RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED"
+      "warning": "NON_WEEKLY_GAP_14_DAYS,RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
+      "previous_normalized_kwh": 1340.0,
+      "current_normalized_kwh": 1806.0,
+      "kwh": 466.0
     },
     {
       "week_end_date": "2026-05-15",
       "meter_id": "T.0008__FL01__MDB",
-      "warning": "NON_WEEKLY_GAP_14_DAYS,RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED"
+      "warning": "NON_WEEKLY_GAP_14_DAYS,RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
+      "previous_normalized_kwh": 1806.0,
+      "current_normalized_kwh": 2091.1,
+      "kwh": 285.1
     },
     {
       "week_end_date": "2026-02-06",
       "meter_id": "T.0019__FL09__PPD",
-      "warning": "SPIKE_SUSPECT_OVER_5X_RECENT_MEDIAN"
+      "warning": "SPIKE_SUSPECT_OVER_5X_MEDIAN",
+      "previous_normalized_kwh": 238440.62,
+      "current_normalized_kwh": 238854.44,
+      "kwh": 413.82
     },
     {
       "week_end_date": "2026-02-13",
       "meter_id": "T.0019__FL09__PPD",
-      "warning": "SPIKE_SUSPECT_OVER_5X_RECENT_MEDIAN"
+      "warning": "SPIKE_SUSPECT_OVER_5X_MEDIAN",
+      "previous_normalized_kwh": 238854.44,
+      "current_normalized_kwh": 239596.23,
+      "kwh": 741.79
     },
     {
       "week_end_date": "2026-02-20",
       "meter_id": "T.0019__FL09__PPD",
-      "warning": "SPIKE_SUSPECT_OVER_5X_RECENT_MEDIAN"
+      "warning": "SPIKE_SUSPECT_OVER_5X_MEDIAN",
+      "previous_normalized_kwh": 239596.23,
+      "current_normalized_kwh": 240426.39,
+      "kwh": 830.16
     },
     {
       "week_end_date": "2026-02-27",
       "meter_id": "T.0019__FL09__PPD",
-      "warning": "SPIKE_SUSPECT_OVER_5X_RECENT_MEDIAN"
+      "warning": "SPIKE_SUSPECT_OVER_5X_MEDIAN",
+      "previous_normalized_kwh": 240426.39,
+      "current_normalized_kwh": 241268.41,
+      "kwh": 842.02
     },
     {
       "week_end_date": "2026-02-20",
       "meter_id": "T.0020__FL01__AP22",
-      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED"
+      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
+      "previous_normalized_kwh": 29.69,
+      "current_normalized_kwh": 29660.0,
+      "kwh": 29630.31
     },
     {
       "week_end_date": "2026-02-27",
       "meter_id": "T.0020__FL01__AP22",
-      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED"
+      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
+      "previous_normalized_kwh": 29660.0,
+      "current_normalized_kwh": 29700.0,
+      "kwh": 40.0
     },
     {
       "week_end_date": "2026-03-06",
       "meter_id": "T.0020__FL01__AP22",
-      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,SPIKE_SUSPECT_OVER_5X_RECENT_MEDIAN,UNIT_SUSPECT_AUTO_CORRECTED"
+      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,SPIKE_SUSPECT_OVER_5X_MEDIAN,UNIT_SUSPECT_AUTO_CORRECTED",
+      "previous_normalized_kwh": 29700.0,
+      "current_normalized_kwh": 29720.0,
+      "kwh": 20.0
     },
     {
       "week_end_date": "2026-03-13",
       "meter_id": "T.0020__FL01__AP22",
-      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED"
+      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
+      "previous_normalized_kwh": 29720.0,
+      "current_normalized_kwh": 29720.0,
+      "kwh": 0.0
     },
     {
       "week_end_date": "2026-03-20",
       "meter_id": "T.0020__FL01__AP22",
-      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,SPIKE_SUSPECT_OVER_5X_RECENT_MEDIAN,UNIT_SUSPECT_AUTO_CORRECTED"
+      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,SPIKE_SUSPECT_OVER_5X_MEDIAN,UNIT_SUSPECT_AUTO_CORRECTED",
+      "previous_normalized_kwh": 29720.0,
+      "current_normalized_kwh": 29730.0,
+      "kwh": 10.0
     },
     {
       "week_end_date": "2026-03-27",
       "meter_id": "T.0020__FL01__AP22",
-      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,SPIKE_SUSPECT_OVER_5X_RECENT_MEDIAN,UNIT_SUSPECT_AUTO_CORRECTED"
+      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,SPIKE_SUSPECT_OVER_5X_MEDIAN,UNIT_SUSPECT_AUTO_CORRECTED",
+      "previous_normalized_kwh": 29730.0,
+      "current_normalized_kwh": 29770.0,
+      "kwh": 40.0
     },
     {
       "week_end_date": "2026-04-03",
       "meter_id": "T.0020__FL01__AP22",
-      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED"
+      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
+      "previous_normalized_kwh": 29770.0,
+      "current_normalized_kwh": 29790.0,
+      "kwh": 20.0
     },
     {
       "week_end_date": "2026-04-10",
       "meter_id": "T.0020__FL01__AP22",
-      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED"
+      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
+      "previous_normalized_kwh": 29790.0,
+      "current_normalized_kwh": 29790.0,
+      "kwh": 0.0
     },
     {
       "week_end_date": "2026-04-17",
       "meter_id": "T.0020__FL01__AP22",
-      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED"
+      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
+      "previous_normalized_kwh": 29790.0,
+      "current_normalized_kwh": 29790.0,
+      "kwh": 0.0
     },
     {
       "week_end_date": "2026-04-24",
       "meter_id": "T.0020__FL01__AP22",
-      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED"
+      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
+      "previous_normalized_kwh": 29790.0,
+      "current_normalized_kwh": 29790.0,
+      "kwh": 0.0
     },
     {
       "week_end_date": "2026-05-01",
       "meter_id": "T.0020__FL01__AP22",
-      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED"
+      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
+      "previous_normalized_kwh": 29790.0,
+      "current_normalized_kwh": 29790.0,
+      "kwh": 0.0
     },
     {
       "week_end_date": "2026-05-08",
       "meter_id": "T.0020__FL01__AP22",
-      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED"
+      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
+      "previous_normalized_kwh": 29790.0,
+      "current_normalized_kwh": 29790.0,
+      "kwh": 0.0
     },
     {
       "week_end_date": "2026-05-15",
       "meter_id": "T.0020__FL01__AP22",
-      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED"
+      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
+      "previous_normalized_kwh": 29790.0,
+      "current_normalized_kwh": 29790.0,
+      "kwh": 0.0
     },
     {
       "week_end_date": "2026-04-10",
       "meter_id": "T.0020__FL01__AP23",
-      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED"
+      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
+      "previous_normalized_kwh": 47.01,
+      "current_normalized_kwh": 46970.0,
+      "kwh": 46922.99
     },
     {
       "week_end_date": "2026-04-17",
       "meter_id": "T.0020__FL01__AP23",
-      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED"
+      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
+      "previous_normalized_kwh": 46970.0,
+      "current_normalized_kwh": 46970.0,
+      "kwh": 0.0
     },
     {
       "week_end_date": "2026-04-24",
       "meter_id": "T.0020__FL01__AP23",
-      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED"
+      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
+      "previous_normalized_kwh": 46970.0,
+      "current_normalized_kwh": 46970.0,
+      "kwh": 0.0
     },
     {
       "week_end_date": "2026-05-01",
       "meter_id": "T.0020__FL01__AP23",
-      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED"
+      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
+      "previous_normalized_kwh": 46970.0,
+      "current_normalized_kwh": 46970.0,
+      "kwh": 0.0
     },
     {
       "week_end_date": "2026-05-08",
       "meter_id": "T.0020__FL01__AP23",
-      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED"
+      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
+      "previous_normalized_kwh": 46970.0,
+      "current_normalized_kwh": 46970.0,
+      "kwh": 0.0
     },
     {
       "week_end_date": "2026-05-15",
       "meter_id": "T.0020__FL01__AP23",
-      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED"
+      "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED",
+      "previous_normalized_kwh": 46970.0,
+      "current_normalized_kwh": 46970.0,
+      "kwh": 0.0
     },
     {
       "week_end_date": "2026-03-27",
       "meter_id": "T.0020__FL01__PP23",
-      "warning": "SPIKE_SUSPECT_OVER_5X_RECENT_MEDIAN"
+      "warning": "SPIKE_SUSPECT_OVER_5X_MEDIAN",
+      "previous_normalized_kwh": 33.81,
+      "current_normalized_kwh": 34.25,
+      "kwh": 0.44
     },
     {
       "week_end_date": "2026-04-10",
       "meter_id": "T.0020__FL01__PP23",
-      "warning": "SPIKE_SUSPECT_OVER_5X_RECENT_MEDIAN"
+      "warning": "SPIKE_SUSPECT_OVER_5X_MEDIAN",
+      "previous_normalized_kwh": 34.25,
+      "current_normalized_kwh": 34.87,
+      "kwh": 0.62
     },
     {
       "week_end_date": "2026-04-24",
       "meter_id": "T.0020__FL01__PP23",
-      "warning": "SPIKE_SUSPECT_OVER_5X_RECENT_MEDIAN"
+      "warning": "SPIKE_SUSPECT_OVER_5X_MEDIAN",
+      "previous_normalized_kwh": 34.87,
+      "current_normalized_kwh": 35.01,
+      "kwh": 0.14
     },
     {
       "week_end_date": "2026-05-15",
       "meter_id": "T.0020__FL01__PP23",
-      "warning": "SPIKE_SUSPECT_OVER_5X_RECENT_MEDIAN"
+      "warning": "SPIKE_SUSPECT_OVER_5X_MEDIAN",
+      "previous_normalized_kwh": 35.02,
+      "current_normalized_kwh": 35.33,
+      "kwh": 0.31
     }
   ],
   "stats": {
     "meters": 101,
-    "allocation_rows": 120,
-    "resolved_allocation_rows": 98,
     "weekly_forms_rows_used": 1898,
     "normalized_readings": 1898,
     "weekly_consumption_rows": 1801,
-    "department_weekly_rows": 1808,
-    "building_weekly_rows": 1801,
+    "department_weekly_rows": 0,
+    "allocation_rows_used": 0,
     "main_meter_codes": [
       "MDB",
       "Main",
       "SCB21"
     ],
-    "form_files_read": 21,
-    "allocation_source": "department_allocation_buildings.csv"
+    "form_files_read": 21
   }
 }
