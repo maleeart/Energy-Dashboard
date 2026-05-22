@@ -8,7 +8,7 @@
       "Main",
       "SCB21"
     ],
-    "generated_at": "2026-05-22T02:30:42"
+    "generated_at": "2026-05-22T02:37:57"
   },
   "departments": [
     "สก.ชธธ.",
@@ -3715,7 +3715,7 @@
       "meter_id": "T.0018__FL01__MDB",
       "subb_code": "MDB",
       "building_name": "ท.0018 อาคารศูนย์มาตรวิทยาและสอบเทียบเครื่องมือวัด",
-      "raw_reading": 2853655.0,
+      "raw_reading": 285365.0,
       "raw_unit": "kWh",
       "reader": "",
       "note": ""
@@ -8523,11 +8523,11 @@
       "meter_id": "T.0018__FL01__MDB",
       "subb_code": "MDB",
       "building_name": "ท.0018 อาคารศูนย์มาตรวิทยาและสอบเทียบเครื่องมือวัด",
-      "raw_reading": 2853655.0,
+      "raw_reading": 285365.0,
       "raw_unit": "kWh",
       "reader": "",
       "note": "",
-      "normalized_kwh": 2853655.0,
+      "normalized_kwh": 285365.0,
       "is_main_meter": true,
       "flags": []
     },
@@ -8542,12 +8542,9 @@
       "raw_unit": "kWh",
       "reader": "",
       "note": "",
-      "normalized_kwh": 286598000.0,
+      "normalized_kwh": 286598.0,
       "is_main_meter": true,
-      "flags": [
-        "UNIT_SUSPECT_AUTO_CORRECTED",
-        "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2026-W20.csv",
@@ -8560,12 +8557,9 @@
       "raw_unit": "kWh",
       "reader": "",
       "note": "",
-      "normalized_kwh": 292180000.0,
+      "normalized_kwh": 292180.0,
       "is_main_meter": true,
-      "flags": [
-        "UNIT_SUSPECT_AUTO_CORRECTED",
-        "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2026-W17.csv",
@@ -13523,8 +13517,8 @@
       "subb_code": "MDB",
       "building_name": "ท.0018 อาคารศูนย์มาตรวิทยาและสอบเทียบเครื่องมือวัด",
       "is_main_meter": true,
-      "kwh": 2577940.0,
-      "raw_delta_kwh": 2577940.0,
+      "kwh": 9650.0,
+      "raw_delta_kwh": 9650.0,
       "flags": []
     },
     {
@@ -13535,12 +13529,9 @@
       "subb_code": "MDB",
       "building_name": "ท.0018 อาคารศูนย์มาตรวิทยาและสอบเทียบเครื่องมือวัด",
       "is_main_meter": true,
-      "kwh": 283744345.0,
-      "raw_delta_kwh": 283744345.0,
-      "flags": [
-        "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH",
-        "UNIT_SUSPECT_AUTO_CORRECTED"
-      ]
+      "kwh": 1233.0,
+      "raw_delta_kwh": 1233.0,
+      "flags": []
     },
     {
       "week_start_date": "2026-05-08",
@@ -13550,12 +13541,9 @@
       "subb_code": "MDB",
       "building_name": "ท.0018 อาคารศูนย์มาตรวิทยาและสอบเทียบเครื่องมือวัด",
       "is_main_meter": true,
-      "kwh": 5582000.0,
-      "raw_delta_kwh": 5582000.0,
-      "flags": [
-        "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH",
-        "UNIT_SUSPECT_AUTO_CORRECTED"
-      ]
+      "kwh": 5582.0,
+      "raw_delta_kwh": 5582.0,
+      "flags": []
     },
     {
       "week_start_date": "2026-04-24",
@@ -16452,7 +16440,7 @@
       "building_name": "ท.0018 อาคารศูนย์มาตรวิทยาและสอบเทียบเครื่องมือวัด",
       "b_code": "T.0018",
       "allocation_ratio": 1.0,
-      "kwh": 2577940.0,
+      "kwh": 9650.0,
       "source_flags": []
     },
     {
@@ -16464,11 +16452,8 @@
       "building_name": "ท.0018 อาคารศูนย์มาตรวิทยาและสอบเทียบเครื่องมือวัด",
       "b_code": "T.0018",
       "allocation_ratio": 1.0,
-      "kwh": 283744345.0,
-      "source_flags": [
-        "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH",
-        "UNIT_SUSPECT_AUTO_CORRECTED"
-      ]
+      "kwh": 1233.0,
+      "source_flags": []
     },
     {
       "week_start_date": "2026-05-08",
@@ -16479,11 +16464,8 @@
       "building_name": "ท.0018 อาคารศูนย์มาตรวิทยาและสอบเทียบเครื่องมือวัด",
       "b_code": "T.0018",
       "allocation_ratio": 1.0,
-      "kwh": 5582000.0,
-      "source_flags": [
-        "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH",
-        "UNIT_SUSPECT_AUTO_CORRECTED"
-      ]
+      "kwh": 5582.0,
+      "source_flags": []
     },
     {
       "week_start_date": "2026-04-24",
@@ -17213,7 +17195,7 @@
       "สก.ชธธ.": 90167.063,
       "อหข.": 19323.0,
       "อรอ.": 3563.734,
-      "อบฟ.": 292053466.753,
+      "อบฟ.": 165646.753,
       "อบย.": 63954.423,
       "อคม.": 71664.813
     }
@@ -17424,18 +17406,6 @@
         "reading_date": "2026-04-24",
         "meter_id": "T.0018__FL01__MDB",
         "warning": "FIRST_READING_USED_KWH_UNIT"
-      },
-      {
-        "source_form": "forms/2026-W19.csv",
-        "reading_date": "2026-05-08",
-        "meter_id": "T.0018__FL01__MDB",
-        "warning": "UNIT_SUSPECT_AUTO_CORRECTED,RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH"
-      },
-      {
-        "source_form": "forms/2026-W20.csv",
-        "reading_date": "2026-05-15",
-        "meter_id": "T.0018__FL01__MDB",
-        "warning": "UNIT_SUSPECT_AUTO_CORRECTED,RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH"
       },
       {
         "source_form": "forms/2026-W17.csv",
@@ -17836,16 +17806,6 @@
         "week_end_date": "2026-05-15",
         "meter_id": "T.0008__FL01__MDB",
         "warning": "NON_WEEKLY_GAP_14_DAYS"
-      },
-      {
-        "week_end_date": "2026-05-08",
-        "meter_id": "T.0018__FL01__MDB",
-        "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED"
-      },
-      {
-        "week_end_date": "2026-05-15",
-        "meter_id": "T.0018__FL01__MDB",
-        "warning": "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH,UNIT_SUSPECT_AUTO_CORRECTED"
       }
     ],
     "stats": {
