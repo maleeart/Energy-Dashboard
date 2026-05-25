@@ -48,6 +48,7 @@ const MO=["ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.�
 const DEPT=["สก.ชธธ.","อบค.","อบฟ.","อบย.","อรอ.","อคม.","อหข."];
 const CL=["#1565C0","#00897B","#F9A825","#EF6C00","#AD1457","#6A1B9A","#2E7D32"];
 const DB=["#0D47A1","#004D40","#E65100","#880E4F","#4A148C","#1B5E20","#BF360C"];
+const BUILD_COLORS=["#1565C0","#00897B","#F9A825","#EF6C00","#AD1457","#6A1B9A","#2E7D32","#C5A85F","#455A64","#00ACC1","#8E24AA","#7CB342"];
 let DATA=null, sY=null, sM="all", sD="all", ch={};
 function fmt(n){return Math.round(n||0).toLocaleString("th-TH")}
 function ymdYear(d){return +String(d).slice(0,4)}
@@ -57,11 +58,44 @@ function deptRows(){return (DATA.department_weekly||[]).filter(inFilter);}
 function deptTotal(dept){return deptRows().filter(r=>r.department===dept).reduce((a,b)=>a+(+b.kwh||0),0)}
 function allTotal(){return DEPT.reduce((a,d)=>a+deptTotal(d),0)}
 function buildingRows(){
-  let rows=(DATA.department_weekly||[]).filter(inFilter);
-  if(sD!=="all") rows=rows.filter(r=>r.department===sD);
-  const map={};
-  rows.forEach(r=>{const k=r.meter_id; if(!map[k]) map[k]={name:r.building_name||r.b_code,kwh:0}; map[k].kwh+=+r.kwh||0;});
-  return Object.values(map).sort((a,b)=>b.kwh-a.kwh).slice(0,8);
+  const keyOf = r => r.meter_id || (r.building_name || r.b_code || "");
+  const nameOf = r => r.building_name || r.b_code || r.meter_id || "ไม่ระบุอาคาร";
+
+  const map = {};
+
+  if(sD === "all"){
+    // รวมทั้งสำนักงาน: ใช้ usage จริงของอาคาร × 1
+    // แต่เอาเฉพาะอาคารที่มี allocation ratio > 0 ในตาราง mapping เดิมเท่านั้น
+    const eligible = new Set((DATA.department_weekly || [])
+      .filter(r => (+r.allocation_ratio || 0) > 0)
+      .map(r => r.meter_id));
+
+    (DATA.weekly_consumption || [])
+      .filter(inFilter)
+      .filter(r => r.is_main_meter !== false)
+      .filter(r => eligible.has(r.meter_id))
+      .forEach(r => {
+        const k = keyOf(r);
+        if(!map[k]) map[k] = {name:nameOf(r), kwh:0};
+        map[k].kwh += +r.kwh || 0;
+      });
+  } else {
+    // เลือกฝ่าย: ใช้ค่าที่คูณ ratio ของฝ่ายนั้นแล้ว
+    // department_weekly.kwh = weekly_usage × allocation_ratio ของ row mapping นั้น
+    (DATA.department_weekly || [])
+      .filter(inFilter)
+      .filter(r => r.department === sD)
+      .forEach(r => {
+        const k = keyOf(r);
+        if(!map[k]) map[k] = {name:nameOf(r), kwh:0};
+        map[k].kwh += +r.kwh || 0;
+      });
+  }
+
+  return Object.values(map)
+    .filter(x => x.kwh > 0)
+    .sort((a,b) => b.kwh - a.kwh)
+    .slice(0,8);
 }
 function monthlyDeptTotal(month, dept=null){
   return (DATA.department_weekly||[]).filter(w=>ymdYear(w.week_end_date)===sY && ymdMonth(w.week_end_date)===month && (!dept || w.department===dept)).reduce((a,b)=>a+(+b.kwh||0),0)
@@ -100,9 +134,33 @@ function renderMonthBar(){
   ch.monthBar=new Chart(document.getElementById("monthBar"),{type:"bar",data:{labels:MO,datasets:[{label:"kWh",data:vals,backgroundColor:"#1565C0",borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{callback:v=>(v/1000).toFixed(0)+"K"}},x:{grid:{display:false}}}}});
 }
 function renderBuildingBar(){
-  const b=buildingRows(); document.getElementById("buildingTitle").textContent=sD==="all"?"หน่วยใช้ไฟสะสม — Top อาคาร":`หน่วยใช้ไฟสะสม — ${sD}`;
+  const b=buildingRows();
+  document.getElementById("buildingTitle").textContent=sD==="all"?"หน่วยใช้ไฟสะสม — Top อาคารรวมทั้งสำนักงาน":`หน่วยใช้ไฟสะสม — ${sD}`;
   if(ch.buildingBar) ch.buildingBar.destroy();
-  ch.buildingBar=new Chart(document.getElementById("buildingBar"),{type:"bar",data:{labels:b.map(x=>x.name),datasets:[{data:b.map(x=>x.kwh),backgroundColor:"#1565C0",borderRadius:4}]},options:{indexAxis:"y",responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{beginAtZero:true,ticks:{callback:v=>(v/1000).toFixed(0)+"K"}},y:{ticks:{font:{size:10}}}}}});
+  ch.buildingBar=new Chart(document.getElementById("buildingBar"),{
+    type:"bar",
+    data:{
+      labels:b.map(x=>x.name),
+      datasets:[{
+        data:b.map(x=>x.kwh),
+        backgroundColor:b.map((_,i)=>BUILD_COLORS[i%BUILD_COLORS.length]),
+        borderRadius:4
+      }]
+    },
+    options:{
+      indexAxis:"y",
+      responsive:true,
+      maintainAspectRatio:false,
+      plugins:{
+        legend:{display:false},
+        tooltip:{callbacks:{label:ctx=>`${fmt(ctx.raw)} kWh`}}
+      },
+      scales:{
+        x:{beginAtZero:true,ticks:{callback:v=>(v/1000).toFixed(0)+"K"}},
+        y:{ticks:{font:{size:10}}}
+      }
+    }
+  });
 }
 function renderYearLine(){
   const years=[...new Set((DATA.department_weekly||[]).map(w=>ymdYear(w.week_end_date)))].sort();
