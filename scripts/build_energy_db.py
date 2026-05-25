@@ -273,7 +273,19 @@ def collect_form_readings(meter_by_id, validation):
                 continue
 
             raw = to_float(row.get("raw_reading"))
-            if raw is None:
+
+            # Blank or zero means "not recorded yet".
+            # Do NOT treat it as a real meter reading, because it would corrupt
+            # consumption calculation by subtracting previous reading from 0.
+            # The previous valid reading remains the latest baseline.
+            if raw is None or raw == 0:
+                if str(row.get("raw_reading", "")).strip() in {"0", "0.0", "0.00"}:
+                    validation["warnings"].append({
+                        "file": str(form_path.relative_to(ROOT)),
+                        "row": row_no,
+                        "warning": "ZERO_READING_SKIPPED_AS_NOT_RECORDED",
+                        "meter_id": meter_id,
+                    })
                 continue
 
             try:
@@ -540,7 +552,7 @@ def build():
     return {
         "meta": {
             "site": "กฟผ. สำนักงานไทรน้อย",
-            "version": "energy-auto-db-v12-filldown-row-ratio-allocation",
+            "version": "energy-auto-db-v16-skip-blank-zero-current-reading",
             "base_unit": "kWh",
             "main_meter_codes": sorted(MAIN_METER_CODES),
             "generated_at": datetime.now().isoformat(timespec="seconds"),
@@ -549,6 +561,7 @@ def build():
                 "If declared current collapses from previous by ratio >= "
                 f"{AUTO_RESET_RATIO_THRESHOLD}, previous is treated as 0 and usage=current."
             ),
+            "missing_reading_logic": "If raw_reading is blank or 0, it is skipped as not recorded; previous valid reading remains the baseline.",
             "allocation_logic": (
                 "Correct-flow allocation: building/floor allocation only when available. "
                 "Blank department rows are ignored. kWh = weekly_usage * allocation_ratio."
