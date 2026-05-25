@@ -391,15 +391,27 @@ def calculate_usage(raw_readings, meter_by_id):
                 week_flags = list(flags)
                 raw_delta = normalized_kwh - previous_kwh
 
-                if manual_reset:
+                # Hard guard:
+                # If current equals previous, consumption must be 0.
+                # Example: ต.0015 raw_reading = 26864 every week -> usage = 0, never 26864.
+                if abs(normalized_kwh - previous_kwh) < 0.000001:
+                    usage_kwh = 0
+                    week_flags.append("UNCHANGED_READING_USAGE_ZERO")
+
+                elif manual_reset:
                     usage_kwh = normalized_kwh
                     week_flags.append("METER_RESET_MANUAL_PREVIOUS_TREATED_AS_ZERO")
+
                 elif "METER_RESET_AUTO_DECLARED_VALUE_KEPT" in flags:
+                    # Only accept auto reset when the value really collapsed from previous.
+                    # If values are equal or nearly equal, the guard above already makes usage 0.
                     usage_kwh = normalized_kwh
                     week_flags.append("METER_RESET_AUTO_PREVIOUS_TREATED_AS_ZERO")
+
                 elif normalized_kwh < previous_kwh:
                     usage_kwh = 0
                     week_flags.append("NEGATIVE_DELTA_NOT_RESET_USAGE_ZERO")
+
                 else:
                     usage_kwh = normalized_kwh - previous_kwh
 
@@ -552,7 +564,7 @@ def build():
     return {
         "meta": {
             "site": "กฟผ. สำนักงานไทรน้อย",
-            "version": "energy-auto-db-v16-skip-blank-zero-current-reading",
+            "version": "energy-auto-db-v17-unchanged-reading-zero-guard",
             "base_unit": "kWh",
             "main_meter_codes": sorted(MAIN_METER_CODES),
             "generated_at": datetime.now().isoformat(timespec="seconds"),
@@ -562,6 +574,7 @@ def build():
                 f"{AUTO_RESET_RATIO_THRESHOLD}, previous is treated as 0 and usage=current."
             ),
             "missing_reading_logic": "If raw_reading is blank or 0, it is skipped as not recorded; previous valid reading remains the baseline.",
+            "unchanged_reading_logic": "If current normalized reading equals previous normalized reading, weekly usage is forced to 0.",
             "allocation_logic": (
                 "Correct-flow allocation: building/floor allocation only when available. "
                 "Blank department rows are ignored. kWh = weekly_usage * allocation_ratio."
