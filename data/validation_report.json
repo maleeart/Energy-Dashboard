@@ -2,6 +2,216 @@
   "errors": [],
   "warnings": [
     {
+      "file": "forms/2026-W01.csv",
+      "row": 99,
+      "warning": "ZERO_READING_SKIPPED_AS_NOT_RECORDED",
+      "meter_id": "T.0020__FL01__LP23"
+    },
+    {
+      "file": "forms/2026-W02.csv",
+      "row": 42,
+      "warning": "ZERO_READING_SKIPPED_AS_NOT_RECORDED",
+      "meter_id": "D.0033__FL01__MDB"
+    },
+    {
+      "file": "forms/2026-W02.csv",
+      "row": 99,
+      "warning": "ZERO_READING_SKIPPED_AS_NOT_RECORDED",
+      "meter_id": "T.0020__FL01__LP23"
+    },
+    {
+      "file": "forms/2026-W03.csv",
+      "row": 42,
+      "warning": "ZERO_READING_SKIPPED_AS_NOT_RECORDED",
+      "meter_id": "D.0033__FL01__MDB"
+    },
+    {
+      "file": "forms/2026-W03.csv",
+      "row": 99,
+      "warning": "ZERO_READING_SKIPPED_AS_NOT_RECORDED",
+      "meter_id": "T.0020__FL01__LP23"
+    },
+    {
+      "file": "forms/2026-W04.csv",
+      "row": 42,
+      "warning": "ZERO_READING_SKIPPED_AS_NOT_RECORDED",
+      "meter_id": "D.0033__FL01__MDB"
+    },
+    {
+      "file": "forms/2026-W04.csv",
+      "row": 99,
+      "warning": "ZERO_READING_SKIPPED_AS_NOT_RECORDED",
+      "meter_id": "T.0020__FL01__LP23"
+    },
+    {
+      "file": "forms/2026-W05.csv",
+      "row": 42,
+      "warning": "ZERO_READING_SKIPPED_AS_NOT_RECORDED",
+      "meter_id": "D.0033__FL01__MDB"
+    },
+    {
+      "file": "forms/2026-W05.csv",
+      "row": 99,
+      "warning": "ZERO_READING_SKIPPED_AS_NOT_RECORDED",
+      "meter_id": "T.0020__FL01__LP23"
+    },
+    {
+      "file": "forms/2026-W06.csv",
+      "row": 42,
+      "warning": "ZERO_READING_SKIPPED_AS_NOT_RECORDED",
+      "meter_id": "D.0033__FL01__MDB"
+    },
+    {
+      "file": "forms/2026-W06.csv",
+      "row": 99,
+      "warning": "ZERO_READING_SKIPPED_AS_NOT_RECORDED",
+      "meter_id": "T.0020__FL01__LP23"
+    },
+    {
+      "file": "forms/2026-W07.csv",
+      "row": 42,
+      "warning": "ZERO_READING_SKIPPED_AS_NOT_RECORDED",
+      "meter_id": "D.0033__FL01__MDB"
+    },
+    {
+      "file": "forms/2026-W07.csv",
+      "row": 99,
+      "warning": "ZERO_READING_SKIPPED_AS_NOT_RECORDED",
+      "meter_id": "T.0020__FL01__LP23"
+    },
+    {
+      "file": "forms/2026-W08.csv",
+      "row": 42,
+      "warning": "ZERO_READING_SKIPPED_AS_NOT_RECORDED",
+      "meter_id": "D.0033__FL01__MDB"
+    },
+    {
+      "file": "forms/2026-W08.csv",
+      "row": 99,
+      "warning": "ZERO_READING_SKIPPED_AS_NOT_RECORDED",
+      "meter_id": "T.0020__FL01__LP23"
+    },
+    {
+      "file": "forms/2026-W09.csv",
+      "row": 42,
+      "warning": "ZERO_READING_SKIPPED_AS_NOT_RECORDED",
+      "meter_id": "D.0033__FL01__MDB"
+    },
+    {
+      "file": "forms/2026-W09.csv",
+      "row": 99,
+      "warning": "ZERO_READING_SKIPPED_AS_NOT_RECORDED",
+      "meter_id": "T.0020__FL01__LP23"
+    },
+    {
+      "file": "forms/2026-W10.csv",
+      "row": 42,
+      "warning": "ZERO_READING_SKIPPED_AS_NOT_RECORDED",
+      "meter_id": "D.0033__FL01__MDB"
+    },
+    {
+      "file": "forms/2026-W10.csv",
+      "row": 99,
+      "warning": "ZERO_READING_SKIPPED_AS_NOT_RECORDED",
+      "meter_id": "T.0020__FL01__LP23"
+    },
+    {
+      "file": "forms/2026-W11.csv",
+      "row": 42,
+      "warning": "ZERO_READING_SKIPPED_AS_NOT_RECORDED",
+      "meter_id": "D.0033__FL01__MDB"
+    },
+    {
+      "file": "forms/2026-W11.csv",
+      "row": 99,
+      "warning": "ZERO_READING_SKIPPED_AS_NOT_RECORDED",
+      "meter_id": "T.0020__FL01__LP23"
+    },
+    {
+      "file": "forms/2026-W12.csv",
+      "row": 42,
+      "warning": "ZERO_READING_SKIPPED_AS_NOT_RECORDED",
+      "meter_id": "D.0033__FL01__MDB"
+    },
+    {
+      "file": "forms/2026-W12.csv",
+      "row": 99,
+      "warning": "ZERO_READING_SKIPPED_AS_NOT_RECORDED",
+      "meter_id": "T.0020__FL01__LP23"
+    },
+    {
+      "file": "forms/2026-W13.csv",
+      "row": 42,
+      "warning": "ZERO_READING_SKIPPED_AS_NOT_RECORDED",
+      "meter_id": "D.0033__FL01__MDB"
+    },
+    {
+      "file": "forms/2026-W13.csv",
+      "row": 99,
+      "warning": "ZERO_READING_SKIPPED_AS_NOT_RECORDED",
+      "meter_id": "T.0020__FL01__LP23"
+    },
+    {
+      "file": "forms/2026-W14.csv",
+      "row": 42,
+      "warning": "ZERO_READING_SKIPPED_AS_NOT_RECORDED",
+      "meter_id": "D.0033__FL01__MDB"
+    },
+    {
+      "file": "forms/2026-W14.csv",
+      "row": 99,
+      "warning": "ZERO_READING_SKIPPED_AS_NOT_RECORDED",
+      "meter_id": "T.0020__FL01__LP23"
+    },
+    {
+      "file": "forms/2026-W15.csv",
+      "row": 99,
+      "warning": "ZERO_READING_SKIPPED_AS_NOT_RECORDED",
+      "meter_id": "T.0020__FL01__LP23"
+    },
+    {
+      "file": "forms/2026-W16.csv",
+      "row": 42,
+      "warning": "ZERO_READING_SKIPPED_AS_NOT_RECORDED",
+      "meter_id": "D.0033__FL01__MDB"
+    },
+    {
+      "file": "forms/2026-W16.csv",
+      "row": 99,
+      "warning": "ZERO_READING_SKIPPED_AS_NOT_RECORDED",
+      "meter_id": "T.0020__FL01__LP23"
+    },
+    {
+      "file": "forms/2026-W17.csv",
+      "row": 99,
+      "warning": "ZERO_READING_SKIPPED_AS_NOT_RECORDED",
+      "meter_id": "T.0020__FL01__LP23"
+    },
+    {
+      "file": "forms/2026-W18.csv",
+      "row": 99,
+      "warning": "ZERO_READING_SKIPPED_AS_NOT_RECORDED",
+      "meter_id": "T.0020__FL01__LP23"
+    },
+    {
+      "file": "forms/2026-W19.csv",
+      "row": 42,
+      "warning": "ZERO_READING_SKIPPED_AS_NOT_RECORDED",
+      "meter_id": "D.0033__FL01__MDB"
+    },
+    {
+      "file": "forms/2026-W19.csv",
+      "row": 99,
+      "warning": "ZERO_READING_SKIPPED_AS_NOT_RECORDED",
+      "meter_id": "T.0020__FL01__LP23"
+    },
+    {
+      "file": "forms/2026-W20.csv",
+      "row": 99,
+      "warning": "ZERO_READING_SKIPPED_AS_NOT_RECORDED",
+      "meter_id": "T.0020__FL01__LP23"
+    },
+    {
       "file": "allocation",
       "warning": "UNKNOWN_DEPARTMENT",
       "department": "อสร.",
@@ -366,24 +576,6 @@
     },
     {
       "week_end_date": "2026-04-17",
-      "meter_id": "D.0033__FL01__MDB",
-      "warning": "NON_WEEKLY_GAP_14_DAYS",
-      "previous_normalized_kwh": 0.0,
-      "current_normalized_kwh": 0.0,
-      "reset_ratio": "",
-      "kwh": 0.0
-    },
-    {
-      "week_end_date": "2026-05-08",
-      "meter_id": "D.0033__FL01__MDB",
-      "warning": "NON_WEEKLY_GAP_21_DAYS",
-      "previous_normalized_kwh": 0.0,
-      "current_normalized_kwh": 0.0,
-      "reset_ratio": "",
-      "kwh": 0.0
-    },
-    {
-      "week_end_date": "2026-04-17",
       "meter_id": "T.0006__FL01__MDB",
       "warning": "NEGATIVE_DELTA_NOT_RESET_USAGE_ZERO",
       "previous_normalized_kwh": 982282.4,
@@ -538,10 +730,10 @@
   ],
   "stats": {
     "meters": 101,
-    "weekly_forms_rows_used": 1898,
-    "normalized_readings": 1898,
-    "weekly_consumption_rows": 1801,
-    "department_weekly_rows": 592,
+    "weekly_forms_rows_used": 1863,
+    "normalized_readings": 1863,
+    "weekly_consumption_rows": 1768,
+    "department_weekly_rows": 578,
     "allocation_rows_used": 42,
     "building_allocation_rows_used": 42,
     "fallback_allocation_rows_available": 41,
