@@ -8,7 +8,7 @@
       "Main",
       "SCB21"
     ],
-    "generated_at": "2026-05-27T07:14:56",
+    "generated_at": "2026-05-27T07:16:16",
     "missing_reading_logic": "Blank or 0 raw_reading uses previous valid reading.",
     "unchanged_reading_logic": "If current equals previous, usage is 0.",
     "allocation_logic": "Fill-down department, then use row allocation_ratio directly."
