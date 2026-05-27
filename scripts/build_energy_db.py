@@ -8,6 +8,7 @@ ROOT = Path(__file__).resolve().parent.parent
 FORMS_DIR = ROOT / "forms"
 DATA_DIR = ROOT / "data"
 
+BUILDING_ALIAS_FILE = DATA_DIR / "building_alias.json"
 METER_MASTER_FILE = DATA_DIR / "meter_master.csv"
 DEPARTMENT_ALLOCATIONS_FILE = DATA_DIR / "department_allocations.csv"
 BUILDING_ALLOCATIONS_FILE = DATA_DIR / "department_allocation_buildings.csv"
@@ -21,7 +22,12 @@ DEPARTMENTS = ["สก.ชธธ.", "อบค.", "อบฟ.", "อบย.", "�
 EPSILON = 0.000001
 AUTO_RESET_RATIO_THRESHOLD = 100
 
-
+def read_json(path):
+    if not path.exists():
+        return {}
+    with open(path, "r", encoding="utf-8") as f:
+        return json.load(f)
+        
 def read_csv(path):
     encodings = ["utf-8-sig", "utf-8", "cp874", "tis-620"]
     last_error = None
@@ -343,6 +349,8 @@ def build():
     }
 
     meter_master, allocation_source, meter_by_id, allocation_map, building_used, old_used, allocation_mode = load_master()
+    # โหลดชื่อ alias อาคาร
+    building_alias = read_json(BUILDING_ALIAS_FILE)
     raw_rows, form_files = collect_form_readings(meter_by_id, validation)
 
     rows_by_meter = defaultdict(list)
@@ -508,6 +516,7 @@ def build():
         "departments": DEPARTMENTS,
         "meters": meter_master,
         "allocation_source": allocation_source,
+        "building_alias": building_alias,
         "weekly_readings": weekly_readings,
         "normalized_readings": normalized_readings,
         "weekly_consumption": weekly_consumption,
