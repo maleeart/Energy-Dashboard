@@ -2,619 +2,217 @@
   "errors": [],
   "warnings": [
     {
-      "file": "_blank_template.csv",
-      "row": 2,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
+      "warning": "UNKNOWN_DEPARTMENT",
+      "department": "อสร.",
+      "meter_id": "D.0015__FL01__MDB"
     },
     {
-      "file": "_blank_template.csv",
-      "row": 3,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
+      "warning": "UNKNOWN_DEPARTMENT",
+      "department": "อสร.",
+      "meter_id": "D.0015__FL01__MDB"
     },
     {
-      "file": "_blank_template.csv",
-      "row": 4,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
+      "warning": "UNKNOWN_DEPARTMENT",
+      "department": "อสร.",
+      "meter_id": "D.0015__FL01__MDB"
     },
     {
-      "file": "_blank_template.csv",
-      "row": 5,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
+      "warning": "UNKNOWN_DEPARTMENT",
+      "department": "อสร.",
+      "meter_id": "D.0015__FL01__MDB"
     },
     {
-      "file": "_blank_template.csv",
-      "row": 6,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
+      "warning": "UNKNOWN_DEPARTMENT",
+      "department": "อสร.",
+      "meter_id": "D.0015__FL01__MDB"
     },
     {
-      "file": "_blank_template.csv",
-      "row": 7,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
+      "warning": "UNKNOWN_DEPARTMENT",
+      "department": "อสร.",
+      "meter_id": "D.0015__FL01__MDB"
     },
     {
-      "file": "_blank_template.csv",
-      "row": 8,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
+      "warning": "UNKNOWN_DEPARTMENT",
+      "department": "อสร.",
+      "meter_id": "D.0015__FL01__MDB"
     },
     {
-      "file": "_blank_template.csv",
-      "row": 9,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
+      "warning": "UNKNOWN_DEPARTMENT",
+      "department": "อสร.",
+      "meter_id": "D.0015__FL01__MDB"
     },
     {
-      "file": "_blank_template.csv",
-      "row": 10,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
+      "warning": "UNKNOWN_DEPARTMENT",
+      "department": "อสร.",
+      "meter_id": "D.0015__FL01__MDB"
     },
     {
-      "file": "_blank_template.csv",
-      "row": 11,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
+      "warning": "UNKNOWN_DEPARTMENT",
+      "department": "อสร.",
+      "meter_id": "D.0015__FL01__MDB"
     },
     {
-      "file": "_blank_template.csv",
-      "row": 12,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
+      "warning": "UNKNOWN_DEPARTMENT",
+      "department": "อสร.",
+      "meter_id": "D.0015__FL01__MDB"
     },
     {
-      "file": "_blank_template.csv",
-      "row": 13,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
+      "warning": "UNKNOWN_DEPARTMENT",
+      "department": "อสร.",
+      "meter_id": "D.0015__FL01__MDB"
     },
     {
-      "file": "_blank_template.csv",
-      "row": 14,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
+      "warning": "UNKNOWN_DEPARTMENT",
+      "department": "อสร.",
+      "meter_id": "D.0015__FL01__MDB"
     },
     {
-      "file": "_blank_template.csv",
-      "row": 15,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
+      "warning": "UNKNOWN_DEPARTMENT",
+      "department": "อสร.",
+      "meter_id": "D.0015__FL01__MDB"
     },
     {
-      "file": "_blank_template.csv",
-      "row": 16,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
+      "warning": "UNKNOWN_DEPARTMENT",
+      "department": "อสร.",
+      "meter_id": "D.0015__FL01__MDB"
     },
     {
-      "file": "_blank_template.csv",
-      "row": 17,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
+      "warning": "UNKNOWN_DEPARTMENT",
+      "department": "อสร.",
+      "meter_id": "D.0015__FL01__MDB"
     },
     {
-      "file": "_blank_template.csv",
-      "row": 18,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
+      "warning": "UNKNOWN_DEPARTMENT",
+      "department": "อสร.",
+      "meter_id": "D.0015__FL01__MDB"
     },
     {
-      "file": "_blank_template.csv",
-      "row": 19,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
+      "warning": "UNKNOWN_DEPARTMENT",
+      "department": "อสร.",
+      "meter_id": "D.0015__FL01__MDB"
     },
     {
-      "file": "_blank_template.csv",
-      "row": 20,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
+      "warning": "UNKNOWN_DEPARTMENT",
+      "department": "อสร.",
+      "meter_id": "D.0015__FL01__MDB"
     },
     {
-      "file": "_blank_template.csv",
-      "row": 21,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
+      "warning": "UNKNOWN_DEPARTMENT",
+      "department": "อสร.",
+      "meter_id": "D.0015__FL01__MDB"
     },
     {
-      "file": "_blank_template.csv",
-      "row": 22,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
+      "warning": "UNKNOWN_DEPARTMENT",
+      "department": "อสร.",
+      "meter_id": "T.0025__FL01__MDB"
     },
     {
-      "file": "_blank_template.csv",
-      "row": 23,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
+      "warning": "UNKNOWN_DEPARTMENT",
+      "department": "อสร.",
+      "meter_id": "T.0025__FL01__MDB"
     },
     {
-      "file": "_blank_template.csv",
-      "row": 24,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
+      "warning": "UNKNOWN_DEPARTMENT",
+      "department": "อสร.",
+      "meter_id": "T.0025__FL01__MDB"
     },
     {
-      "file": "_blank_template.csv",
-      "row": 25,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
+      "warning": "UNKNOWN_DEPARTMENT",
+      "department": "อสร.",
+      "meter_id": "T.0025__FL01__MDB"
     },
     {
-      "file": "_blank_template.csv",
-      "row": 26,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
+      "warning": "UNKNOWN_DEPARTMENT",
+      "department": "อสร.",
+      "meter_id": "T.0025__FL01__MDB"
     },
     {
-      "file": "_blank_template.csv",
-      "row": 27,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
+      "warning": "UNKNOWN_DEPARTMENT",
+      "department": "อสร.",
+      "meter_id": "T.0025__FL01__MDB"
     },
     {
-      "file": "_blank_template.csv",
-      "row": 28,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
+      "warning": "UNKNOWN_DEPARTMENT",
+      "department": "อสร.",
+      "meter_id": "T.0025__FL01__MDB"
     },
     {
-      "file": "_blank_template.csv",
-      "row": 29,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
+      "warning": "UNKNOWN_DEPARTMENT",
+      "department": "อสร.",
+      "meter_id": "T.0025__FL01__MDB"
     },
     {
-      "file": "_blank_template.csv",
-      "row": 30,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
+      "warning": "UNKNOWN_DEPARTMENT",
+      "department": "อสร.",
+      "meter_id": "T.0025__FL01__MDB"
     },
     {
-      "file": "_blank_template.csv",
-      "row": 31,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
+      "warning": "UNKNOWN_DEPARTMENT",
+      "department": "อสร.",
+      "meter_id": "T.0025__FL01__MDB"
     },
     {
-      "file": "_blank_template.csv",
-      "row": 32,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
+      "warning": "UNKNOWN_DEPARTMENT",
+      "department": "อสร.",
+      "meter_id": "T.0025__FL01__MDB"
     },
     {
-      "file": "_blank_template.csv",
-      "row": 33,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
+      "warning": "UNKNOWN_DEPARTMENT",
+      "department": "อสร.",
+      "meter_id": "T.0025__FL01__MDB"
     },
     {
-      "file": "_blank_template.csv",
-      "row": 34,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
+      "warning": "UNKNOWN_DEPARTMENT",
+      "department": "อสร.",
+      "meter_id": "T.0025__FL01__MDB"
     },
     {
-      "file": "_blank_template.csv",
-      "row": 35,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
+      "warning": "UNKNOWN_DEPARTMENT",
+      "department": "อสร.",
+      "meter_id": "T.0025__FL01__MDB"
     },
     {
-      "file": "_blank_template.csv",
-      "row": 36,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
+      "warning": "UNKNOWN_DEPARTMENT",
+      "department": "อสร.",
+      "meter_id": "T.0025__FL01__MDB"
     },
     {
-      "file": "_blank_template.csv",
-      "row": 37,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
+      "warning": "UNKNOWN_DEPARTMENT",
+      "department": "อสร.",
+      "meter_id": "T.0025__FL01__MDB"
     },
     {
-      "file": "_blank_template.csv",
-      "row": 38,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
+      "warning": "UNKNOWN_DEPARTMENT",
+      "department": "อสร.",
+      "meter_id": "T.0025__FL01__MDB"
     },
     {
-      "file": "_blank_template.csv",
-      "row": 39,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
+      "warning": "UNKNOWN_DEPARTMENT",
+      "department": "อสร.",
+      "meter_id": "T.0025__FL01__MDB"
     },
     {
-      "file": "_blank_template.csv",
-      "row": 40,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
+      "warning": "UNKNOWN_DEPARTMENT",
+      "department": "อสร.",
+      "meter_id": "T.0025__FL01__MDB"
     },
     {
-      "file": "_blank_template.csv",
-      "row": 41,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 42,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 43,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 44,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 45,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 46,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 47,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 48,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 49,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 50,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 51,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 52,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 53,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 54,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 55,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 56,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 57,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 58,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 59,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 60,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 61,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 62,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 63,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 64,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 65,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 66,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 67,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 68,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 69,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 70,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 71,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 72,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 73,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 74,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 75,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 76,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 77,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 78,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 79,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 80,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 81,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 82,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 83,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 84,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 85,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 86,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 87,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 88,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 89,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 90,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 91,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 92,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 93,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 94,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 95,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 96,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 97,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 98,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 99,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 100,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 101,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
-    },
-    {
-      "file": "_blank_template.csv",
-      "row": 102,
-      "warning": "INVALID_DATE",
-      "value": "YYYY-MM-DD"
+      "warning": "UNKNOWN_DEPARTMENT",
+      "department": "อสร.",
+      "meter_id": "T.0025__FL01__MDB"
     }
   ],
   "stats": {
     "meters": 101,
-    "form_files_read": 22,
+    "form_files_read": 21,
     "weekly_forms_rows_used": 2121,
-    "normalized_readings": 2121,
-    "weekly_consumption_rows": 2121,
-    "department_weekly_rows": 861,
+    "normalized_readings": 1977,
+    "weekly_consumption_rows": 1882,
+    "department_weekly_rows": 643,
+    "allocation_rows_used": 42,
+    "building_allocation_rows_used": 42,
+    "fallback_allocation_rows_available": 41,
+    "allocation_mode": "building_ratio_sheet_filldown_department",
     "main_meter_codes": [
       "MDB",
       "Main",
