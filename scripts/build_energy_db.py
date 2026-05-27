@@ -235,22 +235,22 @@ with open(VALIDATION_JSON, "w", encoding="utf-8") as f:
     json.dump(validation, f, ensure_ascii=False, indent=2)
 
 print("DONE")
-```
+
 
 จุดสำคัญที่แก้ปัญหา ต.0015:
 
-```python
+
 if raw in (None, 0):
     if previous is not None:
         normalized = previous
-```
+
 
 และ:
 
 
 if abs(normalized - previous) < EPSILON:
     usage = 0
-```
+
 
 ดังนั้น:
 
