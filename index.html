@@ -55,7 +55,7 @@
 <body>
 <div class="topbar">
   <div style="font-size:15px;font-weight:700;color:#f59e0b;padding:14px 0;margin-right:32px">
-    กฟผ. สำนักงานไทรน้อย <span style="color:#8892a4;font-weight:400;font-size:12px;margin-left:6px">Auto DB</span>
+    กฟผ. สำนักงานไทรน้อย 
   </div>
   <nav class="nav-tabs">
     <a href="index.html" class="nav-tab active">
@@ -66,9 +66,9 @@
     </a>
   </nav>
 </div>
-<div class="hdr"><div class="hdr-l"><div class="logo">กฟผ.</div><div class="hdr-t"><h1>รายงานปริมาณการใช้ไฟฟ้า สำนักงานไทรน้อย กฟผ.</h1><p>Auto database version — weekly raw meter readings</p></div></div>
+<div class="hdr"><div class="hdr-l"><div class="logo">กฟผ.</div><div class="hdr-t"><h1>รายงานปริมาณการใช้ไฟฟ้า สำนักงานไทรน้อย กฟผ.</h1><p>Auto database version — weekly meter readings</p></div></div>
 <div class="fg"><span class="fl">ปี</span><select class="fs" id="yearSel"></select><span class="fl">เดือน</span><select class="fs" id="monthSel"></select></div></div>
-<div class="ban"><span class="ban-l">ยอดสะสมการใช้ไฟจาก RAW รายสัปดาห์</span><span class="ban-v" id="grandTotal">—</span><span class="ban-u">kWh</span></div>
+<div class="ban"><span class="ban-l">ยอดสะสมการใช้ไฟฟ้า</span><span class="ban-v" id="grandTotal">—</span><span class="ban-u">kWh</span></div>
 <div id="noteBar" class="note">กำลังโหลดฐานข้อมูล <code>data/energy_db.json</code>...</div>
 <div class="main">
   <div class="kpi-row" id="kpiRow"></div>
@@ -188,7 +188,7 @@ function renderDonut(){
   document.getElementById("donutSub").textContent=`ปี ${sY+543}${sM==="all"?"":" — "+MO[+sM-1]}`;
   if(ch.donut) ch.donut.destroy();
   ch.donut=new Chart(document.getElementById("donut"),{type:"doughnut",data:{labels:DEPT,datasets:[{data:vals,backgroundColor:CL,borderColor:"#fff",borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,cutout:"62%",plugins:{legend:{display:false}}}});
-  const tb=document.getElementById("deptTable"); tb.innerHTML='<tr><th>ฝ่าย</th><th class="vl">kWh</th><th class="pc">%</th></tr>';
+  const tb=document.getElementById("deptTable"); tb.innerHTML='<tr><th>ฝ่าย</th><th class="vl" style="text-align: right;">kWh</th><th class="pc" style="text-align: right;">%</th></tr>';
   DEPT.map((d,i)=>({d,v:vals[i],c:CL[i]})).sort((a,b)=>b.v-a.v).forEach(x=>{tb.innerHTML+=`<tr><td><span class="ld" style="background:${x.c}"></span>${x.d}</td><td class="vl">${fmt(x.v)}</td><td class="pc">${total?((x.v/total)*100).toFixed(1):"0.0"}%</td></tr>`});
 }
 function renderMonthBar(){
