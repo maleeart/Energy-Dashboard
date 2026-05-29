@@ -87,9 +87,38 @@
 <script>
 const MO=["ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค."];
 const DEPT=["สก.ชธธ.","อบค.","อบฟ.","อบย.","อรอ.","อคม.","อหข."];
-const CL=["#14532D","#166534","#15803D","#16A34A","#22C55E","#4ADE80","#86EFAC"];
-const DB=["#052E16","#064E3B","#065F46","#047857","#15803D","#16A34A","#22C55E"];
-const BUILD_COLORS=["#052E16","#064E3B","#065F46","#047857","#15803D","#16A34A","#22C55E","#4ADE80","#86EFAC","#A7F3D0","#134E4A","#0F766E"];
+const CL=[
+ "#14532D", // เขียวป่าสน
+ "#047857", // เขียวหยก
+ "#0F766E", // Teal
+ "#65A30D", // Olive
+ "#84CC16", // Lime
+ "#22C55E", // Green
+ "#A3E635"  // Lime อ่อน
+];
+const DB=[
+ "#052E16",
+ "#064E3B",
+ "#134E4A",
+ "#365314",
+ "#4D7C0F",
+ "#15803D",
+ "#65A30D"
+];
+const BUILD_COLORS=[
+ "#052E16",
+ "#064E3B",
+ "#134E4A",
+ "#0F766E",
+ "#047857",
+ "#15803D",
+ "#22C55E",
+ "#65A30D",
+ "#84CC16",
+ "#A3E635",
+ "#4D7C0F",
+ "#166534"
+];
 let DATA=null, sY=null, sM="all", sD="all", ch={}, visibleYears=new Set();
 function fmt(n){return (Math.round((n||0)*10)/10).toLocaleString("th-TH")}
 function displayBuildingName(name){return (DATA&&DATA.building_alias&&DATA.building_alias[name])||name}
