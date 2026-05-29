@@ -8,8 +8,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 .topbar {
-  background: linear-gradient(90deg, #0c1428 0%, #10172a 100%);
-  border-bottom: 1px solid #2a2f4a;
+  background: linear-gradient(90deg, #061e3a 0%, #0a2d52 100%);
+  border-bottom: 1px solid #0e4272;
   padding: 0 24px;
   display: flex;
   align-items: center;
@@ -20,21 +20,21 @@
 .nav-tab {
   padding: 14px 20px;
   font-size: 13px; font-weight: 500;
-  color: #8892a4;
+  color: #7baed4;
   text-decoration: none;
   border-bottom: 2px solid transparent;
   transition: all .2s;
   display: flex; align-items: center; gap: 7px;
 }
-.nav-tab:hover { color: #e2e8f0; }
-.nav-tab.active { color: #f59e0b; border-bottom-color: #f59e0b; }
-:root{--pri:#0B1D51;--pri-l:#1A3A7A;--gold:#C5A85F;--bg:#F0F2F5;--card:#FFF;--txt:#1A1A2E;--txt2:#5A6178;--bdr:#E2E6ED;--sh:0 2px 12px rgba(11,29,81,.08);--r:10px}
+.nav-tab:hover { color: #bde0f8; }
+.nav-tab.active { color: #38bdf8; border-bottom-color: #38bdf8; }
+:root{--pri:#064E8C;--pri-l:#0A72C9;--gold:#38BDF8;--bg:#EDF5FF;--card:#FFF;--txt:#0A1F3D;--txt2:#3A6080;--bdr:#BFD9F2;--sh:0 2px 12px rgba(6,78,140,.12);--r:10px}
 *{margin:0;padding:0;box-sizing:border-box} body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--txt)}
 .hdr{background:linear-gradient(135deg,var(--pri),var(--pri-l));padding:16px 28px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .logo{width:42px;height:42px;background:var(--gold);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--pri)}
 .hdr-l{display:flex;gap:14px;align-items:center}.hdr-t{color:#fff}.hdr-t h1{font-size:18px}.hdr-t p{font-size:12px;color:rgba(255,255,255,.72)}
 .fg{display:flex;gap:6px;align-items:center}.fl{color:rgba(255,255,255,.85);font-size:13px}.fs{padding:6px 12px;border-radius:6px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.12);color:#fff}.fs option{color:#333}
-.ban{background:linear-gradient(135deg,var(--pri),#1B3B80,var(--pri-l));padding:12px 28px;display:flex;justify-content:flex-end;gap:12px;align-items:center;flex-wrap:wrap}
+.ban{background:linear-gradient(135deg,#042a52,#064E8C,#0A72C9);padding:12px 28px;display:flex;justify-content:flex-end;gap:12px;align-items:center;flex-wrap:wrap}
 .ban-l{color:rgba(255,255,255,.85);font-size:13px}.ban-v{color:var(--gold);font-size:28px;font-weight:800}.ban-u{color:rgba(255,255,255,.72);font-size:12px}
 .main{padding:20px 24px;max-width:1600px;margin:auto}.kpi-row{display:grid;grid-template-columns:repeat(8,1fr);gap:12px;margin-bottom:20px}
 .card,.kG,.kD{background:var(--card);border-radius:var(--r);box-shadow:var(--sh);padding:16px}.kG{border-top:3px solid var(--gold);cursor:pointer}.kD{color:white;cursor:pointer;opacity:.95}.kD.sel{outline:3px solid var(--gold);outline-offset:-1px}.kD.dim{opacity:.38}
@@ -43,7 +43,7 @@
 .ct{font-size:14px;font-weight:700;color:var(--pri);margin-bottom:4px}.cs{font-size:11px;color:var(--txt2);margin-bottom:14px}.cw{height:320px}
 .dw{display:flex;align-items:center;gap:18px}.donutBox{position:relative;width:220px;height:220px;flex-shrink:0}.dc{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none}.dcv{font-weight:800;color:var(--pri)}.dcl{font-size:10px;color:var(--txt2)}
 .lt{width:100%;border-collapse:collapse;font-size:12px}.lt th{text-align:left;color:var(--txt2);font-size:11px;border-bottom:1px solid var(--bdr);padding:4px 8px}.lt td{border-bottom:1px solid #eee;padding:5px 8px}.vl,.pc{text-align:right}.ld{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px}
-.note{background:#E3F2FD;border-bottom:2px solid #1565C0;padding:7px 28px;font-size:12px;color:#0D47A1}.ft{text-align:center;padding:16px;color:var(--txt2);font-size:11px}
+.note{background:#DBEEFF;border-bottom:2px solid #0284C7;padding:7px 28px;font-size:12px;color:#064E8C}.ft{text-align:center;padding:16px;color:var(--txt2);font-size:11px}
 @media(max-width:1200px){.kpi-row{grid-template-columns:repeat(4,1fr)}.grid2,.gridB{grid-template-columns:1fr}}@media(max-width:768px){.kpi-row{grid-template-columns:repeat(2,1fr)}.main{padding:12px}}
 
 .yearToggles{display:flex;gap:6px;flex-wrap:wrap;margin:2px 0 10px 0}
@@ -53,7 +53,7 @@
 </head>
 <body>
 <div class="topbar">
-  <div style="font-size:15px;font-weight:700;color:#f59e0b;padding:14px 0;margin-right:32px">
+  <div style="font-size:15px;font-weight:700;color:#38bdf8;padding:14px 0;margin-right:32px">
     กฟผ. สำนักงานไทรน้อย 
   </div>
   <nav class="nav-tabs">
@@ -61,7 +61,7 @@
       ⚡ ไฟฟ้า
     </a>
     <a href="water.html" class="nav-tab active">
-      💧 น้ำประปา (demo)
+      💧 น้ำประปา
     </a>
     <a href="garbage.html" class="nav-tab">
       ขยะ (demo)
@@ -87,9 +87,9 @@
 <script>
 const MO=["ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค."];
 const DEPT=["สก.ชธธ.","อบค.","อบฟ.","อบย.","อรอ.","อคม.","อหข."];
-const CL=["#1565C0","#00897B","#F9A825","#EF6C00","#AD1457","#6A1B9A","#2E7D32"];
-const DB=["#0D47A1","#004D40","#E65100","#880E4F","#4A148C","#1B5E20","#BF360C"];
-const BUILD_COLORS=["#1565C0","#00897B","#F9A825","#EF6C00","#AD1457","#6A1B9A","#2E7D32","#C5A85F","#455A64","#00ACC1","#8E24AA","#7CB342"];
+const CL=["#0284C7","#0891B2","#38BDF8","#06B6D4","#0369A1","#7DD3FC","#0E7490"];
+const DB=["#042a52","#0c4a6e","#0369a1","#0e6692","#083d6e","#065173","#053e5a"];
+const BUILD_COLORS=["#0284C7","#0891B2","#0369A1","#06B6D4","#0E7490","#155E75","#38BDF8","#7DD3FC","#0C4A6E","#22D3EE","#164E63","#BAE6FD"];
 let DATA=null, sY=null, sM="all", sD="all", ch={}, visibleYears=new Set();
 function fmt(n){return (Math.round((n||0)*10)/10).toLocaleString("th-TH")}
 function displayBuildingName(name){return (DATA&&DATA.building_alias&&DATA.building_alias[name])||name}
@@ -172,8 +172,8 @@ function renderMonthBar(){
     data:{
       labels:MO,
       datasets:[
-        {type:"bar",label:"ลบ.ม.",data:vals,backgroundColor:vals.map(v=>v===maxVal&&v>0?"#EF6C00":"#1565C0"),borderRadius:4,order:2},
-        {type:"line",label:"ค่าเฉลี่ย",data:MO.map(()=>avgVal||null),borderColor:"#C5A85F",backgroundColor:"#C5A85F",borderDash:[6,6],borderWidth:2,pointRadius:0,pointHitRadius:28,pointHoverRadius:6,pointHoverBackgroundColor:"#C5A85F",pointHoverBorderColor:"#C5A85F",tension:0,order:1}
+        {type:"bar",label:"ลบ.ม.",data:vals,backgroundColor:vals.map(v=>v===maxVal&&v>0?"#0369A1":"#38BDF8"),borderRadius:4,order:2},
+        {type:"line",label:"ค่าเฉลี่ย",data:MO.map(()=>avgVal||null),borderColor:"#06B6D4",backgroundColor:"#06B6D4",borderDash:[6,6],borderWidth:2,pointRadius:0,pointHitRadius:28,pointHoverRadius:6,pointHoverBackgroundColor:"#06B6D4",pointHoverBorderColor:"#06B6D4",tension:0,order:1}
       ]
     },
     options:{
@@ -206,7 +206,7 @@ function renderYearLine(){
   const years=[...new Set((DATA.department_weekly||[]).map(r=>rowYear(r)))].sort();
   if(visibleYears.size===0)years.forEach(y=>visibleYears.add(y));
   const tg=document.getElementById("yearToggles");
-  const colors=["#1565C0","#00897B","#F9A825","#EF6C00","#AD1457","#6A1B9A","#2E7D32","#C5A85F"];
+  const colors=["#0284C7","#0891B2","#0369A1","#06B6D4","#0E7490","#155E75","#164E63","#38BDF8"];
   if(tg){
     tg.innerHTML="";
     years.forEach((y,idx)=>{
