@@ -8,7 +8,7 @@
       "Main",
       "SCB21"
     ],
-    "generated_at": "2026-06-12T08:26:25",
+    "generated_at": "2026-06-12T17:21:54",
     "missing_reading_logic": "Blank or 0 raw_reading uses previous valid reading.",
     "unchanged_reading_logic": "If current equals previous, usage is 0.",
     "allocation_logic": "Fill-down department, then use row allocation_ratio directly."
@@ -26882,7 +26882,7 @@
       "normalized_kwh": 10222629.0,
       "usage_kwh": 0,
       "reader": "",
-      "note": ""
+      "note": "Test"
     },
     {
       "source_form": "forms/2025-W01.csv",
@@ -28022,7 +28022,7 @@
       "normalized_kwh": "",
       "usage_kwh": 0,
       "reader": "",
-      "note": ""
+      "note": "Test2"
     },
     {
       "source_form": "forms/2025-W01.csv",
