@@ -1670,7 +1670,7 @@ forms/2026-W20.csv,2026-05-15,2026-W20,EGAT__FL01__Main,EGAT,Main,มิเต�
 forms/2026-W21.csv,2026-05-22,2026-W21,EGAT__FL01__Main,EGAT,Main,มิเตอร์รวมทั้งหมด,,MWh,8681000.0,0,,
 forms/2026-W22.csv,2026-05-29,2026-W22,EGAT__FL01__Main,EGAT,Main,มิเตอร์รวมทั้งหมด,0.0,kWh,8681000.0,0,,
 forms/2026-W23.csv,2026-06-05,2026-W23,EGAT__FL01__Main,EGAT,Main,มิเตอร์รวมทั้งหมด,10222.629,MWh,10222629.0,1541629.0,ธนวิชญ์,
-forms/2026-W24.csv,2026-06-12,2026-W24,EGAT__FL01__Main,EGAT,Main,มิเตอร์รวมทั้งหมด,,kWh,10222629.0,0,,Test
+forms/2026-W24.csv,2026-06-12,2026-W24,EGAT__FL01__Main,EGAT,Main,มิเตอร์รวมทั้งหมด,0.0,kWh,10222629.0,0,,Test
 forms/2025-W01.csv,2025-01-03,2025-W01,EGAT__FL01__Main2,EGAT,Main2,มิเตอร์รวม เฟส 1,,kWh,,0,,
 forms/2025-W02.csv,2025-01-10,2025-W02,EGAT__FL01__Main2,EGAT,Main2,มิเตอร์รวม เฟส 1,,kWh,,0,,
 forms/2025-W03.csv,2025-01-17,2025-W03,EGAT__FL01__Main2,EGAT,Main2,มิเตอร์รวม เฟส 1,,kWh,,0,,

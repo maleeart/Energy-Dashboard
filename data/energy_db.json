@@ -8,7 +8,7 @@
       "Main",
       "SCB21"
     ],
-    "generated_at": "2026-06-12T17:21:54",
+    "generated_at": "2026-06-12T17:22:49",
     "missing_reading_logic": "Blank or 0 raw_reading uses previous valid reading.",
     "unchanged_reading_logic": "If current equals previous, usage is 0.",
     "allocation_logic": "Fill-down department, then use row allocation_ratio directly."
@@ -26877,7 +26877,7 @@
       "b_code": "EGAT",
       "subb_code": "Main",
       "building_name": "มิเตอร์รวมทั้งหมด",
-      "raw_reading": "",
+      "raw_reading": 0.0,
       "raw_unit": "kWh",
       "normalized_kwh": 10222629.0,
       "usage_kwh": 0,
