@@ -1,6 +1,6 @@
 ﻿reading_date,week_id,sort_order,meter_id,b_code,floor,subb_code,building_name,raw_reading,raw_unit,reader,note
-12/06/2026,2026-W24,1,EGAT__FL01__Main,EGAT,FL01,Main11,มิเตอร์รวมทั้งหมด,,kWh,,
-12/06/2026,2026-W24,2,EGAT__FL01__Main2,EGAT,FL01,Main21,มิเตอร์รวม เฟส 1,,kWh,,
+12/06/2026,2026-W24,1,EGAT__FL01__Main,EGAT,FL01,Main11,มิเตอร์รวมทั้งหมด,,kWh,,Test
+12/06/2026,2026-W24,2,EGAT__FL01__Main2,EGAT,FL01,Main21,มิเตอร์รวม เฟส 1,,kWh,,Test2
 12/06/2026,2026-W24,3,T.0006__FL01__MDB,T.0006,FL01,MDB,ท.0006 อาคาร บริหารอะไหล่กังหันก๊าซ1 อรอ.,11.020954,MWh,นันทวัฒน์,
 12/06/2026,2026-W24,4,T.0007__FL01__MDB,T.0007,FL01,MDB,ท.0007 อาคาร กองบริหาร ชธธ.,21365.67,kWh,,
 12/06/2026,2026-W24,5,T.0008__FL01__MDB,T.0008,FL01,MDB,ท.0008 อาคาร บริหารอะไหล่กังหันก๊าซ2 อรอ.,2803.49,kWh,,
