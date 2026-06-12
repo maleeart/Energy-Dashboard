@@ -8,7 +8,7 @@
       "Main",
       "SCB21"
     ],
-    "generated_at": "2026-06-12T08:07:19",
+    "generated_at": "2026-06-12T08:26:25",
     "missing_reading_logic": "Blank or 0 raw_reading uses previous valid reading.",
     "unchanged_reading_logic": "If current equals previous, usage is 0.",
     "allocation_logic": "Fill-down department, then use row allocation_ratio directly."
@@ -352530,7 +352530,7 @@
     ],
     "stats": {
       "meters": 101,
-      "form_files_read": 77,
+      "form_files_read": 76,
       "weekly_forms_rows_used": 7676,
       "normalized_readings": 7003,
       "weekly_consumption_rows": 6904,
