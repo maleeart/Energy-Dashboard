@@ -8,7 +8,7 @@
       "Main",
       "SCB21"
     ],
-    "generated_at": "2026-06-19T03:14:51",
+    "generated_at": "2026-06-19T03:15:31",
     "missing_reading_logic": "Blank or 0 raw_reading uses previous valid reading.",
     "unchanged_reading_logic": "If current equals previous, usage is 0.",
     "allocation_logic": "Fill-down department, then use row allocation_ratio directly."
@@ -27207,11 +27207,11 @@
       "b_code": "EGAT",
       "subb_code": "Main",
       "building_name": "มิเตอร์รวมทั้งหมด",
-      "raw_reading": "",
-      "raw_unit": "kWh",
-      "normalized_kwh": 10222629.0,
-      "usage_kwh": 0,
-      "reader": "",
+      "raw_reading": 10378.281,
+      "raw_unit": "MWh",
+      "normalized_kwh": 10378281.0,
+      "usage_kwh": 155652.0,
+      "reader": "ธนวิชญ์",
       "note": ""
     },
     {
@@ -138776,11 +138776,9 @@
       "b_code": "EGAT",
       "subb_code": "Main",
       "building_name": "มิเตอร์รวมทั้งหมด",
-      "normalized_kwh": 10222629.0,
+      "normalized_kwh": 10378281.0,
       "is_main_meter": true,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W01.csv",
@@ -231740,14 +231738,11 @@
       "subb_code": "Main",
       "building_name": "มิเตอร์รวมทั้งหมด",
       "is_main_meter": true,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 155652.0,
+      "raw_delta_kwh": 155652.0,
       "previous_normalized_kwh": 10222629.0,
-      "current_normalized_kwh": 10222629.0,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 10378281.0,
+      "flags": []
     },
     {
       "week_start_date": "2025-01-03",
