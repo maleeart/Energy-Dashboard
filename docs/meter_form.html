@@ -313,10 +313,16 @@ window.onload = () => {
 function saveReaderName(v) { localStorage.setItem('readerName', v); }
 
 function getCurrentWeekId() {
-  const now  = new Date();
-  const jan1 = new Date(now.getFullYear(), 0, 1);
-  const week = Math.ceil(((now - jan1) / 86400000 + jan1.getDay() + 1) / 7);
-  return `${now.getFullYear()}-W${String(week).padStart(2,'0')}`;
+  const now = new Date();
+  // กำหนดให้เป็นวันพฤหัสบดีของสัปดาห์ปัจจุบันเพื่อหาปี ISO ที่ถูกต้อง
+  now.setHours(0, 0, 0, 0);
+  now.setDate(now.getDate() + 4 - (now.getDay() || 7));
+  
+  const yearStart = new Date(now.getFullYear(), 0, 1);
+  // คำนวณจำนวนสัปดาห์
+  const week = Math.ceil((((now - yearStart) / 86400000) + 1) / 7);
+  
+  return `${now.getFullYear()}-W${String(week).padStart(2, '0')}`;
 }
 
 function toggleManual() {
