@@ -292,7 +292,7 @@
 
 <script>
 // ── CONFIG — เปลี่ยน URL นี้เป็น Apps Script Web App URL ──
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzXUHjG7_NJjEP76tOmmwlfIcojjnDGmnxmUZXa1kzUU9ZoL7R_nf5zqIKeqYv5ozc2Bw/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw-7QiuLsLB8i4-5iM4sCNVWxSbd560uMttAiqMncpC1mg3ogB-bVNpRKLAmdvH7spXOg/exec';
 
 // ── State ──────────────────────────────────────────────────
 let allRows    = [];
@@ -465,11 +465,15 @@ async function saveRow(meterId) {
   const noteEl = document.getElementById(`note_${CSS.escape(meterId)}`);
   const btn    = document.getElementById(`savebtn_${CSS.escape(meterId)}`);
 
-  const raw_reading = valEl  ? valEl.value.trim()  : '';
+  const raw_reading = valEl ? valEl.value.trim() : '';
   const row         = allRows.find(r => r.meter_id === meterId);
   const raw_unit    = row ? (row.raw_unit || 'kWh') : 'kWh';
   const reader      = rdrEl  ? rdrEl.value.trim()  : '';
   const note        = noteEl ? noteEl.value.trim() : '';
+ // ✅ เพิ่มตรงนี้ — ถามยืนยันก่อนลบค่า
+  if (raw_reading === '') {
+    if (!confirm('ต้องการลบค่ามิเตอร์นี้ให้เป็นช่องว่างใช่ไหม?')) return;
+  }
 
   if (btn) { btn.textContent = '⏳ กำลังบันทึก…'; btn.classList.add('saving'); }
   pendingSave = true;
