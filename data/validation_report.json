@@ -382,9 +382,9 @@
       "meter_id": "D.0015__FL01__MDB"
     },
     {
-      "warning": "NO_ALLOCATION_FOR_METER",
-      "meter_id": "EGAT__FL01__Main",
-      "building_name": "มิเตอร์รวมทั้งหมด"
+      "warning": "UNKNOWN_DEPARTMENT",
+      "department": "อสร.",
+      "meter_id": "D.0015__FL01__MDB"
     },
     {
       "warning": "NO_ALLOCATION_FOR_METER",
@@ -675,6 +675,21 @@
       "warning": "NO_ALLOCATION_FOR_METER",
       "meter_id": "EGAT__FL01__Main",
       "building_name": "มิเตอร์รวมทั้งหมด"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "EGAT__FL01__Main",
+      "building_name": "มิเตอร์รวมทั้งหมด"
+    },
+    {
+      "warning": "NO_ALLOCATION_FOR_METER",
+      "meter_id": "EGAT__FL01__Main",
+      "building_name": "มิเตอร์รวมทั้งหมด"
+    },
+    {
+      "warning": "UNKNOWN_DEPARTMENT",
+      "department": "อสร.",
+      "meter_id": "T.0025__FL01__MDB"
     },
     {
       "warning": "UNKNOWN_DEPARTMENT",
@@ -1059,11 +1074,11 @@
   ],
   "stats": {
     "meters": 101,
-    "form_files_read": 77,
-    "weekly_forms_rows_used": 7777,
-    "normalized_readings": 7102,
-    "weekly_consumption_rows": 7003,
-    "department_weekly_rows": 2584,
+    "form_files_read": 78,
+    "weekly_forms_rows_used": 7878,
+    "normalized_readings": 7201,
+    "weekly_consumption_rows": 7102,
+    "department_weekly_rows": 2618,
     "allocation_rows_used": 42,
     "building_allocation_rows_used": 42,
     "fallback_allocation_rows_available": 41,
