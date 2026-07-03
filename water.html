@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="th">
 <head>
 <meta charset="UTF-8">
@@ -6,7 +6,7 @@
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="snap.png" type="image/png">
 <link rel="apple-touch-icon" href="snap.png">
-<title>SNAP — น้ำประปา | กฟผ. สำนักงานไทรน้อย</title>
+<title>SNAP โ€” เธเนเธณเธเธฃเธฐเธเธฒ | เธเธเธ. เธชเธณเธเธฑเธเธเธฒเธเนเธ—เธฃเธเนเธญเธข</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -33,9 +33,9 @@
 .nav-tab.active { color: #38bdf8; border-bottom-color: #38bdf8; }
 :root{--pri:#0B1D51;--pri-l:#1A3A7A;--gold:#38BDF8;--bg:#E8F4FD;--card:#FFF;--txt:#1A1A2E;--txt2:#5A6178;--bdr:#C8DDEF;--sh:0 2px 12px rgba(11,29,81,.08);--r:10px}
 *{margin:0;padding:0;box-sizing:border-box} body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--txt)}
-.hdr{background:linear-gradient(135deg,var(--pri),var(--pri-l));padding:16px 28px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.logo{width:48px;height:48px;background:#fff;border-radius:12px;display:flex;align-items:center;justify-content:center;padding:4px;box-shadow:0 1px 4px rgba(0,0,0,.15)}.logo img{width:100%;height:100%;object-fit:contain}
-.hdr-l{display:flex;gap:14px;align-items:center}.hdr-t{color:#fff}.hdr-t h1{font-size:18px}.hdr-t p{font-size:12px;color:rgba(255,255,255,.72)}
+.hdr{background:linear-gradient(135deg,var(--pri),var(--pri-l));padding:10px 28px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.logo{width:36px;height:36px;background:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;padding:3px;box-shadow:0 1px 4px rgba(0,0,0,.15)}.logo img{width:100%;height:100%;object-fit:contain}
+.hdr-l{display:flex;gap:10px;align-items:center}.hdr-t{color:#fff}.hdr-t h1{font-size:15px}.hdr-t p{font-size:11px;color:rgba(255,255,255,.72)}
 .fg{display:flex;gap:6px;align-items:center}.fl{color:rgba(255,255,255,.85);font-size:13px}.fs{padding:6px 12px;border-radius:6px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.12);color:#fff}.fs option{color:#333}
 .ban{background:linear-gradient(135deg,var(--pri),#1B3B80,var(--pri-l));padding:12px 28px;display:flex;justify-content:flex-end;gap:12px;align-items:center;flex-wrap:wrap}
 .ban-l{color:rgba(255,255,255,.85);font-size:13px}.ban-v{color:var(--gold);font-size:28px;font-weight:800}.ban-u{color:rgba(255,255,255,.72);font-size:12px}
@@ -61,35 +61,35 @@
   </div>
   <nav class="nav-tabs">
     <a href="index.html" class="nav-tab">
-      ⚡ ไฟฟ้า
+      โก เนเธเธเนเธฒ
     </a>
     <a href="water.html" class="nav-tab active">
-      💧 น้ำประปา (demo)
+      ๐’ง เธเนเธณเธเธฃเธฐเธเธฒ (demo)
     </a>
     <a href="garbage.html" class="nav-tab">
-      ♻️ ขยะ (WIP)
+      โป๏ธ เธเธขเธฐ (WIP)
     </a>
   </nav>
 </div>
-<div class="hdr"><div class="hdr-l"><div class="logo"><img src="LogoEGAT-only.png" alt="กฟผ."></div><div class="hdr-t"><h1>รายงานปริมาณการใช้น้ำ สำนักงานไทรน้อย กฟผ.</h1><p>Auto database version — daily meter readings</p></div></div>
-<div class="fg"><span class="fl">ปี</span><select class="fs" id="yearSel"></select><span class="fl">เดือน</span><select class="fs" id="monthSel"></select></div></div>
-<div class="ban"><span class="ban-l">ยอดสะสมการใช้น้ำ</span><span class="ban-v" id="grandTotal">—</span><span class="ban-u">ลบ.ม.</span></div>
-<div id="noteBar" class="note">กำลังโหลดฐานข้อมูล <code>data/water_db.json</code>...</div>
+<div class="hdr"><div class="hdr-l"><div class="logo"><img src="LogoEGAT-only.png" alt="เธเธเธ."></div><div class="hdr-t"><h1>เธฃเธฒเธขเธเธฒเธเธเธฃเธดเธกเธฒเธ“เธเธฒเธฃเนเธเนเธเนเธณ เธชเธณเธเธฑเธเธเธฒเธเนเธ—เธฃเธเนเธญเธข เธเธเธ.</h1><p>Auto database version โ€” daily meter readings</p></div></div>
+<div class="fg"><span class="fl">เธเธต</span><select class="fs" id="yearSel"></select><span class="fl">เน€เธ”เธทเธญเธ</span><select class="fs" id="monthSel"></select></div></div>
+<div class="ban"><span class="ban-l">เธขเธญเธ”เธชเธฐเธชเธกเธเธฒเธฃเนเธเนเธเนเธณ</span><span class="ban-v" id="grandTotal">โ€”</span><span class="ban-u">เธฅเธ.เธก.</span></div>
+<div id="noteBar" class="note">เธเธณเธฅเธฑเธเนเธซเธฅเธ”เธเธฒเธเธเนเธญเธกเธนเธฅ <code>data/water_db.json</code>...</div>
 <div class="main">
   <div class="kpi-row" id="kpiRow"></div>
   <div class="grid2">
-    <div class="card"><div class="ct">อัตราส่วนการใช้น้ำ แยกฝ่าย</div><div class="cs" id="donutSub"></div><div class="dw"><div class="donutBox"><canvas id="donut"></canvas><div class="dc"><div class="dcv" id="donutTotal">—</div><div class="dcl">ลบ.ม.</div></div></div><div style="flex:1;overflow:auto"><table class="lt" id="deptTable"></table></div></div></div>
-    <div class="card"><div class="ct">ปริมาณการใช้น้ำในแต่ละเดือน</div><div class="cs" id="barSub"></div><div class="cw"><canvas id="monthBar"></canvas></div></div>
+    <div class="card"><div class="ct">เธญเธฑเธ•เธฃเธฒเธชเนเธงเธเธเธฒเธฃเนเธเนเธเนเธณ เนเธขเธเธเนเธฒเธข</div><div class="cs" id="donutSub"></div><div class="dw"><div class="donutBox"><canvas id="donut"></canvas><div class="dc"><div class="dcv" id="donutTotal">โ€”</div><div class="dcl">เธฅเธ.เธก.</div></div></div><div style="flex:1;overflow:auto"><table class="lt" id="deptTable"></table></div></div></div>
+    <div class="card"><div class="ct">เธเธฃเธดเธกเธฒเธ“เธเธฒเธฃเนเธเนเธเนเธณเนเธเนเธ•เนเธฅเธฐเน€เธ”เธทเธญเธ</div><div class="cs" id="barSub"></div><div class="cw"><canvas id="monthBar"></canvas></div></div>
   </div>
   <div class="gridB">
-    <div class="card"><div class="ct" id="buildingTitle">Top อาคาร</div><div class="cs">แสดงทุกมิเตอร์น้ำ (16 มิเตอร์)</div><div class="cw"><canvas id="buildingBar"></canvas></div></div>
-    <div class="card"><div class="ct">ปริมาณการใช้น้ำรายเดือนในแต่ละปี</div><div class="cs">ใช้ข้อมูลชุดเดียวกับกราฟปริมาณการใช้น้ำในแต่ละเดือน</div><div class="yearToggles" id="yearToggles"></div><div class="cw"><canvas id="yearLine"></canvas></div></div>
+    <div class="card"><div class="ct" id="buildingTitle">Top เธญเธฒเธเธฒเธฃ</div><div class="cs">เนเธชเธ”เธเธ—เธธเธเธกเธดเน€เธ•เธญเธฃเนเธเนเธณ (16 เธกเธดเน€เธ•เธญเธฃเน)</div><div class="cw"><canvas id="buildingBar"></canvas></div></div>
+    <div class="card"><div class="ct">เธเธฃเธดเธกเธฒเธ“เธเธฒเธฃเนเธเนเธเนเธณเธฃเธฒเธขเน€เธ”เธทเธญเธเนเธเนเธ•เนเธฅเธฐเธเธต</div><div class="cs">เนเธเนเธเนเธญเธกเธนเธฅเธเธธเธ”เน€เธ”เธตเธขเธงเธเธฑเธเธเธฃเธฒเธเธเธฃเธดเธกเธฒเธ“เธเธฒเธฃเนเธเนเธเนเธณเนเธเนเธ•เนเธฅเธฐเน€เธ”เธทเธญเธ</div><div class="yearToggles" id="yearToggles"></div><div class="cw"><canvas id="yearLine"></canvas></div></div>
   </div>
 </div>
-<div class="ft">Dashboard ดึงข้อมูลจาก water_db.json | บันทึกมิเตอร์น้ำรายวัน</div>
+<div class="ft">Dashboard เธ”เธถเธเธเนเธญเธกเธนเธฅเธเธฒเธ water_db.json | เธเธฑเธเธ—เธถเธเธกเธดเน€เธ•เธญเธฃเนเธเนเธณเธฃเธฒเธขเธงเธฑเธ</div>
 <script>
-const MO=["ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค."];
-const DEPT=["สก.ชธธ.","อบค.","อบฟ.","อบย.","อรอ.","อคม.","อหข."];
+const MO=["เธก.เธ.","เธ.เธ.","เธกเธต.เธ.","เน€เธก.เธข.","เธ.เธ.","เธกเธด.เธข.","เธ.เธ.","เธช.เธ.","เธ.เธข.","เธ•.เธ.","เธ.เธข.","เธ.เธ."];
+const DEPT=["เธชเธ.เธเธเธ.","เธญเธเธ.","เธญเธเธ.","เธญเธเธข.","เธญเธฃเธญ.","เธญเธเธก.","เธญเธซเธ."];
 const CL=["#64B5F6","#4DD0E1","#FFD54F","#FFB74D","#F48FB1","#CE93D8","#A5D6A7"];
 const DB=["#1E88E5","#00ACC1","#FFB300","#FB8C00","#E91E63","#9C27B0","#43A047"];
 const BUILD_COLORS=["#1565C0","#00897B","#F9A825","#EF6C00","#AD1457","#6A1B9A","#2E7D32","#C5A85F","#455A64","#00ACC1","#8E24AA","#7CB342"];
@@ -112,13 +112,13 @@ function buildingRows(){
   const map={};
   if(sD==="all"){
     (DATA.department_weekly||[]).filter(inFilter).forEach(r=>{
-      const name=r.building_name||r.meter_id||"ไม่ระบุ";
+      const name=r.building_name||r.meter_id||"เนเธกเนเธฃเธฐเธเธธ";
       if(!map[name])map[name]={name,kwh:0};
       map[name].kwh+=+r.kwh||0;
     });
   } else {
     (DATA.department_weekly||[]).filter(inFilter).filter(r=>r.department===sD).forEach(r=>{
-      const name=r.building_name||r.meter_id||"ไม่ระบุ";
+      const name=r.building_name||r.meter_id||"เนเธกเนเธฃเธฐเธเธธ";
       if(!map[name])map[name]={name,kwh:0};
       map[name].kwh+=+r.kwh||0;
     });
@@ -130,7 +130,7 @@ function setupFilters(){
   const ys=document.getElementById("yearSel"); ys.innerHTML="";
   years.forEach(y=>{const o=document.createElement("option");o.value=y;o.textContent=y+543;ys.appendChild(o)});
   sY=years[years.length-1]; ys.value=sY;
-  const ms=document.getElementById("monthSel"); ms.innerHTML='<option value="all">ทั้งหมด</option>';
+  const ms=document.getElementById("monthSel"); ms.innerHTML='<option value="all">เธ—เธฑเนเธเธซเธกเธ”</option>';
   MO.forEach((m,i)=>{const o=document.createElement("option");o.value=i+1;o.textContent=m;ms.appendChild(o)});
   ys.onchange=e=>{sY=+e.target.value;renderAll()};
   ms.onchange=e=>{sM=e.target.value;renderAll()};
@@ -140,14 +140,14 @@ function renderKPI(){
   const total=allTotal();
   document.getElementById("grandTotal").textContent=fmt(total);
   const g=document.createElement("div"); g.className="kG";
-  g.innerHTML=`<div class="kL">กฟผ.ไทรน้อยรวม</div><div class="kS">ปริมาณการใช้น้ำรวม</div><div class="kV">${fmt(total)}</div><div class="kU">ลบ.ม.</div>`;
+  g.innerHTML=`<div class="kL">เธเธเธ.เนเธ—เธฃเธเนเธญเธขเธฃเธงเธก</div><div class="kS">เธเธฃเธดเธกเธฒเธ“เธเธฒเธฃเนเธเนเธเนเธณเธฃเธงเธก</div><div class="kV">${fmt(total)}</div><div class="kU">เธฅเธ.เธก.</div>`;
   g.onclick=()=>{sD="all";renderAll()}; row.appendChild(g);
   DEPT.forEach((d,i)=>{
     const v=deptTotal(d);
     const el=document.createElement("div");
     el.className="kD"+(sD===d?" sel":sD!=="all"?" dim":"");
     el.style.background=DB[i];
-    el.innerHTML=`<div class="kL">${d}</div><div class="kS">ยอดรวมการใช้น้ำ</div><div class="kV">${fmt(v)}</div><div class="kU">ลบ.ม.</div>`;
+    el.innerHTML=`<div class="kL">${d}</div><div class="kS">เธขเธญเธ”เธฃเธงเธกเธเธฒเธฃเนเธเนเธเนเธณ</div><div class="kV">${fmt(v)}</div><div class="kU">เธฅเธ.เธก.</div>`;
     el.onclick=()=>{sD=sD===d?"all":d;renderAll()};
     row.appendChild(el);
   });
@@ -155,11 +155,11 @@ function renderKPI(){
 function renderDonut(){
   const vals=DEPT.map(deptTotal), total=vals.reduce((a,b)=>a+b,0);
   document.getElementById("donutTotal").textContent=fmt(total);
-  document.getElementById("donutSub").textContent=`ปี ${sY+543}${sM==="all"?"":" — "+MO[+sM-1]}`;
+  document.getElementById("donutSub").textContent=`เธเธต ${sY+543}${sM==="all"?"":" โ€” "+MO[+sM-1]}`;
   if(ch.donut)ch.donut.destroy();
   ch.donut=new Chart(document.getElementById("donut"),{type:"doughnut",data:{labels:DEPT,datasets:[{data:vals,backgroundColor:CL,borderColor:"#fff",borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,cutout:"62%",plugins:{legend:{display:false}}}});
   const tb=document.getElementById("deptTable");
-  tb.innerHTML='<tr><th>ฝ่าย</th><th class="vl" style="text-align:right">ลบ.ม.</th><th class="pc" style="text-align:right">%</th></tr>';
+  tb.innerHTML='<tr><th>เธเนเธฒเธข</th><th class="vl" style="text-align:right">เธฅเธ.เธก.</th><th class="pc" style="text-align:right">%</th></tr>';
   let sumValue=0, sumPercent=0;
   DEPT.map((d,i)=>({d,v:vals[i],c:CL[i]})).sort((a,b)=>b.v-a.v).forEach(x=>{
     const pct=total?((x.v/total)*100):0;
@@ -167,21 +167,21 @@ function renderDonut(){
     sumPercent+=pct;
     tb.innerHTML+=`<tr><td><span class="ld" style="background:${x.c}"></span>${x.d}</td><td class="vl">${fmt(x.v)}</td><td class="pc">${pct.toFixed(1)}%</td></tr>`;
   });
-  tb.innerHTML+=`<tr style="font-weight:700;border-top:2px solid var(--pri)"><td>รวมทั้งสิ้น</td><td class="vl">${fmt(sumValue)}</td><td class="pc">${sumPercent.toFixed(1)}%</td></tr>`;
+  tb.innerHTML+=`<tr style="font-weight:700;border-top:2px solid var(--pri)"><td>เธฃเธงเธกเธ—เธฑเนเธเธชเธดเนเธ</td><td class="vl">${fmt(sumValue)}</td><td class="pc">${sumPercent.toFixed(1)}%</td></tr>`;
 }
 function renderMonthBar(){
   const vals=MO.map((_,i)=>sD==="all"?DEPT.reduce((a,d)=>a+monthlySeriesValue(sY,i+1,d),0):monthlySeriesValue(sY,i+1,sD));
   const validVals=vals.filter(v=>v>0);
   const maxVal=validVals.length?Math.max(...validVals):0;
   const avgVal=validVals.length?validVals.reduce((a,b)=>a+b,0)/validVals.length:0;
-  document.getElementById("barSub").textContent=`ปี ${sY+543}${sD!=="all"?" ("+sD+")":""}`;
+  document.getElementById("barSub").textContent=`เธเธต ${sY+543}${sD!=="all"?" ("+sD+")":""}`;
   if(ch.monthBar)ch.monthBar.destroy();
   ch.monthBar=new Chart(document.getElementById("monthBar"),{
     data:{
       labels:MO,
       datasets:[
-        {type:"bar",label:"ลบ.ม.",data:vals,backgroundColor:vals.map(v=>v===maxVal&&v>0?"#EF6C00":"#1565C0"),borderRadius:4,order:2},
-        {type:"line",label:"ค่าเฉลี่ย",data:MO.map(()=>avgVal||null),borderColor:"#C5A85F",backgroundColor:"#C5A85F",borderDash:[6,6],borderWidth:2,pointRadius:0,pointHitRadius:28,pointHoverRadius:6,pointHoverBackgroundColor:"#C5A85F",pointHoverBorderColor:"#C5A85F",tension:0,order:1}
+        {type:"bar",label:"เธฅเธ.เธก.",data:vals,backgroundColor:vals.map(v=>v===maxVal&&v>0?"#EF6C00":"#1565C0"),borderRadius:4,order:2},
+        {type:"line",label:"เธเนเธฒเน€เธเธฅเธตเนเธข",data:MO.map(()=>avgVal||null),borderColor:"#C5A85F",backgroundColor:"#C5A85F",borderDash:[6,6],borderWidth:2,pointRadius:0,pointHitRadius:28,pointHoverRadius:6,pointHoverBackgroundColor:"#C5A85F",pointHoverBorderColor:"#C5A85F",tension:0,order:1}
       ]
     },
     options:{
@@ -190,7 +190,7 @@ function renderMonthBar(){
       hover:{mode:"nearest",intersect:false,axis:"xy"},
       plugins:{
         legend:{display:true,position:"top",labels:{boxWidth:12,font:{size:11}}},
-        tooltip:{callbacks:{label:ctx=>{if(ctx.dataset.label==="ค่าเฉลี่ย")return `ค่าเฉลี่ย: ${fmt(ctx.raw)} ลบ.ม.`;return `${ctx.dataset.label}: ${fmt(ctx.raw)} ลบ.ม.`;}}}
+        tooltip:{callbacks:{label:ctx=>{if(ctx.dataset.label==="เธเนเธฒเน€เธเธฅเธตเนเธข")return `เธเนเธฒเน€เธเธฅเธตเนเธข: ${fmt(ctx.raw)} เธฅเธ.เธก.`;return `${ctx.dataset.label}: ${fmt(ctx.raw)} เธฅเธ.เธก.`;}}}
       },
       scales:{y:{beginAtZero:true,ticks:{callback:v=>v.toFixed(0)}},x:{grid:{display:false}}}
     }
@@ -198,14 +198,14 @@ function renderMonthBar(){
 }
 function renderBuildingBar(){
   const b=buildingRows();
-  document.getElementById("buildingTitle").textContent=sD==="all"?"ปริมาณใช้น้ำสะสม — Top อาคารรวมทั้งสำนักงาน":`ปริมาณใช้น้ำสะสม — ${sD}`;
+  document.getElementById("buildingTitle").textContent=sD==="all"?"เธเธฃเธดเธกเธฒเธ“เนเธเนเธเนเธณเธชเธฐเธชเธก โ€” Top เธญเธฒเธเธฒเธฃเธฃเธงเธกเธ—เธฑเนเธเธชเธณเธเธฑเธเธเธฒเธ":`เธเธฃเธดเธกเธฒเธ“เนเธเนเธเนเธณเธชเธฐเธชเธก โ€” ${sD}`;
   if(ch.buildingBar)ch.buildingBar.destroy();
   ch.buildingBar=new Chart(document.getElementById("buildingBar"),{
     type:"bar",
     data:{labels:b.map(x=>displayBuildingName(x.name)),datasets:[{data:b.map(x=>x.kwh),backgroundColor:b.map((_,i)=>BUILD_COLORS[i%BUILD_COLORS.length]),borderRadius:4}]},
     options:{
       indexAxis:"y",responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>`${fmt(ctx.raw)} ลบ.ม.`}}},
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>`${fmt(ctx.raw)} เธฅเธ.เธก.`}}},
       scales:{x:{beginAtZero:true,ticks:{callback:v=>v.toFixed(0)}},y:{ticks:{font:{size:10}}}}
     }
   });
@@ -230,7 +230,7 @@ function renderYearLine(){
   const datasets=years.filter(y=>visibleYears.has(y)).map(y=>{
     const color=colors[years.indexOf(y)%colors.length];
     return {
-      label:"ปี "+(y+543),
+      label:"เธเธต "+(y+543),
       data:MO.map((_,i)=>sD==="all"?DEPT.reduce((a,d)=>a+monthlySeriesValue(y,i+1,d),0)||null:monthlySeriesValue(y,i+1,sD)||null),
       borderColor:color,backgroundColor:color,tension:.3,pointRadius:3,pointHoverRadius:5,spanGaps:false
     };
@@ -239,7 +239,7 @@ function renderYearLine(){
     type:"line",data:{labels:MO,datasets},
     options:{
       responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>`${ctx.dataset.label}: ${fmt(ctx.raw)} ลบ.ม.`}}},
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>`${ctx.dataset.label}: ${fmt(ctx.raw)} เธฅเธ.เธก.`}}},
       scales:{y:{beginAtZero:true,ticks:{callback:v=>v.toFixed(0)}},x:{grid:{display:false}}}
     }
   });
@@ -247,12 +247,13 @@ function renderYearLine(){
 function renderAll(){renderKPI();renderDonut();renderMonthBar();renderBuildingBar();renderYearLine();}
 fetch("data/water_db.json").then(r=>r.json()).then(db=>{
   DATA=db;
-  document.getElementById("noteBar").textContent="โหลดข้อมูลสำเร็จ: data/water_db.json";
+  document.getElementById("noteBar").textContent="เนเธซเธฅเธ”เธเนเธญเธกเธนเธฅเธชเธณเน€เธฃเนเธ: data/water_db.json";
   setupFilters();renderAll();
 }).catch(err=>{
-  document.getElementById("noteBar").textContent="ไม่พบ data/water_db.json หรือเปิดไฟล์จากเครื่องโดยตรงแล้ว browser บล็อก fetch — ให้รันผ่าน local server เช่น python -m http.server";
+  document.getElementById("noteBar").textContent="เนเธกเนเธเธ data/water_db.json เธซเธฃเธทเธญเน€เธเธดเธ”เนเธเธฅเนเธเธฒเธเน€เธเธฃเธทเนเธญเธเนเธ”เธขเธ•เธฃเธเนเธฅเนเธง browser เธเธฅเนเธญเธ fetch โ€” เนเธซเนเธฃเธฑเธเธเนเธฒเธ local server เน€เธเนเธ python -m http.server";
   console.error(err);
 });
 </script>
 </body>
 </html>
+
