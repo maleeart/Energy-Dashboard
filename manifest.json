@@ -1,15 +1,15 @@
 {
-  "name": "SNOE",
-  "short_name": "SNOE",
+  "name": "SNAP — Sai Noi All-resource Platform",
+  "short_name": "SNAP",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#000000",
+  "background_color": "#0B1D51",
+  "theme_color": "#0B1D51",
   "icons": [
     {
-      "src": "SNOE.png", 
-      "sizes": "512x512",
-      "type": "image/jpeg"
+      "src": "snap.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
     }
   ]
 }

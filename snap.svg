@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" rx="112" fill="#0B1D51"/>
+  <text x="50%" y="52%" text-anchor="middle" dominant-baseline="central"
+        font-family="'Segoe UI',Arial,sans-serif" font-weight="800"
+        font-size="200" letter-spacing="-6" fill="#C5A85F">SNAP</text>
+  <rect x="136" y="356" width="240" height="14" rx="7" fill="#C5A85F" opacity="0.85"/>
+</svg>
