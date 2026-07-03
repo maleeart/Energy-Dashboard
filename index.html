@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="th">
 <head>
 <link rel="manifest" href="manifest.json">
@@ -6,7 +6,7 @@
 <link rel="apple-touch-icon" href="snap.png">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SNAP — ไฟฟ้า | กฟผ. สำนักงานไทรน้อย</title>
+<title>SNAP โ€” เนเธเธเนเธฒ | เธเธเธ. เธชเธณเธเธฑเธเธเธฒเธเนเธ—เธฃเธเนเธญเธข</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -111,8 +111,8 @@
 }
 .nav-tabs { display: flex; gap: 4px; }
 .nav-tab {
-  padding: 10px 16px;
-  font-size: 12px; font-weight: 500;
+  padding: 6px 12px;
+  font-size: 11px; font-weight: 500;
   color: #8892a4;
   text-decoration: none;
   border-bottom: 2px solid transparent;
@@ -122,9 +122,9 @@
 .nav-tab:hover { color: #e2e8f0; }
 .nav-tab.active { color: #f59e0b; border-bottom-color: #f59e0b; }  
 
-.hdr{background:linear-gradient(135deg,var(--pri),var(--pri-l));padding:10px 28px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.logo{width:36px;height:36px;background:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;padding:3px;box-shadow:0 1px 4px rgba(0,0,0,.15)}.logo img{width:100%;height:100%;object-fit:contain}
-.hdr-l{display:flex;gap:10px;align-items:center}.hdr-t{color:#fff}.hdr-t h1{font-size:15px}.hdr-t p{font-size:11px;color:rgba(255,255,255,.72)}
+.hdr{background:linear-gradient(135deg,var(--pri),var(--pri-l));padding:6px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.logo{width:30px;height:30px;background:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;padding:3px;box-shadow:0 1px 4px rgba(0,0,0,.15)}.logo img{width:100%;height:100%;object-fit:contain}
+.hdr-l{display:flex;gap:10px;align-items:center}.hdr-t{color:#fff}.hdr-t h1{font-size:13px}.hdr-t p{font-size:11px;color:rgba(255,255,255,.72)}
 
 /* ---- filter bar ---- */
 .fg{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
@@ -156,55 +156,55 @@
 </head>
 <body>
 <div class="topbar">
-  <div style="padding:10px 0;margin-right:32px"><img src="snap.png" alt="SNAP" style="height:36px;width:36px;border-radius:8px;object-fit:cover"></div>
+  <div style="padding:6px 0;margin-right:24px"><img src="snap.png" alt="SNAP" style="height:28px;width:28px;border-radius:6px;object-fit:cover"></div>
   <nav class="nav-tabs">
-    <a href="index.html" class="nav-tab active">⚡ ไฟฟ้า</a>
-    <a href="fuel.html" class="nav-tab">🛢️ น้ำมัน</a>
-    <a href="water.html" class="nav-tab">💧 น้ำประปา (demo)</a>
-    <a href="garbage.html" class="nav-tab">♻️ ขยะ (WIP)</a>
+    <a href="index.html" class="nav-tab active">โก เนเธเธเนเธฒ</a>
+    <a href="fuel.html" class="nav-tab">๐ข๏ธ เธเนเธณเธกเธฑเธ</a>
+    <a href="water.html" class="nav-tab">๐’ง เธเนเธณเธเธฃเธฐเธเธฒ (demo)</a>
+    <a href="garbage.html" class="nav-tab">โป๏ธ เธเธขเธฐ (WIP)</a>
   </nav>
 </div>
 
 <div class="hdr">
   <div class="hdr-l">
-    <div class="logo"><img src="LogoEGAT-only.png" alt="กฟผ."></div>
+    <div class="logo"><img src="LogoEGAT-only.png" alt="เธเธเธ."></div>
     <div class="hdr-t">
-      <h1>รายงานปริมาณการใช้ไฟฟ้า สำนักงานไทรน้อย กฟผ.</h1>
-      <p>Auto database version — weekly meter readings</p>
+      <h1>เธฃเธฒเธขเธเธฒเธเธเธฃเธดเธกเธฒเธ“เธเธฒเธฃเนเธเนเนเธเธเนเธฒ เธชเธณเธเธฑเธเธเธฒเธเนเธ—เธฃเธเนเธญเธข เธเธเธ.</h1>
+      <p>Auto database version โ€” weekly meter readings</p>
     </div>
   </div>
 
   <!-- ===== FILTER BAR ===== -->
   <div class="fg">
-    <span class="fl">ปี</span>
+    <span class="fl">เธเธต</span>
     <select class="fs" id="yearSel"></select>
 
     <span class="filter-sep">|</span>
 
-    <span class="fl">ตั้งแต่</span>
+    <span class="fl">เธ•เธฑเนเธเนเธ•เน</span>
     <select class="fs" id="monthFrom"></select>
-    <span class="fl">ถึง</span>
+    <span class="fl">เธ–เธถเธ</span>
     <select class="fs" id="monthTo"></select>
   </div>
 </div>
 
 <div class="ban">
-  <span class="ban-l">ยอดสะสมการใช้ไฟฟ้า</span>
-  <span class="ban-v" id="grandTotal">—</span>
+  <span class="ban-l">เธขเธญเธ”เธชเธฐเธชเธกเธเธฒเธฃเนเธเนเนเธเธเนเธฒ</span>
+  <span class="ban-v" id="grandTotal">โ€”</span>
   <span class="ban-u">kWh</span>
   <span class="ban-target" id="targetComparison"></span>
 </div>
 
-<div id="noteBar" class="note">กำลังโหลดฐานข้อมูล <code>data/energy_db.json</code>...</div>
+<div id="noteBar" class="note">เธเธณเธฅเธฑเธเนเธซเธฅเธ”เธเธฒเธเธเนเธญเธกเธนเธฅ <code>data/energy_db.json</code>...</div>
 
 <div class="main">
   <div class="kpi-row" id="kpiRow"></div>
   <div class="grid2">
     <div class="card">
-      <div class="ct">อัตราส่วนการใช้ไฟฟ้า แยกฝ่าย</div>
+      <div class="ct">เธญเธฑเธ•เธฃเธฒเธชเนเธงเธเธเธฒเธฃเนเธเนเนเธเธเนเธฒ เนเธขเธเธเนเธฒเธข</div>
       <div class="cs" id="donutSub"></div>
       <div class="dw">
-        <div class="donutBox"><canvas id="donut"></canvas><div class="dc"><div class="dcv" id="donutTotal">—</div><div class="dcl">kWh</div></div></div>
+        <div class="donutBox"><canvas id="donut"></canvas><div class="dc"><div class="dcv" id="donutTotal">โ€”</div><div class="dcl">kWh</div></div></div>
         <div style="flex:1;overflow:auto"><table class="lt" id="deptTable"></table></div>
       </div>
     </div>
@@ -212,44 +212,44 @@
     <div class="card">
       <div class="chart-header-container">
         <div>
-          <div class="ct">ปริมาณการใช้ไฟฟ้าในแต่ละเดือน</div>
+          <div class="ct">เธเธฃเธดเธกเธฒเธ“เธเธฒเธฃเนเธเนเนเธเธเนเธฒเนเธเนเธ•เนเธฅเธฐเน€เธ”เธทเธญเธ</div>
           <div class="cs" id="barSub"></div>
         </div>
-        <button class="btn-event" onclick="openEventModal()">📅 บันทึกเหตุการณ์ (Events)</button>
+        <button class="btn-event" onclick="openEventModal()">๐“… เธเธฑเธเธ—เธถเธเน€เธซเธ•เธธเธเธฒเธฃเธ“เน (Events)</button>
       </div>
       <div class="cw"><canvas id="monthBar"></canvas></div>
     </div>
   </div>
   
   <div class="gridB">
-    <div class="card"><div class="ct" id="buildingTitle">Top อาคาร</div><div class="cw"><canvas id="buildingBar"></canvas></div></div>
+    <div class="card"><div class="ct" id="buildingTitle">Top เธญเธฒเธเธฒเธฃ</div><div class="cw"><canvas id="buildingBar"></canvas></div></div>
     <div class="card">
-      <div class="ct">ปริมาณการใช้พลังงานรายเดือนในแต่ละปี</div>
+      <div class="ct">เธเธฃเธดเธกเธฒเธ“เธเธฒเธฃเนเธเนเธเธฅเธฑเธเธเธฒเธเธฃเธฒเธขเน€เธ”เธทเธญเธเนเธเนเธ•เนเธฅเธฐเธเธต</div>
       <div class="yearToggles" id="yearToggles"></div>
       <div class="cw"><canvas id="yearLine"></canvas></div>
     </div>
   </div>
 </div>
 
-<div class="ft">Dashboard ดึงข้อมูลจาก energy_db.json | จด RAW ทุกวันศุกร์เช้า</div>
+<div class="ft">Dashboard เธ”เธถเธเธเนเธญเธกเธนเธฅเธเธฒเธ energy_db.json | เธเธ” RAW เธ—เธธเธเธงเธฑเธเธจเธธเธเธฃเนเน€เธเนเธฒ</div>
 
 <!-- Event Modal -->
 <div class="modal-overlay" id="eventModal">
   <div class="modal-box">
     <div class="modal-hdr">
-      <h3>📋 บันทึกเหตุการณ์พิเศษ — ปี <span id="eventModalYear"></span></h3>
+      <h3>๐“ เธเธฑเธเธ—เธถเธเน€เธซเธ•เธธเธเธฒเธฃเธ“เนเธเธดเน€เธจเธฉ โ€” เธเธต <span id="eventModalYear"></span></h3>
       <button class="modal-close" onclick="closeEventModal()">&times;</button>
     </div>
     <div class="modal-body">
       <div class="event-list" id="eventListContainer"></div>
     </div>
     <div class="modal-ftr">
-      <div class="form-title">➕ บันทึกเหตุการณ์ใหม่</div>
+      <div class="form-title">โ• เธเธฑเธเธ—เธถเธเน€เธซเธ•เธธเธเธฒเธฃเธ“เนเนเธซเธกเน</div>
       <div class="form-group">
         <input type="date" id="evtDate" class="form-input" />
-        <textarea id="evtDesc" class="form-input" rows="3" placeholder="รายละเอียดเหตุการณ์..."></textarea>
+        <textarea id="evtDesc" class="form-input" rows="3" placeholder="เธฃเธฒเธขเธฅเธฐเน€เธญเธตเธขเธ”เน€เธซเธ•เธธเธเธฒเธฃเธ“เน..."></textarea>
       </div>
-      <button class="btn-submit" id="btnSubmitEvent" onclick="saveEventToGitHub()">💾 บันทึกลง GitHub</button>
+      <button class="btn-submit" id="btnSubmitEvent" onclick="saveEventToGitHub()">๐’พ เธเธฑเธเธ—เธถเธเธฅเธ GitHub</button>
       <div id="saveStatus" style="margin-top:8px;font-size:12px;color:var(--txt2);min-height:18px;"></div>
     </div>
   </div>
@@ -258,16 +258,16 @@
 <script>
 // ===== CONFIG =====
 const ENERGY_TARGETS = { 2026: 8, 2025: 5 };
-const MO = ["ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค."];
-const DEPT = ["สก.ชธธ.","อบค.","อบฟ.","อบย.","อรอ.","อคม.","อหข."];
+const MO = ["เธก.เธ.","เธ.เธ.","เธกเธต.เธ.","เน€เธก.เธข.","เธ.เธ.","เธกเธด.เธข.","เธ.เธ.","เธช.เธ.","เธ.เธข.","เธ•.เธ.","เธ.เธข.","เธ.เธ."];
+const DEPT = ["เธชเธ.เธเธเธ.","เธญเธเธ.","เธญเธเธ.","เธญเธเธข.","เธญเธฃเธญ.","เธญเธเธก.","เธญเธซเธ."];
 const CL   = ["#1565C0","#00897B","#F9A825","#EF6C00","#AD1457","#6A1B9A","#2E7D32"];
 const BUILD_COLORS = ["#1565C0","#00897B","#F9A825","#EF6C00","#AD1457","#6A1B9A","#2E7D32","#C5A85F","#455A64","#00ACC1","#8E24AA","#7CB342"];
 
 // ===== STATE =====
 let DATA = null, sY = null, sD = "all", ch = {}, visibleYears = new Set();
-// filter state — range เท่านั้น (ไม่มี single-month mode แล้ว)
-let sM_from = 1;   // เดือนเริ่มต้น (1-12)
-let sM_to   = 12;  // เดือนสิ้นสุด (1-12)
+// filter state โ€” range เน€เธ—เนเธฒเธเธฑเนเธ (เนเธกเนเธกเธต single-month mode เนเธฅเนเธง)
+let sM_from = 1;   // เน€เธ”เธทเธญเธเน€เธฃเธดเนเธกเธ•เนเธ (1-12)
+let sM_to   = 12;  // เน€เธ”เธทเธญเธเธชเธดเนเธเธชเธธเธ” (1-12)
 
 // ===== HELPERS =====
 function fmt(n){ return Math.round(n||0).toLocaleString("th-TH"); }
@@ -275,14 +275,14 @@ function displayBuildingName(name){ return (DATA && DATA.building_alias && DATA.
 function ymdYear(d)  { return +String(d).slice(0,4); }
 function ymdMonth(d) { return +String(d).slice(5,7); }
 
-// ฟังก์ชันเดียวที่ตัดสินว่าแถวนี้อยู่ในช่วงที่เลือกหรือไม่
+// เธเธฑเธเธเนเธเธฑเธเน€เธ”เธตเธขเธงเธ—เธตเนเธ•เธฑเธ”เธชเธดเธเธงเนเธฒเนเธ–เธงเธเธตเนเธญเธขเธนเนเนเธเธเนเธงเธเธ—เธตเนเน€เธฅเธทเธญเธเธซเธฃเธทเธญเนเธกเน
 function inFilter(w){
   if(ymdYear(w.week_end_date) !== sY) return false;
   const m = ymdMonth(w.week_end_date);
   return m >= sM_from && m <= sM_to;
 }
 
-// ช่วงเดือนที่ active — ใช้ใน renderKPI และ renderYearLine
+// เธเนเธงเธเน€เธ”เธทเธญเธเธ—เธตเน active โ€” เนเธเนเนเธ renderKPI เนเธฅเธฐ renderYearLine
 function activeMonthRange(){ return { from: sM_from, to: sM_to }; }
 
 function validEnergyRow(r){
@@ -301,7 +301,7 @@ function deptRows(){ return filteredDeptRows(); }
 function deptTotal(dept){ return deptRows().filter(r=>r.department===dept).reduce((a,b)=>a+(+b.kwh||0),0); }
 function allTotal(){ return DEPT.reduce((a,d)=>a+deptTotal(d),0); }
 
-// คำนวณ kWh ของปี+เดือน (หรือช่วงเดือน) ที่กำหนด
+// เธเธณเธเธงเธ“ kWh เธเธญเธเธเธต+เน€เธ”เธทเธญเธ (เธซเธฃเธทเธญเธเนเธงเธเน€เธ”เธทเธญเธ) เธ—เธตเนเธเธณเธซเธเธ”
 function calcKwhForPeriod(year, fromMonth, toMonth, dept=null){
   return (DATA.department_weekly||[])
     .filter(r => ymdYear(r.week_end_date) === year)
@@ -316,7 +316,7 @@ function monthlySeriesValue(year, month, dept=null){
 }
 
 function buildingRows(){
-  const nameOf = r => r.building_name || r.b_code || r.meter_id || "ไม่ระบุอาคาร";
+  const nameOf = r => r.building_name || r.b_code || r.meter_id || "เนเธกเนเธฃเธฐเธเธธเธญเธฒเธเธฒเธฃ";
   const map = {};
   if(sD === "all"){
     const eligible = new Set((DATA.department_weekly||[])
@@ -353,7 +353,7 @@ function setupFilters(){
   ys.innerHTML = "";
   if(years.length === 0){
     const y = new Date().getFullYear(); years.push(y);
-    document.getElementById("noteBar").textContent = "โหลดฐานข้อมูลสำเร็จ แต่ยังไม่มี consumption เพราะต้องมี reading อย่างน้อย 2 สัปดาห์ต่อมิเตอร์";
+    document.getElementById("noteBar").textContent = "เนเธซเธฅเธ”เธเธฒเธเธเนเธญเธกเธนเธฅเธชเธณเน€เธฃเนเธ เนเธ•เนเธขเธฑเธเนเธกเนเธกเธต consumption เน€เธเธฃเธฒเธฐเธ•เนเธญเธเธกเธต reading เธญเธขเนเธฒเธเธเนเธญเธข 2 เธชเธฑเธเธ”เธฒเธซเนเธ•เนเธญเธกเธดเน€เธ•เธญเธฃเน";
   }
   years.forEach(y=>{ const o=document.createElement("option"); o.value=y; o.textContent=y+543; ys.appendChild(o); });
   sY = years[years.length-1]; ys.value = sY;
@@ -388,13 +388,13 @@ function renderKPI(){
   const total = allTotal();
   document.getElementById("grandTotal").textContent = fmt(total);
 
-  // YoY comparison — ใช้ช่วงเดือนที่เลือกจริงๆ
+  // YoY comparison โ€” เนเธเนเธเนเธงเธเน€เธ”เธทเธญเธเธ—เธตเนเน€เธฅเธทเธญเธเธเธฃเธดเธเน
   const targetCompEl = document.getElementById("targetComparison");
   if(DATA && sY){
     const prevYear = sY - 1;
     const { from, to } = activeMonthRange();
 
-    // ตรวจว่าปีปัจจุบันมีข้อมูลในช่วงนี้จริง
+    // เธ•เธฃเธงเธเธงเนเธฒเธเธตเธเธฑเธเธเธธเธเธฑเธเธกเธตเธเนเธญเธกเธนเธฅเนเธเธเนเธงเธเธเธตเนเธเธฃเธดเธ
     const hasCurrentData = (DATA.department_weekly||[])
       .some(r => ymdYear(r.week_end_date)===sY && validEnergyRow(r) &&
                  ymdMonth(r.week_end_date)>=from && ymdMonth(r.week_end_date)<=to);
@@ -402,35 +402,35 @@ function renderKPI(){
     const currentKwh = calcKwhForPeriod(sY,      from, to);
     const prevKwh    = calcKwhForPeriod(prevYear, from, to);
 
-    // label ช่วงเดือน
+    // label เธเนเธงเธเน€เธ”เธทเธญเธ
     const rangeLabel = (from === to)
       ? MO[from-1]
-      : (from===1 && to===12) ? "ทั้งปี" : `${MO[from-1]}–${MO[to-1]}`;
+      : (from===1 && to===12) ? "เธ—เธฑเนเธเธเธต" : `${MO[from-1]}โ€“${MO[to-1]}`;
 
     if(hasCurrentData && prevKwh > 0 && currentKwh > 0){
       const diffPct    = ((currentKwh - prevKwh) / prevKwh) * 100;
       const savedPct   = -diffPct;
       const targetSetting = ENERGY_TARGETS[sY] || 0;
-      const targetText    = targetSetting > 0 ? ` (เป้า ${targetSetting}%)` : "";
-      const periodText    = ` | ${rangeLabel} ปี ${sY+543} vs ${prevYear+543}`;
+      const targetText    = targetSetting > 0 ? ` (เน€เธเนเธฒ ${targetSetting}%)` : "";
+      const periodText    = ` | ${rangeLabel} เธเธต ${sY+543} vs ${prevYear+543}`;
 
       if(savedPct >= 0){
         targetCompEl.className = "ban-target text-success";
-        targetCompEl.innerHTML = `📉 ลดลง ${savedPct.toFixed(1)}%${targetText}${periodText}`;
+        targetCompEl.innerHTML = `๐“ เธฅเธ”เธฅเธ ${savedPct.toFixed(1)}%${targetText}${periodText}`;
       } else {
         targetCompEl.className = "ban-target text-danger";
-        targetCompEl.innerHTML = `🔺 เพิ่มขึ้น ${Math.abs(savedPct).toFixed(1)}%${targetText}${periodText}`;
+        targetCompEl.innerHTML = `๐”บ เน€เธเธดเนเธกเธเธถเนเธ ${Math.abs(savedPct).toFixed(1)}%${targetText}${periodText}`;
       }
     } else {
       targetCompEl.className = "ban-target";
-      targetCompEl.textContent = "(ไม่มีข้อมูลปีก่อนหน้ามาเปรียบเทียบ)";
+      targetCompEl.textContent = "(เนเธกเนเธกเธตเธเนเธญเธกเธนเธฅเธเธตเธเนเธญเธเธซเธเนเธฒเธกเธฒเน€เธเธฃเธตเธขเธเน€เธ—เธตเธขเธ)";
     }
   }
 
   // KPI cards
   const g = document.createElement("div");
   g.className = "kG";
-  g.innerHTML = `<div class="kL">กฟผ.ไทรน้อยรวม</div><div class="kS">ปริมาณการใช้ไฟฟ้ารวม</div><div class="kV">${fmt(total)}</div><div class="kU">kWh</div>`;
+  g.innerHTML = `<div class="kL">เธเธเธ.เนเธ—เธฃเธเนเธญเธขเธฃเธงเธก</div><div class="kS">เธเธฃเธดเธกเธฒเธ“เธเธฒเธฃเนเธเนเนเธเธเนเธฒเธฃเธงเธก</div><div class="kV">${fmt(total)}</div><div class="kU">kWh</div>`;
   g.onclick = ()=>{ sD="all"; renderAll(); };
   row.appendChild(g);
 
@@ -439,7 +439,7 @@ function renderKPI(){
     const el  = document.createElement("div");
     el.className = "kD" + (sD===d?" sel":sD!=="all"?" dim":"");
     el.style.background = CL[i];
-    el.innerHTML = `<div class="kL">${d}</div><div class="kS">ยอดจาก allocation</div><div class="kV">${fmt(v)}</div><div class="kU">kWh</div>`;
+    el.innerHTML = `<div class="kL">${d}</div><div class="kS">เธขเธญเธ”เธเธฒเธ allocation</div><div class="kV">${fmt(v)}</div><div class="kU">kWh</div>`;
     el.onclick = ()=>{ sD = sD===d?"all":d; renderAll(); };
     row.appendChild(el);
   });
@@ -452,8 +452,8 @@ function renderDonut(){
   document.getElementById("donutTotal").textContent = fmt(total);
 
   const { from, to } = activeMonthRange();
-  const periodLabel = (from===1 && to===12) ? "" : ` — ${from===to ? MO[from-1] : `${MO[from-1]}–${MO[to-1]}`}`;
-  document.getElementById("donutSub").textContent = `ปี ${sY+543}${periodLabel}`;
+  const periodLabel = (from===1 && to===12) ? "" : ` โ€” ${from===to ? MO[from-1] : `${MO[from-1]}โ€“${MO[to-1]}`}`;
+  document.getElementById("donutSub").textContent = `เธเธต ${sY+543}${periodLabel}`;
 
   if(ch.donut) ch.donut.destroy();
   ch.donut = new Chart(document.getElementById("donut"),{
@@ -463,12 +463,12 @@ function renderDonut(){
   });
 
   const tb = document.getElementById("deptTable");
-  tb.innerHTML = '<tr><th>ฝ่าย</th><th class="vl" style="text-align:right">kWh</th><th class="pc" style="text-align:right">%</th></tr>';
+  tb.innerHTML = '<tr><th>เธเนเธฒเธข</th><th class="vl" style="text-align:right">kWh</th><th class="pc" style="text-align:right">%</th></tr>';
   DEPT.map((d,i)=>({d,v:vals[i],c:CL[i]})).sort((a,b)=>b.v-a.v).forEach(x=>{
     tb.innerHTML += `<tr><td><span class="ld" style="background:${x.c}"></span>${x.d}</td><td class="vl">${fmt(x.v)}</td><td class="pc">${total?((x.v/total)*100).toFixed(1):"0.0"}%</td></tr>`;
   });
   const sumKwh = vals.reduce((a,b)=>a+b,0);
-  tb.innerHTML += `<tr style="font-weight:700;border-top:2px solid var(--pri)"><td>รวมทั้งสิ้น</td><td class="vl">${fmt(sumKwh)}</td><td class="pc">100%</td></tr>`;
+  tb.innerHTML += `<tr style="font-weight:700;border-top:2px solid var(--pri)"><td>เธฃเธงเธกเธ—เธฑเนเธเธชเธดเนเธ</td><td class="vl">${fmt(sumKwh)}</td><td class="pc">100%</td></tr>`;
 }
 
 // ===== TEMPERATURE =====
@@ -511,7 +511,7 @@ async function fetchTemperature(){
       });
     }
     renderMonthBar();
-  } catch(e){ console.warn("ไม่สามารถโหลดอุณหภูมิ:",e); }
+  } catch(e){ console.warn("เนเธกเนเธชเธฒเธกเธฒเธฃเธ–เนเธซเธฅเธ”เธญเธธเธ“เธซเธ เธนเธกเธด:",e); }
 }
 
 // ===== MONTH BAR =====
@@ -525,8 +525,8 @@ function renderMonthBar(){
   const avgVal    = validVals.length ? validVals.reduce((a,b)=>a+b,0)/validVals.length : 0;
 
   const { from, to } = activeMonthRange();
-  const periodLabel = (from===1 && to===12) ? "" : ` — ${from===to ? MO[from-1] : `${MO[from-1]}–${MO[to-1]}`}`;
-  document.getElementById("barSub").textContent = `ปี ${sY+543}${sD!=="all"?" ("+sD+")":""}${periodLabel}`;
+  const periodLabel = (from===1 && to===12) ? "" : ` โ€” ${from===to ? MO[from-1] : `${MO[from-1]}โ€“${MO[to-1]}`}`;
+  document.getElementById("barSub").textContent = `เธเธต ${sY+543}${sD!=="all"?" ("+sD+")":""}${periodLabel}`;
 
   if(ch.monthBar) ch.monthBar.destroy();
   ch.monthBar = new Chart(document.getElementById("monthBar"),{
@@ -539,7 +539,7 @@ function renderMonthBar(){
           borderRadius:4, order:2
         },
         {
-          type:"line", label:"ค่าเฉลี่ย",
+          type:"line", label:"เธเนเธฒเน€เธเธฅเธตเนเธข",
           data: MO.map(()=>avgVal||null),
           borderColor:"#C5A85F", backgroundColor:"#C5A85F",
           borderDash:[6,6], borderWidth:2,
@@ -558,10 +558,10 @@ function renderMonthBar(){
             const idx = ctx[0]?.dataIndex;
             const ym  = `${sY}-${String(idx+1).padStart(2,"0")}`;
             const temp = TEMP_DATA[ym];
-            return MO[idx] + (temp!=null ? `  🌡️ ${temp}°C` : "");
+            return MO[idx] + (temp!=null ? `  ๐ก๏ธ ${temp}ยฐC` : "");
           },
           label: ctx => {
-            if(ctx.dataset.label==="ค่าเฉลี่ย") return `ค่าเฉลี่ย: ${fmt(ctx.raw)} kWh`;
+            if(ctx.dataset.label==="เธเนเธฒเน€เธเธฅเธตเนเธข") return `เธเนเธฒเน€เธเธฅเธตเนเธข: ${fmt(ctx.raw)} kWh`;
             return `${ctx.dataset.label}: ${fmt(ctx.raw)} kWh`;
           }
         }}
@@ -578,8 +578,8 @@ function renderMonthBar(){
 function renderBuildingBar(){
   const b = buildingRows();
   document.getElementById("buildingTitle").textContent = sD==="all"
-    ? "หน่วยใช้ไฟสะสม — Top อาคารรวมทั้งสำนักงาน"
-    : `หน่วยใช้ไฟสะสม — ${sD}`;
+    ? "เธซเธเนเธงเธขเนเธเนเนเธเธชเธฐเธชเธก โ€” Top เธญเธฒเธเธฒเธฃเธฃเธงเธกเธ—เธฑเนเธเธชเธณเธเธฑเธเธเธฒเธ"
+    : `เธซเธเนเธงเธขเนเธเนเนเธเธชเธฐเธชเธก โ€” ${sD}`;
   if(ch.buildingBar) ch.buildingBar.destroy();
   ch.buildingBar = new Chart(document.getElementById("buildingBar"),{
     type:"bar",
@@ -596,7 +596,7 @@ function renderBuildingBar(){
 }
 
 // ===== YEAR LINE =====
-// กราฟนี้แสดงรายเดือน โดยเน้นเฉพาะช่วงเดือนที่เลือก (เดือนนอกช่วง = null → เส้นไม่แสดง)
+// เธเธฃเธฒเธเธเธตเนเนเธชเธ”เธเธฃเธฒเธขเน€เธ”เธทเธญเธ เนเธ”เธขเน€เธเนเธเน€เธเธเธฒเธฐเธเนเธงเธเน€เธ”เธทเธญเธเธ—เธตเนเน€เธฅเธทเธญเธ (เน€เธ”เธทเธญเธเธเธญเธเธเนเธงเธ = null โ’ เน€เธชเนเธเนเธกเนเนเธชเธ”เธ)
 function renderYearLine(){
   const years = [...new Set((DATA.department_weekly||[]).map(w=>ymdYear(w.week_end_date)))].sort();
   if(visibleYears.size===0){ years.forEach(y=>visibleYears.add(y)); }
@@ -621,8 +621,8 @@ function renderYearLine(){
   const datasets = years.filter(y=>visibleYears.has(y)).map(y=>{
     const color = colors[years.indexOf(y)%colors.length];
     return {
-      label: "ปี "+(y+543),
-      // เดือนที่อยู่นอกช่วง → null (spanGaps:false = ไม่ลากเส้นข้ามช่อง)
+      label: "เธเธต "+(y+543),
+      // เน€เธ”เธทเธญเธเธ—เธตเนเธญเธขเธนเนเธเธญเธเธเนเธงเธ โ’ null (spanGaps:false = เนเธกเนเธฅเธฒเธเน€เธชเนเธเธเนเธฒเธกเธเนเธญเธ)
       data: MO.map((_,i)=>{
         const m = i+1;
         if(m < from || m > to) return null;
@@ -685,12 +685,12 @@ function renderAll(){ renderKPI(); renderDonut(); renderMonthBar(); renderBuildi
 // ===== LOAD DATA =====
 fetch("data/energy_db.json").then(r=>r.json()).then(db=>{
   DATA = db;
-  document.getElementById("noteBar").textContent = "โหลดข้อมูลสำเร็จ: data/energy_db.json";
+  document.getElementById("noteBar").textContent = "เนเธซเธฅเธ”เธเนเธญเธกเธนเธฅเธชเธณเน€เธฃเนเธ: data/energy_db.json";
   setupFilters();
   renderAll();
   fetchTemperature();
 }).catch(err=>{
-  document.getElementById("noteBar").textContent = "ไม่พบ data/energy_db.json";
+  document.getElementById("noteBar").textContent = "เนเธกเนเธเธ data/energy_db.json";
   console.error(err);
 });
 
@@ -714,14 +714,14 @@ function closeEventModal(){ document.getElementById("eventModal").style.display 
 
 function loadEventsFromGitHub(silent=false){
   const container = document.getElementById("eventListContainer");
-  if(!silent) container.innerHTML = `<div class="no-event">⏳ กำลังโหลดข้อมูล...</div>`;
+  if(!silent) container.innerHTML = `<div class="no-event">โณ เธเธณเธฅเธฑเธเนเธซเธฅเธ”เธเนเธญเธกเธนเธฅ...</div>`;
   const rawUrl = `https://raw.githubusercontent.com/${GITHUB_REPO}/main/${GITHUB_FILE}?v=${Date.now()}`;
   fetch(rawUrl,{cache:"no-store"})
     .then(res=>{ if(!res.ok) throw new Error(res.status); return res.json(); })
     .then(events=>{ _cachedEvents=events; renderLocalEvents(events); })
     .catch(err=>{
       console.error("loadEventsFromGitHub error:",err);
-      if(!silent) container.innerHTML=`<div class="no-event" style="color:red;">⚠️ ไม่สามารถโหลด event_logs.json ได้</div>`;
+      if(!silent) container.innerHTML=`<div class="no-event" style="color:red;">โ ๏ธ เนเธกเนเธชเธฒเธกเธฒเธฃเธ–เนเธซเธฅเธ” event_logs.json เนเธ”เน</div>`;
     });
 }
 
@@ -729,11 +729,11 @@ function renderLocalEvents(events){
   const container = document.getElementById("eventListContainer");
   container.innerHTML = "";
   if(!events||events.length===0){
-    container.innerHTML = `<div class="no-event">ยังไม่มีเหตุการณ์ที่บันทึกไว้</div>`; return;
+    container.innerHTML = `<div class="no-event">เธขเธฑเธเนเธกเนเธกเธตเน€เธซเธ•เธธเธเธฒเธฃเธ“เนเธ—เธตเนเธเธฑเธเธ—เธถเธเนเธงเน</div>`; return;
   }
   const filtered = sY ? events.filter(e=>new Date(e.date+"T00:00:00").getFullYear()===sY) : events;
   if(filtered.length===0){
-    container.innerHTML = `<div class="no-event">ไม่มีเหตุการณ์ที่บันทึกไว้ในปี ${sY?(sY+543):""}</div>`; return;
+    container.innerHTML = `<div class="no-event">เนเธกเนเธกเธตเน€เธซเธ•เธธเธเธฒเธฃเธ“เนเธ—เธตเนเธเธฑเธเธ—เธถเธเนเธงเนเนเธเธเธต ${sY?(sY+543):""}</div>`; return;
   }
   [...filtered].sort((a,b)=>new Date(b.date)-new Date(a.date)).forEach(evt=>{
     let thaiDate = evt.date;
@@ -743,7 +743,7 @@ function renderLocalEvents(events){
     }catch(e){}
     const item = document.createElement("div");
     item.className = "event-item";
-    item.innerHTML = `<div class="event-date">📅 ${thaiDate}</div><div class="event-desc">${evt.desc.replace(/</g,"&lt;")}</div>`;
+    item.innerHTML = `<div class="event-date">๐“… ${thaiDate}</div><div class="event-desc">${evt.desc.replace(/</g,"&lt;")}</div>`;
     container.appendChild(item);
   });
 }
@@ -760,9 +760,9 @@ async function saveEventToGitHub(){
   const descVal = document.getElementById("evtDesc").value.trim();
   const status  = document.getElementById("saveStatus");
   const btn     = document.getElementById("btnSubmitEvent");
-  if(!dateVal||!descVal){ status.style.color="red"; status.textContent="⚠️ กรุณาระบุวันที่และรายละเอียด"; return; }
+  if(!dateVal||!descVal){ status.style.color="red"; status.textContent="โ ๏ธ เธเธฃเธธเธ“เธฒเธฃเธฐเธเธธเธงเธฑเธเธ—เธตเนเนเธฅเธฐเธฃเธฒเธขเธฅเธฐเน€เธญเธตเธขเธ”"; return; }
   btn.disabled = true;
-  status.style.color = "var(--txt2)"; status.textContent = "⏳ กำลังบันทึก...";
+  status.style.color = "var(--txt2)"; status.textContent = "โณ เธเธณเธฅเธฑเธเธเธฑเธเธ—เธถเธ...";
   try {
     const metaRes = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_FILE}`,{
       headers:{"Authorization":"token "+GITHUB_TOKEN,"Accept":"application/vnd.github.v3+json"}
@@ -786,11 +786,11 @@ async function saveEventToGitHub(){
     if(!commitRes.ok) throw new Error(await commitRes.text());
     document.getElementById("evtDesc").value = "";
     status.style.color = "green";
-    status.innerHTML = `✅ บันทึกสำเร็จแล้ว! <span style="color:var(--txt2);font-size:11px;">(GitHub Pages จะอัปเดตภายใน ~1 นาที)</span>`;
+    status.innerHTML = `โ… เธเธฑเธเธ—เธถเธเธชเธณเน€เธฃเนเธเนเธฅเนเธง! <span style="color:var(--txt2);font-size:11px;">(GitHub Pages เธเธฐเธญเธฑเธเน€เธ”เธ•เธ เธฒเธขเนเธ ~1 เธเธฒเธ—เธต)</span>`;
   } catch(err){
     console.error(err);
     if(_cachedEvents){ _cachedEvents.pop(); renderLocalEvents(_cachedEvents); }
-    status.style.color = "red"; status.textContent = "❌ บันทึกไม่สำเร็จ: " + err.message;
+    status.style.color = "red"; status.textContent = "โ เธเธฑเธเธ—เธถเธเนเธกเนเธชเธณเน€เธฃเนเธ: " + err.message;
   } finally { btn.disabled = false; }
 }
 
@@ -801,3 +801,5 @@ window.onclick = function(event){
 </script>
 </body>
 </html>
+
+

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="th">
 <head>
 <meta charset="UTF-8">
@@ -6,11 +6,11 @@
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="snap.png" type="image/png">
 <link rel="apple-touch-icon" href="snap.png">
-<title>SNAP — น้ำมัน | กฟผ. สำนักงานไทรน้อย</title>
+<title>SNAP โ€” เธเนเธณเธกเธฑเธ | เธเธเธ. เธชเธณเธเธฑเธเธเธฒเธเนเธ—เธฃเธเนเธญเธข</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-/* ─── Design tokens (identical to index.html) ─────────────────────── */
+/* โ”€โ”€โ”€ Design tokens (identical to index.html) โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€ */
 :root{
   --pri:#0B1D51; --pri-l:#1A3A7A; --gold:#C5A85F;
   --bg:#F0F2F5;  --card:#FFF;     --txt:#1A1A2E;
@@ -23,33 +23,33 @@
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--txt)}
 
-/* ─── Topbar / Nav (mirrors index.html exactly) ──────────────────── */
+/* โ”€โ”€โ”€ Topbar / Nav (mirrors index.html exactly) โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€ */
 .topbar{
   background:linear-gradient(90deg,#0c1428 0%,#10172a 100%);
   border-bottom:1px solid #2a2f4a;
   padding:0 24px; display:flex; align-items:center; gap:0;
   position:sticky; top:0; z-index:100;
 }
-.nav-brand{font-size:15px;font-weight:700;color:#f59e0b;padding:14px 0;margin-right:32px}
+.nav-brand{font-size:15px;font-weight:700;color:#f59e0b;padding:8px 0;margin-right:24px}
 .nav-tabs{display:flex;gap:4px}
 .nav-tab{
-  padding:10px 16px; font-size:12px; font-weight:500; color:#8892a4;
+  padding:6px 12px; font-size:11px; font-weight:500; color:#8892a4;
   text-decoration:none; border-bottom:2px solid transparent; transition:all .2s;
   display:flex; align-items:center; gap:7px;
 }
 .nav-tab:hover{color:#e2e8f0}
 .nav-tab.active{color:#f59e0b;border-bottom-color:#f59e0b}
 
-/* ─── Header ──────────────────────────────────────────────────────── */
+/* โ”€โ”€โ”€ Header โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€ */
 .hdr{
   background:linear-gradient(135deg,var(--pri),var(--pri-l));
-  padding:10px 28px; display:flex; align-items:center;
+  padding:6px 20px; display:flex; align-items:center;
   justify-content:space-between; gap:12px; flex-wrap:wrap;
 }
 .hdr-l{display:flex;gap:10px;align-items:center}
-.logo{width:36px;height:36px;background:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;padding:3px;box-shadow:0 1px 4px rgba(0,0,0,.15)}.logo img{width:100%;height:100%;object-fit:contain}
+.logo{width:30px;height:30px;background:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;padding:3px;box-shadow:0 1px 4px rgba(0,0,0,.15)}.logo img{width:100%;height:100%;object-fit:contain}
 .hdr-t{color:#fff}
-.hdr-t h1{font-size:15px}
+.hdr-t h1{font-size:13px}
 .hdr-t p{font-size:11px;color:rgba(255,255,255,.72)}
 /* Filter bar inside header */
 .fg{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
@@ -63,7 +63,7 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--txt)}
 .fs option{color:#333}
 .filter-sep{color:rgba(255,255,255,.3);font-size:16px;padding:0 2px}
 
-/* ─── Banner (totals strip) ──────────────────────────────────────── */
+/* โ”€โ”€โ”€ Banner (totals strip) โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€ */
 .ban{
   background:linear-gradient(135deg,var(--pri),#1B3B80,var(--pri-l));
   padding:12px 28px; display:flex; justify-content:flex-end;
@@ -75,16 +75,16 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--txt)}
 .ban-u{color:rgba(255,255,255,.72);font-size:11px}
 .ban-sep{width:1px;height:40px;background:rgba(255,255,255,.2)}
 
-/* ─── Note bar ───────────────────────────────────────────────────── */
+/* โ”€โ”€โ”€ Note bar โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€ */
 .note{
   background:#FFF8E1;border-bottom:2px solid #F9A825;
   padding:7px 28px;font-size:12px;color:#795548;
 }
 
-/* ─── Main content ───────────────────────────────────────────────── */
+/* โ”€โ”€โ”€ Main content โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€ */
 .main{padding:20px 24px;max-width:1600px;margin:auto}
 
-/* ─── KPI row ────────────────────────────────────────────────────── */
+/* โ”€โ”€โ”€ KPI row โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€ */
 .kpi-row{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:20px}
 .kG{background:var(--card);border-radius:var(--r);box-shadow:var(--sh);padding:16px;border-top:3px solid var(--gold);cursor:pointer}
 .kD{color:#fff;border-radius:var(--r);box-shadow:var(--sh);padding:16px;cursor:pointer;opacity:.95;transition:opacity .2s,outline .1s}
@@ -96,7 +96,7 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--txt)}
 .kV2{font-size:13px;font-weight:600;margin-top:2px;opacity:.85}
 .kU{font-size:10px;opacity:.75}
 
-/* ─── Metric toggle ──────────────────────────────────────────────── */
+/* โ”€โ”€โ”€ Metric toggle โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€ */
 .metric-toggle{
   display:flex;gap:0;border:1px solid var(--bdr);border-radius:8px;
   overflow:hidden;background:#fff;margin-bottom:20px;width:fit-content;
@@ -107,7 +107,7 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--txt)}
 }
 .mtBtn.on{background:var(--pri);color:#fff;font-weight:600}
 
-/* ─── Cards & grids ──────────────────────────────────────────────── */
+/* โ”€โ”€โ”€ Cards & grids โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€ */
 .card{background:var(--card);border-radius:var(--r);box-shadow:var(--sh);padding:16px}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px}
 .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin-bottom:20px}
@@ -117,25 +117,25 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--txt)}
 .cw{height:300px}
 .cw-sm{height:240px}
 
-/* ─── Donut layout ───────────────────────────────────────────────── */
+/* โ”€โ”€โ”€ Donut layout โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€ */
 .dw{display:flex;align-items:center;gap:18px}
 .donutBox{position:relative;width:200px;height:200px;flex-shrink:0}
 .dc{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none}
 .dcv{font-weight:800;color:var(--pri);font-size:18px}
 .dcl{font-size:10px;color:var(--txt2)}
 
-/* ─── Table ──────────────────────────────────────────────────────── */
+/* โ”€โ”€โ”€ Table โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€ */
 .lt{width:100%;border-collapse:collapse;font-size:12px}
 .lt th{text-align:left;color:var(--txt2);font-size:11px;border-bottom:1px solid var(--bdr);padding:4px 8px}
 .lt td{border-bottom:1px solid #eee;padding:5px 8px}
 .lt .vr,.lt .pc{text-align:right}
 .ld{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px}
 
-/* ─── Division drill-down panel ──────────────────────────────────── */
+/* โ”€โ”€โ”€ Division drill-down panel โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€ */
 .drill-section{margin-bottom:20px}
 .drill-hdr{
   font-size:13px;font-weight:700;color:var(--pri);
-  padding:10px 16px;background:#EEF2FF;border-radius:8px 8px 0 0;
+  padding:6px 12px;background:#EEF2FF;border-radius:8px 8px 0 0;
   border:1px solid #C7D2FE;border-bottom:none;
   display:flex;align-items:center;gap:8px;
 }
@@ -157,17 +157,17 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--txt)}
 .div-vals{text-align:right;white-space:nowrap;color:var(--txt2)}
 .div-vals strong{color:var(--txt);font-weight:700}
 
-/* ─── Section label ──────────────────────────────────────────────── */
+/* โ”€โ”€โ”€ Section label โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€ */
 .sec-label{
   font-size:11px;font-weight:700;letter-spacing:.08em;
   text-transform:uppercase;color:var(--txt2);
   margin:24px 0 10px;border-bottom:1px solid var(--bdr);padding-bottom:6px;
 }
 
-/* ─── Footer ──────────────────────────────────────────────────────── */
+/* โ”€โ”€โ”€ Footer โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€ */
 .ft{text-align:center;padding:16px;color:var(--txt2);font-size:11px}
 
-/* ─── Responsive ─────────────────────────────────────────────────── */
+/* โ”€โ”€โ”€ Responsive โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€โ”€ */
 @media(max-width:1200px){
   .kpi-row{grid-template-columns:repeat(3,1fr)}
   .grid2,.gridB,.grid3{grid-template-columns:1fr}
@@ -181,75 +181,75 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--txt)}
 </head>
 <body>
 
-<!-- ══════════════ TOP NAV ══════════════ -->
+<!-- โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ• TOP NAV โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ• -->
 <div class="topbar">
-  <div class="nav-brand"><img src="snap.png" alt="SNAP" style="height:36px;width:36px;border-radius:8px;object-fit:cover"></div>
+  <div class="nav-brand"><img src="snap.png" alt="SNAP" style="height:28px;width:28px;border-radius:6px;object-fit:cover"></div>
   <nav class="nav-tabs">
-    <a href="index.html"   class="nav-tab">⚡ ไฟฟ้า</a>
-    <a href="fuel.html"    class="nav-tab active">🛢️ น้ำมัน</a>
-    <a href="water.html"   class="nav-tab">💧 น้ำประปา (demo)</a>
-    <a href="garbage.html" class="nav-tab">♻️ ขยะ (WIP)</a>
+    <a href="index.html"   class="nav-tab">โก เนเธเธเนเธฒ</a>
+    <a href="fuel.html"    class="nav-tab active">๐ข๏ธ เธเนเธณเธกเธฑเธ</a>
+    <a href="water.html"   class="nav-tab">๐’ง เธเนเธณเธเธฃเธฐเธเธฒ (demo)</a>
+    <a href="garbage.html" class="nav-tab">โป๏ธ เธเธขเธฐ (WIP)</a>
   </nav>
 </div>
 
-<!-- ══════════════ HEADER + FILTERS ══════════════ -->
+<!-- โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ• HEADER + FILTERS โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ• -->
 <div class="hdr">
   <div class="hdr-l">
-    <div class="logo"><img src="LogoEGAT-only.png" alt="กฟผ."></div>
+    <div class="logo"><img src="LogoEGAT-only.png" alt="เธเธเธ."></div>
     <div class="hdr-t">
-      <h1>รายงานการใช้น้ำมัน สำนักงานไทรน้อย กฟผ.</h1>
-      <p>Fuel Consumption Dashboard — อัปเดตทุกเดือน</p>
+      <h1>เธฃเธฒเธขเธเธฒเธเธเธฒเธฃเนเธเนเธเนเธณเธกเธฑเธ เธชเธณเธเธฑเธเธเธฒเธเนเธ—เธฃเธเนเธญเธข เธเธเธ.</h1>
+      <p>Fuel Consumption Dashboard โ€” เธญเธฑเธเน€เธ”เธ•เธ—เธธเธเน€เธ”เธทเธญเธ</p>
     </div>
   </div>
   <div class="fg">
-    <span class="fl">ตั้งแต่</span>
+    <span class="fl">เธ•เธฑเนเธเนเธ•เน</span>
     <select class="fs" id="monthFrom"></select>
-    <span class="fl">ถึง</span>
+    <span class="fl">เธ–เธถเธ</span>
     <select class="fs" id="monthTo"></select>
   </div>
 </div>
 
-<!-- ══════════════ BANNER (grand totals) ══════════════ -->
+<!-- โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ• BANNER (grand totals) โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ• -->
 <div class="ban">
   <div class="ban-item">
-    <span class="ban-l">ปริมาณน้ำมันรวม</span>
-    <span class="ban-v" id="banVol">—</span>
-    <span class="ban-u">ลิตร</span>
+    <span class="ban-l">เธเธฃเธดเธกเธฒเธ“เธเนเธณเธกเธฑเธเธฃเธงเธก</span>
+    <span class="ban-v" id="banVol">โ€”</span>
+    <span class="ban-u">เธฅเธดเธ•เธฃ</span>
   </div>
   <div class="ban-sep"></div>
   <div class="ban-item">
-    <span class="ban-l">ค่าใช้จ่ายรวม</span>
-    <span class="ban-v" id="banCost">—</span>
-    <span class="ban-u">บาท</span>
+    <span class="ban-l">เธเนเธฒเนเธเนเธเนเธฒเธขเธฃเธงเธก</span>
+    <span class="ban-v" id="banCost">โ€”</span>
+    <span class="ban-u">เธเธฒเธ—</span>
   </div>
 </div>
 
-<div id="noteBar" class="note">กำลังโหลดฐานข้อมูล <code>data/fuel_db.json</code>…</div>
+<div id="noteBar" class="note">เธเธณเธฅเธฑเธเนเธซเธฅเธ”เธเธฒเธเธเนเธญเธกเธนเธฅ <code>data/fuel_db.json</code>โ€ฆ</div>
 
-<!-- ══════════════ MAIN ══════════════ -->
+<!-- โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ• MAIN โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ• -->
 <div class="main">
 
   <!-- Metric toggle -->
   <div class="metric-toggle">
-    <button class="mtBtn on" id="btnVol"  onclick="setMetric('vol')">🛢️ ปริมาณ (ลิตร)</button>
-    <button class="mtBtn"    id="btnCost" onclick="setMetric('cost')">💰 ค่าใช้จ่าย (บาท)</button>
+    <button class="mtBtn on" id="btnVol"  onclick="setMetric('vol')">๐ข๏ธ เธเธฃเธดเธกเธฒเธ“ (เธฅเธดเธ•เธฃ)</button>
+    <button class="mtBtn"    id="btnCost" onclick="setMetric('cost')">๐’ฐ เธเนเธฒเนเธเนเธเนเธฒเธข (เธเธฒเธ—)</button>
   </div>
 
-  <!-- ── Level 1: Organisation Overview ── -->
-  <div class="sec-label">ภาพรวมทั้งหน่วยงาน</div>
+  <!-- โ”€โ”€ Level 1: Organisation Overview โ”€โ”€ -->
+  <div class="sec-label">เธ เธฒเธเธฃเธงเธกเธ—เธฑเนเธเธซเธเนเธงเธขเธเธฒเธ</div>
   <div class="kpi-row" id="kpiRow"></div>
 
   <div class="grid2">
     <!-- Donut chart -->
     <div class="card">
-      <div class="ct">สัดส่วนการใช้น้ำมัน แยกฝ่าย</div>
+      <div class="ct">เธชเธฑเธ”เธชเนเธงเธเธเธฒเธฃเนเธเนเธเนเธณเธกเธฑเธ เนเธขเธเธเนเธฒเธข</div>
       <div class="cs" id="donutSub"></div>
       <div class="dw">
         <div class="donutBox">
           <canvas id="donut"></canvas>
           <div class="dc">
-            <div class="dcv" id="donutCenter">—</div>
-            <div class="dcl" id="donutUnit">ลิตร</div>
+            <div class="dcv" id="donutCenter">โ€”</div>
+            <div class="dcl" id="donutUnit">เธฅเธดเธ•เธฃ</div>
           </div>
         </div>
         <div style="flex:1;overflow:auto"><table class="lt" id="deptTable"></table></div>
@@ -258,58 +258,58 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--txt)}
 
     <!-- Monthly bar chart -->
     <div class="card">
-      <div class="ct">การใช้น้ำมันรายเดือน</div>
+      <div class="ct">เธเธฒเธฃเนเธเนเธเนเธณเธกเธฑเธเธฃเธฒเธขเน€เธ”เธทเธญเธ</div>
       <div class="cs" id="barSub"></div>
       <div class="cw"><canvas id="monthBar"></canvas></div>
     </div>
   </div>
 
-  <!-- ── Level 2: Department ── -->
-  <div class="sec-label" id="deptSectionLabel">ระดับฝ่าย — เปรียบเทียบรายเดือน</div>
+  <!-- โ”€โ”€ Level 2: Department โ”€โ”€ -->
+  <div class="sec-label" id="deptSectionLabel">เธฃเธฐเธ”เธฑเธเธเนเธฒเธข โ€” เน€เธเธฃเธตเธขเธเน€เธ—เธตเธขเธเธฃเธฒเธขเน€เธ”เธทเธญเธ</div>
   <div class="card" style="margin-bottom:20px">
-    <div class="ct" id="deptChartTitle">ปริมาณการใช้น้ำมัน แยกฝ่าย รายเดือน</div>
+    <div class="ct" id="deptChartTitle">เธเธฃเธดเธกเธฒเธ“เธเธฒเธฃเนเธเนเธเนเธณเธกเธฑเธ เนเธขเธเธเนเธฒเธข เธฃเธฒเธขเน€เธ”เธทเธญเธ</div>
     <div class="cs" id="deptChartSub"></div>
     <div class="cw"><canvas id="deptLine"></canvas></div>
   </div>
 
-  <!-- ── Level 3: Division (กอง) ── -->
-  <div class="sec-label" id="divSectionLabel">ระดับกอง</div>
+  <!-- โ”€โ”€ Level 3: Division (เธเธญเธ) โ”€โ”€ -->
+  <div class="sec-label" id="divSectionLabel">เธฃเธฐเธ”เธฑเธเธเธญเธ</div>
   <div id="divisionPanel"></div>
 
 </div>
 
-<div class="ft">Dashboard ดึงข้อมูลจาก data/fuel_db.json | แบบฟอร์มเติมน้ำมันรายเดือน</div>
+<div class="ft">Dashboard เธ”เธถเธเธเนเธญเธกเธนเธฅเธเธฒเธ data/fuel_db.json | เนเธเธเธเธญเธฃเนเธกเน€เธ•เธดเธกเธเนเธณเธกเธฑเธเธฃเธฒเธขเน€เธ”เธทเธญเธ</div>
 
 <script>
-// ══════════════════════════════════════════════
+// โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•
 //  CONFIG
-// ══════════════════════════════════════════════
+// โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•
 const DB_URL = "data/fuel_db.json";
 
 const DEPT_COLORS = {
-  "ชธธ.": "#1565C0",
-  "อคม.": "#00897B",
-  "อบค.": "#F9A825",
-  "อบฟ.": "#EF6C00",
-  "อบย.": "#AD1457",
+  "เธเธเธ.": "#1565C0",
+  "เธญเธเธก.": "#00897B",
+  "เธญเธเธ.": "#F9A825",
+  "เธญเธเธ.": "#EF6C00",
+  "เธญเธเธข.": "#AD1457",
 };
 const FALLBACK_COLORS = ["#6A1B9A","#2E7D32","#455A64","#00ACC1"];
 
-// ══════════════════════════════════════════════
+// โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•
 //  STATE
-// ══════════════════════════════════════════════
+// โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•
 let DATA      = null;
 let sMetric   = "vol";          // "vol" | "cost"
-let sFrom     = null;           // ปีเดือน string "2026-03"
+let sFrom     = null;           // เธเธตเน€เธ”เธทเธญเธ string "2026-03"
 let sTo       = null;
 let sDept     = "all";
 let charts    = {};
 
-// ══════════════════════════════════════════════
+// โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•
 //  HELPERS
-// ══════════════════════════════════════════════
-const fmtVol  = n => (+n||0).toLocaleString("th-TH",{maximumFractionDigits:0}) + " ล.";
-const fmtCost = n => (+n||0).toLocaleString("th-TH",{maximumFractionDigits:0}) + " ฿";
+// โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•
+const fmtVol  = n => (+n||0).toLocaleString("th-TH",{maximumFractionDigits:0}) + " เธฅ.";
+const fmtCost = n => (+n||0).toLocaleString("th-TH",{maximumFractionDigits:0}) + " เธฟ";
 const fmtNum  = n => (+n||0).toLocaleString("th-TH",{maximumFractionDigits:0});
 
 function deptColor(dept, idx) {
@@ -326,16 +326,16 @@ function getValue(obj) {
 }
 
 function unitLabel() {
-  return sMetric === "vol" ? "ลิตร" : "บาท";
+  return sMetric === "vol" ? "เธฅเธดเธ•เธฃ" : "เธเธฒเธ—";
 }
 
 function fmtVal(n) {
   return fmtNum(n);
 }
 
-// ══════════════════════════════════════════════
+// โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•
 //  SETUP FILTERS
-// ══════════════════════════════════════════════
+// โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•
 function setupFilters() {
   const months = DATA.months;
   const mf = document.getElementById("monthFrom");
@@ -365,9 +365,9 @@ function setupFilters() {
   };
 }
 
-// ══════════════════════════════════════════════
+// โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•
 //  METRIC TOGGLE
-// ══════════════════════════════════════════════
+// โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•
 function setMetric(m) {
   sMetric = m;
   document.getElementById("btnVol").classList.toggle("on",  m === "vol");
@@ -375,9 +375,9 @@ function setMetric(m) {
   renderAll();
 }
 
-// ══════════════════════════════════════════════
+// โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•
 //  BANNER
-// ══════════════════════════════════════════════
+// โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•
 function renderBanner() {
   const months = activeMonths();
   let vol=0, cost=0;
@@ -388,9 +388,9 @@ function renderBanner() {
   document.getElementById("banCost").textContent = fmtNum(cost);
 }
 
-// ══════════════════════════════════════════════
+// โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•
 //  KPI CARDS (Level 1 + Dept click filter)
-// ══════════════════════════════════════════════
+// โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•
 function renderKPI() {
   const row = document.getElementById("kpiRow");
   row.innerHTML = "";
@@ -406,8 +406,8 @@ function renderKPI() {
   // Grand total card
   const g = document.createElement("div");
   g.className = "kG";
-  g.innerHTML = `<div class="kL">กฟผ.ไทรน้อยรวม</div>
-    <div class="kS">ทุกฝ่าย รวมกัน</div>
+  g.innerHTML = `<div class="kL">เธเธเธ.เนเธ—เธฃเธเนเธญเธขเธฃเธงเธก</div>
+    <div class="kS">เธ—เธธเธเธเนเธฒเธข เธฃเธงเธกเธเธฑเธ</div>
     <div class="kV">${fmtNum(total)}</div>
     <div class="kU">${unitLabel()}</div>`;
   g.onclick = () => { sDept = "all"; renderAll(); };
@@ -421,7 +421,7 @@ function renderKPI() {
     el.style.background = c;
     const pct = total > 0 ? ((v/total)*100).toFixed(1) : "0.0";
     el.innerHTML = `<div class="kL">${dept}</div>
-      <div class="kS">${pct}% ของทั้งหมด</div>
+      <div class="kS">${pct}% เธเธญเธเธ—เธฑเนเธเธซเธกเธ”</div>
       <div class="kV">${fmtNum(v)}</div>
       <div class="kU">${unitLabel()}</div>`;
     el.onclick = () => { sDept = sDept===dept?"all":dept; renderAll(); };
@@ -429,9 +429,9 @@ function renderKPI() {
   });
 }
 
-// ══════════════════════════════════════════════
+// โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•
 //  DONUT CHART (Level 1)
-// ══════════════════════════════════════════════
+// โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•
 function renderDonut() {
   const months = activeMonths();
   const labels = DATA.departments;
@@ -445,7 +445,7 @@ function renderDonut() {
   document.getElementById("donutCenter").textContent = fmtNum(total);
   document.getElementById("donutUnit").textContent   = unitLabel();
   document.getElementById("donutSub").textContent    =
-    `${DATA.month_labels[sFrom] || sFrom} — ${DATA.month_labels[sTo] || sTo}`;
+    `${DATA.month_labels[sFrom] || sFrom} โ€” ${DATA.month_labels[sTo] || sTo}`;
 
   if (charts.donut) charts.donut.destroy();
   charts.donut = new Chart(document.getElementById("donut"), {
@@ -456,7 +456,7 @@ function renderDonut() {
   });
 
   const tb = document.getElementById("deptTable");
-  tb.innerHTML = `<tr><th>ฝ่าย</th><th class="vr">ค่า</th><th class="pc">%</th></tr>`;
+  tb.innerHTML = `<tr><th>เธเนเธฒเธข</th><th class="vr">เธเนเธฒ</th><th class="pc">%</th></tr>`;
   labels.map((d,i) => ({d, v:vals[i], c:colors[i]}))
     .sort((a,b) => b.v - a.v)
     .forEach(x => {
@@ -467,12 +467,12 @@ function renderDonut() {
       </tr>`;
     });
   tb.innerHTML += `<tr style="font-weight:700;border-top:2px solid var(--pri)">
-    <td>รวม</td><td class="vr">${fmtNum(total)}</td><td class="pc">100%</td></tr>`;
+    <td>เธฃเธงเธก</td><td class="vr">${fmtNum(total)}</td><td class="pc">100%</td></tr>`;
 }
 
-// ══════════════════════════════════════════════
-//  MONTHLY BAR (Level 1 — org-wide)
-// ══════════════════════════════════════════════
+// โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•
+//  MONTHLY BAR (Level 1 โ€” org-wide)
+// โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•
 function renderMonthBar() {
   const months = activeMonths();
   const labels = months.map(m => DATA.month_labels[m] || m);
@@ -481,7 +481,7 @@ function renderMonthBar() {
     .map(r => getValue(r));
 
   document.getElementById("barSub").textContent =
-    `${unitLabel()} รายเดือน — ทั้งหน่วยงาน`;
+    `${unitLabel()} เธฃเธฒเธขเน€เธ”เธทเธญเธ โ€” เธ—เธฑเนเธเธซเธเนเธงเธขเธเธฒเธ`;
 
   if (charts.monthBar) charts.monthBar.destroy();
   charts.monthBar = new Chart(document.getElementById("monthBar"), {
@@ -502,9 +502,9 @@ function renderMonthBar() {
   });
 }
 
-// ══════════════════════════════════════════════
+// โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•
 //  DEPT LINE CHART (Level 2)
-// ══════════════════════════════════════════════
+// โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•
 function renderDeptLine() {
   const months  = activeMonths();
   const mlabels = months.map(m => DATA.month_labels[m] || m);
@@ -526,10 +526,10 @@ function renderDeptLine() {
 
   document.getElementById("deptChartTitle").textContent =
     sDept === "all"
-      ? `${sMetric==="vol"?"ปริมาณ":"ค่าใช้จ่าย"} — เปรียบเทียบทุกฝ่าย`
-      : `${sDept} — รายละเอียดรายเดือน`;
+      ? `${sMetric==="vol"?"เธเธฃเธดเธกเธฒเธ“":"เธเนเธฒเนเธเนเธเนเธฒเธข"} โ€” เน€เธเธฃเธตเธขเธเน€เธ—เธตเธขเธเธ—เธธเธเธเนเธฒเธข`
+      : `${sDept} โ€” เธฃเธฒเธขเธฅเธฐเน€เธญเธตเธขเธ”เธฃเธฒเธขเน€เธ”เธทเธญเธ`;
   document.getElementById("deptChartSub").textContent =
-    `${unitLabel()} | คลิก KPI card เพื่อ drill-down รายฝ่าย`;
+    `${unitLabel()} | เธเธฅเธดเธ KPI card เน€เธเธทเนเธญ drill-down เธฃเธฒเธขเธเนเธฒเธข`;
 
   if (charts.deptLine) charts.deptLine.destroy();
   charts.deptLine = new Chart(document.getElementById("deptLine"), {
@@ -544,9 +544,9 @@ function renderDeptLine() {
   });
 }
 
-// ══════════════════════════════════════════════
+// โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•
 //  DIVISION PANEL (Level 3)
-// ══════════════════════════════════════════════
+// โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•
 function renderDivisions() {
   const panel    = document.getElementById("divisionPanel");
   const secLabel = document.getElementById("divSectionLabel");
@@ -554,7 +554,7 @@ function renderDivisions() {
 
   const depts = sDept === "all" ? DATA.departments : [sDept];
   secLabel.textContent = sDept === "all"
-    ? "ระดับกอง — ทุกฝ่าย" : `ระดับกอง — ${sDept}`;
+    ? "เธฃเธฐเธ”เธฑเธเธเธญเธ โ€” เธ—เธธเธเธเนเธฒเธข" : `เธฃเธฐเธ”เธฑเธเธเธญเธ โ€” ${sDept}`;
 
   const months = activeMonths();
 
@@ -563,7 +563,7 @@ function renderDivisions() {
     const divs = dd.divisions;
     const color = deptColor(dept, DATA.departments.indexOf(dept));
 
-    // Aggregate each กอง over selected months
+    // Aggregate each เธเธญเธ over selected months
     const divTotals = Object.entries(divs).map(([name, dv]) => {
       const val = dv.monthly.filter(r => months.includes(r.month))
         .reduce((a,b) => a + getValue(b), 0);
@@ -583,7 +583,7 @@ function renderDivisions() {
     hdr.innerHTML = `<span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:${color};margin-right:6px"></span>
       <strong>${dept}</strong>
       <span style="margin-left:auto;font-weight:400;font-size:12px;color:var(--txt2)">
-        รวม ${fmtNum(deptTotal)} ${unitLabel()}
+        เธฃเธงเธก ${fmtNum(deptTotal)} ${unitLabel()}
       </span>`;
     wrap.appendChild(hdr);
 
@@ -614,9 +614,9 @@ function renderDivisions() {
   });
 }
 
-// ══════════════════════════════════════════════
+// โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•
 //  RENDER ALL
-// ══════════════════════════════════════════════
+// โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•
 function renderAll() {
   renderBanner();
   renderKPI();
@@ -626,9 +626,9 @@ function renderAll() {
   renderDivisions();
 }
 
-// ══════════════════════════════════════════════
-//  BOOT — fetch JSON → init
-// ══════════════════════════════════════════════
+// โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•
+//  BOOT โ€” fetch JSON โ’ init
+// โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•
 (async () => {
   const nb = document.getElementById("noteBar");
   try {
@@ -637,9 +637,9 @@ function renderAll() {
     DATA = await res.json();
 
     nb.textContent =
-      `โหลดสำเร็จ — อัปเดตล่าสุด: ${DATA.generated || "—"} | `
-      + `ข้อมูล ${DATA.months.length} เดือน | `
-      + `${DATA.departments.length} ฝ่าย`;
+      `เนเธซเธฅเธ”เธชเธณเน€เธฃเนเธ โ€” เธญเธฑเธเน€เธ”เธ•เธฅเนเธฒเธชเธธเธ”: ${DATA.generated || "โ€”"} | `
+      + `เธเนเธญเธกเธนเธฅ ${DATA.months.length} เน€เธ”เธทเธญเธ | `
+      + `${DATA.departments.length} เธเนเธฒเธข`;
 
     setupFilters();
     renderAll();
@@ -647,9 +647,11 @@ function renderAll() {
     nb.style.borderColor = "#e53e3e";
     nb.style.background  = "#fff5f5";
     nb.style.color       = "#c53030";
-    nb.textContent = `โหลดข้อมูลไม่สำเร็จ: ${err.message} — ตรวจสอบว่าไฟล์ data/fuel_db.json มีอยู่และรัน build_fuel_db.py แล้ว`;
+    nb.textContent = `เนเธซเธฅเธ”เธเนเธญเธกเธนเธฅเนเธกเนเธชเธณเน€เธฃเนเธ: ${err.message} โ€” เธ•เธฃเธงเธเธชเธญเธเธงเนเธฒเนเธเธฅเน data/fuel_db.json เธกเธตเธญเธขเธนเนเนเธฅเธฐเธฃเธฑเธ build_fuel_db.py เนเธฅเนเธง`;
   }
 })();
 </script>
 </body>
 </html>
+
+
