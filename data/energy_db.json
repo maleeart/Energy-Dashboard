@@ -8,7 +8,7 @@
       "Main",
       "SCB21"
     ],
-    "generated_at": "2026-07-13T03:32:38",
+    "generated_at": "2026-07-13T03:36:13",
     "missing_reading_logic": "Blank or 0 raw_reading uses previous valid reading.",
     "unchanged_reading_logic": "If current equals previous, usage is 0.",
     "allocation_logic": "Fill-down department, then use row allocation_ratio directly."
@@ -370909,707 +370909,707 @@
     "errors": [],
     "warnings": [
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 2,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "EGAT__FL01__Main",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 3,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "EGAT__FL01__Main2",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 4,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0006__FL01__MDB",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 5,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0007__FL01__MDB",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 6,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0008__FL01__MDB",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 7,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0009__FL01__MDB",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 8,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0010__FL01__MDB",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 9,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0011__FL01__MDB",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 10,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0012__FL01__MDB",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 11,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "D.0026__FL01__MDB",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 12,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "D.0017__FL01__MDB",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 13,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "D.0017__FL01__ร้านค้า_1",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 14,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "D.0017__FL01__ร้านค้า_2",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 15,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "D.0017__FL01__ร้านค้า_3",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 16,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "D.0017__FL01__ร้านค้า_4",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 17,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "D.0017__FL01__ร้านค้า_5",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 18,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0014__FL01__MDB",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 19,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0015__FL01__MDB",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 20,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0016__FL01__MDB",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 21,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0017__FL01__MDB",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 22,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0018__FL01__MDB",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 23,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "D.0019__FL01__MDB",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 24,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "D.0019__FL01__ร้านค้า_1",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 25,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "D.0019__FL01__ร้านค้า_2",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 26,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "D.0019__FL01__ร้านค้า_3",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 27,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "D.0019__FL01__ร้านค้า_4",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 28,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "D.0019__FL01__ร้านค้า_5",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 29,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "D.0019__FL01__ร้านค้า_6",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 30,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "D.0019__FL01__ร้านค้า_7",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 31,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "D.0025__FL01__MDB",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 32,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "D.0015__FL01__MDB",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 33,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0022__FL01__MDB",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 34,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0023__FL01__MDB",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 35,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0025__FL01__MDB",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 36,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0026__FL01__MDB",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 37,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0027__FL01__MDB",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 38,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0028__FL01__MDB",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 39,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0029__FL01__MDB",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 40,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "D.0031__FL01__MDB",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 41,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "D.0031__FL01__ร้านค้า_1",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 42,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "D.0033__FL01__MDB",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 43,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "B.0001__FL01__MDB",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 44,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0019__FL01__Main",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 45,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0019__FL01__LP1",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 46,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0019__FL01__PP1",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 47,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0019__FL01__AP1",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 48,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0019__FL01__EMDB_1",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 49,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0019__FL03__SCB_3",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 50,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0019__FL03__LP3",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 51,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0019__FL03__PP3",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 52,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0019__FL03__AP3",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 53,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0019__FL03__ร้านค้า",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 54,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0019__FL04__SCB_4",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 55,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0019__FL04__LP4",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 56,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0019__FL04__PP41",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 57,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0019__FL04__PP42",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 58,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0019__FL04__AP4",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 59,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0019__FL05__SCB_5",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 60,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0019__FL05__LP5",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 61,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0019__FL05__PP51",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 62,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0019__FL05__PP52",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 63,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0019__FL05__AP5",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 64,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0019__FL06__SCB_6",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 65,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0019__FL06__LP6",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 66,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0019__FL06__PP61",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 67,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0019__FL06__PP62",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 68,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0019__FL06__AP6",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 69,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0019__FL07__SCB_7",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 70,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0019__FL07__LP7",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 71,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0019__FL07__PP71",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 72,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0019__FL07__PP72",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 73,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0019__FL07__AP7",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 74,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0019__FL08__SCB_8",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 75,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0019__FL08__LP8",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 76,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0019__FL08__PP81",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 77,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0019__FL08__PP82",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 78,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0019__FL08__AP8",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 79,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0019__FL09__SCB_9",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 80,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0019__FL09__LP9",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 81,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0019__FL09__PP91",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 82,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0019__FL09__PP92",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 83,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0019__FL09__AP9",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 84,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0019__FL09__PPD",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 85,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0019__FL09__PPAC_1",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 86,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0019__FL09__PPAC_2",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 87,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0019__FL09__PPAC_3",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 88,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0019__FL09__BP",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 89,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0019__FL09__PPL",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 90,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0020__FL01__SCB_21",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 91,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0020__FL01__LP21",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 92,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0020__FL01__PP21",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 93,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0020__FL01__AP21",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 94,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0020__FL02__SCB_22",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 95,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0020__FL01__LP22",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 96,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0020__FL01__PP22",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 97,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0020__FL01__AP22",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 98,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0020__FL03__SCB_23",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 99,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0020__FL01__LP23",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 100,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0020__FL01__PP23",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 101,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0020__FL01__AP23",
         "reading_date": "2026-07-10"
       },
       {
-        "file": "forms/2026-W29.csv",
+        "file": "forms/2026.csv",
         "row": 102,
         "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
         "meter_id": "T.0020__FL03__PPAC_3",
