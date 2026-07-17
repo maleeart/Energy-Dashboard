@@ -8,7 +8,7 @@
       "Main",
       "SCB21"
     ],
-    "generated_at": "2026-07-17T08:08:55",
+    "generated_at": "2026-07-17T08:11:22",
     "missing_reading_logic": "Blank or 0 raw_reading uses previous valid reading.",
     "unchanged_reading_logic": "If current equals previous, usage is 0.",
     "allocation_logic": "Fill-down department, then use row allocation_ratio directly."
@@ -6657,11 +6657,11 @@
       "b_code": "D.0017",
       "subb_code": "ร้านค้า 1",
       "building_name": "ต.0017 ร้านอาหาร 1 (จ๊ายตี๋)",
-      "raw_reading": "",
+      "raw_reading": 152.0,
       "raw_unit": "kWh",
-      "normalized_kwh": 62.0,
-      "usage_kwh": 0,
-      "reader": "",
+      "normalized_kwh": 152.0,
+      "usage_kwh": 90.0,
+      "reader": "ธนวิชญ์",
       "note": ""
     },
     {
@@ -7872,11 +7872,11 @@
       "b_code": "D.0017",
       "subb_code": "ร้านค้า 2",
       "building_name": "ต.0017 ร้านอาหาร 2 (ก๋วยเตี๋ยวสะบัดเส้น)",
-      "raw_reading": "",
+      "raw_reading": 5536.0,
       "raw_unit": "kWh",
-      "normalized_kwh": 5491.0,
-      "usage_kwh": 0,
-      "reader": "",
+      "normalized_kwh": 5536.0,
+      "usage_kwh": 45.0,
+      "reader": "ธนวิชญ์",
       "note": ""
     },
     {
@@ -10302,11 +10302,11 @@
       "b_code": "D.0017",
       "subb_code": "ร้านค้า 4",
       "building_name": "ต.0017 ตู้ ATM ธนาคารกรุงไทย",
-      "raw_reading": "",
+      "raw_reading": 2385.0,
       "raw_unit": "kWh",
-      "normalized_kwh": 2364.0,
-      "usage_kwh": 0,
-      "reader": "",
+      "normalized_kwh": 2385.0,
+      "usage_kwh": 21.0,
+      "reader": "ธนวิชญ์",
       "note": ""
     },
     {
@@ -11517,11 +11517,11 @@
       "b_code": "D.0017",
       "subb_code": "ร้านค้า 5",
       "building_name": "ต.0017 ร้านกาแฟ ใหม่",
-      "raw_reading": "",
+      "raw_reading": 1916.0,
       "raw_unit": "kWh",
-      "normalized_kwh": 19127.0,
-      "usage_kwh": 0,
-      "reader": "",
+      "normalized_kwh": 1916000.0,
+      "usage_kwh": 1896873.0,
+      "reader": "ธนวิชญ์",
       "note": ""
     },
     {
@@ -23667,11 +23667,11 @@
       "b_code": "D.0026",
       "subb_code": "MDB",
       "building_name": "ต.0026 อาคารระบบประปา",
-      "raw_reading": "",
+      "raw_reading": 7747.66,
       "raw_unit": "kWh",
-      "normalized_kwh": 7603.58,
-      "usage_kwh": 0,
-      "reader": "",
+      "normalized_kwh": 7747.66,
+      "usage_kwh": 144.08,
+      "reader": "ธนวิชญ์",
       "note": ""
     },
     {
@@ -128423,11 +128423,9 @@
       "b_code": "D.0017",
       "subb_code": "ร้านค้า 1",
       "building_name": "ต.0017 ร้านอาหาร 1 (จ๊ายตี๋)",
-      "normalized_kwh": 62.0,
+      "normalized_kwh": 152.0,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W03.csv",
@@ -129377,11 +129375,9 @@
       "b_code": "D.0017",
       "subb_code": "ร้านค้า 2",
       "building_name": "ต.0017 ร้านอาหาร 2 (ก๋วยเตี๋ยวสะบัดเส้น)",
-      "normalized_kwh": 5491.0,
+      "normalized_kwh": 5536.0,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W01.csv",
@@ -131384,11 +131380,9 @@
       "b_code": "D.0017",
       "subb_code": "ร้านค้า 4",
       "building_name": "ต.0017 ตู้ ATM ธนาคารกรุงไทย",
-      "normalized_kwh": 2364.0,
+      "normalized_kwh": 2385.0,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W01.csv",
@@ -132358,10 +132352,11 @@
       "b_code": "D.0017",
       "subb_code": "ร้านค้า 5",
       "building_name": "ต.0017 ร้านกาแฟ ใหม่",
-      "normalized_kwh": 19127.0,
+      "normalized_kwh": 1916000.0,
       "is_main_meter": false,
       "flags": [
-        "MISSING_READING_USED_PREVIOUS"
+        "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH",
+        "UNIT_SUSPECT_AUTO_CORRECTED"
       ]
     },
     {
@@ -142179,11 +142174,9 @@
       "b_code": "D.0026",
       "subb_code": "MDB",
       "building_name": "ต.0026 อาคารระบบประปา",
-      "normalized_kwh": 7603.58,
+      "normalized_kwh": 7747.66,
       "is_main_meter": true,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W01.csv",
@@ -220830,14 +220823,11 @@
       "subb_code": "ร้านค้า 1",
       "building_name": "ต.0017 ร้านอาหาร 1 (จ๊ายตี๋)",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 90.0,
+      "raw_delta_kwh": 90.0,
       "previous_normalized_kwh": 62.0,
-      "current_normalized_kwh": 62.0,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 152.0,
+      "flags": []
     },
     {
       "week_start_date": "2025-01-17",
@@ -222089,14 +222079,11 @@
       "subb_code": "ร้านค้า 2",
       "building_name": "ต.0017 ร้านอาหาร 2 (ก๋วยเตี๋ยวสะบัดเส้น)",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 45.0,
+      "raw_delta_kwh": 45.0,
       "previous_normalized_kwh": 5491.0,
-      "current_normalized_kwh": 5491.0,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 5536.0,
+      "flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -224794,14 +224781,11 @@
       "subb_code": "ร้านค้า 4",
       "building_name": "ต.0017 ตู้ ATM ธนาคารกรุงไทย",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 21.0,
+      "raw_delta_kwh": 21.0,
       "previous_normalized_kwh": 2364.0,
-      "current_normalized_kwh": 2364.0,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 2385.0,
+      "flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -226079,13 +226063,13 @@
       "subb_code": "ร้านค้า 5",
       "building_name": "ต.0017 ร้านกาแฟ ใหม่",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 1896873.0,
+      "raw_delta_kwh": 1896873.0,
       "previous_normalized_kwh": 19127.0,
-      "current_normalized_kwh": 19127.0,
+      "current_normalized_kwh": 1916000.0,
       "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
+        "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH",
+        "UNIT_SUSPECT_AUTO_CORRECTED"
       ]
     },
     {
@@ -239099,14 +239083,11 @@
       "subb_code": "MDB",
       "building_name": "ต.0026 อาคารระบบประปา",
       "is_main_meter": true,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 144.08,
+      "raw_delta_kwh": 144.08,
       "previous_normalized_kwh": 7603.58,
-      "current_normalized_kwh": 7603.58,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 7747.66,
+      "flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -343559,11 +343540,8 @@
       "building_name": "ต.0026 อาคารระบบประปา",
       "allocation_ratio": 1.0,
       "allocation_row_no": 3,
-      "kwh": 0.0,
-      "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "kwh": 144.08,
+      "source_flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -375800,7 +375778,7 @@
     "2026-07": {
       "อบค.": 5812487.456,
       "อสร.": 1.0,
-      "สก.ชธธ.": 7507799.106,
+      "สก.ชธธ.": 7507943.186,
       "อหข.": 22235.15,
       "อรอ.": 10758.393,
       "อบฟ.": 42215.492,
