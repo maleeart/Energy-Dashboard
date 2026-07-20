@@ -152,6 +152,119 @@
 .text-success { color: #2e7d32 !important; font-weight: bold; }
 .text-danger  { color: #c62828 !important; font-weight: bold; }
 .ban-target   { color: rgba(255,255,255,0.85); font-size: 13px; margin-left: 20px; }
+
+.btn-mea {
+  background: #fff;
+  color: var(--txt2);
+  border: 1px solid var(--bdr);
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-family: 'Sarabun', sans-serif;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.btn-mea.on { background: #E53935; color: #fff; border-color: #E53935; }
+.btn-mea:not(.on):hover { border-color: #E53935; color: #E53935; }
+
+/* ---- admin ---- */
+.btn-admin {
+  margin-left: auto;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.18);
+  color: rgba(255,255,255,.7);
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-family: 'Sarabun', sans-serif;
+  cursor: pointer;
+  transition: all .2s;
+}
+.btn-admin:hover, .btn-admin.active { background: #C5A85F; color: #fff; border-color: #C5A85F; }
+
+.admin-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.5);
+  display: none; align-items: center; justify-content: center;
+  z-index: 2000; padding: 16px;
+}
+.admin-overlay.open { display: flex; }
+
+.admin-box {
+  background: var(--card);
+  border-radius: var(--r);
+  width: 100%; max-width: 720px;
+  max-height: 85vh;
+  display: flex; flex-direction: column;
+  box-shadow: 0 8px 32px rgba(0,0,0,.25);
+}
+.admin-hdr {
+  background: linear-gradient(135deg, var(--pri), var(--pri-l));
+  color: #fff;
+  padding: 14px 18px;
+  border-radius: var(--r) var(--r) 0 0;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.admin-hdr h3 { font-size: 15px; font-weight: 700; }
+.admin-close { background: none; border: none; color: #fff; font-size: 22px; cursor: pointer; opacity: .7; }
+.admin-close:hover { opacity: 1; }
+.admin-body { padding: 16px; overflow-y: auto; flex: 1; }
+.admin-ftr {
+  padding: 12px 16px;
+  border-top: 1px solid var(--bdr);
+  display: flex; gap: 8px; justify-content: flex-end;
+  background: #fcfcfd;
+  border-radius: 0 0 var(--r) var(--r);
+}
+
+.dept-block { margin-bottom: 20px; }
+.dept-label {
+  font-size: 12px; font-weight: 700; color: #fff;
+  padding: 4px 10px; border-radius: 4px; display: inline-block;
+  margin-bottom: 8px;
+}
+.alloc-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.alloc-table th { color: var(--txt2); font-size: 11px; font-weight: 600; border-bottom: 1px solid var(--bdr); padding: 5px 8px; text-align: left; }
+.alloc-table td { border-bottom: 1px solid #f0f2f5; padding: 6px 8px; vertical-align: middle; }
+.alloc-table td:last-child { width: 90px; }
+.ratio-input {
+  width: 80px; padding: 4px 8px;
+  border: 1px solid var(--bdr); border-radius: 5px;
+  font-size: 12px; font-family: 'Sarabun', sans-serif;
+  text-align: right;
+}
+.ratio-input:focus { outline: 1px solid var(--pri); border-color: var(--pri); }
+.ratio-input.modified { border-color: #F9A825; background: #FFFDE7; }
+.share-note { font-size: 10px; color: var(--txt2); margin-top: 2px; }
+.ratio-sum { font-size: 11px; margin-top: 4px; }
+.ratio-sum.ok  { color: #2e7d32; }
+.ratio-sum.bad { color: #c62828; font-weight: 700; }
+
+.btn-apply { background: var(--pri); color: #fff; border: none; padding: 7px 18px; border-radius: 6px; font-size: 12px; font-family: 'Sarabun',sans-serif; cursor: pointer; }
+.btn-apply:hover { background: var(--pri-l); }
+.btn-reset { background: #fff; color: var(--txt2); border: 1px solid var(--bdr); padding: 7px 14px; border-radius: 6px; font-size: 12px; font-family: 'Sarabun',sans-serif; cursor: pointer; }
+.btn-reset:hover { border-color: #c62828; color: #c62828; }
+.hist-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 7px 10px; border-radius: 6px; cursor: pointer;
+  border: 1px solid var(--bdr); margin-bottom: 6px;
+  background: #fff; transition: all .15s;
+}
+.hist-item:hover { border-color: var(--pri); background: #f0f4ff; }
+.hist-item.loading { opacity: .5; pointer-events: none; }
+.hist-date { font-size: 11px; color: var(--txt2); white-space: nowrap; }
+.hist-msg  { font-size: 12px; color: var(--txt); flex: 1; }
+.hist-btn  { font-size: 10px; background: var(--pri); color: #fff; border: none; border-radius: 4px; padding: 3px 8px; cursor: pointer; white-space: nowrap; }
+
+.override-badge {
+  background: #F9A825; color: #fff;
+  font-size: 9px; font-weight: 700; padding: 1px 5px;
+  border-radius: 99px; margin-left: 6px; vertical-align: middle;
+}
 </style>
 </head>
 <body>
@@ -163,6 +276,52 @@
     <a href="water.html" class="nav-tab">💧 น้ำประปา (demo)</a>
     <a href="garbage.html" class="nav-tab">♻️ ขยะ (WIP)</a>
   </nav>
+  <button class="btn-admin" id="btnAdmin" onclick="openAdmin()" style="display:none">⚙️ Admin</button>
+  <button class="btn-admin" id="btnAdminLogin" onclick="openAdminLogin()" style="margin-left:auto">🔐</button>
+</div>
+
+<!-- Admin Login Modal -->
+<div class="admin-overlay" id="adminLoginOverlay">
+  <div class="admin-box" style="max-width:340px">
+    <div class="admin-hdr">
+      <h3>🔐 Admin Login</h3>
+      <button class="admin-close" onclick="closeAdminLogin()">&times;</button>
+    </div>
+    <div class="admin-body" style="padding:24px">
+      <div style="margin-bottom:12px;font-size:13px;color:var(--txt2)">กรอกรหัสผ่านเพื่อเข้าสู่ Admin Mode</div>
+      <input type="password" id="adminPwInput" class="form-input" placeholder="Password" style="width:100%;margin-bottom:8px"
+             onkeydown="if(event.key==='Enter')checkAdminLogin()">
+      <div id="adminPwErr" style="font-size:12px;color:#c62828;min-height:16px"></div>
+    </div>
+    <div class="admin-ftr">
+      <button class="btn-reset" onclick="closeAdminLogin()">ยกเลิก</button>
+      <button class="btn-apply" onclick="checkAdminLogin()">เข้าสู่ระบบ</button>
+    </div>
+  </div>
+</div>
+
+<!-- Admin Panel -->
+<div class="admin-overlay" id="adminPanelOverlay">
+  <div class="admin-box">
+    <div class="admin-hdr">
+      <h3>⚙️ Admin — จัดการสัดส่วน Allocation <span id="overrideBadge" class="override-badge" style="display:none">มีการแก้ไข</span></h3>
+      <button class="admin-close" onclick="closeAdmin()">&times;</button>
+    </div>
+    <div class="admin-body" id="adminBody">กำลังโหลด...</div>
+    <!-- ประวัติ commit -->
+    <div id="historySection" style="display:none;border-top:1px solid var(--bdr);padding:12px 16px;background:#f8f9fa">
+      <div style="font-size:12px;font-weight:700;color:var(--pri);margin-bottom:8px">📜 ประวัติ Allocation — เลือก version ที่ต้องการ</div>
+      <div id="historyList" style="font-size:12px;color:var(--txt2)">กำลังโหลด...</div>
+    </div>
+    <div class="admin-ftr">
+      <button class="btn-reset" onclick="toggleHistory()">📜 ประวัติ</button>
+      <button class="btn-reset" onclick="saveSnapshot()" title="บันทึก snapshot ของค่าปัจจุบัน">💾 Snapshot</button>
+      <button class="btn-reset" id="btnRestore" onclick="restoreSnapshot()" style="display:none">↩ Restore</button>
+      <div style="flex:1"></div>
+      <button class="btn-reset" onclick="resetOverrides()">↺ รีเซ็ตค่าเดิม</button>
+      <button class="btn-apply" onclick="applyOverrides()">✓ Apply & รีเฟรชกราฟ</button>
+    </div>
+  </div>
 </div>
 
 <div class="hdr">
@@ -215,7 +374,10 @@
           <div class="ct">ปริมาณการใช้ไฟฟ้าในแต่ละเดือน</div>
           <div class="cs" id="barSub"></div>
         </div>
-        <button class="btn-event" onclick="openEventModal()">📅 บันทึกเหตุการณ์ (Events)</button>
+        <div style="display:flex;gap:6px;align-items:center">
+          <button class="btn-mea" id="btnMEABar" onclick="toggleMEABar()">กฟน. MEA</button>
+          <button class="btn-event" onclick="openEventModal()">📅 บันทึกเหตุการณ์ (Events)</button>
+        </div>
       </div>
       <div class="cw"><canvas id="monthBar"></canvas></div>
     </div>
@@ -224,7 +386,10 @@
   <div class="gridB">
     <div class="card"><div class="ct" id="buildingTitle">Top อาคาร</div><div class="cw"><canvas id="buildingBar"></canvas></div></div>
     <div class="card">
-      <div class="ct">ปริมาณการใช้พลังงานรายเดือนในแต่ละปี</div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2px">
+        <div class="ct" style="margin-bottom:0">ปริมาณการใช้พลังงานรายเดือนในแต่ละปี</div>
+        <button class="btn-mea" id="btnMEAYear" onclick="toggleMEAYear()">กฟน. MEA</button>
+      </div>
       <div class="yearToggles" id="yearToggles"></div>
       <div class="cw"><canvas id="yearLine"></canvas></div>
     </div>
@@ -263,8 +428,286 @@ const DEPT = ["สก.ชธธ.","อบค.","อบฟ.","อบย.","อร
 const CL   = ["#1565C0","#00897B","#F9A825","#EF6C00","#AD1457","#6A1B9A","#2E7D32"];
 const BUILD_COLORS = ["#1565C0","#00897B","#F9A825","#EF6C00","#AD1457","#6A1B9A","#2E7D32","#C5A85F","#455A64","#00ACC1","#8E24AA","#7CB342"];
 
+// ===== MEA DATA (kWh รายเดือน จากบิลค่าไฟฟ้า กฟน.) =====
+const MEA_DATA = {
+  2019:[247000,259000,308000,309000,305000,290000,285000,277000,261000,285000,232000,203000],
+  2020:[254000,223000,279000,149000,229000,300000,353000,370000,379000,326000,320000,298000],
+  2021:[204000,223000,398000,260000,275000,292000,216000,229000,221000,240000,264000,222000],
+  2022:[235000,223000,296000,243000,245000,266000,271000,313000,295000,255000,255000,211000],
+  2023:[235000,200000,238000,248000,289888,295000,268000,279000,261000,257000,241000,217000],
+  2024:[240000,264000,320000,322000,320000,285000,285000,297000,289000,299000,279000,225000],
+  2025:[204000,216000,302000,309000,293000,289000,293000,285000,305000,304000,248000,256000],
+  2026:[248000,291000,310000,311000,300000,null,null,null,null,null,null,null],
+};
+
 // ===== STATE =====
 let DATA = null, sY = null, sD = "all", ch = {}, visibleYears = new Set();
+let showMEA_bar = false, showMEA_year = false;
+
+function toggleMEABar(){
+  showMEA_bar = !showMEA_bar;
+  document.getElementById("btnMEABar").classList.toggle("on", showMEA_bar);
+  renderMonthBar();
+}
+function toggleMEAYear(){
+  showMEA_year = !showMEA_year;
+  document.getElementById("btnMEAYear").classList.toggle("on", showMEA_year);
+  renderYearLine();
+}
+// ===== ADMIN / ALLOCATION OVERRIDE =====
+const ADMIN_PW  = "M@lee8888";
+const LS_KEY    = "energyAllocOverrides";
+const LS_SNAP   = "energyAllocSnapshot";
+let RATIO_OVERRIDES = JSON.parse(localStorage.getItem(LS_KEY) || "{}"); // {dept|building: ratio}
+let isAdmin = false;
+
+function overrideKey(dept, building){ return dept + "|" + building; }
+
+function effectiveKwh(row){
+  const k = overrideKey(row.department, row.building_name || row.meter_id || row.b_code || "?");
+  const orig = +row.kwh || 0;
+  if(!(k in RATIO_OVERRIDES)) return orig;
+  const origRatio = +row.allocation_ratio || 0;
+  if(origRatio === 0) return 0;
+  const meterKwh = orig / origRatio;
+  return meterKwh * RATIO_OVERRIDES[k];
+}
+
+function openAdminLogin(){
+  document.getElementById("adminLoginOverlay").classList.add("open");
+  document.getElementById("adminPwInput").value = "";
+  document.getElementById("adminPwErr").textContent = "";
+  setTimeout(()=>document.getElementById("adminPwInput").focus(), 50);
+}
+function closeAdminLogin(){ document.getElementById("adminLoginOverlay").classList.remove("open"); }
+function checkAdminLogin(){
+  if(document.getElementById("adminPwInput").value === ADMIN_PW){
+    isAdmin = true;
+    closeAdminLogin();
+    document.getElementById("btnAdmin").style.display = "";
+    document.getElementById("btnAdminLogin").style.display = "none";
+    openAdmin();
+  } else {
+    document.getElementById("adminPwErr").textContent = "รหัสผ่านไม่ถูกต้อง";
+  }
+}
+function openAdmin(){
+  buildAdminPanel();
+  // แสดงปุ่ม Restore ถ้ามี snapshot
+  const snap = localStorage.getItem(LS_SNAP);
+  const btn  = document.getElementById("btnRestore");
+  if(snap){ btn.style.display = ""; }
+  else     { btn.style.display = "none"; }
+  document.getElementById("adminPanelOverlay").classList.add("open");
+}
+function closeAdmin(){ document.getElementById("adminPanelOverlay").classList.remove("open"); }
+
+function buildAdminPanel(){
+  if(!DATA) return;
+  // รวบรวม dept → [{building, origRatio}]
+  const deptMap = {};
+  const buildingDepts = {}; // building → [dept, ...]
+  const rows = DATA.department_weekly || [];
+  rows.forEach(r => {
+    const dept = r.department;
+    const bld  = r.building_name || r.meter_id || r.b_code || "?";
+    const ratio = +r.allocation_ratio || 0;
+    if(!deptMap[dept]) deptMap[dept] = {};
+    if(!(bld in deptMap[dept])) deptMap[dept][bld] = ratio;
+    if(!buildingDepts[bld]) buildingDepts[bld] = new Set();
+    buildingDepts[bld].add(dept);
+  });
+
+  const hasOverride = Object.keys(RATIO_OVERRIDES).length > 0;
+  document.getElementById("overrideBadge").style.display = hasOverride ? "" : "none";
+
+  const body = document.getElementById("adminBody");
+  body.innerHTML = "";
+
+  const deptColors = {};
+  DEPT.forEach((d,i) => deptColors[d] = CL[i]);
+
+  Object.entries(deptMap).sort((a,b)=>DEPT.indexOf(a[0])-DEPT.indexOf(b[0])).forEach(([dept, buildings])=>{
+    const color = deptColors[dept] || "#555";
+    const block = document.createElement("div");
+    block.className = "dept-block";
+
+    let html = `<div class="dept-label" style="background:${color}">${dept}</div>
+    <table class="alloc-table">
+      <thead><tr><th>อาคาร</th><th style="text-align:right">ค่าเดิม</th><th style="text-align:right">ค่าปัจจุบัน</th></tr></thead>
+      <tbody>`;
+
+    Object.entries(buildings).forEach(([bld, origRatio])=>{
+      const k = overrideKey(dept, bld);
+      const cur = k in RATIO_OVERRIDES ? RATIO_OVERRIDES[k] : origRatio;
+      const pct = (cur * 100).toFixed(1);
+      const origPct = (origRatio * 100).toFixed(1);
+      const isModified = k in RATIO_OVERRIDES && RATIO_OVERRIDES[k] !== origRatio;
+      const sharers = [...(buildingDepts[bld]||[])].filter(d=>d!==dept);
+      const shareNote = sharers.length > 0 ? `<div class="share-note">แชร์กับ: ${sharers.join(", ")}</div>` : "";
+
+      html += `<tr>
+        <td>
+          <div style="font-size:12px">${bld}</div>
+          ${shareNote}
+        </td>
+        <td style="text-align:right;color:var(--txt2)">${origPct}%</td>
+        <td>
+          <input type="number" class="ratio-input ${isModified?"modified":""}"
+            data-key="${k}" data-orig="${origRatio}"
+            value="${pct}" min="0" max="100" step="0.1"
+            oninput="onRatioInput(this)">
+        </td>
+      </tr>`;
+    });
+
+    html += `</tbody></table>`;
+    block.innerHTML = html;
+    body.appendChild(block);
+  });
+
+  const note = document.createElement("div");
+  note.style.cssText = "font-size:11px;color:var(--txt2);margin-top:8px;padding:8px;background:#f8f9fa;border-radius:6px";
+  note.textContent = "💡 ค่าเป็น % ของมิเตอร์นั้นๆ ที่จะนำมาคิดเป็นของฝ่ายนี้ — กด Apply เพื่อดูผลในกราฟ (บันทึกใน browser เท่านั้น)";
+  body.appendChild(note);
+}
+
+function onRatioInput(el){
+  el.classList.toggle("modified", +el.value !== +el.dataset.orig * 100 / 100);
+}
+
+function applyOverrides(){
+  const inputs = document.querySelectorAll(".ratio-input");
+  inputs.forEach(el => {
+    const k = el.dataset.key;
+    const orig = +el.dataset.orig;
+    const val  = Math.max(0, Math.min(1, +el.value / 100));
+    if(Math.abs(val - orig) > 0.0001) RATIO_OVERRIDES[k] = val;
+    else delete RATIO_OVERRIDES[k];
+  });
+  localStorage.setItem(LS_KEY, JSON.stringify(RATIO_OVERRIDES));
+  document.getElementById("overrideBadge").style.display =
+    Object.keys(RATIO_OVERRIDES).length > 0 ? "" : "none";
+  document.getElementById("btnAdmin").classList.toggle("active", Object.keys(RATIO_OVERRIDES).length > 0);
+  closeAdmin();
+  renderAll();
+}
+
+function resetOverrides(){
+  RATIO_OVERRIDES = {};
+  localStorage.removeItem(LS_KEY);
+  document.getElementById("btnAdmin").classList.remove("active");
+  buildAdminPanel();
+  renderAll();
+}
+
+function saveSnapshot(){
+  localStorage.setItem(LS_SNAP, JSON.stringify(RATIO_OVERRIDES));
+  const ts = new Date().toLocaleTimeString("th-TH");
+  document.getElementById("btnRestore").style.display = "";
+  document.getElementById("btnRestore").title = `กู้คืนจาก snapshot ${ts}`;
+  document.getElementById("btnRestore").textContent = `↩ Restore (${ts})`;
+  alert(`💾 บันทึก Snapshot แล้ว (${ts})`);
+}
+
+function restoreSnapshot(){
+  const snap = localStorage.getItem(LS_SNAP);
+  if(!snap) return;
+  RATIO_OVERRIDES = JSON.parse(snap);
+  localStorage.setItem(LS_KEY, snap);
+  buildAdminPanel();
+  renderAll();
+}
+
+// ===== ALLOC HISTORY =====
+let _historyLoaded = false;
+
+function toggleHistory(){
+  const sec = document.getElementById("historySection");
+  const open = sec.style.display === "none";
+  sec.style.display = open ? "" : "none";
+  if(open && !_historyLoaded) loadAllocHistory();
+}
+
+async function loadAllocHistory(){
+  const listEl = document.getElementById("historyList");
+  listEl.innerHTML = "กำลังโหลด...";
+  try {
+    const res = await fetch(
+      `https://api.github.com/repos/${GITHUB_REPO}/commits?path=data/department_allocation_buildings.csv&per_page=15`,
+      { headers: { Authorization: `token ${GITHUB_TOKEN}`, Accept: "application/vnd.github.v3+json" } }
+    );
+    if(!res.ok) throw new Error(res.status);
+    const commits = await res.json();
+    _historyLoaded = true;
+    listEl.innerHTML = "";
+    commits.forEach((c, idx) => {
+      const date = new Date(c.commit.author.date).toLocaleDateString("th-TH", {year:"numeric",month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"});
+      const msg  = c.commit.message.split("\n")[0];
+      const div  = document.createElement("div");
+      div.className = "hist-item";
+      div.innerHTML = `
+        <div style="flex:1">
+          <div class="hist-msg">${idx===0?"⭐ ล่าสุด — ":""} ${msg}</div>
+          <div class="hist-date">${date} · ${c.sha.slice(0,7)}</div>
+        </div>
+        <button class="hist-btn" onclick="loadAllocAtCommit('${c.sha}', this)">โหลด</button>`;
+      listEl.appendChild(div);
+    });
+    if(commits.length === 0) listEl.textContent = "ไม่พบประวัติ";
+  } catch(e) {
+    listEl.textContent = "โหลดไม่ได้: " + e.message;
+  }
+}
+
+async function loadAllocAtCommit(sha, btn){
+  btn.textContent = "⏳";
+  btn.closest(".hist-item").classList.add("loading");
+  try {
+    const res = await fetch(
+      `https://api.github.com/repos/${GITHUB_REPO}/contents/data/department_allocation_buildings.csv?ref=${sha}`,
+      { headers: { Authorization: `token ${GITHUB_TOKEN}`, Accept: "application/vnd.github.v3+json" } }
+    );
+    if(!res.ok) throw new Error(res.status);
+    const json = await res.json();
+    const text = atob(json.content.replace(/\n/g,""));
+    const overrides = parseAllocCSV(text);
+    // ใส่ค่าลง input ทันที
+    Object.entries(overrides).forEach(([k, ratio]) => {
+      const el = document.querySelector(`.ratio-input[data-key="${CSS.escape(k)}"]`);
+      if(el){
+        el.value = (ratio * 100).toFixed(4);
+        el.classList.toggle("modified", Math.abs(ratio - +el.dataset.orig) > 0.0001);
+      }
+    });
+    document.getElementById("historySection").style.display = "none";
+    btn.closest(".hist-item").classList.remove("loading");
+    btn.textContent = "✓";
+  } catch(e) {
+    btn.textContent = "Error";
+    btn.closest(".hist-item").classList.remove("loading");
+    alert("โหลดไม่ได้: " + e.message);
+  }
+}
+
+function parseAllocCSV(text){
+  // parse CSV → {dept|building_name: ratio}
+  const lines = text.trim().split(/\r?\n/);
+  const headers = lines[0].split(",").map(h => h.replace(/^﻿/,"").trim());
+  const deptIdx  = headers.indexOf("department");
+  const ratioIdx = headers.indexOf("allocation_ratio");
+  const nameIdx  = headers.indexOf("building_name");
+  const result = {};
+  for(let i = 1; i < lines.length; i++){
+    const cols = lines[i].split(",");
+    const dept  = cols[deptIdx]?.trim();
+    const ratio = parseFloat(cols[ratioIdx]);
+    const bld   = cols[nameIdx]?.trim();
+    if(dept && !isNaN(ratio) && bld) result[overrideKey(dept, bld)] = ratio;
+  }
+  return result;
+}
+
 // filter state — range เท่านั้น (ไม่มี single-month mode แล้ว)
 let sM_from = 1;   // เดือนเริ่มต้น (1-12)
 let sM_to   = 12;  // เดือนสิ้นสุด (1-12)
@@ -298,7 +741,7 @@ function validEnergyRow(r){
 
 function filteredDeptRows(){ return (DATA.department_weekly||[]).filter(inFilter).filter(validEnergyRow); }
 function deptRows(){ return filteredDeptRows(); }
-function deptTotal(dept){ return deptRows().filter(r=>r.department===dept).reduce((a,b)=>a+(+b.kwh||0),0); }
+function deptTotal(dept){ return deptRows().filter(r=>r.department===dept).reduce((a,b)=>a+effectiveKwh(b),0); }
 function allTotal(){ return DEPT.reduce((a,d)=>a+deptTotal(d),0); }
 
 // คำนวณ kWh ของปี+เดือน (หรือช่วงเดือน) ที่กำหนด
@@ -308,7 +751,7 @@ function calcKwhForPeriod(year, fromMonth, toMonth, dept=null){
     .filter(r => { const m = ymdMonth(r.week_end_date); return m >= fromMonth && m <= toMonth; })
     .filter(r => !dept || r.department === dept)
     .filter(validEnergyRow)
-    .reduce((a,b) => a+(+b.kwh||0), 0);
+    .reduce((a,b) => a+effectiveKwh(b), 0);
 }
 
 function monthlySeriesValue(year, month, dept=null){
@@ -328,7 +771,7 @@ function buildingRows(){
       .forEach(r => {
         const name = nameOf(r);
         if(!map[name]) map[name] = {name, kwh:0};
-        map[name].kwh += +r.kwh||0;
+        map[name].kwh += effectiveKwh(r);
       });
   } else {
     (DATA.department_weekly||[])
@@ -338,7 +781,7 @@ function buildingRows(){
       .forEach(r => {
         const name = nameOf(r);
         if(!map[name]) map[name] = {name, kwh:0};
-        map[name].kwh += +r.kwh||0;
+        map[name].kwh += effectiveKwh(r);
       });
   }
   return Object.values(map).filter(x=>x.kwh>0).sort((a,b)=>b.kwh-a.kwh).slice(0,8);
@@ -528,13 +971,27 @@ function renderMonthBar(){
   const periodLabel = (from===1 && to===12) ? "" : ` — ${from===to ? MO[from-1] : `${MO[from-1]}–${MO[to-1]}`}`;
   document.getElementById("barSub").textContent = `ปี ${sY+543}${sD!=="all"?" ("+sD+")":""}${periodLabel}`;
 
+  // MEA dataset สำหรับปีที่เลือก กรองตามช่วงเดือน
+  const meaYear = MEA_DATA[sY] || [];
+  const meaDataset = showMEA_bar ? [{
+    type:"line", label:"กฟน. MEA (บิล)",
+    data: MO.map((_,i)=>{
+      const m = i+1;
+      if(m < from || m > to) return null;
+      return meaYear[i] ?? null;
+    }),
+    borderColor:"#E53935", backgroundColor:"#E53935",
+    borderWidth:2, pointRadius:4, pointHoverRadius:6,
+    tension:.3, spanGaps:false, order:0
+  }] : [];
+
   if(ch.monthBar) ch.monthBar.destroy();
   ch.monthBar = new Chart(document.getElementById("monthBar"),{
     data:{
       labels: MO,
       datasets:[
         {
-          type:"bar", label:"kWh", data:vals,
+          type:"bar", label:"กฟผ. (มิเตอร์รวม)", data:vals,
           backgroundColor: vals.map(v=>v===maxVal&&v>0?"#EF6C00":"#1565C0"),
           borderRadius:4, order:2
         },
@@ -545,14 +1002,21 @@ function renderMonthBar(){
           borderDash:[6,6], borderWidth:2,
           pointRadius:0, pointHitRadius:28, pointHoverRadius:6,
           tension:0, order:1
-        }
+        },
+        ...meaDataset
       ]
     },
     options:{
       responsive:true, maintainAspectRatio:false,
       interaction:{mode:"nearest",intersect:false,axis:"xy"},
       plugins:{
-        legend:{display:true,position:"top",labels:{boxWidth:12,font:{size:11}}},
+        legend:{
+          display:true, position:"top",
+          labels:{
+            boxWidth:20, boxHeight:3, usePointStyle:false,
+            font:{size:11}, padding:14
+          }
+        },
         tooltip:{callbacks:{
           title: ctx => {
             const idx = ctx[0]?.dataIndex;
@@ -613,16 +1077,22 @@ function renderYearLine(){
       btn.onclick = ()=>{ visibleYears.has(y)?visibleYears.delete(y):visibleYears.add(y); renderYearLine(); };
       tg.appendChild(btn);
     });
+    if(showMEA_year){
+      const note = document.createElement("span");
+      note.style.cssText = "font-size:10px;color:#E53935;align-self:center;margin-left:4px";
+      note.textContent = "— — — กฟน.";
+      tg.appendChild(note);
+    }
   }
 
   const { from, to } = activeMonthRange();
 
   if(ch.yearLine) ch.yearLine.destroy();
-  const datasets = years.filter(y=>visibleYears.has(y)).map(y=>{
+  const activeYears = years.filter(y=>visibleYears.has(y));
+  const datasets = activeYears.map(y=>{
     const color = colors[years.indexOf(y)%colors.length];
     return {
       label: "ปี "+(y+543),
-      // เดือนที่อยู่นอกช่วง → null (spanGaps:false = ไม่ลากเส้นข้ามช่อง)
       data: MO.map((_,i)=>{
         const m = i+1;
         if(m < from || m > to) return null;
@@ -636,7 +1106,31 @@ function renderYearLine(){
     };
   });
 
+  // MEA comparison lines (เส้นประ สีเดียวกับปี แต่จางกว่า)
+  if(showMEA_year){
+    activeYears.forEach(y=>{
+      const meaYear = MEA_DATA[y];
+      if(!meaYear) return;
+      const color = colors[years.indexOf(y)%colors.length];
+      datasets.push({
+        label: "กฟน. "+(y+543),
+        data: MO.map((_,i)=>{
+          const m = i+1;
+          if(m < from || m > to) return null;
+          return meaYear[i] ?? null;
+        }),
+        borderColor: color, backgroundColor: color,
+        borderDash:[5,4], borderWidth:1.5,
+        pointRadius:2, pointHoverRadius:4,
+        tension:.3, spanGaps:false,
+        // ซ่อนใน legend แยก — ใช้ tooltip แทน
+        legendGroup: "mea"
+      });
+    });
+  }
+
   const lineBaseColors = datasets.map(ds=>ds.borderColor);
+  const lineBaseDash   = datasets.map(ds=>ds.borderDash||[]);
   let _prevHoverIdx = -2;
   function setLineHighlight(hoveredIdx){
     if(_prevHoverIdx===hoveredIdx) return;
@@ -644,13 +1138,18 @@ function renderYearLine(){
     const chart = ch.yearLine;
     if(!chart) return;
     chart.data.datasets.forEach((ds,i)=>{
-      const base = lineBaseColors[i];
+      const base    = lineBaseColors[i];
+      const isMEA   = ds.legendGroup === "mea";
+      const baseDash = isMEA ? [5,4] : [];
       if(hoveredIdx===null){
-        ds.borderColor=base; ds.backgroundColor=base; ds.borderWidth=2; ds.pointRadius=3; ds.borderDash=[];
+        ds.borderColor=base; ds.backgroundColor=base;
+        ds.borderWidth=isMEA?1.5:2; ds.pointRadius=isMEA?2:3; ds.borderDash=baseDash;
       } else if(i===hoveredIdx){
-        ds.borderColor=base; ds.backgroundColor=base; ds.borderWidth=3.5; ds.pointRadius=5; ds.borderDash=[];
+        ds.borderColor=base; ds.backgroundColor=base;
+        ds.borderWidth=isMEA?2.5:3.5; ds.pointRadius=isMEA?4:5; ds.borderDash=baseDash;
       } else {
-        ds.borderColor=base+"44"; ds.backgroundColor=base+"44"; ds.borderWidth=1.5; ds.pointRadius=2; ds.borderDash=[4,3];
+        ds.borderColor=base+"44"; ds.backgroundColor=base+"44";
+        ds.borderWidth=1.5; ds.pointRadius=2; ds.borderDash=isMEA?[5,4]:[4,3];
       }
     });
     chart.update("none");
