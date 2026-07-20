@@ -641,17 +641,22 @@ async function loadAllocHistory(){
     const commits = await res.json();
     _historyLoaded = true;
     listEl.innerHTML = "";
+    const V0_SHA = "dd7d8e6996ea9fb5d5968578ffeb7cecc7f29ecc";
     commits.forEach((c, idx) => {
-      const date = new Date(c.commit.author.date).toLocaleDateString("th-TH", {year:"numeric",month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"});
-      const msg  = c.commit.message.split("\n")[0];
-      const div  = document.createElement("div");
+      const date    = new Date(c.commit.author.date).toLocaleDateString("th-TH", {year:"numeric",month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"});
+      const isV0    = c.sha.startsWith(V0_SHA.slice(0,7));
+      const isOld   = idx > 0 && !isV0;
+      const tag     = isV0 ? "⭐ Version 0 (ก่อนแก้ครั้งแรก) — " : (idx===0 ? "⭐ ล่าสุด — " : "⚠️ format เก่า (ไม่แนะนำ) — ");
+      const msg     = c.commit.message.split("\n")[0];
+      const div     = document.createElement("div");
       div.className = "hist-item";
+      div.style.opacity = isOld ? ".5" : "1";
       div.innerHTML = `
         <div style="flex:1">
-          <div class="hist-msg">${idx===0?"⭐ ล่าสุด — ":""} ${msg}</div>
+          <div class="hist-msg">${tag}${msg}</div>
           <div class="hist-date">${date} · ${c.sha.slice(0,7)}</div>
         </div>
-        <button class="hist-btn" onclick="loadAllocAtCommit('${c.sha}', this)">โหลด</button>`;
+        <button class="hist-btn" ${isOld?"disabled title='format เก่า column ต่างกัน'":""} onclick="loadAllocAtCommit('${c.sha}', this)">โหลด</button>`;
       listEl.appendChild(div);
     });
     if(commits.length === 0) listEl.textContent = "ไม่พบประวัติ";
