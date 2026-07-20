@@ -1123,9 +1123,9 @@
     "weekly_forms_rows_used": 8181,
     "normalized_readings": 7501,
     "weekly_consumption_rows": 7401,
-    "department_weekly_rows": 2720,
-    "allocation_rows_used": 42,
-    "building_allocation_rows_used": 42,
+    "department_weekly_rows": 2860,
+    "allocation_rows_used": 40,
+    "building_allocation_rows_used": 40,
     "fallback_allocation_rows_available": 41,
     "allocation_mode": "building_ratio_sheet_filldown_department",
     "main_meter_codes": [
