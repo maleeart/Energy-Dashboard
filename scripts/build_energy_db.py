@@ -17,7 +17,7 @@ OUTPUT_WEEKLY_READINGS = DATA_DIR / "weekly_readings.csv"
 OUTPUT_DB_JSON = DATA_DIR / "energy_db.json"
 OUTPUT_VALIDATION = DATA_DIR / "validation_report.json"
 
-MAIN_METER_CODES = {"MDB", "Main", "SCB21", "SCB 8"}
+MAIN_METER_CODES = {"MDB", "Main", "SCB21", "SCB 3", "SCB 4", "SCB 5", "SCB 6", "SCB 7", "SCB 8"}
 DEPARTMENTS = ["สก.ชธธ.", "อบค.", "อบฟ.", "อบย.", "อรอ.", "อคม.", "อหข."]
 EPSILON = 0.000001
 AUTO_RESET_RATIO_THRESHOLD = 100
