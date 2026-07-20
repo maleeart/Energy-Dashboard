@@ -496,6 +496,47 @@ def build():
                 "source_flags": week.get("flags", []),
             })
 
+    # FL09 special: net = SCB_9 - sum(sub-meters), split 50/50 to สก.ชธธ. and อบค.
+    _FL09_MAIN = "T.0019__FL09__SCB_9"
+    _FL09_SUBS = {
+        "T.0019__FL09__AP9", "T.0019__FL09__LP9", "T.0019__FL09__PP91",
+        "T.0019__FL09__PP92", "T.0019__FL09__PPAC_1", "T.0019__FL09__PPAC_2",
+        "T.0019__FL09__PPAC_3", "T.0019__FL09__PPD", "T.0019__FL09__BP",
+        "T.0019__FL09__PPL",
+    }
+    _fl09 = {}
+    for _w in weekly_consumption:
+        _wid = _w["week_id"]
+        if _w["meter_id"] == _FL09_MAIN:
+            _fl09.setdefault(_wid, {"scb": 0.0, "subs": 0.0, "meta": None})
+            _fl09[_wid]["scb"] += _w["kwh"]
+            _fl09[_wid]["meta"] = _w
+        elif _w["meter_id"] in _FL09_SUBS:
+            _fl09.setdefault(_wid, {"scb": 0.0, "subs": 0.0, "meta": None})
+            _fl09[_wid]["subs"] += _w["kwh"]
+    for _wid, _d in _fl09.items():
+        if _d["meta"] is None:
+            continue
+        _net = round(max(0.0, _d["scb"] - _d["subs"]), 3)
+        if _net == 0:
+            continue
+        _m = _d["meta"]
+        for _dept in ["สก.ชธธ.", "อบค."]:
+            department_weekly.append({
+                "week_start_date": _m["week_start_date"],
+                "week_end_date": _m["week_end_date"],
+                "reading_date": _m["week_end_date"],
+                "week_id": _wid,
+                "department": _dept,
+                "meter_id": _FL09_MAIN,
+                "b_code": _m.get("b_code", ""),
+                "building_name": "ท.0019 ชั้นที่ 9 (net)",
+                "allocation_ratio": 0.5,
+                "allocation_row_no": "",
+                "kwh": round(_net * 0.5, 3),
+                "source_flags": [],
+            })
+
     monthly_by_department = {}
     for row in department_weekly:
         month = row["week_end_date"][:7]
