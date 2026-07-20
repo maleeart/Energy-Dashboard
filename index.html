@@ -502,15 +502,16 @@ function closeAdmin(){ document.getElementById("adminPanelOverlay").classList.re
 
 function buildAdminPanel(){
   if(!DATA) return;
-  // รวบรวม dept → [{building, origRatio}]
+  // ใช้ allocation_source (ครบทุก row จาก CSV) แทน department_weekly
   const deptMap = {};
-  const buildingDepts = {}; // building → [dept, ...]
-  const rows = DATA.department_weekly || [];
+  const buildingDepts = {};
+  const rows = DATA.allocation_source || [];
   rows.forEach(r => {
-    const dept = r.department;
-    const bld  = r.building_name || r.meter_id || r.b_code || "?";
+    const dept  = r.department;
+    const bld   = r.building_name || r.meter_id || "?";
     const ratio = +r.allocation_ratio || 0;
     if(!deptMap[dept]) deptMap[dept] = {};
+    // key = building_name (แต่ละชั้น/มิเตอร์มี building_name ต่างกันอยู่แล้ว)
     if(!(bld in deptMap[dept])) deptMap[dept][bld] = ratio;
     if(!buildingDepts[bld]) buildingDepts[bld] = new Set();
     buildingDepts[bld].add(dept);
