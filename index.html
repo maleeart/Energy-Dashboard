@@ -313,11 +313,15 @@
       <div style="font-size:12px;font-weight:700;color:var(--pri);margin-bottom:8px">📜 ประวัติ Allocation — เลือก version ที่ต้องการ</div>
       <div id="historyList" style="font-size:12px;color:var(--txt2)">กำลังโหลด...</div>
     </div>
+    <div id="saveStatus" style="display:none;padding:8px 16px;font-size:12px;background:#E8F5E9;color:#2e7d32;border-top:1px solid #C8E6C9">
+      ✅ <span id="saveStatusMsg"></span>
+    </div>
     <div class="admin-ftr">
       <button class="btn-reset" onclick="toggleHistory()">📜 ประวัติ</button>
       <div style="flex:1"></div>
       <button class="btn-reset" onclick="resetOverrides()">↺ รีเซ็ตค่าเดิม</button>
-      <button class="btn-apply" onclick="applyOverrides()">✓ Apply & รีเฟรชกราฟ</button>
+      <button class="btn-apply" onclick="applyOverrides()">✓ Apply</button>
+      <button class="btn-apply" style="background:#2e7d32" onclick="savePermanent()">🚀 บันทึกถาวร</button>
     </div>
   </div>
 </div>
@@ -596,6 +600,84 @@ function resetOverrides(){
 }
 
 
+
+// ===== SAVE PERMANENT =====
+async function savePermanent(){
+  const name = prompt("ตั้งชื่อ Version นี้ (จะแสดงในประวัติ):", "").trim();
+  if(!name) return;
+
+  // อ่านค่าจาก input ปัจจุบัน (เหมือน applyOverrides แต่ยังไม่ save localStorage)
+  const pending = {};
+  document.querySelectorAll(".ratio-input").forEach(el => {
+    const val = Math.max(0, Math.min(1, +el.value / 100));
+    const orig = +el.dataset.orig;
+    if(Math.abs(val - orig) > 0.0001) pending[el.dataset.key] = val;
+  });
+
+  const btn = document.querySelector(".btn-apply[onclick='savePermanent()']");
+  btn.textContent = "⏳ กำลังบันทึก..."; btn.disabled = true;
+
+  try {
+    // 1. ดึง CSV + SHA ปัจจุบันจาก GitHub
+    const metaRes = await fetch(
+      `https://api.github.com/repos/${GITHUB_REPO}/contents/data/department_allocation_buildings.csv`,
+      { headers: { Authorization: `token ${GITHUB_TOKEN}`, Accept: "application/vnd.github.v3+json" } }
+    );
+    if(!metaRes.ok) throw new Error("ดึงไฟล์ไม่ได้: " + metaRes.status);
+    const meta    = await metaRes.json();
+    const csvText = atob(meta.content.replace(/\n/g, ""));
+    const fileSha = meta.sha;
+
+    // 2. อัปเดต allocation_ratio ในแต่ละ row
+    const lines   = csvText.trim().split(/\r?\n/);
+    const headers = lines[0].split(",").map(h => h.replace(/^﻿/, "").trim());
+    const deptIdx  = headers.indexOf("department");
+    const ratioIdx = headers.indexOf("allocation_ratio");
+    const nameIdx  = headers.indexOf("building_name");
+
+    const newLines = [lines[0]];
+    for(let i = 1; i < lines.length; i++){
+      const cols = lines[i].split(",");
+      const dept = cols[deptIdx]?.trim();
+      const bld  = cols[nameIdx]?.trim();
+      const k    = overrideKey(dept, bld);
+      if(k in pending) cols[ratioIdx] = String(pending[k]);
+      newLines.push(cols.join(","));
+    }
+
+    // 3. encode + PUT ขึ้น GitHub
+    const newCsv    = newLines.join("\n");
+    const encoded   = btoa(unescape(encodeURIComponent(newCsv)));
+    const putRes    = await fetch(
+      `https://api.github.com/repos/${GITHUB_REPO}/contents/data/department_allocation_buildings.csv`,
+      {
+        method: "PUT",
+        headers: { Authorization: `token ${GITHUB_TOKEN}`, "Content-Type": "application/json" },
+        body: JSON.stringify({ message: `alloc: ${name}`, content: encoded, sha: fileSha })
+      }
+    );
+    if(!putRes.ok) throw new Error("push ไม่ได้: " + putRes.status);
+
+    // 4. เคลียร์ override (ค่านี้กลายเป็น base ใน CSV แล้ว)
+    RATIO_OVERRIDES = {};
+    localStorage.removeItem(LS_KEY);
+    _historyLoaded  = false; // force reload ประวัติครั้งต่อไป
+    document.getElementById("overrideBadge").style.display = "none";
+    document.getElementById("btnAdmin").classList.remove("active");
+
+    // แสดงสถานะสำเร็จ
+    const bar = document.getElementById("saveStatus");
+    document.getElementById("saveStatusMsg").textContent =
+      `บันทึก "${name}" แล้ว — GitHub Actions กำลัง rebuild (~1 นาที) รีเฟรชหน้าเพื่อดูผล`;
+    bar.style.display = "";
+    setTimeout(() => bar.style.display = "none", 8000);
+
+  } catch(e) {
+    alert("❌ บันทึกไม่สำเร็จ: " + e.message);
+  } finally {
+    btn.textContent = "🚀 บันทึกถาวร"; btn.disabled = false;
+  }
+}
 
 // ===== ALLOC HISTORY =====
 let _historyLoaded = false;
