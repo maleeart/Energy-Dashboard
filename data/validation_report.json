@@ -1123,7 +1123,7 @@
     "weekly_forms_rows_used": 8181,
     "normalized_readings": 7501,
     "weekly_consumption_rows": 7401,
-    "department_weekly_rows": 2940,
+    "department_weekly_rows": 3420,
     "allocation_rows_used": 43,
     "building_allocation_rows_used": 43,
     "fallback_allocation_rows_available": 41,
@@ -1131,6 +1131,11 @@
     "main_meter_codes": [
       "MDB",
       "Main",
+      "SCB 3",
+      "SCB 4",
+      "SCB 5",
+      "SCB 6",
+      "SCB 7",
       "SCB 8",
       "SCB21"
     ]
