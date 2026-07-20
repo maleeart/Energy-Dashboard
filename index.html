@@ -316,15 +316,15 @@
     <div id="saveStatus" style="display:none;padding:8px 16px;font-size:12px;background:#E8F5E9;color:#2e7d32;border-top:1px solid #C8E6C9">
       ✅ <span id="saveStatusMsg"></span>
     </div>
+    <div style="padding:4px 16px 6px;font-size:11px;color:var(--txt2);border-top:1px solid var(--bdr);background:#f8f9fa">
+      สถานะ allocation ปัจจุบัน: <span id="currentVersionLabel" style="font-weight:600;color:var(--pri)">กำลังตรวจสอบ...</span>
+    </div>
     <div class="admin-ftr">
       <button class="btn-reset" onclick="toggleHistory()">📜 ประวัติ</button>
       <div style="flex:1"></div>
       <button class="btn-reset" onclick="resetOverrides()">↺ รีเซ็ตค่าเดิม</button>
       <button class="btn-apply" onclick="applyOverrides()">✓ Apply</button>
       <button class="btn-apply" style="background:#2e7d32" onclick="savePermanent()">🚀 บันทึกถาวร</button>
-    </div>
-    <div style="padding:6px 16px;font-size:11px;color:var(--txt2);border-top:1px solid var(--border);text-align:right">
-      ผู้ดูแลระบบ : นายตวงเพชร ชัยยานนท์ วศ.4 หบอว-ธ. กบห-ธ. ชธธ.
     </div>
   </div>
 </div>
@@ -498,8 +498,8 @@ function checkAdminLogin(){
 }
 function openAdmin(){
   buildAdminPanel();
-  // แสดงปุ่ม Restore ถ้ามี snapshot
   document.getElementById("adminPanelOverlay").classList.add("open");
+  loadCurrentVersion();
 }
 function closeAdmin(){ document.getElementById("adminPanelOverlay").classList.remove("open"); }
 
@@ -706,14 +706,12 @@ async function loadAllocHistory(){
     _historyLoaded = true;
     listEl.innerHTML = "";
     const V0_SHA   = "dd7d8e6996ea9fb5d5968578ffeb7cecc7f29ecc";
-    const SKIP_MSG = ["add files via upload", "initial commit"];
-    // กรองเอาเฉพาะ commit ที่ควรแสดง (ไม่ใช่ format เก่า)
+    const SKIP_MSG = ["add files via upload", "initial commit", "auto-build energy database", "version 1"];
     const valid = commits.filter((c, idx) => {
       const msg = c.commit.message.toLowerCase();
       const isV0 = c.sha.startsWith(V0_SHA.slice(0,7));
-      // แสดง: V0 เสมอ, หรือ commit ที่ message ไม่ใช่ generic upload
       if(isV0) return true;
-      if(SKIP_MSG.some(s => msg.includes(s)) && idx > 0) return false;
+      if(SKIP_MSG.some(s => msg.includes(s))) return false;
       return true;
     });
     valid.forEach((c, idx) => {
@@ -1377,6 +1375,33 @@ window.onclick = function(event){
   const modal = document.getElementById("eventModal");
   if(event.target===modal) closeEventModal();
 };
+
+async function loadCurrentVersion(){
+  const el = document.getElementById("currentVersionLabel");
+  if(!el) return;
+  try {
+    const res = await fetch(
+      `https://api.github.com/repos/${GITHUB_REPO}/commits?path=data/department_allocation_buildings.csv&per_page=5`,
+      { headers: { Authorization: `token ${GITHUB_TOKEN}`, Accept: "application/vnd.github.v3+json" } }
+    );
+    if(!res.ok) throw new Error(res.status);
+    const commits = await res.json();
+    const V0_SHA = "dd7d8e6996ea9fb5d5968578ffeb7cecc7f29ecc";
+    const SKIP_MSG = ["add files via upload", "initial commit", "auto-build energy database"];
+    const valid = commits.filter(c => {
+      const msg = c.commit.message.toLowerCase();
+      return !SKIP_MSG.some(s => msg.includes(s));
+    });
+    const latest = valid[0] || commits[0];
+    const isV0 = latest.sha.startsWith(V0_SHA.slice(0,7));
+    const rawMsg = latest.commit.message.split("\n")[0];
+    el.textContent = isV0 ? "Version 0 — ค่าเริ่มต้น" : rawMsg.replace(/^(alloc|feat|fix|chore|update):\s*/i,"");
+  } catch(e) { el.textContent = "ไม่สามารถตรวจสอบได้"; }
+}
 </script>
+
+<footer style="text-align:center;padding:24px 16px 16px;font-size:11px;color:#aaa;letter-spacing:.3px">
+  ผู้ดูแลระบบ : นายตวงเพชร ชัยยานนท์ วศ.4 หบอว-ธ. กบห-ธ. ชธธ.
+</footer>
 </body>
 </html>
