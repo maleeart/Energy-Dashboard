@@ -315,8 +315,7 @@
     </div>
     <div class="admin-ftr">
       <button class="btn-reset" onclick="toggleHistory()">📜 ประวัติ</button>
-      <button class="btn-reset" onclick="promptSnapshot()">💾 Snapshot</button>
-      <button class="btn-reset" id="btnRestore" onclick="restoreSnapshot()" style="display:none">↩ Restore</button>
+      <button class="btn-reset" id="btnRestore" onclick="restoreSnapshot()" style="display:none">↩ Undo Apply</button>
       <div style="flex:1"></div>
       <button class="btn-reset" onclick="resetOverrides()">↺ รีเซ็ตค่าเดิม</button>
       <button class="btn-apply" onclick="applyOverrides()">✓ Apply & รีเฟรชกราฟ</button>
@@ -494,11 +493,8 @@ function checkAdminLogin(){
 function openAdmin(){
   buildAdminPanel();
   // แสดงปุ่ม Restore ถ้ามี snapshot
-  const snap  = localStorage.getItem(LS_SNAP);
-  const label = localStorage.getItem(LS_SNAP + "_label");
-  const btn   = document.getElementById("btnRestore");
-  if(snap){ btn.style.display = ""; btn.textContent = `↩ ${label||"Restore"}`; btn.title = label||""; }
-  else     { btn.style.display = "none"; }
+  const btn = document.getElementById("btnRestore");
+  btn.style.display = localStorage.getItem(LS_SNAP) ? "" : "none";
   document.getElementById("adminPanelOverlay").classList.add("open");
 }
 function closeAdmin(){ document.getElementById("adminPanelOverlay").classList.remove("open"); }
@@ -578,6 +574,10 @@ function onRatioInput(el){
 }
 
 function applyOverrides(){
+  // auto-snapshot ก่อน apply เสมอ
+  localStorage.setItem(LS_SNAP, JSON.stringify(RATIO_OVERRIDES));
+  document.getElementById("btnRestore").style.display = "";
+
   const inputs = document.querySelectorAll(".ratio-input");
   inputs.forEach(el => {
     const k = el.dataset.key;
@@ -602,22 +602,6 @@ function resetOverrides(){
   renderAll();
 }
 
-function promptSnapshot(){
-  const name = prompt("ตั้งชื่อ Snapshot นี้:", "").trim();
-  if(name === null) return; // กด Cancel
-  saveSnapshot(name || null);
-}
-
-function saveSnapshot(name){
-  const ts    = new Date().toLocaleTimeString("th-TH");
-  const label = name ? `${name} (${ts})` : ts;
-  localStorage.setItem(LS_SNAP, JSON.stringify(RATIO_OVERRIDES));
-  localStorage.setItem(LS_SNAP + "_label", label);
-  const btn = document.getElementById("btnRestore");
-  btn.style.display = "";
-  btn.title   = `กู้คืน: ${label}`;
-  btn.textContent = `↩ ${label}`;
-}
 
 function restoreSnapshot(){
   const snap = localStorage.getItem(LS_SNAP);
