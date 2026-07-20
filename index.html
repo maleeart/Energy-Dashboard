@@ -315,7 +315,6 @@
     </div>
     <div class="admin-ftr">
       <button class="btn-reset" onclick="toggleHistory()">📜 ประวัติ</button>
-      <button class="btn-reset" id="btnRestore" onclick="restoreSnapshot()" style="display:none">↩ Undo Apply</button>
       <div style="flex:1"></div>
       <button class="btn-reset" onclick="resetOverrides()">↺ รีเซ็ตค่าเดิม</button>
       <button class="btn-apply" onclick="applyOverrides()">✓ Apply & รีเฟรชกราฟ</button>
@@ -493,8 +492,6 @@ function checkAdminLogin(){
 function openAdmin(){
   buildAdminPanel();
   // แสดงปุ่ม Restore ถ้ามี snapshot
-  const btn = document.getElementById("btnRestore");
-  btn.style.display = localStorage.getItem(LS_SNAP) ? "" : "none";
   document.getElementById("adminPanelOverlay").classList.add("open");
 }
 function closeAdmin(){ document.getElementById("adminPanelOverlay").classList.remove("open"); }
@@ -574,10 +571,6 @@ function onRatioInput(el){
 }
 
 function applyOverrides(){
-  // auto-snapshot ก่อน apply เสมอ
-  localStorage.setItem(LS_SNAP, JSON.stringify(RATIO_OVERRIDES));
-  document.getElementById("btnRestore").style.display = "";
-
   const inputs = document.querySelectorAll(".ratio-input");
   inputs.forEach(el => {
     const k = el.dataset.key;
@@ -603,14 +596,6 @@ function resetOverrides(){
 }
 
 
-function restoreSnapshot(){
-  const snap = localStorage.getItem(LS_SNAP);
-  if(!snap) return;
-  RATIO_OVERRIDES = JSON.parse(snap);
-  localStorage.setItem(LS_KEY, snap);
-  buildAdminPanel();
-  renderAll();
-}
 
 // ===== ALLOC HISTORY =====
 let _historyLoaded = false;
