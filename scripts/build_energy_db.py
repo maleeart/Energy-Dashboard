@@ -17,7 +17,7 @@ OUTPUT_WEEKLY_READINGS = DATA_DIR / "weekly_readings.csv"
 OUTPUT_DB_JSON = DATA_DIR / "energy_db.json"
 OUTPUT_VALIDATION = DATA_DIR / "validation_report.json"
 
-MAIN_METER_CODES = {"MDB", "Main", "SCB21"}
+MAIN_METER_CODES = {"MDB", "Main", "SCB21", "SCB 8"}
 DEPARTMENTS = ["สก.ชธธ.", "อบค.", "อบฟ.", "อบย.", "อรอ.", "อคม.", "อหข."]
 EPSILON = 0.000001
 AUTO_RESET_RATIO_THRESHOLD = 100
@@ -514,6 +514,8 @@ def build():
         elif _w["meter_id"] in _FL09_SUBS:
             _fl09.setdefault(_wid, {"scb": 0.0, "subs": 0.0, "meta": None})
             _fl09[_wid]["subs"] += _w["kwh"]
+    _fl09_allocs = {a["department"]: (to_float(a.get("allocation_ratio")) or 0, a.get("allocation_row_no", ""))
+                    for a in allocation_map.get(_FL09_MAIN, [])}
     for _wid, _d in _fl09.items():
         if _d["meta"] is None:
             continue
@@ -521,7 +523,9 @@ def build():
         if _net == 0:
             continue
         _m = _d["meta"]
-        for _dept in ["สก.ชธธ.", "อบค."]:
+        for _dept, (_ratio, _row_no) in _fl09_allocs.items():
+            if _ratio <= 0:
+                continue
             department_weekly.append({
                 "week_start_date": _m["week_start_date"],
                 "week_end_date": _m["week_end_date"],
@@ -531,9 +535,9 @@ def build():
                 "meter_id": _FL09_MAIN,
                 "b_code": _m.get("b_code", ""),
                 "building_name": "ท.0019 ชั้นที่ 9 (net)",
-                "allocation_ratio": 0.5,
-                "allocation_row_no": "",
-                "kwh": round(_net * 0.5, 3),
+                "allocation_ratio": _ratio,
+                "allocation_row_no": _row_no,
+                "kwh": round(_net * _ratio, 3),
                 "source_flags": [],
             })
 
