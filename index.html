@@ -1545,12 +1545,12 @@ async function loadCurrentVersion(){
   z-index: 9;           /* ต่ำกว่า .kD.sel ที่ z-index:10 → card บังครึ่งล่าง */
   opacity: 0;
   filter: drop-shadow(0 -4px 8px rgba(11,29,81,.25));
-  transform: translateY(60px);
+  transform: translateY(60px) rotate(18deg);
   transition: opacity .25s ease, transform .45s cubic-bezier(.34,1.56,.64,1);
 }
 #engyPeek.show {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) rotate(18deg);
 }
 
 /* ---- sparkle ---- */
@@ -1674,7 +1674,7 @@ function updateEngyPeek() {
   }
   const rect = sel.getBoundingClientRect();
   const peekW = 120;
-  const visible = 90; // โผล่มากพอให้เห็นแขนเกยขอบการ์ด
+  const visible = 102; // โผล่มากขึ้นให้เห็นแขนชัด
   engyPeek.style.width  = peekW + "px";
   engyPeek.style.height = peekW + "px";
   engyPeek.style.left = (rect.left - peekW * 0.15) + "px";
