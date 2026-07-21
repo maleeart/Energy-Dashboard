@@ -1538,19 +1538,19 @@ async function loadCurrentVersion(){
 /* ---- ENGY peek behind card ---- */
 #engyPeek {
   position: fixed;
-  width: 100px;
-  height: 100px;
+  width: 110px;
+  height: 110px;
   object-fit: contain;
   pointer-events: none;
-  z-index: 11;
+  z-index: 9;           /* ต่ำกว่า .kD.sel ที่ z-index:10 → card บังครึ่งล่าง */
   opacity: 0;
-  filter: drop-shadow(0 -6px 10px rgba(11,29,81,.35));
-  transform: translateY(40px) scale(.85);
-  transition: opacity .3s ease, transform .4s cubic-bezier(.34,1.56,.64,1);
+  filter: drop-shadow(0 -4px 8px rgba(11,29,81,.25));
+  transform: translateY(60px);
+  transition: opacity .25s ease, transform .45s cubic-bezier(.34,1.56,.64,1);
 }
 #engyPeek.show {
   opacity: 1;
-  transform: translateY(-55px) scale(1);
+  transform: translateY(0);
 }
 
 /* ---- sparkle ---- */
@@ -1673,10 +1673,11 @@ function updateEngyPeek() {
     return;
   }
   const rect = sel.getBoundingClientRect();
-  const peekW = 100;
-  // align right edge of peek to right edge of card, anchor at card top
+  const peekH = 110, peekW = 110;
+  const visible = 68; // px ที่ต้องการให้โผล่เหนือขอบบนการ์ด
+  // top = ขอบบนการ์ด - visible → ทำให้ bottom (peekH-visible)px จมอยู่ใน card
   engyPeek.style.left = (rect.left + window.scrollX + (rect.width - peekW) / 2) + "px";
-  engyPeek.style.top  = (rect.top + window.scrollY) + "px";
+  engyPeek.style.top  = (rect.top + window.scrollY - visible) + "px";
   engyPeek.classList.add("show");
 }
 
