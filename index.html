@@ -136,7 +136,7 @@
 .ban{background:linear-gradient(135deg,var(--pri),#1B3B80,var(--pri-l));padding:12px 28px;display:flex;justify-content:flex-end;gap:12px;align-items:center;flex-wrap:wrap}
 .ban-l{color:rgba(255,255,255,.85);font-size:13px}.ban-v{color:var(--gold);font-size:28px;font-weight:800}.ban-u{color:rgba(255,255,255,.72);font-size:12px}
 .main{padding:20px 24px;max-width:1600px;margin:auto}.kpi-row{display:grid;grid-template-columns:repeat(8,1fr);gap:12px;margin-bottom:20px}
-.card,.kG,.kD{background:var(--card);border-radius:var(--r);box-shadow:var(--sh);padding:16px}.kG{border-top:3px solid var(--gold);cursor:pointer}.kD{color:white;cursor:pointer;opacity:.95}.kD.sel{outline:3px solid var(--gold);outline-offset:-1px}.kD.dim{opacity:.38}
+.card,.kG,.kD{background:var(--card);border-radius:var(--r);box-shadow:var(--sh);padding:16px}.kG{border-top:3px solid var(--gold);cursor:pointer}.kD{color:white;cursor:pointer;opacity:.95}.kD.sel{outline:3px solid #FFD600;outline-offset:-1px;box-shadow:0 0 0 4px rgba(255,214,0,.35),0 6px 20px rgba(0,0,0,.3)!important;transform:translateY(-4px) scale(1.04)!important;z-index:10;position:relative}.kD.dim{opacity:.38}
 .kL{font-size:11px;font-weight:700;opacity:.9}.kS{font-size:10px;opacity:.65}.kV{font-size:20px;font-weight:800;margin-top:4px}.kU{font-size:10px;opacity:.75}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px}.gridB{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 .ct{font-size:14px;font-weight:700;color:var(--pri);margin-bottom:4px}.cs{font-size:11px;color:var(--txt2);margin-bottom:14px}.cw{height:320px}
@@ -1421,7 +1421,7 @@ async function loadCurrentVersion(){
 <!-- ===== ENGY MASCOT ===== -->
 <div id="engyWrap">
   <div id="engySpeech" class="engy-speech"></div>
-  <img id="engyImg" src="ENGY PNG/engy7.png" alt="ENGY" draggable="false">
+  <img id="engyImg" src="ENGY%20PNG/engy7.png" alt="ENGY" draggable="false">
   <div id="engyLabel">ENGY</div>
 </div>
 <div id="sparkleContainer"></div>
@@ -1564,12 +1564,12 @@ async function loadCurrentVersion(){
 <script>
 // ===== ENGY MASCOT =====
 const ENGY_POSES = [
-  { img: "ENGY PNG/engy7.png",   msg: "สวัสดี! ฉันคือ ENGY\nผู้ช่วยพลังงาน EGAT ⚡" },
-  { img: "ENGY PNG/engy4.png",   msg: "ปิดไฟทุกครั้งที่ออก\nจากห้อง ประหยัดได้ 15% 💡" },
-  { img: "ENGY PNG/engy 5.png",  msg: "ตั้งแอร์ที่ 25-26°C\nประหยัดไฟได้มากขึ้น ❄️" },
-  { img: "ENGY PNG/engy8.png",   msg: "ถอดปลั๊กเมื่อไม่ใช้\nลด Standby Power 🔌" },
-  { img: "ENGY PNG/engy 10.png", msg: "ใช้แสงธรรมชาติ\nแทนไฟฟ้าตอนกลางวัน ☀️" },
-  { img: "ENGY PNG/engy9.png",   msg: "LED ประหยัดไฟ\nกว่าหลอดทั่วไป 70%! 🌟" },
+  { img: "ENGY%20PNG/engy7.png",   msg: "สวัสดี! ฉันคือ ENGY\nผู้ช่วยพลังงาน EGAT ⚡" },
+  { img: "ENGY%20PNG/engy4.png",   msg: "ปิดไฟทุกครั้งที่ออก\nจากห้อง ประหยัดได้ 15% 💡" },
+  { img: "ENGY%20PNG/engy 5.png",  msg: "ตั้งแอร์ที่ 25-26°C\nประหยัดไฟได้มากขึ้น ❄️" },
+  { img: "ENGY%20PNG/engy8.png",   msg: "ถอดปลั๊กเมื่อไม่ใช้\nลด Standby Power 🔌" },
+  { img: "ENGY%20PNG/engy 10.png", msg: "ใช้แสงธรรมชาติ\nแทนไฟฟ้าตอนกลางวัน ☀️" },
+  { img: "ENGY%20PNG/engy9.png",   msg: "LED ประหยัดไฟ\nกว่าหลอดทั่วไป 70%! 🌟" },
 ];
 
 let engyIdx = 0;
@@ -1613,10 +1613,10 @@ function engyReact(total, target) {
   if (!total) return;
   const pct = target > 0 ? total / target : 0;
   if (pct > 1.1) {
-    engyImg.src = "ENGY PNG/engy9.png";
+    engyImg.src = "ENGY%20PNG/engy9.png";
     engyShowSpeech("ใช้ไฟเกินเป้า!\nช่วยกันประหยัดด้วยนะ 😅", 5000);
   } else if (pct < 0.85 && pct > 0) {
-    engyImg.src = "ENGY PNG/engy 10.png";
+    engyImg.src = "ENGY%20PNG/engy 10.png";
     engyShowSpeech("เยี่ยม! ใช้ไฟน้อยกว่าเป้า\nขอบคุณทุกคนมากเลย! 🎉", 5000);
   } else {
     engyShowSpeech(ENGY_POSES[0].msg, 4000);
