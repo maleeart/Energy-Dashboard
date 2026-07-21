@@ -1674,10 +1674,10 @@ function updateEngyPeek() {
   }
   const rect = sel.getBoundingClientRect();
   const peekW = 120;
-  const visible = 102; // โผล่มากขึ้นให้เห็นแขนชัด
+  const visible = 84;  // ลดลงให้แขนทับอยู่บนขอบการ์ดพอดี
   engyPeek.style.width  = peekW + "px";
   engyPeek.style.height = peekW + "px";
-  engyPeek.style.left = (rect.left - peekW * 0.15) + "px";
+  engyPeek.style.left = (rect.left + peekW * 0.08) + "px";  // ขยับขวาให้แขนชิดขอบซ้ายการ์ด
   engyPeek.style.top  = (rect.top - visible) + "px";
   engyPeek.classList.add("show");
 }
