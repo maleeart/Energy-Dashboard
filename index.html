@@ -1424,7 +1424,7 @@ async function loadCurrentVersion(){
   <img id="engyImg" src="ENGY%20PNG/engy7.png" alt="ENGY" draggable="false">
 </div>
 <!-- ENGY peek behind card -->
-<img id="engyPeek" src="ENGY%20PNG/engy4.png" alt="" draggable="false">
+<img id="engyPeek" src="ENGY%20PNG/engy 11.png" alt="" draggable="false">
 <div id="sparkleContainer"></div>
 
 <style>
@@ -1674,8 +1674,8 @@ function updateEngyPeek() {
   }
   const rect = sel.getBoundingClientRect();
   const peekW = 110;
-  const visible = 68; // px โผล่เหนือขอบบนการ์ด (position:fixed ใช้ viewport coord เหมือน getBoundingClientRect)
-  engyPeek.style.left = (rect.left + (rect.width - peekW) / 2) + "px";
+  const visible = 72; // px โผล่เหนือขอบบน
+  engyPeek.style.left = (rect.left - peekW * 0.18) + "px"; // ชิดซ้ายนิดนึง อารมณ์เกาะขอบ
   engyPeek.style.top  = (rect.top - visible) + "px";
   engyPeek.classList.add("show");
 }
