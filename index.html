@@ -1424,7 +1424,7 @@ async function loadCurrentVersion(){
   <img id="engyImg" src="ENGY%20PNG/engy7.png" alt="ENGY" draggable="false">
 </div>
 <!-- ENGY peek behind card -->
-<img id="engyPeek" src="ENGY%20PNG/engy 11.png" alt="" draggable="false">
+<div id="engyPeekWrap"><img id="engyPeek" src="ENGY%20PNG/engy 11.png" alt="" draggable="false"></div>
 <div id="sparkleContainer"></div>
 
 <style>
@@ -1536,21 +1536,27 @@ async function loadCurrentVersion(){
 }
 
 /* ---- ENGY peek behind card ---- */
-#engyPeek {
+#engyPeekWrap {
   position: fixed;
-  width: 110px;
-  height: 110px;
-  object-fit: contain;
+  overflow: hidden;        /* clip ส่วนล่างด้วย CSS เอง ไม่ต้องพึ่ง card บัง */
   pointer-events: none;
-  z-index: 9;           /* ต่ำกว่า .kD.sel ที่ z-index:10 → card บังครึ่งล่าง */
+  z-index: 500;
   opacity: 0;
-  filter: drop-shadow(0 -4px 8px rgba(11,29,81,.25));
-  transform: translateY(60px) rotate(18deg);
-  transition: opacity .25s ease, transform .45s cubic-bezier(.34,1.56,.64,1);
+  transform: translateY(28px);
+  transition: opacity .25s ease, transform .4s cubic-bezier(.34,1.56,.64,1);
 }
-#engyPeek.show {
+#engyPeekWrap.show {
   opacity: 1;
-  transform: translateY(0) rotate(18deg);
+  transform: translateY(0);
+}
+#engyPeek {
+  display: block;
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  transform: rotate(18deg);
+  transform-origin: bottom center;
+  filter: drop-shadow(0 -4px 8px rgba(11,29,81,.25));
 }
 
 /* ---- sparkle ---- */
@@ -1663,23 +1669,37 @@ function countUp(el, target, duration=1200) {
 }
 
 // ===== ENGY PEEK BEHIND SELECTED CARD =====
-const engyPeek = document.getElementById("engyPeek");
+const engyPeekWrap = document.getElementById("engyPeekWrap");
+const engyPeek     = document.getElementById("engyPeek");
 let peekTimer = null;
 
 function updateEngyPeek() {
   const sel = document.querySelector(".kD.sel, .kG.sel");
-  if (!sel) {
-    engyPeek.classList.remove("show");
-    return;
+  if (!sel) { engyPeekWrap.classList.remove("show"); return; }
+
+  const rect    = sel.getBoundingClientRect();
+  const peekW   = 120;
+  const visible = 84; // height ของ wrapper = ส่วนที่โผล่เหนือการ์ด
+  const leftPos = rect.left + peekW * 0.08;
+  const topPos  = rect.top  - visible;
+
+  // snap position ก่อน (ไม่มี transition บน left/top) แล้วค่อย show
+  const wasShown = engyPeekWrap.classList.contains("show");
+  if (wasShown) {
+    // teleport ทันที ไม่ให้เห็นขอบเขต
+    engyPeekWrap.style.transition = "none";
+    engyPeekWrap.style.left   = leftPos + "px";
+    engyPeekWrap.style.top    = topPos  + "px";
+    engyPeekWrap.style.width  = peekW   + "px";
+    engyPeekWrap.style.height = visible + "px";
+    requestAnimationFrame(() => { engyPeekWrap.style.transition = ""; });
+  } else {
+    engyPeekWrap.style.left   = leftPos + "px";
+    engyPeekWrap.style.top    = topPos  + "px";
+    engyPeekWrap.style.width  = peekW   + "px";
+    engyPeekWrap.style.height = visible + "px";
+    engyPeekWrap.classList.add("show");
   }
-  const rect = sel.getBoundingClientRect();
-  const peekW = 120;
-  const visible = 84;  // ลดลงให้แขนทับอยู่บนขอบการ์ดพอดี
-  engyPeek.style.width  = peekW + "px";
-  engyPeek.style.height = peekW + "px";
-  engyPeek.style.left = (rect.left + peekW * 0.08) + "px";  // ขยับขวาให้แขนชิดขอบซ้ายการ์ด
-  engyPeek.style.top  = (rect.top - visible) + "px";
-  engyPeek.classList.add("show");
 }
 
 // patch renderKPI to call updateEngyPeek after render
@@ -1691,7 +1711,7 @@ window.renderKPI = function() {
 };
 
 window.addEventListener("scroll", () => {
-  if (engyPeek.classList.contains("show")) updateEngyPeek();
+  if (engyPeekWrap.classList.contains("show")) updateEngyPeek();
 }, { passive: true });
 
 // hook ตอน data โหลดเสร็จ — animate grandTotal + ENGY react
