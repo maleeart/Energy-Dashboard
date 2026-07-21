@@ -1184,12 +1184,13 @@ function renderYearLine(){
     };
   });
 
-  // MEA comparison lines (เส้นประ สีเดียวกับปี แต่จางกว่า)
+  // MEA comparison lines (เส้นประ สีแดงตายตัว แยกจากเส้นปี)
+  const MEA_COLORS = ["#E53935","#FF7043","#AB47BC","#00ACC1","#F9A825"];
   if(showMEA_year){
-    activeYears.forEach(y=>{
+    activeYears.forEach((y,meaIdx)=>{
       const meaYear = MEA_DATA[y];
       if(!meaYear) return;
-      const color = colors[years.indexOf(y)%colors.length];
+      const color = MEA_COLORS[meaIdx % MEA_COLORS.length];
       datasets.push({
         label: "กฟน. "+(y+543),
         data: MO.map((_,i)=>{
