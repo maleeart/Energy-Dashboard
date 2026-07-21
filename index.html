@@ -136,7 +136,7 @@
 .ban{background:linear-gradient(135deg,var(--pri),#1B3B80,var(--pri-l));padding:12px 28px;display:flex;justify-content:flex-end;gap:12px;align-items:center;flex-wrap:wrap}
 .ban-l{color:rgba(255,255,255,.85);font-size:13px}.ban-v{color:var(--gold);font-size:28px;font-weight:800}.ban-u{color:rgba(255,255,255,.72);font-size:12px}
 .main{padding:20px 24px;max-width:1600px;margin:auto}.kpi-row{display:grid;grid-template-columns:repeat(8,1fr);gap:12px;margin-bottom:20px}
-.card,.kG,.kD{background:var(--card);border-radius:var(--r);box-shadow:var(--sh);padding:16px}.kG{border-top:3px solid var(--gold);cursor:pointer}.kD{color:white;cursor:pointer;opacity:.95}.kD.sel{outline:3px solid #5C9EFF;outline-offset:-1px;box-shadow:0 0 0 5px rgba(92,158,255,.30),0 8px 24px rgba(11,29,81,.45)!important;transform:translateY(-4px) scale(1.04)!important;z-index:10;position:relative}.kD.dim{opacity:.38}
+.card,.kG,.kD{background:var(--card);border-radius:var(--r);box-shadow:var(--sh);padding:16px}.kG{border-top:3px solid var(--gold);cursor:pointer}.kD{color:white;cursor:pointer;opacity:.95}.kD.sel{outline:3px solid #FFB800;outline-offset:-1px;box-shadow:0 0 0 5px rgba(255,184,0,.28),0 8px 24px rgba(11,29,81,.45)!important;transform:translateY(-4px) scale(1.04)!important;z-index:10;position:relative}.kD.dim{opacity:.38}
 .kL{font-size:11px;font-weight:700;opacity:.9}.kS{font-size:10px;opacity:.65}.kV{font-size:20px;font-weight:800;margin-top:4px}.kU{font-size:10px;opacity:.75}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px}.gridB{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 .ct{font-size:14px;font-weight:700;color:var(--pri);margin-bottom:4px}.cs{font-size:11px;color:var(--txt2);margin-bottom:14px}.cw{height:320px}
@@ -1422,10 +1422,9 @@ async function loadCurrentVersion(){
 <div id="engyWrap">
   <div id="engySpeech" class="engy-speech"></div>
   <img id="engyImg" src="ENGY%20PNG/engy7.png" alt="ENGY" draggable="false">
-  <div id="engyLabel">ENGY</div>
 </div>
 <!-- ENGY peek behind card -->
-<img id="engyPeek" src="ENGY%20PNG/engy4.png" alt="" draggable="false">
+<img id="engyPeek" src="ENGY%20PNG/engy7.png" alt="" draggable="false">
 <div id="sparkleContainer"></div>
 
 <style>
@@ -1489,19 +1488,6 @@ async function loadCurrentVersion(){
 }
 #engyWrap:hover #engyImg { transform: scale(1.08); }
 #engyWrap:active #engyImg { transform: scale(.95); }
-#engyLabel {
-  font-size: 10px;
-  font-weight: 700;
-  color: var(--pri);
-  background: var(--gold);
-  border-radius: 99px;
-  padding: 1px 8px;
-  margin-top: -6px;
-  margin-bottom: 4px;
-  letter-spacing: 1px;
-  box-shadow: 0 1px 4px rgba(0,0,0,.15);
-}
-
 /* ---- speech bubble ---- */
 .engy-speech {
   background: #fff;
@@ -1552,19 +1538,19 @@ async function loadCurrentVersion(){
 /* ---- ENGY peek behind card ---- */
 #engyPeek {
   position: fixed;
-  width: 72px;
-  height: 72px;
+  width: 100px;
+  height: 100px;
   object-fit: contain;
   pointer-events: none;
-  z-index: 9;
+  z-index: 11;
   opacity: 0;
-  filter: drop-shadow(0 -4px 8px rgba(11,29,81,.3));
-  transform: translateY(30px);
-  transition: opacity .3s ease, transform .35s cubic-bezier(.34,1.56,.64,1);
+  filter: drop-shadow(0 -6px 10px rgba(11,29,81,.35));
+  transform: translateY(40px) scale(.85);
+  transition: opacity .3s ease, transform .4s cubic-bezier(.34,1.56,.64,1);
 }
 #engyPeek.show {
   opacity: 1;
-  transform: translateY(-8px);
+  transform: translateY(-55px) scale(1);
 }
 
 /* ---- sparkle ---- */
@@ -1687,10 +1673,10 @@ function updateEngyPeek() {
     return;
   }
   const rect = sel.getBoundingClientRect();
-  // position peek at top-right corner of the selected card, behind it
-  const peekW = 72;
-  engyPeek.style.left = (rect.right - peekW * 0.7 + window.scrollX) + "px";
-  engyPeek.style.top  = (rect.top - 20 + window.scrollY) + "px";
+  const peekW = 100;
+  // align right edge of peek to right edge of card, anchor at card top
+  engyPeek.style.left = (rect.left + window.scrollX + (rect.width - peekW) / 2) + "px";
+  engyPeek.style.top  = (rect.top + window.scrollY) + "px";
   engyPeek.classList.add("show");
 }
 
