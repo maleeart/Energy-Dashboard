@@ -1417,5 +1417,270 @@ async function loadCurrentVersion(){
 <footer style="text-align:center;padding:24px 16px 16px;font-size:11px;color:#aaa;letter-spacing:.3px">
   ผู้ดูแลระบบ : นายตวงเพชร ชัยยานนท์ วศ.4 หบอว-ธ. กบห-ธ. ชธธ.
 </footer>
+
+<!-- ===== ENGY MASCOT ===== -->
+<div id="engyWrap">
+  <div id="engySpeech" class="engy-speech"></div>
+  <img id="engyImg" src="ENGY PNG/engy7.png" alt="ENGY" draggable="false">
+  <div id="engyLabel">ENGY</div>
+</div>
+<div id="sparkleContainer"></div>
+
+<style>
+/* ---- card hover lift ---- */
+.card, .kG, .kD {
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.card:hover { transform: translateY(-3px); box-shadow: 0 6px 24px rgba(11,29,81,.14); }
+.kG:hover, .kD:hover { transform: translateY(-3px) scale(1.02); }
+
+/* ---- header shimmer ---- */
+@keyframes hdrShimmer {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.hdr {
+  background: linear-gradient(135deg, #0B1D51, #1A3A7A, #0d2b6e, #1565C0, #0B1D51) !important;
+  background-size: 300% 300% !important;
+  animation: hdrShimmer 8s ease infinite;
+}
+
+/* ---- ban pulse ---- */
+.ban-v { animation: banPulse 2.5s ease-in-out infinite; }
+@keyframes banPulse {
+  0%,100% { text-shadow: 0 0 0px #C5A85F44; }
+  50%      { text-shadow: 0 0 16px #C5A85Faa; }
+}
+
+/* ---- kpi slide-in ---- */
+@keyframes slideUp {
+  from { opacity:0; transform:translateY(20px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+.kG, .kD { animation: slideUp .4s ease both; }
+
+/* ---- ENGY wrap ---- */
+#engyWrap {
+  position: fixed;
+  bottom: 0;
+  right: 24px;
+  width: 110px;
+  z-index: 500;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: engyFloat 3s ease-in-out infinite;
+}
+@keyframes engyFloat {
+  0%,100% { transform: translateY(0px); }
+  50%      { transform: translateY(-8px); }
+}
+#engyImg {
+  width: 110px;
+  height: 110px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 12px rgba(11,29,81,.25));
+  transition: transform .15s ease;
+}
+#engyWrap:hover #engyImg { transform: scale(1.08); }
+#engyWrap:active #engyImg { transform: scale(.95); }
+#engyLabel {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--pri);
+  background: var(--gold);
+  border-radius: 99px;
+  padding: 1px 8px;
+  margin-top: -6px;
+  margin-bottom: 4px;
+  letter-spacing: 1px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.15);
+}
+
+/* ---- speech bubble ---- */
+.engy-speech {
+  background: #fff;
+  border: 2px solid var(--gold);
+  border-radius: 12px;
+  padding: 8px 12px;
+  font-size: 12px;
+  font-family: 'Sarabun', sans-serif;
+  color: var(--txt);
+  max-width: 200px;
+  min-width: 140px;
+  text-align: center;
+  line-height: 1.5;
+  position: absolute;
+  bottom: 120px;
+  right: 0;
+  box-shadow: 0 4px 16px rgba(11,29,81,.15);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity .3s, transform .3s;
+  z-index: 600;
+  white-space: pre-wrap;
+}
+.engy-speech::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  right: 30px;
+  border: 5px solid transparent;
+  border-top-color: var(--gold);
+}
+.engy-speech::before {
+  content: '';
+  position: absolute;
+  bottom: -7px;
+  right: 31px;
+  border: 4px solid transparent;
+  border-top-color: #fff;
+  z-index: 1;
+}
+.engy-speech.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* ---- sparkle ---- */
+.sparkle {
+  position: fixed;
+  pointer-events: none;
+  font-size: 18px;
+  animation: sparkleFly 1.2s ease-out forwards;
+  z-index: 9999;
+}
+@keyframes sparkleFly {
+  0%   { opacity:1; transform: translate(0,0) scale(1); }
+  100% { opacity:0; transform: translate(var(--dx), var(--dy)) scale(.3); }
+}
+</style>
+
+<script>
+// ===== ENGY MASCOT =====
+const ENGY_POSES = [
+  { img: "ENGY PNG/engy7.png",   msg: "สวัสดี! ฉันคือ ENGY\nผู้ช่วยพลังงาน EGAT ⚡" },
+  { img: "ENGY PNG/engy4.png",   msg: "ปิดไฟทุกครั้งที่ออก\nจากห้อง ประหยัดได้ 15% 💡" },
+  { img: "ENGY PNG/engy 5.png",  msg: "ตั้งแอร์ที่ 25-26°C\nประหยัดไฟได้มากขึ้น ❄️" },
+  { img: "ENGY PNG/engy8.png",   msg: "ถอดปลั๊กเมื่อไม่ใช้\nลด Standby Power 🔌" },
+  { img: "ENGY PNG/engy 10.png", msg: "ใช้แสงธรรมชาติ\nแทนไฟฟ้าตอนกลางวัน ☀️" },
+  { img: "ENGY PNG/engy9.png",   msg: "LED ประหยัดไฟ\nกว่าหลอดทั่วไป 70%! 🌟" },
+];
+
+let engyIdx = 0;
+let engySpeechTimer = null;
+
+const engyWrap  = document.getElementById("engyWrap");
+const engyImg   = document.getElementById("engyImg");
+const engySpeech= document.getElementById("engySpeech");
+
+function engyShowSpeech(msg, duration=4000) {
+  clearTimeout(engySpeechTimer);
+  engySpeech.textContent = msg;
+  engySpeech.classList.add("show");
+  engySpeechTimer = setTimeout(() => engySpeech.classList.remove("show"), duration);
+}
+
+function engyNext() {
+  spawnSparkles(engyWrap);
+  engyIdx = (engyIdx + 1) % ENGY_POSES.length;
+  const p = ENGY_POSES[engyIdx];
+  engyImg.style.opacity = "0";
+  engyImg.style.transform = "scale(.8)";
+  setTimeout(() => {
+    engyImg.src = p.img;
+    engyImg.style.opacity = "1";
+    engyImg.style.transform = "scale(1)";
+  }, 150);
+  engyShowSpeech(p.msg);
+}
+
+engyImg.style.transition = "opacity .15s, transform .15s";
+engyWrap.addEventListener("click", engyNext);
+
+// greet on load after data ready
+function engyGreet() {
+  setTimeout(() => engyShowSpeech(ENGY_POSES[0].msg, 5000), 1200);
+}
+
+// react when data loads (called from renderAll)
+function engyReact(total, target) {
+  if (!total) return;
+  const pct = target > 0 ? total / target : 0;
+  if (pct > 1.1) {
+    engyImg.src = "ENGY PNG/engy9.png";
+    engyShowSpeech("ใช้ไฟเกินเป้า!\nช่วยกันประหยัดด้วยนะ 😅", 5000);
+  } else if (pct < 0.85 && pct > 0) {
+    engyImg.src = "ENGY PNG/engy 10.png";
+    engyShowSpeech("เยี่ยม! ใช้ไฟน้อยกว่าเป้า\nขอบคุณทุกคนมากเลย! 🎉", 5000);
+  } else {
+    engyShowSpeech(ENGY_POSES[0].msg, 4000);
+  }
+}
+
+// ===== SPARKLES =====
+const sparkleContainer = document.getElementById("sparkleContainer");
+const SPARKS = ["⚡","✨","💫","🌟","⭐"];
+function spawnSparkles(refEl) {
+  const rect = refEl ? refEl.getBoundingClientRect() : { left: window.innerWidth/2, top: window.innerHeight/2, width:0, height:0 };
+  for (let i = 0; i < 7; i++) {
+    const el = document.createElement("div");
+    el.className = "sparkle";
+    el.textContent = SPARKS[Math.floor(Math.random()*SPARKS.length)];
+    const dx = (Math.random()-0.5)*160;
+    const dy = -(Math.random()*80+40);
+    el.style.cssText = `left:${rect.left+rect.width/2}px;top:${rect.top+rect.height/2}px;--dx:${dx}px;--dy:${dy}px;animation-delay:${i*60}ms`;
+    sparkleContainer.appendChild(el);
+    setTimeout(() => el.remove(), 1400);
+  }
+}
+
+// ===== COUNT-UP ANIMATION =====
+function countUp(el, target, duration=1200) {
+  if (!el || isNaN(target)) return;
+  const start = performance.now();
+  const startVal = 0;
+  function tick(now) {
+    const t = Math.min((now - start) / duration, 1);
+    const ease = 1 - Math.pow(1 - t, 3);
+    const cur = Math.round(startVal + (target - startVal) * ease);
+    el.textContent = cur.toLocaleString("th-TH");
+    if (t < 1) requestAnimationFrame(tick);
+    else el.textContent = target.toLocaleString("th-TH");
+  }
+  requestAnimationFrame(tick);
+}
+
+// hook ตอน data โหลดเสร็จ — animate grandTotal + ENGY react
+let _grandTotalAnimated = false;
+const _grandTotalEl = document.getElementById("grandTotal");
+
+function engyOnDataReady() {
+  if (_grandTotalAnimated) return;
+  const raw = parseFloat((_grandTotalEl?.textContent||"0").replace(/[^0-9.]/g,""));
+  if (raw > 0) {
+    _grandTotalAnimated = true;
+    countUp(_grandTotalEl, raw, 1400);
+    spawnSparkles(_grandTotalEl);
+    engyGreet();
+  }
+}
+
+// KPI card stagger via MutationObserver
+const kpiRow = document.getElementById("kpiRow");
+if (kpiRow) {
+  new MutationObserver(() => {
+    [...kpiRow.children].forEach((el, i) => {
+      el.style.animationDelay = `${i * 50}ms`;
+    });
+    setTimeout(engyOnDataReady, 200);
+  }).observe(kpiRow, { childList: true });
+}
+</script>
 </body>
 </html>
