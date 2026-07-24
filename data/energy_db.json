@@ -14,7 +14,7 @@
       "SCB 8",
       "SCB21"
     ],
-    "generated_at": "2026-07-24T02:19:32",
+    "generated_at": "2026-07-24T02:19:53",
     "missing_reading_logic": "Blank or 0 raw_reading uses previous valid reading.",
     "unchanged_reading_logic": "If current equals previous, usage is 0.",
     "allocation_logic": "Fill-down department, then use row allocation_ratio directly."
@@ -3022,18 +3022,18 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "B.0001__FL01__MDB",
       "b_code": "B.0001",
       "subb_code": "MDB",
       "building_name": "บ.0001 อาคาร แฟลต อบค.",
-      "raw_reading": "",
+      "raw_reading": 8078.0,
       "raw_unit": "kWh",
-      "normalized_kwh": 8075.0,
-      "usage_kwh": 0,
-      "reader": "",
+      "normalized_kwh": 8078.0,
+      "usage_kwh": 3.0,
+      "reader": "ธนวิชญ์",
       "note": ""
     },
     {
@@ -3046,7 +3046,7 @@
       "building_name": "บ.0001 อาคาร แฟลต อบค.",
       "raw_reading": "",
       "raw_unit": "kWh",
-      "normalized_kwh": 8075.0,
+      "normalized_kwh": 8078.0,
       "usage_kwh": 0,
       "reader": "",
       "note": ""
@@ -4252,18 +4252,18 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "D.0015__FL01__MDB",
       "b_code": "D.0015",
       "subb_code": "MDB",
       "building_name": "ต.0015 อาคารโรงซ่อมเครื่องกล อสร.",
-      "raw_reading": "",
+      "raw_reading": 26864.0,
       "raw_unit": "kWh",
       "normalized_kwh": 26864.0,
       "usage_kwh": 0,
-      "reader": "",
+      "reader": "ธนวิชญ์",
       "note": ""
     },
     {
@@ -5482,7 +5482,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "D.0017__FL01__MDB",
@@ -6712,18 +6712,18 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "D.0017__FL01__ร้านค้า_1",
       "b_code": "D.0017",
       "subb_code": "ร้านค้า 1",
       "building_name": "ต.0017 ร้านอาหาร 1 (จ๊ายตี๋)",
-      "raw_reading": "",
+      "raw_reading": 152.0,
       "raw_unit": "kWh",
-      "normalized_kwh": 62.0,
-      "usage_kwh": 0,
-      "reader": "",
+      "normalized_kwh": 152.0,
+      "usage_kwh": 90.0,
+      "reader": "ธนวิชญ์",
       "note": ""
     },
     {
@@ -6736,7 +6736,7 @@
       "building_name": "ต.0017 ร้านอาหาร 1 (จ๊ายตี๋)",
       "raw_reading": "",
       "raw_unit": "kWh",
-      "normalized_kwh": 62.0,
+      "normalized_kwh": 152.0,
       "usage_kwh": 0,
       "reader": "",
       "note": ""
@@ -7942,18 +7942,18 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "D.0017__FL01__ร้านค้า_2",
       "b_code": "D.0017",
       "subb_code": "ร้านค้า 2",
       "building_name": "ต.0017 ร้านอาหาร 2 (ก๋วยเตี๋ยวสะบัดเส้น)",
-      "raw_reading": "",
+      "raw_reading": 5536.0,
       "raw_unit": "kWh",
-      "normalized_kwh": 5491.0,
-      "usage_kwh": 0,
-      "reader": "",
+      "normalized_kwh": 5536.0,
+      "usage_kwh": 45.0,
+      "reader": "ธนวิชญ์",
       "note": ""
     },
     {
@@ -7966,7 +7966,7 @@
       "building_name": "ต.0017 ร้านอาหาร 2 (ก๋วยเตี๋ยวสะบัดเส้น)",
       "raw_reading": "",
       "raw_unit": "kWh",
-      "normalized_kwh": 5491.0,
+      "normalized_kwh": 5536.0,
       "usage_kwh": 0,
       "reader": "",
       "note": ""
@@ -9172,7 +9172,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "D.0017__FL01__ร้านค้า_3",
@@ -10402,18 +10402,18 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "D.0017__FL01__ร้านค้า_4",
       "b_code": "D.0017",
       "subb_code": "ร้านค้า 4",
       "building_name": "ต.0017 ตู้ ATM ธนาคารกรุงไทย",
-      "raw_reading": "",
+      "raw_reading": 2385.0,
       "raw_unit": "kWh",
-      "normalized_kwh": 2364.0,
-      "usage_kwh": 0,
-      "reader": "",
+      "normalized_kwh": 2385.0,
+      "usage_kwh": 21.0,
+      "reader": "ธนวิชญ์",
       "note": ""
     },
     {
@@ -10426,7 +10426,7 @@
       "building_name": "ต.0017 ตู้ ATM ธนาคารกรุงไทย",
       "raw_reading": "",
       "raw_unit": "kWh",
-      "normalized_kwh": 2364.0,
+      "normalized_kwh": 2385.0,
       "usage_kwh": 0,
       "reader": "",
       "note": ""
@@ -11632,18 +11632,18 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "D.0017__FL01__ร้านค้า_5",
       "b_code": "D.0017",
       "subb_code": "ร้านค้า 5",
       "building_name": "ต.0017 ร้านกาแฟ ใหม่",
-      "raw_reading": "",
+      "raw_reading": 1916.0,
       "raw_unit": "kWh",
-      "normalized_kwh": 19127.0,
-      "usage_kwh": 0,
-      "reader": "",
+      "normalized_kwh": 1916000.0,
+      "usage_kwh": 1896873.0,
+      "reader": "ธนวิชญ์",
       "note": ""
     },
     {
@@ -11656,7 +11656,7 @@
       "building_name": "ต.0017 ร้านกาแฟ ใหม่",
       "raw_reading": "",
       "raw_unit": "kWh",
-      "normalized_kwh": 19127.0,
+      "normalized_kwh": 1916000.0,
       "usage_kwh": 0,
       "reader": "",
       "note": ""
@@ -12862,7 +12862,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "D.0019__FL01__MDB",
@@ -14092,18 +14092,18 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "D.0019__FL01__ร้านค้า_1",
       "b_code": "D.0019",
       "subb_code": "ร้านค้า 1",
       "building_name": "ต.0019 ร้านอาหาร 4 (ครัวเทคแคร์)",
-      "raw_reading": "",
+      "raw_reading": 8063.0,
       "raw_unit": "kWh",
-      "normalized_kwh": 7923.0,
-      "usage_kwh": 0,
-      "reader": "",
+      "normalized_kwh": 8063.0,
+      "usage_kwh": 140.0,
+      "reader": "ธนวิชญ์",
       "note": ""
     },
     {
@@ -14116,7 +14116,7 @@
       "building_name": "ต.0019 ร้านอาหาร 4 (ครัวเทคแคร์)",
       "raw_reading": "",
       "raw_unit": "kWh",
-      "normalized_kwh": 7923.0,
+      "normalized_kwh": 8063.0,
       "usage_kwh": 0,
       "reader": "",
       "note": ""
@@ -15322,18 +15322,18 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "D.0019__FL01__ร้านค้า_2",
       "b_code": "D.0019",
       "subb_code": "ร้านค้า 2",
       "building_name": "ต.0019 ร้านอาหาร 5 (ตี๋ใหญ่ข้าวมันไก่)",
-      "raw_reading": "",
+      "raw_reading": 5760.0,
       "raw_unit": "kWh",
       "normalized_kwh": 5760.0,
       "usage_kwh": 0,
-      "reader": "",
+      "reader": "ธนวิชญ์",
       "note": ""
     },
     {
@@ -16552,18 +16552,18 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "D.0019__FL01__ร้านค้า_3",
       "b_code": "D.0019",
       "subb_code": "ร้านค้า 3",
       "building_name": "ต.0019 ร้านอาหาร 6 (ก๋วยเตี๋ยวแก้วขวัญ)",
-      "raw_reading": "",
+      "raw_reading": 1549.0,
       "raw_unit": "kWh",
-      "normalized_kwh": 1482.0,
-      "usage_kwh": 0,
-      "reader": "",
+      "normalized_kwh": 1549.0,
+      "usage_kwh": 67.0,
+      "reader": "ธนวิชญ์",
       "note": ""
     },
     {
@@ -16576,7 +16576,7 @@
       "building_name": "ต.0019 ร้านอาหาร 6 (ก๋วยเตี๋ยวแก้วขวัญ)",
       "raw_reading": "",
       "raw_unit": "kWh",
-      "normalized_kwh": 1482.0,
+      "normalized_kwh": 1549.0,
       "usage_kwh": 0,
       "reader": "",
       "note": ""
@@ -17782,18 +17782,18 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "D.0019__FL01__ร้านค้า_4",
       "b_code": "D.0019",
       "subb_code": "ร้านค้า 4",
       "building_name": "ต.0019 ร้านอาหาร 7 (ต้อมผลไม้สด)",
-      "raw_reading": "",
+      "raw_reading": 6084.0,
       "raw_unit": "kWh",
-      "normalized_kwh": 6041.0,
-      "usage_kwh": 0,
-      "reader": "",
+      "normalized_kwh": 6084.0,
+      "usage_kwh": 43.0,
+      "reader": "ธนวิชญ์",
       "note": ""
     },
     {
@@ -17806,7 +17806,7 @@
       "building_name": "ต.0019 ร้านอาหาร 7 (ต้อมผลไม้สด)",
       "raw_reading": "",
       "raw_unit": "kWh",
-      "normalized_kwh": 6041.0,
+      "normalized_kwh": 6084.0,
       "usage_kwh": 0,
       "reader": "",
       "note": ""
@@ -19012,18 +19012,18 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "D.0019__FL01__ร้านค้า_5",
       "b_code": "D.0019",
       "subb_code": "ร้านค้า 5",
       "building_name": "ต.0019 ร้านอาหาร 8 (ปั้นไปเรื่อย)",
-      "raw_reading": "",
+      "raw_reading": 5789.0,
       "raw_unit": "kWh",
-      "normalized_kwh": 5502.0,
-      "usage_kwh": 0,
-      "reader": "",
+      "normalized_kwh": 5789.0,
+      "usage_kwh": 287.0,
+      "reader": "ธนวิชญ์",
       "note": ""
     },
     {
@@ -19036,7 +19036,7 @@
       "building_name": "ต.0019 ร้านอาหาร 8 (ปั้นไปเรื่อย)",
       "raw_reading": "",
       "raw_unit": "kWh",
-      "normalized_kwh": 5502.0,
+      "normalized_kwh": 5789.0,
       "usage_kwh": 0,
       "reader": "",
       "note": ""
@@ -20242,18 +20242,18 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "D.0019__FL01__ร้านค้า_6",
       "b_code": "D.0019",
       "subb_code": "ร้านค้า 6",
       "building_name": "ต.0019 ร้านอาหาร 9 (อาอิซะห์อาหารอิสลาม)",
-      "raw_reading": "",
+      "raw_reading": 1867.0,
       "raw_unit": "kWh",
-      "normalized_kwh": 1789.0,
-      "usage_kwh": 0,
-      "reader": "",
+      "normalized_kwh": 1867.0,
+      "usage_kwh": 78.0,
+      "reader": "ธนวิชญ์",
       "note": ""
     },
     {
@@ -20266,7 +20266,7 @@
       "building_name": "ต.0019 ร้านอาหาร 9 (อาอิซะห์อาหารอิสลาม)",
       "raw_reading": "",
       "raw_unit": "kWh",
-      "normalized_kwh": 1789.0,
+      "normalized_kwh": 1867.0,
       "usage_kwh": 0,
       "reader": "",
       "note": ""
@@ -21472,18 +21472,18 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "D.0019__FL01__ร้านค้า_7",
       "b_code": "D.0019",
       "subb_code": "ร้านค้า 7",
       "building_name": "ต.0019 ร้านสหกรณ์",
-      "raw_reading": "",
+      "raw_reading": 6558.0,
       "raw_unit": "kWh",
-      "normalized_kwh": 6020.0,
-      "usage_kwh": 0,
-      "reader": "",
+      "normalized_kwh": 6558.0,
+      "usage_kwh": 538.0,
+      "reader": "ธนวิชญ์",
       "note": ""
     },
     {
@@ -21496,7 +21496,7 @@
       "building_name": "ต.0019 ร้านสหกรณ์",
       "raw_reading": "",
       "raw_unit": "kWh",
-      "normalized_kwh": 6020.0,
+      "normalized_kwh": 6558.0,
       "usage_kwh": 0,
       "reader": "",
       "note": ""
@@ -22702,7 +22702,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "D.0025__FL01__MDB",
@@ -23932,18 +23932,18 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "D.0026__FL01__MDB",
       "b_code": "D.0026",
       "subb_code": "MDB",
       "building_name": "ต.0026 อาคารระบบประปา",
-      "raw_reading": "",
+      "raw_reading": 7747.66,
       "raw_unit": "kWh",
-      "normalized_kwh": 7603.58,
-      "usage_kwh": 0,
-      "reader": "",
+      "normalized_kwh": 7747.66,
+      "usage_kwh": 144.08,
+      "reader": "ธนวิชญ์",
       "note": ""
     },
     {
@@ -23956,7 +23956,7 @@
       "building_name": "ต.0026 อาคารระบบประปา",
       "raw_reading": "",
       "raw_unit": "kWh",
-      "normalized_kwh": 7603.58,
+      "normalized_kwh": 7747.66,
       "usage_kwh": 0,
       "reader": "",
       "note": ""
@@ -25162,18 +25162,18 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "D.0031__FL01__MDB",
       "b_code": "D.0031",
       "subb_code": "MDB",
       "building_name": "ต.0031 อาคารโรงอาหาร",
-      "raw_reading": "",
-      "raw_unit": "kWh",
-      "normalized_kwh": 45054.0,
-      "usage_kwh": 0,
-      "reader": "",
+      "raw_reading": 45.299,
+      "raw_unit": "MWh",
+      "normalized_kwh": 45299.0,
+      "usage_kwh": 245.0,
+      "reader": "ธนวิชญ์",
       "note": ""
     },
     {
@@ -25186,7 +25186,7 @@
       "building_name": "ต.0031 อาคารโรงอาหาร",
       "raw_reading": "",
       "raw_unit": "kWh",
-      "normalized_kwh": 45054.0,
+      "normalized_kwh": 45299.0,
       "usage_kwh": 0,
       "reader": "",
       "note": ""
@@ -26392,18 +26392,18 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "D.0031__FL01__ร้านค้า_1",
       "b_code": "D.0031",
       "subb_code": "ร้านค้า 1",
       "building_name": "ต.0031 ร้านข้าวแกงคุณเพ็ญศรี",
-      "raw_reading": "",
+      "raw_reading": 3727.0,
       "raw_unit": "kWh",
-      "normalized_kwh": 3682.0,
-      "usage_kwh": 0,
-      "reader": "",
+      "normalized_kwh": 3727.0,
+      "usage_kwh": 45.0,
+      "reader": "ธนวิชญ์",
       "note": ""
     },
     {
@@ -26416,7 +26416,7 @@
       "building_name": "ต.0031 ร้านข้าวแกงคุณเพ็ญศรี",
       "raw_reading": "",
       "raw_unit": "kWh",
-      "normalized_kwh": 3682.0,
+      "normalized_kwh": 3727.0,
       "usage_kwh": 0,
       "reader": "",
       "note": ""
@@ -27622,18 +27622,18 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "D.0033__FL01__MDB",
       "b_code": "D.0033",
       "subb_code": "MDB",
       "building_name": "ต.0033 อาคารปฏิบัติการงานเชื่อม",
-      "raw_reading": "",
+      "raw_reading": 496.8,
       "raw_unit": "kWh",
-      "normalized_kwh": 415.32,
-      "usage_kwh": 0,
-      "reader": "",
+      "normalized_kwh": 496.8,
+      "usage_kwh": 81.48,
+      "reader": "ธนวิชญ์",
       "note": ""
     },
     {
@@ -27646,7 +27646,7 @@
       "building_name": "ต.0033 อาคารปฏิบัติการงานเชื่อม",
       "raw_reading": "",
       "raw_unit": "kWh",
-      "normalized_kwh": 415.32,
+      "normalized_kwh": 496.8,
       "usage_kwh": 0,
       "reader": "",
       "note": ""
@@ -28852,7 +28852,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "EGAT__FL01__Main",
@@ -30082,7 +30082,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "EGAT__FL01__Main2",
@@ -31312,18 +31312,18 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0006__FL01__MDB",
       "b_code": "T.0006",
       "subb_code": "MDB",
       "building_name": "ท.0006 อาคาร บริหารอะไหล่กังหันก๊าซ1 อรอ.",
-      "raw_reading": "",
-      "raw_unit": "kWh",
-      "normalized_kwh": 18211.608,
-      "usage_kwh": 0,
-      "reader": "",
+      "raw_reading": 19.853056,
+      "raw_unit": "MWh",
+      "normalized_kwh": 19853.056,
+      "usage_kwh": 1641.448,
+      "reader": "ธนวิชญ์",
       "note": ""
     },
     {
@@ -31336,7 +31336,7 @@
       "building_name": "ท.0006 อาคาร บริหารอะไหล่กังหันก๊าซ1 อรอ.",
       "raw_reading": "",
       "raw_unit": "kWh",
-      "normalized_kwh": 18211.608,
+      "normalized_kwh": 19853.056,
       "usage_kwh": 0,
       "reader": "",
       "note": ""
@@ -32542,7 +32542,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0007__FL01__MDB",
@@ -33772,7 +33772,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0008__FL01__MDB",
@@ -35002,7 +35002,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0009__FL01__MDB",
@@ -36232,7 +36232,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0010__FL01__MDB",
@@ -37462,7 +37462,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0011__FL01__MDB",
@@ -38692,7 +38692,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0012__FL01__MDB",
@@ -39922,7 +39922,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0014__FL01__MDB",
@@ -41152,7 +41152,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0015__FL01__MDB",
@@ -42382,7 +42382,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0016__FL01__MDB",
@@ -43612,18 +43612,18 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0017__FL01__MDB",
       "b_code": "T.0017",
       "subb_code": "MDB",
       "building_name": "ท.0017 อาคาร ศูนย์พัฒนางานเชื่อมและทดสอบฝีมือช่างเชื่อมสากล",
-      "raw_reading": "",
+      "raw_reading": 348317.0,
       "raw_unit": "kWh",
-      "normalized_kwh": 346937.72,
-      "usage_kwh": 0,
-      "reader": "",
+      "normalized_kwh": 348317.0,
+      "usage_kwh": 1379.28,
+      "reader": "ธนวิชญ์",
       "note": ""
     },
     {
@@ -43636,7 +43636,7 @@
       "building_name": "ท.0017 อาคาร ศูนย์พัฒนางานเชื่อมและทดสอบฝีมือช่างเชื่อมสากล",
       "raw_reading": "",
       "raw_unit": "kWh",
-      "normalized_kwh": 346937.72,
+      "normalized_kwh": 348317.0,
       "usage_kwh": 0,
       "reader": "",
       "note": ""
@@ -44842,7 +44842,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0018__FL01__MDB",
@@ -46072,7 +46072,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL01__AP1",
@@ -47302,7 +47302,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL01__EMDB_1",
@@ -48532,7 +48532,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL01__LP1",
@@ -49762,7 +49762,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL01__Main",
@@ -50992,7 +50992,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL01__PP1",
@@ -52222,7 +52222,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL03__AP3",
@@ -53452,7 +53452,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL03__LP3",
@@ -54682,7 +54682,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL03__PP3",
@@ -55912,7 +55912,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL03__SCB_3",
@@ -57142,7 +57142,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL03__ร้านค้า",
@@ -58372,7 +58372,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL04__AP4",
@@ -59602,7 +59602,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL04__LP4",
@@ -60832,7 +60832,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL04__PP41",
@@ -62062,7 +62062,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL04__PP42",
@@ -63292,7 +63292,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL04__SCB_4",
@@ -64522,7 +64522,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL05__AP5",
@@ -65752,7 +65752,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL05__LP5",
@@ -66982,7 +66982,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL05__PP51",
@@ -68212,7 +68212,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL05__PP52",
@@ -69442,7 +69442,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL05__SCB_5",
@@ -70672,7 +70672,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL06__AP6",
@@ -71902,7 +71902,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL06__LP6",
@@ -73132,7 +73132,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL06__PP61",
@@ -74362,7 +74362,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL06__PP62",
@@ -75592,7 +75592,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL06__SCB_6",
@@ -76822,7 +76822,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL07__AP7",
@@ -78052,7 +78052,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL07__LP7",
@@ -79282,7 +79282,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL07__PP71",
@@ -80512,7 +80512,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL07__PP72",
@@ -81742,7 +81742,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL07__SCB_7",
@@ -82972,7 +82972,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL08__AP8",
@@ -84202,7 +84202,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL08__LP8",
@@ -85432,7 +85432,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL08__PP81",
@@ -86662,7 +86662,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL08__PP82",
@@ -87892,7 +87892,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL08__SCB_8",
@@ -89122,7 +89122,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL09__AP9",
@@ -90352,7 +90352,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL09__BP",
@@ -91582,7 +91582,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL09__LP9",
@@ -92812,7 +92812,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL09__PP91",
@@ -94042,7 +94042,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL09__PP92",
@@ -95272,7 +95272,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL09__PPAC_1",
@@ -96502,7 +96502,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL09__PPAC_2",
@@ -97732,7 +97732,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL09__PPAC_3",
@@ -98962,7 +98962,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL09__PPD",
@@ -100192,7 +100192,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL09__PPL",
@@ -101422,7 +101422,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL09__SCB_9",
@@ -102652,7 +102652,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0020__FL01__AP21",
@@ -103882,7 +103882,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0020__FL01__AP22",
@@ -105112,7 +105112,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0020__FL01__AP23",
@@ -106342,7 +106342,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0020__FL01__LP21",
@@ -107572,7 +107572,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0020__FL01__LP22",
@@ -108802,7 +108802,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0020__FL01__LP23",
@@ -110032,7 +110032,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0020__FL01__PP21",
@@ -111262,7 +111262,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0020__FL01__PP22",
@@ -112492,7 +112492,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0020__FL01__PP23",
@@ -113722,7 +113722,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0020__FL01__SCB_21",
@@ -114952,7 +114952,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0020__FL02__SCB_22",
@@ -116182,7 +116182,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0020__FL03__PPAC_3",
@@ -117412,7 +117412,7 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0020__FL03__SCB_23",
@@ -118642,18 +118642,18 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0022__FL01__MDB",
       "b_code": "T.0022",
       "subb_code": "MDB",
       "building_name": "ท.0022 อาคารห้องกัมตภาพรังสี อบค.",
-      "raw_reading": "",
+      "raw_reading": 1122.0,
       "raw_unit": "kWh",
       "normalized_kwh": 1122.0,
       "usage_kwh": 0,
-      "reader": "",
+      "reader": "ธนวิชญ์",
       "note": ""
     },
     {
@@ -119872,18 +119872,18 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0023__FL01__MDB",
       "b_code": "T.0023",
       "subb_code": "MDB",
       "building_name": "ท.0023 อาคาร Construction Shop อบค.",
-      "raw_reading": "",
+      "raw_reading": 5793.0,
       "raw_unit": "kWh",
-      "normalized_kwh": 5798.0,
-      "usage_kwh": 0,
-      "reader": "",
+      "normalized_kwh": 5793000.0,
+      "usage_kwh": 5787202.0,
+      "reader": "ธนวิชญ์",
       "note": ""
     },
     {
@@ -119896,7 +119896,7 @@
       "building_name": "ท.0023 อาคาร Construction Shop อบค.",
       "raw_reading": "",
       "raw_unit": "kWh",
-      "normalized_kwh": 5798.0,
+      "normalized_kwh": 5793000.0,
       "usage_kwh": 0,
       "reader": "",
       "note": ""
@@ -121102,18 +121102,18 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0025__FL01__MDB",
       "b_code": "T.0025",
       "subb_code": "MDB",
       "building_name": "ท.0025 อาคารเก็บอุปกรณ์ อสร.",
-      "raw_reading": "",
+      "raw_reading": 3110.0,
       "raw_unit": "kWh",
       "normalized_kwh": 3110.0,
       "usage_kwh": 0,
-      "reader": "",
+      "reader": "ธนวิชญ์",
       "note": ""
     },
     {
@@ -122332,18 +122332,18 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0026__FL01__MDB",
       "b_code": "T.0026",
       "subb_code": "MDB",
       "building_name": "ท.0026 อาคารบริหารการขนส่ง",
-      "raw_reading": "",
-      "raw_unit": "kWh",
-      "normalized_kwh": 695610.0,
-      "usage_kwh": 0,
-      "reader": "",
+      "raw_reading": 698.25,
+      "raw_unit": "MWh",
+      "normalized_kwh": 698250.0,
+      "usage_kwh": 2640.0,
+      "reader": "ธนวิชญ์",
       "note": ""
     },
     {
@@ -122356,7 +122356,7 @@
       "building_name": "ท.0026 อาคารบริหารการขนส่ง",
       "raw_reading": "",
       "raw_unit": "kWh",
-      "normalized_kwh": 695610.0,
+      "normalized_kwh": 698250.0,
       "usage_kwh": 0,
       "reader": "",
       "note": ""
@@ -123562,18 +123562,18 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0027__FL01__MDB",
       "b_code": "T.0027",
       "subb_code": "MDB",
       "building_name": "ท.0027 อาคารปฏิบัติการกองขนส่ง",
-      "raw_reading": "",
-      "raw_unit": "kWh",
-      "normalized_kwh": 281680.0,
-      "usage_kwh": 0,
-      "reader": "",
+      "raw_reading": 282.86,
+      "raw_unit": "MWh",
+      "normalized_kwh": 282860.0,
+      "usage_kwh": 1180.0,
+      "reader": "ธนวิชญ์",
       "note": ""
     },
     {
@@ -123586,7 +123586,7 @@
       "building_name": "ท.0027 อาคารปฏิบัติการกองขนส่ง",
       "raw_reading": "",
       "raw_unit": "kWh",
-      "normalized_kwh": 281680.0,
+      "normalized_kwh": 282860.0,
       "usage_kwh": 0,
       "reader": "",
       "note": ""
@@ -124792,18 +124792,18 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0028__FL01__MDB",
       "b_code": "T.0028",
       "subb_code": "MDB",
       "building_name": "ท.0028 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 1",
-      "raw_reading": "",
-      "raw_unit": "kWh",
-      "normalized_kwh": 295390.0,
-      "usage_kwh": 0,
-      "reader": "",
+      "raw_reading": 296.67,
+      "raw_unit": "MWh",
+      "normalized_kwh": 296670.0,
+      "usage_kwh": 1280.0,
+      "reader": "ธนวิชญ์",
       "note": ""
     },
     {
@@ -124816,7 +124816,7 @@
       "building_name": "ท.0028 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 1",
       "raw_reading": "",
       "raw_unit": "kWh",
-      "normalized_kwh": 295390.0,
+      "normalized_kwh": 296670.0,
       "usage_kwh": 0,
       "reader": "",
       "note": ""
@@ -126022,18 +126022,18 @@
       "note": ""
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0029__FL01__MDB",
       "b_code": "T.0029",
       "subb_code": "MDB",
       "building_name": "ท.0029 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 2",
-      "raw_reading": "",
-      "raw_unit": "kWh",
-      "normalized_kwh": 374200.0,
-      "usage_kwh": 0,
-      "reader": "",
+      "raw_reading": 376.42,
+      "raw_unit": "MWh",
+      "normalized_kwh": 376420.0,
+      "usage_kwh": 2220.0,
+      "reader": "ธนวิชญ์",
       "note": ""
     },
     {
@@ -126046,7 +126046,7 @@
       "building_name": "ท.0029 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 2",
       "raw_reading": "",
       "raw_unit": "kWh",
-      "normalized_kwh": 374200.0,
+      "normalized_kwh": 376420.0,
       "usage_kwh": 0,
       "reader": "",
       "note": ""
@@ -127016,18 +127016,16 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "B.0001__FL01__MDB",
       "b_code": "B.0001",
       "subb_code": "MDB",
       "building_name": "บ.0001 อาคาร แฟลต อบค.",
-      "normalized_kwh": 8075.0,
+      "normalized_kwh": 8078.0,
       "is_main_meter": true,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2026-W30.csv",
@@ -127037,7 +127035,7 @@
       "b_code": "B.0001",
       "subb_code": "MDB",
       "building_name": "บ.0001 อาคาร แฟลต อบค.",
-      "normalized_kwh": 8075.0,
+      "normalized_kwh": 8078.0,
       "is_main_meter": true,
       "flags": [
         "MISSING_READING_USED_PREVIOUS"
@@ -128010,7 +128008,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "D.0015__FL01__MDB",
@@ -128019,9 +128017,7 @@
       "building_name": "ต.0015 อาคารโรงซ่อมเครื่องกล อสร.",
       "normalized_kwh": 26864.0,
       "is_main_meter": true,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2026-W30.csv",
@@ -129022,7 +129018,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "D.0017__FL01__MDB",
@@ -129994,18 +129990,16 @@
       ]
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "D.0017__FL01__ร้านค้า_1",
       "b_code": "D.0017",
       "subb_code": "ร้านค้า 1",
       "building_name": "ต.0017 ร้านอาหาร 1 (จ๊ายตี๋)",
-      "normalized_kwh": 62.0,
+      "normalized_kwh": 152.0,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2026-W30.csv",
@@ -130015,7 +130009,7 @@
       "b_code": "D.0017",
       "subb_code": "ร้านค้า 1",
       "building_name": "ต.0017 ร้านอาหาร 1 (จ๊ายตี๋)",
-      "normalized_kwh": 62.0,
+      "normalized_kwh": 152.0,
       "is_main_meter": false,
       "flags": [
         "MISSING_READING_USED_PREVIOUS"
@@ -130962,18 +130956,16 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "D.0017__FL01__ร้านค้า_2",
       "b_code": "D.0017",
       "subb_code": "ร้านค้า 2",
       "building_name": "ต.0017 ร้านอาหาร 2 (ก๋วยเตี๋ยวสะบัดเส้น)",
-      "normalized_kwh": 5491.0,
+      "normalized_kwh": 5536.0,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2026-W30.csv",
@@ -130983,7 +130975,7 @@
       "b_code": "D.0017",
       "subb_code": "ร้านค้า 2",
       "building_name": "ต.0017 ร้านอาหาร 2 (ก๋วยเตี๋ยวสะบัดเส้น)",
-      "normalized_kwh": 5491.0,
+      "normalized_kwh": 5536.0,
       "is_main_meter": false,
       "flags": [
         "MISSING_READING_USED_PREVIOUS"
@@ -132007,7 +131999,7 @@
       ]
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "D.0017__FL01__ร้านค้า_3",
@@ -132997,18 +132989,16 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "D.0017__FL01__ร้านค้า_4",
       "b_code": "D.0017",
       "subb_code": "ร้านค้า 4",
       "building_name": "ต.0017 ตู้ ATM ธนาคารกรุงไทย",
-      "normalized_kwh": 2364.0,
+      "normalized_kwh": 2385.0,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2026-W30.csv",
@@ -133018,7 +133008,7 @@
       "b_code": "D.0017",
       "subb_code": "ร้านค้า 4",
       "building_name": "ต.0017 ตู้ ATM ธนาคารกรุงไทย",
-      "normalized_kwh": 2364.0,
+      "normalized_kwh": 2385.0,
       "is_main_meter": false,
       "flags": [
         "MISSING_READING_USED_PREVIOUS"
@@ -133985,17 +133975,18 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "D.0017__FL01__ร้านค้า_5",
       "b_code": "D.0017",
       "subb_code": "ร้านค้า 5",
       "building_name": "ต.0017 ร้านกาแฟ ใหม่",
-      "normalized_kwh": 19127.0,
+      "normalized_kwh": 1916000.0,
       "is_main_meter": false,
       "flags": [
-        "MISSING_READING_USED_PREVIOUS"
+        "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH",
+        "UNIT_SUSPECT_AUTO_CORRECTED"
       ]
     },
     {
@@ -134006,7 +133997,7 @@
       "b_code": "D.0017",
       "subb_code": "ร้านค้า 5",
       "building_name": "ต.0017 ร้านกาแฟ ใหม่",
-      "normalized_kwh": 19127.0,
+      "normalized_kwh": 1916000.0,
       "is_main_meter": false,
       "flags": [
         "MISSING_READING_USED_PREVIOUS"
@@ -134975,7 +134966,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "D.0019__FL01__MDB",
@@ -135967,18 +135958,16 @@
       ]
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "D.0019__FL01__ร้านค้า_1",
       "b_code": "D.0019",
       "subb_code": "ร้านค้า 1",
       "building_name": "ต.0019 ร้านอาหาร 4 (ครัวเทคแคร์)",
-      "normalized_kwh": 7923.0,
+      "normalized_kwh": 8063.0,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2026-W30.csv",
@@ -135988,7 +135977,7 @@
       "b_code": "D.0019",
       "subb_code": "ร้านค้า 1",
       "building_name": "ต.0019 ร้านอาหาร 4 (ครัวเทคแคร์)",
-      "normalized_kwh": 7923.0,
+      "normalized_kwh": 8063.0,
       "is_main_meter": false,
       "flags": [
         "MISSING_READING_USED_PREVIOUS"
@@ -136969,7 +136958,7 @@
       ]
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "D.0019__FL01__ร้านค้า_2",
@@ -136978,9 +136967,7 @@
       "building_name": "ต.0019 ร้านอาหาร 5 (ตี๋ใหญ่ข้าวมันไก่)",
       "normalized_kwh": 5760.0,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2026-W30.csv",
@@ -137965,18 +137952,16 @@
       ]
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "D.0019__FL01__ร้านค้า_3",
       "b_code": "D.0019",
       "subb_code": "ร้านค้า 3",
       "building_name": "ต.0019 ร้านอาหาร 6 (ก๋วยเตี๋ยวแก้วขวัญ)",
-      "normalized_kwh": 1482.0,
+      "normalized_kwh": 1549.0,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2026-W30.csv",
@@ -137986,7 +137971,7 @@
       "b_code": "D.0019",
       "subb_code": "ร้านค้า 3",
       "building_name": "ต.0019 ร้านอาหาร 6 (ก๋วยเตี๋ยวแก้วขวัญ)",
-      "normalized_kwh": 1482.0,
+      "normalized_kwh": 1549.0,
       "is_main_meter": false,
       "flags": [
         "MISSING_READING_USED_PREVIOUS"
@@ -138959,18 +138944,16 @@
       ]
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "D.0019__FL01__ร้านค้า_4",
       "b_code": "D.0019",
       "subb_code": "ร้านค้า 4",
       "building_name": "ต.0019 ร้านอาหาร 7 (ต้อมผลไม้สด)",
-      "normalized_kwh": 6041.0,
+      "normalized_kwh": 6084.0,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2026-W30.csv",
@@ -138980,7 +138963,7 @@
       "b_code": "D.0019",
       "subb_code": "ร้านค้า 4",
       "building_name": "ต.0019 ร้านอาหาร 7 (ต้อมผลไม้สด)",
-      "normalized_kwh": 6041.0,
+      "normalized_kwh": 6084.0,
       "is_main_meter": false,
       "flags": [
         "MISSING_READING_USED_PREVIOUS"
@@ -139953,18 +139936,16 @@
       ]
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "D.0019__FL01__ร้านค้า_5",
       "b_code": "D.0019",
       "subb_code": "ร้านค้า 5",
       "building_name": "ต.0019 ร้านอาหาร 8 (ปั้นไปเรื่อย)",
-      "normalized_kwh": 5502.0,
+      "normalized_kwh": 5789.0,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2026-W30.csv",
@@ -139974,7 +139955,7 @@
       "b_code": "D.0019",
       "subb_code": "ร้านค้า 5",
       "building_name": "ต.0019 ร้านอาหาร 8 (ปั้นไปเรื่อย)",
-      "normalized_kwh": 5502.0,
+      "normalized_kwh": 5789.0,
       "is_main_meter": false,
       "flags": [
         "MISSING_READING_USED_PREVIOUS"
@@ -140947,18 +140928,16 @@
       ]
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "D.0019__FL01__ร้านค้า_6",
       "b_code": "D.0019",
       "subb_code": "ร้านค้า 6",
       "building_name": "ต.0019 ร้านอาหาร 9 (อาอิซะห์อาหารอิสลาม)",
-      "normalized_kwh": 1789.0,
+      "normalized_kwh": 1867.0,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2026-W30.csv",
@@ -140968,7 +140947,7 @@
       "b_code": "D.0019",
       "subb_code": "ร้านค้า 6",
       "building_name": "ต.0019 ร้านอาหาร 9 (อาอิซะห์อาหารอิสลาม)",
-      "normalized_kwh": 1789.0,
+      "normalized_kwh": 1867.0,
       "is_main_meter": false,
       "flags": [
         "MISSING_READING_USED_PREVIOUS"
@@ -141952,18 +141931,16 @@
       ]
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "D.0019__FL01__ร้านค้า_7",
       "b_code": "D.0019",
       "subb_code": "ร้านค้า 7",
       "building_name": "ต.0019 ร้านสหกรณ์",
-      "normalized_kwh": 6020.0,
+      "normalized_kwh": 6558.0,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2026-W30.csv",
@@ -141973,7 +141950,7 @@
       "b_code": "D.0019",
       "subb_code": "ร้านค้า 7",
       "building_name": "ต.0019 ร้านสหกรณ์",
-      "normalized_kwh": 6020.0,
+      "normalized_kwh": 6558.0,
       "is_main_meter": false,
       "flags": [
         "MISSING_READING_USED_PREVIOUS"
@@ -142949,7 +142926,7 @@
       ]
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "D.0025__FL01__MDB",
@@ -143944,18 +143921,16 @@
       ]
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "D.0026__FL01__MDB",
       "b_code": "D.0026",
       "subb_code": "MDB",
       "building_name": "ต.0026 อาคารระบบประปา",
-      "normalized_kwh": 7603.58,
+      "normalized_kwh": 7747.66,
       "is_main_meter": true,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2026-W30.csv",
@@ -143965,7 +143940,7 @@
       "b_code": "D.0026",
       "subb_code": "MDB",
       "building_name": "ต.0026 อาคารระบบประปา",
-      "normalized_kwh": 7603.58,
+      "normalized_kwh": 7747.66,
       "is_main_meter": true,
       "flags": [
         "MISSING_READING_USED_PREVIOUS"
@@ -144934,18 +144909,16 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "D.0031__FL01__MDB",
       "b_code": "D.0031",
       "subb_code": "MDB",
       "building_name": "ต.0031 อาคารโรงอาหาร",
-      "normalized_kwh": 45054.0,
+      "normalized_kwh": 45299.0,
       "is_main_meter": true,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2026-W30.csv",
@@ -144955,7 +144928,7 @@
       "b_code": "D.0031",
       "subb_code": "MDB",
       "building_name": "ต.0031 อาคารโรงอาหาร",
-      "normalized_kwh": 45054.0,
+      "normalized_kwh": 45299.0,
       "is_main_meter": true,
       "flags": [
         "MISSING_READING_USED_PREVIOUS"
@@ -145900,18 +145873,16 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "D.0031__FL01__ร้านค้า_1",
       "b_code": "D.0031",
       "subb_code": "ร้านค้า 1",
       "building_name": "ต.0031 ร้านข้าวแกงคุณเพ็ญศรี",
-      "normalized_kwh": 3682.0,
+      "normalized_kwh": 3727.0,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2026-W30.csv",
@@ -145921,7 +145892,7 @@
       "b_code": "D.0031",
       "subb_code": "ร้านค้า 1",
       "building_name": "ต.0031 ร้านข้าวแกงคุณเพ็ญศรี",
-      "normalized_kwh": 3682.0,
+      "normalized_kwh": 3727.0,
       "is_main_meter": false,
       "flags": [
         "MISSING_READING_USED_PREVIOUS"
@@ -146942,18 +146913,16 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "D.0033__FL01__MDB",
       "b_code": "D.0033",
       "subb_code": "MDB",
       "building_name": "ต.0033 อาคารปฏิบัติการงานเชื่อม",
-      "normalized_kwh": 415.32,
+      "normalized_kwh": 496.8,
       "is_main_meter": true,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2026-W30.csv",
@@ -146963,7 +146932,7 @@
       "b_code": "D.0033",
       "subb_code": "MDB",
       "building_name": "ต.0033 อาคารปฏิบัติการงานเชื่อม",
-      "normalized_kwh": 415.32,
+      "normalized_kwh": 496.8,
       "is_main_meter": true,
       "flags": [
         "MISSING_READING_USED_PREVIOUS"
@@ -147778,7 +147747,7 @@
       ]
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "EGAT__FL01__Main",
@@ -148770,18 +148739,16 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0006__FL01__MDB",
       "b_code": "T.0006",
       "subb_code": "MDB",
       "building_name": "ท.0006 อาคาร บริหารอะไหล่กังหันก๊าซ1 อรอ.",
-      "normalized_kwh": 18211.608,
+      "normalized_kwh": 19853.056,
       "is_main_meter": true,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2026-W30.csv",
@@ -148791,7 +148758,7 @@
       "b_code": "T.0006",
       "subb_code": "MDB",
       "building_name": "ท.0006 อาคาร บริหารอะไหล่กังหันก๊าซ1 อรอ.",
-      "normalized_kwh": 18211.608,
+      "normalized_kwh": 19853.056,
       "is_main_meter": true,
       "flags": [
         "MISSING_READING_USED_PREVIOUS"
@@ -149760,7 +149727,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0007__FL01__MDB",
@@ -150760,7 +150727,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0008__FL01__MDB",
@@ -151770,7 +151737,7 @@
       ]
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0009__FL01__MDB",
@@ -152762,7 +152729,7 @@
       ]
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0010__FL01__MDB",
@@ -153788,7 +153755,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0011__FL01__MDB",
@@ -154776,7 +154743,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0012__FL01__MDB",
@@ -155762,7 +155729,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0014__FL01__MDB",
@@ -156750,7 +156717,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0015__FL01__MDB",
@@ -157746,7 +157713,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0016__FL01__MDB",
@@ -158734,18 +158701,16 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0017__FL01__MDB",
       "b_code": "T.0017",
       "subb_code": "MDB",
       "building_name": "ท.0017 อาคาร ศูนย์พัฒนางานเชื่อมและทดสอบฝีมือช่างเชื่อมสากล",
-      "normalized_kwh": 346937.72,
+      "normalized_kwh": 348317.0,
       "is_main_meter": true,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2026-W30.csv",
@@ -158755,7 +158720,7 @@
       "b_code": "T.0017",
       "subb_code": "MDB",
       "building_name": "ท.0017 อาคาร ศูนย์พัฒนางานเชื่อมและทดสอบฝีมือช่างเชื่อมสากล",
-      "normalized_kwh": 346937.72,
+      "normalized_kwh": 348317.0,
       "is_main_meter": true,
       "flags": [
         "MISSING_READING_USED_PREVIOUS"
@@ -159724,7 +159689,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0018__FL01__MDB",
@@ -160588,7 +160553,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL01__AP1",
@@ -161574,7 +161539,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL01__EMDB_1",
@@ -162436,7 +162401,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL01__LP1",
@@ -163422,7 +163387,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL01__Main",
@@ -164284,7 +164249,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL01__PP1",
@@ -165154,7 +165119,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL03__AP3",
@@ -166021,7 +165986,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL03__LP3",
@@ -166883,7 +166848,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL03__PP3",
@@ -167867,7 +167832,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL03__SCB_3",
@@ -167915,7 +167880,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL03__ร้านค้า",
@@ -168781,7 +168746,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL04__AP4",
@@ -169643,7 +169608,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL04__LP4",
@@ -170505,7 +170470,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL04__PP41",
@@ -171367,7 +171332,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL04__PP42",
@@ -172351,7 +172316,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL04__SCB_4",
@@ -173213,7 +173178,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL05__AP5",
@@ -174075,7 +174040,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL05__LP5",
@@ -174942,7 +174907,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL05__PP51",
@@ -175804,7 +175769,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL05__PP52",
@@ -176788,7 +176753,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL05__SCB_5",
@@ -177650,7 +177615,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL06__AP6",
@@ -178512,7 +178477,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL06__LP6",
@@ -179374,7 +179339,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL06__PP61",
@@ -180236,7 +180201,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL06__PP62",
@@ -181220,7 +181185,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL06__SCB_6",
@@ -182082,7 +182047,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL07__AP7",
@@ -182944,7 +182909,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL07__LP7",
@@ -183816,7 +183781,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL07__PP71",
@@ -184678,7 +184643,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL07__PP72",
@@ -185662,7 +185627,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL07__SCB_7",
@@ -186529,7 +186494,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL08__AP8",
@@ -187391,7 +187356,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL08__LP8",
@@ -188253,7 +188218,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL08__PP81",
@@ -189115,7 +189080,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL08__PP82",
@@ -190099,7 +190064,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL08__SCB_8",
@@ -190961,7 +190926,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL09__AP9",
@@ -191945,7 +191910,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL09__BP",
@@ -192807,7 +192772,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL09__LP9",
@@ -193679,7 +193644,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL09__PP91",
@@ -194546,7 +194511,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL09__PP92",
@@ -195532,7 +195497,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL09__PPAC_1",
@@ -196518,7 +196483,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL09__PPAC_2",
@@ -197504,7 +197469,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL09__PPAC_3",
@@ -198366,7 +198331,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL09__PPD",
@@ -199350,7 +199315,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL09__PPL",
@@ -200336,7 +200301,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0019__FL09__SCB_9",
@@ -201124,7 +201089,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0020__FL01__AP21",
@@ -201916,7 +201881,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0020__FL01__AP22",
@@ -202708,7 +202673,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0020__FL01__AP23",
@@ -203490,7 +203455,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0020__FL01__LP21",
@@ -204274,7 +204239,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0020__FL01__LP22",
@@ -205122,7 +205087,7 @@
       ]
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0020__FL01__LP23",
@@ -205906,7 +205871,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0020__FL01__PP21",
@@ -206688,7 +206653,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0020__FL01__PP22",
@@ -207470,7 +207435,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0020__FL01__PP23",
@@ -208458,7 +208423,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0020__FL01__SCB_21",
@@ -209442,7 +209407,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0020__FL02__SCB_22",
@@ -210434,7 +210399,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0020__FL03__PPAC_3",
@@ -211422,7 +211387,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0020__FL03__SCB_23",
@@ -212412,7 +212377,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0022__FL01__MDB",
@@ -212421,9 +212386,7 @@
       "building_name": "ท.0022 อาคารห้องกัมตภาพรังสี อบค.",
       "normalized_kwh": 1122.0,
       "is_main_meter": true,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2026-W30.csv",
@@ -213402,17 +213365,18 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0023__FL01__MDB",
       "b_code": "T.0023",
       "subb_code": "MDB",
       "building_name": "ท.0023 อาคาร Construction Shop อบค.",
-      "normalized_kwh": 5798.0,
+      "normalized_kwh": 5793000.0,
       "is_main_meter": true,
       "flags": [
-        "MISSING_READING_USED_PREVIOUS"
+        "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH",
+        "UNIT_SUSPECT_AUTO_CORRECTED"
       ]
     },
     {
@@ -213423,7 +213387,7 @@
       "b_code": "T.0023",
       "subb_code": "MDB",
       "building_name": "ท.0023 อาคาร Construction Shop อบค.",
-      "normalized_kwh": 5798.0,
+      "normalized_kwh": 5793000.0,
       "is_main_meter": true,
       "flags": [
         "MISSING_READING_USED_PREVIOUS"
@@ -214392,7 +214356,7 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0025__FL01__MDB",
@@ -214401,9 +214365,7 @@
       "building_name": "ท.0025 อาคารเก็บอุปกรณ์ อสร.",
       "normalized_kwh": 3110.0,
       "is_main_meter": true,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2026-W30.csv",
@@ -215382,18 +215344,16 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0026__FL01__MDB",
       "b_code": "T.0026",
       "subb_code": "MDB",
       "building_name": "ท.0026 อาคารบริหารการขนส่ง",
-      "normalized_kwh": 695610.0,
+      "normalized_kwh": 698250.0,
       "is_main_meter": true,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2026-W30.csv",
@@ -215403,7 +215363,7 @@
       "b_code": "T.0026",
       "subb_code": "MDB",
       "building_name": "ท.0026 อาคารบริหารการขนส่ง",
-      "normalized_kwh": 695610.0,
+      "normalized_kwh": 698250.0,
       "is_main_meter": true,
       "flags": [
         "MISSING_READING_USED_PREVIOUS"
@@ -216372,18 +216332,16 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0027__FL01__MDB",
       "b_code": "T.0027",
       "subb_code": "MDB",
       "building_name": "ท.0027 อาคารปฏิบัติการกองขนส่ง",
-      "normalized_kwh": 281680.0,
+      "normalized_kwh": 282860.0,
       "is_main_meter": true,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2026-W30.csv",
@@ -216393,7 +216351,7 @@
       "b_code": "T.0027",
       "subb_code": "MDB",
       "building_name": "ท.0027 อาคารปฏิบัติการกองขนส่ง",
-      "normalized_kwh": 281680.0,
+      "normalized_kwh": 282860.0,
       "is_main_meter": true,
       "flags": [
         "MISSING_READING_USED_PREVIOUS"
@@ -217362,18 +217320,16 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0028__FL01__MDB",
       "b_code": "T.0028",
       "subb_code": "MDB",
       "building_name": "ท.0028 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 1",
-      "normalized_kwh": 295390.0,
+      "normalized_kwh": 296670.0,
       "is_main_meter": true,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2026-W30.csv",
@@ -217383,7 +217339,7 @@
       "b_code": "T.0028",
       "subb_code": "MDB",
       "building_name": "ท.0028 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 1",
-      "normalized_kwh": 295390.0,
+      "normalized_kwh": 296670.0,
       "is_main_meter": true,
       "flags": [
         "MISSING_READING_USED_PREVIOUS"
@@ -218352,18 +218308,16 @@
       "flags": []
     },
     {
-      "source_form": "forms/2011-W11.csv",
+      "source_form": "forms/2026-W29.csv",
       "reading_date": "2026-07-17",
       "week_id": "2026-W29",
       "meter_id": "T.0029__FL01__MDB",
       "b_code": "T.0029",
       "subb_code": "MDB",
       "building_name": "ท.0029 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 2",
-      "normalized_kwh": 374200.0,
+      "normalized_kwh": 376420.0,
       "is_main_meter": true,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2026-W30.csv",
@@ -218373,7 +218327,7 @@
       "b_code": "T.0029",
       "subb_code": "MDB",
       "building_name": "ท.0029 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 2",
-      "normalized_kwh": 374200.0,
+      "normalized_kwh": 376420.0,
       "is_main_meter": true,
       "flags": [
         "MISSING_READING_USED_PREVIOUS"
@@ -219666,14 +219620,11 @@
       "subb_code": "MDB",
       "building_name": "บ.0001 อาคาร แฟลต อบค.",
       "is_main_meter": true,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 3.0,
+      "raw_delta_kwh": 3.0,
       "previous_normalized_kwh": 8075.0,
-      "current_normalized_kwh": 8075.0,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 8078.0,
+      "flags": []
     },
     {
       "week_start_date": "2026-07-17",
@@ -219687,8 +219638,8 @@
       "is_main_meter": true,
       "kwh": 0,
       "raw_delta_kwh": 0.0,
-      "previous_normalized_kwh": 8075.0,
-      "current_normalized_kwh": 8075.0,
+      "previous_normalized_kwh": 8078.0,
+      "current_normalized_kwh": 8078.0,
       "flags": [
         "MISSING_READING_USED_PREVIOUS",
         "UNCHANGED_READING_USAGE_ZERO"
@@ -221134,7 +221085,6 @@
       "previous_normalized_kwh": 26864.0,
       "current_normalized_kwh": 26864.0,
       "flags": [
-        "MISSING_READING_USED_PREVIOUS",
         "UNCHANGED_READING_USAGE_ZERO"
       ]
     },
@@ -223752,14 +223702,11 @@
       "subb_code": "ร้านค้า 1",
       "building_name": "ต.0017 ร้านอาหาร 1 (จ๊ายตี๋)",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 90.0,
+      "raw_delta_kwh": 90.0,
       "previous_normalized_kwh": 62.0,
-      "current_normalized_kwh": 62.0,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 152.0,
+      "flags": []
     },
     {
       "week_start_date": "2026-07-17",
@@ -223773,8 +223720,8 @@
       "is_main_meter": false,
       "kwh": 0,
       "raw_delta_kwh": 0.0,
-      "previous_normalized_kwh": 62.0,
-      "current_normalized_kwh": 62.0,
+      "previous_normalized_kwh": 152.0,
+      "current_normalized_kwh": 152.0,
       "flags": [
         "MISSING_READING_USED_PREVIOUS",
         "UNCHANGED_READING_USAGE_ZERO"
@@ -225030,14 +224977,11 @@
       "subb_code": "ร้านค้า 2",
       "building_name": "ต.0017 ร้านอาหาร 2 (ก๋วยเตี๋ยวสะบัดเส้น)",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 45.0,
+      "raw_delta_kwh": 45.0,
       "previous_normalized_kwh": 5491.0,
-      "current_normalized_kwh": 5491.0,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 5536.0,
+      "flags": []
     },
     {
       "week_start_date": "2026-07-17",
@@ -225051,8 +224995,8 @@
       "is_main_meter": false,
       "kwh": 0,
       "raw_delta_kwh": 0.0,
-      "previous_normalized_kwh": 5491.0,
-      "current_normalized_kwh": 5491.0,
+      "previous_normalized_kwh": 5536.0,
+      "current_normalized_kwh": 5536.0,
       "flags": [
         "MISSING_READING_USED_PREVIOUS",
         "UNCHANGED_READING_USAGE_ZERO"
@@ -227773,14 +227717,11 @@
       "subb_code": "ร้านค้า 4",
       "building_name": "ต.0017 ตู้ ATM ธนาคารกรุงไทย",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 21.0,
+      "raw_delta_kwh": 21.0,
       "previous_normalized_kwh": 2364.0,
-      "current_normalized_kwh": 2364.0,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 2385.0,
+      "flags": []
     },
     {
       "week_start_date": "2026-07-17",
@@ -227794,8 +227735,8 @@
       "is_main_meter": false,
       "kwh": 0,
       "raw_delta_kwh": 0.0,
-      "previous_normalized_kwh": 2364.0,
-      "current_normalized_kwh": 2364.0,
+      "previous_normalized_kwh": 2385.0,
+      "current_normalized_kwh": 2385.0,
       "flags": [
         "MISSING_READING_USED_PREVIOUS",
         "UNCHANGED_READING_USAGE_ZERO"
@@ -229077,13 +229018,13 @@
       "subb_code": "ร้านค้า 5",
       "building_name": "ต.0017 ร้านกาแฟ ใหม่",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 1896873.0,
+      "raw_delta_kwh": 1896873.0,
       "previous_normalized_kwh": 19127.0,
-      "current_normalized_kwh": 19127.0,
+      "current_normalized_kwh": 1916000.0,
       "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
+        "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH",
+        "UNIT_SUSPECT_AUTO_CORRECTED"
       ]
     },
     {
@@ -229098,8 +229039,8 @@
       "is_main_meter": false,
       "kwh": 0,
       "raw_delta_kwh": 0.0,
-      "previous_normalized_kwh": 19127.0,
-      "current_normalized_kwh": 19127.0,
+      "previous_normalized_kwh": 1916000.0,
+      "current_normalized_kwh": 1916000.0,
       "flags": [
         "MISSING_READING_USED_PREVIOUS",
         "UNCHANGED_READING_USAGE_ZERO"
@@ -231694,14 +231635,11 @@
       "subb_code": "ร้านค้า 1",
       "building_name": "ต.0019 ร้านอาหาร 4 (ครัวเทคแคร์)",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 140.0,
+      "raw_delta_kwh": 140.0,
       "previous_normalized_kwh": 7923.0,
-      "current_normalized_kwh": 7923.0,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 8063.0,
+      "flags": []
     },
     {
       "week_start_date": "2026-07-17",
@@ -231715,8 +231653,8 @@
       "is_main_meter": false,
       "kwh": 0,
       "raw_delta_kwh": 0.0,
-      "previous_normalized_kwh": 7923.0,
-      "current_normalized_kwh": 7923.0,
+      "previous_normalized_kwh": 8063.0,
+      "current_normalized_kwh": 8063.0,
       "flags": [
         "MISSING_READING_USED_PREVIOUS",
         "UNCHANGED_READING_USAGE_ZERO"
@@ -233072,7 +233010,6 @@
       "previous_normalized_kwh": 5760.0,
       "current_normalized_kwh": 5760.0,
       "flags": [
-        "MISSING_READING_USED_PREVIOUS",
         "UNCHANGED_READING_USAGE_ZERO"
       ]
     },
@@ -234383,14 +234320,11 @@
       "subb_code": "ร้านค้า 3",
       "building_name": "ต.0019 ร้านอาหาร 6 (ก๋วยเตี๋ยวแก้วขวัญ)",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 67.0,
+      "raw_delta_kwh": 67.0,
       "previous_normalized_kwh": 1482.0,
-      "current_normalized_kwh": 1482.0,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 1549.0,
+      "flags": []
     },
     {
       "week_start_date": "2026-07-17",
@@ -234404,8 +234338,8 @@
       "is_main_meter": false,
       "kwh": 0,
       "raw_delta_kwh": 0.0,
-      "previous_normalized_kwh": 1482.0,
-      "current_normalized_kwh": 1482.0,
+      "previous_normalized_kwh": 1549.0,
+      "current_normalized_kwh": 1549.0,
       "flags": [
         "MISSING_READING_USED_PREVIOUS",
         "UNCHANGED_READING_USAGE_ZERO"
@@ -235696,14 +235630,11 @@
       "subb_code": "ร้านค้า 4",
       "building_name": "ต.0019 ร้านอาหาร 7 (ต้อมผลไม้สด)",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 43.0,
+      "raw_delta_kwh": 43.0,
       "previous_normalized_kwh": 6041.0,
-      "current_normalized_kwh": 6041.0,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 6084.0,
+      "flags": []
     },
     {
       "week_start_date": "2026-07-17",
@@ -235717,8 +235648,8 @@
       "is_main_meter": false,
       "kwh": 0,
       "raw_delta_kwh": 0.0,
-      "previous_normalized_kwh": 6041.0,
-      "current_normalized_kwh": 6041.0,
+      "previous_normalized_kwh": 6084.0,
+      "current_normalized_kwh": 6084.0,
       "flags": [
         "MISSING_READING_USED_PREVIOUS",
         "UNCHANGED_READING_USAGE_ZERO"
@@ -237009,14 +236940,11 @@
       "subb_code": "ร้านค้า 5",
       "building_name": "ต.0019 ร้านอาหาร 8 (ปั้นไปเรื่อย)",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 287.0,
+      "raw_delta_kwh": 287.0,
       "previous_normalized_kwh": 5502.0,
-      "current_normalized_kwh": 5502.0,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 5789.0,
+      "flags": []
     },
     {
       "week_start_date": "2026-07-17",
@@ -237030,8 +236958,8 @@
       "is_main_meter": false,
       "kwh": 0,
       "raw_delta_kwh": 0.0,
-      "previous_normalized_kwh": 5502.0,
-      "current_normalized_kwh": 5502.0,
+      "previous_normalized_kwh": 5789.0,
+      "current_normalized_kwh": 5789.0,
       "flags": [
         "MISSING_READING_USED_PREVIOUS",
         "UNCHANGED_READING_USAGE_ZERO"
@@ -238322,14 +238250,11 @@
       "subb_code": "ร้านค้า 6",
       "building_name": "ต.0019 ร้านอาหาร 9 (อาอิซะห์อาหารอิสลาม)",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 78.0,
+      "raw_delta_kwh": 78.0,
       "previous_normalized_kwh": 1789.0,
-      "current_normalized_kwh": 1789.0,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 1867.0,
+      "flags": []
     },
     {
       "week_start_date": "2026-07-17",
@@ -238343,8 +238268,8 @@
       "is_main_meter": false,
       "kwh": 0,
       "raw_delta_kwh": 0.0,
-      "previous_normalized_kwh": 1789.0,
-      "current_normalized_kwh": 1789.0,
+      "previous_normalized_kwh": 1867.0,
+      "current_normalized_kwh": 1867.0,
       "flags": [
         "MISSING_READING_USED_PREVIOUS",
         "UNCHANGED_READING_USAGE_ZERO"
@@ -239651,14 +239576,11 @@
       "subb_code": "ร้านค้า 7",
       "building_name": "ต.0019 ร้านสหกรณ์",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 538.0,
+      "raw_delta_kwh": 538.0,
       "previous_normalized_kwh": 6020.0,
-      "current_normalized_kwh": 6020.0,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 6558.0,
+      "flags": []
     },
     {
       "week_start_date": "2026-07-17",
@@ -239672,8 +239594,8 @@
       "is_main_meter": false,
       "kwh": 0,
       "raw_delta_kwh": 0.0,
-      "previous_normalized_kwh": 6020.0,
-      "current_normalized_kwh": 6020.0,
+      "previous_normalized_kwh": 6558.0,
+      "current_normalized_kwh": 6558.0,
       "flags": [
         "MISSING_READING_USED_PREVIOUS",
         "UNCHANGED_READING_USAGE_ZERO"
@@ -242284,14 +242206,11 @@
       "subb_code": "MDB",
       "building_name": "ต.0026 อาคารระบบประปา",
       "is_main_meter": true,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 144.08,
+      "raw_delta_kwh": 144.08,
       "previous_normalized_kwh": 7603.58,
-      "current_normalized_kwh": 7603.58,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 7747.66,
+      "flags": []
     },
     {
       "week_start_date": "2026-07-17",
@@ -242305,8 +242224,8 @@
       "is_main_meter": true,
       "kwh": 0,
       "raw_delta_kwh": 0.0,
-      "previous_normalized_kwh": 7603.58,
-      "current_normalized_kwh": 7603.58,
+      "previous_normalized_kwh": 7747.66,
+      "current_normalized_kwh": 7747.66,
       "flags": [
         "MISSING_READING_USED_PREVIOUS",
         "UNCHANGED_READING_USAGE_ZERO"
@@ -243591,14 +243510,11 @@
       "subb_code": "MDB",
       "building_name": "ต.0031 อาคารโรงอาหาร",
       "is_main_meter": true,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 245.0,
+      "raw_delta_kwh": 245.0,
       "previous_normalized_kwh": 45054.0,
-      "current_normalized_kwh": 45054.0,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 45299.0,
+      "flags": []
     },
     {
       "week_start_date": "2026-07-17",
@@ -243612,8 +243528,8 @@
       "is_main_meter": true,
       "kwh": 0,
       "raw_delta_kwh": 0.0,
-      "previous_normalized_kwh": 45054.0,
-      "current_normalized_kwh": 45054.0,
+      "previous_normalized_kwh": 45299.0,
+      "current_normalized_kwh": 45299.0,
       "flags": [
         "MISSING_READING_USED_PREVIOUS",
         "UNCHANGED_READING_USAGE_ZERO"
@@ -244866,14 +244782,11 @@
       "subb_code": "ร้านค้า 1",
       "building_name": "ต.0031 ร้านข้าวแกงคุณเพ็ญศรี",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 45.0,
+      "raw_delta_kwh": 45.0,
       "previous_normalized_kwh": 3682.0,
-      "current_normalized_kwh": 3682.0,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 3727.0,
+      "flags": []
     },
     {
       "week_start_date": "2026-07-17",
@@ -244887,8 +244800,8 @@
       "is_main_meter": false,
       "kwh": 0,
       "raw_delta_kwh": 0.0,
-      "previous_normalized_kwh": 3682.0,
-      "current_normalized_kwh": 3682.0,
+      "previous_normalized_kwh": 3727.0,
+      "current_normalized_kwh": 3727.0,
       "flags": [
         "MISSING_READING_USED_PREVIOUS",
         "UNCHANGED_READING_USAGE_ZERO"
@@ -246342,14 +246255,11 @@
       "subb_code": "MDB",
       "building_name": "ต.0033 อาคารปฏิบัติการงานเชื่อม",
       "is_main_meter": true,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 81.48,
+      "raw_delta_kwh": 81.48,
       "previous_normalized_kwh": 415.32,
-      "current_normalized_kwh": 415.32,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 496.8,
+      "flags": []
     },
     {
       "week_start_date": "2026-07-17",
@@ -246363,8 +246273,8 @@
       "is_main_meter": true,
       "kwh": 0,
       "raw_delta_kwh": 0.0,
-      "previous_normalized_kwh": 415.32,
-      "current_normalized_kwh": 415.32,
+      "previous_normalized_kwh": 496.8,
+      "current_normalized_kwh": 496.8,
       "flags": [
         "MISSING_READING_USED_PREVIOUS",
         "UNCHANGED_READING_USAGE_ZERO"
@@ -248762,14 +248672,11 @@
       "subb_code": "MDB",
       "building_name": "ท.0006 อาคาร บริหารอะไหล่กังหันก๊าซ1 อรอ.",
       "is_main_meter": true,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 1641.448,
+      "raw_delta_kwh": 1641.448,
       "previous_normalized_kwh": 18211.608,
-      "current_normalized_kwh": 18211.608,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 19853.056,
+      "flags": []
     },
     {
       "week_start_date": "2026-07-17",
@@ -248783,8 +248690,8 @@
       "is_main_meter": true,
       "kwh": 0,
       "raw_delta_kwh": 0.0,
-      "previous_normalized_kwh": 18211.608,
-      "current_normalized_kwh": 18211.608,
+      "previous_normalized_kwh": 19853.056,
+      "current_normalized_kwh": 19853.056,
       "flags": [
         "MISSING_READING_USED_PREVIOUS",
         "UNCHANGED_READING_USAGE_ZERO"
@@ -261934,14 +261841,11 @@
       "subb_code": "MDB",
       "building_name": "ท.0017 อาคาร ศูนย์พัฒนางานเชื่อมและทดสอบฝีมือช่างเชื่อมสากล",
       "is_main_meter": true,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 1379.28,
+      "raw_delta_kwh": 1379.28,
       "previous_normalized_kwh": 346937.72,
-      "current_normalized_kwh": 346937.72,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 348317.0,
+      "flags": []
     },
     {
       "week_start_date": "2026-07-17",
@@ -261955,8 +261859,8 @@
       "is_main_meter": true,
       "kwh": 0,
       "raw_delta_kwh": 0.0,
-      "previous_normalized_kwh": 346937.72,
-      "current_normalized_kwh": 346937.72,
+      "previous_normalized_kwh": 348317.0,
+      "current_normalized_kwh": 348317.0,
       "flags": [
         "MISSING_READING_USED_PREVIOUS",
         "UNCHANGED_READING_USAGE_ZERO"
@@ -333277,7 +333181,6 @@
       "previous_normalized_kwh": 1122.0,
       "current_normalized_kwh": 1122.0,
       "flags": [
-        "MISSING_READING_USED_PREVIOUS",
         "UNCHANGED_READING_USAGE_ZERO"
       ]
     },
@@ -334637,13 +334540,13 @@
       "subb_code": "MDB",
       "building_name": "ท.0023 อาคาร Construction Shop อบค.",
       "is_main_meter": true,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 5787202.0,
+      "raw_delta_kwh": 5787202.0,
       "previous_normalized_kwh": 5798.0,
-      "current_normalized_kwh": 5798.0,
+      "current_normalized_kwh": 5793000.0,
       "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
+        "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH",
+        "UNIT_SUSPECT_AUTO_CORRECTED"
       ]
     },
     {
@@ -334658,8 +334561,8 @@
       "is_main_meter": true,
       "kwh": 0,
       "raw_delta_kwh": 0.0,
-      "previous_normalized_kwh": 5798.0,
-      "current_normalized_kwh": 5798.0,
+      "previous_normalized_kwh": 5793000.0,
+      "current_normalized_kwh": 5793000.0,
       "flags": [
         "MISSING_READING_USED_PREVIOUS",
         "UNCHANGED_READING_USAGE_ZERO"
@@ -335985,7 +335888,6 @@
       "previous_normalized_kwh": 3110.0,
       "current_normalized_kwh": 3110.0,
       "flags": [
-        "MISSING_READING_USED_PREVIOUS",
         "UNCHANGED_READING_USAGE_ZERO"
       ]
     },
@@ -337289,14 +337191,11 @@
       "subb_code": "MDB",
       "building_name": "ท.0026 อาคารบริหารการขนส่ง",
       "is_main_meter": true,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 2640.0,
+      "raw_delta_kwh": 2640.0,
       "previous_normalized_kwh": 695610.0,
-      "current_normalized_kwh": 695610.0,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 698250.0,
+      "flags": []
     },
     {
       "week_start_date": "2026-07-17",
@@ -337310,8 +337209,8 @@
       "is_main_meter": true,
       "kwh": 0,
       "raw_delta_kwh": 0.0,
-      "previous_normalized_kwh": 695610.0,
-      "current_normalized_kwh": 695610.0,
+      "previous_normalized_kwh": 698250.0,
+      "current_normalized_kwh": 698250.0,
       "flags": [
         "MISSING_READING_USED_PREVIOUS",
         "UNCHANGED_READING_USAGE_ZERO"
@@ -338596,14 +338495,11 @@
       "subb_code": "MDB",
       "building_name": "ท.0027 อาคารปฏิบัติการกองขนส่ง",
       "is_main_meter": true,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 1180.0,
+      "raw_delta_kwh": 1180.0,
       "previous_normalized_kwh": 281680.0,
-      "current_normalized_kwh": 281680.0,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 282860.0,
+      "flags": []
     },
     {
       "week_start_date": "2026-07-17",
@@ -338617,8 +338513,8 @@
       "is_main_meter": true,
       "kwh": 0,
       "raw_delta_kwh": 0.0,
-      "previous_normalized_kwh": 281680.0,
-      "current_normalized_kwh": 281680.0,
+      "previous_normalized_kwh": 282860.0,
+      "current_normalized_kwh": 282860.0,
       "flags": [
         "MISSING_READING_USED_PREVIOUS",
         "UNCHANGED_READING_USAGE_ZERO"
@@ -339905,14 +339801,11 @@
       "subb_code": "MDB",
       "building_name": "ท.0028 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 1",
       "is_main_meter": true,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 1280.0,
+      "raw_delta_kwh": 1280.0,
       "previous_normalized_kwh": 295390.0,
-      "current_normalized_kwh": 295390.0,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 296670.0,
+      "flags": []
     },
     {
       "week_start_date": "2026-07-17",
@@ -339926,8 +339819,8 @@
       "is_main_meter": true,
       "kwh": 0,
       "raw_delta_kwh": 0.0,
-      "previous_normalized_kwh": 295390.0,
-      "current_normalized_kwh": 295390.0,
+      "previous_normalized_kwh": 296670.0,
+      "current_normalized_kwh": 296670.0,
       "flags": [
         "MISSING_READING_USED_PREVIOUS",
         "UNCHANGED_READING_USAGE_ZERO"
@@ -341212,14 +341105,11 @@
       "subb_code": "MDB",
       "building_name": "ท.0029 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 2",
       "is_main_meter": true,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 2220.0,
+      "raw_delta_kwh": 2220.0,
       "previous_normalized_kwh": 374200.0,
-      "current_normalized_kwh": 374200.0,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 376420.0,
+      "flags": []
     },
     {
       "week_start_date": "2026-07-17",
@@ -341233,8 +341123,8 @@
       "is_main_meter": true,
       "kwh": 0,
       "raw_delta_kwh": 0.0,
-      "previous_normalized_kwh": 374200.0,
-      "current_normalized_kwh": 374200.0,
+      "previous_normalized_kwh": 376420.0,
+      "current_normalized_kwh": 376420.0,
       "flags": [
         "MISSING_READING_USED_PREVIOUS",
         "UNCHANGED_READING_USAGE_ZERO"
@@ -342370,11 +342260,8 @@
       "building_name": "บ.0001 อาคาร แฟลต อบค.",
       "allocation_ratio": 1.0,
       "allocation_row_no": 20,
-      "kwh": 0.0,
-      "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "kwh": 3.0,
+      "source_flags": []
     },
     {
       "week_start_date": "2026-07-17",
@@ -343673,7 +343560,6 @@
       "allocation_row_no": 37,
       "kwh": 0.0,
       "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
         "UNCHANGED_READING_USAGE_ZERO"
       ]
     },
@@ -348295,11 +348181,8 @@
       "building_name": "ต.0026 อาคารระบบประปา",
       "allocation_ratio": 1.0,
       "allocation_row_no": 3,
-      "kwh": 0.0,
-      "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "kwh": 144.08,
+      "source_flags": []
     },
     {
       "week_start_date": "2026-07-17",
@@ -349440,11 +349323,8 @@
       "building_name": "ต.0031 อาคารโรงอาหาร",
       "allocation_ratio": 1.0,
       "allocation_row_no": 43,
-      "kwh": 0.0,
-      "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "kwh": 245.0,
+      "source_flags": []
     },
     {
       "week_start_date": "2026-07-17",
@@ -350754,11 +350634,8 @@
       "building_name": "ต.0033 อาคารปฏิบัติการงานเชื่อม",
       "allocation_ratio": 1.0,
       "allocation_row_no": 44,
-      "kwh": 0.0,
-      "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "kwh": 81.48,
+      "source_flags": []
     },
     {
       "week_start_date": "2026-07-17",
@@ -351904,11 +351781,8 @@
       "building_name": "ท.0006 อาคาร บริหารอะไหล่กังหันก๊าซ1 อรอ.",
       "allocation_ratio": 1.0,
       "allocation_row_no": 34,
-      "kwh": 0.0,
-      "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "kwh": 1641.448,
+      "source_flags": []
     },
     {
       "week_start_date": "2026-07-17",
@@ -364595,11 +364469,8 @@
       "building_name": "ท.0017 อาคาร ศูนย์พัฒนางานเชื่อมและทดสอบฝีมือช่างเชื่อมสากล",
       "allocation_ratio": 1.0,
       "allocation_row_no": 17,
-      "kwh": 0.0,
-      "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "kwh": 1379.28,
+      "source_flags": []
     },
     {
       "week_start_date": "2026-07-17",
@@ -381814,7 +381685,6 @@
       "allocation_row_no": 18,
       "kwh": 0.0,
       "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
         "UNCHANGED_READING_USAGE_ZERO"
       ]
     },
@@ -383015,10 +382885,10 @@
       "building_name": "ท.0023 อาคาร Construction Shop อบค.",
       "allocation_ratio": 1.0,
       "allocation_row_no": 19,
-      "kwh": 0.0,
+      "kwh": 5787202.0,
       "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
+        "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH",
+        "UNIT_SUSPECT_AUTO_CORRECTED"
       ]
     },
     {
@@ -384198,7 +384068,6 @@
       "allocation_row_no": 38,
       "kwh": 0.0,
       "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
         "UNCHANGED_READING_USAGE_ZERO"
       ]
     },
@@ -385343,11 +385212,8 @@
       "building_name": "ท.0026 อาคารบริหารการขนส่ง",
       "allocation_ratio": 1.0,
       "allocation_row_no": 39,
-      "kwh": 0.0,
-      "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "kwh": 2640.0,
+      "source_flags": []
     },
     {
       "week_start_date": "2026-07-17",
@@ -386488,11 +386354,8 @@
       "building_name": "ท.0027 อาคารปฏิบัติการกองขนส่ง",
       "allocation_ratio": 1.0,
       "allocation_row_no": 40,
-      "kwh": 0.0,
-      "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "kwh": 1180.0,
+      "source_flags": []
     },
     {
       "week_start_date": "2026-07-17",
@@ -387635,11 +387498,8 @@
       "building_name": "ท.0028 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 1",
       "allocation_ratio": 1.0,
       "allocation_row_no": 41,
-      "kwh": 0.0,
-      "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "kwh": 1280.0,
+      "source_flags": []
     },
     {
       "week_start_date": "2026-07-17",
@@ -388780,11 +388640,8 @@
       "building_name": "ท.0029 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 2",
       "allocation_ratio": 1.0,
       "allocation_row_no": 42,
-      "kwh": 0.0,
-      "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "kwh": 2220.0,
+      "source_flags": []
     },
     {
       "week_start_date": "2026-07-17",
@@ -390974,11 +390831,11 @@
       "อคม.": 63340.54
     },
     "2026-07": {
-      "อบค.": 36887.899,
+      "อบค.": 5825472.179,
       "อสร.": 1.0,
-      "สก.ชธธ.": 7524827.889,
-      "อหข.": 14588.67,
-      "อรอ.": 9116.945,
+      "สก.ชธธ.": 7524971.969,
+      "อหข.": 22235.15,
+      "อรอ.": 10758.393,
       "อบฟ.": 52313.67,
       "อบย.": 16897.659,
       "อคม.": 50796.734
@@ -390987,713 +390844,6 @@
   "validation": {
     "errors": [],
     "warnings": [
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 2,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "EGAT__FL01__Main",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 3,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "EGAT__FL01__Main2",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 4,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0006__FL01__MDB",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 5,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0007__FL01__MDB",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 6,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0008__FL01__MDB",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 7,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0009__FL01__MDB",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 8,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0010__FL01__MDB",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 9,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0011__FL01__MDB",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 10,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0012__FL01__MDB",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 11,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "D.0026__FL01__MDB",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 12,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "D.0017__FL01__MDB",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 13,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "D.0017__FL01__ร้านค้า_1",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 14,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "D.0017__FL01__ร้านค้า_2",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 15,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "D.0017__FL01__ร้านค้า_3",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 16,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "D.0017__FL01__ร้านค้า_4",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 17,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "D.0017__FL01__ร้านค้า_5",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 18,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0014__FL01__MDB",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 19,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0015__FL01__MDB",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 20,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0016__FL01__MDB",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 21,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0017__FL01__MDB",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 22,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0018__FL01__MDB",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 23,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "D.0019__FL01__MDB",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 24,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "D.0019__FL01__ร้านค้า_1",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 25,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "D.0019__FL01__ร้านค้า_2",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 26,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "D.0019__FL01__ร้านค้า_3",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 27,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "D.0019__FL01__ร้านค้า_4",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 28,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "D.0019__FL01__ร้านค้า_5",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 29,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "D.0019__FL01__ร้านค้า_6",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 30,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "D.0019__FL01__ร้านค้า_7",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 31,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "D.0025__FL01__MDB",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 32,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "D.0015__FL01__MDB",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 33,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0022__FL01__MDB",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 34,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0023__FL01__MDB",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 35,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0025__FL01__MDB",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 36,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0026__FL01__MDB",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 37,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0027__FL01__MDB",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 38,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0028__FL01__MDB",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 39,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0029__FL01__MDB",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 40,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "D.0031__FL01__MDB",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 41,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "D.0031__FL01__ร้านค้า_1",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 42,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "D.0033__FL01__MDB",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 43,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "B.0001__FL01__MDB",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 44,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0019__FL01__Main",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 45,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0019__FL01__LP1",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 46,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0019__FL01__PP1",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 47,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0019__FL01__AP1",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 48,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0019__FL01__EMDB_1",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 49,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0019__FL03__SCB_3",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 50,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0019__FL03__LP3",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 51,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0019__FL03__PP3",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 52,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0019__FL03__AP3",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 53,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0019__FL03__ร้านค้า",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 54,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0019__FL04__SCB_4",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 55,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0019__FL04__LP4",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 56,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0019__FL04__PP41",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 57,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0019__FL04__PP42",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 58,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0019__FL04__AP4",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 59,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0019__FL05__SCB_5",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 60,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0019__FL05__LP5",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 61,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0019__FL05__PP51",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 62,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0019__FL05__PP52",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 63,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0019__FL05__AP5",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 64,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0019__FL06__SCB_6",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 65,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0019__FL06__LP6",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 66,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0019__FL06__PP61",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 67,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0019__FL06__PP62",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 68,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0019__FL06__AP6",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 69,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0019__FL07__SCB_7",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 70,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0019__FL07__LP7",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 71,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0019__FL07__PP71",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 72,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0019__FL07__PP72",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 73,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0019__FL07__AP7",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 74,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0019__FL08__SCB_8",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 75,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0019__FL08__LP8",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 76,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0019__FL08__PP81",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 77,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0019__FL08__PP82",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 78,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0019__FL08__AP8",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 79,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0019__FL09__SCB_9",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 80,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0019__FL09__LP9",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 81,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0019__FL09__PP91",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 82,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0019__FL09__PP92",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 83,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0019__FL09__AP9",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 84,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0019__FL09__PPD",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 85,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0019__FL09__PPAC_1",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 86,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0019__FL09__PPAC_2",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 87,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0019__FL09__PPAC_3",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 88,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0019__FL09__BP",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 89,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0019__FL09__PPL",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 90,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0020__FL01__SCB_21",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 91,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0020__FL01__LP21",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 92,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0020__FL01__PP21",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 93,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0020__FL01__AP21",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 94,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0020__FL02__SCB_22",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 95,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0020__FL01__LP22",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 96,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0020__FL01__PP22",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 97,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0020__FL01__AP22",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 98,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0020__FL03__SCB_23",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 99,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0020__FL01__LP23",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 100,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0020__FL01__PP23",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 101,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0020__FL01__AP23",
-        "reading_date": "2026-07-17"
-      },
-      {
-        "file": "forms/2026-W29.csv",
-        "row": 102,
-        "warning": "DUPLICATE_READING_FOR_SAME_DATE_AND_METER_SKIPPED",
-        "meter_id": "T.0020__FL03__PPAC_3",
-        "reading_date": "2026-07-17"
-      },
       {
         "warning": "UNKNOWN_DEPARTMENT",
         "department": "อสร.",
@@ -392827,7 +391977,7 @@
     ],
     "stats": {
       "meters": 101,
-      "form_files_read": 83,
+      "form_files_read": 82,
       "weekly_forms_rows_used": 8282,
       "normalized_readings": 7601,
       "weekly_consumption_rows": 7501,
