@@ -14,7 +14,7 @@
       "SCB 8",
       "SCB21"
     ],
-    "generated_at": "2026-07-24T03:13:46",
+    "generated_at": "2026-07-24T03:16:22",
     "missing_reading_logic": "Blank or 0 raw_reading uses previous valid reading.",
     "unchanged_reading_logic": "If current equals previous, usage is 0.",
     "allocation_logic": "Fill-down department, then use row allocation_ratio directly."
@@ -3044,11 +3044,11 @@
       "b_code": "B.0001",
       "subb_code": "MDB",
       "building_name": "บ.0001 อาคาร แฟลต อบค.",
-      "raw_reading": "",
+      "raw_reading": 8082.0,
       "raw_unit": "kWh",
-      "normalized_kwh": 8078.0,
-      "usage_kwh": 0,
-      "reader": "",
+      "normalized_kwh": 8082.0,
+      "usage_kwh": 4.0,
+      "reader": "ธนวิชญ์",
       "note": ""
     },
     {
@@ -25184,11 +25184,11 @@
       "b_code": "D.0031",
       "subb_code": "MDB",
       "building_name": "ต.0031 อาคารโรงอาหาร",
-      "raw_reading": "",
-      "raw_unit": "kWh",
-      "normalized_kwh": 45299.0,
-      "usage_kwh": 0,
-      "reader": "",
+      "raw_reading": 45.558,
+      "raw_unit": "MWh",
+      "normalized_kwh": 45558.0,
+      "usage_kwh": 259.0,
+      "reader": "ธนวิชญ์",
       "note": ""
     },
     {
@@ -26414,11 +26414,11 @@
       "b_code": "D.0031",
       "subb_code": "ร้านค้า 1",
       "building_name": "ต.0031 ร้านข้าวแกงคุณเพ็ญศรี",
-      "raw_reading": "",
+      "raw_reading": 3767.0,
       "raw_unit": "kWh",
-      "normalized_kwh": 3727.0,
-      "usage_kwh": 0,
-      "reader": "",
+      "normalized_kwh": 3767.0,
+      "usage_kwh": 40.0,
+      "reader": "ธนวิชญ์",
       "note": ""
     },
     {
@@ -27644,11 +27644,11 @@
       "b_code": "D.0033",
       "subb_code": "MDB",
       "building_name": "ต.0033 อาคารปฏิบัติการงานเชื่อม",
-      "raw_reading": "",
+      "raw_reading": 573.53,
       "raw_unit": "kWh",
-      "normalized_kwh": 496.8,
-      "usage_kwh": 0,
-      "reader": "",
+      "normalized_kwh": 573.53,
+      "usage_kwh": 76.73,
+      "reader": "ธนวิชญ์",
       "note": ""
     },
     {
@@ -103904,11 +103904,11 @@
       "b_code": "T.0020",
       "subb_code": "AP22",
       "building_name": "ท.0020 อาคาร ศูนย์รับรองสมรรถนะฯ ระบบเครื่องปรับอากาศ 2",
-      "raw_reading": "",
+      "raw_reading": 29.82,
       "raw_unit": "kWh",
       "normalized_kwh": 29.82,
       "usage_kwh": 0,
-      "reader": "",
+      "reader": "Varodom",
       "note": ""
     },
     {
@@ -106364,11 +106364,11 @@
       "b_code": "T.0020",
       "subb_code": "LP21",
       "building_name": "ท.0020 อาคาร ศูนย์รับรองสมรรถนะฯ ระบบแสงสว่าง 1",
-      "raw_reading": "",
+      "raw_reading": 37468.92,
       "raw_unit": "kWh",
-      "normalized_kwh": 37394.82,
-      "usage_kwh": 0,
-      "reader": "",
+      "normalized_kwh": 37468.92,
+      "usage_kwh": 74.1,
+      "reader": "Varodom",
       "note": ""
     },
     {
@@ -107594,11 +107594,11 @@
       "b_code": "T.0020",
       "subb_code": "LP22",
       "building_name": "ท.0020 อาคาร ศูนย์รับรองสมรรถนะฯ ระบบแสงสว่าง 2",
-      "raw_reading": "",
+      "raw_reading": 0.64,
       "raw_unit": "kWh",
       "normalized_kwh": 0.64,
       "usage_kwh": 0,
-      "reader": "",
+      "reader": "Varodom",
       "note": ""
     },
     {
@@ -111284,11 +111284,11 @@
       "b_code": "T.0020",
       "subb_code": "PP22",
       "building_name": "ท.0020 อาคาร ศูนย์รับรองสมรรถนะฯ ระบบเครื่องใช้ไฟฟ้า 2",
-      "raw_reading": "",
+      "raw_reading": 2.55,
       "raw_unit": "kWh",
       "normalized_kwh": 2.55,
       "usage_kwh": 0,
-      "reader": "",
+      "reader": "Varodom",
       "note": ""
     },
     {
@@ -118664,11 +118664,11 @@
       "b_code": "T.0022",
       "subb_code": "MDB",
       "building_name": "ท.0022 อาคารห้องกัมตภาพรังสี อบค.",
-      "raw_reading": "",
+      "raw_reading": 1122.0,
       "raw_unit": "kWh",
       "normalized_kwh": 1122.0,
       "usage_kwh": 0,
-      "reader": "",
+      "reader": "ธนวิชญ์",
       "note": ""
     },
     {
@@ -119894,11 +119894,11 @@
       "b_code": "T.0023",
       "subb_code": "MDB",
       "building_name": "ท.0023 อาคาร Construction Shop อบค.",
-      "raw_reading": "",
+      "raw_reading": 5793.0,
       "raw_unit": "kWh",
-      "normalized_kwh": 5793000.0,
-      "usage_kwh": 0,
-      "reader": "",
+      "normalized_kwh": 5793.0,
+      "usage_kwh": 5793.0,
+      "reader": "ธนวิชญ์",
       "note": ""
     },
     {
@@ -121124,11 +121124,11 @@
       "b_code": "T.0025",
       "subb_code": "MDB",
       "building_name": "ท.0025 อาคารเก็บอุปกรณ์ อสร.",
-      "raw_reading": "",
+      "raw_reading": 3110.0,
       "raw_unit": "kWh",
       "normalized_kwh": 3110.0,
       "usage_kwh": 0,
-      "reader": "",
+      "reader": "ธนวิชญ์",
       "note": ""
     },
     {
@@ -122354,11 +122354,11 @@
       "b_code": "T.0026",
       "subb_code": "MDB",
       "building_name": "ท.0026 อาคารบริหารการขนส่ง",
-      "raw_reading": "",
-      "raw_unit": "kWh",
-      "normalized_kwh": 698250.0,
-      "usage_kwh": 0,
-      "reader": "",
+      "raw_reading": 700.95,
+      "raw_unit": "MWh",
+      "normalized_kwh": 700950.0,
+      "usage_kwh": 2700.0,
+      "reader": "ธนวิชญ์",
       "note": ""
     },
     {
@@ -123584,11 +123584,11 @@
       "b_code": "T.0027",
       "subb_code": "MDB",
       "building_name": "ท.0027 อาคารปฏิบัติการกองขนส่ง",
-      "raw_reading": "",
-      "raw_unit": "kWh",
-      "normalized_kwh": 282860.0,
-      "usage_kwh": 0,
-      "reader": "",
+      "raw_reading": 283.97,
+      "raw_unit": "MWh",
+      "normalized_kwh": 283970.0,
+      "usage_kwh": 1110.0,
+      "reader": "ธนวิชญ์",
       "note": ""
     },
     {
@@ -124814,11 +124814,11 @@
       "b_code": "T.0028",
       "subb_code": "MDB",
       "building_name": "ท.0028 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 1",
-      "raw_reading": "",
-      "raw_unit": "kWh",
-      "normalized_kwh": 296670.0,
-      "usage_kwh": 0,
-      "reader": "",
+      "raw_reading": 298.03,
+      "raw_unit": "MWh",
+      "normalized_kwh": 298030.0,
+      "usage_kwh": 1360.0,
+      "reader": "ธนวิชญ์",
       "note": ""
     },
     {
@@ -126044,11 +126044,11 @@
       "b_code": "T.0029",
       "subb_code": "MDB",
       "building_name": "ท.0029 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 2",
-      "raw_reading": "",
-      "raw_unit": "kWh",
-      "normalized_kwh": 376420.0,
-      "usage_kwh": 0,
-      "reader": "",
+      "raw_reading": 378.19,
+      "raw_unit": "MWh",
+      "normalized_kwh": 378190.0,
+      "usage_kwh": 1770.0,
+      "reader": "ธนวิชญ์",
       "note": ""
     }
   ],
@@ -127035,11 +127035,9 @@
       "b_code": "B.0001",
       "subb_code": "MDB",
       "building_name": "บ.0001 อาคาร แฟลต อบค.",
-      "normalized_kwh": 8078.0,
+      "normalized_kwh": 8082.0,
       "is_main_meter": true,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W01.csv",
@@ -144920,11 +144918,9 @@
       "b_code": "D.0031",
       "subb_code": "MDB",
       "building_name": "ต.0031 อาคารโรงอาหาร",
-      "normalized_kwh": 45299.0,
+      "normalized_kwh": 45558.0,
       "is_main_meter": true,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W03.csv",
@@ -145884,11 +145880,9 @@
       "b_code": "D.0031",
       "subb_code": "ร้านค้า 1",
       "building_name": "ต.0031 ร้านข้าวแกงคุณเพ็ญศรี",
-      "normalized_kwh": 3727.0,
+      "normalized_kwh": 3767.0,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W01.csv",
@@ -146924,11 +146918,9 @@
       "b_code": "D.0033",
       "subb_code": "MDB",
       "building_name": "ต.0033 อาคารปฏิบัติการงานเชื่อม",
-      "normalized_kwh": 496.8,
+      "normalized_kwh": 573.53,
       "is_main_meter": true,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W18.csv",
@@ -201882,9 +201874,7 @@
       "building_name": "ท.0020 อาคาร ศูนย์รับรองสมรรถนะฯ ระบบเครื่องปรับอากาศ 2",
       "normalized_kwh": 29.82,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W18.csv",
@@ -203454,11 +203444,9 @@
       "b_code": "T.0020",
       "subb_code": "LP21",
       "building_name": "ท.0020 อาคาร ศูนย์รับรองสมรรถนะฯ ระบบแสงสว่าง 1",
-      "normalized_kwh": 37394.82,
+      "normalized_kwh": 37468.92,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W18.csv",
@@ -204240,9 +204228,7 @@
       "building_name": "ท.0020 อาคาร ศูนย์รับรองสมรรถนะฯ ระบบแสงสว่าง 2",
       "normalized_kwh": 0.64,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W22.csv",
@@ -206654,9 +206640,7 @@
       "building_name": "ท.0020 อาคาร ศูนย์รับรองสมรรถนะฯ ระบบเครื่องใช้ไฟฟ้า 2",
       "normalized_kwh": 2.55,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W18.csv",
@@ -212376,9 +212360,7 @@
       "building_name": "ท.0022 อาคารห้องกัมตภาพรังสี อบค.",
       "normalized_kwh": 1122.0,
       "is_main_meter": true,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W01.csv",
@@ -213365,10 +213347,10 @@
       "b_code": "T.0023",
       "subb_code": "MDB",
       "building_name": "ท.0023 อาคาร Construction Shop อบค.",
-      "normalized_kwh": 5793000.0,
+      "normalized_kwh": 5793.0,
       "is_main_meter": true,
       "flags": [
-        "MISSING_READING_USED_PREVIOUS"
+        "METER_RESET_AUTO_DECLARED_VALUE_KEPT"
       ]
     },
     {
@@ -214355,9 +214337,7 @@
       "building_name": "ท.0025 อาคารเก็บอุปกรณ์ อสร.",
       "normalized_kwh": 3110.0,
       "is_main_meter": true,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W01.csv",
@@ -215341,11 +215321,9 @@
       "b_code": "T.0026",
       "subb_code": "MDB",
       "building_name": "ท.0026 อาคารบริหารการขนส่ง",
-      "normalized_kwh": 698250.0,
+      "normalized_kwh": 700950.0,
       "is_main_meter": true,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W01.csv",
@@ -216329,11 +216307,9 @@
       "b_code": "T.0027",
       "subb_code": "MDB",
       "building_name": "ท.0027 อาคารปฏิบัติการกองขนส่ง",
-      "normalized_kwh": 282860.0,
+      "normalized_kwh": 283970.0,
       "is_main_meter": true,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W01.csv",
@@ -217317,11 +217293,9 @@
       "b_code": "T.0028",
       "subb_code": "MDB",
       "building_name": "ท.0028 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 1",
-      "normalized_kwh": 296670.0,
+      "normalized_kwh": 298030.0,
       "is_main_meter": true,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W01.csv",
@@ -218305,11 +218279,9 @@
       "b_code": "T.0029",
       "subb_code": "MDB",
       "building_name": "ท.0029 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 2",
-      "normalized_kwh": 376420.0,
+      "normalized_kwh": 378190.0,
       "is_main_meter": true,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     }
   ],
   "weekly_consumption": [
@@ -219614,14 +219586,11 @@
       "subb_code": "MDB",
       "building_name": "บ.0001 อาคาร แฟลต อบค.",
       "is_main_meter": true,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 4.0,
+      "raw_delta_kwh": 4.0,
       "previous_normalized_kwh": 8078.0,
-      "current_normalized_kwh": 8078.0,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 8082.0,
+      "flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -243494,14 +243463,11 @@
       "subb_code": "MDB",
       "building_name": "ต.0031 อาคารโรงอาหาร",
       "is_main_meter": true,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 259.0,
+      "raw_delta_kwh": 259.0,
       "previous_normalized_kwh": 45299.0,
-      "current_normalized_kwh": 45299.0,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 45558.0,
+      "flags": []
     },
     {
       "week_start_date": "2025-01-17",
@@ -244766,14 +244732,11 @@
       "subb_code": "ร้านค้า 1",
       "building_name": "ต.0031 ร้านข้าวแกงคุณเพ็ญศรี",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 40.0,
+      "raw_delta_kwh": 40.0,
       "previous_normalized_kwh": 3727.0,
-      "current_normalized_kwh": 3727.0,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 3767.0,
+      "flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -246239,14 +246202,11 @@
       "subb_code": "MDB",
       "building_name": "ต.0033 อาคารปฏิบัติการงานเชื่อม",
       "is_main_meter": true,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 76.73,
+      "raw_delta_kwh": 76.73,
       "previous_normalized_kwh": 496.8,
-      "current_normalized_kwh": 496.8,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 573.53,
+      "flags": []
     },
     {
       "week_start_date": "2025-05-02",
@@ -318826,7 +318786,6 @@
       "previous_normalized_kwh": 29.82,
       "current_normalized_kwh": 29.82,
       "flags": [
-        "MISSING_READING_USED_PREVIOUS",
         "UNCHANGED_READING_USAGE_ZERO"
       ]
     },
@@ -320945,14 +320904,11 @@
       "subb_code": "LP21",
       "building_name": "ท.0020 อาคาร ศูนย์รับรองสมรรถนะฯ ระบบแสงสว่าง 1",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 74.1,
+      "raw_delta_kwh": 74.1,
       "previous_normalized_kwh": 37394.82,
-      "current_normalized_kwh": 37394.82,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 37468.92,
+      "flags": []
     },
     {
       "week_start_date": "2025-05-02",
@@ -322104,7 +322060,6 @@
       "previous_normalized_kwh": 0.64,
       "current_normalized_kwh": 0.64,
       "flags": [
-        "MISSING_READING_USED_PREVIOUS",
         "UNCHANGED_READING_USAGE_ZERO"
       ]
     },
@@ -325427,7 +325382,6 @@
       "previous_normalized_kwh": 2.55,
       "current_normalized_kwh": 2.55,
       "flags": [
-        "MISSING_READING_USED_PREVIOUS",
         "UNCHANGED_READING_USAGE_ZERO"
       ]
     },
@@ -333146,7 +333100,6 @@
       "previous_normalized_kwh": 1122.0,
       "current_normalized_kwh": 1122.0,
       "flags": [
-        "MISSING_READING_USED_PREVIOUS",
         "UNCHANGED_READING_USAGE_ZERO"
       ]
     },
@@ -334506,13 +334459,13 @@
       "subb_code": "MDB",
       "building_name": "ท.0023 อาคาร Construction Shop อบค.",
       "is_main_meter": true,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 5793.0,
+      "raw_delta_kwh": -5787207.0,
       "previous_normalized_kwh": 5793000.0,
-      "current_normalized_kwh": 5793000.0,
+      "current_normalized_kwh": 5793.0,
       "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
+        "METER_RESET_AUTO_DECLARED_VALUE_KEPT",
+        "METER_RESET_PREVIOUS_TREATED_AS_ZERO"
       ]
     },
     {
@@ -335853,7 +335806,6 @@
       "previous_normalized_kwh": 3110.0,
       "current_normalized_kwh": 3110.0,
       "flags": [
-        "MISSING_READING_USED_PREVIOUS",
         "UNCHANGED_READING_USAGE_ZERO"
       ]
     },
@@ -337154,14 +337106,11 @@
       "subb_code": "MDB",
       "building_name": "ท.0026 อาคารบริหารการขนส่ง",
       "is_main_meter": true,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 2700.0,
+      "raw_delta_kwh": 2700.0,
       "previous_normalized_kwh": 698250.0,
-      "current_normalized_kwh": 698250.0,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 700950.0,
+      "flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -338458,14 +338407,11 @@
       "subb_code": "MDB",
       "building_name": "ท.0027 อาคารปฏิบัติการกองขนส่ง",
       "is_main_meter": true,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 1110.0,
+      "raw_delta_kwh": 1110.0,
       "previous_normalized_kwh": 282860.0,
-      "current_normalized_kwh": 282860.0,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 283970.0,
+      "flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -339764,14 +339710,11 @@
       "subb_code": "MDB",
       "building_name": "ท.0028 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 1",
       "is_main_meter": true,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 1360.0,
+      "raw_delta_kwh": 1360.0,
       "previous_normalized_kwh": 296670.0,
-      "current_normalized_kwh": 296670.0,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 298030.0,
+      "flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -341068,14 +341011,11 @@
       "subb_code": "MDB",
       "building_name": "ท.0029 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 2",
       "is_main_meter": true,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 1770.0,
+      "raw_delta_kwh": 1770.0,
       "previous_normalized_kwh": 376420.0,
-      "current_normalized_kwh": 376420.0,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 378190.0,
+      "flags": []
     }
   ],
   "department_weekly": [
@@ -342221,11 +342161,8 @@
       "building_name": "บ.0001 อาคาร แฟลต อบค.",
       "allocation_ratio": 1.0,
       "allocation_row_no": 20,
-      "kwh": 0.0,
-      "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "kwh": 4.0,
+      "source_flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -349280,11 +349217,8 @@
       "building_name": "ต.0031 อาคารโรงอาหาร",
       "allocation_ratio": 1.0,
       "allocation_row_no": 43,
-      "kwh": 0.0,
-      "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "kwh": 259.0,
+      "source_flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -350591,11 +350525,8 @@
       "building_name": "ต.0033 อาคารปฏิบัติการงานเชื่อม",
       "allocation_ratio": 1.0,
       "allocation_row_no": 44,
-      "kwh": 0.0,
-      "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "kwh": 76.73,
+      "source_flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -381626,7 +381557,6 @@
       "allocation_row_no": 18,
       "kwh": 0.0,
       "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
         "UNCHANGED_READING_USAGE_ZERO"
       ]
     },
@@ -382827,10 +382757,10 @@
       "building_name": "ท.0023 อาคาร Construction Shop อบค.",
       "allocation_ratio": 1.0,
       "allocation_row_no": 19,
-      "kwh": 0.0,
+      "kwh": 5793.0,
       "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
+        "METER_RESET_AUTO_DECLARED_VALUE_KEPT",
+        "METER_RESET_PREVIOUS_TREATED_AS_ZERO"
       ]
     },
     {
@@ -384009,7 +383939,6 @@
       "allocation_row_no": 38,
       "kwh": 0.0,
       "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
         "UNCHANGED_READING_USAGE_ZERO"
       ]
     },
@@ -385151,11 +385080,8 @@
       "building_name": "ท.0026 อาคารบริหารการขนส่ง",
       "allocation_ratio": 1.0,
       "allocation_row_no": 39,
-      "kwh": 0.0,
-      "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "kwh": 2700.0,
+      "source_flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -386293,11 +386219,8 @@
       "building_name": "ท.0027 อาคารปฏิบัติการกองขนส่ง",
       "allocation_ratio": 1.0,
       "allocation_row_no": 40,
-      "kwh": 0.0,
-      "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "kwh": 1110.0,
+      "source_flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -387437,11 +387360,8 @@
       "building_name": "ท.0028 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 1",
       "allocation_ratio": 1.0,
       "allocation_row_no": 41,
-      "kwh": 0.0,
-      "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "kwh": 1360.0,
+      "source_flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -388579,11 +388499,8 @@
       "building_name": "ท.0029 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 2",
       "allocation_ratio": 1.0,
       "allocation_row_no": 42,
-      "kwh": 0.0,
-      "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "kwh": 1770.0,
+      "source_flags": []
     },
     {
       "week_start_date": "2025-03-21",
@@ -390756,10 +390673,10 @@
       "อคม.": 63340.54
     },
     "2026-07": {
-      "อบค.": 5830218.059,
+      "อบค.": 5836015.059,
       "อสร.": 1.0,
       "สก.ชธธ.": 7525993.499,
-      "อหข.": 22235.15,
+      "อหข.": 29510.88,
       "อรอ.": 13712.607,
       "อบฟ.": 52313.67,
       "อบย.": 16897.659,
