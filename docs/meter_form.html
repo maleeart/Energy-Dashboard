@@ -171,7 +171,9 @@
     <div class="week-manual-toggle" onclick="toggleManual(event)">
       <span class="toggle-arrow" id="toggleArrow">▶</span>
       <span>ระบุสัปดาห์อื่น</span>
-      <button class="help-btn" onclick="openHelp(event)" title="วิธีใช้งาน">?</button>
+      <input type="file" id="csvFileInput" accept=".csv" style="display:none" onchange="handleCsvUpload(event)">
+      <button class="help-btn" onclick="triggerCsvUpload(event)" title="อัปโหลดไฟล์ CSV (สัปดาห์ใหม่)" style="margin-left:auto">📤</button>
+      <button class="help-btn" onclick="openHelp(event)" title="วิธีใช้งาน" style="margin-left:0">?</button>
     </div>
     <div class="week-manual-row" id="manualRow">
       <input type="text" class="week-input" id="weekInput" placeholder="เช่น 2026-W23">
@@ -292,7 +294,7 @@
 
 <script>
 // ── CONFIG — เปลี่ยน URL นี้เป็น Apps Script Web App URL ──
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzy8B-0diQgBZROwG_sFxZ4tENRbsj5AIDZLW8EvGtoMWUajfgNGCoUtol0gc5qtmBCaw/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzWRgUu4aPjHVje21WOCS80elFhL6zjDT2WkJB7qA67_mRVTDVKOt6IANSP-4uq17-w/exec';
 
 // ── State ──────────────────────────────────────────────────
 let allRows    = [];
@@ -579,6 +581,61 @@ function showToast(msg, type='') {
 
 function escHtml(s) {
   return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+// ── Upload new week CSV ────────────────────────────────────
+function triggerCsvUpload(e) {
+  e.stopPropagation();
+  document.getElementById('csvFileInput').click();
+}
+
+async function handleCsvUpload(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  
+  const fileName = file.name;
+  const match = fileName.match(/^(\d{4}-W\d{2})\.csv$/i);
+  if (!match) {
+    showToast('❌ ชื่อไฟล์ต้องเป็นรูปแบบ YYYY-Wxx.csv เช่น 2026-W29.csv', 'error');
+    e.target.value = '';
+    return;
+  }
+  
+  const fileWeekId = match[1];
+  if (!confirm(`ต้องการอัปโหลดไฟล์สัปดาห์ใหม่ ${fileWeekId} ใช่หรือไม่?`)) {
+    e.target.value = '';
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onload = async function(evt) {
+    const csvContent = evt.target.result;
+    showToast('⏳ กำลังอัปโหลด...', 'info');
+    try {
+      const res = await fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify({
+          action: 'upload',
+          week_id: fileWeekId,
+          csv_content: csvContent
+        })
+      });
+      const data = await res.json();
+      if (!data.ok) throw new Error(data.error || 'อัปโหลดไม่สำเร็จ');
+      
+      showToast('✅ อัปโหลดสำเร็จแล้ว', 'success');
+      document.getElementById('weekInput').value = fileWeekId;
+      weekId = fileWeekId;
+      showLoading();
+      fetchWeekData(fileWeekId);
+    } catch(err) {
+      showToast('❌ ' + err.message, 'error');
+    } finally {
+      e.target.value = '';
+    }
+  };
+  reader.readAsText(file, 'UTF-8');
 }
 
 // ── Help modal ─────────────────────────────────────────────
