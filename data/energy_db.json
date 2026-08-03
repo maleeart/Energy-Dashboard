@@ -14,7 +14,7 @@
       "SCB 8",
       "SCB21"
     ],
-    "generated_at": "2026-08-03T02:59:53",
+    "generated_at": "2026-08-03T03:24:26",
     "missing_reading_logic": "Blank or 0 raw_reading uses previous valid reading.",
     "unchanged_reading_logic": "If current equals previous, usage is 0.",
     "allocation_logic": "Fill-down department, then use row allocation_ratio directly."
@@ -22904,10 +22904,10 @@
       "b_code": "D.0025",
       "subb_code": "MDB",
       "building_name": "ต.0025 อาคารอเนกประสงค์",
-      "raw_reading": 3109.0,
+      "raw_reading": 26509.0,
       "raw_unit": "kWh",
-      "normalized_kwh": 3109000.0,
-      "usage_kwh": 3082859.93,
+      "normalized_kwh": 26509.0,
+      "usage_kwh": 368.93,
       "reader": "นันทวัฒ",
       "note": ""
     },
@@ -22922,7 +22922,7 @@
       "raw_reading": 26.805,
       "raw_unit": "MWh",
       "normalized_kwh": 26805.0,
-      "usage_kwh": 26805.0,
+      "usage_kwh": 296.0,
       "reader": "ธนวิชญ์",
       "note": ""
     },
@@ -144589,12 +144589,9 @@
       "b_code": "D.0025",
       "subb_code": "MDB",
       "building_name": "ต.0025 อาคารอเนกประสงค์",
-      "normalized_kwh": 3109000.0,
+      "normalized_kwh": 26509.0,
       "is_main_meter": true,
-      "flags": [
-        "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH",
-        "UNIT_SUSPECT_AUTO_CORRECTED"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2026-W27.csv",
@@ -144606,9 +144603,7 @@
       "building_name": "ต.0025 อาคารอเนกประสงค์",
       "normalized_kwh": 26805.0,
       "is_main_meter": true,
-      "flags": [
-        "METER_RESET_AUTO_DECLARED_VALUE_KEPT"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2026-W28.csv",
@@ -243758,14 +243753,11 @@
       "subb_code": "MDB",
       "building_name": "ต.0025 อาคารอเนกประสงค์",
       "is_main_meter": true,
-      "kwh": 3082859.93,
-      "raw_delta_kwh": 3082859.93,
+      "kwh": 368.93,
+      "raw_delta_kwh": 368.93,
       "previous_normalized_kwh": 26140.07,
-      "current_normalized_kwh": 3109000.0,
-      "flags": [
-        "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH",
-        "UNIT_SUSPECT_AUTO_CORRECTED"
-      ]
+      "current_normalized_kwh": 26509.0,
+      "flags": []
     },
     {
       "week_start_date": "2026-06-26",
@@ -243777,14 +243769,11 @@
       "subb_code": "MDB",
       "building_name": "ต.0025 อาคารอเนกประสงค์",
       "is_main_meter": true,
-      "kwh": 26805.0,
-      "raw_delta_kwh": -3082195.0,
-      "previous_normalized_kwh": 3109000.0,
+      "kwh": 296.0,
+      "raw_delta_kwh": 296.0,
+      "previous_normalized_kwh": 26509.0,
       "current_normalized_kwh": 26805.0,
-      "flags": [
-        "METER_RESET_AUTO_DECLARED_VALUE_KEPT",
-        "METER_RESET_PREVIOUS_TREATED_AS_ZERO"
-      ]
+      "flags": []
     },
     {
       "week_start_date": "2026-07-03",
@@ -351264,11 +351253,8 @@
       "building_name": "ต.0025 อาคารอเนกประสงค์",
       "allocation_ratio": 1.0,
       "allocation_row_no": 6,
-      "kwh": 3082859.93,
-      "source_flags": [
-        "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH",
-        "UNIT_SUSPECT_AUTO_CORRECTED"
-      ]
+      "kwh": 368.93,
+      "source_flags": []
     },
     {
       "week_start_date": "2026-06-26",
@@ -351281,11 +351267,8 @@
       "building_name": "ต.0025 อาคารอเนกประสงค์",
       "allocation_ratio": 1.0,
       "allocation_row_no": 6,
-      "kwh": 26805.0,
-      "source_flags": [
-        "METER_RESET_AUTO_DECLARED_VALUE_KEPT",
-        "METER_RESET_PREVIOUS_TREATED_AS_ZERO"
-      ]
+      "kwh": 296.0,
+      "source_flags": []
     },
     {
       "week_start_date": "2026-07-03",
@@ -395609,7 +395592,7 @@
     "2026-06": {
       "อบค.": 43517.34,
       "อสร.": 23413.0,
-      "สก.ชธธ.": 3144300.41,
+      "สก.ชธธ.": 61809.41,
       "อหข.": 6213089.65,
       "อรอ.": 14790.979,
       "อบฟ.": 59893.817,
@@ -395619,7 +395602,7 @@
     "2026-07": {
       "อบค.": 5843587.821,
       "อสร.": 3086601.0,
-      "สก.ชธธ.": 7534901.691,
+      "สก.ชธธ.": 7508392.691,
       "อหข.": 34118.88,
       "อรอ.": 15208.671,
       "อบฟ.": 76526.522,
