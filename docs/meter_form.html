@@ -352,11 +352,7 @@ function formatReadingDate(dateStr) {
 }
 
 function setWeekDisplay(w, rows = []) {
-  let readingDate = '';
-  if (rows && rows[0]) {
-    // รองรับหัวคอลัมน์แรกที่มี BOM (Byte Order Mark) ปนมา
-    readingDate = rows[0].reading_date || rows[0]['\uFEFFreading_date'] || '';
-  }
+  let readingDate = rows?.[0]?.reading_date || '';
   readingDate = formatReadingDate(readingDate);
   document.getElementById('weekLabel').textContent =
     readingDate ? `${w} (${readingDate})` : w;
@@ -385,7 +381,17 @@ async function fetchWeekData(w) {
     const res  = await fetch(`${APPS_SCRIPT_URL}?week_id=${w}`);
     const data = await res.json();
     if (!data.ok) throw new Error(data.error || 'โหลดข้อมูลไม่สำเร็จ');
-    allRows = data.rows || [];
+    
+    // คลีนคีย์ทั้งหมดที่มีอักขระ BOM (\uFEFF) นำหน้า
+    allRows = (data.rows || []).map(row => {
+      const cleanRow = {};
+      for (const k in row) {
+        const cleanKey = k.replace(/^\uFEFF/, '').trim();
+        cleanRow[cleanKey] = row[k];
+      }
+      return cleanRow;
+    });
+
     setWeekDisplay(w, allRows);
     renderList();
     document.getElementById('statsBar').style.display   = 'flex';
