@@ -335,8 +335,24 @@ function toggleManual() {
 }
 
 // ── Week display ───────────────────────────────────────────
+function formatReadingDate(dateStr) {
+  if (!dateStr) return '';
+  const str = String(dateStr).trim();
+  if (str.includes('T')) {
+    const d = new Date(str);
+    if (!isNaN(d)) {
+      const yyyy = d.getFullYear();
+      const mm = String(d.getMonth() + 1).padStart(2, '0');
+      const dd = String(d.getDate()).padStart(2, '0');
+      return `${dd}/${mm}/${yyyy}`;
+    }
+  }
+  return str;
+}
+
 function setWeekDisplay(w, rows = []) {
-  const readingDate = rows?.[0]?.reading_date || '';
+  let readingDate = rows?.[0]?.reading_date || '';
+  readingDate = formatReadingDate(readingDate);
   document.getElementById('weekLabel').textContent =
     readingDate ? `${w} (${readingDate})` : w;
   document.getElementById('latestWeekBadge').textContent = w;
