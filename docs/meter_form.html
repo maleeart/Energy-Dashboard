@@ -338,9 +338,10 @@ function toggleManual() {
 function formatReadingDate(dateStr) {
   if (!dateStr) return '';
   const str = String(dateStr).trim();
-  if (str.includes('T')) {
+  // ถ้าตัวอักษรยาวเกิน 10 (เช่นมีเวลาปนมา) หรือมี T หรือมีเครื่องหมาย :
+  if (str.length > 10 || str.includes('T') || str.includes(':')) {
     const d = new Date(str);
-    if (!isNaN(d)) {
+    if (!isNaN(d.getTime())) {
       const yyyy = d.getFullYear();
       const mm = String(d.getMonth() + 1).padStart(2, '0');
       const dd = String(d.getDate()).padStart(2, '0');
