@@ -1,4 +1,4 @@
-﻿reading_date,week_id,sort_order,meter_id,b_code,floor,subb_code,building_name,raw_reading,raw_unit,reader,note
+﻿﻿reading_date,week_id,sort_order,meter_id,b_code,floor,subb_code,building_name,raw_reading,raw_unit,reader,note
 21/08/2026,2026-W34,1,EGAT__FL01__Main,EGAT,FL01,Main11,มิเตอร์รวมทั้งหมด,,kWh,,
 21/08/2026,2026-W34,2,EGAT__FL01__Main2,EGAT,FL01,Main21,มิเตอร์รวม เฟส 1,,kWh,,
 21/08/2026,2026-W34,3,T.0006__FL01__MDB,T.0006,FL01,MDB,ท.0006 อาคาร บริหารอะไหล่กังหันก๊าซ1 อรอ.,26.8003,MWh,ธนวิชญ์,
