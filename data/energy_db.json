@@ -14,7 +14,7 @@
       "SCB 8",
       "SCB21"
     ],
-    "generated_at": "2026-08-31T08:25:55",
+    "generated_at": "2026-08-31T08:38:34",
     "missing_reading_logic": "Blank or 0 raw_reading uses previous valid reading.",
     "unchanged_reading_logic": "If current equals previous, usage is 0.",
     "allocation_logic": "Fill-down department, then use row allocation_ratio directly."
@@ -126824,10 +126824,10 @@
       "b_code": "T.0025",
       "subb_code": "MDB",
       "building_name": "ท.0025 อาคารเก็บอุปกรณ์ อสร.",
-      "raw_reading": 26509.0,
+      "raw_reading": 3110.0,
       "raw_unit": "kWh",
-      "normalized_kwh": 26509.0,
-      "usage_kwh": 23400.0,
+      "normalized_kwh": 3110.0,
+      "usage_kwh": 1.0,
       "reader": "นันทวัฒ",
       "note": ""
     },
@@ -126841,8 +126841,8 @@
       "building_name": "ท.0025 อาคารเก็บอุปกรณ์ อสร.",
       "raw_reading": 3110.0,
       "raw_unit": "kWh",
-      "normalized_kwh": 3110000.0,
-      "usage_kwh": 3083491.0,
+      "normalized_kwh": 3110.0,
+      "usage_kwh": 0,
       "reader": "ธนวิชญ์",
       "note": ""
     },
@@ -126857,7 +126857,7 @@
       "raw_reading": 3110.0,
       "raw_unit": "kWh",
       "normalized_kwh": 3110.0,
-      "usage_kwh": 3110.0,
+      "usage_kwh": 0,
       "reader": "ธนวิชญ์",
       "note": ""
     },
@@ -224959,7 +224959,7 @@
       "b_code": "T.0025",
       "subb_code": "MDB",
       "building_name": "ท.0025 อาคารเก็บอุปกรณ์ อสร.",
-      "normalized_kwh": 26509.0,
+      "normalized_kwh": 3110.0,
       "is_main_meter": true,
       "flags": []
     },
@@ -224971,12 +224971,9 @@
       "b_code": "T.0025",
       "subb_code": "MDB",
       "building_name": "ท.0025 อาคารเก็บอุปกรณ์ อสร.",
-      "normalized_kwh": 3110000.0,
+      "normalized_kwh": 3110.0,
       "is_main_meter": true,
-      "flags": [
-        "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH",
-        "UNIT_SUSPECT_AUTO_CORRECTED"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2026-W28.csv",
@@ -224988,9 +224985,7 @@
       "building_name": "ท.0025 อาคารเก็บอุปกรณ์ อสร.",
       "normalized_kwh": 3110.0,
       "is_main_meter": true,
-      "flags": [
-        "METER_RESET_AUTO_DECLARED_VALUE_KEPT"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2026-W29.csv",
@@ -352876,10 +352871,10 @@
       "subb_code": "MDB",
       "building_name": "ท.0025 อาคารเก็บอุปกรณ์ อสร.",
       "is_main_meter": true,
-      "kwh": 23400.0,
-      "raw_delta_kwh": 23400.0,
+      "kwh": 1.0,
+      "raw_delta_kwh": 1.0,
       "previous_normalized_kwh": 3109.0,
-      "current_normalized_kwh": 26509.0,
+      "current_normalized_kwh": 3110.0,
       "flags": []
     },
     {
@@ -352892,13 +352887,12 @@
       "subb_code": "MDB",
       "building_name": "ท.0025 อาคารเก็บอุปกรณ์ อสร.",
       "is_main_meter": true,
-      "kwh": 3083491.0,
-      "raw_delta_kwh": 3083491.0,
-      "previous_normalized_kwh": 26509.0,
-      "current_normalized_kwh": 3110000.0,
+      "kwh": 0,
+      "raw_delta_kwh": 0.0,
+      "previous_normalized_kwh": 3110.0,
+      "current_normalized_kwh": 3110.0,
       "flags": [
-        "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH",
-        "UNIT_SUSPECT_AUTO_CORRECTED"
+        "UNCHANGED_READING_USAGE_ZERO"
       ]
     },
     {
@@ -352911,13 +352905,12 @@
       "subb_code": "MDB",
       "building_name": "ท.0025 อาคารเก็บอุปกรณ์ อสร.",
       "is_main_meter": true,
-      "kwh": 3110.0,
-      "raw_delta_kwh": -3106890.0,
-      "previous_normalized_kwh": 3110000.0,
+      "kwh": 0,
+      "raw_delta_kwh": 0.0,
+      "previous_normalized_kwh": 3110.0,
       "current_normalized_kwh": 3110.0,
       "flags": [
-        "METER_RESET_AUTO_DECLARED_VALUE_KEPT",
-        "METER_RESET_PREVIOUS_TREATED_AS_ZERO"
+        "UNCHANGED_READING_USAGE_ZERO"
       ]
     },
     {
@@ -403376,7 +403369,7 @@
       "building_name": "ท.0025 อาคารเก็บอุปกรณ์ อสร.",
       "allocation_ratio": 1.0,
       "allocation_row_no": 38,
-      "kwh": 23400.0,
+      "kwh": 1.0,
       "source_flags": []
     },
     {
@@ -403390,10 +403383,9 @@
       "building_name": "ท.0025 อาคารเก็บอุปกรณ์ อสร.",
       "allocation_ratio": 1.0,
       "allocation_row_no": 38,
-      "kwh": 3083491.0,
+      "kwh": 0.0,
       "source_flags": [
-        "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH",
-        "UNIT_SUSPECT_AUTO_CORRECTED"
+        "UNCHANGED_READING_USAGE_ZERO"
       ]
     },
     {
@@ -403407,10 +403399,9 @@
       "building_name": "ท.0025 อาคารเก็บอุปกรณ์ อสร.",
       "allocation_ratio": 1.0,
       "allocation_row_no": 38,
-      "kwh": 3110.0,
+      "kwh": 0.0,
       "source_flags": [
-        "METER_RESET_AUTO_DECLARED_VALUE_KEPT",
-        "METER_RESET_PREVIOUS_TREATED_AS_ZERO"
+        "UNCHANGED_READING_USAGE_ZERO"
       ]
     },
     {
@@ -410565,7 +410556,7 @@
     },
     "2026-06": {
       "อบค.": 43517.34,
-      "อสร.": 23413.0,
+      "อสร.": 14.0,
       "สก.ชธธ.": 61809.41,
       "อหข.": 32829.65,
       "อรอ.": 14790.979,
@@ -410575,7 +410566,7 @@
     },
     "2026-07": {
       "อบค.": 5843587.821,
-      "อสร.": 3086601.0,
+      "อสร.": 0.0,
       "สก.ชธธ.": 7508392.691,
       "อหข.": 34118.88,
       "อรอ.": 15208.671,
