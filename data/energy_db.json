@@ -14,7 +14,7 @@
       "SCB 8",
       "SCB21"
     ],
-    "generated_at": "2026-08-31T08:38:34",
+    "generated_at": "2026-08-31T08:45:11",
     "missing_reading_logic": "Blank or 0 raw_reading uses previous valid reading.",
     "unchanged_reading_logic": "If current equals previous, usage is 0.",
     "allocation_logic": "Fill-down department, then use row allocation_ratio directly."
@@ -24914,10 +24914,10 @@
       "b_code": "D.0026",
       "subb_code": "MDB",
       "building_name": "ต.0026 อาคารระบบประปา",
-      "raw_reading": 10376.17,
+      "raw_reading": 7376.17,
       "raw_unit": "kWh",
-      "normalized_kwh": 10376.17,
-      "usage_kwh": 3198.24,
+      "normalized_kwh": 7376.17,
+      "usage_kwh": 198.24,
       "reader": "นันทวัฒ",
       "note": ""
     },
@@ -24931,8 +24931,8 @@
       "building_name": "ต.0026 อาคารระบบประปา",
       "raw_reading": 7450.82,
       "raw_unit": "kWh",
-      "normalized_kwh": 7450820.0,
-      "usage_kwh": 7440443.83,
+      "normalized_kwh": 7450.82,
+      "usage_kwh": 74.65,
       "reader": "ธนวิชญ์",
       "note": ""
     },
@@ -24947,7 +24947,7 @@
       "raw_reading": 7603.58,
       "raw_unit": "kWh",
       "normalized_kwh": 7603.58,
-      "usage_kwh": 7603.58,
+      "usage_kwh": 152.76,
       "reader": "ธนวิชญ์",
       "note": ""
     },
@@ -150775,7 +150775,7 @@
       "b_code": "D.0026",
       "subb_code": "MDB",
       "building_name": "ต.0026 อาคารระบบประปา",
-      "normalized_kwh": 10376.17,
+      "normalized_kwh": 7376.17,
       "is_main_meter": true,
       "flags": []
     },
@@ -150787,12 +150787,9 @@
       "b_code": "D.0026",
       "subb_code": "MDB",
       "building_name": "ต.0026 อาคารระบบประปา",
-      "normalized_kwh": 7450820.0,
+      "normalized_kwh": 7450.82,
       "is_main_meter": true,
-      "flags": [
-        "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH",
-        "UNIT_SUSPECT_AUTO_CORRECTED"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2026-W28.csv",
@@ -150804,9 +150801,7 @@
       "building_name": "ต.0026 อาคารระบบประปา",
       "normalized_kwh": 7603.58,
       "is_main_meter": true,
-      "flags": [
-        "METER_RESET_AUTO_DECLARED_VALUE_KEPT"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2026-W29.csv",
@@ -254136,10 +254131,10 @@
       "subb_code": "MDB",
       "building_name": "ต.0026 อาคารระบบประปา",
       "is_main_meter": true,
-      "kwh": 3198.24,
-      "raw_delta_kwh": 3198.24,
+      "kwh": 198.24,
+      "raw_delta_kwh": 198.24,
       "previous_normalized_kwh": 7177.93,
-      "current_normalized_kwh": 10376.17,
+      "current_normalized_kwh": 7376.17,
       "flags": []
     },
     {
@@ -254152,14 +254147,11 @@
       "subb_code": "MDB",
       "building_name": "ต.0026 อาคารระบบประปา",
       "is_main_meter": true,
-      "kwh": 7440443.83,
-      "raw_delta_kwh": 7440443.83,
-      "previous_normalized_kwh": 10376.17,
-      "current_normalized_kwh": 7450820.0,
-      "flags": [
-        "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH",
-        "UNIT_SUSPECT_AUTO_CORRECTED"
-      ]
+      "kwh": 74.65,
+      "raw_delta_kwh": 74.65,
+      "previous_normalized_kwh": 7376.17,
+      "current_normalized_kwh": 7450.82,
+      "flags": []
     },
     {
       "week_start_date": "2026-07-03",
@@ -254171,14 +254163,11 @@
       "subb_code": "MDB",
       "building_name": "ต.0026 อาคารระบบประปา",
       "is_main_meter": true,
-      "kwh": 7603.58,
-      "raw_delta_kwh": -7443216.42,
-      "previous_normalized_kwh": 7450820.0,
+      "kwh": 152.76,
+      "raw_delta_kwh": 152.76,
+      "previous_normalized_kwh": 7450.82,
       "current_normalized_kwh": 7603.58,
-      "flags": [
-        "METER_RESET_AUTO_DECLARED_VALUE_KEPT",
-        "METER_RESET_PREVIOUS_TREATED_AS_ZERO"
-      ]
+      "flags": []
     },
     {
       "week_start_date": "2026-07-10",
@@ -365758,7 +365747,7 @@
       "building_name": "ต.0026 อาคารระบบประปา",
       "allocation_ratio": 1.0,
       "allocation_row_no": 3,
-      "kwh": 3198.24,
+      "kwh": 198.24,
       "source_flags": []
     },
     {
@@ -365772,11 +365761,8 @@
       "building_name": "ต.0026 อาคารระบบประปา",
       "allocation_ratio": 1.0,
       "allocation_row_no": 3,
-      "kwh": 7440443.83,
-      "source_flags": [
-        "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH",
-        "UNIT_SUSPECT_AUTO_CORRECTED"
-      ]
+      "kwh": 74.65,
+      "source_flags": []
     },
     {
       "week_start_date": "2026-07-03",
@@ -365789,11 +365775,8 @@
       "building_name": "ต.0026 อาคารระบบประปา",
       "allocation_ratio": 1.0,
       "allocation_row_no": 3,
-      "kwh": 7603.58,
-      "source_flags": [
-        "METER_RESET_AUTO_DECLARED_VALUE_KEPT",
-        "METER_RESET_PREVIOUS_TREATED_AS_ZERO"
-      ]
+      "kwh": 152.76,
+      "source_flags": []
     },
     {
       "week_start_date": "2026-07-10",
@@ -410557,7 +410540,7 @@
     "2026-06": {
       "อบค.": 43517.34,
       "อสร.": 14.0,
-      "สก.ชธธ.": 61809.41,
+      "สก.ชธธ.": 58809.41,
       "อหข.": 32829.65,
       "อรอ.": 14790.979,
       "อบฟ.": 59893.817,
@@ -410567,7 +410550,7 @@
     "2026-07": {
       "อบค.": 5843587.821,
       "อสร.": 0.0,
-      "สก.ชธธ.": 7508392.691,
+      "สก.ชธธ.": 60572.691,
       "อหข.": 34118.88,
       "อรอ.": 15208.671,
       "อบฟ.": 76526.522,
