@@ -14,7 +14,7 @@
       "SCB 8",
       "SCB21"
     ],
-    "generated_at": "2026-08-28T06:39:44",
+    "generated_at": "2026-08-31T08:25:55",
     "missing_reading_logic": "Blank or 0 raw_reading uses previous valid reading.",
     "unchanged_reading_logic": "If current equals previous, usage is 0.",
     "allocation_logic": "Fill-down department, then use row allocation_ratio directly."
@@ -128099,10 +128099,10 @@
       "b_code": "T.0026",
       "subb_code": "MDB",
       "building_name": "ท.0026 อาคารบริหารการขนส่ง",
-      "raw_reading": 6870.42,
+      "raw_reading": 687.42,
       "raw_unit": "MWh",
-      "normalized_kwh": 6870420.0,
-      "usage_kwh": 6185640.0,
+      "normalized_kwh": 687420.0,
+      "usage_kwh": 2640.0,
       "reader": "ธนวิชญ์",
       "note": ""
     },
@@ -128117,7 +128117,7 @@
       "raw_reading": 690.16,
       "raw_unit": "MWh",
       "normalized_kwh": 690160.0,
-      "usage_kwh": 0,
+      "usage_kwh": 2740.0,
       "reader": "ธนวิช",
       "note": ""
     },
@@ -225986,7 +225986,7 @@
       "b_code": "T.0026",
       "subb_code": "MDB",
       "building_name": "ท.0026 อาคารบริหารการขนส่ง",
-      "normalized_kwh": 6870420.0,
+      "normalized_kwh": 687420.0,
       "is_main_meter": true,
       "flags": []
     },
@@ -354243,10 +354243,10 @@
       "subb_code": "MDB",
       "building_name": "ท.0026 อาคารบริหารการขนส่ง",
       "is_main_meter": true,
-      "kwh": 6185640.0,
-      "raw_delta_kwh": 6185640.0,
+      "kwh": 2640.0,
+      "raw_delta_kwh": 2640.0,
       "previous_normalized_kwh": 684780.0,
-      "current_normalized_kwh": 6870420.0,
+      "current_normalized_kwh": 687420.0,
       "flags": []
     },
     {
@@ -354259,13 +354259,11 @@
       "subb_code": "MDB",
       "building_name": "ท.0026 อาคารบริหารการขนส่ง",
       "is_main_meter": true,
-      "kwh": 0,
-      "raw_delta_kwh": -6180260.0,
-      "previous_normalized_kwh": 6870420.0,
+      "kwh": 2740.0,
+      "raw_delta_kwh": 2740.0,
+      "previous_normalized_kwh": 687420.0,
       "current_normalized_kwh": 690160.0,
-      "flags": [
-        "NEGATIVE_DELTA_INVALID_USAGE_ZERO"
-      ]
+      "flags": []
     },
     {
       "week_start_date": "2026-06-26",
@@ -404577,7 +404575,7 @@
       "building_name": "ท.0026 อาคารบริหารการขนส่ง",
       "allocation_ratio": 1.0,
       "allocation_row_no": 39,
-      "kwh": 6185640.0,
+      "kwh": 2640.0,
       "source_flags": []
     },
     {
@@ -404591,10 +404589,8 @@
       "building_name": "ท.0026 อาคารบริหารการขนส่ง",
       "allocation_ratio": 1.0,
       "allocation_row_no": 39,
-      "kwh": 0.0,
-      "source_flags": [
-        "NEGATIVE_DELTA_INVALID_USAGE_ZERO"
-      ]
+      "kwh": 2740.0,
+      "source_flags": []
     },
     {
       "week_start_date": "2026-06-26",
@@ -410571,7 +410567,7 @@
       "อบค.": 43517.34,
       "อสร.": 23413.0,
       "สก.ชธธ.": 61809.41,
-      "อหข.": 6213089.65,
+      "อหข.": 32829.65,
       "อรอ.": 14790.979,
       "อบฟ.": 59893.817,
       "อบย.": 16917.422,
