@@ -265,6 +265,85 @@
   font-size: 9px; font-weight: 700; padding: 1px 5px;
   border-radius: 99px; margin-left: 6px; vertical-align: middle;
 }
+.admin-tabs {
+  display: flex;
+  background: #f0f4f8;
+  border-bottom: 1px solid var(--bdr);
+  padding: 0 16px;
+  gap: 6px;
+}
+.admin-tab {
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--txt2);
+  border: none;
+  background: none;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all .15s;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.admin-tab:hover { color: var(--pri); }
+.admin-tab.active {
+  color: var(--pri);
+  border-bottom-color: var(--pri);
+  background: #fff;
+  border-radius: 6px 6px 0 0;
+}
+.mea-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+}
+.mea-month-card {
+  border: 1px solid var(--bdr);
+  border-radius: 7px;
+  padding: 8px 10px;
+  background: #fff;
+  transition: border-color .15s, box-shadow .15s;
+}
+.mea-month-card:focus-within {
+  border-color: var(--pri);
+  box-shadow: 0 0 0 2px rgba(21,101,192,.12);
+}
+.mea-month-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--txt);
+  margin-bottom: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.mea-input {
+  width: 100%;
+  padding: 5px 8px;
+  border: 1px solid var(--bdr);
+  border-radius: 5px;
+  font-size: 12px;
+  font-family: 'Sarabun', sans-serif;
+  text-align: right;
+  box-sizing: border-box;
+}
+.mea-input:focus { outline: none; border-color: var(--pri); }
+.mea-input.modified { border-color: #F9A825; background: #FFFDE7; font-weight: 600; }
+.mea-summary-box {
+  display: flex;
+  gap: 12px;
+  background: #f4f7fa;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-top: 14px;
+  border: 1px solid #e1e7ec;
+}
+.mea-summary-item { flex: 1; }
+.mea-summary-label { font-size: 11px; color: var(--txt2); margin-bottom: 2px; }
+.mea-summary-val { font-size: 15px; font-weight: 700; color: var(--pri); }
 </style>
 </head>
 <body>
@@ -304,27 +383,59 @@
 <div class="admin-overlay" id="adminPanelOverlay">
   <div class="admin-box">
     <div class="admin-hdr">
-      <h3>⚙️ Admin — จัดการสัดส่วน Allocation <span id="overrideBadge" class="override-badge" style="display:none">มีการแก้ไข</span></h3>
+      <h3>⚙️ Admin — ระบบจัดการ</h3>
       <button class="admin-close" onclick="closeAdmin()">&times;</button>
     </div>
-    <div class="admin-body" id="adminBody">กำลังโหลด...</div>
-    <!-- ประวัติ commit -->
-    <div id="historySection" style="display:none;border-top:1px solid var(--bdr);padding:12px 16px;background:#f8f9fa">
-      <div style="font-size:12px;font-weight:700;color:var(--pri);margin-bottom:8px">📜 ประวัติ Allocation — เลือก version ที่ต้องการ</div>
-      <div id="historyList" style="font-size:12px;color:var(--txt2)">กำลังโหลด...</div>
+    <!-- Tabs Header -->
+    <div class="admin-tabs">
+      <button class="admin-tab active" id="tabBtnAlloc" onclick="switchAdminTab('alloc')">
+        🏢 สัดส่วน Allocation <span id="overrideBadge" class="override-badge" style="display:none">แก้ไข</span>
+      </button>
+      <button class="admin-tab" id="tabBtnMEA" onclick="switchAdminTab('mea')">
+        ⚡ บิลค่าไฟ กฟน. (MEA) <span id="meaOverrideBadge" class="override-badge" style="display:none">แก้ไข</span>
+      </button>
     </div>
-    <div id="saveStatus" style="display:none;padding:8px 16px;font-size:12px;background:#E8F5E9;color:#2e7d32;border-top:1px solid #C8E6C9">
-      ✅ <span id="saveStatusMsg"></span>
+
+    <!-- Tab 1: Alloc -->
+    <div id="adminAllocSection" style="display:flex;flex-direction:column;flex:1;min-height:0">
+      <div class="admin-body" id="adminBody">กำลังโหลด...</div>
+      <!-- ประวัติ commit -->
+      <div id="historySection" style="display:none;border-top:1px solid var(--bdr);padding:12px 16px;background:#f8f9fa">
+        <div style="font-size:12px;font-weight:700;color:var(--pri);margin-bottom:8px">📜 ประวัติ Allocation — เลือก version ที่ต้องการ</div>
+        <div id="historyList" style="font-size:12px;color:var(--txt2)">กำลังโหลด...</div>
+      </div>
+      <div id="saveStatus" style="display:none;padding:8px 16px;font-size:12px;background:#E8F5E9;color:#2e7d32;border-top:1px solid #C8E6C9">
+        ✅ <span id="saveStatusMsg"></span>
+      </div>
+      <div style="padding:4px 16px 6px;font-size:11px;color:var(--txt2);border-top:1px solid var(--bdr);background:#f8f9fa">
+        สถานะ allocation ปัจจุบัน: <span id="currentVersionLabel" style="font-weight:600;color:var(--pri)">กำลังตรวจสอบ...</span>
+      </div>
+      <div class="admin-ftr">
+        <button class="btn-reset" onclick="toggleHistory()">📜 ประวัติ</button>
+        <div style="flex:1"></div>
+        <button class="btn-reset" onclick="resetOverrides()">↺ รีเซ็ตค่าเดิม</button>
+        <button class="btn-apply" onclick="applyOverrides()">✓ Apply</button>
+        <button class="btn-apply" style="background:#2e7d32" onclick="savePermanent()">🚀 บันทึกถาวร</button>
+      </div>
     </div>
-    <div style="padding:4px 16px 6px;font-size:11px;color:var(--txt2);border-top:1px solid var(--bdr);background:#f8f9fa">
-      สถานะ allocation ปัจจุบัน: <span id="currentVersionLabel" style="font-weight:600;color:var(--pri)">กำลังตรวจสอบ...</span>
-    </div>
-    <div class="admin-ftr">
-      <button class="btn-reset" onclick="toggleHistory()">📜 ประวัติ</button>
-      <div style="flex:1"></div>
-      <button class="btn-reset" onclick="resetOverrides()">↺ รีเซ็ตค่าเดิม</button>
-      <button class="btn-apply" onclick="applyOverrides()">✓ Apply</button>
-      <button class="btn-apply" style="background:#2e7d32" onclick="savePermanent()">🚀 บันทึกถาวร</button>
+
+    <!-- Tab 2: MEA -->
+    <div id="adminMEASection" style="display:none;flex-direction:column;flex:1;min-height:0">
+      <div class="admin-body" id="meaAdminBody">
+        กำลังโหลด...
+      </div>
+      <div id="saveStatusMEA" style="display:none;padding:8px 16px;font-size:12px;background:#E8F5E9;color:#2e7d32;border-top:1px solid #C8E6C9">
+        ✅ <span id="saveStatusMsgMEA"></span>
+      </div>
+      <div class="admin-ftr">
+        <div style="font-size:11px;color:var(--txt2);align-self:center">
+          💡 บันทึก Apply เพื่อดูผลทันที หรือกดบันทึกถาวรเพื่ออัปเดตไฟล์กลาง
+        </div>
+        <div style="flex:1"></div>
+        <button class="btn-reset" onclick="resetMEAOverrides()">↺ รีเซ็ตค่าเดิม</button>
+        <button class="btn-apply" onclick="applyMEAOverrides()">✓ Apply</button>
+        <button class="btn-apply" id="btnSaveMEAPermanent" style="background:#2e7d32" onclick="saveMEAPermanent()">🚀 บันทึกถาวร</button>
+      </div>
     </div>
   </div>
 </div>
@@ -434,7 +545,7 @@ const CL   = ["#1565C0","#00897B","#F9A825","#EF6C00","#AD1457","#6A1B9A","#2E7D
 const BUILD_COLORS = ["#1565C0","#00897B","#F9A825","#EF6C00","#AD1457","#6A1B9A","#2E7D32","#C5A85F","#455A64","#00ACC1","#8E24AA","#7CB342"];
 
 // ===== MEA DATA (kWh รายเดือน จากบิลค่าไฟฟ้า กฟน.) =====
-const MEA_DATA = {
+const MEA_DATA_DEFAULT = {
   2019:[247000,259000,308000,309000,305000,290000,285000,277000,261000,285000,232000,203000],
   2020:[254000,223000,279000,149000,229000,300000,353000,370000,379000,326000,320000,298000],
   2021:[204000,223000,398000,260000,275000,292000,216000,229000,221000,240000,264000,222000],
@@ -444,6 +555,45 @@ const MEA_DATA = {
   2025:[204000,216000,302000,309000,293000,289000,293000,285000,305000,304000,248000,256000],
   2026:[248000,291000,310000,311000,300000,null,null,null,null,null,null,null],
 };
+
+const LS_MEA_KEY = "energyMeaOverrides";
+const GITHUB_MEA_FILE = "data/mea_data.json";
+
+// ===== GITHUB API CONFIG =====
+const _t1 = "github_pat_11CECUIHI0wo51k7F6";
+const _t2 = "27Oh_p5Awa8qVhQCc1VzPcCk1tPaZPbqR0rI7Lt3R8V2RRQ6O3D7NFAW25mVvl29";
+const GITHUB_TOKEN = _t1 + _t2;
+const GITHUB_REPO  = "maleeart/Energy-Dashboard";
+const GITHUB_FILE  = "data/event_logs.json";
+
+function utf8ToBase64(str){
+  const bytes = new TextEncoder().encode(str);
+  let binary = "";
+  bytes.forEach(b=>binary+=String.fromCharCode(b));
+  return btoa(binary);
+}
+
+let BASE_MEA_DATA = JSON.parse(JSON.stringify(MEA_DATA_DEFAULT));
+let MEA_OVERRIDES = JSON.parse(localStorage.getItem(LS_MEA_KEY) || "{}"); // { [year]: [12 values or null] }
+let MEA_DATA = getEffectiveMEAData();
+let selectedMEAYear = 2026;
+let currentAdminTab = "alloc";
+
+function getEffectiveMEAData(){
+  const result = {};
+  const allYears = new Set([...Object.keys(BASE_MEA_DATA), ...Object.keys(MEA_OVERRIDES)]);
+  allYears.forEach(y => {
+    const base = BASE_MEA_DATA[y] ? [...BASE_MEA_DATA[y]] : Array(12).fill(null);
+    while(base.length < 12) base.push(null);
+    const over = MEA_OVERRIDES[y];
+    if(over && Array.isArray(over)){
+      result[y] = base.map((v, i) => (over[i] !== undefined) ? over[i] : v);
+    } else {
+      result[y] = base;
+    }
+  });
+  return result;
+}
 
 // ===== STATE =====
 let DATA = null, sY = null, sD = "all", ch = {}, visibleYears = new Set();
@@ -465,6 +615,17 @@ const LS_KEY    = "energyAllocOverrides";
 const LS_SNAP   = "energyAllocSnapshot";
 let RATIO_OVERRIDES = JSON.parse(localStorage.getItem(LS_KEY) || "{}"); // {dept|building: ratio}
 let isAdmin = false;
+
+function updateAdminBadges(){
+  const hasAlloc = Object.keys(RATIO_OVERRIDES).length > 0;
+  const hasMea = Object.keys(MEA_OVERRIDES).length > 0;
+  const badgeAlloc = document.getElementById("overrideBadge");
+  const badgeMea = document.getElementById("meaOverrideBadge");
+  if(badgeAlloc) badgeAlloc.style.display = hasAlloc ? "" : "none";
+  if(badgeMea) badgeMea.style.display = hasMea ? "" : "none";
+  const btnAdmin = document.getElementById("btnAdmin");
+  if(btnAdmin) btnAdmin.classList.toggle("active", hasAlloc || hasMea);
+}
 
 function overrideKey(dept, building){ return dept + "|" + building; }
 
@@ -491,17 +652,35 @@ function checkAdminLogin(){
     closeAdminLogin();
     document.getElementById("btnAdmin").style.display = "";
     document.getElementById("btnAdminLogin").style.display = "none";
+    updateAdminBadges();
     openAdmin();
   } else {
     document.getElementById("adminPwErr").textContent = "รหัสผ่านไม่ถูกต้อง";
   }
 }
 function openAdmin(){
-  buildAdminPanel();
   document.getElementById("adminPanelOverlay").classList.add("open");
+  switchAdminTab(currentAdminTab);
   loadCurrentVersion();
 }
 function closeAdmin(){ document.getElementById("adminPanelOverlay").classList.remove("open"); }
+
+function switchAdminTab(tab){
+  currentAdminTab = tab;
+  const btnAlloc = document.getElementById("tabBtnAlloc");
+  const btnMEA = document.getElementById("tabBtnMEA");
+  const secAlloc = document.getElementById("adminAllocSection");
+  const secMEA = document.getElementById("adminMEASection");
+  if(btnAlloc) btnAlloc.classList.toggle("active", tab === "alloc");
+  if(btnMEA) btnMEA.classList.toggle("active", tab === "mea");
+  if(secAlloc) secAlloc.style.display = tab === "alloc" ? "flex" : "none";
+  if(secMEA) secMEA.style.display = tab === "mea" ? "flex" : "none";
+  if(tab === "mea"){
+    buildMEAPanel();
+  } else {
+    buildAdminPanel();
+  }
+}
 
 function buildAdminPanel(){
   if(!DATA) return;
@@ -588,9 +767,7 @@ function applyOverrides(){
     else delete RATIO_OVERRIDES[k];
   });
   localStorage.setItem(LS_KEY, JSON.stringify(RATIO_OVERRIDES));
-  document.getElementById("overrideBadge").style.display =
-    Object.keys(RATIO_OVERRIDES).length > 0 ? "" : "none";
-  document.getElementById("btnAdmin").classList.toggle("active", Object.keys(RATIO_OVERRIDES).length > 0);
+  updateAdminBadges();
   closeAdmin();
   renderAll();
 }
@@ -598,7 +775,7 @@ function applyOverrides(){
 function resetOverrides(){
   RATIO_OVERRIDES = {};
   localStorage.removeItem(LS_KEY);
-  document.getElementById("btnAdmin").classList.remove("active");
+  updateAdminBadges();
   buildAdminPanel();
   renderAll();
 }
@@ -666,8 +843,7 @@ async function savePermanent(){
     RATIO_OVERRIDES = {};
     localStorage.removeItem(LS_KEY);
     _historyLoaded  = false; // force reload ประวัติครั้งต่อไป
-    document.getElementById("overrideBadge").style.display = "none";
-    document.getElementById("btnAdmin").classList.remove("active");
+    updateAdminBadges();
 
     // แสดงสถานะสำเร็จ
     const bar = document.getElementById("saveStatus");
@@ -675,6 +851,262 @@ async function savePermanent(){
       `บันทึก "${name}" แล้ว — GitHub Actions กำลัง rebuild (~1 นาที) รีเฟรชหน้าเพื่อดูผล`;
     bar.style.display = "";
     setTimeout(() => bar.style.display = "none", 8000);
+
+  } catch(e) {
+    alert("❌ บันทึกไม่สำเร็จ: " + e.message);
+  } finally {
+    btn.textContent = "🚀 บันทึกถาวร"; btn.disabled = false;
+  }
+}
+
+// ===== ADMIN / MEA DATA MANAGEMENT =====
+function buildMEAPanel(){
+  if(!selectedMEAYear && sY) selectedMEAYear = sY;
+  const allYears = Array.from(new Set([
+    ...Object.keys(BASE_MEA_DATA).map(Number),
+    ...Object.keys(MEA_OVERRIDES).map(Number),
+    new Date().getFullYear(),
+    2026, 2025, 2024, 2023, 2022, 2021, 2020, 2019
+  ])).filter(y => !isNaN(y)).sort((a,b)=>b-a);
+
+  if(!allYears.includes(selectedMEAYear)) selectedMEAYear = allYears[0];
+
+  updateAdminBadges();
+
+  const body = document.getElementById("meaAdminBody");
+  if(!body) return;
+
+  const curData = (MEA_DATA[selectedMEAYear] || Array(12).fill(null)).slice(0, 12);
+  const baseData = (BASE_MEA_DATA[selectedMEAYear] || Array(12).fill(null)).slice(0, 12);
+
+  const yearOptions = allYears.map(y => `<option value="${y}" ${y === selectedMEAYear ? 'selected' : ''}>ปี ${y+543} (${y})</option>`).join("");
+
+  let html = `
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;background:#f0f4f8;padding:10px 14px;border-radius:8px">
+      <div style="display:flex;align-items:center;gap:10px">
+        <label style="font-weight:700;font-size:13px;color:var(--txt)">📅 เลือกปีที่ต้องการแก้ไข:</label>
+        <select id="meaYearSelect" class="fs" style="padding:6px 12px;font-size:13px;font-weight:600" onchange="onMEAYearChange(+this.value)">
+          ${yearOptions}
+        </select>
+      </div>
+      <button class="btn-reset" style="padding:5px 12px;font-size:11px;font-weight:600" onclick="promptAddMEAYear()">+ เพิ่มปีใหม่</button>
+    </div>
+
+    <div style="font-size:12px;color:var(--txt2);margin-bottom:8px">
+      กรอกยอดใช้ไฟฟ้าตามใบแจ้งหนี้ กฟน. (หน่วย kWh) รายเดือน หากเดือนไหนยังไม่มีบิลให้เว้นว่างไว้
+    </div>
+
+    <div class="mea-grid">`;
+
+  MO.forEach((mName, i) => {
+    const val = curData[i];
+    const baseVal = baseData[i];
+    const displayVal = (val !== null && val !== undefined) ? val : "";
+    const isModified = (val !== baseVal);
+
+    html += `
+      <div class="mea-month-card">
+        <div class="mea-month-title">
+          <span>${mName} (เดือน ${i+1})</span>
+          <span style="font-size:10px;color:var(--txt2)">เดิม: ${baseVal !== null && baseVal !== undefined ? fmt(baseVal) : "ว่าง"}</span>
+        </div>
+        <div>
+          <input type="number" class="mea-input ${isModified ? 'modified' : ''}"
+            id="meaMonthInput_${i}"
+            data-month="${i}"
+            placeholder="เว้นว่าง (ยังไม่มีบิล)"
+            value="${displayVal}"
+            oninput="onMEAInput(this)">
+        </div>
+      </div>
+    `;
+  });
+
+  html += `</div>`;
+
+  // Summary box
+  const validVals = curData.filter(v => v !== null && v !== undefined && v !== "" && !isNaN(v));
+  const sumVal = validVals.reduce((a,b)=>a+(+b), 0);
+  const avgVal = validVals.length ? Math.round(sumVal / validVals.length) : 0;
+
+  html += `
+    <div class="mea-summary-box" id="meaSummaryBox">
+      <div class="mea-summary-item">
+        <div class="mea-summary-label">ยอดรวม กฟน. ทั้งปี (${selectedMEAYear+543})</div>
+        <div class="mea-summary-val" id="meaSumDisplay">${fmt(sumVal)} <span style="font-size:12px;font-weight:normal;color:var(--txt2)">kWh</span></div>
+      </div>
+      <div class="mea-summary-item">
+        <div class="mea-summary-label">ค่าเฉลี่ยต่อเดือน</div>
+        <div class="mea-summary-val" id="meaAvgDisplay">${fmt(avgVal)} <span style="font-size:12px;font-weight:normal;color:var(--txt2)">kWh/เดือน</span></div>
+      </div>
+      <div class="mea-summary-item">
+        <div class="mea-summary-label">จำนวนเดือนที่มีข้อมูล</div>
+        <div class="mea-summary-val" id="meaCountDisplay">${validVals.length} / 12 <span style="font-size:12px;font-weight:normal;color:var(--txt2)">เดือน</span></div>
+      </div>
+    </div>
+  `;
+
+  body.innerHTML = html;
+}
+
+function stageCurrentMEAInputs(){
+  const inputs = document.querySelectorAll(".mea-input");
+  if(!inputs.length) return;
+  const yearArr = Array(12).fill(null);
+  let hasDiff = false;
+  const base = BASE_MEA_DATA[selectedMEAYear] || Array(12).fill(null);
+  inputs.forEach(inp => {
+    const m = +inp.dataset.month;
+    const v = inp.value.trim();
+    const num = (v === "" || isNaN(+v)) ? null : +v;
+    yearArr[m] = num;
+    const baseVal = (base[m] !== undefined && base[m] !== null) ? base[m] : null;
+    if(num !== baseVal) hasDiff = true;
+  });
+  if(hasDiff){
+    MEA_OVERRIDES[String(selectedMEAYear)] = yearArr;
+  } else {
+    delete MEA_OVERRIDES[String(selectedMEAYear)];
+  }
+  MEA_DATA = getEffectiveMEAData();
+}
+
+function onMEAYearChange(newYear){
+  stageCurrentMEAInputs();
+  selectedMEAYear = newYear;
+  buildMEAPanel();
+}
+
+function promptAddMEAYear(){
+  const input = prompt("กรอกปี พ.ศ. หรือ ค.ศ. ที่ต้องการเพิ่ม (เช่น 2570 หรือ 2027):", "");
+  if(!input) return;
+  let y = parseInt(input.trim(), 10);
+  if(isNaN(y)){ alert("กรุณากรอกตัวเลขปีที่ถูกต้อง"); return; }
+  if(y > 2400) y -= 543;
+  if(y < 2000 || y > 2100){ alert("กรุณากรอกปีให้อยู่ในช่วง 2000-2100"); return; }
+  stageCurrentMEAInputs();
+  if(!BASE_MEA_DATA[y]){
+    BASE_MEA_DATA[y] = Array(12).fill(null);
+  }
+  selectedMEAYear = y;
+  buildMEAPanel();
+}
+
+function onMEAInput(el){
+  const m = +el.dataset.month;
+  const baseVal = (BASE_MEA_DATA[selectedMEAYear] || [])[m];
+  const curVal = el.value.trim() === "" ? null : +el.value;
+  const orig = (baseVal !== undefined && baseVal !== null) ? baseVal : null;
+  el.classList.toggle("modified", curVal !== orig);
+
+  // Recalculate summary live
+  const inputs = document.querySelectorAll(".mea-input");
+  let sum = 0, count = 0;
+  inputs.forEach(inp => {
+    const v = inp.value.trim();
+    if(v !== "" && !isNaN(+v)){
+      sum += +v;
+      count++;
+    }
+  });
+  const avg = count ? Math.round(sum / count) : 0;
+  const sumEl = document.getElementById("meaSumDisplay");
+  const avgEl = document.getElementById("meaAvgDisplay");
+  const countEl = document.getElementById("meaCountDisplay");
+  if(sumEl) sumEl.innerHTML = `${fmt(sum)} <span style="font-size:12px;font-weight:normal;color:var(--txt2)">kWh</span>`;
+  if(avgEl) avgEl.innerHTML = `${fmt(avg)} <span style="font-size:12px;font-weight:normal;color:var(--txt2)">kWh/เดือน</span>`;
+  if(countEl) countEl.innerHTML = `${count} / 12 <span style="font-size:12px;font-weight:normal;color:var(--txt2)">เดือน</span>`;
+}
+
+function applyMEAOverrides(){
+  stageCurrentMEAInputs();
+  if(Object.keys(MEA_OVERRIDES).length === 0){
+    localStorage.removeItem(LS_MEA_KEY);
+  } else {
+    localStorage.setItem(LS_MEA_KEY, JSON.stringify(MEA_OVERRIDES));
+  }
+  MEA_DATA = getEffectiveMEAData();
+  updateAdminBadges();
+  renderMonthBar();
+  renderYearLine();
+  closeAdmin();
+}
+
+function resetMEAOverrides(){
+  if(!confirm("ต้องการรีเซ็ตค่า MEA ที่แก้ไขกลับเป็นค่าเริ่มต้นเดิมหรือไม่?")) return;
+  MEA_OVERRIDES = {};
+  localStorage.removeItem(LS_MEA_KEY);
+  MEA_DATA = getEffectiveMEAData();
+  updateAdminBadges();
+  buildMEAPanel();
+  renderMonthBar();
+  renderYearLine();
+}
+
+async function saveMEAPermanent(){
+  stageCurrentMEAInputs();
+  const btn = document.getElementById("btnSaveMEAPermanent");
+  btn.textContent = "⏳ กำลังบันทึก..."; btn.disabled = true;
+
+  try {
+    let fileSha = null;
+    let currentGithubObj = {};
+    const metaRes = await fetch(
+      `https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_MEA_FILE}`,
+      { headers: { Authorization: `token ${GITHUB_TOKEN}`, Accept: "application/vnd.github.v3+json" } }
+    );
+    if(metaRes.ok){
+      const meta = await metaRes.json();
+      fileSha = meta.sha;
+      const b64 = meta.content.replace(/\n/g, "");
+      const binStr = atob(b64);
+      const bytes = new Uint8Array(binStr.length);
+      for(let i=0;i<binStr.length;i++) bytes[i]=binStr.charCodeAt(i);
+      currentGithubObj = JSON.parse(new TextDecoder("utf-8").decode(bytes));
+    } else {
+      currentGithubObj = JSON.parse(JSON.stringify(BASE_MEA_DATA));
+    }
+
+    // Merge pending/staged overrides
+    Object.keys(MEA_OVERRIDES).forEach(y => {
+      currentGithubObj[y] = MEA_OVERRIDES[y];
+    });
+
+    const newJson = JSON.stringify(currentGithubObj, null, 2);
+    const encoded = utf8ToBase64(newJson);
+    const putBody = {
+      message: `update: MEA data ปี ${selectedMEAYear+543}`,
+      content: encoded
+    };
+    if(fileSha) putBody.sha = fileSha;
+
+    const putRes = await fetch(
+      `https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_MEA_FILE}`,
+      {
+        method: "PUT",
+        headers: { Authorization: `token ${GITHUB_TOKEN}`, "Content-Type": "application/json" },
+        body: JSON.stringify(putBody)
+      }
+    );
+    if(!putRes.ok) throw new Error("push ไม่ได้: " + putRes.status);
+
+    BASE_MEA_DATA = currentGithubObj;
+    MEA_OVERRIDES = {};
+    localStorage.removeItem(LS_MEA_KEY);
+    MEA_DATA = getEffectiveMEAData();
+    updateAdminBadges();
+
+    const bar = document.getElementById("saveStatusMEA");
+    if(bar){
+      document.getElementById("saveStatusMsgMEA").textContent =
+        `บันทึกข้อมูล กฟน. ปี ${selectedMEAYear+543} ขึ้น GitHub สำเร็จแล้ว!`;
+      bar.style.display = "";
+      setTimeout(() => { bar.style.display = "none"; }, 8000);
+    }
+
+    buildMEAPanel();
+    renderMonthBar();
+    renderYearLine();
 
   } catch(e) {
     alert("❌ บันทึกไม่สำเร็จ: " + e.message);
@@ -1274,23 +1706,29 @@ function renderYearLine(){
 function renderAll(){ renderKPI(); renderDonut(); renderMonthBar(); renderBuildingBar(); renderYearLine(); }
 
 // ===== LOAD DATA =====
-fetch("data/energy_db.json").then(r=>r.json()).then(db=>{
-  DATA = db;
-  document.getElementById("noteBar").textContent = "โหลดข้อมูลสำเร็จ: data/energy_db.json";
-  setupFilters();
-  renderAll();
-  fetchTemperature();
+Promise.all([
+  fetch("data/energy_db.json").then(r=>{ if(!r.ok) throw new Error(r.status); return r.json(); }).catch(err=>{ console.warn(err); return null; }),
+  fetch("data/mea_data.json?v="+Date.now()).then(r=>{ if(!r.ok) throw new Error(r.status); return r.json(); }).catch(err=>{ console.warn(err); return null; })
+]).then(([db, meaJson])=>{
+  if(meaJson && typeof meaJson === "object"){
+    BASE_MEA_DATA = meaJson;
+    MEA_DATA = getEffectiveMEAData();
+  }
+  updateAdminBadges();
+  if(db){
+    DATA = db;
+    document.getElementById("noteBar").textContent = "โหลดข้อมูลสำเร็จ: data/energy_db.json";
+    setupFilters();
+    renderAll();
+    fetchTemperature();
+  } else {
+    document.getElementById("noteBar").textContent = "ไม่พบ data/energy_db.json";
+  }
 }).catch(err=>{
-  document.getElementById("noteBar").textContent = "ไม่พบ data/energy_db.json";
-  console.error(err);
+  console.error("Initialization error:", err);
 });
 
 // ===== EVENT LOGS =====
-const _t1 = "github_pat_11CECUIHI0wo51k7F6";
-const _t2 = "27Oh_p5Awa8qVhQCc1VzPcCk1tPaZPbqR0rI7Lt3R8V2RRQ6O3D7NFAW25mVvl29";
-const GITHUB_TOKEN = _t1 + _t2;
-const GITHUB_REPO  = "maleeart/Energy-Dashboard";
-const GITHUB_FILE  = "data/event_logs.json";
 let _cachedEvents  = null;
 
 function openEventModal(){
@@ -1337,13 +1775,6 @@ function renderLocalEvents(events){
     item.innerHTML = `<div class="event-date">📅 ${thaiDate}</div><div class="event-desc">${evt.desc.replace(/</g,"&lt;")}</div>`;
     container.appendChild(item);
   });
-}
-
-function utf8ToBase64(str){
-  const bytes = new TextEncoder().encode(str);
-  let binary = "";
-  bytes.forEach(b=>binary+=String.fromCharCode(b));
-  return btoa(binary);
 }
 
 async function saveEventToGitHub(){
