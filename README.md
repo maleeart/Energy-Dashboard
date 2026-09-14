@@ -1,73 +1,131 @@
-# Energy Dashboard Auto DB — Production GitHub Version
-...
-ระบบนี้ออกแบบให้ใช้กับ GitHub + GitHub Actions + GitHub Pages โดยตรง
+# SNAP — รายงานปริมาณการใช้พลังงานและทรัพยากร สำนักงานไทรน้อย กฟผ.
+> **Sai Noi All-resource Platform (SNAP)**  
+> ระบบรวบรวม วิเคราะห์ และแสดงผลข้อมูลการใช้พลังงานและทรัพยากร (ไฟฟ้า, น้ำมัน, น้ำประปา, ขยะ) สำนักงานไทรน้อย การไฟฟ้าฝ่ายผลิตแห่งประเทศไทย (กฟผ.)  
+> ทำงานแบบ Serverless ร่วมกับ **GitHub Pages + GitHub Actions + Google Apps Script**
 
-## วิธีใช้งานประจำสัปดาห์
+---
 
-ทุกเช้าวันศุกร์:
+## 📌 เมนูและฟีเจอร์หลักของ Dashboard
 
+1. **⚡ ไฟฟ้า (Energy Dashboard - `index.html`)**
+   - แสดงยอดสะสมและเปรียบเทียบเป้าหมายการประหยัดพลังงาน (Target Comparison)
+   - สัดส่วนการใช้ไฟฟ้าแยกตามฝ่าย (สก.ชธธ., อบค., อบฟ., อบย., อรอ., อคม., อหข.)
+   - กราฟแท่งปริมาณการใช้ไฟฟ้ารายเดือน พร้อมเส้นประค่าเฉลี่ย และปุ่มเปิดเทียบกับบิล กฟน. (MEA)
+   - กราฟเส้นเปรียบเทียบการใช้พลังงานรายเดือนในแต่ละปี พร้อมเส้นประเปรียบเทียบกับบิล กฟน.
+   - จัดอันดับ Top อาคารที่ใช้ไฟฟ้าสูงสุด
+   - ระบบบันทึกและแสดงเหตุการณ์พิเศษ (Special Events) ที่ส่งผลต่อการใช้พลังงาน
+   - ดึงข้อมูลอุณหภูมิเฉลี่ยรายวันจาก Open-Meteo API เพื่อวิเคราะห์ความสัมพันธ์กับสภาพอากาศ
+
+2. **🛢️ น้ำมัน (`fuel.html`)**
+   - ติดตามปริมาณการใช้น้ำมันเชื้อเพลิงของยานพาหนะและเครื่องจักรสำนักงานไทรน้อย
+
+3. **💧 น้ำประปา (`water.html`)**
+   - แสดงสถิติและแนวโน้มการใช้น้ำประปารายเดือน
+
+4. **♻️ ขยะ (`garbage.html`)**
+   - ติดตามปริมาณขยะและการคัดแยกทรัพยากรหมุนเวียน
+
+---
+
+## ⚙️ ระบบจัดการหลังบ้าน (Admin System)
+
+เข้าใช้งานได้โดยคลิกที่ไอคอน **🔐** มุมขวาบน และกรอกรหัสผ่าน Admin เพื่อเปิดเมนู **⚙️ Admin**:
+
+### 1. 🏢 จัดการสัดส่วน Allocation
+* ปรับ % สัดส่วนการแบ่งหน่วยไฟฟ้าตามอาคารของแต่ละฝ่าย
+* **✓ Apply**: บันทึกค่าลง `localStorage` เพื่อดูผลบนกราฟ Dashboard ได้ทันที
+* **🚀 บันทึกถาวร**: อัปเดตไฟล์ `data/department_allocation_buildings.csv` ขึ้น GitHub ผ่าน GitHub REST API อัตโนมัติ พร้อมทริกเกอร์ให้ GitHub Actions ทำการ rebuild ฐานข้อมูล
+* **📜 ประวัติ**: ดูประวัติ commit ของสัดส่วน Allocation ย้อนหลัง และเลือกสลับเวอร์ชันได้
+
+### 2. ⚡ จัดการข้อมูลบิล กฟน. (MEA Data)
+* เมนูเลือกปี (Dropdown) แสดงปี พ.ศ. และ ค.ศ. (เช่น ปี 2569 / 2026) พร้อมปุ่ม **"+ เพิ่มปีใหม่"**
+* ตาราง 12 เดือน (ม.ค. – ธ.ค.) สำหรับกรอก/แก้ไขยอดหน่วยไฟฟ้าตามบิล กฟน. (kWh) โดยหากเดือนไหนยังไม่มีบิลสามารถเว้นว่าง (`null`) ไว้ได้
+* สรุปตัวเลขสถิติสดขณะพิมพ์: **ยอดรวมทั้งปี (Total kWh)**, **ค่าเฉลี่ยต่อเดือน (Avg kWh)**, และ **จำนวนเดือนที่มีข้อมูล**
+* **✓ Apply**: บันทึกดูผลเปรียบเทียบกับกราฟแท่งและกราฟเส้นได้ทันที
+* **🚀 บันทึกถาวร**: ส่งชุดข้อมูลขึ้นไปบันทึกลงไฟล์ `data/mea_data.json` บน GitHub Repository ทันทีผ่าน GitHub REST API
+* **↺ รีเซ็ตค่าเดิม**: ยกเลิกการแก้ไขเฉพาะหน้าเว็บและคืนค่าเดิมจากฐานข้อมูลกลาง
+
+---
+
+## 🔄 รอบการทำงานประจำสัปดาห์ (Weekly Meter Workflow)
+
+ทุกเช้าวันศุกร์ (หรือเมื่อมีการจดมิเตอร์ประจำสัปดาห์):
+
+### วิธีที่ 1: กรอกผ่านฟอร์มเว็บ (`docs/meter_form.html`)
+1. เข้าใช้งานหน้าฟอร์มจดมิเตอร์ผ่านเว็บเบราว์เซอร์
+2. เลือกสัปดาห์และกรอกค่า RAW Reading
+3. ระบบจะบันทึกและส่งข้อมูลเข้า GitHub ผ่าน Google Apps Script อัตโนมัติ
+
+### วิธีที่ 2: กรอกผ่านไฟล์ CSV ใน GitHub
 1. ไปที่โฟลเดอร์ `forms/`
-2. เปิดไฟล์ของสัปดาห์นั้น เช่น `2026-W21.csv`
-3. กรอกเฉพาะคอลัมน์ `raw_reading`, ตรวจ `raw_unit`, ใส่ `reader`/`note` ถ้าต้องการ
-4. Commit/Push เข้า GitHub
-5. GitHub Actions จะรัน `scripts/build_energy_db.py` อัตโนมัติ
-6. ระบบจะสร้าง/อัปเดตไฟล์:
-   - `data/weekly_readings.csv` รวม RAW จากทุก weekly form
-   - `data/energy_db.json` สำหรับ dashboard
-   - `data/validation_report.json` สำหรับตรวจ warning/error
-7. GitHub Pages แสดง `index.html` โดยอ่านข้อมูลจาก `data/energy_db.json`
+2. เปิดไฟล์ประจำสัปดาห์ เช่น `forms/2026-W34.csv`
+3. กรอกเฉพาะคอลัมน์ `raw_reading`, ตรวจ `raw_unit`, ระบุ `reader` / `note` ตามต้องการ
+4. Commit & Push ขึ้น GitHub
 
-## หลักการสำคัญ
+### การประมวลผลอัตโนมัติ (GitHub Actions)
+เมื่อมีการ Push ข้อมูลในโฟลเดอร์ `forms/*.csv` หรือ `data/*.csv`:
+* GitHub Actions จะรันสคริปต์ `scripts/build_energy_db.py`
+* ระบบจะทำการตรวจสอบความถูกต้องและคำนวณหน่วย (Normalized kWh)
+* อัปเดตไฟล์ผลลัพธ์อัตโนมัติ:
+  - `data/weekly_readings.csv`: รวมข้อมูลดิบทั้งหมด
+  - `data/energy_db.json`: ฐานข้อมูลสำหรับ Dashboard
+  - `data/validation_report.json`: รายงานผลการตรวจสอบความผิดปกติของมิเตอร์
 
-- ห้ามแก้ `data/weekly_readings.csv` ด้วยมือ เพราะเป็นไฟล์ generated
-- ให้แก้เฉพาะไฟล์ใน `forms/*.csv`
-- 1 ไฟล์ = 1 สัปดาห์
-- 1 แถว = 1 มิเตอร์
-- ลำดับแถวใน form เรียงตาม `meter_master.csv` เพื่อให้จดหน้างานเหมือน RAW เดิม
+---
 
-## Main meter ที่ใช้แสดง dashboard
+## 🛠️ คำสั่งสำหรับผู้ดูแลระบบ (Developer & Admin Scripts)
 
-ระบบถือว่า `SubB.Code` ต่อไปนี้คือ main meter:
-
-- `MDB`
-- `Main`
-- `SCB21`
-
-Dashboard ใช้เฉพาะ main meter ก่อน ส่วนตัวย่อยยังเก็บใน RAW database ได้
-
-## การคำนวณหน่วย
-
-ระบบ normalize เป็น kWh เสมอ:
-
-- ถ้า `raw_unit = kWh` → ใช้ค่าตรง
-- ถ้า `raw_unit = MWh` → คูณ 1,000
-- ถ้าค่า RAW/UNIT ดูผิดจากค่าก่อนหน้า ระบบจะเลือกค่าที่ต่อเนื่องที่สุดและใส่ flag เช่น `UNIT_SUSPECT`, `AUTO_CONVERTED_MWH_TO_KWH`
-
-## การสร้าง weekly form สัปดาห์ถัดไป
-
-รันในเครื่องหรือ GitHub Codespaces ได้:
-
+### การสร้าง Weekly Form ล่วงหน้าสำหรับสัปดาห์ถัดไป
 ```bash
-python scripts/create_weekly_form.py 2026-05-29
+python scripts/create_weekly_form.py 2026-06-05
+```
+จะได้ไฟล์เทมเพลตใหม่ในโฟลเดอร์ `forms/` เช่น `forms/2026-W23.csv`
+
+### การ Rebuild ฐานข้อมูลด้วยตนเองในเครื่อง
+```bash
+python scripts/build_energy_db.py
 ```
 
-จะได้ไฟล์:
+---
+
+## 📂 โครงสร้างโฟลเดอร์และไฟล์สำคัญ (Repository Structure)
 
 ```text
-forms/2026-W22.csv
+├── .github/workflows/
+│   └── build-energy-db.yml         # GitHub Actions สำหรับ build ฐานข้อมูลอัตโนมัติ
+├── data/
+│   ├── building_alias.json          # แมปปิ้งชื่ออาคาร
+│   ├── department_allocation_buildings.csv # สัดส่วน Allocation แยกตามอาคาร
+│   ├── department_allocations.csv   # สัดส่วน Allocation ระดับฝ่าย
+│   ├── energy_db.json              # ฐานข้อมูลหลักที่ Dashboard ใช้อ่าน
+│   ├── event_logs.json             # ข้อมูลบันทึกเหตุการณ์พิเศษ
+│   ├── mea_data.json               # ข้อมูลหน่วยบิลค่าไฟฟ้า กฟน. รายเดือน (2019-ปัจจุบัน)
+│   ├── meter_master.csv            # มาสเตอร์มิเตอร์และตัวคูณ
+│   ├── validation_report.json      # รายงานข้อผิดพลาด/เตือนการอ่านค่า
+│   └── weekly_readings.csv         # รวม RAW readings ทุกสัปดาห์
+├── docs/
+│   └── meter_form.html             # เว็บฟอร์มสำหรับผู้จดมิเตอร์หน้างาน
+├── forms/
+│   └── 2026-Wxx.csv                # ไฟล์จดมิเตอร์รายสัปดาห์
+├── MEA/
+│   └── ไฟล์การใช้ไฟฟ้า-ประปา.xlsx   # ไฟล์ Excel ต้นฉบับข้อมูลบิล กฟน. และ กปน.
+├── scripts/
+│   ├── build_energy_db.py          # สคริปต์ประมวลผลฐานข้อมูลไฟฟ้า
+│   ├── build_fuel_db.py            # สคริปต์ประมวลผลฐานข้อมูลน้ำมัน
+│   └── create_weekly_form.py       # สคริปต์สร้างไฟล์ฟอร์มรายสัปดาห์
+├── index.html                      # หน้า Dashboard ไฟฟ้าหลัก
+├── fuel.html                       # หน้า Dashboard น้ำมัน
+├── water.html                      # หน้า Dashboard น้ำประปา
+└── garbage.html                    # หน้า Dashboard ขยะ
 ```
 
-## การเปิด GitHub Pages
+---
 
-Settings → Pages → Build and deployment → Source: `Deploy from a branch` → Branch: `main` / root
+## 🌐 การตั้งค่า GitHub Pages
 
-## การตรวจ error
-
-ดูที่:
-
-```text
-data/validation_report.json
-```
-
-ถ้ามี `errors` GitHub Actions จะ fail เพื่อป้องกัน dashboard ใช้ข้อมูลผิด
-ถ้ามีแค่ `warnings` ยัง build ได้ แต่ควรตรวจสอบ
+1. ไปที่แท็บ **Settings** ของ Repository
+2. เลือกเมนู **Pages** (ทางซ้ายมือ)
+3. ภายใต้ **Build and deployment**:
+   * **Source**: `Deploy from a branch`
+   * **Branch**: `main` / `/(root)`
+4. กด **Save** ระบบจะแสดง URL สำหรับเข้าใช้งาน Dashboard
