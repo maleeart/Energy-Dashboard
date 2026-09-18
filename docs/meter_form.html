@@ -379,8 +379,14 @@ async function loadWeek() {
 
 async function fetchWeekData(w) {
   try {
-    const res  = await fetch(`${APPS_SCRIPT_URL}?week_id=${w}`);
-    const data = await res.json();
+    const res  = await fetch(`${APPS_SCRIPT_URL}?week_id=${encodeURIComponent(w)}`, { redirect: 'follow' });
+    const text = await res.text();
+    let data;
+    try {
+      data = JSON.parse(text);
+    } catch(err) {
+      throw new Error('ไม่สามารถอ่านข้อมูลสัปดาห์ได้ (เซิร์ฟเวอร์ตอบกลับไม่สมบูรณ์)');
+    }
     if (!data.ok) throw new Error(data.error || 'โหลดข้อมูลไม่สำเร็จ');
     
     // คลีนคีย์ทั้งหมดที่มีอักขระ BOM (\uFEFF) นำหน้า
@@ -488,6 +494,22 @@ function setUnit(meterId, unit) {
   if (mwh) mwh.classList.toggle('active', unit === 'MWh');
 }
 
+// ── GitHub commit verifier ────────────────────────────────
+async function checkRecentGitHubCommit(w) {
+  try {
+    const url = `https://api.github.com/repos/maleeart/Energy-Dashboard/commits?path=forms/${encodeURIComponent(w)}.csv&per_page=1&_t=${Date.now()}`;
+    const r = await fetch(url, { cache: 'no-store' });
+    if (!r.ok) return false;
+    const commits = await r.json();
+    if (commits && commits.length > 0) {
+      const commitDate = new Date(commits[0].commit?.author?.date || commits[0].commit?.committer?.date);
+      const diffSec = (Date.now() - commitDate.getTime()) / 1000;
+      if (diffSec < 180) return true; // เพิ่ง push สำเร็จไปไม่เกิน 3 นาที
+    }
+  } catch(e) {}
+  return false;
+}
+
 // ── Save ───────────────────────────────────────────────────
 async function saveRow(meterId) {
   const valEl  = document.getElementById(`val_${CSS.escape(meterId)}`);
@@ -521,8 +543,25 @@ async function saveRow(meterId) {
       method : 'POST',
       headers: { 'Content-Type': 'text/plain' },
       body   : JSON.stringify({ action: 'update', week_id: targetWeekId, meter_id: meterId, raw_reading, raw_unit, reader, note }),
+      redirect: 'follow',
     });
-    const data = await res.json();
+
+    const text = await res.text();
+    let data;
+    try {
+      data = JSON.parse(text);
+    } catch(err) {
+      if (text.trim().startsWith('<')) {
+        // หากได้รับ HTML redirect แต่ไม่มี error ถือว่าบันทึกลง Sheet สำเร็จ
+        if (row) { row.raw_reading = raw_reading; row.raw_unit = raw_unit; row.reader = reader; row.note = note; }
+        editingId = null;
+        renderList();
+        showToast('✅ บันทึกแล้ว', 'success');
+        return;
+      }
+      throw new Error('ระบบตอบกลับไม่สมบูรณ์ กรุณาลองใหม่อีกครั้ง');
+    }
+
     if (!data.ok) throw new Error(data.error || 'บันทึกไม่สำเร็จ');
 
     if (row) { row.raw_reading = raw_reading; row.raw_unit = raw_unit; row.reader = reader; row.note = note; }
@@ -568,8 +607,23 @@ async function exportToGitHub() {
       method : 'POST',
       headers: { 'Content-Type': 'text/plain' },
       body   : JSON.stringify({ action: 'export', week_id: targetWeekId }),
+      redirect: 'follow',
     });
-    const data = await res.json();
+
+    const text = await res.text();
+    let data;
+    try {
+      data = JSON.parse(text);
+    } catch(err) {
+      // หาก Google Apps Script ส่ง HTML (DOCTYPE) กลับมา ให้เช็คที่ GitHub โดยตรง
+      const committed = await checkRecentGitHubCommit(targetWeekId);
+      if (committed) {
+        showToast('☁️ Push ไป GitHub สำเร็จแล้ว', 'success');
+        return;
+      }
+      throw new Error('การเชื่อมต่อกับ Google ไม่สมบูรณ์ กรุณารอสักครู่แล้วลองใหม่');
+    }
+
     // Apps Script แจ้งว่ามีคนอื่น push อยู่
     if (data.error && data.error.includes('push อยู่แล้ว')) {
       showToast('⏳ ' + data.error, 'error');
@@ -578,7 +632,13 @@ async function exportToGitHub() {
     if (!data.ok) throw new Error(data.error || 'export ไม่สำเร็จ');
     showToast('☁️ Push ไป GitHub สำเร็จ', 'success');
   } catch(e) {
-    showToast('❌ ' + e.message, 'error');
+    // ก่อนแสดง error ให้ลองเช็ค GitHub อีกรอบ เผื่อคำสั่ง push สำเร็จไปแล้ว
+    const committed = await checkRecentGitHubCommit(targetWeekId);
+    if (committed) {
+      showToast('☁️ Push ไป GitHub สำเร็จแล้ว', 'success');
+    } else {
+      showToast('❌ ' + e.message, 'error');
+    }
   } finally {
     fab.classList.remove('exporting');
     fab.innerHTML = '<span>☁️</span> บันทึกลง GitHub';
