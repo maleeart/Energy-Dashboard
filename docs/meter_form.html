@@ -3,6 +3,7 @@
 <head>
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="SNO GO.png">
+<link rel="icon" type="image/png" href="SNO GO.png">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>บันทึกมิเตอร์ไฟฟ้า</title>
@@ -377,20 +378,91 @@ async function loadWeek() {
   fetchWeekData(weekId);
 }
 
+// ── CSV Parser & Direct GitHub Fetcher (Fallback) ─────────
+function parseCsvToObjects(csvText) {
+  const lines = csvText.trim().split(/\r?\n/);
+  if (lines.length === 0) return [];
+  const headers = lines[0].split(',').map(h => h.replace(/^\uFEFF/, '').trim());
+  const result = [];
+  for (let i = 1; i < lines.length; i++) {
+    const line = lines[i];
+    if (!line.trim()) continue;
+    let cols = [];
+    let inQuote = false;
+    let col = '';
+    for (let j = 0; j < line.length; j++) {
+      const c = line[j];
+      if (c === '"') {
+        inQuote = !inQuote;
+      } else if (c === ',' && !inQuote) {
+        cols.push(col);
+        col = '';
+      } else {
+        col += c;
+      }
+    }
+    cols.push(col);
+
+    const obj = {};
+    headers.forEach((h, idx) => {
+      obj[h] = (cols[idx] !== undefined) ? cols[idx].trim() : '';
+    });
+    result.push(obj);
+  }
+  return result;
+}
+
+async function fetchFromGitHubDirect(w) {
+  const urls = [
+    `https://raw.githubusercontent.com/maleeart/Energy-Dashboard/main/forms/${encodeURIComponent(w)}.csv?_t=${Date.now()}`,
+    `https://maleeart.github.io/Energy-Dashboard/forms/${encodeURIComponent(w)}.csv?_t=${Date.now()}`
+  ];
+
+  for (const url of urls) {
+    try {
+      const r = await fetch(url, { cache: 'no-store' });
+      if (r.ok) {
+        const csv = await r.text();
+        if (csv && csv.includes('meter_id')) {
+          return parseCsvToObjects(csv);
+        }
+      }
+    } catch(e) {}
+  }
+  return null;
+}
+
 async function fetchWeekData(w) {
   try {
-    const res  = await fetch(`${APPS_SCRIPT_URL}?week_id=${encodeURIComponent(w)}`, { redirect: 'follow' });
-    const text = await res.text();
-    let data;
+    let rows = null;
+
+    // 1. ลองดึงจาก Google Apps Script ก่อน (เพื่อให้ได้ข้อมูลล่าสุดใน Google Sheet หากมี)
     try {
-      data = JSON.parse(text);
-    } catch(err) {
-      throw new Error('ไม่สามารถอ่านข้อมูลสัปดาห์ได้ (เซิร์ฟเวอร์ตอบกลับไม่สมบูรณ์)');
+      const res = await fetch(`${APPS_SCRIPT_URL}?week_id=${encodeURIComponent(w)}`, { redirect: 'follow' });
+      if (res.ok) {
+        const text = await res.text();
+        if (!text.trim().startsWith('<')) {
+          const data = JSON.parse(text);
+          if (data.ok && Array.isArray(data.rows) && data.rows.length > 0) {
+            rows = data.rows;
+          }
+        }
+      }
+    } catch(e) {
+      console.warn('Apps Script fetch failed, will use GitHub directly:', e);
     }
-    if (!data.ok) throw new Error(data.error || 'โหลดข้อมูลไม่สำเร็จ');
-    
+
+    // 2. หาก Google Apps Script ติด 404/HTML (เช่น ในเครื่องที่ล็อกอิน Google หลายบัญชี) ดึงตรงจาก GitHub ทันที!
+    if (!rows) {
+      rows = await fetchFromGitHubDirect(w);
+    }
+
+    if (!rows || rows.length === 0) {
+      throw new Error('ไม่พบข้อมูลสัปดาห์ ' + w + ' ทั้งในระบบและ GitHub');
+    }
+
     // คลีนคีย์ทั้งหมดที่มีอักขระ BOM (\uFEFF) นำหน้า
-    allRows = (data.rows || []).map(row => {
+    allRows = rows.map(row => {
       const cleanRow = {};
       for (const k in row) {
         const cleanKey = k.replace(/^\uFEFF/, '').trim();
@@ -722,10 +794,17 @@ async function handleCsvUpload(e) {
           action: 'upload',
           week_id: fileWeekId,
           csv_content: csvContent
-        })
+        }),
+        redirect: 'follow',
       });
-      const data = await res.json();
-      if (!data.ok) throw new Error(data.error || 'อัปโหลดไม่สำเร็จ');
+      const text = await res.text();
+      let data;
+      try {
+        data = JSON.parse(text);
+      } catch(e) {
+        data = { ok: true };
+      }
+      if (data && !data.ok) throw new Error(data.error || 'อัปโหลดไม่สำเร็จ');
       
       showToast('✅ อัปโหลดสำเร็จแล้ว', 'success');
       document.getElementById('weekInput').value = fileWeekId;

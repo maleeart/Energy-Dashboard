@@ -1,7 +1,7 @@
 {
   "name": "SNO GO",
   "short_name": "SNO GO",
-  "start_url": "./meter_form.html", fill="#", 
+  "start_url": "./meter_form.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#1e3c72",
