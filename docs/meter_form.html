@@ -306,6 +306,7 @@ let pendingSave = false; // ป้องกัน push ขณะกำลัง 
 // ── Init ───────────────────────────────────────────────────
 window.onload = () => {
   const w = getCurrentWeekId();
+  weekId = w;
   document.getElementById('weekInput').value       = w;
   document.getElementById('latestWeekBadge').textContent = w;
   const saved = localStorage.getItem('readerName') || '';
@@ -499,6 +500,14 @@ async function saveRow(meterId) {
   const raw_unit    = row ? (row.raw_unit || 'kWh') : 'kWh';
   const reader      = rdrEl  ? rdrEl.value.trim()  : '';
   const note        = noteEl ? noteEl.value.trim() : '';
+
+  const targetWeekId = (row && row.week_id) || weekId || document.getElementById('weekInput')?.value?.trim();
+  if (!targetWeekId) {
+    showToast('❌ ไม่พบรหัสสัปดาห์ (week_id)', 'error');
+    return;
+  }
+  if (!weekId) weekId = targetWeekId;
+
  // ✅ เพิ่มตรงนี้ — ถามยืนยันก่อนลบค่า
   if (raw_reading === '') {
     if (!confirm('ต้องการลบค่ามิเตอร์นี้ให้เป็นช่องว่างใช่ไหม?')) return;
@@ -511,7 +520,7 @@ async function saveRow(meterId) {
     const res  = await fetch(APPS_SCRIPT_URL, {
       method : 'POST',
       headers: { 'Content-Type': 'text/plain' },
-      body   : JSON.stringify({ action: 'update', week_id: weekId, meter_id: meterId, raw_reading, raw_unit, reader, note }),
+      body   : JSON.stringify({ action: 'update', week_id: targetWeekId, meter_id: meterId, raw_reading, raw_unit, reader, note }),
     });
     const data = await res.json();
     if (!data.ok) throw new Error(data.error || 'บันทึกไม่สำเร็จ');
@@ -536,6 +545,13 @@ async function exportToGitHub() {
     return;
   }
 
+  const targetWeekId = weekId || allRows[0]?.week_id || document.getElementById('weekInput')?.value?.trim();
+  if (!targetWeekId) {
+    showToast('❌ ไม่พบรหัสสัปดาห์ (week_id)', 'error');
+    return;
+  }
+  if (!weekId) weekId = targetWeekId;
+
   const done   = allRows.filter(r => r.raw_reading && r.raw_reading !== '').length;
   const remain = allRows.length - done;
   const msg    = remain > 0
@@ -551,7 +567,7 @@ async function exportToGitHub() {
     const res  = await fetch(APPS_SCRIPT_URL, {
       method : 'POST',
       headers: { 'Content-Type': 'text/plain' },
-      body   : JSON.stringify({ action: 'export', week_id: weekId }),
+      body   : JSON.stringify({ action: 'export', week_id: targetWeekId }),
     });
     const data = await res.json();
     // Apps Script แจ้งว่ามีคนอื่น push อยู่
