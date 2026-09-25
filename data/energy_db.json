@@ -14,7 +14,7 @@
       "SCB 8",
       "SCB21"
     ],
-    "generated_at": "2026-09-25T01:42:48",
+    "generated_at": "2026-09-25T03:00:27",
     "missing_reading_logic": "Blank or 0 raw_reading uses previous valid reading.",
     "unchanged_reading_logic": "If current equals previous, usage is 0.",
     "allocation_logic": "Fill-down department, then use row allocation_ratio directly."
@@ -4484,7 +4484,7 @@
       "b_code": "D.0015",
       "subb_code": "MDB",
       "building_name": "ต.0015 อาคารโรงซ่อมเครื่องกล อสร.",
-      "raw_reading": "",
+      "raw_reading": 26864.0,
       "raw_unit": "kWh",
       "normalized_kwh": 26864.0,
       "usage_kwh": 0,
@@ -128639,11 +128639,11 @@
       "b_code": "T.0022",
       "subb_code": "MDB",
       "building_name": "ท.0022 อาคารห้องกัมตภาพรังสี อบค.",
-      "raw_reading": "",
+      "raw_reading": 1122.0,
       "raw_unit": "kWh",
       "normalized_kwh": 1122.0,
       "usage_kwh": 0,
-      "reader": "",
+      "reader": "ธนวิช",
       "note": ""
     },
     {
@@ -129974,11 +129974,11 @@
       "b_code": "T.0023",
       "subb_code": "MDB",
       "building_name": "ท.0023 อาคาร Construction Shop อบค.",
-      "raw_reading": "",
+      "raw_reading": 5793.0,
       "raw_unit": "kWh",
       "normalized_kwh": 5793.0,
       "usage_kwh": 0,
-      "reader": "",
+      "reader": "ธนวิช",
       "note": ""
     },
     {
@@ -131309,11 +131309,11 @@
       "b_code": "T.0025",
       "subb_code": "MDB",
       "building_name": "ท.0025 อาคารเก็บอุปกรณ์ อสร.",
-      "raw_reading": "",
+      "raw_reading": 3110.0,
       "raw_unit": "kWh",
       "normalized_kwh": 3110.0,
       "usage_kwh": 0,
-      "reader": "",
+      "reader": "ธนวิช",
       "note": ""
     },
     {
@@ -138806,9 +138806,7 @@
       "building_name": "ต.0015 อาคารโรงซ่อมเครื่องกล อสร.",
       "normalized_kwh": 26864.0,
       "is_main_meter": true,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W01.csv",
@@ -231048,9 +231046,7 @@
       "building_name": "ท.0022 อาคารห้องกัมตภาพรังสี อบค.",
       "normalized_kwh": 1122.0,
       "is_main_meter": true,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W01.csv",
@@ -232127,9 +232123,7 @@
       "building_name": "ท.0023 อาคาร Construction Shop อบค.",
       "normalized_kwh": 5793.0,
       "is_main_meter": true,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W01.csv",
@@ -233201,9 +233195,7 @@
       "building_name": "ท.0025 อาคารเก็บอุปกรณ์ อสร.",
       "normalized_kwh": 3110.0,
       "is_main_meter": true,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W01.csv",
@@ -240513,7 +240505,6 @@
       "previous_normalized_kwh": 26864.0,
       "current_normalized_kwh": 26864.0,
       "flags": [
-        "MISSING_READING_USED_PREVIOUS",
         "UNCHANGED_READING_USAGE_ZERO"
       ]
     },
@@ -363216,7 +363207,6 @@
       "previous_normalized_kwh": 1122.0,
       "current_normalized_kwh": 1122.0,
       "flags": [
-        "MISSING_READING_USED_PREVIOUS",
         "UNCHANGED_READING_USAGE_ZERO"
       ]
     },
@@ -364709,7 +364699,6 @@
       "previous_normalized_kwh": 5793.0,
       "current_normalized_kwh": 5793.0,
       "flags": [
-        "MISSING_READING_USED_PREVIOUS",
         "UNCHANGED_READING_USAGE_ZERO"
       ]
     },
@@ -366178,7 +366167,6 @@
       "previous_normalized_kwh": 3110.0,
       "current_normalized_kwh": 3110.0,
       "flags": [
-        "MISSING_READING_USED_PREVIOUS",
         "UNCHANGED_READING_USAGE_ZERO"
       ]
     },
@@ -374520,7 +374508,6 @@
       "allocation_row_no": 37,
       "kwh": 0.0,
       "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
         "UNCHANGED_READING_USAGE_ZERO"
       ]
     },
@@ -415882,7 +415869,6 @@
       "allocation_row_no": 18,
       "kwh": 0.0,
       "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
         "UNCHANGED_READING_USAGE_ZERO"
       ]
     },
@@ -417199,7 +417185,6 @@
       "allocation_row_no": 19,
       "kwh": 0.0,
       "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
         "UNCHANGED_READING_USAGE_ZERO"
       ]
     },
@@ -418492,7 +418477,6 @@
       "allocation_row_no": 38,
       "kwh": 0.0,
       "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
         "UNCHANGED_READING_USAGE_ZERO"
       ]
     },
