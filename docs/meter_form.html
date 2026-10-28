@@ -373,6 +373,9 @@ function loadLatestWeek() {
 async function loadWeek() {
   const input = document.getElementById('weekInput').value.trim();
   if (!input) return showToast('กรุณาระบุรหัสสัปดาห์', 'error');
+  if (!/^\d{4}-W(0[1-9]|[1-4]\d|5[0-3])$/.test(input)) {
+    return showToast('❌ รูปแบบรหัสสัปดาห์ไม่ถูกต้อง เช่น 2026-W23 (สัปดาห์ 01-53)', 'error');
+  }
   weekId = input;
   showLoading();
   fetchWeekData(weekId);
@@ -659,6 +662,10 @@ async function exportToGitHub() {
   const targetWeekId = weekId || allRows[0]?.week_id || document.getElementById('weekInput')?.value?.trim();
   if (!targetWeekId) {
     showToast('❌ ไม่พบรหัสสัปดาห์ (week_id)', 'error');
+    return;
+  }
+  if (!/^\d{4}-W(0[1-9]|[1-4]\d|5[0-3])$/.test(targetWeekId)) {
+    showToast('❌ รูปแบบรหัสสัปดาห์ไม่ถูกต้อง (' + targetWeekId + ') เช่น 2026-W23', 'error');
     return;
   }
   if (!weekId) weekId = targetWeekId;

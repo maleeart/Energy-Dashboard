@@ -1,5 +1,6 @@
 import csv
 import json
+import re
 from pathlib import Path
 from datetime import datetime
 from collections import defaultdict
@@ -302,8 +303,27 @@ def collect_form_readings(meter_by_id, validation):
     raw_rows = []
     form_files = sorted(p for p in FORMS_DIR.glob("*.csv") if not p.name.startswith("_"))
     seen = set()
+    current_year = datetime.now().year
 
     for form_path in form_files:
+        m = re.match(r"^(\d{4})-W(\d{1,3})\.csv$", form_path.name)
+        if not m:
+            validation["warnings"].append({
+                "file": str(form_path.relative_to(ROOT)),
+                "warning": "INVALID_FORM_FILENAME",
+                "detail": f"File name '{form_path.name}' does not match standard week pattern (e.g. 2026-W23.csv)"
+            })
+            continue
+
+        week_num = int(m.group(2))
+        if week_num < 1 or week_num > 53:
+            validation["warnings"].append({
+                "file": str(form_path.relative_to(ROOT)),
+                "warning": "INVALID_WEEK_NUMBER",
+                "detail": f"Week number {week_num} in '{form_path.name}' is out of range 1-53"
+            })
+            continue
+
         rows = read_csv(form_path)
 
         for row_no, row in enumerate(rows, start=2):
@@ -329,6 +349,17 @@ def collect_form_readings(meter_by_id, validation):
                     "row": row_no,
                     "warning": "INVALID_DATE",
                     "detail": str(e),
+                    "meter_id": meter_id,
+                })
+                continue
+
+            year = int(reading_date[:4])
+            if year < 2020 or year > current_year + 1:
+                validation["warnings"].append({
+                    "file": str(form_path.relative_to(ROOT)),
+                    "row": row_no,
+                    "warning": "INVALID_DATE_YEAR_OUT_OF_RANGE",
+                    "detail": f"Reading date {reading_date} year is out of range",
                     "meter_id": meter_id,
                 })
                 continue

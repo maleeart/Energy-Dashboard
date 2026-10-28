@@ -1328,15 +1328,20 @@ function monthlyDeptTotal(month, dept=null){ return monthlySeriesValue(sY, month
 
 // ===== FILTER SETUP =====
 function setupFilters(){
-  const years = [...new Set((DATA.department_weekly||[]).map(w=>ymdYear(w.week_end_date)))].sort();
+  const curYear = new Date().getFullYear();
+  const allYears = [...new Set((DATA.department_weekly||[]).map(w=>ymdYear(w.week_end_date)))].filter(y => y >= 2020 && y <= curYear + 1).sort();
   const ys = document.getElementById("yearSel");
   ys.innerHTML = "";
-  if(years.length === 0){
-    const y = new Date().getFullYear(); years.push(y);
+  if(allYears.length === 0){
+    allYears.push(curYear);
     document.getElementById("noteBar").textContent = "โหลดฐานข้อมูลสำเร็จ แต่ยังไม่มี consumption เพราะต้องมี reading อย่างน้อย 2 สัปดาห์ต่อมิเตอร์";
   }
-  years.forEach(y=>{ const o=document.createElement("option"); o.value=y; o.textContent=y+543; ys.appendChild(o); });
-  sY = years[years.length-1]; ys.value = sY;
+  allYears.forEach(y=>{ const o=document.createElement("option"); o.value=y; o.textContent=y+543; ys.appendChild(o); });
+  
+  // เลือกปีล่าสุดที่มีข้อมูลการใช้ไฟฟ้าจริง (ถ้าไม่มีให้เลือกปีล่าสุดในรายการ)
+  const yearsWithData = allYears.filter(y => (DATA.department_weekly||[]).some(r => ymdYear(r.week_end_date) === y && validEnergyRow(r) && (+r.kwh||0) > 0));
+  sY = yearsWithData.length > 0 ? yearsWithData[yearsWithData.length - 1] : allYears[allYears.length - 1];
+  ys.value = sY;
 
   // range dropdowns
   const mf = document.getElementById("monthFrom");
