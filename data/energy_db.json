@@ -14,7 +14,7 @@
       "SCB 8",
       "SCB21"
     ],
-    "generated_at": "2026-10-28T03:56:57",
+    "generated_at": "2026-10-28T03:57:44",
     "missing_reading_logic": "Blank or 0 raw_reading uses previous valid reading.",
     "unchanged_reading_logic": "If current equals previous, usage is 0.",
     "allocation_logic": "Fill-down department, then use row allocation_ratio directly."
@@ -46844,11 +46844,11 @@
       "b_code": "T.0016",
       "subb_code": "MDB",
       "building_name": "ท.0016 อาคารปฏิบัติการเคมี 1 อคม.",
-      "raw_reading": "",
+      "raw_reading": 440133.0,
       "raw_unit": "kWh",
-      "normalized_kwh": 439279.95,
-      "usage_kwh": 0,
-      "reader": "",
+      "normalized_kwh": 440133.0,
+      "usage_kwh": 853.05,
+      "reader": "ธนวิชญ์",
       "note": ""
     },
     {
@@ -46861,7 +46861,7 @@
       "building_name": "ท.0016 อาคารปฏิบัติการเคมี 1 อคม.",
       "raw_reading": "",
       "raw_unit": "kWh",
-      "normalized_kwh": 439279.95,
+      "normalized_kwh": 440133.0,
       "usage_kwh": 0,
       "reader": "",
       "note": ""
@@ -48209,11 +48209,11 @@
       "b_code": "T.0017",
       "subb_code": "MDB",
       "building_name": "ท.0017 อาคาร ศูนย์พัฒนางานเชื่อมและทดสอบฝีมือช่างเชื่อมสากล",
-      "raw_reading": "",
+      "raw_reading": 363252.0,
       "raw_unit": "kWh",
-      "normalized_kwh": 361814.0,
-      "usage_kwh": 0,
-      "reader": "",
+      "normalized_kwh": 363252.0,
+      "usage_kwh": 1438.0,
+      "reader": "ธนวิชญ์",
       "note": ""
     },
     {
@@ -48226,7 +48226,7 @@
       "building_name": "ท.0017 อาคาร ศูนย์พัฒนางานเชื่อมและทดสอบฝีมือช่างเชื่อมสากล",
       "raw_reading": "",
       "raw_unit": "kWh",
-      "normalized_kwh": 361814.0,
+      "normalized_kwh": 363252.0,
       "usage_kwh": 0,
       "reader": "",
       "note": ""
@@ -174990,11 +174990,9 @@
       "b_code": "T.0016",
       "subb_code": "MDB",
       "building_name": "ท.0016 อาคารปฏิบัติการเคมี 1 อคม.",
-      "normalized_kwh": 439279.95,
+      "normalized_kwh": 440133.0,
       "is_main_meter": true,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2026-W44.csv",
@@ -175004,7 +175002,7 @@
       "b_code": "T.0016",
       "subb_code": "MDB",
       "building_name": "ท.0016 อาคารปฏิบัติการเคมี 1 อคม.",
-      "normalized_kwh": 439279.95,
+      "normalized_kwh": 440133.0,
       "is_main_meter": true,
       "flags": [
         "MISSING_READING_USED_PREVIOUS"
@@ -176088,11 +176086,9 @@
       "b_code": "T.0017",
       "subb_code": "MDB",
       "building_name": "ท.0017 อาคาร ศูนย์พัฒนางานเชื่อมและทดสอบฝีมือช่างเชื่อมสากล",
-      "normalized_kwh": 361814.0,
+      "normalized_kwh": 363252.0,
       "is_main_meter": true,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2026-W44.csv",
@@ -176102,7 +176098,7 @@
       "b_code": "T.0017",
       "subb_code": "MDB",
       "building_name": "ท.0017 อาคาร ศูนย์พัฒนางานเชื่อมและทดสอบฝีมือช่างเชื่อมสากล",
-      "normalized_kwh": 361814.0,
+      "normalized_kwh": 363252.0,
       "is_main_meter": true,
       "flags": [
         "MISSING_READING_USED_PREVIOUS"
@@ -290271,14 +290267,11 @@
       "subb_code": "MDB",
       "building_name": "ท.0016 อาคารปฏิบัติการเคมี 1 อคม.",
       "is_main_meter": true,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 853.05,
+      "raw_delta_kwh": 853.05,
       "previous_normalized_kwh": 439279.95,
-      "current_normalized_kwh": 439279.95,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 440133.0,
+      "flags": []
     },
     {
       "week_start_date": "2026-10-09",
@@ -290292,8 +290285,8 @@
       "is_main_meter": true,
       "kwh": 0,
       "raw_delta_kwh": 0.0,
-      "previous_normalized_kwh": 439279.95,
-      "current_normalized_kwh": 439279.95,
+      "previous_normalized_kwh": 440133.0,
+      "current_normalized_kwh": 440133.0,
       "flags": [
         "MISSING_READING_USED_PREVIOUS",
         "UNCHANGED_READING_USAGE_ZERO"
@@ -291724,14 +291717,11 @@
       "subb_code": "MDB",
       "building_name": "ท.0017 อาคาร ศูนย์พัฒนางานเชื่อมและทดสอบฝีมือช่างเชื่อมสากล",
       "is_main_meter": true,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 1438.0,
+      "raw_delta_kwh": 1438.0,
       "previous_normalized_kwh": 361814.0,
-      "current_normalized_kwh": 361814.0,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 363252.0,
+      "flags": []
     },
     {
       "week_start_date": "2026-10-09",
@@ -291745,8 +291735,8 @@
       "is_main_meter": true,
       "kwh": 0,
       "raw_delta_kwh": 0.0,
-      "previous_normalized_kwh": 361814.0,
-      "current_normalized_kwh": 361814.0,
+      "previous_normalized_kwh": 363252.0,
+      "current_normalized_kwh": 363252.0,
       "flags": [
         "MISSING_READING_USED_PREVIOUS",
         "UNCHANGED_READING_USAGE_ZERO"
@@ -405761,11 +405751,8 @@
       "building_name": "ท.0016 อาคารปฏิบัติการเคมี 1 อคม.",
       "allocation_ratio": 1.0,
       "allocation_row_no": 23,
-      "kwh": 0.0,
-      "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "kwh": 853.05,
+      "source_flags": []
     },
     {
       "week_start_date": "2026-10-09",
@@ -407034,11 +407021,8 @@
       "building_name": "ท.0017 อาคาร ศูนย์พัฒนางานเชื่อมและทดสอบฝีมือช่างเชื่อมสากล",
       "allocation_ratio": 1.0,
       "allocation_row_no": 17,
-      "kwh": 0.0,
-      "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "kwh": 1438.0,
+      "source_flags": []
     },
     {
       "week_start_date": "2026-10-09",
@@ -436421,12 +436405,12 @@
       "อคม.": 30991.564
     },
     "2026-10": {
-      "อบค.": 40210.613,
+      "อบค.": 41648.613,
       "อสร.": 0.0,
       "สก.ชธธ.": 53435.803,
       "อหข.": 26693.92,
       "อรอ.": 11983.538,
-      "อบฟ.": 65497.176,
+      "อบฟ.": 66350.226,
       "อบย.": 17390.414,
       "อคม.": 62789.163
     }
