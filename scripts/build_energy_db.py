@@ -30,7 +30,15 @@ def read_csv(path):
     for enc in encodings:
         try:
             with open(path, "r", encoding=enc, newline="") as f:
-                return list(csv.DictReader(f))
+                reader = csv.DictReader(f)
+                cleaned_rows = []
+                for row in reader:
+                    cleaned_row = {}
+                    for k, v in row.items():
+                        clean_k = k.lstrip("\ufeff").strip() if k else k
+                        cleaned_row[clean_k] = v
+                    cleaned_rows.append(cleaned_row)
+                return cleaned_rows
         except FileNotFoundError:
             return []
         except Exception as e:
