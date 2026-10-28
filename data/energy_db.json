@@ -14,7 +14,7 @@
       "SCB 8",
       "SCB21"
     ],
-    "generated_at": "2026-10-28T04:06:35",
+    "generated_at": "2026-10-28T04:13:03",
     "missing_reading_logic": "Blank or 0 raw_reading uses previous valid reading.",
     "unchanged_reading_logic": "If current equals previous, usage is 0.",
     "allocation_logic": "Fill-down department, then use row allocation_ratio directly."
@@ -16184,11 +16184,11 @@
       "b_code": "D.0019",
       "subb_code": "ร้านค้า 1",
       "building_name": "ต.0019 ร้านอาหาร 4 (ครัวเทคแคร์)",
-      "raw_reading": "",
+      "raw_reading": 8893.0,
       "raw_unit": "kWh",
-      "normalized_kwh": 8764.0,
-      "usage_kwh": 0,
-      "reader": "",
+      "normalized_kwh": 8893.0,
+      "usage_kwh": 129.0,
+      "reader": "ธนวิชญ์",
       "note": ""
     },
     {
@@ -16202,7 +16202,7 @@
       "raw_reading": 8950.0,
       "raw_unit": "kWh",
       "normalized_kwh": 8950.0,
-      "usage_kwh": 186.0,
+      "usage_kwh": 57.0,
       "reader": "ธนวิชญ์",
       "note": ""
     },
@@ -19064,11 +19064,11 @@
       "b_code": "D.0019",
       "subb_code": "ร้านค้า 3",
       "building_name": "ต.0019 ร้านอาหาร 6 (ก๋วยเตี๋ยวแก้วขวัญ)",
-      "raw_reading": "",
+      "raw_reading": 1971.0,
       "raw_unit": "kWh",
-      "normalized_kwh": 1903.0,
-      "usage_kwh": 0,
-      "reader": "",
+      "normalized_kwh": 1971.0,
+      "usage_kwh": 68.0,
+      "reader": "ธนวิชญ์",
       "note": ""
     },
     {
@@ -19082,7 +19082,7 @@
       "raw_reading": 2001.0,
       "raw_unit": "kWh",
       "normalized_kwh": 2001.0,
-      "usage_kwh": 98.0,
+      "usage_kwh": 30.0,
       "reader": "ธนวิชญ์",
       "note": ""
     },
@@ -20504,11 +20504,11 @@
       "b_code": "D.0019",
       "subb_code": "ร้านค้า 4",
       "building_name": "ต.0019 ร้านอาหาร 7 (ต้อมผลไม้สด)",
-      "raw_reading": "",
+      "raw_reading": 6262.0,
       "raw_unit": "kWh",
-      "normalized_kwh": 6235.0,
-      "usage_kwh": 0,
-      "reader": "",
+      "normalized_kwh": 6262.0,
+      "usage_kwh": 27.0,
+      "reader": "ธนวิชญ์",
       "note": ""
     },
     {
@@ -20522,7 +20522,7 @@
       "raw_reading": 6277.0,
       "raw_unit": "kWh",
       "normalized_kwh": 6277.0,
-      "usage_kwh": 42.0,
+      "usage_kwh": 15.0,
       "reader": "ธนวิชญ์",
       "note": ""
     },
@@ -21944,11 +21944,11 @@
       "b_code": "D.0019",
       "subb_code": "ร้านค้า 5",
       "building_name": "ต.0019 ร้านอาหาร 8 (ปั้นไปเรื่อย)",
-      "raw_reading": "",
+      "raw_reading": 7518.0,
       "raw_unit": "kWh",
-      "normalized_kwh": 7243.0,
-      "usage_kwh": 0,
-      "reader": "",
+      "normalized_kwh": 7518.0,
+      "usage_kwh": 275.0,
+      "reader": "ธนวิชญ์",
       "note": ""
     },
     {
@@ -21962,7 +21962,7 @@
       "raw_reading": 7631.0,
       "raw_unit": "kWh",
       "normalized_kwh": 7631.0,
-      "usage_kwh": 388.0,
+      "usage_kwh": 113.0,
       "reader": "ธนวิชญ์",
       "note": ""
     },
@@ -23384,11 +23384,11 @@
       "b_code": "D.0019",
       "subb_code": "ร้านค้า 6",
       "building_name": "ต.0019 ร้านอาหาร 9 (อาอิซะห์อาหารอิสลาม)",
-      "raw_reading": "",
+      "raw_reading": 2092.0,
       "raw_unit": "kWh",
-      "normalized_kwh": 2086.0,
-      "usage_kwh": 0,
-      "reader": "",
+      "normalized_kwh": 2092.0,
+      "usage_kwh": 6.0,
+      "reader": "ธนวิชญ์",
       "note": ""
     },
     {
@@ -23401,8 +23401,8 @@
       "building_name": "ต.0019 ร้านอาหาร 9 (อาอิซะห์อาหารอิสลาม)",
       "raw_reading": 2091.0,
       "raw_unit": "kWh",
-      "normalized_kwh": 2091.0,
-      "usage_kwh": 5.0,
+      "normalized_kwh": 2091000.0,
+      "usage_kwh": 2088908.0,
       "reader": "ธนวิชญ์",
       "note": ""
     },
@@ -23416,7 +23416,7 @@
       "building_name": "ต.0019 ร้านอาหาร 9 (อาอิซะห์อาหารอิสลาม)",
       "raw_reading": "",
       "raw_unit": "kWh",
-      "normalized_kwh": 2091.0,
+      "normalized_kwh": 2091000.0,
       "usage_kwh": 0,
       "reader": "",
       "note": ""
@@ -24824,11 +24824,11 @@
       "b_code": "D.0019",
       "subb_code": "ร้านค้า 7",
       "building_name": "ต.0019 ร้านสหกรณ์",
-      "raw_reading": "",
+      "raw_reading": 9706.0,
       "raw_unit": "kWh",
-      "normalized_kwh": 9237.0,
-      "usage_kwh": 0,
-      "reader": "",
+      "normalized_kwh": 9706.0,
+      "usage_kwh": 469.0,
+      "reader": "ธนวิชญ์",
       "note": ""
     },
     {
@@ -24842,7 +24842,7 @@
       "raw_reading": 9901.0,
       "raw_unit": "kWh",
       "normalized_kwh": 9901.0,
-      "usage_kwh": 664.0,
+      "usage_kwh": 195.0,
       "reader": "ธนวิชญ์",
       "note": ""
     },
@@ -158919,11 +158919,9 @@
       "b_code": "D.0019",
       "subb_code": "ร้านค้า 1",
       "building_name": "ต.0019 ร้านอาหาร 4 (ครัวเทคแคร์)",
-      "normalized_kwh": 8764.0,
+      "normalized_kwh": 8893.0,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2026-W43.csv",
@@ -161288,11 +161286,9 @@
       "b_code": "D.0019",
       "subb_code": "ร้านค้า 3",
       "building_name": "ต.0019 ร้านอาหาร 6 (ก๋วยเตี๋ยวแก้วขวัญ)",
-      "normalized_kwh": 1903.0,
+      "normalized_kwh": 1971.0,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2026-W43.csv",
@@ -162462,11 +162458,9 @@
       "b_code": "D.0019",
       "subb_code": "ร้านค้า 4",
       "building_name": "ต.0019 ร้านอาหาร 7 (ต้อมผลไม้สด)",
-      "normalized_kwh": 6235.0,
+      "normalized_kwh": 6262.0,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2026-W43.csv",
@@ -163636,11 +163630,9 @@
       "b_code": "D.0019",
       "subb_code": "ร้านค้า 5",
       "building_name": "ต.0019 ร้านอาหาร 8 (ปั้นไปเรื่อย)",
-      "normalized_kwh": 7243.0,
+      "normalized_kwh": 7518.0,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2026-W43.csv",
@@ -164810,11 +164802,9 @@
       "b_code": "D.0019",
       "subb_code": "ร้านค้า 6",
       "building_name": "ต.0019 ร้านอาหาร 9 (อาอิซะห์อาหารอิสลาม)",
-      "normalized_kwh": 2086.0,
+      "normalized_kwh": 2092.0,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2026-W43.csv",
@@ -164824,9 +164814,12 @@
       "b_code": "D.0019",
       "subb_code": "ร้านค้า 6",
       "building_name": "ต.0019 ร้านอาหาร 9 (อาอิซะห์อาหารอิสลาม)",
-      "normalized_kwh": 2091.0,
+      "normalized_kwh": 2091000.0,
       "is_main_meter": false,
-      "flags": []
+      "flags": [
+        "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH",
+        "UNIT_SUSPECT_AUTO_CORRECTED"
+      ]
     },
     {
       "source_form": "forms/2026-W44.csv",
@@ -164836,7 +164829,7 @@
       "b_code": "D.0019",
       "subb_code": "ร้านค้า 6",
       "building_name": "ต.0019 ร้านอาหาร 9 (อาอิซะห์อาหารอิสลาม)",
-      "normalized_kwh": 2091.0,
+      "normalized_kwh": 2091000.0,
       "is_main_meter": false,
       "flags": [
         "MISSING_READING_USED_PREVIOUS"
@@ -165995,11 +165988,9 @@
       "b_code": "D.0019",
       "subb_code": "ร้านค้า 7",
       "building_name": "ต.0019 ร้านสหกรณ์",
-      "normalized_kwh": 9237.0,
+      "normalized_kwh": 9706.0,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2026-W43.csv",
@@ -272549,14 +272540,11 @@
       "subb_code": "ร้านค้า 1",
       "building_name": "ต.0019 ร้านอาหาร 4 (ครัวเทคแคร์)",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 129.0,
+      "raw_delta_kwh": 129.0,
       "previous_normalized_kwh": 8764.0,
-      "current_normalized_kwh": 8764.0,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 8893.0,
+      "flags": []
     },
     {
       "week_start_date": "2026-10-16",
@@ -272568,9 +272556,9 @@
       "subb_code": "ร้านค้า 1",
       "building_name": "ต.0019 ร้านอาหาร 4 (ครัวเทคแคร์)",
       "is_main_meter": false,
-      "kwh": 186.0,
-      "raw_delta_kwh": 186.0,
-      "previous_normalized_kwh": 8764.0,
+      "kwh": 57.0,
+      "raw_delta_kwh": 57.0,
+      "previous_normalized_kwh": 8893.0,
       "current_normalized_kwh": 8950.0,
       "flags": []
     },
@@ -275747,14 +275735,11 @@
       "subb_code": "ร้านค้า 3",
       "building_name": "ต.0019 ร้านอาหาร 6 (ก๋วยเตี๋ยวแก้วขวัญ)",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 68.0,
+      "raw_delta_kwh": 68.0,
       "previous_normalized_kwh": 1903.0,
-      "current_normalized_kwh": 1903.0,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 1971.0,
+      "flags": []
     },
     {
       "week_start_date": "2026-10-16",
@@ -275766,9 +275751,9 @@
       "subb_code": "ร้านค้า 3",
       "building_name": "ต.0019 ร้านอาหาร 6 (ก๋วยเตี๋ยวแก้วขวัญ)",
       "is_main_meter": false,
-      "kwh": 98.0,
-      "raw_delta_kwh": 98.0,
-      "previous_normalized_kwh": 1903.0,
+      "kwh": 30.0,
+      "raw_delta_kwh": 30.0,
+      "previous_normalized_kwh": 1971.0,
       "current_normalized_kwh": 2001.0,
       "flags": []
     },
@@ -277302,14 +277287,11 @@
       "subb_code": "ร้านค้า 4",
       "building_name": "ต.0019 ร้านอาหาร 7 (ต้อมผลไม้สด)",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 27.0,
+      "raw_delta_kwh": 27.0,
       "previous_normalized_kwh": 6235.0,
-      "current_normalized_kwh": 6235.0,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 6262.0,
+      "flags": []
     },
     {
       "week_start_date": "2026-10-16",
@@ -277321,9 +277303,9 @@
       "subb_code": "ร้านค้า 4",
       "building_name": "ต.0019 ร้านอาหาร 7 (ต้อมผลไม้สด)",
       "is_main_meter": false,
-      "kwh": 42.0,
-      "raw_delta_kwh": 42.0,
-      "previous_normalized_kwh": 6235.0,
+      "kwh": 15.0,
+      "raw_delta_kwh": 15.0,
+      "previous_normalized_kwh": 6262.0,
       "current_normalized_kwh": 6277.0,
       "flags": []
     },
@@ -278857,14 +278839,11 @@
       "subb_code": "ร้านค้า 5",
       "building_name": "ต.0019 ร้านอาหาร 8 (ปั้นไปเรื่อย)",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 275.0,
+      "raw_delta_kwh": 275.0,
       "previous_normalized_kwh": 7243.0,
-      "current_normalized_kwh": 7243.0,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 7518.0,
+      "flags": []
     },
     {
       "week_start_date": "2026-10-16",
@@ -278876,9 +278855,9 @@
       "subb_code": "ร้านค้า 5",
       "building_name": "ต.0019 ร้านอาหาร 8 (ปั้นไปเรื่อย)",
       "is_main_meter": false,
-      "kwh": 388.0,
-      "raw_delta_kwh": 388.0,
-      "previous_normalized_kwh": 7243.0,
+      "kwh": 113.0,
+      "raw_delta_kwh": 113.0,
+      "previous_normalized_kwh": 7518.0,
       "current_normalized_kwh": 7631.0,
       "flags": []
     },
@@ -280412,14 +280391,11 @@
       "subb_code": "ร้านค้า 6",
       "building_name": "ต.0019 ร้านอาหาร 9 (อาอิซะห์อาหารอิสลาม)",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 6.0,
+      "raw_delta_kwh": 6.0,
       "previous_normalized_kwh": 2086.0,
-      "current_normalized_kwh": 2086.0,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 2092.0,
+      "flags": []
     },
     {
       "week_start_date": "2026-10-16",
@@ -280431,11 +280407,14 @@
       "subb_code": "ร้านค้า 6",
       "building_name": "ต.0019 ร้านอาหาร 9 (อาอิซะห์อาหารอิสลาม)",
       "is_main_meter": false,
-      "kwh": 5.0,
-      "raw_delta_kwh": 5.0,
-      "previous_normalized_kwh": 2086.0,
-      "current_normalized_kwh": 2091.0,
-      "flags": []
+      "kwh": 2088908.0,
+      "raw_delta_kwh": 2088908.0,
+      "previous_normalized_kwh": 2092.0,
+      "current_normalized_kwh": 2091000.0,
+      "flags": [
+        "RAW_LOOKS_MWH_BUT_UNIT_SAYS_KWH",
+        "UNIT_SUSPECT_AUTO_CORRECTED"
+      ]
     },
     {
       "week_start_date": "2026-10-22",
@@ -280449,8 +280428,8 @@
       "is_main_meter": false,
       "kwh": 0,
       "raw_delta_kwh": 0.0,
-      "previous_normalized_kwh": 2091.0,
-      "current_normalized_kwh": 2091.0,
+      "previous_normalized_kwh": 2091000.0,
+      "current_normalized_kwh": 2091000.0,
       "flags": [
         "MISSING_READING_USED_PREVIOUS",
         "UNCHANGED_READING_USAGE_ZERO"
@@ -281983,14 +281962,11 @@
       "subb_code": "ร้านค้า 7",
       "building_name": "ต.0019 ร้านสหกรณ์",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 469.0,
+      "raw_delta_kwh": 469.0,
       "previous_normalized_kwh": 9237.0,
-      "current_normalized_kwh": 9237.0,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 9706.0,
+      "flags": []
     },
     {
       "week_start_date": "2026-10-16",
@@ -282002,9 +281978,9 @@
       "subb_code": "ร้านค้า 7",
       "building_name": "ต.0019 ร้านสหกรณ์",
       "is_main_meter": false,
-      "kwh": 664.0,
-      "raw_delta_kwh": 664.0,
-      "previous_normalized_kwh": 9237.0,
+      "kwh": 195.0,
+      "raw_delta_kwh": 195.0,
+      "previous_normalized_kwh": 9706.0,
       "current_normalized_kwh": 9901.0,
       "flags": []
     },
