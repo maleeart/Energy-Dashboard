@@ -14,7 +14,7 @@
       "SCB 8",
       "SCB21"
     ],
-    "generated_at": "2026-10-28T04:45:29",
+    "generated_at": "2026-10-30T02:08:23",
     "missing_reading_logic": "Blank or 0 raw_reading uses previous valid reading.",
     "unchanged_reading_logic": "If current equals previous, usage is 0.",
     "allocation_logic": "Fill-down department, then use row allocation_ratio directly."
@@ -14774,10 +14774,10 @@
       "b_code": "D.0019",
       "subb_code": "MDB",
       "building_name": "ต.0019 อาคารนันทนาการพร้อมอาคารจอดรถ",
-      "raw_reading": "",
+      "raw_reading": 323510.52,
       "raw_unit": "kWh",
-      "normalized_kwh": 318204.07,
-      "usage_kwh": 0,
+      "normalized_kwh": 323510.52,
+      "usage_kwh": 5306.45,
       "reader": "",
       "note": ""
     },
@@ -26294,10 +26294,10 @@
       "b_code": "D.0025",
       "subb_code": "MDB",
       "building_name": "ต.0025 อาคารอเนกประสงค์",
-      "raw_reading": "",
-      "raw_unit": "MWh",
-      "normalized_kwh": 32682.07,
-      "usage_kwh": 0,
+      "raw_reading": 33202.56,
+      "raw_unit": "kWh",
+      "normalized_kwh": 33202.56,
+      "usage_kwh": 520.49,
       "reader": "",
       "note": ""
     },
@@ -29175,7 +29175,7 @@
       "subb_code": "MDB",
       "building_name": "ต.0031 อาคารโรงอาหาร",
       "raw_reading": "",
-      "raw_unit": "MWh",
+      "raw_unit": "kWh",
       "normalized_kwh": 48646.0,
       "usage_kwh": 0,
       "reader": "",
@@ -33495,7 +33495,7 @@
       "subb_code": "Main",
       "building_name": "มิเตอร์รวมทั้งหมด",
       "raw_reading": "",
-      "raw_unit": "MWh",
+      "raw_unit": "kWh",
       "normalized_kwh": 10378281.0,
       "usage_kwh": 0,
       "reader": "",
@@ -36375,7 +36375,7 @@
       "subb_code": "MDB",
       "building_name": "ท.0006 อาคาร บริหารอะไหล่กังหันก๊าซ1 อรอ.",
       "raw_reading": "",
-      "raw_unit": "MWh",
+      "raw_unit": "kWh",
       "normalized_kwh": 38991.532,
       "usage_kwh": 0,
       "reader": "",
@@ -37814,10 +37814,10 @@
       "b_code": "T.0007",
       "subb_code": "MDB",
       "building_name": "ท.0007 อาคาร กองบริหาร ชธธ.",
-      "raw_reading": "",
-      "raw_unit": "MWh",
-      "normalized_kwh": 37781.01,
-      "usage_kwh": 0,
+      "raw_reading": 38784.27,
+      "raw_unit": "kWh",
+      "normalized_kwh": 38784.27,
+      "usage_kwh": 1003.26,
       "reader": "",
       "note": ""
     },
@@ -39254,10 +39254,10 @@
       "b_code": "T.0008",
       "subb_code": "MDB",
       "building_name": "ท.0008 อาคาร บริหารอะไหล่กังหันก๊าซ2 อรอ.",
-      "raw_reading": "",
+      "raw_reading": 6798.23,
       "raw_unit": "kWh",
-      "normalized_kwh": 6602.25,
-      "usage_kwh": 0,
+      "normalized_kwh": 6798.23,
+      "usage_kwh": 195.98,
       "reader": "",
       "note": ""
     },
@@ -40695,7 +40695,7 @@
       "subb_code": "MDB",
       "building_name": "ท.0009 อาคาร ปฏิบัติการพิเศษ",
       "raw_reading": "",
-      "raw_unit": "MWh",
+      "raw_unit": "kWh",
       "normalized_kwh": 41536.0,
       "usage_kwh": 0,
       "reader": "",
@@ -42134,10 +42134,10 @@
       "b_code": "T.0010",
       "subb_code": "MDB",
       "building_name": "ท.0010 อาคาร ทดสอบเครื่องกล อรอ.",
-      "raw_reading": "",
+      "raw_reading": 111786.26,
       "raw_unit": "kWh",
-      "normalized_kwh": 110347.39,
-      "usage_kwh": 0,
+      "normalized_kwh": 111786.26,
+      "usage_kwh": 1438.87,
       "reader": "",
       "note": ""
     },
@@ -43574,10 +43574,10 @@
       "b_code": "T.0011",
       "subb_code": "MDB",
       "building_name": "ท.0011 อาคาร เครื่องมือ อบค.",
-      "raw_reading": "",
+      "raw_reading": 11111.62,
       "raw_unit": "kWh",
-      "normalized_kwh": 10622.01,
-      "usage_kwh": 0,
+      "normalized_kwh": 11111.62,
+      "usage_kwh": 489.61,
       "reader": "",
       "note": ""
     },
@@ -45014,10 +45014,10 @@
       "b_code": "T.0012",
       "subb_code": "MDB",
       "building_name": "ท.0012 อาคาร บำรุงรักษาเครื่องกล อบค.",
-      "raw_reading": "",
+      "raw_reading": 410114.87,
       "raw_unit": "kWh",
-      "normalized_kwh": 405842.71,
-      "usage_kwh": 0,
+      "normalized_kwh": 410114.87,
+      "usage_kwh": 4272.16,
       "reader": "",
       "note": ""
     },
@@ -46454,10 +46454,10 @@
       "b_code": "T.0014",
       "subb_code": "MDB",
       "building_name": "ท.0014 อาคาร ปฏิบัติการฝ่ายบำรุงรักษาไฟฟ้าและโยธา",
-      "raw_reading": "",
+      "raw_reading": 451461.79,
       "raw_unit": "kWh",
-      "normalized_kwh": 450345.37,
-      "usage_kwh": 0,
+      "normalized_kwh": 451461.79,
+      "usage_kwh": 1116.42,
       "reader": "",
       "note": ""
     },
@@ -47894,10 +47894,10 @@
       "b_code": "T.0015",
       "subb_code": "MDB",
       "building_name": "ท.0015 อาคาศูนย์ปฏิบัติการทดสอบเคมี 2",
-      "raw_reading": "",
+      "raw_reading": 826356.26,
       "raw_unit": "kWh",
-      "normalized_kwh": 813658.81,
-      "usage_kwh": 0,
+      "normalized_kwh": 826356.26,
+      "usage_kwh": 12697.45,
       "reader": "",
       "note": ""
     },
@@ -52214,10 +52214,10 @@
       "b_code": "T.0018",
       "subb_code": "MDB",
       "building_name": "ท.0018 อาคารศูนย์มาตรวิทยาและสอบเทียบเครื่องมือวัด",
-      "raw_reading": "",
+      "raw_reading": 499978.94,
       "raw_unit": "kWh",
-      "normalized_kwh": 489172.86,
-      "usage_kwh": 0,
+      "normalized_kwh": 499978.94,
+      "usage_kwh": 10806.08,
       "reader": "",
       "note": ""
     },
@@ -53654,10 +53654,10 @@
       "b_code": "T.0019",
       "subb_code": "AP1",
       "building_name": "ท.0019 ชั้นที่ 1 อาคารทำการ ชธธ. ระบบเครื่องปรับอากาศ 1",
-      "raw_reading": "",
+      "raw_reading": 196725.11,
       "raw_unit": "kWh",
-      "normalized_kwh": 196131.48,
-      "usage_kwh": 0,
+      "normalized_kwh": 196725.11,
+      "usage_kwh": 593.63,
       "reader": "",
       "note": ""
     },
@@ -55094,10 +55094,10 @@
       "b_code": "T.0019",
       "subb_code": "EMDB 1",
       "building_name": "ท.0019 ชั้นที่ 1 อาคารทำการ ชธธ. (EMDB)",
-      "raw_reading": "",
+      "raw_reading": 291500.52,
       "raw_unit": "kWh",
-      "normalized_kwh": 286844.02,
-      "usage_kwh": 0,
+      "normalized_kwh": 291500.52,
+      "usage_kwh": 4656.5,
       "reader": "",
       "note": ""
     },
@@ -56534,10 +56534,10 @@
       "b_code": "T.0019",
       "subb_code": "LP1",
       "building_name": "ท.0019 ชั้นที่ 1 อาคารทำการ ชธธ. ระบบแสงสว่าง 1",
-      "raw_reading": "",
+      "raw_reading": 99214.51,
       "raw_unit": "kWh",
-      "normalized_kwh": 99116.2,
-      "usage_kwh": 0,
+      "normalized_kwh": 99214.51,
+      "usage_kwh": 98.31,
       "reader": "",
       "note": ""
     },
@@ -57974,10 +57974,10 @@
       "b_code": "T.0019",
       "subb_code": "Main",
       "building_name": "ท.0019 ชั้นที่ 1 อาคารทำการ ชธธ.",
-      "raw_reading": "",
+      "raw_reading": 1206307.29,
       "raw_unit": "kWh",
-      "normalized_kwh": 1186242.92,
-      "usage_kwh": 0,
+      "normalized_kwh": 1206307.29,
+      "usage_kwh": 20064.37,
       "reader": "",
       "note": ""
     },
@@ -59414,10 +59414,10 @@
       "b_code": "T.0019",
       "subb_code": "PP1",
       "building_name": "ท.0019 ชั้นที่ 1 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 1",
-      "raw_reading": "",
+      "raw_reading": 256892.62,
       "raw_unit": "kWh",
-      "normalized_kwh": 256054.17,
-      "usage_kwh": 0,
+      "normalized_kwh": 256892.62,
+      "usage_kwh": 838.45,
       "reader": "",
       "note": ""
     },
@@ -60854,10 +60854,10 @@
       "b_code": "T.0019",
       "subb_code": "AP3",
       "building_name": "ท.0019 ชั้นที่ 3 อาคารทำการ ชธธ. ระบบเครื่องปรับอากาศ 3",
-      "raw_reading": "",
+      "raw_reading": 38087.64,
       "raw_unit": "kWh",
-      "normalized_kwh": 37999.52,
-      "usage_kwh": 0,
+      "normalized_kwh": 38087.64,
+      "usage_kwh": 88.12,
       "reader": "",
       "note": ""
     },
@@ -62294,10 +62294,10 @@
       "b_code": "T.0019",
       "subb_code": "LP3",
       "building_name": "ท.0019 ชั้นที่ 3 อาคารทำการ ชธธ. ระบบแสงสว่าง 3",
-      "raw_reading": "",
+      "raw_reading": 19744.91,
       "raw_unit": "kWh",
-      "normalized_kwh": 19705.42,
-      "usage_kwh": 0,
+      "normalized_kwh": 19744.91,
+      "usage_kwh": 39.49,
       "reader": "",
       "note": ""
     },
@@ -63734,10 +63734,10 @@
       "b_code": "T.0019",
       "subb_code": "PP3",
       "building_name": "ท.0019 ชั้นที่ 3 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 3",
-      "raw_reading": "",
+      "raw_reading": 28633.0,
       "raw_unit": "kWh",
-      "normalized_kwh": 28569.02,
-      "usage_kwh": 0,
+      "normalized_kwh": 28633.0,
+      "usage_kwh": 63.98,
       "reader": "",
       "note": ""
     },
@@ -65174,10 +65174,10 @@
       "b_code": "T.0019",
       "subb_code": "SCB 3",
       "building_name": "ท.0019 ชั้นที่ 3 อาคารทำการ ชธธ.",
-      "raw_reading": "",
+      "raw_reading": 122101.52,
       "raw_unit": "kWh",
-      "normalized_kwh": 121848.43,
-      "usage_kwh": 0,
+      "normalized_kwh": 122101.52,
+      "usage_kwh": 253.09,
       "reader": "",
       "note": ""
     },
@@ -68054,10 +68054,10 @@
       "b_code": "T.0019",
       "subb_code": "AP4",
       "building_name": "ท.0019 ชั้นที่ 4 อาคารทำการ ชธธ. ระบบเครื่องปรับอากาศ 4",
-      "raw_reading": "",
+      "raw_reading": 77928.5,
       "raw_unit": "kWh",
-      "normalized_kwh": 77715.34,
-      "usage_kwh": 0,
+      "normalized_kwh": 77928.5,
+      "usage_kwh": 213.16,
       "reader": "",
       "note": ""
     },
@@ -69494,10 +69494,10 @@
       "b_code": "T.0019",
       "subb_code": "LP4",
       "building_name": "ท.0019 ชั้นที่ 4 อาคารทำการ ชธธ. ระบบแสงสว่าง 4",
-      "raw_reading": "",
+      "raw_reading": 124090.69,
       "raw_unit": "kWh",
-      "normalized_kwh": 123826.02,
-      "usage_kwh": 0,
+      "normalized_kwh": 124090.69,
+      "usage_kwh": 264.67,
       "reader": "",
       "note": ""
     },
@@ -70934,10 +70934,10 @@
       "b_code": "T.0019",
       "subb_code": "PP41",
       "building_name": "ท.0019 ชั้นที่ 4 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 4/1",
-      "raw_reading": "",
+      "raw_reading": 70213.43,
       "raw_unit": "kWh",
-      "normalized_kwh": 70056.13,
-      "usage_kwh": 0,
+      "normalized_kwh": 70213.43,
+      "usage_kwh": 157.3,
       "reader": "",
       "note": ""
     },
@@ -72374,10 +72374,10 @@
       "b_code": "T.0019",
       "subb_code": "PP42",
       "building_name": "ท.0019 ชั้นที่ 4 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 4/2",
-      "raw_reading": "",
+      "raw_reading": 34578.4,
       "raw_unit": "kWh",
-      "normalized_kwh": 34492.82,
-      "usage_kwh": 0,
+      "normalized_kwh": 34578.4,
+      "usage_kwh": 85.58,
       "reader": "",
       "note": ""
     },
@@ -73814,10 +73814,10 @@
       "b_code": "T.0019",
       "subb_code": "SCB 4",
       "building_name": "ท.0019 ชั้นที่ 4 อบย.",
-      "raw_reading": "",
+      "raw_reading": 364687.29,
       "raw_unit": "kWh",
-      "normalized_kwh": 363831.33,
-      "usage_kwh": 0,
+      "normalized_kwh": 364687.29,
+      "usage_kwh": 855.96,
       "reader": "",
       "note": ""
     },
@@ -75254,10 +75254,10 @@
       "b_code": "T.0019",
       "subb_code": "AP5",
       "building_name": "ท.0019 ชั้นที่ 5 อาคารทำการ ชธธ. ระบบเครื่องปรับอากาศ 5",
-      "raw_reading": "",
+      "raw_reading": 70899.82,
       "raw_unit": "kWh",
-      "normalized_kwh": 70724.55,
-      "usage_kwh": 0,
+      "normalized_kwh": 70899.82,
+      "usage_kwh": 175.27,
       "reader": "",
       "note": ""
     },
@@ -76694,10 +76694,10 @@
       "b_code": "T.0019",
       "subb_code": "LP5",
       "building_name": "ท.0019 ชั้นที่ 5 อาคารทำการ ชธธ. ระบบแสงสว่าง 5",
-      "raw_reading": "",
+      "raw_reading": 80765.91,
       "raw_unit": "kWh",
-      "normalized_kwh": 80624.32,
-      "usage_kwh": 0,
+      "normalized_kwh": 80765.91,
+      "usage_kwh": 141.59,
       "reader": "",
       "note": ""
     },
@@ -78134,10 +78134,10 @@
       "b_code": "T.0019",
       "subb_code": "PP51",
       "building_name": "ท.0019 ชั้นที่ 5 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 5/1",
-      "raw_reading": "",
+      "raw_reading": 18371.02,
       "raw_unit": "kWh",
-      "normalized_kwh": 18369.13,
-      "usage_kwh": 0,
+      "normalized_kwh": 18371.02,
+      "usage_kwh": 1.89,
       "reader": "",
       "note": ""
     },
@@ -79574,10 +79574,10 @@
       "b_code": "T.0019",
       "subb_code": "PP52",
       "building_name": "ท.0019 ชั้นที่ 5 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 5/2",
-      "raw_reading": "",
+      "raw_reading": 22247.14,
       "raw_unit": "kWh",
-      "normalized_kwh": 22191.37,
-      "usage_kwh": 0,
+      "normalized_kwh": 22247.14,
+      "usage_kwh": 55.77,
       "reader": "",
       "note": ""
     },
@@ -81014,10 +81014,10 @@
       "b_code": "T.0019",
       "subb_code": "SCB 5",
       "building_name": "ท.0019 ชั้นที่ 5 อคม.,อบฟ.",
-      "raw_reading": "",
+      "raw_reading": 229357.97,
       "raw_unit": "kWh",
-      "normalized_kwh": 228847.04,
-      "usage_kwh": 0,
+      "normalized_kwh": 229357.97,
+      "usage_kwh": 510.93,
       "reader": "",
       "note": ""
     },
@@ -82454,10 +82454,10 @@
       "b_code": "T.0019",
       "subb_code": "AP6",
       "building_name": "ท.0019 ชั้นที่ 6 อาคารทำการ ชธธ. ระบบเครื่องปรับอากาศ 6",
-      "raw_reading": "",
+      "raw_reading": 67665.11,
       "raw_unit": "kWh",
-      "normalized_kwh": 67488.7,
-      "usage_kwh": 0,
+      "normalized_kwh": 67665.11,
+      "usage_kwh": 176.41,
       "reader": "",
       "note": ""
     },
@@ -83894,10 +83894,10 @@
       "b_code": "T.0019",
       "subb_code": "LP6",
       "building_name": "ท.0019 ชั้นที่ 6 อาคารทำการ ชธธ. ระบบแสงสว่าง 6",
-      "raw_reading": "",
+      "raw_reading": 74186.28,
       "raw_unit": "kWh",
-      "normalized_kwh": 74074.18,
-      "usage_kwh": 0,
+      "normalized_kwh": 74186.28,
+      "usage_kwh": 112.1,
       "reader": "",
       "note": ""
     },
@@ -85334,10 +85334,10 @@
       "b_code": "T.0019",
       "subb_code": "PP61",
       "building_name": "ท.0019 ชั้นที่ 6 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 6/1",
-      "raw_reading": "",
+      "raw_reading": 19484.71,
       "raw_unit": "kWh",
-      "normalized_kwh": 19458.82,
-      "usage_kwh": 0,
+      "normalized_kwh": 19484.71,
+      "usage_kwh": 25.89,
       "reader": "",
       "note": ""
     },
@@ -86774,10 +86774,10 @@
       "b_code": "T.0019",
       "subb_code": "PP62",
       "building_name": "ท.0019 ชั้นที่ 6 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 6/2",
-      "raw_reading": "",
+      "raw_reading": 9484.98,
       "raw_unit": "kWh",
-      "normalized_kwh": 9471.48,
-      "usage_kwh": 0,
+      "normalized_kwh": 9484.98,
+      "usage_kwh": 13.5,
       "reader": "",
       "note": ""
     },
@@ -88214,10 +88214,10 @@
       "b_code": "T.0019",
       "subb_code": "SCB 6",
       "building_name": "ท.0019 ชั้นที่ 6 อบฟ.",
-      "raw_reading": "",
+      "raw_reading": 222058.22,
       "raw_unit": "kWh",
-      "normalized_kwh": 221630.74,
-      "usage_kwh": 0,
+      "normalized_kwh": 222058.22,
+      "usage_kwh": 427.48,
       "reader": "",
       "note": ""
     },
@@ -89654,10 +89654,10 @@
       "b_code": "T.0019",
       "subb_code": "AP7",
       "building_name": "ท.0019 ชั้นที่ 7 อาคารทำการ ชธธ. ระบบเครื่องปรับอากาศ 7",
-      "raw_reading": "",
+      "raw_reading": 35820.08,
       "raw_unit": "kWh",
-      "normalized_kwh": 35707.99,
-      "usage_kwh": 0,
+      "normalized_kwh": 35820.08,
+      "usage_kwh": 112.09,
       "reader": "",
       "note": ""
     },
@@ -91094,10 +91094,10 @@
       "b_code": "T.0019",
       "subb_code": "LP7",
       "building_name": "ท.0019 ชั้นที่ 7 อาคารทำการ ชธธ. ระบบแสงสว่าง 7",
-      "raw_reading": "",
+      "raw_reading": 106863.06,
       "raw_unit": "kWh",
-      "normalized_kwh": 106658.51,
-      "usage_kwh": 0,
+      "normalized_kwh": 106863.06,
+      "usage_kwh": 204.55,
       "reader": "",
       "note": ""
     },
@@ -92534,10 +92534,10 @@
       "b_code": "T.0019",
       "subb_code": "PP71",
       "building_name": "ท.0019 ชั้นที่ 7 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 7/1",
-      "raw_reading": "",
+      "raw_reading": 32146.92,
       "raw_unit": "kWh",
-      "normalized_kwh": 32086.58,
-      "usage_kwh": 0,
+      "normalized_kwh": 32146.92,
+      "usage_kwh": 60.34,
       "reader": "",
       "note": ""
     },
@@ -93974,10 +93974,10 @@
       "b_code": "T.0019",
       "subb_code": "PP72",
       "building_name": "ท.0019 ชั้นที่ 7 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 7/2",
-      "raw_reading": "",
+      "raw_reading": 31694.58,
       "raw_unit": "kWh",
-      "normalized_kwh": 31624.48,
-      "usage_kwh": 0,
+      "normalized_kwh": 31694.58,
+      "usage_kwh": 70.1,
       "reader": "",
       "note": ""
     },
@@ -95414,10 +95414,10 @@
       "b_code": "T.0019",
       "subb_code": "SCB 7",
       "building_name": "ท.0019 ชั้นที่ 7 อบฟ.",
-      "raw_reading": "",
+      "raw_reading": 285569.34,
       "raw_unit": "kWh",
-      "normalized_kwh": 284950.72,
-      "usage_kwh": 0,
+      "normalized_kwh": 285569.34,
+      "usage_kwh": 618.62,
       "reader": "",
       "note": ""
     },
@@ -96854,10 +96854,10 @@
       "b_code": "T.0019",
       "subb_code": "AP8",
       "building_name": "ท.0019 ชั้นที่ 8 อาคารทำการ ชธธ. ระบบเครื่องปรับอากาศ 8",
-      "raw_reading": "",
+      "raw_reading": 65551.15,
       "raw_unit": "kWh",
-      "normalized_kwh": 65383.39,
-      "usage_kwh": 0,
+      "normalized_kwh": 65551.15,
+      "usage_kwh": 167.76,
       "reader": "",
       "note": ""
     },
@@ -98294,10 +98294,10 @@
       "b_code": "T.0019",
       "subb_code": "LP8",
       "building_name": "ท.0019 ชั้นที่ 8 อาคารทำการ ชธธ. ระบบแสงสว่าง 8",
-      "raw_reading": "",
+      "raw_reading": 78378.72,
       "raw_unit": "kWh",
-      "normalized_kwh": 78272.69,
-      "usage_kwh": 0,
+      "normalized_kwh": 78378.72,
+      "usage_kwh": 106.03,
       "reader": "",
       "note": ""
     },
@@ -99734,10 +99734,10 @@
       "b_code": "T.0019",
       "subb_code": "PP81",
       "building_name": "ท.0019 ชั้นที่ 8 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 8/1",
-      "raw_reading": "",
+      "raw_reading": 50824.91,
       "raw_unit": "kWh",
-      "normalized_kwh": 50770.48,
-      "usage_kwh": 0,
+      "normalized_kwh": 50824.91,
+      "usage_kwh": 54.43,
       "reader": "",
       "note": ""
     },
@@ -101174,10 +101174,10 @@
       "b_code": "T.0019",
       "subb_code": "PP82",
       "building_name": "ท.0019 ชั้นที่ 8 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 8/2",
-      "raw_reading": "",
+      "raw_reading": 6225.0,
       "raw_unit": "kWh",
-      "normalized_kwh": 6213.68,
-      "usage_kwh": 0,
+      "normalized_kwh": 6225.0,
+      "usage_kwh": 11.32,
       "reader": "",
       "note": ""
     },
@@ -102614,10 +102614,10 @@
       "b_code": "T.0019",
       "subb_code": "SCB 8",
       "building_name": "ท.0019 ชั้นที่ 8 อบค.",
-      "raw_reading": "",
+      "raw_reading": 267945.44,
       "raw_unit": "kWh",
-      "normalized_kwh": 267466.45,
-      "usage_kwh": 0,
+      "normalized_kwh": 267945.44,
+      "usage_kwh": 478.99,
       "reader": "",
       "note": ""
     },
@@ -104054,10 +104054,10 @@
       "b_code": "T.0019",
       "subb_code": "AP9",
       "building_name": "ท.0019 ชั้นที่ 9 อาคารทำการ ชธธ. ระบบเครื่องปรับอากาศ 9",
-      "raw_reading": "",
+      "raw_reading": 68560.59,
       "raw_unit": "kWh",
-      "normalized_kwh": 68364.74,
-      "usage_kwh": 0,
+      "normalized_kwh": 68560.59,
+      "usage_kwh": 195.85,
       "reader": "",
       "note": ""
     },
@@ -105494,10 +105494,10 @@
       "b_code": "T.0019",
       "subb_code": "BP",
       "building_name": "ท.0019 Booster Pump",
-      "raw_reading": "",
+      "raw_reading": 12338.32,
       "raw_unit": "kWh",
-      "normalized_kwh": 12311.71,
-      "usage_kwh": 0,
+      "normalized_kwh": 12338.32,
+      "usage_kwh": 26.61,
       "reader": "",
       "note": ""
     },
@@ -106934,10 +106934,10 @@
       "b_code": "T.0019",
       "subb_code": "LP9",
       "building_name": "ท.0019 ชั้นที่ 9 อาคารทำการ ชธธ. ระบบแสงสว่าง 9",
-      "raw_reading": "",
+      "raw_reading": 41558.47,
       "raw_unit": "kWh",
-      "normalized_kwh": 41513.29,
-      "usage_kwh": 0,
+      "normalized_kwh": 41558.47,
+      "usage_kwh": 45.18,
       "reader": "",
       "note": ""
     },
@@ -108374,10 +108374,10 @@
       "b_code": "T.0019",
       "subb_code": "PP91",
       "building_name": "ท.0019 ชั้นที่ 9 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 9/1",
-      "raw_reading": "",
+      "raw_reading": 27619.97,
       "raw_unit": "kWh",
-      "normalized_kwh": 27571.77,
-      "usage_kwh": 0,
+      "normalized_kwh": 27619.97,
+      "usage_kwh": 48.2,
       "reader": "",
       "note": ""
     },
@@ -109814,10 +109814,10 @@
       "b_code": "T.0019",
       "subb_code": "PP92",
       "building_name": "ท.0019 ชั้นที่ 9 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 9/2",
-      "raw_reading": "",
+      "raw_reading": 34282.09,
       "raw_unit": "kWh",
-      "normalized_kwh": 34057.34,
-      "usage_kwh": 0,
+      "normalized_kwh": 34282.09,
+      "usage_kwh": 224.75,
       "reader": "",
       "note": ""
     },
@@ -111254,10 +111254,10 @@
       "b_code": "T.0019",
       "subb_code": "PPAC 1",
       "building_name": "ท.0019 ชั้นที่ 9 อาคารทำการ ชธธ. แอร์รวม 1",
-      "raw_reading": "",
+      "raw_reading": 182476.56,
       "raw_unit": "kWh",
-      "normalized_kwh": 179224.01,
-      "usage_kwh": 0,
+      "normalized_kwh": 182476.56,
+      "usage_kwh": 3252.55,
       "reader": "",
       "note": ""
     },
@@ -112694,10 +112694,10 @@
       "b_code": "T.0019",
       "subb_code": "PPAC 2",
       "building_name": "ท.0019 ชั้นที่ 9 อาคารทำการ ชธธ. แอร์รวม 2",
-      "raw_reading": "",
+      "raw_reading": 171975.99,
       "raw_unit": "kWh",
-      "normalized_kwh": 169217.03,
-      "usage_kwh": 0,
+      "normalized_kwh": 171975.99,
+      "usage_kwh": 2758.96,
       "reader": "",
       "note": ""
     },
@@ -114134,10 +114134,10 @@
       "b_code": "T.0019",
       "subb_code": "PPAC 3",
       "building_name": "ท.0019 ชั้นที่ 9 อาคารทำการ ชธธ. แอร์รวม 3",
-      "raw_reading": "",
+      "raw_reading": 69770.4,
       "raw_unit": "kWh",
-      "normalized_kwh": 68642.24,
-      "usage_kwh": 0,
+      "normalized_kwh": 69770.4,
+      "usage_kwh": 1128.16,
       "reader": "",
       "note": ""
     },
@@ -115574,10 +115574,10 @@
       "b_code": "T.0019",
       "subb_code": "PPD",
       "building_name": "ท.0019 ชั้นที่ 9 PPD",
-      "raw_reading": "",
+      "raw_reading": 275659.95,
       "raw_unit": "kWh",
-      "normalized_kwh": 274578.34,
-      "usage_kwh": 0,
+      "normalized_kwh": 275659.95,
+      "usage_kwh": 1081.61,
       "reader": "",
       "note": ""
     },
@@ -117014,10 +117014,10 @@
       "b_code": "T.0019",
       "subb_code": "PPL",
       "building_name": "ท.0019 PPL (Lift)",
-      "raw_reading": "",
+      "raw_reading": 117067.05,
       "raw_unit": "kWh",
-      "normalized_kwh": 116794.37,
-      "usage_kwh": 0,
+      "normalized_kwh": 117067.05,
+      "usage_kwh": 272.68,
       "reader": "",
       "note": ""
     },
@@ -118454,10 +118454,10 @@
       "b_code": "T.0019",
       "subb_code": "SCB 9",
       "building_name": "ท.0019 ชั้นที่ 9 (รวม)",
-      "raw_reading": "",
+      "raw_reading": 646098.44,
       "raw_unit": "kWh",
-      "normalized_kwh": 635082.38,
-      "usage_kwh": 0,
+      "normalized_kwh": 646098.44,
+      "usage_kwh": 11016.06,
       "reader": "",
       "note": ""
     },
@@ -132854,10 +132854,10 @@
       "b_code": "T.0020",
       "subb_code": "MDB",
       "building_name": "ท.0020 อาคาร ศูนย์รับรองสมรรถนะงานเดิมเครื่องและบำรุงรักษา",
-      "raw_reading": "",
+      "raw_reading": 106899.98,
       "raw_unit": "kWh",
-      "normalized_kwh": 104916.17,
-      "usage_kwh": 0,
+      "normalized_kwh": 106899.98,
+      "usage_kwh": 1983.81,
       "reader": "",
       "note": ""
     },
@@ -142935,7 +142935,7 @@
       "subb_code": "MDB",
       "building_name": "ท.0026 อาคารบริหารการขนส่ง",
       "raw_reading": "",
-      "raw_unit": "MWh",
+      "raw_unit": "kWh",
       "normalized_kwh": 732650.0,
       "usage_kwh": 0,
       "reader": "",
@@ -144375,7 +144375,7 @@
       "subb_code": "MDB",
       "building_name": "ท.0027 อาคารปฏิบัติการกองขนส่ง",
       "raw_reading": "",
-      "raw_unit": "MWh",
+      "raw_unit": "kWh",
       "normalized_kwh": 296340.0,
       "usage_kwh": 0,
       "reader": "",
@@ -145815,7 +145815,7 @@
       "subb_code": "MDB",
       "building_name": "ท.0028 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 1",
       "raw_reading": "",
-      "raw_unit": "MWh",
+      "raw_unit": "kWh",
       "normalized_kwh": 313530.0,
       "usage_kwh": 0,
       "reader": "",
@@ -147255,7 +147255,7 @@
       "subb_code": "MDB",
       "building_name": "ท.0029 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 2",
       "raw_reading": "",
-      "raw_unit": "MWh",
+      "raw_unit": "kWh",
       "normalized_kwh": 400960.0,
       "usage_kwh": 0,
       "reader": "",
@@ -157761,11 +157761,9 @@
       "b_code": "D.0019",
       "subb_code": "MDB",
       "building_name": "ต.0019 อาคารนันทนาการพร้อมอาคารจอดรถ",
-      "normalized_kwh": 318204.07,
+      "normalized_kwh": 323510.52,
       "is_main_meter": true,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W01.csv",
@@ -167150,11 +167148,9 @@
       "b_code": "D.0025",
       "subb_code": "MDB",
       "building_name": "ต.0025 อาคารอเนกประสงค์",
-      "normalized_kwh": 32682.07,
+      "normalized_kwh": 33202.56,
       "is_main_meter": true,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W01.csv",
@@ -175179,11 +175175,9 @@
       "b_code": "T.0007",
       "subb_code": "MDB",
       "building_name": "ท.0007 อาคาร กองบริหาร ชธธ.",
-      "normalized_kwh": 37781.01,
+      "normalized_kwh": 38784.27,
       "is_main_meter": true,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W01.csv",
@@ -176347,11 +176341,9 @@
       "b_code": "T.0008",
       "subb_code": "MDB",
       "building_name": "ท.0008 อาคาร บริหารอะไหล่กังหันก๊าซ2 อรอ.",
-      "normalized_kwh": 6602.25,
+      "normalized_kwh": 6798.23,
       "is_main_meter": true,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W01.csv",
@@ -178713,11 +178705,9 @@
       "b_code": "T.0010",
       "subb_code": "MDB",
       "building_name": "ท.0010 อาคาร ทดสอบเครื่องกล อรอ.",
-      "normalized_kwh": 110347.39,
+      "normalized_kwh": 111786.26,
       "is_main_meter": true,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W01.csv",
@@ -179907,11 +179897,9 @@
       "b_code": "T.0011",
       "subb_code": "MDB",
       "building_name": "ท.0011 อาคาร เครื่องมือ อบค.",
-      "normalized_kwh": 10622.01,
+      "normalized_kwh": 11111.62,
       "is_main_meter": true,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W01.csv",
@@ -181063,11 +181051,9 @@
       "b_code": "T.0012",
       "subb_code": "MDB",
       "building_name": "ท.0012 อาคาร บำรุงรักษาเครื่องกล อบค.",
-      "normalized_kwh": 405842.71,
+      "normalized_kwh": 410114.87,
       "is_main_meter": true,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W01.csv",
@@ -182217,11 +182203,9 @@
       "b_code": "T.0014",
       "subb_code": "MDB",
       "building_name": "ท.0014 อาคาร ปฏิบัติการฝ่ายบำรุงรักษาไฟฟ้าและโยธา",
-      "normalized_kwh": 450345.37,
+      "normalized_kwh": 451461.79,
       "is_main_meter": true,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W01.csv",
@@ -183373,11 +183357,9 @@
       "b_code": "T.0015",
       "subb_code": "MDB",
       "building_name": "ท.0015 อาคาศูนย์ปฏิบัติการทดสอบเคมี 2",
-      "normalized_kwh": 813658.81,
+      "normalized_kwh": 826356.26,
       "is_main_meter": true,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W01.csv",
@@ -186849,11 +186831,9 @@
       "b_code": "T.0018",
       "subb_code": "MDB",
       "building_name": "ท.0018 อาคารศูนย์มาตรวิทยาและสอบเทียบเครื่องมือวัด",
-      "normalized_kwh": 489172.86,
+      "normalized_kwh": 499978.94,
       "is_main_meter": true,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W12.csv",
@@ -187881,11 +187861,9 @@
       "b_code": "T.0019",
       "subb_code": "AP1",
       "building_name": "ท.0019 ชั้นที่ 1 อาคารทำการ ชธธ. ระบบเครื่องปรับอากาศ 1",
-      "normalized_kwh": 196131.48,
+      "normalized_kwh": 196725.11,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W01.csv",
@@ -189037,11 +189015,9 @@
       "b_code": "T.0019",
       "subb_code": "EMDB 1",
       "building_name": "ท.0019 ชั้นที่ 1 อาคารทำการ ชธธ. (EMDB)",
-      "normalized_kwh": 286844.02,
+      "normalized_kwh": 291500.52,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W12.csv",
@@ -190069,11 +190045,9 @@
       "b_code": "T.0019",
       "subb_code": "LP1",
       "building_name": "ท.0019 ชั้นที่ 1 อาคารทำการ ชธธ. ระบบแสงสว่าง 1",
-      "normalized_kwh": 99116.2,
+      "normalized_kwh": 99214.51,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W01.csv",
@@ -191225,11 +191199,9 @@
       "b_code": "T.0019",
       "subb_code": "Main",
       "building_name": "ท.0019 ชั้นที่ 1 อาคารทำการ ชธธ.",
-      "normalized_kwh": 1186242.92,
+      "normalized_kwh": 1206307.29,
       "is_main_meter": true,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W12.csv",
@@ -192257,11 +192229,9 @@
       "b_code": "T.0019",
       "subb_code": "PP1",
       "building_name": "ท.0019 ชั้นที่ 1 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 1",
-      "normalized_kwh": 256054.17,
+      "normalized_kwh": 256892.62,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W12.csv",
@@ -193297,11 +193267,9 @@
       "b_code": "T.0019",
       "subb_code": "AP3",
       "building_name": "ท.0019 ชั้นที่ 3 อาคารทำการ ชธธ. ระบบเครื่องปรับอากาศ 3",
-      "normalized_kwh": 37999.52,
+      "normalized_kwh": 38087.64,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W12.csv",
@@ -194334,11 +194302,9 @@
       "b_code": "T.0019",
       "subb_code": "LP3",
       "building_name": "ท.0019 ชั้นที่ 3 อาคารทำการ ชธธ. ระบบแสงสว่าง 3",
-      "normalized_kwh": 19705.42,
+      "normalized_kwh": 19744.91,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W12.csv",
@@ -195366,11 +195332,9 @@
       "b_code": "T.0019",
       "subb_code": "PP3",
       "building_name": "ท.0019 ชั้นที่ 3 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 3",
-      "normalized_kwh": 28569.02,
+      "normalized_kwh": 28633.0,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W01.csv",
@@ -196520,11 +196484,9 @@
       "b_code": "T.0019",
       "subb_code": "SCB 3",
       "building_name": "ท.0019 ชั้นที่ 3 อาคารทำการ ชธธ.",
-      "normalized_kwh": 121848.43,
+      "normalized_kwh": 122101.52,
       "is_main_meter": true,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2026-W27.csv",
@@ -197800,11 +197762,9 @@
       "b_code": "T.0019",
       "subb_code": "AP4",
       "building_name": "ท.0019 ชั้นที่ 4 อาคารทำการ ชธธ. ระบบเครื่องปรับอากาศ 4",
-      "normalized_kwh": 77715.34,
+      "normalized_kwh": 77928.5,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W12.csv",
@@ -198832,11 +198792,9 @@
       "b_code": "T.0019",
       "subb_code": "LP4",
       "building_name": "ท.0019 ชั้นที่ 4 อาคารทำการ ชธธ. ระบบแสงสว่าง 4",
-      "normalized_kwh": 123826.02,
+      "normalized_kwh": 124090.69,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W12.csv",
@@ -199864,11 +199822,9 @@
       "b_code": "T.0019",
       "subb_code": "PP41",
       "building_name": "ท.0019 ชั้นที่ 4 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 4/1",
-      "normalized_kwh": 70056.13,
+      "normalized_kwh": 70213.43,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W12.csv",
@@ -200896,11 +200852,9 @@
       "b_code": "T.0019",
       "subb_code": "PP42",
       "building_name": "ท.0019 ชั้นที่ 4 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 4/2",
-      "normalized_kwh": 34492.82,
+      "normalized_kwh": 34578.4,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W01.csv",
@@ -202050,11 +202004,9 @@
       "b_code": "T.0019",
       "subb_code": "SCB 4",
       "building_name": "ท.0019 ชั้นที่ 4 อบย.",
-      "normalized_kwh": 363831.33,
+      "normalized_kwh": 364687.29,
       "is_main_meter": true,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W12.csv",
@@ -203082,11 +203034,9 @@
       "b_code": "T.0019",
       "subb_code": "AP5",
       "building_name": "ท.0019 ชั้นที่ 5 อาคารทำการ ชธธ. ระบบเครื่องปรับอากาศ 5",
-      "normalized_kwh": 70724.55,
+      "normalized_kwh": 70899.82,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W12.csv",
@@ -204114,11 +204064,9 @@
       "b_code": "T.0019",
       "subb_code": "LP5",
       "building_name": "ท.0019 ชั้นที่ 5 อาคารทำการ ชธธ. ระบบแสงสว่าง 5",
-      "normalized_kwh": 80624.32,
+      "normalized_kwh": 80765.91,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W12.csv",
@@ -205151,11 +205099,9 @@
       "b_code": "T.0019",
       "subb_code": "PP51",
       "building_name": "ท.0019 ชั้นที่ 5 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 5/1",
-      "normalized_kwh": 18369.13,
+      "normalized_kwh": 18371.02,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W12.csv",
@@ -206183,11 +206129,9 @@
       "b_code": "T.0019",
       "subb_code": "PP52",
       "building_name": "ท.0019 ชั้นที่ 5 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 5/2",
-      "normalized_kwh": 22191.37,
+      "normalized_kwh": 22247.14,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W01.csv",
@@ -207337,11 +207281,9 @@
       "b_code": "T.0019",
       "subb_code": "SCB 5",
       "building_name": "ท.0019 ชั้นที่ 5 อคม.,อบฟ.",
-      "normalized_kwh": 228847.04,
+      "normalized_kwh": 229357.97,
       "is_main_meter": true,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W12.csv",
@@ -208369,11 +208311,9 @@
       "b_code": "T.0019",
       "subb_code": "AP6",
       "building_name": "ท.0019 ชั้นที่ 6 อาคารทำการ ชธธ. ระบบเครื่องปรับอากาศ 6",
-      "normalized_kwh": 67488.7,
+      "normalized_kwh": 67665.11,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W12.csv",
@@ -209401,11 +209341,9 @@
       "b_code": "T.0019",
       "subb_code": "LP6",
       "building_name": "ท.0019 ชั้นที่ 6 อาคารทำการ ชธธ. ระบบแสงสว่าง 6",
-      "normalized_kwh": 74074.18,
+      "normalized_kwh": 74186.28,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W12.csv",
@@ -210433,11 +210371,9 @@
       "b_code": "T.0019",
       "subb_code": "PP61",
       "building_name": "ท.0019 ชั้นที่ 6 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 6/1",
-      "normalized_kwh": 19458.82,
+      "normalized_kwh": 19484.71,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W12.csv",
@@ -211465,11 +211401,9 @@
       "b_code": "T.0019",
       "subb_code": "PP62",
       "building_name": "ท.0019 ชั้นที่ 6 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 6/2",
-      "normalized_kwh": 9471.48,
+      "normalized_kwh": 9484.98,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W01.csv",
@@ -212619,11 +212553,9 @@
       "b_code": "T.0019",
       "subb_code": "SCB 6",
       "building_name": "ท.0019 ชั้นที่ 6 อบฟ.",
-      "normalized_kwh": 221630.74,
+      "normalized_kwh": 222058.22,
       "is_main_meter": true,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W12.csv",
@@ -213651,11 +213583,9 @@
       "b_code": "T.0019",
       "subb_code": "AP7",
       "building_name": "ท.0019 ชั้นที่ 7 อาคารทำการ ชธธ. ระบบเครื่องปรับอากาศ 7",
-      "normalized_kwh": 35707.99,
+      "normalized_kwh": 35820.08,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W12.csv",
@@ -214683,11 +214613,9 @@
       "b_code": "T.0019",
       "subb_code": "LP7",
       "building_name": "ท.0019 ชั้นที่ 7 อาคารทำการ ชธธ. ระบบแสงสว่าง 7",
-      "normalized_kwh": 106658.51,
+      "normalized_kwh": 106863.06,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W12.csv",
@@ -215725,11 +215653,9 @@
       "b_code": "T.0019",
       "subb_code": "PP71",
       "building_name": "ท.0019 ชั้นที่ 7 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 7/1",
-      "normalized_kwh": 32086.58,
+      "normalized_kwh": 32146.92,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W12.csv",
@@ -216757,11 +216683,9 @@
       "b_code": "T.0019",
       "subb_code": "PP72",
       "building_name": "ท.0019 ชั้นที่ 7 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 7/2",
-      "normalized_kwh": 31624.48,
+      "normalized_kwh": 31694.58,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W01.csv",
@@ -217911,11 +217835,9 @@
       "b_code": "T.0019",
       "subb_code": "SCB 7",
       "building_name": "ท.0019 ชั้นที่ 7 อบฟ.",
-      "normalized_kwh": 284950.72,
+      "normalized_kwh": 285569.34,
       "is_main_meter": true,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W12.csv",
@@ -218948,11 +218870,9 @@
       "b_code": "T.0019",
       "subb_code": "AP8",
       "building_name": "ท.0019 ชั้นที่ 8 อาคารทำการ ชธธ. ระบบเครื่องปรับอากาศ 8",
-      "normalized_kwh": 65383.39,
+      "normalized_kwh": 65551.15,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W12.csv",
@@ -219980,11 +219900,9 @@
       "b_code": "T.0019",
       "subb_code": "LP8",
       "building_name": "ท.0019 ชั้นที่ 8 อาคารทำการ ชธธ. ระบบแสงสว่าง 8",
-      "normalized_kwh": 78272.69,
+      "normalized_kwh": 78378.72,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W12.csv",
@@ -221012,11 +220930,9 @@
       "b_code": "T.0019",
       "subb_code": "PP81",
       "building_name": "ท.0019 ชั้นที่ 8 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 8/1",
-      "normalized_kwh": 50770.48,
+      "normalized_kwh": 50824.91,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W12.csv",
@@ -222044,11 +221960,9 @@
       "b_code": "T.0019",
       "subb_code": "PP82",
       "building_name": "ท.0019 ชั้นที่ 8 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 8/2",
-      "normalized_kwh": 6213.68,
+      "normalized_kwh": 6225.0,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W01.csv",
@@ -223198,11 +223112,9 @@
       "b_code": "T.0019",
       "subb_code": "SCB 8",
       "building_name": "ท.0019 ชั้นที่ 8 อบค.",
-      "normalized_kwh": 267466.45,
+      "normalized_kwh": 267945.44,
       "is_main_meter": true,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W12.csv",
@@ -224230,11 +224142,9 @@
       "b_code": "T.0019",
       "subb_code": "AP9",
       "building_name": "ท.0019 ชั้นที่ 9 อาคารทำการ ชธธ. ระบบเครื่องปรับอากาศ 9",
-      "normalized_kwh": 68364.74,
+      "normalized_kwh": 68560.59,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W01.csv",
@@ -225384,11 +225294,9 @@
       "b_code": "T.0019",
       "subb_code": "BP",
       "building_name": "ท.0019 Booster Pump",
-      "normalized_kwh": 12311.71,
+      "normalized_kwh": 12338.32,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W12.csv",
@@ -226416,11 +226324,9 @@
       "b_code": "T.0019",
       "subb_code": "LP9",
       "building_name": "ท.0019 ชั้นที่ 9 อาคารทำการ ชธธ. ระบบแสงสว่าง 9",
-      "normalized_kwh": 41513.29,
+      "normalized_kwh": 41558.47,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W12.csv",
@@ -227458,11 +227364,9 @@
       "b_code": "T.0019",
       "subb_code": "PP91",
       "building_name": "ท.0019 ชั้นที่ 9 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 9/1",
-      "normalized_kwh": 27571.77,
+      "normalized_kwh": 27619.97,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W12.csv",
@@ -228495,11 +228399,9 @@
       "b_code": "T.0019",
       "subb_code": "PP92",
       "building_name": "ท.0019 ชั้นที่ 9 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 9/2",
-      "normalized_kwh": 34057.34,
+      "normalized_kwh": 34282.09,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W01.csv",
@@ -229651,11 +229553,9 @@
       "b_code": "T.0019",
       "subb_code": "PPAC 1",
       "building_name": "ท.0019 ชั้นที่ 9 อาคารทำการ ชธธ. แอร์รวม 1",
-      "normalized_kwh": 179224.01,
+      "normalized_kwh": 182476.56,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W01.csv",
@@ -230807,11 +230707,9 @@
       "b_code": "T.0019",
       "subb_code": "PPAC 2",
       "building_name": "ท.0019 ชั้นที่ 9 อาคารทำการ ชธธ. แอร์รวม 2",
-      "normalized_kwh": 169217.03,
+      "normalized_kwh": 171975.99,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W01.csv",
@@ -231963,11 +231861,9 @@
       "b_code": "T.0019",
       "subb_code": "PPAC 3",
       "building_name": "ท.0019 ชั้นที่ 9 อาคารทำการ ชธธ. แอร์รวม 3",
-      "normalized_kwh": 68642.24,
+      "normalized_kwh": 69770.4,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W12.csv",
@@ -232995,11 +232891,9 @@
       "b_code": "T.0019",
       "subb_code": "PPD",
       "building_name": "ท.0019 ชั้นที่ 9 PPD",
-      "normalized_kwh": 274578.34,
+      "normalized_kwh": 275659.95,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W01.csv",
@@ -234149,11 +234043,9 @@
       "b_code": "T.0019",
       "subb_code": "PPL",
       "building_name": "ท.0019 PPL (Lift)",
-      "normalized_kwh": 116794.37,
+      "normalized_kwh": 117067.05,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W01.csv",
@@ -235305,11 +235197,9 @@
       "b_code": "T.0019",
       "subb_code": "SCB 9",
       "building_name": "ท.0019 ชั้นที่ 9 (รวม)",
-      "normalized_kwh": 635082.38,
+      "normalized_kwh": 646098.44,
       "is_main_meter": false,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W18.csv",
@@ -245207,11 +245097,9 @@
       "b_code": "T.0020",
       "subb_code": "MDB",
       "building_name": "ท.0020 อาคาร ศูนย์รับรองสมรรถนะงานเดิมเครื่องและบำรุงรักษา",
-      "normalized_kwh": 104916.17,
+      "normalized_kwh": 106899.98,
       "is_main_meter": true,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W01.csv",
@@ -270949,14 +270837,11 @@
       "subb_code": "MDB",
       "building_name": "ต.0019 อาคารนันทนาการพร้อมอาคารจอดรถ",
       "is_main_meter": true,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 5306.45,
+      "raw_delta_kwh": 5306.45,
       "previous_normalized_kwh": 318204.07,
-      "current_normalized_kwh": 318204.07,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 323510.52,
+      "flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -283443,14 +283328,11 @@
       "subb_code": "MDB",
       "building_name": "ต.0025 อาคารอเนกประสงค์",
       "is_main_meter": true,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 520.49,
+      "raw_delta_kwh": 520.49,
       "previous_normalized_kwh": 32682.07,
-      "current_normalized_kwh": 32682.07,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 33202.56,
+      "flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -294167,14 +294049,11 @@
       "subb_code": "MDB",
       "building_name": "ท.0007 อาคาร กองบริหาร ชธธ.",
       "is_main_meter": true,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 1003.26,
+      "raw_delta_kwh": 1003.26,
       "previous_normalized_kwh": 37781.01,
-      "current_normalized_kwh": 37781.01,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 38784.27,
+      "flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -295710,14 +295589,11 @@
       "subb_code": "MDB",
       "building_name": "ท.0008 อาคาร บริหารอะไหล่กังหันก๊าซ2 อรอ.",
       "is_main_meter": true,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 195.98,
+      "raw_delta_kwh": 195.98,
       "previous_normalized_kwh": 6602.25,
-      "current_normalized_kwh": 6602.25,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 6798.23,
+      "flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -298849,14 +298725,11 @@
       "subb_code": "MDB",
       "building_name": "ท.0010 อาคาร ทดสอบเครื่องกล อรอ.",
       "is_main_meter": true,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 1438.87,
+      "raw_delta_kwh": 1438.87,
       "previous_normalized_kwh": 110347.39,
-      "current_normalized_kwh": 110347.39,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 111786.26,
+      "flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -300433,14 +300306,11 @@
       "subb_code": "MDB",
       "building_name": "ท.0011 อาคาร เครื่องมือ อบค.",
       "is_main_meter": true,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 489.61,
+      "raw_delta_kwh": 489.61,
       "previous_normalized_kwh": 10622.01,
-      "current_normalized_kwh": 10622.01,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 11111.62,
+      "flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -301962,14 +301832,11 @@
       "subb_code": "MDB",
       "building_name": "ท.0012 อาคาร บำรุงรักษาเครื่องกล อบค.",
       "is_main_meter": true,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 4272.16,
+      "raw_delta_kwh": 4272.16,
       "previous_normalized_kwh": 405842.71,
-      "current_normalized_kwh": 405842.71,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 410114.87,
+      "flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -303487,14 +303354,11 @@
       "subb_code": "MDB",
       "building_name": "ท.0014 อาคาร ปฏิบัติการฝ่ายบำรุงรักษาไฟฟ้าและโยธา",
       "is_main_meter": true,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 1116.42,
+      "raw_delta_kwh": 1116.42,
       "previous_normalized_kwh": 450345.37,
-      "current_normalized_kwh": 450345.37,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 451461.79,
+      "flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -305017,14 +304881,11 @@
       "subb_code": "MDB",
       "building_name": "ท.0015 อาคาศูนย์ปฏิบัติการทดสอบเคมี 2",
       "is_main_meter": true,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 12697.45,
+      "raw_delta_kwh": 12697.45,
       "previous_normalized_kwh": 813658.81,
-      "current_normalized_kwh": 813658.81,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 826356.26,
+      "flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -309619,14 +309480,11 @@
       "subb_code": "MDB",
       "building_name": "ท.0018 อาคารศูนย์มาตรวิทยาและสอบเทียบเครื่องมือวัด",
       "is_main_meter": true,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 10806.08,
+      "raw_delta_kwh": 10806.08,
       "previous_normalized_kwh": 489172.86,
-      "current_normalized_kwh": 489172.86,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 499978.94,
+      "flags": []
     },
     {
       "week_start_date": "2025-03-21",
@@ -310983,14 +310841,11 @@
       "subb_code": "AP1",
       "building_name": "ท.0019 ชั้นที่ 1 อาคารทำการ ชธธ. ระบบเครื่องปรับอากาศ 1",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 593.63,
+      "raw_delta_kwh": 593.63,
       "previous_normalized_kwh": 196131.48,
-      "current_normalized_kwh": 196131.48,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 196725.11,
+      "flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -312511,14 +312366,11 @@
       "subb_code": "EMDB 1",
       "building_name": "ท.0019 ชั้นที่ 1 อาคารทำการ ชธธ. (EMDB)",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 4656.5,
+      "raw_delta_kwh": 4656.5,
       "previous_normalized_kwh": 286844.02,
-      "current_normalized_kwh": 286844.02,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 291500.52,
+      "flags": []
     },
     {
       "week_start_date": "2025-03-21",
@@ -313875,14 +313727,11 @@
       "subb_code": "LP1",
       "building_name": "ท.0019 ชั้นที่ 1 อาคารทำการ ชธธ. ระบบแสงสว่าง 1",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 98.31,
+      "raw_delta_kwh": 98.31,
       "previous_normalized_kwh": 99116.2,
-      "current_normalized_kwh": 99116.2,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 99214.51,
+      "flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -315404,14 +315253,11 @@
       "subb_code": "Main",
       "building_name": "ท.0019 ชั้นที่ 1 อาคารทำการ ชธธ.",
       "is_main_meter": true,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 20064.37,
+      "raw_delta_kwh": 20064.37,
       "previous_normalized_kwh": 1186242.92,
-      "current_normalized_kwh": 1186242.92,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 1206307.29,
+      "flags": []
     },
     {
       "week_start_date": "2025-03-21",
@@ -316768,14 +316614,11 @@
       "subb_code": "PP1",
       "building_name": "ท.0019 ชั้นที่ 1 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 1",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 838.45,
+      "raw_delta_kwh": 838.45,
       "previous_normalized_kwh": 256054.17,
-      "current_normalized_kwh": 256054.17,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 256892.62,
+      "flags": []
     },
     {
       "week_start_date": "2025-03-21",
@@ -318141,14 +317984,11 @@
       "subb_code": "AP3",
       "building_name": "ท.0019 ชั้นที่ 3 อาคารทำการ ชธธ. ระบบเครื่องปรับอากาศ 3",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 88.12,
+      "raw_delta_kwh": 88.12,
       "previous_normalized_kwh": 37999.52,
-      "current_normalized_kwh": 37999.52,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 38087.64,
+      "flags": []
     },
     {
       "week_start_date": "2025-03-21",
@@ -319511,14 +319351,11 @@
       "subb_code": "LP3",
       "building_name": "ท.0019 ชั้นที่ 3 อาคารทำการ ชธธ. ระบบแสงสว่าง 3",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 39.49,
+      "raw_delta_kwh": 39.49,
       "previous_normalized_kwh": 19705.42,
-      "current_normalized_kwh": 19705.42,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 19744.91,
+      "flags": []
     },
     {
       "week_start_date": "2025-03-21",
@@ -320875,14 +320712,11 @@
       "subb_code": "PP3",
       "building_name": "ท.0019 ชั้นที่ 3 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 3",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 63.98,
+      "raw_delta_kwh": 63.98,
       "previous_normalized_kwh": 28569.02,
-      "current_normalized_kwh": 28569.02,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 28633.0,
+      "flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -322400,14 +322234,11 @@
       "subb_code": "SCB 3",
       "building_name": "ท.0019 ชั้นที่ 3 อาคารทำการ ชธธ.",
       "is_main_meter": true,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 253.09,
+      "raw_delta_kwh": 253.09,
       "previous_normalized_kwh": 121848.43,
-      "current_normalized_kwh": 121848.43,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 122101.52,
+      "flags": []
     },
     {
       "week_start_date": "2026-07-03",
@@ -324086,14 +323917,11 @@
       "subb_code": "AP4",
       "building_name": "ท.0019 ชั้นที่ 4 อาคารทำการ ชธธ. ระบบเครื่องปรับอากาศ 4",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 213.16,
+      "raw_delta_kwh": 213.16,
       "previous_normalized_kwh": 77715.34,
-      "current_normalized_kwh": 77715.34,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 77928.5,
+      "flags": []
     },
     {
       "week_start_date": "2025-03-21",
@@ -325450,14 +325278,11 @@
       "subb_code": "LP4",
       "building_name": "ท.0019 ชั้นที่ 4 อาคารทำการ ชธธ. ระบบแสงสว่าง 4",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 264.67,
+      "raw_delta_kwh": 264.67,
       "previous_normalized_kwh": 123826.02,
-      "current_normalized_kwh": 123826.02,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 124090.69,
+      "flags": []
     },
     {
       "week_start_date": "2025-03-21",
@@ -326814,14 +326639,11 @@
       "subb_code": "PP41",
       "building_name": "ท.0019 ชั้นที่ 4 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 4/1",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 157.3,
+      "raw_delta_kwh": 157.3,
       "previous_normalized_kwh": 70056.13,
-      "current_normalized_kwh": 70056.13,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 70213.43,
+      "flags": []
     },
     {
       "week_start_date": "2025-03-21",
@@ -328178,14 +328000,11 @@
       "subb_code": "PP42",
       "building_name": "ท.0019 ชั้นที่ 4 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 4/2",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 85.58,
+      "raw_delta_kwh": 85.58,
       "previous_normalized_kwh": 34492.82,
-      "current_normalized_kwh": 34492.82,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 34578.4,
+      "flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -329703,14 +329522,11 @@
       "subb_code": "SCB 4",
       "building_name": "ท.0019 ชั้นที่ 4 อบย.",
       "is_main_meter": true,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 855.96,
+      "raw_delta_kwh": 855.96,
       "previous_normalized_kwh": 363831.33,
-      "current_normalized_kwh": 363831.33,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 364687.29,
+      "flags": []
     },
     {
       "week_start_date": "2025-03-21",
@@ -331067,14 +330883,11 @@
       "subb_code": "AP5",
       "building_name": "ท.0019 ชั้นที่ 5 อาคารทำการ ชธธ. ระบบเครื่องปรับอากาศ 5",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 175.27,
+      "raw_delta_kwh": 175.27,
       "previous_normalized_kwh": 70724.55,
-      "current_normalized_kwh": 70724.55,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 70899.82,
+      "flags": []
     },
     {
       "week_start_date": "2025-03-21",
@@ -332431,14 +332244,11 @@
       "subb_code": "LP5",
       "building_name": "ท.0019 ชั้นที่ 5 อาคารทำการ ชธธ. ระบบแสงสว่าง 5",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 141.59,
+      "raw_delta_kwh": 141.59,
       "previous_normalized_kwh": 80624.32,
-      "current_normalized_kwh": 80624.32,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 80765.91,
+      "flags": []
     },
     {
       "week_start_date": "2025-03-21",
@@ -333801,14 +333611,11 @@
       "subb_code": "PP51",
       "building_name": "ท.0019 ชั้นที่ 5 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 5/1",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 1.89,
+      "raw_delta_kwh": 1.89,
       "previous_normalized_kwh": 18369.13,
-      "current_normalized_kwh": 18369.13,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 18371.02,
+      "flags": []
     },
     {
       "week_start_date": "2025-03-21",
@@ -335165,14 +334972,11 @@
       "subb_code": "PP52",
       "building_name": "ท.0019 ชั้นที่ 5 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 5/2",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 55.77,
+      "raw_delta_kwh": 55.77,
       "previous_normalized_kwh": 22191.37,
-      "current_normalized_kwh": 22191.37,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 22247.14,
+      "flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -336690,14 +336494,11 @@
       "subb_code": "SCB 5",
       "building_name": "ท.0019 ชั้นที่ 5 อคม.,อบฟ.",
       "is_main_meter": true,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 510.93,
+      "raw_delta_kwh": 510.93,
       "previous_normalized_kwh": 228847.04,
-      "current_normalized_kwh": 228847.04,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 229357.97,
+      "flags": []
     },
     {
       "week_start_date": "2025-03-21",
@@ -338054,14 +337855,11 @@
       "subb_code": "AP6",
       "building_name": "ท.0019 ชั้นที่ 6 อาคารทำการ ชธธ. ระบบเครื่องปรับอากาศ 6",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 176.41,
+      "raw_delta_kwh": 176.41,
       "previous_normalized_kwh": 67488.7,
-      "current_normalized_kwh": 67488.7,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 67665.11,
+      "flags": []
     },
     {
       "week_start_date": "2025-03-21",
@@ -339418,14 +339216,11 @@
       "subb_code": "LP6",
       "building_name": "ท.0019 ชั้นที่ 6 อาคารทำการ ชธธ. ระบบแสงสว่าง 6",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 112.1,
+      "raw_delta_kwh": 112.1,
       "previous_normalized_kwh": 74074.18,
-      "current_normalized_kwh": 74074.18,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 74186.28,
+      "flags": []
     },
     {
       "week_start_date": "2025-03-21",
@@ -340782,14 +340577,11 @@
       "subb_code": "PP61",
       "building_name": "ท.0019 ชั้นที่ 6 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 6/1",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 25.89,
+      "raw_delta_kwh": 25.89,
       "previous_normalized_kwh": 19458.82,
-      "current_normalized_kwh": 19458.82,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 19484.71,
+      "flags": []
     },
     {
       "week_start_date": "2025-03-21",
@@ -342146,14 +341938,11 @@
       "subb_code": "PP62",
       "building_name": "ท.0019 ชั้นที่ 6 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 6/2",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 13.5,
+      "raw_delta_kwh": 13.5,
       "previous_normalized_kwh": 9471.48,
-      "current_normalized_kwh": 9471.48,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 9484.98,
+      "flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -343671,14 +343460,11 @@
       "subb_code": "SCB 6",
       "building_name": "ท.0019 ชั้นที่ 6 อบฟ.",
       "is_main_meter": true,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 427.48,
+      "raw_delta_kwh": 427.48,
       "previous_normalized_kwh": 221630.74,
-      "current_normalized_kwh": 221630.74,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 222058.22,
+      "flags": []
     },
     {
       "week_start_date": "2025-03-21",
@@ -345035,14 +344821,11 @@
       "subb_code": "AP7",
       "building_name": "ท.0019 ชั้นที่ 7 อาคารทำการ ชธธ. ระบบเครื่องปรับอากาศ 7",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 112.09,
+      "raw_delta_kwh": 112.09,
       "previous_normalized_kwh": 35707.99,
-      "current_normalized_kwh": 35707.99,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 35820.08,
+      "flags": []
     },
     {
       "week_start_date": "2025-03-21",
@@ -346399,14 +346182,11 @@
       "subb_code": "LP7",
       "building_name": "ท.0019 ชั้นที่ 7 อาคารทำการ ชธธ. ระบบแสงสว่าง 7",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 204.55,
+      "raw_delta_kwh": 204.55,
       "previous_normalized_kwh": 106658.51,
-      "current_normalized_kwh": 106658.51,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 106863.06,
+      "flags": []
     },
     {
       "week_start_date": "2025-03-21",
@@ -347775,14 +347555,11 @@
       "subb_code": "PP71",
       "building_name": "ท.0019 ชั้นที่ 7 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 7/1",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 60.34,
+      "raw_delta_kwh": 60.34,
       "previous_normalized_kwh": 32086.58,
-      "current_normalized_kwh": 32086.58,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 32146.92,
+      "flags": []
     },
     {
       "week_start_date": "2025-03-21",
@@ -349139,14 +348916,11 @@
       "subb_code": "PP72",
       "building_name": "ท.0019 ชั้นที่ 7 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 7/2",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 70.1,
+      "raw_delta_kwh": 70.1,
       "previous_normalized_kwh": 31624.48,
-      "current_normalized_kwh": 31624.48,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 31694.58,
+      "flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -350664,14 +350438,11 @@
       "subb_code": "SCB 7",
       "building_name": "ท.0019 ชั้นที่ 7 อบฟ.",
       "is_main_meter": true,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 618.62,
+      "raw_delta_kwh": 618.62,
       "previous_normalized_kwh": 284950.72,
-      "current_normalized_kwh": 284950.72,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 285569.34,
+      "flags": []
     },
     {
       "week_start_date": "2025-03-21",
@@ -352034,14 +351805,11 @@
       "subb_code": "AP8",
       "building_name": "ท.0019 ชั้นที่ 8 อาคารทำการ ชธธ. ระบบเครื่องปรับอากาศ 8",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 167.76,
+      "raw_delta_kwh": 167.76,
       "previous_normalized_kwh": 65383.39,
-      "current_normalized_kwh": 65383.39,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 65551.15,
+      "flags": []
     },
     {
       "week_start_date": "2025-03-21",
@@ -353400,14 +353168,11 @@
       "subb_code": "LP8",
       "building_name": "ท.0019 ชั้นที่ 8 อาคารทำการ ชธธ. ระบบแสงสว่าง 8",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 106.03,
+      "raw_delta_kwh": 106.03,
       "previous_normalized_kwh": 78272.69,
-      "current_normalized_kwh": 78272.69,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 78378.72,
+      "flags": []
     },
     {
       "week_start_date": "2025-03-21",
@@ -354766,14 +354531,11 @@
       "subb_code": "PP81",
       "building_name": "ท.0019 ชั้นที่ 8 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 8/1",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 54.43,
+      "raw_delta_kwh": 54.43,
       "previous_normalized_kwh": 50770.48,
-      "current_normalized_kwh": 50770.48,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 50824.91,
+      "flags": []
     },
     {
       "week_start_date": "2025-03-21",
@@ -356132,14 +355894,11 @@
       "subb_code": "PP82",
       "building_name": "ท.0019 ชั้นที่ 8 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 8/2",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 11.32,
+      "raw_delta_kwh": 11.32,
       "previous_normalized_kwh": 6213.68,
-      "current_normalized_kwh": 6213.68,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 6225.0,
+      "flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -357659,14 +357418,11 @@
       "subb_code": "SCB 8",
       "building_name": "ท.0019 ชั้นที่ 8 อบค.",
       "is_main_meter": true,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 478.99,
+      "raw_delta_kwh": 478.99,
       "previous_normalized_kwh": 267466.45,
-      "current_normalized_kwh": 267466.45,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 267945.44,
+      "flags": []
     },
     {
       "week_start_date": "2025-03-21",
@@ -359025,14 +358781,11 @@
       "subb_code": "AP9",
       "building_name": "ท.0019 ชั้นที่ 9 อาคารทำการ ชธธ. ระบบเครื่องปรับอากาศ 9",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 195.85,
+      "raw_delta_kwh": 195.85,
       "previous_normalized_kwh": 68364.74,
-      "current_normalized_kwh": 68364.74,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 68560.59,
+      "flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -360552,14 +360305,11 @@
       "subb_code": "BP",
       "building_name": "ท.0019 Booster Pump",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 26.61,
+      "raw_delta_kwh": 26.61,
       "previous_normalized_kwh": 12311.71,
-      "current_normalized_kwh": 12311.71,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 12338.32,
+      "flags": []
     },
     {
       "week_start_date": "2025-03-21",
@@ -361918,14 +361668,11 @@
       "subb_code": "LP9",
       "building_name": "ท.0019 ชั้นที่ 9 อาคารทำการ ชธธ. ระบบแสงสว่าง 9",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 45.18,
+      "raw_delta_kwh": 45.18,
       "previous_normalized_kwh": 41513.29,
-      "current_normalized_kwh": 41513.29,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 41558.47,
+      "flags": []
     },
     {
       "week_start_date": "2025-03-21",
@@ -363296,14 +363043,11 @@
       "subb_code": "PP91",
       "building_name": "ท.0019 ชั้นที่ 9 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 9/1",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 48.2,
+      "raw_delta_kwh": 48.2,
       "previous_normalized_kwh": 27571.77,
-      "current_normalized_kwh": 27571.77,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 27619.97,
+      "flags": []
     },
     {
       "week_start_date": "2025-03-21",
@@ -364668,14 +364412,11 @@
       "subb_code": "PP92",
       "building_name": "ท.0019 ชั้นที่ 9 อาคารทำการ ชธธ. ระบบเครื่องใช้ไฟฟ้า 9/2",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 224.75,
+      "raw_delta_kwh": 224.75,
       "previous_normalized_kwh": 34057.34,
-      "current_normalized_kwh": 34057.34,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 34282.09,
+      "flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -366198,14 +365939,11 @@
       "subb_code": "PPAC 1",
       "building_name": "ท.0019 ชั้นที่ 9 อาคารทำการ ชธธ. แอร์รวม 1",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 3252.55,
+      "raw_delta_kwh": 3252.55,
       "previous_normalized_kwh": 179224.01,
-      "current_normalized_kwh": 179224.01,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 182476.56,
+      "flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -367728,14 +367466,11 @@
       "subb_code": "PPAC 2",
       "building_name": "ท.0019 ชั้นที่ 9 อาคารทำการ ชธธ. แอร์รวม 2",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 2758.96,
+      "raw_delta_kwh": 2758.96,
       "previous_normalized_kwh": 169217.03,
-      "current_normalized_kwh": 169217.03,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 171975.99,
+      "flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -369258,14 +368993,11 @@
       "subb_code": "PPAC 3",
       "building_name": "ท.0019 ชั้นที่ 9 อาคารทำการ ชธธ. แอร์รวม 3",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 1128.16,
+      "raw_delta_kwh": 1128.16,
       "previous_normalized_kwh": 68642.24,
-      "current_normalized_kwh": 68642.24,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 69770.4,
+      "flags": []
     },
     {
       "week_start_date": "2025-03-21",
@@ -370624,14 +370356,11 @@
       "subb_code": "PPD",
       "building_name": "ท.0019 ชั้นที่ 9 PPD",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 1081.61,
+      "raw_delta_kwh": 1081.61,
       "previous_normalized_kwh": 274578.34,
-      "current_normalized_kwh": 274578.34,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 275659.95,
+      "flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -372151,14 +371880,11 @@
       "subb_code": "PPL",
       "building_name": "ท.0019 PPL (Lift)",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 272.68,
+      "raw_delta_kwh": 272.68,
       "previous_normalized_kwh": 116794.37,
-      "current_normalized_kwh": 116794.37,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 117067.05,
+      "flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -373681,14 +373407,11 @@
       "subb_code": "SCB 9",
       "building_name": "ท.0019 ชั้นที่ 9 (รวม)",
       "is_main_meter": false,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 11016.06,
+      "raw_delta_kwh": 11016.06,
       "previous_normalized_kwh": 635082.38,
-      "current_normalized_kwh": 635082.38,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 646098.44,
+      "flags": []
     },
     {
       "week_start_date": "2025-05-02",
@@ -387245,14 +386968,11 @@
       "subb_code": "MDB",
       "building_name": "ท.0020 อาคาร ศูนย์รับรองสมรรถนะงานเดิมเครื่องและบำรุงรักษา",
       "is_main_meter": true,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 1983.81,
+      "raw_delta_kwh": 1983.81,
       "previous_normalized_kwh": 104916.17,
-      "current_normalized_kwh": 104916.17,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 106899.98,
+      "flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -408494,11 +408214,8 @@
       "building_name": "ต.0019 อาคารนันทนาการพร้อมอาคารจอดรถ",
       "allocation_ratio": 1.0,
       "allocation_row_no": 5,
-      "kwh": 0.0,
-      "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "kwh": 5306.45,
+      "source_flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -409839,11 +409556,8 @@
       "building_name": "ต.0025 อาคารอเนกประสงค์",
       "allocation_ratio": 1.0,
       "allocation_row_no": 6,
-      "kwh": 0.0,
-      "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "kwh": 520.49,
+      "source_flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -416743,11 +416457,8 @@
       "building_name": "ท.0007 อาคาร กองบริหาร ชธธ.",
       "allocation_ratio": 1.0,
       "allocation_row_no": 2,
-      "kwh": 0.0,
-      "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "kwh": 1003.26,
+      "source_flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -418096,11 +417807,8 @@
       "building_name": "ท.0008 อาคาร บริหารอะไหล่กังหันก๊าซ2 อรอ.",
       "allocation_ratio": 1.0,
       "allocation_row_no": 35,
-      "kwh": 0.0,
-      "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "kwh": 195.98,
+      "source_flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -420855,11 +420563,8 @@
       "building_name": "ท.0010 อาคาร ทดสอบเครื่องกล อรอ.",
       "allocation_ratio": 1.0,
       "allocation_row_no": 36,
-      "kwh": 0.0,
-      "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "kwh": 1438.87,
+      "source_flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -422249,11 +421954,8 @@
       "building_name": "ท.0011 อาคาร เครื่องมือ อบค.",
       "allocation_ratio": 1.0,
       "allocation_row_no": 15,
-      "kwh": 0.0,
-      "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "kwh": 489.61,
+      "source_flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -423588,11 +423290,8 @@
       "building_name": "ท.0012 อาคาร บำรุงรักษาเครื่องกล อบค.",
       "allocation_ratio": 1.0,
       "allocation_row_no": 16,
-      "kwh": 0.0,
-      "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "kwh": 4272.16,
+      "source_flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -426241,11 +425940,8 @@
       "building_name": "ท.0014 อาคาร ปฏิบัติการฝ่ายบำรุงรักษาไฟฟ้าและโยธา",
       "allocation_ratio": 0.95,
       "allocation_row_no": 22,
-      "kwh": 0.0,
-      "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "kwh": 1060.599,
+      "source_flags": []
     },
     {
       "week_start_date": "2026-10-22",
@@ -426258,11 +425954,8 @@
       "building_name": "ท.0014 อาคาร ปฏิบัติการฝ่ายบำรุงรักษาไฟฟ้าและโยธา",
       "allocation_ratio": 0.05,
       "allocation_row_no": 32,
-      "kwh": 0.0,
-      "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "kwh": 55.821,
+      "source_flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -427598,11 +427291,8 @@
       "building_name": "ท.0015 อาคาศูนย์ปฏิบัติการทดสอบเคมี 2",
       "allocation_ratio": 1.0,
       "allocation_row_no": 29,
-      "kwh": 0.0,
-      "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "kwh": 12697.45,
+      "source_flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -431630,11 +431320,8 @@
       "building_name": "ท.0018 อาคารศูนย์มาตรวิทยาและสอบเทียบเครื่องมือวัด",
       "allocation_ratio": 1.0,
       "allocation_row_no": 24,
-      "kwh": 0.0,
-      "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "kwh": 10806.08,
+      "source_flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -438257,11 +437944,8 @@
       "building_name": "ท.0019 ชั้นที่ 1 อาคารทำการ ชธธ.",
       "allocation_ratio": 0.2,
       "allocation_row_no": 7,
-      "kwh": 0.0,
-      "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "kwh": 4012.874,
+      "source_flags": []
     },
     {
       "week_start_date": "2026-10-22",
@@ -438274,11 +437958,8 @@
       "building_name": "ท.0019 ชั้นที่ 1 อาคารทำการ ชธธ.",
       "allocation_ratio": 0.2,
       "allocation_row_no": 11,
-      "kwh": 0.0,
-      "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "kwh": 4012.874,
+      "source_flags": []
     },
     {
       "week_start_date": "2026-10-22",
@@ -438291,11 +437972,8 @@
       "building_name": "ท.0019 ชั้นที่ 1 อาคารทำการ ชธธ.",
       "allocation_ratio": 0.2,
       "allocation_row_no": 21,
-      "kwh": 0.0,
-      "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "kwh": 4012.874,
+      "source_flags": []
     },
     {
       "week_start_date": "2026-10-22",
@@ -438308,11 +437986,8 @@
       "building_name": "ท.0019 ชั้นที่ 1 อาคารทำการ ชธธ.",
       "allocation_ratio": 0.2,
       "allocation_row_no": 28,
-      "kwh": 0.0,
-      "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "kwh": 4012.874,
+      "source_flags": []
     },
     {
       "week_start_date": "2026-10-22",
@@ -438325,11 +438000,8 @@
       "building_name": "ท.0019 ชั้นที่ 1 อาคารทำการ ชธธ.",
       "allocation_ratio": 0.2,
       "allocation_row_no": 31,
-      "kwh": 0.0,
-      "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "kwh": 4012.874,
+      "source_flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -439660,11 +439332,8 @@
       "building_name": "ท.0019 ชั้นที่ 3 อาคารทำการ ชธธ.",
       "allocation_ratio": 1.0,
       "allocation_row_no": 8,
-      "kwh": 0.0,
-      "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "kwh": 253.09,
+      "source_flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -440995,11 +440664,8 @@
       "building_name": "ท.0019 ชั้นที่ 4 อบย.",
       "allocation_ratio": 1.0,
       "allocation_row_no": 33,
-      "kwh": 0.0,
-      "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "kwh": 855.96,
+      "source_flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -443648,11 +443314,8 @@
       "building_name": "ท.0019 ชั้นที่ 5 อคม.,อบฟ.",
       "allocation_ratio": 0.5,
       "allocation_row_no": 27,
-      "kwh": 0.0,
-      "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "kwh": 255.465,
+      "source_flags": []
     },
     {
       "week_start_date": "2026-10-22",
@@ -443665,11 +443328,8 @@
       "building_name": "ท.0019 ชั้นที่ 5 อคม.,อบฟ.",
       "allocation_ratio": 0.5,
       "allocation_row_no": 30,
-      "kwh": 0.0,
-      "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "kwh": 255.465,
+      "source_flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -445000,11 +444660,8 @@
       "building_name": "ท.0019 ชั้นที่ 6 อบฟ.",
       "allocation_ratio": 1.0,
       "allocation_row_no": 25,
-      "kwh": 0.0,
-      "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "kwh": 427.48,
+      "source_flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -446335,11 +445992,8 @@
       "building_name": "ท.0019 ชั้นที่ 7 อบฟ.",
       "allocation_ratio": 1.0,
       "allocation_row_no": 26,
-      "kwh": 0.0,
-      "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "kwh": 618.62,
+      "source_flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -447672,11 +447326,8 @@
       "building_name": "ท.0019 ชั้นที่ 8 อบค.",
       "allocation_ratio": 1.0,
       "allocation_row_no": 13,
-      "kwh": 0.0,
-      "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "kwh": 478.99,
+      "source_flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -449012,11 +448663,8 @@
       "building_name": "ท.0020 อาคาร ศูนย์รับรองสมรรถนะงานเดิมเครื่องและบำรุงรักษา",
       "allocation_ratio": 1.0,
       "allocation_row_no": 9,
-      "kwh": 0.0,
-      "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "kwh": 1983.81,
+      "source_flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -460778,6 +460426,34 @@
       "source_flags": []
     },
     {
+      "week_start_date": "2026-10-22",
+      "week_end_date": "2026-10-30",
+      "reading_date": "2026-10-30",
+      "week_id": "2026-W44",
+      "department": "สก.ชธธ.",
+      "meter_id": "T.0019__FL09__SCB_9",
+      "b_code": "T.0019",
+      "building_name": "ท.0019 ชั้นที่ 9 (net)",
+      "allocation_ratio": 0.5,
+      "allocation_row_no": 10,
+      "kwh": 990.755,
+      "source_flags": []
+    },
+    {
+      "week_start_date": "2026-10-22",
+      "week_end_date": "2026-10-30",
+      "reading_date": "2026-10-30",
+      "week_id": "2026-W44",
+      "department": "อบค.",
+      "meter_id": "T.0019__FL09__SCB_9",
+      "b_code": "T.0019",
+      "building_name": "ท.0019 ชั้นที่ 9 (net)",
+      "allocation_ratio": 0.5,
+      "allocation_row_no": 12,
+      "kwh": 990.755,
+      "source_flags": []
+    },
+    {
       "week_start_date": "2025-01-03",
       "week_end_date": "2025-01-10",
       "reading_date": "2025-01-10",
@@ -461270,14 +460946,14 @@
       "อคม.": 62220.006
     },
     "2026-10": {
-      "อบค.": 38067.875,
+      "อบค.": 48312.264,
       "อสร.": 0.0,
-      "สก.ชธธ.": 45855.695,
+      "สก.ชธธ.": 59926.424,
       "อหข.": 25911.29,
-      "อรอ.": 10957.272,
-      "อบฟ.": 60147.608,
-      "อบย.": 15765.777,
-      "อคม.": 55287.905
+      "อรอ.": 12592.122,
+      "อบฟ.": 77328.726,
+      "อบย.": 20690.432,
+      "อคม.": 72253.694
     }
   },
   "validation": {
@@ -462630,7 +462306,7 @@
       "weekly_forms_rows_used": 9696,
       "normalized_readings": 9001,
       "weekly_consumption_rows": 8901,
-      "department_weekly_rows": 4063,
+      "department_weekly_rows": 4065,
       "allocation_rows_used": 43,
       "building_allocation_rows_used": 43,
       "fallback_allocation_rows_available": 41,
