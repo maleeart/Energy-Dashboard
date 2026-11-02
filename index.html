@@ -378,6 +378,7 @@
   <div style="padding:6px 0;margin-right:24px"><img src="snap.png" alt="SNAP" style="height:28px;width:28px;border-radius:6px;object-fit:cover"></div>
   <nav class="nav-tabs">
     <a href="index.html" class="nav-tab active">⚡ ไฟฟ้า</a>
+    <a href="twin.html" class="nav-tab">🏢 3D Digital Twin (WIP)</a>
     <a href="fuel.html" class="nav-tab">🛢️ น้ำมัน</a>
     <a href="water.html" class="nav-tab">💧 น้ำประปา (demo)</a>
     <a href="garbage.html" class="nav-tab">♻️ ขยะ (WIP)</a>
@@ -527,7 +528,13 @@
   </div>
   
   <div class="gridB">
-    <div class="card"><div class="ct" id="buildingTitle">Top อาคาร</div><div class="cw"><canvas id="buildingBar"></canvas></div></div>
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <div class="ct" id="buildingTitle" style="margin-bottom:0">Top อาคาร</div>
+        <a href="twin.html" class="btn-event" style="text-decoration:none;font-size:11px;padding:4px 10px;background:#C5A85F;border-color:#C5A85F;color:#0B1D51;font-weight:700">🏢 เปิด 3D Digital Twin (WIP)</a>
+      </div>
+      <div class="cw"><canvas id="buildingBar"></canvas></div>
+    </div>
     <div class="card">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2px">
         <div class="ct" style="margin-bottom:0">ปริมาณการใช้พลังงานรายเดือนในแต่ละปี</div>

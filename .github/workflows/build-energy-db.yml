@@ -24,10 +24,12 @@ jobs:
           python-version: "3.12"
 
       - name: Build energy database
-        run: python scripts/build_energy_db.py
+        run: |
+          python scripts/build_energy_db.py
+          python scripts/build_building_summary.py
 
       - name: Commit generated files
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "Auto-build energy database"
-          file_pattern: data/weekly_readings.csv data/energy_db.json data/validation_report.json
+          file_pattern: data/weekly_readings.csv data/energy_db.json data/validation_report.json data/building_energy_summary.json

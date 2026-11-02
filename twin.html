@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="snap.png" type="image/png">
+  <link rel="apple-touch-icon" href="snap.png">
+  <title>Sainoi Energy Dashboard & 3D Building Digital Twin | สำนักงานไทรน้อย กฟผ.</title>
+
+  <!-- External Libraries -->
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+
+  <!-- Core Scripts -->
+  <script src="scripts/energy-twin-core.js"></script>
+  <script src="scripts/energy-twin-3d.js"></script>
+
+  <style>
+    :root {
+      --pri: #0B1D51;
+      --pri-l: #1A3A7A;
+      --gold: #C5A85F;
+      --amber: #F59E0B;
+      --bg: #F0F4F8;
+      --card: #FFFFFF;
+      --txt: #0F172A;
+      --txt2: #475569;
+      --bdr: #E2E8F0;
+      --sh: 0 4px 16px rgba(11, 29, 81, 0.08);
+      --r: 10px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Sarabun', sans-serif;
+      background: var(--bg);
+      color: var(--txt);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* Topbar */
+    .topbar {
+      background: linear-gradient(90deg, #091024 0%, #0F172A 100%);
+      border-bottom: 1px solid #1E293B;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-tabs { display: flex; gap: 4px; overflow-x: auto; }
+    .nav-tab {
+      padding: 8px 14px;
+      font-size: 12px;
+      font-weight: 500;
+      color: #94A3B8;
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: all .2s;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      white-space: nowrap;
+    }
+    .nav-tab:hover { color: #F1F5F9; }
+    .nav-tab.active { color: #F59E0B; border-bottom-color: #F59E0B; font-weight: 700; }
+
+    /* Header */
+    .hdr {
+      background: linear-gradient(135deg, var(--pri), var(--pri-l));
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .hdr-l { display: flex; align-items: center; gap: 12px; }
+    .logo {
+      width: 42px;
+      height: 42px;
+      background: #fff;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px;
+      box-shadow: 0 2px 6px rgba(0,0,0,.2);
+    }
+    .logo img { width: 100%; height: 100%; object-fit: contain; }
+    .hdr-t h1 { font-size: 17px; font-weight: 700; color: #fff; }
+    .hdr-t p { font-size: 11px; color: rgba(255, 255, 255, 0.75); }
+
+    /* Unified Filter Bar */
+    .filter-bar {
+      background: #0B1D51;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      padding: 8px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .filter-group { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .fl-label { color: rgba(255,255,255,0.85); font-size: 12px; font-weight: 600; white-space: nowrap; }
+    .fl-select {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+      font-size: 12px;
+      font-family: 'Sarabun', sans-serif;
+      cursor: pointer;
+    }
+    .fl-select option { color: #0F172A; background: #fff; }
+    .fl-select:focus { outline: none; border-color: var(--amber); }
+
+    .btn-action {
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-family: 'Sarabun', sans-serif;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .btn-action:hover { background: rgba(255,255,255,0.25); border-color: #fff; }
+    .btn-action.primary { background: var(--amber); color: #0B1D51; font-weight: 700; border-color: var(--amber); }
+    .btn-action.primary:hover { background: #E58E00; }
+
+    /* Disclaimer Notice Banner */
+    .disclaimer-banner {
+      background: #FEF3C7;
+      border-bottom: 1px solid #FCD34D;
+      padding: 6px 20px;
+      font-size: 11px;
+      color: #92400E;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .disclaimer-banner span { display: inline-flex; align-items: center; gap: 6px; }
+
+    /* Timeline Bar */
+    .timeline-bar {
+      background: #FFFFFF;
+      border-bottom: 1px solid var(--bdr);
+      padding: 8px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .btn-play {
+      background: var(--pri);
+      color: #fff;
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      transition: transform 0.15s, background 0.2s;
+    }
+    .btn-play:hover { background: var(--pri-l); transform: scale(1.05); }
+    .timeline-slider-wrap {
+      flex: 1;
+      min-width: 200px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .timeline-slider {
+      flex: 1;
+      height: 6px;
+      border-radius: 3px;
+      background: #E2E8F0;
+      outline: none;
+      cursor: pointer;
+      accent-color: var(--amber);
+    }
+    .timeline-cur-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--pri);
+      min-width: 75px;
+    }
+    .timeline-note {
+      font-size: 11px;
+      color: var(--txt2);
+    }
+
+    /* Main Layout */
+    .main-workspace {
+      flex: 1;
+      display: flex;
+      position: relative;
+      overflow: hidden;
+      min-height: 580px;
+    }
+
+    /* 3D Scene Viewport */
+    .viewport-3d {
+      flex: 1;
+      position: relative;
+      background: #F0F4F8;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    #campusCanvasContainer {
+      width: 100%;
+      flex: 1;
+      position: relative;
+    }
+
+    /* Floating Viewport Overlays */
+    .viewport-overlay-tools {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      z-index: 10;
+    }
+    .btn-overlay {
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid var(--bdr);
+      color: var(--pri);
+      padding: 7px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: all 0.2s;
+    }
+    .btn-overlay:hover { background: #fff; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+
+    /* Floating Quick Search/Select */
+    .viewport-search-box {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      z-index: 10;
+      display: flex;
+      gap: 6px;
+    }
+    .search-input {
+      padding: 7px 12px;
+      border-radius: 6px;
+      border: 1px solid var(--bdr);
+      background: rgba(255,255,255,0.95);
+      font-size: 12px;
+      font-family: 'Sarabun', sans-serif;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      width: 220px;
+    }
+
+    /* Dynamic Legend Box */
+    .legend-box {
+      position: absolute;
+      bottom: 14px;
+      left: 14px;
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid var(--bdr);
+      border-radius: 8px;
+      padding: 10px 14px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      z-index: 10;
+      max-width: 280px;
+    }
+    .legend-title { font-size: 12px; font-weight: 700; color: var(--pri); margin-bottom: 2px; }
+    .legend-note { font-size: 10px; color: var(--txt2); margin-bottom: 8px; line-height: 1.3; }
+    .legend-items { display: flex; flex-direction: column; gap: 4px; }
+    .legend-item { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--txt); }
+    .legend-color-dot { width: 14px; height: 14px; border-radius: 3px; flex-shrink: 0; }
+
+    /* Side Detail Panel */
+    .side-panel {
+      width: 440px;
+      background: #FFFFFF;
+      border-left: 1px solid var(--bdr);
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: -4px 0 20px rgba(0,0,0,0.05);
+      z-index: 20;
+    }
+    .side-panel.collapsed {
+      transform: translateX(100%);
+      width: 0;
+      border-left: none;
+    }
+    .panel-hdr {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--bdr);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #F8FAFC;
+    }
+    .panel-hdr h3 { font-size: 15px; font-weight: 700; color: var(--pri); }
+    .panel-close { background: none; border: none; font-size: 20px; cursor: pointer; color: var(--txt2); }
+    .panel-body { padding: 18px; display: flex; flex-direction: column; gap: 16px; flex: 1; }
+
+    /* Detail Cards */
+    .stat-badge-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .stat-badge {
+      background: #F8FAFC;
+      border: 1px solid var(--bdr);
+      border-radius: 8px;
+      padding: 10px 12px;
+    }
+    .stat-badge.highlight {
+      background: #EFF6FF;
+      border-color: #BFDBFE;
+    }
+    .stat-label { font-size: 11px; color: var(--txt2); margin-bottom: 4px; }
+    .stat-val { font-size: 18px; font-weight: 800; color: var(--pri); }
+    .stat-unit { font-size: 11px; font-weight: 500; color: var(--txt2); margin-left: 4px; }
+
+    /* Sub-meter table */
+    .sub-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11px;
+      margin-top: 6px;
+    }
+    .sub-table th { text-align: left; padding: 6px 8px; background: #F1F5F9; color: var(--txt2); border-bottom: 1px solid var(--bdr); }
+    .sub-table td { padding: 6px 8px; border-bottom: 1px solid #F1F5F9; }
+    .sub-table tr:hover { background: #F8FAFC; }
+
+    /* 2D Fallback Campus Grid */
+    .view-2d-container {
+      width: 100%;
+      height: 100%;
+      padding: 24px;
+      overflow-y: auto;
+      display: none;
+      background: #F0F4F8;
+    }
+    .campus-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px;
+    }
+    .building-card-2d {
+      background: #fff;
+      border-radius: 8px;
+      border: 1px solid var(--bdr);
+      padding: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      position: relative;
+    }
+    .building-card-2d:hover { transform: translateY(-2px); box-shadow: var(--sh); border-color: var(--amber); }
+    .building-card-2d.active { border-color: var(--amber); box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.25); }
+    .card-color-stripe { height: 6px; border-radius: 3px; width: 100%; margin-bottom: 4px; }
+
+    /* Comparison Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(2px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 20px;
+    }
+    .modal-box {
+      background: #fff;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 900px;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    }
+    .modal-hdr {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--bdr);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .modal-body { padding: 20px; overflow-y: auto; flex: 1; }
+    .modal-ftr { padding: 14px 20px; border-top: 1px solid var(--bdr); display: flex; justify-content: flex-end; gap: 8px; }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .main-workspace { flex-direction: column; }
+      .side-panel { width: 100%; max-height: 400px; border-left: none; border-top: 1px solid var(--bdr); }
+      .side-panel.collapsed { transform: translateY(100%); }
+    }
+    @media (max-width: 640px) {
+      .hdr { padding: 10px 14px; }
+      .filter-bar { padding: 8px 14px; }
+      .viewport-overlay-tools { top: 8px; left: 8px; }
+      .search-input { width: 150px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <div class="topbar">
+    <nav class="nav-tabs">
+      <a href="index.html" class="nav-tab">⚡ ไฟฟ้า (แดชบอร์ด)</a>
+      <a href="twin.html" class="nav-tab active">🏢 3D Digital Twin (WIP)</a>
+      <a href="fuel.html" class="nav-tab">🛢️ น้ำมัน</a>
+      <a href="water.html" class="nav-tab">💧 น้ำประปา</a>
+      <a href="garbage.html" class="nav-tab">♻️ ขยะ</a>
+      <a href="docs/meter_form.html" class="nav-tab" target="_blank">📝 จดมิเตอร์</a>
+    </nav>
+    <div style="flex:1"></div>
+    <button class="btn-action" onclick="openComparisonModal()">📊 เปรียบเทียบอาคาร</button>
+    <button class="btn-action" onclick="openQualityModal()">🔍 คุณภาพข้อมูล</button>
+  </div>
+
+  <!-- Main System Header -->
+  <div class="hdr">
+    <div class="hdr-l">
+      <div class="logo">
+        <img src="snap.png" alt="EGAT Sai Noi">
+      </div>
+      <div class="hdr-t">
+        <h1>Sainoi Energy Dashboard & 3D Building Digital Twin</h1>
+        <p>ระบบติดตามพลังงานไฟฟ้าและแบบจำลองอาคาร 3 มิติ | การไฟฟ้าฝ่ายผลิตแห่งประเทศไทย สำนักงานไทรน้อย</p>
+      </div>
+    </div>
+    <div style="display:flex; gap:8px;">
+      <button class="btn-action" onclick="EnergyTwin.exportToCsv()">📥 ส่งออก CSV</button>
+      <button class="btn-action" onclick="window.print()">🖨️ พิมพ์รายงาน</button>
+      <button class="btn-action" onclick="openSettingsModal()">⚙️ ตั้งค่า</button>
+    </div>
+  </div>
+
+  <!-- Unified Filter & Control Bar -->
+  <div class="filter-bar">
+    <div class="filter-group">
+      <span class="fl-label">📅 ปี:</span>
+      <select id="selYear" class="fl-select" onchange="onYearChange()">
+        <option value="2026">2569 (2026)</option>
+        <option value="2025">2568 (2025)</option>
+      </select>
+
+      <span class="fl-label">📆 เดือน:</span>
+      <select id="selMonth" class="fl-select" onchange="onMonthChange()">
+        <!-- Generated dynamically -->
+      </select>
+
+      <span class="fl-label">🏢 ฝ่าย/หน่วยงาน:</span>
+      <select id="selDepartment" class="fl-select" onchange="onDepartmentChange()">
+        <option value="ALL">ทุกฝ่าย (ภาพรวมสำนักงาน)</option>
+        <option value="สก.ชธธ.">สก.ชธธ. (กองบริหาร)</option>
+        <option value="อบค.">อบค. (บำรุงรักษาโรงไฟฟ้า)</option>
+        <option value="อบฟ.">อบฟ. (บำรุงรักษาไฟฟ้าและโยธา)</option>
+        <option value="อบย.">อบย. (บำรุงรักษาระบบส่งและยานพาหนะ)</option>
+        <option value="อรอ.">อรอ. (อะไหล่และทดสอบ)</option>
+        <option value="อคม.">อคม. (ปฏิบัติการเคมี)</option>
+        <option value="อหข.">อหข. (การขนส่ง)</option>
+      </select>
+
+      <span class="fl-label">🎨 โหมดแสดงสี:</span>
+      <select id="selColorMode" class="fl-select" onchange="onColorModeChange()">
+        <option value="total_kwh">การใช้ไฟฟ้ารวม (Total kWh)</option>
+        <option value="mom_change">การเปลี่ยนแปลงเทียบเดือนก่อน (% MoM)</option>
+        <option value="target_status">ผลเทียบเป้าหมายการประหยัด</option>
+        <option value="data_quality">สถานะคุณภาพข้อมูล (Data Quality)</option>
+        <option value="energy_intensity">ความเข้มการใช้พลังงาน (kWh/m²)</option>
+      </select>
+    </div>
+
+    <!-- View Mode Switcher -->
+    <div class="filter-group">
+      <span class="fl-label">มุมมอง:</span>
+      <button id="btnView3D" class="btn-action primary" onclick="setViewMode('3d')">🌐 3D</button>
+      <button id="btnViewSplit" class="btn-action" onclick="setViewMode('split')">📑 จอแยก</button>
+      <button id="btnView2D" class="btn-action" onclick="setViewMode('2d')">🗺️ 2D</button>
+    </div>
+  </div>
+
+  <!-- Disclaimer Notice Banner -->
+  <div class="disclaimer-banner">
+    <span>
+      ℹ️ <strong>ข้อกำหนดความโปร่งใสของข้อมูล:</strong> โมเดลและผังอาคารเป็นภาพแทนเชิงสัญลักษณ์ระยะนำร่อง (Pilot) ไม่ใช่แบบสำรวจรังวัดจริง | ข้อมูลอัปเดตเป็นรายสัปดาห์ (ไม่ใช่ Real-time IoT) | ยอดรวมของแต่ละอาคารคำนวณจากมิเตอร์ประธานเพื่อป้องกันการนับซ้ำ
+    </span>
+    <span style="font-family:'JetBrains Mono'; font-weight:700;" id="txtCampusTotalKwh">ยอดรวม: คำนวณ...</span>
+  </div>
+
+  <!-- Timeline Bar (Monthly Playback & Slider) -->
+  <div class="timeline-bar">
+    <button class="btn-play" id="btnPlayTimeline" onclick="togglePlayTimeline()" title="เล่น/หยุด วิวัฒนาการข้อมูลรายเดือน">▶</button>
+    <div class="timeline-slider-wrap">
+      <input type="range" id="timelineSlider" class="timeline-slider" min="0" max="21" value="21" oninput="onTimelineSliderInput(this.value)">
+      <span class="timeline-cur-label" id="timelineMonthLabel">2026-10</span>
+    </div>
+    <div class="timeline-note">
+      ⏱️ เลื่อนเพื่อดูความเปลี่ยนแปลงของพลังงานย้อนหลัง (การเล่นข้อมูลเป็นการเปลี่ยนภาพตามรอบรายเดือน)
+    </div>
+  </div>
+
+  <!-- Workspace Container (3D Canvas + Side Detail Panel) -->
+  <div class="main-workspace">
+    
+    <!-- 3D Viewport Area -->
+    <div class="viewport-3d" id="viewport3D">
+      <div id="campusCanvasContainer"></div>
+
+      <!-- Floating Controls on 3D Canvas -->
+      <div class="viewport-overlay-tools">
+        <button class="btn-overlay" onclick="campusScene.resetView()" title="คืนสู่มุมมองภาพรวม">
+          🔄 คืนมุมมอง
+        </button>
+        <button class="btn-overlay" onclick="campusScene.setTopDownView()" title="มุมมองจากด้านบน">
+          🗺️ มุมมองด้านบน
+        </button>
+        <button class="btn-overlay" id="btnToggleLabels" onclick="toggleLabels()">
+          🏷️ ป้ายชื่อ: เปิด
+        </button>
+      </div>
+
+      <!-- Quick Building Selector Dropdown / Search -->
+      <div class="viewport-search-box">
+        <select id="quickBuildingSelect" class="search-input" onchange="onQuickSelectBuilding(this.value)">
+          <option value="">-- เลือกอาคารเพื่อโฟกัส --</option>
+        </select>
+      </div>
+
+      <!-- Dynamic Legend Box -->
+      <div class="legend-box" id="legendBox">
+        <div class="legend-title" id="legendTitle">การใช้ไฟฟ้ารวม (kWh)</div>
+        <div class="legend-note" id="legendNote">คำนวณจากมิเตอร์ประธาน ป้องกันการนับซ้ำ</div>
+        <div class="legend-items" id="legendItems">
+          <!-- Filled by JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- 2D Fallback Campus Grid -->
+    <div class="view-2d-container" id="view2DContainer">
+      <div style="margin-bottom:16px;">
+        <h2 style="font-size:16px; font-weight:700; color:var(--pri);">ผังสำนักงานไทรน้อย 2D (Campus Interactive Grid)</h2>
+        <p style="font-size:12px; color:var(--txt2);">ทางเลือกการเข้าถึงข้อมูลโดยไม่ใช้ 3D สำหรับอุปกรณ์ประสิทธิภาพจำกัด หรือการดูภาพรวมแบบตาราง</p>
+      </div>
+      <div class="campus-grid" id="campus2DGrid">
+        <!-- Filled by JS -->
+      </div>
+    </div>
+
+    <!-- Side Detail Panel (Building Detail Drawer) -->
+    <div class="side-panel" id="sideDetailPanel">
+      <div class="panel-hdr">
+        <div>
+          <h3 id="panelBuildingName">เลือกอาคารในแบบจำลอง</h3>
+          <span style="font-size:11px; color:var(--txt2);" id="panelBuildingCode">คลิกอาคาร 3D หรือเลือกจากรายการ</span>
+        </div>
+        <button class="panel-close" onclick="closeDetailPanel()">&times;</button>
+      </div>
+
+      <div class="panel-body" id="panelBody">
+        <!-- Initial Blank State -->
+        <div style="text-align:center; padding:40px 10px; color:var(--txt2);">
+          <div style="font-size:38px; margin-bottom:12px;">👆</div>
+          <p style="font-weight:600; font-size:13px;">คลิกอาคารในฉาก 3 มิติ</p>
+          <p style="font-size:11px; margin-top:4px;">เพื่อดูสถิติการใช้ไฟฟ้า มิเตอร์หลัก มิเตอร์ย่อย และกราฟแนวโน้ม</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Building Comparison Modal -->
+  <div class="modal-overlay" id="comparisonModal">
+    <div class="modal-box">
+      <div class="modal-hdr">
+        <h3 style="color:var(--pri); font-size:16px;">📊 เปรียบเทียบการใช้พลังงานระหว่างอาคาร</h3>
+        <button class="panel-close" onclick="closeComparisonModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="margin-bottom:14px; font-size:12px; color:var(--txt2);">
+          เลือกอาคารที่ต้องการเปรียบเทียบ (สูงสุด 4 อาคาร):
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:16px;">
+          <select id="compSelect1" class="fl-select" style="color:#0F172A; background:#F8FAFC;" onchange="updateComparisonView()"></select>
+          <select id="compSelect2" class="fl-select" style="color:#0F172A; background:#F8FAFC;" onchange="updateComparisonView()"></select>
+          <select id="compSelect3" class="fl-select" style="color:#0F172A; background:#F8FAFC;" onchange="updateComparisonView()"></select>
+        </div>
+        <div style="height:260px; margin-bottom:16px;">
+          <canvas id="comparisonChart"></canvas>
+        </div>
+        <div id="comparisonTableWrap"></div>
+      </div>
+      <div class="modal-ftr">
+        <button class="btn-action" style="color:#333; border-color:#ccc;" onclick="closeComparisonModal()">ปิด</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Data Quality & Validation Modal -->
+  <div class="modal-overlay" id="qualityModal">
+    <div class="modal-box">
+      <div class="modal-hdr">
+        <h3 style="color:var(--pri); font-size:16px;">🔍 รายงานการตรวจสอบและคุณภาพข้อมูล (Data Quality)</h3>
+        <button class="panel-close" onclick="closeQualityModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div id="qualityReportSummary" style="display:flex; gap:12px; margin-bottom:16px;">
+          <!-- Quality KPI cards -->
+        </div>
+        <h4 style="font-size:13px; font-weight:700; color:var(--pri); margin-bottom:8px;">รายการข้อสังเกตและคำเตือนการอ่านค่ามิเตอร์:</h4>
+        <div id="qualityReportList" style="max-height:300px; overflow-y:auto; font-size:11px;">
+          <!-- Warnings list -->
+        </div>
+      </div>
+      <div class="modal-ftr">
+        <button class="btn-action" style="color:#333; border-color:#ccc;" onclick="closeQualityModal()">ปิด</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Settings Modal (Performance & Graphics) -->
+  <div class="modal-overlay" id="settingsModal">
+    <div class="modal-box" style="max-width:480px;">
+      <div class="modal-hdr">
+        <h3 style="color:var(--pri); font-size:16px;">⚙️ ตั้งค่าระบบและการแสดงผล 3D</h3>
+        <button class="panel-close" onclick="closeSettingsModal()">&times;</button>
+      </div>
+      <div class="modal-body" style="display:flex; flex-direction:column; gap:16px;">
+        <div>
+          <label style="font-size:12px; font-weight:700; display:block; margin-bottom:6px;">คุณภาพกราฟิก 3D (Graphic Quality):</label>
+          <select id="selGraphicQuality" class="fl-select" style="color:#0F172A; background:#F8FAFC; width:100%;" onchange="onGraphicQualityChange(this.value)">
+            <option value="high">สูง (High) - แสงเงาเสมือนจริง Anti-Aliasing สมบูรณ์</option>
+            <option value="medium">ปานกลาง (Medium) - ความละเอียดมาตรฐาน ปิดเงาแบบ Realtime</option>
+            <option value="low">ต่ำ (Low) - ประหยัดพลังงาน เหมาะสำหรับมือถือหรือเครื่องสเปกต่ำ</option>
+          </select>
+        </div>
+
+        <div>
+          <label style="font-size:12px; font-weight:700; display:block; margin-bottom:6px;">ป้ายชื่ออาคารภาษาไทย (Building Labels):</label>
+          <label style="font-size:12px; display:inline-flex; align-items:center; gap:6px; cursor:pointer;">
+            <input type="checkbox" id="chkShowLabels" checked onchange="campusScene.setLabelsVisible(this.checked)">
+            แสดงป้ายชื่ออาคารลอยเหนือโมเดล 3D
+          </label>
+        </div>
+
+        <div style="background:#F1F5F9; padding:12px; border-radius:6px; font-size:11px; color:var(--txt2); line-height:1.5;">
+          <strong>คำแนะนำด้านประสิทธิภาพ:</strong> ระบบ Sainoi Digital Twin มีระบบ Demand-Render Loop ซึ่งจะหยุดประมวลผลการวาดภาพอัตโนมัติเมื่อฉากไม่มีการเคลื่อนไหว เพื่อประหยัดพลังงานแบตเตอรี่บนแล็ปท็อปและสมาร์ทโฟน
+        </div>
+      </div>
+      <div class="modal-ftr">
+        <button class="btn-action primary" onclick="closeSettingsModal()">บันทึกการตั้งค่า</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Global Instances
+    let campusScene = null;
+    let trendChartInstance = null;
+    let comparisonChartInstance = null;
+    let timelineTimer = null;
+
+    // Initialization on window load
+    window.addEventListener('DOMContentLoaded', async () => {
+      // 1. Initialize EnergyTwin Core
+      const ok = await EnergyTwin.init();
+      if (!ok) {
+        alert('เกิดข้อผิดพลาดในการโหลดข้อมูลแบบจำลอง กรุณารีเฟรชหน้าเว็บ');
+        return;
+      }
+
+      // 2. Initialize Three.js Campus Scene
+      campusScene = new CampusScene('campusCanvasContainer');
+
+      // 3. Setup Dropdowns and Controls
+      populatePeriodSelectors();
+      populateQuickBuildingDropdown();
+
+      // 4. Populate 3D Buildings
+      const buildings = EnergyTwin.getBuildingsList();
+      campusScene.populateBuildings(buildings);
+
+      // 5. Build 2D Fallback Grid
+      render2DGrid(buildings);
+
+      // 6. Update Legend & Campus Total
+      updateLegendUI();
+      updateCampusTotalUI();
+
+      // 7. Subscribe to EnergyTwin State Changes
+      EnergyTwin.subscribe((state, changeKey) => {
+        handleStateUpdate(state, changeKey);
+      });
+    });
+
+    // Populate Year and Month Selectors
+    function populatePeriodSelectors() {
+      const summary = EnergyTwin.summaryData;
+      if (!summary || !summary.periods) return;
+
+      const months = summary.periods.months || [];
+      const selMonth = document.getElementById('selMonth');
+      selMonth.innerHTML = '';
+
+      months.slice().reverse().forEach(m => {
+        const opt = document.createElement('option');
+        opt.value = m;
+        const [yr, mo] = m.split('-');
+        const thaiYear = parseInt(yr) + 543;
+        const thaiMonthNames = ['', 'มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'];
+        opt.textContent = `${thaiMonthNames[parseInt(mo)]} ${thaiYear} (${m})`;
+        if (m === EnergyTwin.state.month) opt.selected = true;
+        selMonth.appendChild(opt);
+      });
+
+      // Timeline Slider setup
+      const slider = document.getElementById('timelineSlider');
+      slider.max = months.length - 1;
+      slider.value = months.indexOf(EnergyTwin.state.month);
+      document.getElementById('timelineMonthLabel').textContent = EnergyTwin.state.month;
+    }
+
+    // Populate Quick Search Dropdown
+    function populateQuickBuildingDropdown() {
+      const select = document.getElementById('quickBuildingSelect');
+      const comp1 = document.getElementById('compSelect1');
+      const comp2 = document.getElementById('compSelect2');
+      const comp3 = document.getElementById('compSelect3');
+
+      const buildings = EnergyTwin.getBuildingsList();
+      buildings.forEach(b => {
+        const opt = document.createElement('option');
+        opt.value = b.b_code;
+        opt.textContent = `${b.b_code} - ${b.name}`;
+        select.appendChild(opt);
+
+        if (comp1) comp1.appendChild(opt.cloneNode(true));
+        if (comp2) comp2.appendChild(opt.cloneNode(true));
+        if (comp3) comp3.appendChild(opt.cloneNode(true));
+      });
+
+      if (comp1 && buildings.length > 0) comp1.value = buildings[0].b_code;
+      if (comp2 && buildings.length > 1) comp2.value = buildings[1].b_code;
+    }
+
+    // Handle State Updates across UI
+    function handleStateUpdate(state, changeKey) {
+      const buildings = EnergyTwin.getBuildingsList();
+
+      // Update 3D Colors
+      if (campusScene) {
+        campusScene.updateBuildingColors(buildings);
+        if (state.selectedBuildingId) {
+          campusScene.selectBuilding(state.selectedBuildingId, true);
+        } else {
+          campusScene.selectBuilding(null, false);
+        }
+      }
+
+      // Update 2D Grid
+      render2DGrid(buildings);
+
+      // Update Legend
+      updateLegendUI();
+
+      // Update Campus Total
+      updateCampusTotalUI();
+
+      // Update Side Detail Panel
+      if (state.selectedBuildingId) {
+        renderBuildingDetail(state.selectedBuildingId);
+      } else {
+        closeDetailPanel();
+      }
+
+      // Sync Selectors
+      document.getElementById('selMonth').value = state.month;
+      document.getElementById('selYear').value = state.year;
+      document.getElementById('selDepartment').value = state.department;
+      document.getElementById('selColorMode').value = state.colorMode;
+      document.getElementById('quickBuildingSelect').value = state.selectedBuildingId || '';
+
+      const months = EnergyTwin.summaryData.periods.months || [];
+      const mIdx = months.indexOf(state.month);
+      if (mIdx !== -1) {
+        document.getElementById('timelineSlider').value = mIdx;
+        document.getElementById('timelineMonthLabel').textContent = state.month;
+      }
+    }
+
+    // Render Side Panel Building Details
+    function renderBuildingDetail(bCode) {
+      const panel = document.getElementById('sideDetailPanel');
+      panel.classList.remove('collapsed');
+
+      const buildings = EnergyTwin.getBuildingsList();
+      const b = buildings.find(item => item.b_code === bCode);
+      if (!b) return;
+
+      document.getElementById('panelBuildingName').textContent = b.name;
+      document.getElementById('panelBuildingCode').textContent = `${b.b_code} | ${b.category_th} (${b.floors} ชั้น)`;
+
+      const momText = b.mom_change_pct !== null
+        ? (b.mom_change_pct > 0 ? `+${b.mom_change_pct.toFixed(1)}%` : `${b.mom_change_pct.toFixed(1)}%`)
+        : 'ไม่มีข้อมูล';
+      const momColor = b.mom_change_pct !== null
+        ? (b.mom_change_pct <= 0 ? '#15803D' : '#DC2626')
+        : '#64748B';
+
+      const targetText = b.target_status === 'achieved' 
+        ? '✅ บรรลุเป้าหมาย' 
+        : (b.target_status === 'exceeded' ? '⚠️ เกินเป้าหมาย' : 'ไม่มีเป้าหมาย');
+      const targetColor = b.target_status === 'achieved' ? '#15803D' : (b.target_status === 'exceeded' ? '#DC2626' : '#64748B');
+
+      // Sub-meters markup
+      let subMeterRows = '';
+      const subs = b.metering.sub_meters || [];
+      if (subs.length > 0) {
+        const curSubData = (b.raw_summary && b.raw_summary.sub_meters_monthly && b.raw_summary.sub_meters_monthly[EnergyTwin.state.month]) || {};
+        subs.forEach(s => {
+          const val = curSubData[s.meter_id];
+          const valStr = val !== undefined ? val.toLocaleString('th-TH', { minimumFractionDigits: 1 }) : '-';
+          subMeterRows += `
+            <tr>
+              <td><strong>${s.subb_code || s.meter_id}</strong></td>
+              <td>${s.name || '-'}</td>
+              <td style="text-align:right;"><strong>${valStr}</strong> ${s.unit}</td>
+            </tr>
+          `;
+        });
+      }
+
+      const bodyHtml = `
+        <div class="stat-badge-grid">
+          <div class="stat-badge highlight">
+            <div class="stat-label">การใช้ไฟเดือน ${EnergyTwin.state.month}</div>
+            <div class="stat-val">${b.monthly_kwh !== null ? b.monthly_kwh.toLocaleString('th-TH', { minimumFractionDigits: 1 }) : 'N/A'}<span class="stat-unit">kWh</span></div>
+          </div>
+          <div class="stat-badge">
+            <div class="stat-label">สะสมปี ${EnergyTwin.state.year} (YTD)</div>
+            <div class="stat-val">${b.annual_total !== null ? b.annual_total.toLocaleString('th-TH', { minimumFractionDigits: 1 }) : 'N/A'}<span class="stat-unit">kWh</span></div>
+          </div>
+          <div class="stat-badge">
+            <div class="stat-label">เทียบเดือนก่อนหน้า (MoM)</div>
+            <div class="stat-val" style="color:${momColor}">${momText}</div>
+          </div>
+          <div class="stat-badge">
+            <div class="stat-label">ผลเทียบเป้าหมายประหยัด</div>
+            <div class="stat-val" style="color:${targetColor}; font-size:14px;">${targetText}</div>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-size:12px; font-weight:700; color:var(--pri); margin-bottom:6px;">📈 แนวโน้มการใช้ไฟฟ้าย้อนหลัง (kWh)</div>
+          <div style="height:170px; background:#F8FAFC; border:1px solid var(--bdr); border-radius:8px; padding:8px;">
+            <canvas id="buildingTrendChart"></canvas>
+          </div>
+        </div>
+
+        <div style="background:#F8FAFC; border:1px solid var(--bdr); border-radius:8px; padding:12px;">
+          <div style="font-size:12px; font-weight:700; color:var(--pri); margin-bottom:6px;">⚡ ข้อมูลมิเตอร์และที่มาของยอด</div>
+          <div style="font-size:11px; line-height:1.6; color:var(--txt2);">
+            <div>• <strong>มิเตอร์ประธาน (Main):</strong> <code>${b.metering.main_meter_id || 'ไม่มี'}</code></div>
+            <div>• <strong>วิธีรวมข้อมูล:</strong> คำนวณตรงจากมิเตอร์ประธาน (ป้องกันการนับซ้ำ)</div>
+            <div>• <strong>ฝ่ายที่รับผิดชอบ:</strong> ${b.departments.join(', ') || '-'}</div>
+            <div>• <strong>คุณภาพข้อมูล:</strong> ${b.quality_status === 'normal' ? 'สมบูรณ์ครบถ้วน' : 'มีข้อสังเกต'}</div>
+          </div>
+        </div>
+
+        ${subs.length > 0 ? `
+          <div>
+            <div style="font-size:12px; font-weight:700; color:var(--pri); margin-bottom:4px;">
+              🔍 มิเตอร์ย่อยและระบบภายใน (${subs.length} รายการ)
+            </div>
+            <div style="max-height:160px; overflow-y:auto; border:1px solid var(--bdr); border-radius:6px;">
+              <table class="sub-table">
+                <thead>
+                  <tr>
+                    <th>รหัส</th>
+                    <th>รายการ</th>
+                    <th style="text-align:right;">หน่วยใช้ (kWh)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${subMeterRows}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        ` : ''}
+
+        <div style="display:flex; gap:8px;">
+          <button class="btn-action" style="flex:1; justify-content:center; color:#0B1D51; border-color:var(--bdr);" onclick="campusScene.selectBuilding('${b.b_code}', true)">
+            🎯 โฟกัสกล้อง
+          </button>
+          <button class="btn-action" style="flex:1; justify-content:center; color:#0B1D51; border-color:var(--bdr);" onclick="addBuildingToComparison('${b.b_code}')">
+            📊 เปรียบเทียบ
+          </button>
+        </div>
+      `;
+
+      document.getElementById('panelBody').innerHTML = bodyHtml;
+
+      // Draw Chart
+      renderTrendChart(b);
+    }
+
+    // Render Trend Chart with Chart.js
+    function renderTrendChart(b) {
+      const ctx = document.getElementById('buildingTrendChart');
+      if (!ctx) return;
+
+      if (trendChartInstance) {
+        trendChartInstance.destroy();
+      }
+
+      const rawMonthly = (b.raw_summary && b.raw_summary.monthly_kwh) || {};
+      const months = Object.keys(rawMonthly).sort().slice(-12); // Last 12 months
+      const values = months.map(m => rawMonthly[m] || 0);
+
+      trendChartInstance = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: months.map(m => m.substring(2)),
+          datasets: [{
+            label: 'kWh',
+            data: values,
+            borderColor: '#0B1D51',
+            backgroundColor: 'rgba(11, 29, 81, 0.08)',
+            borderWidth: 2,
+            fill: true,
+            tension: 0.3,
+            pointRadius: 3,
+            pointBackgroundColor: '#F59E0B'
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (c) => ` ${c.parsed.y.toLocaleString()} kWh`
+              }
+            }
+          },
+          scales: {
+            x: { grid: { display: false }, ticks: { font: { size: 9 } } },
+            y: { grid: { color: '#E2E8F0' }, ticks: { font: { size: 9 } } }
+          }
+        }
+      });
+    }
+
+    // Render 2D Grid Cards
+    function render2DGrid(buildings) {
+      const grid = document.getElementById('campus2DGrid');
+      if (!grid) return;
+
+      let html = '';
+      buildings.forEach(b => {
+        const colorInfo = EnergyTwin.getColorForBuilding(b);
+        const isActive = EnergyTwin.state.selectedBuildingId === b.b_code ? 'active' : '';
+        html += `
+          <div class="building-card-2d ${isActive}" onclick="EnergyTwin.setState({ selectedBuildingId: '${b.b_code}' })">
+            <div class="card-color-stripe" style="background:${colorInfo.hex}"></div>
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span style="font-weight:700; color:var(--pri); font-size:13px;">${b.b_code}</span>
+              <span style="font-size:10px; background:#F1F5F9; padding:2px 6px; border-radius:4px;">${b.category_th}</span>
+            </div>
+            <div style="font-size:12px; font-weight:600; color:var(--txt);">${b.short_name}</div>
+            <div style="display:flex; justify-content:space-between; align-items:baseline; margin-top:4px;">
+              <span style="font-size:11px; color:var(--txt2);">ใช้ไฟฟ้า:</span>
+              <span style="font-size:14px; font-weight:800; color:var(--pri);">
+                ${b.monthly_kwh !== null ? b.monthly_kwh.toLocaleString() : 'N/A'} <span style="font-size:10px;">kWh</span>
+              </span>
+            </div>
+          </div>
+        `;
+      });
+      grid.innerHTML = html;
+    }
+
+    // Update Legend Box
+    function updateLegendUI() {
+      const config = EnergyTwin.getLegendConfig();
+      document.getElementById('legendTitle').textContent = config.title;
+      document.getElementById('legendNote').textContent = config.note;
+
+      const itemsWrap = document.getElementById('legendItems');
+      itemsWrap.innerHTML = config.items.map(it => `
+        <div class="legend-item">
+          <div class="legend-color-dot" style="background:${it.color}"></div>
+          <span>${it.label}</span>
+        </div>
+      `).join('');
+    }
+
+    // Update Total Sai Noi Campus Consumption
+    function updateCampusTotalUI() {
+      const buildings = EnergyTwin.getBuildingsList();
+      const total = buildings.reduce((acc, b) => acc + (b.monthly_kwh || 0), 0);
+      document.getElementById('txtCampusTotalKwh').textContent = 
+        `รวมทุกอาคารประจำงวด: ${total.toLocaleString('th-TH', { maximumFractionDigits: 0 })} kWh`;
+    }
+
+    // View Mode Switching
+    function setViewMode(mode) {
+      document.getElementById('btnView3D').className = mode === '3d' ? 'btn-action primary' : 'btn-action';
+      document.getElementById('btnViewSplit').className = mode === 'split' ? 'btn-action primary' : 'btn-action';
+      document.getElementById('btnView2D').className = mode === '2d' ? 'btn-action primary' : 'btn-action';
+
+      const v3d = document.getElementById('viewport3D');
+      const v2d = document.getElementById('view2DContainer');
+      const sidePanel = document.getElementById('sideDetailPanel');
+
+      if (mode === '2d') {
+        v3d.style.display = 'none';
+        v2d.style.display = 'block';
+      } else {
+        v3d.style.display = 'flex';
+        v2d.style.display = 'none';
+        if (mode === '3d') {
+          sidePanel.classList.add('collapsed');
+        } else if (EnergyTwin.state.selectedBuildingId) {
+          sidePanel.classList.remove('collapsed');
+        }
+      }
+
+      if (campusScene && mode !== '2d') {
+        setTimeout(() => {
+          if (campusScene.camera && campusScene.renderer) {
+            const w = document.getElementById('campusCanvasContainer').clientWidth;
+            const h = document.getElementById('campusCanvasContainer').clientHeight;
+            campusScene.camera.aspect = w / h;
+            campusScene.camera.updateProjectionMatrix();
+            campusScene.renderer.setSize(w, h);
+            campusScene.needsRender = true;
+          }
+        }, 150);
+      }
+    }
+
+    // Timeline Slider Input Handler
+    function onTimelineSliderInput(val) {
+      const months = EnergyTwin.summaryData.periods.months || [];
+      const chosenMonth = months[val];
+      if (chosenMonth && chosenMonth !== EnergyTwin.state.month) {
+        EnergyTwin.setState({
+          month: chosenMonth,
+          year: chosenMonth.substring(0, 4)
+        });
+      }
+    }
+
+    // Timeline Playback
+    function togglePlayTimeline() {
+      const btn = document.getElementById('btnPlayTimeline');
+      if (timelineTimer) {
+        clearInterval(timelineTimer);
+        timelineTimer = null;
+        btn.textContent = '▶';
+      } else {
+        btn.textContent = '⏸';
+        const months = EnergyTwin.summaryData.periods.months || [];
+        timelineTimer = setInterval(() => {
+          let curIdx = months.indexOf(EnergyTwin.state.month);
+          curIdx = (curIdx + 1) % months.length;
+          const nextMonth = months[curIdx];
+          EnergyTwin.setState({
+            month: nextMonth,
+            year: nextMonth.substring(0, 4)
+          });
+        }, 1800);
+      }
+    }
+
+    // Dropdown Change Handlers
+    function onYearChange() {
+      const y = document.getElementById('selYear').value;
+      const months = (EnergyTwin.summaryData.periods.months || []).filter(m => m.startsWith(y));
+      const targetMonth = months.length > 0 ? months[months.length - 1] : `${y}-01`;
+      EnergyTwin.setState({ year: y, month: targetMonth });
+    }
+
+    function onMonthChange() {
+      const m = document.getElementById('selMonth').value;
+      EnergyTwin.setState({ month: m, year: m.substring(0, 4) });
+    }
+
+    function onDepartmentChange() {
+      const d = document.getElementById('selDepartment').value;
+      EnergyTwin.setState({ department: d });
+    }
+
+    function onColorModeChange() {
+      const c = document.getElementById('selColorMode').value;
+      EnergyTwin.setState({ colorMode: c });
+    }
+
+    function onQuickSelectBuilding(bCode) {
+      EnergyTwin.setState({ selectedBuildingId: bCode });
+      if (bCode) setViewMode('split');
+    }
+
+    function toggleLabels() {
+      const cur = EnergyTwin.state.showLabels;
+      EnergyTwin.setState({ showLabels: !cur });
+      document.getElementById('btnToggleLabels').textContent = `🏷️ ป้ายชื่อ: ${!cur ? 'เปิด' : 'ปิด'}`;
+      if (campusScene) campusScene.setLabelsVisible(!cur);
+    }
+
+    function closeDetailPanel() {
+      document.getElementById('sideDetailPanel').classList.add('collapsed');
+      EnergyTwin.setState({ selectedBuildingId: null });
+    }
+
+    // Modal Handlers
+    function openComparisonModal() {
+      document.getElementById('comparisonModal').style.display = 'flex';
+      updateComparisonView();
+    }
+    function closeComparisonModal() {
+      document.getElementById('comparisonModal').style.display = 'none';
+    }
+
+    function addBuildingToComparison(bCode) {
+      openComparisonModal();
+      const comp1 = document.getElementById('compSelect1');
+      if (comp1) comp1.value = bCode;
+      updateComparisonView();
+    }
+
+    function updateComparisonView() {
+      const b1Code = document.getElementById('compSelect1').value;
+      const b2Code = document.getElementById('compSelect2').value;
+      const b3Code = document.getElementById('compSelect3').value;
+
+      const buildings = EnergyTwin.getBuildingsList();
+      const selected = [b1Code, b2Code, b3Code]
+        .filter(Boolean)
+        .map(code => buildings.find(b => b.b_code === code))
+        .filter(Boolean);
+
+      if (selected.length === 0) return;
+
+      const ctx = document.getElementById('comparisonChart');
+      if (comparisonChartInstance) comparisonChartInstance.destroy();
+
+      const months = (EnergyTwin.summaryData.periods.months || []).slice(-12);
+      const palette = ['#0B1D51', '#F59E0B', '#10B981', '#EC4899'];
+
+      const datasets = selected.map((b, idx) => {
+        const rawMonthly = (b.raw_summary && b.raw_summary.monthly_kwh) || {};
+        return {
+          label: `${b.b_code} - ${b.short_name}`,
+          data: months.map(m => rawMonthly[m] || 0),
+          borderColor: palette[idx % palette.length],
+          backgroundColor: 'transparent',
+          borderWidth: 2.5,
+          tension: 0.3
+        };
+      });
+
+      comparisonChartInstance = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: months.map(m => m.substring(2)),
+          datasets: datasets
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            tooltip: { callbacks: { label: (c) => ` ${c.dataset.label}: ${c.parsed.y.toLocaleString()} kWh` } }
+          }
+        }
+      });
+
+      // Comparison Table
+      const curMonth = EnergyTwin.state.month;
+      let tblHtml = `
+        <table class="sub-table" style="font-size:12px; margin-top:12px;">
+          <thead>
+            <tr>
+              <th>อาคาร</th>
+              <th>ประเภท</th>
+              <th style="text-align:right;">ใช้ไฟฟ้าเดือน ${curMonth} (kWh)</th>
+              <th style="text-align:right;">สะสมปี ${EnergyTwin.state.year} (kWh)</th>
+              <th style="text-align:right;">การเปลี่ยนแปลง (MoM)</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${selected.map(b => `
+              <tr>
+                <td><strong>${b.b_code}</strong> ${b.name}</td>
+                <td>${b.category_th}</td>
+                <td style="text-align:right; font-weight:700;">${b.monthly_kwh !== null ? b.monthly_kwh.toLocaleString() : '-'}</td>
+                <td style="text-align:right;">${b.annual_total !== null ? b.annual_total.toLocaleString() : '-'}</td>
+                <td style="text-align:right;">${b.mom_change_pct !== null ? b.mom_change_pct.toFixed(1) + '%' : '-'}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      `;
+      document.getElementById('comparisonTableWrap').innerHTML = tblHtml;
+    }
+
+    function openQualityModal() {
+      document.getElementById('qualityModal').style.display = 'flex';
+      const val = EnergyTwin.validationData || {};
+      const stats = val.stats || {};
+
+      document.getElementById('qualityReportSummary').innerHTML = `
+        <div class="stat-badge highlight" style="flex:1;">
+          <div class="stat-label">มิเตอร์ที่เชื่อมโยง</div>
+          <div class="stat-val">${stats.meters || 101}</div>
+        </div>
+        <div class="stat-badge" style="flex:1;">
+          <div class="stat-label">สัปดาห์ที่มีการอ่านค่า</div>
+          <div class="stat-val">${stats.form_files_read || 95}</div>
+        </div>
+        <div class="stat-badge" style="flex:1;">
+          <div class="stat-label">ข้อผิดพลาดร้ายแรง</div>
+          <div class="stat-val" style="color:#15803D;">0</div>
+        </div>
+      `;
+
+      const warnings = val.warnings || [];
+      const listHtml = warnings.slice(0, 50).map(w => `
+        <div style="background:#FFFBEB; border-left:3px solid #F59E0B; padding:8px 12px; margin-bottom:6px; border-radius:0 4px 4px 0;">
+          <div style="font-weight:700; color:#B45309;">${w.warning || 'คำเตือน'} | มิเตอร์: ${w.meter_id || '-'}</div>
+          <div style="color:#78350F;">${w.building_name || w.department || ''}</div>
+        </div>
+      `).join('');
+      document.getElementById('qualityReportList').innerHTML = listHtml || '<div style="color:var(--txt2);">ไม่พบข้อผิดพลาด</div>';
+    }
+    function closeQualityModal() { document.getElementById('qualityModal').style.display = 'none'; }
+
+    function openSettingsModal() { document.getElementById('settingsModal').style.display = 'flex'; }
+    function closeSettingsModal() { document.getElementById('settingsModal').style.display = 'none'; }
+
+    function onGraphicQualityChange(val) {
+      if (campusScene) campusScene.setQuality(val);
+      EnergyTwin.setState({ qualityLevel: val });
+    }
+  </script>
+</body>
+</html>
