@@ -9,7 +9,7 @@
   <title>Sainoi Energy Dashboard & 3D Building Digital Twin | สำนักงานไทรน้อย กฟผ.</title>
 
   <!-- External Libraries -->
-  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
@@ -24,6 +24,9 @@
       --pri-l: #1A3A7A;
       --gold: #C5A85F;
       --amber: #F59E0B;
+      --emerald: #10B981;
+      --rose: #EF4444;
+      --cyan: #0284C7;
       --bg: #F0F4F8;
       --card: #FFFFFF;
       --txt: #0F172A;
@@ -55,6 +58,7 @@
       position: sticky;
       top: 0;
       z-index: 100;
+      flex-wrap: wrap;
     }
     .nav-tabs { display: flex; gap: 4px; overflow-x: auto; }
     .nav-tab {
@@ -138,10 +142,23 @@
       align-items: center;
       gap: 6px;
       transition: all 0.2s;
+      white-space: nowrap;
     }
     .btn-action:hover { background: rgba(255,255,255,0.25); border-color: #fff; }
     .btn-action.primary { background: var(--amber); color: #0B1D51; font-weight: 700; border-color: var(--amber); }
     .btn-action.primary:hover { background: #E58E00; }
+    .btn-action.danger { background: #DC2626; color: #fff; border-color: #DC2626; }
+    .btn-action.success { background: #16A34A; color: #fff; border-color: #16A34A; }
+
+    /* Alert Badge */
+    .badge-count {
+      background: #EF4444;
+      color: #fff;
+      padding: 1px 6px;
+      border-radius: 10px;
+      font-size: 10px;
+      font-weight: 700;
+    }
 
     /* Disclaimer Notice Banner */
     .disclaimer-banner {
@@ -154,6 +171,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 8px;
+      flex-wrap: wrap;
     }
     .disclaimer-banner span { display: inline-flex; align-items: center; gap: 6px; }
 
@@ -179,62 +197,59 @@
       align-items: center;
       justify-content: center;
       font-size: 14px;
-      transition: transform 0.15s, background 0.2s;
+      transition: background 0.2s;
     }
-    .btn-play:hover { background: var(--pri-l); transform: scale(1.05); }
+    .btn-play:hover { background: var(--pri-l); }
     .timeline-slider-wrap {
-      flex: 1;
-      min-width: 200px;
       display: flex;
       align-items: center;
       gap: 12px;
+      flex: 1;
+      min-width: 200px;
     }
     .timeline-slider {
       flex: 1;
-      height: 6px;
-      border-radius: 3px;
-      background: #E2E8F0;
-      outline: none;
+      accent-color: var(--pri);
       cursor: pointer;
-      accent-color: var(--amber);
     }
     .timeline-cur-label {
-      font-family: 'JetBrains Mono', monospace;
       font-size: 13px;
       font-weight: 700;
       color: var(--pri);
-      min-width: 75px;
+      font-family: 'JetBrains Mono', monospace;
+      min-width: 70px;
     }
     .timeline-note {
       font-size: 11px;
       color: var(--txt2);
     }
 
-    /* Main Layout */
+    /* Workspace */
     .main-workspace {
-      flex: 1;
       display: flex;
+      flex: 1;
       position: relative;
       overflow: hidden;
-      min-height: 580px;
+      min-height: calc(100vh - 210px);
     }
 
-    /* 3D Scene Viewport */
+    /* 3D Viewport */
     .viewport-3d {
       flex: 1;
       position: relative;
-      background: #F0F4F8;
-      overflow: hidden;
+      background: #EDF2F7;
       display: flex;
-      flex-direction: column;
+      overflow: hidden;
+      min-height: 520px;
     }
     #campusCanvasContainer {
       width: 100%;
-      flex: 1;
-      position: relative;
+      height: 100%;
+      position: absolute;
+      inset: 0;
     }
 
-    /* Floating Viewport Overlays */
+    /* Floating Viewport Controls */
     .viewport-overlay-tools {
       position: absolute;
       top: 14px;
@@ -244,58 +259,103 @@
       gap: 8px;
       z-index: 10;
     }
-    .btn-overlay {
-      background: rgba(255, 255, 255, 0.95);
-      border: 1px solid var(--bdr);
-      color: var(--pri);
-      padding: 7px 12px;
-      border-radius: 6px;
-      font-size: 12px;
-      font-weight: 600;
-      cursor: pointer;
+    .viewport-overlay-row {
       display: flex;
-      align-items: center;
       gap: 6px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      transition: all 0.2s;
+      flex-wrap: wrap;
     }
-    .btn-overlay:hover { background: #fff; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+    .btn-overlay {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      padding: 6px 11px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--pri);
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      white-space: nowrap;
+    }
+    .btn-overlay:hover { background: #FFFFFF; transform: translateY(-1px); border-color: var(--amber); }
+    .btn-overlay.active { background: var(--pri); color: #fff; border-color: var(--pri); }
+    .btn-overlay.active:hover { background: var(--pri-l); }
 
-    /* Floating Quick Search/Select */
-    .viewport-search-box {
+    /* Visual Mode Pill Bar (Heatmap, 3D Bar, Energy Flow) */
+    .visual-mode-bar {
       position: absolute;
       top: 14px;
       right: 14px;
-      z-index: 10;
       display: flex;
-      gap: 6px;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      padding: 4px;
+      gap: 4px;
+      z-index: 10;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+    }
+    .btn-vmode {
+      background: transparent;
+      border: none;
+      color: #94A3B8;
+      font-size: 11px;
+      font-weight: 600;
+      font-family: 'Sarabun', sans-serif;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .btn-vmode:hover { color: #fff; background: rgba(255,255,255,0.1); }
+    .btn-vmode.active { background: #F59E0B; color: #0B1D51; font-weight: 700; box-shadow: 0 2px 8px rgba(245,158,11,0.3); }
+
+    /* Quick Selector Box */
+    .viewport-search-box {
+      position: absolute;
+      bottom: 14px;
+      left: 14px;
+      z-index: 10;
     }
     .search-input {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(0, 0, 0, 0.15);
       padding: 7px 12px;
       border-radius: 6px;
-      border: 1px solid var(--bdr);
-      background: rgba(255,255,255,0.95);
-      font-size: 12px;
+      font-size: 11px;
       font-family: 'Sarabun', sans-serif;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-      width: 220px;
+      color: var(--txt);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+      cursor: pointer;
+      max-width: 250px;
     }
 
     /* Dynamic Legend Box */
     .legend-box {
       position: absolute;
       bottom: 14px;
-      left: 14px;
-      background: rgba(255, 255, 255, 0.96);
-      border: 1px solid var(--bdr);
+      right: 14px;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(0, 0, 0, 0.12);
       border-radius: 8px;
       padding: 10px 14px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.12);
       z-index: 10;
-      max-width: 280px;
+      max-width: 270px;
     }
-    .legend-title { font-size: 12px; font-weight: 700; color: var(--pri); margin-bottom: 2px; }
-    .legend-note { font-size: 10px; color: var(--txt2); margin-bottom: 8px; line-height: 1.3; }
+    .legend-title { font-size: 11px; font-weight: 700; color: var(--pri); margin-bottom: 2px; }
+    .legend-note { font-size: 10px; color: var(--txt2); margin-bottom: 6px; }
     .legend-items { display: flex; flex-direction: column; gap: 4px; }
     .legend-item { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--txt); }
     .legend-color-dot { width: 14px; height: 14px; border-radius: 3px; flex-shrink: 0; }
@@ -329,7 +389,7 @@
     .panel-close { background: none; border: none; font-size: 20px; cursor: pointer; color: var(--txt2); }
     .panel-body { padding: 18px; display: flex; flex-direction: column; gap: 16px; flex: 1; }
 
-    /* Detail Cards */
+    /* Detail Badges & Cards */
     .stat-badge-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -346,7 +406,7 @@
       border-color: #BFDBFE;
     }
     .stat-label { font-size: 11px; color: var(--txt2); margin-bottom: 4px; }
-    .stat-val { font-size: 18px; font-weight: 800; color: var(--pri); }
+    .stat-val { font-size: 18px; font-weight: 800; color: var(--pri); font-family: 'JetBrains Mono', monospace; }
     .stat-unit { font-size: 11px; font-weight: 500; color: var(--txt2); margin-left: 4px; }
 
     /* Sub-meter table */
@@ -390,12 +450,12 @@
     .building-card-2d.active { border-color: var(--amber); box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.25); }
     .card-color-stripe { height: 6px; border-radius: 3px; width: 100%; margin-bottom: 4px; }
 
-    /* Comparison Modal */
+    /* Modals */
     .modal-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(15, 23, 42, 0.6);
-      backdrop-filter: blur(2px);
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(3px);
       display: none;
       align-items: center;
       justify-content: center;
@@ -406,32 +466,122 @@
       background: #fff;
       border-radius: 12px;
       width: 100%;
-      max-width: 900px;
-      max-height: 85vh;
+      max-width: 960px;
+      max-height: 88vh;
       display: flex;
       flex-direction: column;
       box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      overflow: hidden;
     }
     .modal-hdr {
-      padding: 16px 20px;
+      padding: 16px 22px;
       border-bottom: 1px solid var(--bdr);
       display: flex;
       justify-content: space-between;
       align-items: center;
+      background: #F8FAFC;
     }
-    .modal-body { padding: 20px; overflow-y: auto; flex: 1; }
-    .modal-ftr { padding: 14px 20px; border-top: 1px solid var(--bdr); display: flex; justify-content: flex-end; gap: 8px; }
+    .modal-hdr h3 { font-size: 16px; font-weight: 700; color: var(--pri); display: flex; align-items: center; gap: 8px; }
+    .modal-close { background: none; border: none; font-size: 22px; cursor: pointer; color: var(--txt2); line-height: 1; }
+    .modal-body { padding: 20px 22px; overflow-y: auto; flex: 1; display: flex; flex-direction: column; gap: 16px; }
+    .modal-ftr { padding: 14px 22px; border-top: 1px solid var(--bdr); display: flex; justify-content: flex-end; gap: 8px; background: #F8FAFC; }
+
+    /* Allocation Modal Styles */
+    .alloc-summary-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .alloc-summary-bar.valid { background: #DCFCE7; color: #166534; border: 1px solid #86EFAC; }
+    .alloc-summary-bar.invalid { background: #FEE2E2; color: #991B1B; border: 1px solid #FCA5A5; }
+    .alloc-table-wrap {
+      max-height: 380px;
+      overflow-y: auto;
+      border: 1px solid var(--bdr);
+      border-radius: 8px;
+    }
+    .alloc-input {
+      width: 70px;
+      padding: 4px 6px;
+      border: 1px solid var(--bdr);
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      text-align: right;
+    }
+
+    /* Event Timeline Cards */
+    .event-card {
+      background: #F8FAFC;
+      border-left: 4px solid #38BDF8;
+      border-radius: 0 8px 8px 0;
+      padding: 10px 14px;
+      margin-bottom: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .event-hdr { display: flex; justify-content: space-between; align-items: baseline; }
+    .event-title { font-weight: 700; color: var(--pri); font-size: 13px; }
+    .event-date { font-size: 11px; color: var(--txt2); font-family: 'JetBrains Mono', monospace; }
+    .event-desc { font-size: 12px; color: var(--txt); }
+
+    /* Alert Center Cards */
+    .alert-card {
+      border-radius: 8px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border: 1px solid transparent;
+      margin-bottom: 8px;
+    }
+    .alert-card.critical { background: #FEF2F2; border-color: #FECACA; }
+    .alert-card.warning { background: #FFFBEB; border-color: #FDE68A; }
+    .alert-card.info { background: #F0F9FF; border-color: #BAE6FD; }
+    .alert-icon { font-size: 22px; flex-shrink: 0; }
+    .alert-info { flex: 1; }
+    .alert-title { font-weight: 700; font-size: 13px; margin-bottom: 2px; }
+    .alert-card.critical .alert-title { color: #991B1B; }
+    .alert-card.warning .alert-title { color: #92400E; }
+    .alert-card.info .alert-title { color: #075985; }
+    .alert-msg { font-size: 12px; color: var(--txt2); }
+
+    /* Tutorial Steps */
+    .tut-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+    .tut-card {
+      background: #F8FAFC;
+      border: 1px solid var(--bdr);
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .tut-icon { font-size: 28px; }
+    .tut-title { font-weight: 700; color: var(--pri); font-size: 14px; }
+    .tut-desc { font-size: 12px; color: var(--txt2); line-height: 1.6; }
 
     /* Responsive */
     @media (max-width: 1024px) {
       .main-workspace { flex-direction: column; }
-      .side-panel { width: 100%; max-height: 400px; border-left: none; border-top: 1px solid var(--bdr); }
+      .side-panel { width: 100%; max-height: 420px; border-left: none; border-top: 1px solid var(--bdr); }
       .side-panel.collapsed { transform: translateY(100%); }
     }
     @media (max-width: 640px) {
       .hdr { padding: 10px 14px; }
       .filter-bar { padding: 8px 14px; }
       .viewport-overlay-tools { top: 8px; left: 8px; }
+      .visual-mode-bar { top: 8px; right: 8px; }
       .search-input { width: 150px; }
     }
   </style>
@@ -442,15 +592,36 @@
   <div class="topbar">
     <nav class="nav-tabs">
       <a href="index.html" class="nav-tab">⚡ ไฟฟ้า (แดชบอร์ด)</a>
-      <a href="twin.html" class="nav-tab active">🏢 3D Digital Twin (WIP)</a>
+      <a href="twin.html" class="nav-tab active">🏢 3D Digital Twin</a>
       <a href="fuel.html" class="nav-tab">🛢️ น้ำมัน</a>
       <a href="water.html" class="nav-tab">💧 น้ำประปา</a>
       <a href="garbage.html" class="nav-tab">♻️ ขยะ</a>
       <a href="docs/meter_form.html" class="nav-tab" target="_blank">📝 จดมิเตอร์</a>
     </nav>
     <div style="flex:1"></div>
-    <button class="btn-action" onclick="openComparisonModal()">📊 เปรียบเทียบอาคาร</button>
-    <button class="btn-action" onclick="openQualityModal()">🔍 คุณภาพข้อมูล</button>
+    <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap; padding:6px 0;">
+      <button class="btn-action" onclick="openAlertsModal()" id="btnTopAlerts" title="ศูนย์แจ้งเตือนความผิดปกติและอาคารเกินเป้า">
+        🚨 แจ้งเตือน <span class="badge-count" id="badgeAlertCount">0</span>
+      </button>
+      <button class="btn-action" onclick="openAllocationModal()" title="ปรับปรุงสัดส่วนการจัดสรรพลังงานฝ่ายและอาคาร">
+        ⚖️ จัดการสัดส่วน
+      </button>
+      <button class="btn-action" onclick="openMeaEventsModal()" title="เปรียบเทียบบิล กฟน. และวิเคราะห์เหตุการณ์พิเศษ">
+        📉 บิล กฟน. & เหตุการณ์
+      </button>
+      <button class="btn-action primary" onclick="openMonthlyReportModal()" title="สร้างรายงานสรุปประจำเดือนพร้อมภาพถ่าย 3D">
+        📑 รายงานประจำเดือน
+      </button>
+      <button class="btn-action" onclick="openComparisonModal()" title="เปรียบเทียบแนวโน้มพลังงานระหว่างอาคาร">
+        📊 เปรียบเทียบ
+      </button>
+      <button class="btn-action" onclick="openQualityModal()" title="รายงานความสมบูรณ์ของข้อมูล">
+        🔍 คุณภาพข้อมูล
+      </button>
+      <button class="btn-action" onclick="openTutorialModal()" title="คู่มือแนะนำการใช้งาน">
+        ❓ คู่มือ
+      </button>
+    </div>
   </div>
 
   <!-- Main System Header -->
@@ -466,8 +637,8 @@
     </div>
     <div style="display:flex; gap:8px;">
       <button class="btn-action" onclick="EnergyTwin.exportToCsv()">📥 ส่งออก CSV</button>
-      <button class="btn-action" onclick="window.print()">🖨️ พิมพ์รายงาน</button>
-      <button class="btn-action" onclick="openSettingsModal()">⚙️ ตั้งค่า</button>
+      <button class="btn-action" onclick="openGitHubTokenModal()">🔐 ตั้งค่า GitHub PAT</button>
+      <button class="btn-action" onclick="openSettingsModal()">⚙️ ตั้งค่ากราฟิก</button>
     </div>
   </div>
 
@@ -499,9 +670,9 @@
 
       <span class="fl-label">🎨 โหมดแสดงสี:</span>
       <select id="selColorMode" class="fl-select" onchange="onColorModeChange()">
+        <option value="target_status">ผลเทียบเป้าหมายการประหยัด (Target Comparison)</option>
         <option value="total_kwh">การใช้ไฟฟ้ารวม (Total kWh)</option>
         <option value="mom_change">การเปลี่ยนแปลงเทียบเดือนก่อน (% MoM)</option>
-        <option value="target_status">ผลเทียบเป้าหมายการประหยัด</option>
         <option value="data_quality">สถานะคุณภาพข้อมูล (Data Quality)</option>
         <option value="energy_intensity">ความเข้มการใช้พลังงาน (kWh/m²)</option>
       </select>
@@ -512,14 +683,14 @@
       <span class="fl-label">มุมมอง:</span>
       <button id="btnView3D" class="btn-action primary" onclick="setViewMode('3d')">🌐 3D</button>
       <button id="btnViewSplit" class="btn-action" onclick="setViewMode('split')">📑 จอแยก</button>
-      <button id="btnView2D" class="btn-action" onclick="setViewMode('2d')">🗺️ 2D</button>
+      <button id="btnView2D" class="btn-action" onclick="setViewMode('2d')">🗺️ 2D ผังตาราง</button>
     </div>
   </div>
 
   <!-- Disclaimer Notice Banner -->
   <div class="disclaimer-banner">
     <span>
-      ℹ️ <strong>ข้อกำหนดความโปร่งใสของข้อมูล:</strong> โมเดลและผังอาคารเป็นภาพแทนเชิงสัญลักษณ์ระยะนำร่อง (Pilot) ไม่ใช่แบบสำรวจรังวัดจริง | ข้อมูลอัปเดตเป็นรายสัปดาห์ (ไม่ใช่ Real-time IoT) | ยอดรวมของแต่ละอาคารคำนวณจากมิเตอร์ประธานเพื่อป้องกันการนับซ้ำ
+      ℹ️ <strong>ข้อกำหนดความโปร่งใสของข้อมูล:</strong> แบบจำลองอาคาร 3D และผังวิทยาเขตอิงตาม Master Plan และ As-Built ผังสิ่งปลูกสร้างไทรน้อย | ข้อมูลไฟฟ้ารายเดือนคำนวณจากมิเตอร์ประธานและสัดส่วนจัดสรร | เชื่อมโยงบิล กฟน. เพื่อตรวจสอบ Unaccounted Energy
     </span>
     <span style="font-family:'JetBrains Mono'; font-weight:700;" id="txtCampusTotalKwh">ยอดรวม: คำนวณ...</span>
   </div>
@@ -532,7 +703,7 @@
       <span class="timeline-cur-label" id="timelineMonthLabel">2026-10</span>
     </div>
     <div class="timeline-note">
-      ⏱️ เลื่อนเพื่อดูความเปลี่ยนแปลงของพลังงานย้อนหลัง (การเล่นข้อมูลเป็นการเปลี่ยนภาพตามรอบรายเดือน)
+      ⏱️ เลื่อนเพื่อดูความเปลี่ยนแปลงของพลังงานย้อนหลัง (เปลี่ยนภาพตามรอบรายเดือน)
     </div>
   </div>
 
@@ -545,22 +716,51 @@
 
       <!-- Floating Controls on 3D Canvas -->
       <div class="viewport-overlay-tools">
-        <button class="btn-overlay" onclick="campusScene.resetView()" title="คืนสู่มุมมองภาพรวม">
-          🔄 คืนมุมมอง
+        <div class="viewport-overlay-row">
+          <button class="btn-overlay" onclick="campusScene.resetView()" title="คืนสู่มุมมองภาพรวม">
+            🔄 คืนมุมมอง
+          </button>
+          <button class="btn-overlay" onclick="campusScene.setTopDownView()" title="มุมมองผังบน (Master Plan)">
+            🗺️ ผังบน (2D)
+          </button>
+          <button class="btn-overlay" id="btnToggleLabels" onclick="toggleLabels()">
+            🏷️ ป้ายชื่อ: เปิด
+          </button>
+          <button class="btn-overlay" id="btnToggleTheme" onclick="toggleTheme()" title="สลับกลางวัน / กลางคืน">
+            🌙 กลางคืน
+          </button>
+        </div>
+        <div class="viewport-overlay-row">
+          <button class="btn-overlay" id="btnToggleKiosk" onclick="toggleKiosk()" title="โหมดหมุนกล้องอัตโนมัติรอบวิทยาเขต สำหรับหน้าจอ TV Dashboard">
+            📺 Kiosk (Auto-Orbit)
+          </button>
+          <button class="btn-overlay" onclick="captureSnapshot()" title="บันทึกภาพถ่าย 3D ลงเครื่อง">
+            📸 ถ่ายภาพ 3D
+          </button>
+          <button class="btn-overlay" onclick="toggleFullscreen()" title="แสดงผลเต็มหน้าจอ">
+            ⛶ เต็มจอ
+          </button>
+          <select class="btn-overlay" style="cursor:pointer; appearance:auto;" onchange="if(this.value){campusScene.focusZone(this.value); this.value='';}">
+            <option value="">🎯 ซูมเข้าโซน...</option>
+            <option value="office">🏢 โซน 1: สำนักงานและห้องแล็บ (ชธธ./เคมี)</option>
+            <option value="workshop">🔧 โซน 2: ศูนย์โรงซ่อมและคลังพัสดุ</option>
+            <option value="switchyard">⚡ โซน 3: สวิตช์ยาร์ด 500kV และที่พัก</option>
+            <option value="transport">🚛 โซน 4: ศูนย์ขนส่ง อหข.</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- 3D Visual Mode Selector (Heatmap, 3D Bar, Energy Flow) -->
+      <div class="visual-mode-bar">
+        <button id="btnVModeHeatmap" class="btn-vmode active" onclick="setVisualMode('heatmap')">
+          🌡️ Heatmap
         </button>
-        <button class="btn-overlay" onclick="campusScene.setTopDownView()" title="มุมมองผังบน (Master Plan)">
-          🗺️ ผังบน (2D Map)
+        <button id="btnVModeBars" class="btn-vmode" onclick="setVisualMode('bars')">
+          📊 3D Bars
         </button>
-        <button class="btn-overlay" id="btnToggleLabels" onclick="toggleLabels()">
-          🏷️ ป้ายชื่อ: เปิด
+        <button id="btnVModeFlow" class="btn-vmode" onclick="setVisualMode('flow')">
+          ⚡ Energy Flow
         </button>
-        <select class="btn-overlay" style="cursor:pointer; appearance:auto;" onchange="if(this.value){campusScene.focusZone(this.value); this.value='';}">
-          <option value="">🎯 ซูมเข้าโซน...</option>
-          <option value="office">🏢 โซน 1: สำนักงานและห้องแล็บ (ชธธ./เคมี)</option>
-          <option value="workshop">🔧 โซน 2: ศูนย์โรงซ่อมและคลังพัสดุ</option>
-          <option value="switchyard">⚡ โซน 3: สวิตช์ยาร์ด 500kV และที่พัก</option>
-          <option value="transport">🚛 โซน 4: ศูนย์ขนส่ง อหข.</option>
-        </select>
       </div>
 
       <!-- Quick Building Selector Dropdown / Search -->
@@ -572,8 +772,8 @@
 
       <!-- Dynamic Legend Box -->
       <div class="legend-box" id="legendBox">
-        <div class="legend-title" id="legendTitle">การใช้ไฟฟ้ารวม (kWh)</div>
-        <div class="legend-note" id="legendNote">คำนวณจากมิเตอร์ประธาน ป้องกันการนับซ้ำ</div>
+        <div class="legend-title" id="legendTitle">ผลเทียบเป้าหมายการประหยัด</div>
+        <div class="legend-note" id="legendNote">เทียบพลังงานที่ใช้จริงกับเป้าหมาย</div>
         <div class="legend-items" id="legendItems">
           <!-- Filled by JS -->
         </div>
@@ -598,202 +798,470 @@
           <h3 id="panelBuildingName">เลือกอาคารในแบบจำลอง</h3>
           <span style="font-size:11px; color:var(--txt2);" id="panelBuildingCode">คลิกอาคาร 3D หรือเลือกจากรายการ</span>
         </div>
-        <button class="panel-close" onclick="closeDetailPanel()">&times;</button>
+        <button class="panel-close" onclick="closeDetailPanel()" title="ปิดแถบรายละเอียด">&times;</button>
       </div>
-
       <div class="panel-body" id="panelBody">
-        <!-- Initial Blank State -->
-        <div style="text-align:center; padding:40px 10px; color:var(--txt2);">
-          <div style="font-size:38px; margin-bottom:12px;">👆</div>
-          <p style="font-weight:600; font-size:13px;">คลิกอาคารในฉาก 3 มิติ</p>
-          <p style="font-size:11px; margin-top:4px;">เพื่อดูสถิติการใช้ไฟฟ้า มิเตอร์หลัก มิเตอร์ย่อย และกราฟแนวโน้ม</p>
+        <div style="text-align:center; padding:40px 20px; color:var(--txt2); font-size:13px;">
+          คลิกเลือกอาคารในโมเดล 3D เพื่อดูรายละเอียดการใช้พลังงาน มิเตอร์ย่อย สัดส่วนฝ่าย และแนวโน้มย้อนหลัง
         </div>
       </div>
     </div>
 
   </div>
 
-  <!-- Building Comparison Modal -->
+  <!-- ═════════════════════════════════════════════════════════════════
+       MODALS: Allocation, MEA & Events, Monthly Report, Alerts, Tutorial
+       ═════════════════════════════════════════════════════════════════ -->
+
+  <!-- 1. Allocation Manager Modal -->
+  <div class="modal-overlay" id="allocationModal">
+    <div class="modal-box" style="max-width:960px;">
+      <div class="modal-hdr">
+        <h3>⚖️ จัดการสัดส่วนการจัดสรรพลังงาน (Department Allocation Manager)</h3>
+        <button class="modal-close" onclick="closeAllocationModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="background:#EFF6FF; border:1px solid #BFDBFE; border-radius:8px; padding:12px; font-size:12px; color:#1E3A8A; line-height:1.6;">
+          💡 <strong>หลักการจัดสรร:</strong> จัดสรรหน่วยไฟฟ้าจากมิเตอร์ประธานเข้าสู่ฝ่าย/หน่วยงานตามการใช้งานจริง การปรับสัดส่วนจะมีผลต่อรายงานและการแสดงผลใน 3D ทันที โดยผลรวมสัดส่วนของแต่ละมิเตอร์ต้องเท่ากับ 100%
+        </div>
+
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;">
+          <input type="text" id="allocFilterInput" placeholder="🔍 ค้นหารหัสอาคาร, มิเตอร์, ฝ่าย..." 
+                 oninput="filterAllocationRows(this.value)" 
+                 style="padding:6px 12px; border:1px solid var(--bdr); border-radius:6px; font-family:'Sarabun'; font-size:12px; flex:1; max-width:320px;">
+          <div id="allocValidationSummary" class="alloc-summary-bar valid">
+            กำลังตรวจสอบสัดส่วน...
+          </div>
+        </div>
+
+        <div class="alloc-table-wrap">
+          <table class="sub-table" style="font-size:12px;">
+            <thead>
+              <tr>
+                <th>รหัสอาคาร</th>
+                <th>มิเตอร์ประธาน</th>
+                <th>ชื่ออาคาร</th>
+                <th>ฝ่าย/หน่วยงาน</th>
+                <th style="text-align:right;">สัดส่วนปัจจุบัน (%)</th>
+                <th style="text-align:right;">ปรับสัดส่วน (%)</th>
+              </tr>
+            </thead>
+            <tbody id="allocTableBody">
+              <!-- Filled by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-ftr">
+        <button class="btn-action" style="color:var(--txt2);" onclick="resetAllocations()">🔄 คืนค่าเริ่มต้น</button>
+        <button class="btn-action" style="color:var(--pri);" onclick="viewCommitHistory()">📜 ประวัติการแก้ไข (Git)</button>
+        <button class="btn-action primary" onclick="applyAllocations()">💾 นำไปใช้ทันที (Apply)</button>
+        <button class="btn-action success" onclick="commitAllocations()">☁️ บันทึกถาวรขึ้น GitHub</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. MEA Bill & Event Logs Analysis Modal -->
+  <div class="modal-overlay" id="meaEventsModal">
+    <div class="modal-box" style="max-width:980px;">
+      <div class="modal-hdr">
+        <h3>📉 เปรียบเทียบบิล กฟน. และวิเคราะห์เหตุการณ์พิเศษ (MEA & Event Analysis)</h3>
+        <button class="modal-close" onclick="closeMeaEventsModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <!-- Tab selector inside modal -->
+        <div style="display:flex; gap:8px; border-bottom:1px solid var(--bdr); padding-bottom:8px;">
+          <button id="btnTabMea" class="btn-action primary" onclick="switchMeaModalTab('mea')">⚡ บิล กฟน. vs มิเตอร์ภายใน</button>
+          <button id="btnTabEvents" class="btn-action" style="color:var(--pri);" onclick="switchMeaModalTab('events')">📌 ไทม์ไลน์เหตุการณ์พิเศษ</button>
+        </div>
+
+        <!-- Tab 1: MEA Comparison -->
+        <div id="tabMeaContent" style="display:flex; flex-direction:column; gap:14px;">
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:10px;" id="meaKpiGrid">
+            <!-- Filled by JS -->
+          </div>
+
+          <div style="height:220px; background:#F8FAFC; border:1px solid var(--bdr); border-radius:8px; padding:8px;">
+            <canvas id="meaComparisonChart"></canvas>
+          </div>
+
+          <div>
+            <div style="font-size:12px; font-weight:700; color:var(--pri); margin-bottom:6px;">
+              📋 ตารางเปรียบเทียบรายเดือนและคำนวณส่วนต่าง Unaccounted Energy (kWh)
+            </div>
+            <div style="max-height:200px; overflow-y:auto; border:1px solid var(--bdr); border-radius:6px;">
+              <table class="sub-table" style="font-size:11px;">
+                <thead>
+                  <tr>
+                    <th>เดือน</th>
+                    <th style="text-align:right;">บิล กฟน. (kWh)</th>
+                    <th style="text-align:right;">รวมมิเตอร์ภายใน (kWh)</th>
+                    <th style="text-align:right;">ส่วนต่าง (Losses/หม้อแปลง)</th>
+                    <th style="text-align:right;">% ส่วนต่าง</th>
+                    <th style="text-align:right;">ค่าไฟฟ้า กฟน. (บาท)</th>
+                  </tr>
+                </thead>
+                <tbody id="meaTableBody">
+                  <!-- Filled by JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 2: Event Timeline -->
+        <div id="tabEventsContent" style="display:none; flex-direction:column; gap:10px;">
+          <div style="font-size:12px; color:var(--txt2); margin-bottom:4px;">
+            เหตุการณ์พิเศษที่อาจส่งผลกระทบต่อรูปแบบการใช้พลังงานไฟฟ้าของสำนักงานไทรน้อย
+          </div>
+          <div id="eventsListContainer" style="max-height:420px; overflow-y:auto;">
+            <!-- Filled by JS -->
+          </div>
+        </div>
+      </div>
+      <div class="modal-ftr">
+        <button class="btn-action" style="color:var(--pri);" onclick="closeMeaEventsModal()">ปิดหน้าต่าง</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Monthly Executive Report Modal -->
+  <div class="modal-overlay" id="monthlyReportModal">
+    <div class="modal-box" style="max-width:920px;">
+      <div class="modal-hdr">
+        <h3>📑 รายงานสรุปการใช้พลังงานไฟฟ้าประจำเดือน (Executive Energy Report)</h3>
+        <button class="modal-close" onclick="closeMonthlyReportModal()">&times;</button>
+      </div>
+      <div class="modal-body" id="monthlyReportPrintArea">
+        <div style="text-align:center; border-bottom:2px solid var(--pri); padding-bottom:12px;">
+          <h2 style="font-size:18px; color:var(--pri); font-weight:800;">รายงานสรุปสถานการณ์พลังงานไฟฟ้า สำนักงานไทรน้อย กฟผ.</h2>
+          <p style="font-size:12px; color:var(--txt2);" id="repPeriodHeader">ประจำงวดเดือน 2026-10</p>
+        </div>
+
+        <!-- 3D Snapshot Container -->
+        <div style="background:#0F172A; border-radius:8px; overflow:hidden; text-align:center; border:1px solid #1E293B; position:relative;">
+          <img id="repSnapshotImg" src="" alt="3D Campus Snapshot" style="width:100%; max-height:280px; object-fit:cover; display:block;">
+          <div style="position:absolute; bottom:8px; right:12px; background:rgba(0,0,0,0.65); color:#fff; font-size:10px; padding:3px 8px; border-radius:4px;">
+            ภาพจำลอง 3D Digital Twin ณ วันที่จัดทำรายงาน
+          </div>
+        </div>
+
+        <!-- KPI Grid -->
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:10px;" id="repKpiGrid">
+          <!-- Filled by JS -->
+        </div>
+
+        <!-- Top 5 Buildings & Department Breakdown -->
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+          <div>
+            <div style="font-size:13px; font-weight:700; color:var(--pri); margin-bottom:6px;">🏢 5 อาคารที่ใช้ไฟฟ้าสูงสุด</div>
+            <div id="repTopBuildingsTable" style="border:1px solid var(--bdr); border-radius:6px; overflow:hidden;"></div>
+          </div>
+          <div>
+            <div style="font-size:13px; font-weight:700; color:var(--pri); margin-bottom:6px;">📊 สัดส่วนการใช้ไฟฟ้าตามฝ่าย</div>
+            <div id="repDeptBreakdownTable" style="border:1px solid var(--bdr); border-radius:6px; overflow:hidden;"></div>
+          </div>
+        </div>
+
+        <!-- Executive Recommendations -->
+        <div style="background:#F0FDF4; border:1px solid #BBF7D0; border-radius:8px; padding:12px;">
+          <div style="font-size:13px; font-weight:700; color:#166534; margin-bottom:6px;">💡 ข้อเสนอแนะและมาตรการอนุรักษ์พลังงานเชิงบริหาร</div>
+          <ul style="font-size:12px; color:#14532D; line-height:1.7; padding-left:20px;" id="repRecommendationsList">
+            <li>ติดตามอาคารที่มีอัตราการใช้ไฟพุ่งขึ้นเกิน 15% MoM ตรวจสอบตารางการเปิด-ปิดระบบปรับอากาศ</li>
+            <li>ควบคุมการทำงานของเครื่องจักรอุปกรณ์ในศูนย์โรงซ่อมในช่วง Peak Demand เพื่อลดค่าความต้องการพลังไฟฟ้า</li>
+            <li>สนับสนุนการตั้งอุณหภูมิเครื่องปรับอากาศที่ 25-26 องศาเซลเซียส พร้อมทำความสะอาดแผ่นกรองอากาศประจำเดือน</li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-ftr">
+        <button class="btn-action" style="color:var(--txt2);" onclick="closeMonthlyReportModal()">ปิด</button>
+        <button class="btn-action" style="color:var(--pri);" onclick="EnergyTwin.exportToCsv()">📥 ส่งออก CSV</button>
+        <button class="btn-action primary" onclick="printMonthlyReport()">🖨️ พิมพ์รายงาน / บันทึก PDF</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Alert Center Modal -->
+  <div class="modal-overlay" id="alertsModal">
+    <div class="modal-box" style="max-width:750px;">
+      <div class="modal-hdr">
+        <h3>🚨 ศูนย์แจ้งเตือนและติดตามความผิดปกติ (Energy Alert Center)</h3>
+        <button class="modal-close" onclick="closeAlertsModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+          <span style="font-size:12px; color:var(--txt2);">
+            รายการแจ้งเตือนคำนวณจากเป้าหมายการประหยัด, อัตรา MoM พุ่งสูง, และคุณภาพการอ่านมิเตอร์
+          </span>
+          <span id="alertsSummaryCount" style="font-size:12px; font-weight:700; color:var(--pri);">0 รายการ</span>
+        </div>
+        <div id="alertsListContainer" style="max-height:450px; overflow-y:auto;">
+          <!-- Filled by JS -->
+        </div>
+      </div>
+      <div class="modal-ftr">
+        <button class="btn-action primary" onclick="closeAlertsModal()">ปิดหน้าต่าง</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. Guided Tutorial Modal -->
+  <div class="modal-overlay" id="tutorialModal">
+    <div class="modal-box" style="max-width:850px;">
+      <div class="modal-hdr">
+        <h3>❓ คู่มือการใช้งาน Sainoi Energy Digital Twin</h3>
+        <button class="modal-close" onclick="closeTutorialModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="tut-grid">
+          <div class="tut-card">
+            <div class="tut-icon">🖱️</div>
+            <div class="tut-title">1. การควบคุมมุมมอง 3D</div>
+            <div class="tut-desc">
+              • <strong>คลิกซ้ายแล้วลาก:</strong> หมุนมุมมองรอบวิทยาเขต<br>
+              • <strong>คลิกขวาแล้วลาก:</strong> เลื่อนตำแหน่งกล้อง (Pan)<br>
+              • <strong>หมุนลูกกลิ้งเมาส์:</strong> ซูมเข้า / ซูมออก<br>
+              • <strong>คลิกที่ตัวอาคาร:</strong> เพื่อเปิดดูสถิติพลังงานทันที
+            </div>
+          </div>
+          <div class="tut-card">
+            <div class="tut-icon">🎨</div>
+            <div class="tut-title">2. โหมดการแสดงผล 3 แบบ</div>
+            <div class="tut-desc">
+              • <strong>Heatmap:</strong> สีอาคารเปลี่ยนตามเป้าหมาย (เขียว=ผ่าน, แดง=เกินเป้า)<br>
+              • <strong>3D Bars:</strong> แท่งพลังงาน 3 มิติสูงตามหน่วยไฟฟ้า kWh จริง<br>
+              • <strong>Energy Flow:</strong> เส้นพลังงานเรืองแสงไหลจากสวิตช์ยาร์ด 500kV
+            </div>
+          </div>
+          <div class="tut-card">
+            <div class="tut-icon">⚖️</div>
+            <div class="tut-title">3. การจัดสรรสัดส่วน (Allocation)</div>
+            <div class="tut-desc">
+              • กดปุ่ม <strong>"จัดการสัดส่วน"</strong> เพื่อปรับ % ฝ่ายที่รับผิดชอบ<br>
+              • กด <strong>"นำไปใช้ทันที"</strong> เพื่อจำลองผลบน 3D และกราฟทันที<br>
+              • กด <strong>"บันทึกถาวร"</strong> เพื่อ Commit ขึ้น GitHub ผ่าน REST API
+            </div>
+          </div>
+          <div class="tut-card">
+            <div class="tut-icon">📺</div>
+            <div class="tut-title">4. โหมด TV Dashboard (Kiosk)</div>
+            <div class="tut-desc">
+              • กดปุ่ม <strong>"Kiosk"</strong> บนจอ 3D เพื่อเปิดการหมุนกล้องอัตโนมัติ<br>
+              • ระบบจะวนไฮไลต์อาคารที่ใช้ไฟฟ้าสูงสุด 5 อันดับแรกทุก 12 วินาที<br>
+              • เหมาะสำหรับเปิดแสดงผลบนจอ TV ทัชสกรีนหรือศูนย์ควบคุม
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-ftr">
+        <button class="btn-action primary" onclick="closeTutorialModal()">เข้าใจแล้ว เริ่มใช้งาน</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. GitHub Token Setup Modal -->
+  <div class="modal-overlay" id="githubTokenModal">
+    <div class="modal-box" style="max-width:550px;">
+      <div class="modal-hdr">
+        <h3>🔐 ตั้งค่า GitHub Personal Access Token (PAT)</h3>
+        <button class="modal-close" onclick="closeGitHubTokenModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="font-size:12px; color:var(--txt2); line-height:1.6;">
+          สำหรับผู้ดูแลระบบที่ต้องการบันทึกสัดส่วนการจัดสรรพลังงานถาวรกลับสู่ GitHub Repository 
+          <code>maleeart/Energy-Dashboard</code> เพื่อสั่งรัน GitHub Actions Workflow อัตโนมัติ
+        </div>
+        <div style="background:#FFFBEB; border:1px solid #FDE68A; border-radius:6px; padding:10px; font-size:11px; color:#92400E;">
+          🛡️ <strong>ความปลอดภัย:</strong> Token จะถูกจัดเก็บไว้เฉพาะใน <code>localStorage</code> บนเบราว์เซอร์ของท่านเท่านั้น และส่งตรงไปยัง GitHub REST API ไม่มีการส่งผ่านเซิร์ฟเวอร์บุคคลที่สาม
+        </div>
+        <div>
+          <label style="font-size:12px; font-weight:700; color:var(--pri); display:block; margin-bottom:4px;">
+            GitHub Personal Access Token (scope: repo หรือ contents:write):
+          </label>
+          <input type="password" id="inputGitHubPat" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" 
+                 style="width:100%; padding:8px 12px; border:1px solid var(--bdr); border-radius:6px; font-family:'JetBrains Mono'; font-size:12px;">
+        </div>
+      </div>
+      <div class="modal-ftr">
+        <button class="btn-action" style="color:var(--txt2);" onclick="closeGitHubTokenModal()">ยกเลิก</button>
+        <button class="btn-action primary" onclick="saveGitHubToken()">💾 บันทึก Token</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. Building Comparison Modal -->
   <div class="modal-overlay" id="comparisonModal">
     <div class="modal-box">
       <div class="modal-hdr">
-        <h3 style="color:var(--pri); font-size:16px;">📊 เปรียบเทียบการใช้พลังงานระหว่างอาคาร</h3>
-        <button class="panel-close" onclick="closeComparisonModal()">&times;</button>
+        <h3>📊 เปรียบเทียบการใช้พลังงานระหว่างอาคาร (Multi-Building Comparison)</h3>
+        <button class="modal-close" onclick="closeComparisonModal()">&times;</button>
       </div>
       <div class="modal-body">
-        <div style="margin-bottom:14px; font-size:12px; color:var(--txt2);">
-          เลือกอาคารที่ต้องการเปรียบเทียบ (สูงสุด 4 อาคาร):
+        <div style="display:flex; gap:12px; flex-wrap:wrap; margin-bottom:12px;">
+          <div style="flex:1; min-width:200px;">
+            <label style="font-size:11px; font-weight:700; color:var(--pri);">อาคารที่ 1:</label>
+            <select id="compSelect1" class="fl-select" style="width:100%; color:var(--txt); border-color:var(--bdr); background:#fff;" onchange="updateComparisonView()"></select>
+          </div>
+          <div style="flex:1; min-width:200px;">
+            <label style="font-size:11px; font-weight:700; color:var(--pri);">อาคารที่ 2:</label>
+            <select id="compSelect2" class="fl-select" style="width:100%; color:var(--txt); border-color:var(--bdr); background:#fff;" onchange="updateComparisonView()"></select>
+          </div>
+          <div style="flex:1; min-width:200px;">
+            <label style="font-size:11px; font-weight:700; color:var(--pri);">อาคารที่ 3:</label>
+            <select id="compSelect3" class="fl-select" style="width:100%; color:var(--txt); border-color:var(--bdr); background:#fff;" onchange="updateComparisonView()"></select>
+          </div>
         </div>
-        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:16px;">
-          <select id="compSelect1" class="fl-select" style="color:#0F172A; background:#F8FAFC;" onchange="updateComparisonView()"></select>
-          <select id="compSelect2" class="fl-select" style="color:#0F172A; background:#F8FAFC;" onchange="updateComparisonView()"></select>
-          <select id="compSelect3" class="fl-select" style="color:#0F172A; background:#F8FAFC;" onchange="updateComparisonView()"></select>
-        </div>
-        <div style="height:260px; margin-bottom:16px;">
+
+        <div style="height:250px; background:#F8FAFC; border:1px solid var(--bdr); border-radius:8px; padding:10px;">
           <canvas id="comparisonChart"></canvas>
         </div>
+
         <div id="comparisonTableWrap"></div>
       </div>
       <div class="modal-ftr">
-        <button class="btn-action" style="color:#333; border-color:#ccc;" onclick="closeComparisonModal()">ปิด</button>
+        <button class="btn-action primary" onclick="closeComparisonModal()">ปิดหน้าต่าง</button>
       </div>
     </div>
   </div>
 
-  <!-- Data Quality & Validation Modal -->
+  <!-- 8. Data Quality Report Modal -->
   <div class="modal-overlay" id="qualityModal">
-    <div class="modal-box">
+    <div class="modal-box" style="max-width:700px;">
       <div class="modal-hdr">
-        <h3 style="color:var(--pri); font-size:16px;">🔍 รายงานการตรวจสอบและคุณภาพข้อมูล (Data Quality)</h3>
-        <button class="panel-close" onclick="closeQualityModal()">&times;</button>
+        <h3>🔍 รายงานความสมบูรณ์ของข้อมูล (Data Validation Report)</h3>
+        <button class="modal-close" onclick="closeQualityModal()">&times;</button>
       </div>
       <div class="modal-body">
-        <div id="qualityReportSummary" style="display:flex; gap:12px; margin-bottom:16px;">
-          <!-- Quality KPI cards -->
-        </div>
-        <h4 style="font-size:13px; font-weight:700; color:var(--pri); margin-bottom:8px;">รายการข้อสังเกตและคำเตือนการอ่านค่ามิเตอร์:</h4>
-        <div id="qualityReportList" style="max-height:300px; overflow-y:auto; font-size:11px;">
-          <!-- Warnings list -->
-        </div>
+        <div style="display:flex; gap:10px; margin-bottom:12px;" id="qualityReportSummary"></div>
+        <div style="font-size:12px; font-weight:700; color:var(--pri); margin-bottom:6px;">รายการข้อสังเกตและคำเตือนในการอ่านมิเตอร์:</div>
+        <div id="qualityReportList" style="max-height:300px; overflow-y:auto; border:1px solid var(--bdr); border-radius:6px; padding:8px;"></div>
       </div>
       <div class="modal-ftr">
-        <button class="btn-action" style="color:#333; border-color:#ccc;" onclick="closeQualityModal()">ปิด</button>
+        <button class="btn-action primary" onclick="closeQualityModal()">ปิด</button>
       </div>
     </div>
   </div>
 
-  <!-- Settings Modal (Performance & Graphics) -->
+  <!-- 9. Settings Modal -->
   <div class="modal-overlay" id="settingsModal">
-    <div class="modal-box" style="max-width:480px;">
+    <div class="modal-box" style="max-width:450px;">
       <div class="modal-hdr">
-        <h3 style="color:var(--pri); font-size:16px;">⚙️ ตั้งค่าระบบและการแสดงผล 3D</h3>
-        <button class="panel-close" onclick="closeSettingsModal()">&times;</button>
+        <h3>⚙️ ตั้งค่าระบบและกราฟิก 3D</h3>
+        <button class="modal-close" onclick="closeSettingsModal()">&times;</button>
       </div>
-      <div class="modal-body" style="display:flex; flex-direction:column; gap:16px;">
+      <div class="modal-body">
         <div>
-          <label style="font-size:12px; font-weight:700; display:block; margin-bottom:6px;">คุณภาพกราฟิก 3D (Graphic Quality):</label>
-          <select id="selGraphicQuality" class="fl-select" style="color:#0F172A; background:#F8FAFC; width:100%;" onchange="onGraphicQualityChange(this.value)">
-            <option value="high">สูง (High) - แสงเงาเสมือนจริง Anti-Aliasing สมบูรณ์</option>
-            <option value="medium">ปานกลาง (Medium) - ความละเอียดมาตรฐาน ปิดเงาแบบ Realtime</option>
-            <option value="low">ต่ำ (Low) - ประหยัดพลังงาน เหมาะสำหรับมือถือหรือเครื่องสเปกต่ำ</option>
+          <label style="font-size:12px; font-weight:700; color:var(--pri); display:block; margin-bottom:6px;">
+            ระดับกราฟิก 3D (Graphic Quality):
+          </label>
+          <select id="selGraphicQuality" class="fl-select" style="width:100%; color:var(--txt); border-color:var(--bdr); background:#fff;" onchange="onGraphicQualityChange(this.value)">
+            <option value="high">สูง (High) - เงาครบถ้วน แสงสะท้อน และ PixelRatio 2.0</option>
+            <option value="medium" selected>ปานกลาง (Medium) - แนะนำสำหรับคอมพิวเตอร์ทั่วไป</option>
+            <option value="low">ประหยัดพลังงาน (Low) - สำหรับอุปกรณ์พกพาหรือเน็ตช้า</option>
           </select>
         </div>
-
-        <div>
-          <label style="font-size:12px; font-weight:700; display:block; margin-bottom:6px;">ป้ายชื่ออาคารภาษาไทย (Building Labels):</label>
-          <label style="font-size:12px; display:inline-flex; align-items:center; gap:6px; cursor:pointer;">
-            <input type="checkbox" id="chkShowLabels" checked onchange="campusScene.setLabelsVisible(this.checked)">
-            แสดงป้ายชื่ออาคารลอยเหนือโมเดล 3D
-          </label>
-        </div>
-
-        <div style="background:#F1F5F9; padding:12px; border-radius:6px; font-size:11px; color:var(--txt2); line-height:1.5;">
-          <strong>คำแนะนำด้านประสิทธิภาพ:</strong> ระบบ Sainoi Digital Twin มีระบบ Demand-Render Loop ซึ่งจะหยุดประมวลผลการวาดภาพอัตโนมัติเมื่อฉากไม่มีการเคลื่อนไหว เพื่อประหยัดพลังงานแบตเตอรี่บนแล็ปท็อปและสมาร์ทโฟน
-        </div>
       </div>
       <div class="modal-ftr">
-        <button class="btn-action primary" onclick="closeSettingsModal()">บันทึกการตั้งค่า</button>
+        <button class="btn-action primary" onclick="closeSettingsModal()">ตกลง</button>
       </div>
     </div>
   </div>
 
+  <!-- ═════════════════════════════════════════════════════════════════
+       Application Controller Logic (State Sync, Three.js & Charts)
+       ═════════════════════════════════════════════════════════════════ -->
   <script>
-    // Global Instances
     let campusScene = null;
     let trendChartInstance = null;
     let comparisonChartInstance = null;
+    let meaChartInstance = null;
     let timelineTimer = null;
+    let currentVisualMode = 'heatmap';
+    let currentTheme = 'day';
 
-    // Initialization on window load
-    window.addEventListener('DOMContentLoaded', async () => {
-      // 1. Initialize EnergyTwin Core
-      const ok = await EnergyTwin.init();
-      if (!ok) {
-        alert('เกิดข้อผิดพลาดในการโหลดข้อมูลแบบจำลอง กรุณารีเฟรชหน้าเว็บ');
-        return;
-      }
+    // Initialize application on DOM loaded
+    document.addEventListener('DOMContentLoaded', async () => {
+      // 1. Initialize Core Data Engine
+      await EnergyTwin.init();
 
       // 2. Initialize Three.js Campus Scene
-      campusScene = new CampusScene('campusCanvasContainer');
+      try {
+        campusScene = new CampusScene('campusCanvasContainer');
+      } catch (err) {
+        console.warn('3D initialization failed, falling back to 2D view:', err);
+        setViewMode('2d');
+      }
 
-      // 3. Setup Dropdowns and Controls
-      populatePeriodSelectors();
-      populateQuickBuildingDropdown();
+      // 3. Register State Change Listener
+      EnergyTwin.addListener(onTwinStateChange);
 
-      // 4. Populate 3D Buildings
-      const buildings = EnergyTwin.getBuildingsList();
-      campusScene.populateBuildings(buildings);
+      // 4. Setup Initial UI Dropdowns
+      setupDropdowns();
 
-      // 5. Build 2D Fallback Grid
-      render2DGrid(buildings);
+      // 5. Initial State Trigger
+      EnergyTwin.setState({});
 
-      // 6. Update Legend & Campus Total
-      updateLegendUI();
-      updateCampusTotalUI();
-
-      // 7. Subscribe to EnergyTwin State Changes
-      EnergyTwin.subscribe((state, changeKey) => {
-        handleStateUpdate(state, changeKey);
-      });
+      // 6. Update Alert Badges
+      updateAlertBadges();
     });
 
-    // Populate Year and Month Selectors
-    function populatePeriodSelectors() {
+    // Populate Year, Month, Building Dropdowns
+    function setupDropdowns() {
       const summary = EnergyTwin.summaryData;
       if (!summary || !summary.periods) return;
 
-      const months = summary.periods.months || [];
       const selMonth = document.getElementById('selMonth');
       selMonth.innerHTML = '';
-
-      months.slice().reverse().forEach(m => {
+      (summary.periods.months || []).forEach(m => {
         const opt = document.createElement('option');
         opt.value = m;
-        const [yr, mo] = m.split('-');
-        const thaiYear = parseInt(yr) + 543;
-        const thaiMonthNames = ['', 'มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'];
-        opt.textContent = `${thaiMonthNames[parseInt(mo)]} ${thaiYear} (${m})`;
-        if (m === EnergyTwin.state.month) opt.selected = true;
+        opt.textContent = m;
         selMonth.appendChild(opt);
       });
+      selMonth.value = EnergyTwin.state.month;
 
-      // Timeline Slider setup
-      const slider = document.getElementById('timelineSlider');
-      slider.max = months.length - 1;
-      slider.value = months.indexOf(EnergyTwin.state.month);
-      document.getElementById('timelineMonthLabel').textContent = EnergyTwin.state.month;
-    }
-
-    // Populate Quick Search Dropdown
-    function populateQuickBuildingDropdown() {
-      const select = document.getElementById('quickBuildingSelect');
+      // Quick Building Select Dropdown
+      const quickSel = document.getElementById('quickBuildingSelect');
       const comp1 = document.getElementById('compSelect1');
       const comp2 = document.getElementById('compSelect2');
       const comp3 = document.getElementById('compSelect3');
+
+      quickSel.innerHTML = '<option value="">-- เลือกอาคารเพื่อโฟกัส --</option>';
+      [comp1, comp2, comp3].forEach(sel => {
+        if (sel) sel.innerHTML = '<option value="">-- เลือกอาคาร --</option>';
+      });
 
       const buildings = EnergyTwin.getBuildingsList();
       buildings.forEach(b => {
         const opt = document.createElement('option');
         opt.value = b.b_code;
-        opt.textContent = `${b.b_code} - ${b.name}`;
-        select.appendChild(opt);
+        opt.textContent = `${b.b_code} - ${b.short_name || b.name}`;
+        quickSel.appendChild(opt);
 
-        if (comp1) comp1.appendChild(opt.cloneNode(true));
-        if (comp2) comp2.appendChild(opt.cloneNode(true));
-        if (comp3) comp3.appendChild(opt.cloneNode(true));
+        [comp1, comp2, comp3].forEach(sel => {
+          if (sel) sel.appendChild(opt.cloneNode(true));
+        });
       });
 
-      if (comp1 && buildings.length > 0) comp1.value = buildings[0].b_code;
-      if (comp2 && buildings.length > 1) comp2.value = buildings[1].b_code;
+      if (buildings.length >= 3) {
+        if (comp1) comp1.value = buildings[0].b_code;
+        if (comp2) comp2.value = buildings[1].b_code;
+        if (comp3) comp3.value = buildings[2].b_code;
+      }
     }
 
-    // Handle State Updates across UI
-    function handleStateUpdate(state, changeKey) {
+    // State Change Handler
+    function onTwinStateChange(state) {
       const buildings = EnergyTwin.getBuildingsList();
 
-      // Update 3D Colors
+      // Update 3D Visuals
       if (campusScene) {
-        campusScene.updateBuildingColors(buildings);
+        if (campusScene.buildingMeshes.size === 0) {
+          campusScene.populateBuildings(buildings);
+        } else {
+          campusScene.updateBuildingColors(buildings);
+        }
+
         if (state.selectedBuildingId) {
           campusScene.selectBuilding(state.selectedBuildingId, true);
         } else {
@@ -830,6 +1298,18 @@
         document.getElementById('timelineSlider').value = mIdx;
         document.getElementById('timelineMonthLabel').textContent = state.month;
       }
+
+      updateAlertBadges();
+    }
+
+    // Update Alert Badge Count
+    function updateAlertBadges() {
+      const alerts = EnergyTwin.getActiveAlerts ? EnergyTwin.getActiveAlerts() : [];
+      const badge = document.getElementById('badgeAlertCount');
+      if (badge) {
+        badge.textContent = alerts.length;
+        badge.style.display = alerts.length > 0 ? 'inline-block' : 'none';
+      }
     }
 
     // Render Side Panel Building Details
@@ -844,6 +1324,12 @@
       document.getElementById('panelBuildingName').textContent = b.name;
       document.getElementById('panelBuildingCode').textContent = `${b.b_code} | ${b.category_th} (${b.floors} ชั้น)`;
 
+      // Aliases
+      const aliases = EnergyTwin.getBuildingAliases ? EnergyTwin.getBuildingAliases(b.b_code) : [];
+      const aliasHtml = aliases.length > 0 
+        ? `<div style="font-size:11px; color:#64748B; margin-top:2px;">ชื่อเรียกอื่น: <strong>${aliases.join(', ')}</strong></div>`
+        : '';
+
       const momText = b.mom_change_pct !== null
         ? (b.mom_change_pct > 0 ? `+${b.mom_change_pct.toFixed(1)}%` : `${b.mom_change_pct.toFixed(1)}%`)
         : 'ไม่มีข้อมูล';
@@ -855,6 +1341,16 @@
         ? '✅ บรรลุเป้าหมาย' 
         : (b.target_status === 'exceeded' ? '⚠️ เกินเป้าหมาย' : 'ไม่มีเป้าหมาย');
       const targetColor = b.target_status === 'achieved' ? '#15803D' : (b.target_status === 'exceeded' ? '#DC2626' : '#64748B');
+
+      // Department Allocation Breakdown
+      let deptAllocationRows = '';
+      if (b.departments && b.departments.length > 0) {
+        deptAllocationRows = b.departments.map(d => `
+          <span style="background:#F1F5F9; color:#0F172A; padding:3px 8px; border-radius:4px; font-size:11px; font-weight:600;">
+            🏢 ${d}
+          </span>
+        `).join(' ');
+      }
 
       // Sub-meters markup
       let subMeterRows = '';
@@ -874,7 +1370,21 @@
         });
       }
 
+      // Relevant Events in current month
+      const events = EnergyTwin.getEventLogs ? EnergyTwin.getEventLogs(EnergyTwin.state.month) : [];
+      let eventsBanner = '';
+      if (events.length > 0) {
+        eventsBanner = `
+          <div style="background:#FFFBEB; border-left:3px solid #F59E0B; padding:8px 12px; border-radius:0 6px 6px 0; font-size:11px;">
+            <div style="font-weight:700; color:#B45309;">📌 เหตุการณ์ในเดือนนี้:</div>
+            ${events.map(e => `<div style="color:#78350F;">• ${e.title} (${e.date_range}): ${e.impact}</div>`).join('')}
+          </div>
+        `;
+      }
+
       const bodyHtml = `
+        ${aliasHtml}
+
         <div class="stat-badge-grid">
           <div class="stat-badge highlight">
             <div class="stat-label">การใช้ไฟเดือน ${EnergyTwin.state.month}</div>
@@ -890,9 +1400,11 @@
           </div>
           <div class="stat-badge">
             <div class="stat-label">ผลเทียบเป้าหมายประหยัด</div>
-            <div class="stat-val" style="color:${targetColor}; font-size:14px;">${targetText}</div>
+            <div class="stat-val" style="color:${targetColor}; font-size:13px;">${targetText}</div>
           </div>
         </div>
+
+        ${eventsBanner}
 
         <div>
           <div style="font-size:12px; font-weight:700; color:var(--pri); margin-bottom:6px;">📈 แนวโน้มการใช้ไฟฟ้าย้อนหลัง (kWh)</div>
@@ -902,11 +1414,10 @@
         </div>
 
         <div style="background:#F8FAFC; border:1px solid var(--bdr); border-radius:8px; padding:12px;">
-          <div style="font-size:12px; font-weight:700; color:var(--pri); margin-bottom:6px;">⚡ ข้อมูลมิเตอร์และที่มาของยอด</div>
+          <div style="font-size:12px; font-weight:700; color:var(--pri); margin-bottom:6px;">⚡ ข้อมูลมิเตอร์และสัดส่วนหน่วยงาน</div>
           <div style="font-size:11px; line-height:1.6; color:var(--txt2);">
             <div>• <strong>มิเตอร์ประธาน (Main):</strong> <code>${b.metering.main_meter_id || 'ไม่มี'}</code></div>
-            <div>• <strong>วิธีรวมข้อมูล:</strong> คำนวณตรงจากมิเตอร์ประธาน (ป้องกันการนับซ้ำ)</div>
-            <div>• <strong>ฝ่ายที่รับผิดชอบ:</strong> ${b.departments.join(', ') || '-'}</div>
+            <div>• <strong>ฝ่ายที่รับผิดชอบ:</strong> ${deptAllocationRows || '-'}</div>
             <div>• <strong>คุณภาพข้อมูล:</strong> ${b.quality_status === 'normal' ? 'สมบูรณ์ครบถ้วน' : 'มีข้อสังเกต'}</div>
           </div>
         </div>
@@ -954,12 +1465,10 @@
       const ctx = document.getElementById('buildingTrendChart');
       if (!ctx) return;
 
-      if (trendChartInstance) {
-        trendChartInstance.destroy();
-      }
+      if (trendChartInstance) trendChartInstance.destroy();
 
       const rawMonthly = (b.raw_summary && b.raw_summary.monthly_kwh) || {};
-      const months = Object.keys(rawMonthly).sort().slice(-12); // Last 12 months
+      const months = Object.keys(rawMonthly).sort().slice(-12);
       const values = months.map(m => rawMonthly[m] || 0);
 
       trendChartInstance = new Chart(ctx, {
@@ -1041,15 +1550,71 @@
       `).join('');
     }
 
-    // Update Total Sai Noi Campus Consumption
+    // Update Campus Total
     function updateCampusTotalUI() {
       const buildings = EnergyTwin.getBuildingsList();
       const total = buildings.reduce((acc, b) => acc + (b.monthly_kwh || 0), 0);
       document.getElementById('txtCampusTotalKwh').textContent = 
-        `รวมทุกอาคารประจำงวด: ${total.toLocaleString('th-TH', { maximumFractionDigits: 0 })} kWh`;
+        `ยอดรวมทุกอาคารประจำงวด: ${total.toLocaleString('th-TH', { maximumFractionDigits: 0 })} kWh`;
     }
 
-    // View Mode Switching
+    // Visual Mode Switching (Heatmap, 3D Bars, Energy Flow)
+    function setVisualMode(mode) {
+      currentVisualMode = mode;
+      document.getElementById('btnVModeHeatmap').className = mode === 'heatmap' ? 'btn-vmode active' : 'btn-vmode';
+      document.getElementById('btnVModeBars').className = mode === 'bars' ? 'btn-vmode active' : 'btn-vmode';
+      document.getElementById('btnVModeFlow').className = mode === 'flow' ? 'btn-vmode active' : 'btn-vmode';
+
+      if (campusScene && campusScene.setVisualMode) {
+        campusScene.setVisualMode(mode);
+      }
+    }
+
+    // Day / Night Theme Toggle
+    function toggleTheme() {
+      currentTheme = currentTheme === 'day' ? 'night' : 'day';
+      const btn = document.getElementById('btnToggleTheme');
+      btn.textContent = currentTheme === 'night' ? '☀️ กลางวัน' : '🌙 กลางคืน';
+      btn.className = currentTheme === 'night' ? 'btn-overlay active' : 'btn-overlay';
+
+      if (campusScene && campusScene.setTheme) {
+        campusScene.setTheme(currentTheme);
+      }
+    }
+
+    // Kiosk Auto-Orbit Toggle
+    function toggleKiosk() {
+      if (!campusScene || !campusScene.toggleKioskMode) return;
+      const isKiosk = campusScene.toggleKioskMode();
+      const btn = document.getElementById('btnToggleKiosk');
+      btn.className = isKiosk ? 'btn-overlay active' : 'btn-overlay';
+      btn.textContent = isKiosk ? '⏸ หยุด Kiosk' : '📺 Kiosk (Auto-Orbit)';
+    }
+
+    // Snapshot Capture
+    function captureSnapshot() {
+      if (!campusScene || !campusScene.takeSnapshot) return;
+      const dataUrl = campusScene.takeSnapshot();
+      if (!dataUrl) return;
+
+      const a = document.createElement('a');
+      a.href = dataUrl;
+      a.download = `Sainoi_3D_Snapshot_${EnergyTwin.state.month}.png`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+
+    // Fullscreen Toggle
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => console.log(err));
+      } else {
+        if (document.exitFullscreen) document.exitFullscreen();
+      }
+    }
+
+    // View Mode Switching (3D, Split, 2D)
     function setViewMode(mode) {
       document.getElementById('btnView3D').className = mode === '3d' ? 'btn-action primary' : 'btn-action';
       document.getElementById('btnViewSplit').className = mode === 'split' ? 'btn-action primary' : 'btn-action';
@@ -1086,18 +1651,6 @@
       }
     }
 
-    // Timeline Slider Input Handler
-    function onTimelineSliderInput(val) {
-      const months = EnergyTwin.summaryData.periods.months || [];
-      const chosenMonth = months[val];
-      if (chosenMonth && chosenMonth !== EnergyTwin.state.month) {
-        EnergyTwin.setState({
-          month: chosenMonth,
-          year: chosenMonth.substring(0, 4)
-        });
-      }
-    }
-
     // Timeline Playback
     function togglePlayTimeline() {
       const btn = document.getElementById('btnPlayTimeline');
@@ -1120,7 +1673,18 @@
       }
     }
 
-    // Dropdown Change Handlers
+    function onTimelineSliderInput(val) {
+      const months = EnergyTwin.summaryData.periods.months || [];
+      const chosenMonth = months[val];
+      if (chosenMonth && chosenMonth !== EnergyTwin.state.month) {
+        EnergyTwin.setState({
+          month: chosenMonth,
+          year: chosenMonth.substring(0, 4)
+        });
+      }
+    }
+
+    // Dropdown Handlers
     function onYearChange() {
       const y = document.getElementById('selYear').value;
       const months = (EnergyTwin.summaryData.periods.months || []).filter(m => m.startsWith(y));
@@ -1160,7 +1724,416 @@
       EnergyTwin.setState({ selectedBuildingId: null });
     }
 
-    // Modal Handlers
+    /* ═════════════════════════════════════════════════════════════════
+       1. ALLOCATION MANAGER MODAL LOGIC
+       ═════════════════════════════════════════════════════════════════ */
+    let editedAllocations = [];
+
+    function openAllocationModal() {
+      document.getElementById('allocationModal').style.display = 'flex';
+      editedAllocations = JSON.parse(JSON.stringify(EnergyTwin.allocationData || []));
+      renderAllocationTable(editedAllocations);
+    }
+    function closeAllocationModal() {
+      document.getElementById('allocationModal').style.display = 'none';
+    }
+
+    function renderAllocationTable(rows) {
+      const tbody = document.getElementById('allocTableBody');
+      tbody.innerHTML = '';
+
+      rows.forEach((r, idx) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><strong>${r.b_code}</strong></td>
+          <td><code>${r.meter_id}</code></td>
+          <td>${r.building_name || '-'}</td>
+          <td><span style="background:#EFF6FF; color:#1E3A8A; padding:2px 6px; border-radius:4px; font-weight:600;">${r.department}</span></td>
+          <td style="text-align:right;">${r.allocation_ratio_pct}%</td>
+          <td style="text-align:right;">
+            <input type="number" step="0.1" min="0" max="100" class="alloc-input" 
+                   value="${r.allocation_ratio_pct}" 
+                   oninput="onAllocRatioChange(${idx}, this.value)"> %
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      validateAllocations();
+    }
+
+    function filterAllocationRows(query) {
+      const q = (query || '').toLowerCase().trim();
+      const filtered = editedAllocations.filter(r => 
+        (r.b_code && r.b_code.toLowerCase().includes(q)) ||
+        (r.meter_id && r.meter_id.toLowerCase().includes(q)) ||
+        (r.building_name && r.building_name.toLowerCase().includes(q)) ||
+        (r.department && r.department.toLowerCase().includes(q))
+      );
+      renderAllocationTable(filtered);
+    }
+
+    function onAllocRatioChange(idx, val) {
+      editedAllocations[idx].allocation_ratio_pct = parseFloat(val) || 0;
+      validateAllocations();
+    }
+
+    function validateAllocations() {
+      const summaryEl = document.getElementById('allocValidationSummary');
+      // Group by meter_id
+      const meterSums = {};
+      editedAllocations.forEach(r => {
+        meterSums[r.meter_id] = (meterSums[r.meter_id] || 0) + (r.allocation_ratio_pct || 0);
+      });
+
+      let hasError = false;
+      let errorMsg = '';
+
+      for (const [mId, sum] of Object.entries(meterSums)) {
+        if (Math.abs(sum - 100) > 0.5) {
+          hasError = true;
+          errorMsg = `มิเตอร์ ${mId} ผลรวม = ${sum.toFixed(1)}% (ต้องเท่ากับ 100%)`;
+          break;
+        }
+      }
+
+      if (hasError) {
+        summaryEl.className = 'alloc-summary-bar invalid';
+        summaryEl.innerHTML = `⚠️ ${errorMsg}`;
+      } else {
+        summaryEl.className = 'alloc-summary-bar valid';
+        summaryEl.innerHTML = `✅ ผลรวมสัดส่วนของทุกมิเตอร์เท่ากับ 100% ถูกต้อง`;
+      }
+
+      return !hasError;
+    }
+
+    function applyAllocations() {
+      if (!validateAllocations()) {
+        alert('กรุณาปรับสัดส่วนให้ผลรวมของแต่ละมิเตอร์เท่ากับ 100% ก่อนนำไปใช้');
+        return;
+      }
+      EnergyTwin.saveCustomAllocations(editedAllocations);
+      alert('บันทึกสัดส่วนลงหน่วยความจำเครื่องเรียบร้อย ข้อมูล 3D และรายงานได้รับการอัปเดตทันที');
+      closeAllocationModal();
+    }
+
+    async function commitAllocations() {
+      if (!validateAllocations()) {
+        alert('กรุณาปรับสัดส่วนให้ผลรวมของแต่ละมิเตอร์เท่ากับ 100% ก่อนบันทึกขึ้น GitHub');
+        return;
+      }
+
+      const pat = localStorage.getItem('egat_github_pat');
+      if (!pat) {
+        openGitHubTokenModal();
+        return;
+      }
+
+      const msg = prompt('กรอกข้อความบันทึก (Commit Message):', 'Update department allocation ratios via Digital Twin');
+      if (!msg) return;
+
+      try {
+        const res = await EnergyTwin.commitAllocationsToGithub(pat, msg);
+        alert(`บันทึกขึ้น GitHub สำเร็จ!\nCommit SHA: ${res.commit.sha.substring(0, 7)}\nระบบ GitHub Actions กำลังประมวลผลฐานข้อมูลใหม่`);
+        closeAllocationModal();
+      } catch (err) {
+        alert(`เกิดข้อผิดพลาดในการบันทึกขึ้น GitHub: ${err.message}`);
+      }
+    }
+
+    async function viewCommitHistory() {
+      const pat = localStorage.getItem('egat_github_pat') || '';
+      try {
+        const commits = await EnergyTwin.fetchAllocationCommitHistory(pat);
+        if (!commits || commits.length === 0) {
+          alert('ไม่พบประวัติการแก้ไข');
+          return;
+        }
+        const listText = commits.map(c => `• [${c.date.substring(0, 10)}] ${c.author}: ${c.message}`).join('\n');
+        alert(`📜 ประวัติการแก้ไข CSV ล่าสุดบน GitHub:\n\n${listText}`);
+      } catch (err) {
+        alert(`ไม่สามารถดึงประวัติ Commit ได้: ${err.message}`);
+      }
+    }
+
+    function resetAllocations() {
+      if (confirm('คุณต้องการยกเลิกการปรับแต่งทั้งหมดและคืนค่าสัดส่วนเริ่มต้นจากไฟล์ CSV หรือไม่?')) {
+        EnergyTwin.resetCustomAllocations();
+        editedAllocations = JSON.parse(JSON.stringify(EnergyTwin.allocationData || []));
+        renderAllocationTable(editedAllocations);
+      }
+    }
+
+    /* ═════════════════════════════════════════════════════════════════
+       2. MEA & EVENT ANALYSIS MODAL LOGIC
+       ═════════════════════════════════════════════════════════════════ */
+    function openMeaEventsModal() {
+      document.getElementById('meaEventsModal').style.display = 'flex';
+      switchMeaModalTab('mea');
+      renderMeaComparison();
+      renderEventsTimeline();
+    }
+    function closeMeaEventsModal() {
+      document.getElementById('meaEventsModal').style.display = 'none';
+    }
+
+    function switchMeaModalTab(tab) {
+      document.getElementById('btnTabMea').className = tab === 'mea' ? 'btn-action primary' : 'btn-action';
+      document.getElementById('btnTabEvents').className = tab === 'events' ? 'btn-action primary' : 'btn-action';
+      document.getElementById('tabMeaContent').style.display = tab === 'mea' ? 'flex' : 'none';
+      document.getElementById('tabEventsContent').style.display = tab === 'events' ? 'flex' : 'none';
+    }
+
+    function renderMeaComparison() {
+      const meaData = EnergyTwin.meaData || {};
+      const internalSummary = EnergyTwin.summaryData || {};
+      const months = (internalSummary.periods && internalSummary.periods.months) || [];
+      const curMonth = EnergyTwin.state.month;
+
+      const comp = EnergyTwin.getMeaComparison(curMonth);
+      const kpiGrid = document.getElementById('meaKpiGrid');
+
+      kpiGrid.innerHTML = `
+        <div class="stat-badge highlight">
+          <div class="stat-label">บิล กฟน. เดือน ${curMonth}</div>
+          <div class="stat-val">${comp.mea_kwh > 0 ? comp.mea_kwh.toLocaleString() : 'N/A'}<span class="stat-unit">kWh</span></div>
+        </div>
+        <div class="stat-badge">
+          <div class="stat-label">รวมมิเตอร์ภายในวิทยาเขต</div>
+          <div class="stat-val">${comp.submeters_kwh > 0 ? comp.submeters_kwh.toLocaleString() : 'N/A'}<span class="stat-unit">kWh</span></div>
+        </div>
+        <div class="stat-badge">
+          <div class="stat-label">Unaccounted Energy (สูญเสีย/หม้อแปลง)</div>
+          <div class="stat-val" style="color:#0284C7">${comp.unaccounted_kwh !== null ? comp.unaccounted_kwh.toLocaleString() : 'N/A'}<span class="stat-unit">kWh</span></div>
+        </div>
+        <div class="stat-badge">
+          <div class="stat-label">สัดส่วนสูญเสีย / ผลต่าง</div>
+          <div class="stat-val" style="color:${comp.unaccounted_pct > 15 ? '#DC2626' : '#15803D'}">
+            ${comp.unaccounted_pct !== null ? comp.unaccounted_pct.toFixed(1) + '%' : 'N/A'}
+          </div>
+        </div>
+      `;
+
+      // Chart
+      const last12 = months.slice(-12);
+      const ctx = document.getElementById('meaComparisonChart');
+      if (meaChartInstance) meaChartInstance.destroy();
+
+      const meaVals = last12.map(m => (meaData.monthly && meaData.monthly[m] && meaData.monthly[m].kwh) || 0);
+      const subVals = last12.map(m => {
+        const c = EnergyTwin.getMeaComparison(m);
+        return c.submeters_kwh || 0;
+      });
+
+      meaChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: last12.map(m => m.substring(2)),
+          datasets: [
+            { label: 'บิล กฟน. (kWh)', data: meaVals, backgroundColor: '#0B1D51', borderRadius: 4 },
+            { label: 'รวมมิเตอร์ภายใน (kWh)', data: subVals, backgroundColor: '#F59E0B', borderRadius: 4 }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { tooltip: { callbacks: { label: (c) => ` ${c.dataset.label}: ${c.parsed.y.toLocaleString()} kWh` } } }
+        }
+      });
+
+      // Table
+      const tbody = document.getElementById('meaTableBody');
+      tbody.innerHTML = last12.slice().reverse().map(m => {
+        const c = EnergyTwin.getMeaComparison(m);
+        const bill = (meaData.monthly && meaData.monthly[m]) || {};
+        return `
+          <tr>
+            <td><strong>${m}</strong></td>
+            <td style="text-align:right;">${c.mea_kwh > 0 ? c.mea_kwh.toLocaleString() : '-'}</td>
+            <td style="text-align:right;">${c.submeters_kwh > 0 ? c.submeters_kwh.toLocaleString() : '-'}</td>
+            <td style="text-align:right; font-weight:700;">${c.unaccounted_kwh !== null ? c.unaccounted_kwh.toLocaleString() : '-'}</td>
+            <td style="text-align:right;">${c.unaccounted_pct !== null ? c.unaccounted_pct.toFixed(1) + '%' : '-'}</td>
+            <td style="text-align:right;">${bill.cost_thb ? bill.cost_thb.toLocaleString() : '-'}</td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function renderEventsTimeline() {
+      const events = EnergyTwin.eventLogs || [];
+      const container = document.getElementById('eventsListContainer');
+      if (events.length === 0) {
+        container.innerHTML = '<div style="color:var(--txt2); padding:20px;">ไม่พบรายการบันทึกเหตุการณ์</div>';
+        return;
+      }
+
+      container.innerHTML = events.map(e => `
+        <div class="event-card">
+          <div class="event-hdr">
+            <span class="event-title">${e.title}</span>
+            <span class="event-date">📅 ${e.date_range} (${e.period})</span>
+          </div>
+          <div class="event-desc">${e.description}</div>
+          <div style="font-size:11px; color:#0369A1; font-weight:600; margin-top:2px;">
+            ⚡ ผลกระทบ: ${e.impact} ${e.target_adjustment_pct ? `(ปรับเป้าหมาย ${e.target_adjustment_pct}%)` : ''}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    /* ═════════════════════════════════════════════════════════════════
+       3. MONTHLY REPORT MODAL LOGIC
+       ═════════════════════════════════════════════════════════════════ */
+    function openMonthlyReportModal() {
+      document.getElementById('monthlyReportModal').style.display = 'flex';
+      const curMonth = EnergyTwin.state.month;
+      document.getElementById('repPeriodHeader').textContent = `ประจำงวดเดือน ${curMonth} (ปีงบประมาณ ${EnergyTwin.state.year})`;
+
+      // Capture 3D Snapshot
+      if (campusScene && campusScene.takeSnapshot) {
+        const snap = campusScene.takeSnapshot();
+        if (snap) document.getElementById('repSnapshotImg').src = snap;
+      }
+
+      const rep = EnergyTwin.generateMonthlyReport ? EnergyTwin.generateMonthlyReport(curMonth) : {};
+
+      // KPI Grid
+      const kpiGrid = document.getElementById('repKpiGrid');
+      const varColor = rep.targetVariancePct <= 0 ? '#15803D' : '#DC2626';
+      kpiGrid.innerHTML = `
+        <div class="stat-badge highlight">
+          <div class="stat-label">ยอดใช้ไฟฟ้ารวมทั้งสำนักงาน</div>
+          <div class="stat-val">${rep.totalKwh ? rep.totalKwh.toLocaleString('th-TH', {maximumFractionDigits:0}) : 0}<span class="stat-unit">kWh</span></div>
+        </div>
+        <div class="stat-badge">
+          <div class="stat-label">เป้าหมายการประหยัด</div>
+          <div class="stat-val">${rep.totalTargetKwh ? rep.totalTargetKwh.toLocaleString('th-TH', {maximumFractionDigits:0}) : 0}<span class="stat-unit">kWh</span></div>
+        </div>
+        <div class="stat-badge">
+          <div class="stat-label">ผลเทียบเป้าหมายประหยัด</div>
+          <div class="stat-val" style="color:${varColor}">
+            ${rep.targetVariancePct !== null ? (rep.targetVariancePct > 0 ? `+${rep.targetVariancePct.toFixed(1)}%` : `${rep.targetVariancePct.toFixed(1)}%`) : 'N/A'}
+          </div>
+        </div>
+        <div class="stat-badge">
+          <div class="stat-label">การเปลี่ยนแปลง MoM</div>
+          <div class="stat-val" style="color:${rep.momChangePct <= 0 ? '#15803D' : '#DC2626'}">
+            ${rep.momChangePct !== null ? (rep.momChangePct > 0 ? `+${rep.momChangePct.toFixed(1)}%` : `${rep.momChangePct.toFixed(1)}%`) : 'N/A'}
+          </div>
+        </div>
+      `;
+
+      // Top 5 Buildings Table
+      const topTbl = document.getElementById('repTopBuildingsTable');
+      topTbl.innerHTML = `
+        <table class="sub-table" style="font-size:11px;">
+          <thead>
+            <tr><th>อาคาร</th><th style="text-align:right;">หน่วยใช้ (kWh)</th><th style="text-align:right;">สัดส่วน (%)</th></tr>
+          </thead>
+          <tbody>
+            ${(rep.topConsumers || []).map(b => `
+              <tr>
+                <td><strong>${b.b_code}</strong> ${b.short_name}</td>
+                <td style="text-align:right; font-weight:700;">${b.kwh.toLocaleString('th-TH', {maximumFractionDigits:0})}</td>
+                <td style="text-align:right;">${b.pctOfTotal.toFixed(1)}%</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      `;
+
+      // Department Breakdown Table
+      const deptTbl = document.getElementById('repDeptBreakdownTable');
+      const deptTotals = rep.deptTotals || {};
+      deptTbl.innerHTML = `
+        <table class="sub-table" style="font-size:11px;">
+          <thead>
+            <tr><th>ฝ่าย/หน่วยงาน</th><th style="text-align:right;">หน่วยใช้ (kWh)</th></tr>
+          </thead>
+          <tbody>
+            ${Object.entries(deptTotals).sort((a,b) => b[1]-a[1]).map(([d, val]) => `
+              <tr>
+                <td><strong>${d}</strong></td>
+                <td style="text-align:right; font-weight:700;">${val.toLocaleString('th-TH', {maximumFractionDigits:0})}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      `;
+    }
+    function closeMonthlyReportModal() {
+      document.getElementById('monthlyReportModal').style.display = 'none';
+    }
+    function printMonthlyReport() {
+      window.print();
+    }
+
+    /* ═════════════════════════════════════════════════════════════════
+       4. ALERT CENTER MODAL LOGIC
+       ═════════════════════════════════════════════════════════════════ */
+    function openAlertsModal() {
+      document.getElementById('alertsModal').style.display = 'flex';
+      const alerts = EnergyTwin.getActiveAlerts ? EnergyTwin.getActiveAlerts() : [];
+      document.getElementById('alertsSummaryCount').textContent = `${alerts.length} รายการ`;
+
+      const container = document.getElementById('alertsListContainer');
+      if (alerts.length === 0) {
+        container.innerHTML = '<div style="color:var(--txt2); padding:30px; text-align:center;">🎉 ไม่พบความผิดปกติหรืออาคารที่ใช้ไฟเกินเป้าหมายในงวดนี้</div>';
+        return;
+      }
+
+      container.innerHTML = alerts.map(a => `
+        <div class="alert-card ${a.type}">
+          <div class="alert-icon">${a.icon}</div>
+          <div class="alert-info">
+            <div class="alert-title">${a.title}</div>
+            <div class="alert-msg">${a.message}</div>
+          </div>
+          <button class="btn-action" style="color:var(--pri); border-color:var(--bdr); background:#fff;" 
+                  onclick="focusAlertBuilding('${a.b_code}')">
+            🎯 โฟกัส 3D
+          </button>
+        </div>
+      `).join('');
+    }
+    function closeAlertsModal() {
+      document.getElementById('alertsModal').style.display = 'none';
+    }
+    function focusAlertBuilding(bCode) {
+      closeAlertsModal();
+      EnergyTwin.setState({ selectedBuildingId: bCode });
+      setViewMode('split');
+      if (campusScene) campusScene.selectBuilding(bCode, true);
+    }
+
+    /* ═════════════════════════════════════════════════════════════════
+       5. TUTORIAL & GITHUB TOKEN MODALS
+       ═════════════════════════════════════════════════════════════════ */
+    function openTutorialModal() { document.getElementById('tutorialModal').style.display = 'flex'; }
+    function closeTutorialModal() { document.getElementById('tutorialModal').style.display = 'none'; }
+
+    function openGitHubTokenModal() {
+      document.getElementById('githubTokenModal').style.display = 'flex';
+      const cur = localStorage.getItem('egat_github_pat') || '';
+      document.getElementById('inputGitHubPat').value = cur;
+    }
+    function closeGitHubTokenModal() { document.getElementById('githubTokenModal').style.display = 'none'; }
+    function saveGitHubToken() {
+      const val = document.getElementById('inputGitHubPat').value.trim();
+      if (val) {
+        localStorage.setItem('egat_github_pat', val);
+        alert('บันทึก GitHub Token เรียบร้อยแล้ว');
+      } else {
+        localStorage.removeItem('egat_github_pat');
+        alert('ลบ GitHub Token เรียบร้อย');
+      }
+      closeGitHubTokenModal();
+    }
+
+    /* ═════════════════════════════════════════════════════════════════
+       6. COMPARISON, QUALITY & SETTINGS MODALS
+       ═════════════════════════════════════════════════════════════════ */
     function openComparisonModal() {
       document.getElementById('comparisonModal').style.display = 'flex';
       updateComparisonView();
@@ -1168,7 +2141,6 @@
     function closeComparisonModal() {
       document.getElementById('comparisonModal').style.display = 'none';
     }
-
     function addBuildingToComparison(bCode) {
       openComparisonModal();
       const comp1 = document.getElementById('compSelect1');

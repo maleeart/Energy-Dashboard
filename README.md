@@ -16,13 +16,26 @@
    - ระบบบันทึกและแสดงเหตุการณ์พิเศษ (Special Events) ที่ส่งผลต่อการใช้พลังงาน
    - ดึงข้อมูลอุณหภูมิเฉลี่ยรายวันจาก Open-Meteo API เพื่อวิเคราะห์ความสัมพันธ์กับสภาพอากาศ
 
-2. **🛢️ น้ำมัน (`fuel.html`)**
+2. **🏢 แบบจำลองอาคาร 3 มิติ (Sainoi Energy Digital Twin - `twin.html`)**
+   - **Three.js Campus Digital Twin:** แบบจำลอง 3D ความละเอียดสูง อิงตาม Master Plan และ As-Built 29 อาคาร ผังถนน คลอง คลองระบายน้ำ สนามฟุตบอล และสวิตช์ยาร์ด 500 kV
+   - **3 โหมดการแสดงผล (Visual Modes):**
+     * **🌡️ Heatmap:** สีอาคารสะท้อนผลเทียบเป้าหมายการประหยัดพลังงาน (เขียว=ผ่านเกณฑ์, แดง=เกินเป้า)
+     * **📊 3D Bars:** แท่งพลังงาน 3 มิติพุ่งขึ้นเหนือหลังคาตามหน่วยการใช้ไฟฟ้าจริง (kWh) พร้อมป้ายตัวเลข
+     * **⚡ Energy Flow:** เส้นพลังงานเรืองแสงเคลื่อนไหวจำลองการไหลของกระแสไฟฟ้าจากสวิตช์ยาร์ด 500 kV สู่อาคาร
+   - **☀️/🌙 กลางวันและกลางคืน (Day/Night Theme):** บรรยากาศกลางคืนพร้อมหน้าต่างเรืองแสงและไฟวิทยาเขต
+   - **📺 โหมด Kiosk (Auto-Orbit):** หมุนกล้องรอบวิทยาเขตและวนไฮไลต์อาคารที่ใช้ไฟฟ้าสูงสุด Top 5 สำหรับจอ TV Dashboard
+   - **⚖️ จัดการสัดส่วนฝ่าย (Allocation Manager):** ตารางปรับสัดส่วน % พร้อมระบบตรวจผลรวม 100%, บันทึกลงเครื่อง (Apply) และส่งขึ้น GitHub ผ่าน REST API
+   - **📉 วิเคราะห์บิล กฟน. & เหตุการณ์พิเศษ:** เปรียบเทียบมิเตอร์ภายใน vs บิล กฟน. หา Unaccounted Energy และไทม์ไลน์ผลกระทบ
+   - **📑 รายงานสรุปประจำเดือน:** สร้างรายงานผู้บริหารอัตโนมัติพร้อมภาพ Snapshot 3D และพิมพ์เป็น PDF
+   - **🚨 ศูนย์แจ้งเตือน (Alert Center):** เตือนอาคารใช้ไฟเกินเป้าและอัตราพุ่งสูงก้าวกระโดด (>15% MoM) พร้อมปุ่มคลิกโฟกัส 3D ทันที
+
+3. **🛢️ น้ำมัน (`fuel.html`)**
    - ติดตามปริมาณการใช้น้ำมันเชื้อเพลิงของยานพาหนะและเครื่องจักรสำนักงานไทรน้อย
 
-3. **💧 น้ำประปา (`water.html`)**
+4. **💧 น้ำประปา (`water.html`)**
    - แสดงสถิติและแนวโน้มการใช้น้ำประปารายเดือน
 
-4. **♻️ ขยะ (`garbage.html`)**
+5. **♻️ ขยะ (`garbage.html`)**
    - ติดตามปริมาณขยะและการคัดแยกทรัพยากรหมุนเวียน
 
 ---
@@ -84,6 +97,12 @@ python scripts/create_weekly_form.py 2026-06-05
 ### การ Rebuild ฐานข้อมูลด้วยตนเองในเครื่อง
 ```bash
 python scripts/build_energy_db.py
+python scripts/build_building_summary.py
+```
+
+### การทดสอบความถูกต้องของ Digital Twin
+```bash
+python tests/verify_digital_twin.py
 ```
 
 ---
@@ -94,7 +113,9 @@ python scripts/build_energy_db.py
 ├── .github/workflows/
 │   └── build-energy-db.yml         # GitHub Actions สำหรับ build ฐานข้อมูลอัตโนมัติ
 ├── data/
-│   ├── building_alias.json          # แมปปิ้งชื่ออาคาร
+│   ├── building_alias.json          # แมปปิ้งชื่ออาคารและนามแฝง (Aliases)
+│   ├── building_mapping.json        # พิกัดและสถาปัตยกรรมอาคาร 29 หลัง
+│   ├── building_energy_summary.json # ยอดพลังงานรายอาคารและรายเดือน
 │   ├── department_allocation_buildings.csv # สัดส่วน Allocation แยกตามอาคาร
 │   ├── department_allocations.csv   # สัดส่วน Allocation ระดับฝ่าย
 │   ├── energy_db.json              # ฐานข้อมูลหลักที่ Dashboard ใช้อ่าน
@@ -107,22 +128,34 @@ python scripts/build_energy_db.py
 │   └── meter_form.html             # เว็บฟอร์มสำหรับผู้จดมิเตอร์หน้างาน
 ├── forms/
 │   └── 2026-Wxx.csv                # ไฟล์จดมิเตอร์รายสัปดาห์
-├── MEA/
-│   └── ไฟล์การใช้ไฟฟ้า-ประปา.xlsx   # ไฟล์ Excel ต้นฉบับข้อมูลบิล กฟน. และ กปน.
 ├── scripts/
+│   ├── energy-twin-core.js         # Core Data & State Management ของ Digital Twin
+│   ├── energy-twin-3d.js           # Three.js 3D Campus Engine & Procedural Architecture
 │   ├── build_energy_db.py          # สคริปต์ประมวลผลฐานข้อมูลไฟฟ้า
-│   ├── build_fuel_db.py            # สคริปต์ประมวลผลฐานข้อมูลน้ำมัน
-│   └── create_weekly_form.py       # สคริปต์สร้างไฟล์ฟอร์มรายสัปดาห์
+│   ├── build_building_summary.py   # สคริปต์ซิงค์ข้อมูลพลังงานเข้า 3D อาคาร
+│   └── build_fuel_db.py            # สคริปต์ประมวลผลฐานข้อมูลน้ำมัน
 ├── index.html                      # หน้า Dashboard ไฟฟ้าหลัก
+├── twin.html                       # หน้า 3D Building Digital Twin
 ├── fuel.html                       # หน้า Dashboard น้ำมัน
 ├── water.html                      # หน้า Dashboard น้ำประปา
-└── garbage.html                    # หน้า Dashboard ขยะ
+├── garbage.html                    # หน้า Dashboard ขยะ
+├── vercel.json                     # การตั้งค่าสำหรับ Vercel Deployment
+└── tests/
+    └── verify_digital_twin.py      # ชุดทดสอบความถูกต้องของระบบ
 ```
 
 ---
 
-## 🌐 การตั้งค่า GitHub Pages
+## 🚀 การ Deploy บน Vercel หรือ GitHub Pages
 
+### Deploy บน Vercel
+1. นำเข้า Repository https://github.com/maleeart/Energy-Dashboard เข้าสู่ Vercel
+2. Framework Preset: **Other** (Static)
+3. Build Command: เว้นว่าง (Static Site)
+4. Output Directory: `.` (Root)
+5. ไฟล์ `vercel.json` จะกำหนด Cache Headers และ CORS ให้อัตโนมัติ
+
+### Deploy บน GitHub Pages
 1. ไปที่แท็บ **Settings** ของ Repository
 2. เลือกเมนู **Pages** (ทางซ้ายมือ)
 3. ภายใต้ **Build and deployment**:

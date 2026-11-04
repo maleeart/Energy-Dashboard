@@ -33,6 +33,21 @@
       this.warningSprites = new Map(); // b_code -> sprite
       this.landmarkSprites = [];       // array of landmark label sprites
 
+      this.hemiLight = null;
+      this.ambLight = null;
+      this.dirLight = null;
+
+      this.visualMode = 'heatmap'; // 'heatmap' | 'bars' | 'flow'
+      this.currentTheme = 'day';   // 'day' | 'night'
+      this.isKiosk = false;
+      this.kioskInterval = null;
+      this.kioskIndex = 0;
+
+      this.barGroup = new THREE.Group();
+      this.flowGroup = new THREE.Group();
+      this.flowMaterials = [];
+      this.windowMeshes = [];
+
       this.selectionRing = null;
       this.hoveredBuilding = null;
       this.selectedBuilding = null;
@@ -95,6 +110,12 @@
       // 6. Complete Campus Environment (Ground, Ponds, Canal, Switchyard, Football, OHK Infrastructure)
       this.setupCampusEnvironment();
 
+      // 6.1 3D Visual Layers (Bars & Energy Flow)
+      this.scene.add(this.barGroup);
+      this.scene.add(this.flowGroup);
+      this.barGroup.visible = false;
+      this.flowGroup.visible = false;
+
       // 7. Glowing Building Selection Ring
       this.setupSelectionRing();
 
@@ -107,13 +128,13 @@
 
     setupLights() {
       // Natural Hemisphere Ambient Fill
-      const hemiLight = new THREE.HemisphereLight(0xFFFFFF, 0xCBD5E1, 0.72);
-      hemiLight.position.set(0, 220, 0);
-      this.scene.add(hemiLight);
+      this.hemiLight = new THREE.HemisphereLight(0xFFFFFF, 0xCBD5E1, 0.72);
+      this.hemiLight.position.set(0, 220, 0);
+      this.scene.add(this.hemiLight);
 
       // Soft Ambient Light
-      const ambLight = new THREE.AmbientLight(0xFFFFFF, 0.35);
-      this.scene.add(ambLight);
+      this.ambLight = new THREE.AmbientLight(0xFFFFFF, 0.35);
+      this.scene.add(this.ambLight);
 
       // Main Sun Directional Light
       this.dirLight = new THREE.DirectionalLight(0xFFFBEB, 0.95);
@@ -860,11 +881,23 @@
       this.labelSprites.clear();
       this.warningSprites.forEach(sprite => this.scene.remove(sprite));
       this.warningSprites.clear();
+      this.windowMeshes = [];
 
       buildingsList.forEach(bData => {
         const buildingGroup = this.createBuildingMesh(bData);
         this.scene.add(buildingGroup);
         this.buildingMeshes.set(bData.b_code, buildingGroup);
+
+        // Collect window meshes for day/night illumination
+        buildingGroup.traverse((child) => {
+          if (child.isMesh && child.material && child !== buildingGroup.children[0]) {
+            const mat = child.material;
+            if (mat.roughness < 0.35 && mat.metalness > 0.4) {
+              child.userData.isWindow = true;
+              this.windowMeshes.push(child);
+            }
+          }
+        });
 
         const labelSprite = this.createLabelSprite(bData);
         this.scene.add(labelSprite);
@@ -1482,6 +1515,300 @@
     /* ═════════════════════════════════════════════════════════════════
        Interactive State Updates, Raycasting & Camera Controls
        ═════════════════════════════════════════════════════════════════ */
+
+    /* ═════════════════════════════════════════════════════════════════
+       Advanced Digital Twin Visual Modes (Heatmap, 3D Bars, Flow Network)
+       ═════════════════════════════════════════════════════════════════ */
+    updateEnergyBars(buildingsList) {
+      // Clear existing bars
+      while (this.barGroup.children.length > 0) {
+        const obj = this.barGroup.children[0];
+        if (obj.geometry) obj.geometry.dispose();
+        if (obj.material) {
+          if (Array.isArray(obj.material)) obj.material.forEach(m => m.dispose());
+          else obj.material.dispose();
+        }
+        this.barGroup.remove(obj);
+      }
+
+      if (!buildingsList || buildingsList.length === 0) return;
+
+      // Find maximum kWh to scale bars reasonably
+      let maxKwh = 1;
+      buildingsList.forEach(b => {
+        const kwh = b.daily_kwh || b.monthly_kwh || 0;
+        if (kwh > maxKwh) maxKwh = kwh;
+      });
+
+      buildingsList.forEach(bData => {
+        const kwh = bData.daily_kwh || bData.monthly_kwh || 0;
+        if (kwh <= 0) return;
+
+        const normalized = Math.min(kwh / maxKwh, 1);
+        const barHeight = Math.max(3.5, normalized * 38);
+        const barWidth = Math.max(1.8, Math.min(bData.dimensions.width, bData.dimensions.depth) * 0.28);
+
+        // Cylinder bar
+        const barGeo = new THREE.CylinderGeometry(barWidth, barWidth * 1.15, barHeight, 16);
+        const colorInfo = window.EnergyTwin ? window.EnergyTwin.getColorForBuilding(bData) : { hex: 0x10B981 };
+
+        const barMat = new THREE.MeshStandardMaterial({
+          color: colorInfo.hex,
+          emissive: colorInfo.hex,
+          emissiveIntensity: 0.45,
+          roughness: 0.25,
+          metalness: 0.35,
+          transparent: true,
+          opacity: 0.88
+        });
+
+        const barMesh = new THREE.Mesh(barGeo, barMat);
+        const { height } = bData.dimensions;
+        const { x, z } = bData.layout_position;
+        barMesh.position.set(x, height + barHeight / 2, z);
+        barMesh.userData = { b_code: bData.b_code };
+        this.barGroup.add(barMesh);
+
+        // Value text billboard at top of bar
+        const canvas = document.createElement('canvas');
+        canvas.width = 256;
+        canvas.height = 64;
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = 'rgba(15, 23, 42, 0.9)';
+        ctx.beginPath();
+        ctx.roundRect(4, 4, 248, 56, 12);
+        ctx.fill();
+        ctx.strokeStyle = '#38BDF8';
+        ctx.lineWidth = 2.5;
+        ctx.stroke();
+
+        ctx.font = 'bold 22px Sarabun, sans-serif';
+        ctx.fillStyle = '#FFFFFF';
+        ctx.textAlign = 'center';
+        const formattedKwh = kwh >= 1000 ? (kwh / 1000).toFixed(1) + 'k' : Math.round(kwh);
+        ctx.fillText(`${formattedKwh} kWh`, 128, 38);
+
+        const texture = new THREE.CanvasTexture(canvas);
+        const spriteMat = new THREE.SpriteMaterial({ map: texture, transparent: true, depthTest: false });
+        const valSprite = new THREE.Sprite(spriteMat);
+        valSprite.position.set(x, height + barHeight + 3.2, z);
+        valSprite.scale.set(11, 2.8, 1);
+        this.barGroup.add(valSprite);
+      });
+
+      this.needsRender = true;
+    }
+
+    updateEnergyFlow(buildingsList) {
+      // Clear existing flow lines
+      while (this.flowGroup.children.length > 0) {
+        const obj = this.flowGroup.children[0];
+        if (obj.geometry) obj.geometry.dispose();
+        if (obj.material) obj.material.dispose();
+        this.flowGroup.remove(obj);
+      }
+      this.flowMaterials = [];
+
+      if (!buildingsList || buildingsList.length === 0) return;
+
+      // 500 kV Substation / Switchyard Origin
+      const switchyardOrigin = new THREE.Vector3(105, 5, 75);
+      const subHub = new THREE.Vector3(0, 4, -10);
+
+      // Main trunk line from Switchyard to Central Distribution Hub
+      const trunkCurve = new THREE.QuadraticBezierCurve3(
+        switchyardOrigin,
+        new THREE.Vector3(50, 22, 30),
+        subHub
+      );
+      const trunkPoints = trunkCurve.getPoints(40);
+      const trunkGeo = new THREE.BufferGeometry().setFromPoints(trunkPoints);
+      const trunkMat = new THREE.LineDashedMaterial({
+        color: 0xFDE047,
+        dashSize: 3.5,
+        gapSize: 2.0,
+        linewidth: 3,
+        transparent: true,
+        opacity: 0.92
+      });
+      const trunkLine = new THREE.Line(trunkGeo, trunkMat);
+      trunkLine.computeLineDistances();
+      this.flowGroup.add(trunkLine);
+      this.flowMaterials.push(trunkMat);
+
+      // Branch lines to each building
+      buildingsList.forEach(bData => {
+        const dest = new THREE.Vector3(bData.layout_position.x, 2, bData.layout_position.z);
+        // Choose closer source between SubHub and Switchyard
+        const src = (dest.distanceTo(switchyardOrigin) < dest.distanceTo(subHub)) ? switchyardOrigin : subHub;
+
+        const mid = new THREE.Vector3(
+          (src.x + dest.x) * 0.5,
+          10 + Math.min(src.distanceTo(dest) * 0.12, 18),
+          (src.z + dest.z) * 0.5
+        );
+
+        const curve = new THREE.QuadraticBezierCurve3(src, mid, dest);
+        const points = curve.getPoints(30);
+        const geo = new THREE.BufferGeometry().setFromPoints(points);
+
+        const colorInfo = window.EnergyTwin ? window.EnergyTwin.getColorForBuilding(bData) : { hex: 0x38BDF8 };
+        const flowMat = new THREE.LineDashedMaterial({
+          color: colorInfo.hex,
+          dashSize: 2.2,
+          gapSize: 1.8,
+          linewidth: 2,
+          transparent: true,
+          opacity: 0.8
+        });
+
+        const flowLine = new THREE.Line(geo, flowMat);
+        flowLine.computeLineDistances();
+        this.flowGroup.add(flowLine);
+        this.flowMaterials.push(flowMat);
+      });
+
+      this.needsRender = true;
+    }
+
+    setVisualMode(mode) {
+      this.visualMode = mode || 'heatmap';
+
+      if (this.visualMode === 'heatmap') {
+        this.barGroup.visible = false;
+        this.flowGroup.visible = false;
+      } else if (this.visualMode === 'bars') {
+        this.barGroup.visible = true;
+        this.flowGroup.visible = false;
+        if (window.EnergyTwin && window.EnergyTwin.currentBuildings) {
+          this.updateEnergyBars(window.EnergyTwin.currentBuildings);
+        }
+      } else if (this.visualMode === 'flow') {
+        this.barGroup.visible = false;
+        this.flowGroup.visible = true;
+        if (window.EnergyTwin && window.EnergyTwin.currentBuildings) {
+          this.updateEnergyFlow(window.EnergyTwin.currentBuildings);
+        }
+      }
+
+      this.needsRender = true;
+    }
+
+    /* ═════════════════════════════════════════════════════════════════
+       Day / Night Theme & Ambient Lighting
+       ═════════════════════════════════════════════════════════════════ */
+    setTheme(theme) {
+      this.currentTheme = theme === 'night' ? 'night' : 'day';
+
+      if (this.currentTheme === 'night') {
+        // Night Sky & Fog
+        this.scene.background = new THREE.Color(0x0A0F1D);
+        if (this.scene.fog) {
+          this.scene.fog.color = new THREE.Color(0x0A0F1D);
+          this.scene.fog.density = 0.0022;
+        }
+
+        // Night Lighting
+        if (this.hemiLight) {
+          this.hemiLight.color.setHex(0x1E293B);
+          this.hemiLight.groundColor.setHex(0x0F172A);
+          this.hemiLight.intensity = 0.28;
+        }
+        if (this.ambLight) {
+          this.ambLight.color.setHex(0x1E293B);
+          this.ambLight.intensity = 0.15;
+        }
+        if (this.dirLight) {
+          this.dirLight.color.setHex(0x60A5FA);
+          this.dirLight.intensity = 0.32;
+        }
+
+        // Glowing Windows
+        this.windowMeshes.forEach(mesh => {
+          if (mesh.material) {
+            mesh.material.emissive = new THREE.Color(0xFDE047);
+            mesh.material.emissiveIntensity = 0.82;
+          }
+        });
+      } else {
+        // Daylight Sky & Fog
+        this.scene.background = new THREE.Color(0xEDF2F7);
+        if (this.scene.fog) {
+          this.scene.fog.color = new THREE.Color(0xEDF2F7);
+          this.scene.fog.density = 0.0018;
+        }
+
+        // Daylight Lighting
+        if (this.hemiLight) {
+          this.hemiLight.color.setHex(0xFFFFFF);
+          this.hemiLight.groundColor.setHex(0xCBD5E1);
+          this.hemiLight.intensity = 0.72;
+        }
+        if (this.ambLight) {
+          this.ambLight.color.setHex(0xFFFFFF);
+          this.ambLight.intensity = 0.35;
+        }
+        if (this.dirLight) {
+          this.dirLight.color.setHex(0xFFFBEB);
+          this.dirLight.intensity = 0.95;
+        }
+
+        // Windows unlit in daylight
+        this.windowMeshes.forEach(mesh => {
+          if (mesh.material) {
+            mesh.material.emissive = new THREE.Color(0x000000);
+            mesh.material.emissiveIntensity = 0;
+          }
+        });
+      }
+
+      this.needsRender = true;
+    }
+
+    /* ═════════════════════════════════════════════════════════════════
+       Kiosk Auto-Orbit Presentation Mode & High-Res Snapshot
+       ═════════════════════════════════════════════════════════════════ */
+    toggleKioskMode(forceState) {
+      this.isKiosk = forceState !== undefined ? !!forceState : !this.isKiosk;
+
+      if (this.isKiosk) {
+        if (this.controls) {
+          this.controls.autoRotate = true;
+          this.controls.autoRotateSpeed = 0.75;
+        }
+
+        // Cycle through top energy consumers every 12 seconds
+        this.kioskIndex = 0;
+        if (this.kioskInterval) clearInterval(this.kioskInterval);
+        this.kioskInterval = setInterval(() => {
+          if (!this.isKiosk || !window.EnergyTwin || !window.EnergyTwin.currentBuildings) return;
+          const buildings = [...window.EnergyTwin.currentBuildings].sort((a, b) => (b.daily_kwh || 0) - (a.daily_kwh || 0));
+          if (buildings.length > 0) {
+            const b = buildings[this.kioskIndex % Math.min(5, buildings.length)];
+            window.EnergyTwin.setState({ selectedBuildingId: b.b_code });
+            this.kioskIndex++;
+          }
+        }, 12000);
+      } else {
+        if (this.controls) {
+          this.controls.autoRotate = false;
+        }
+        if (this.kioskInterval) {
+          clearInterval(this.kioskInterval);
+          this.kioskInterval = null;
+        }
+      }
+
+      this.needsRender = true;
+      return this.isKiosk;
+    }
+
+    takeSnapshot() {
+      if (!this.renderer || !this.scene || !this.camera) return null;
+      this.renderer.render(this.scene, this.camera);
+      return this.renderer.domElement.toDataURL('image/png');
+    }
+
     updateBuildingColors(buildingsList) {
       buildingsList.forEach(bData => {
         const group = this.buildingMeshes.get(bData.b_code);
@@ -1502,6 +1829,12 @@
           warnSprite.visible = false;
         }
       });
+
+      if (this.visualMode === 'bars') {
+        this.updateEnergyBars(buildingsList);
+      } else if (this.visualMode === 'flow') {
+        this.updateEnergyFlow(buildingsList);
+      }
 
       this.needsRender = true;
     }
@@ -1737,8 +2070,20 @@
         this.needsRender = true;
       }
 
+      // Animate flowing pulses in Energy Flow mode
+      if (this.visualMode === 'flow' && this.flowMaterials.length > 0) {
+        const offsetDelta = (time * 0.0018) % 10;
+        this.flowMaterials.forEach((mat, idx) => {
+          mat.dashOffset = -offsetDelta * (1 + (idx % 3) * 0.2);
+        });
+        this.needsRender = true;
+      }
+
       if (this.controls) {
         this.controls.update();
+        if (this.controls.autoRotate) {
+          this.needsRender = true;
+        }
       }
 
       if (this.needsRender || this.isAnimatingCamera) {
