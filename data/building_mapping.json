@@ -21,9 +21,9 @@
         "height": 14
       },
       "layout_position": {
-        "x": -135.0,
+        "x": -135,
         "y": 7.0,
-        "z": 75.0
+        "z": 10
       },
       "color_base": "#A855F7",
       "roof_type": "residential_balcony",
@@ -46,8 +46,7 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised",
-      "rotation_y": 0.0
+      "model_source": "masterplan_2565_revised"
     },
     "D.0015": {
       "building_id": "D.0015",
@@ -59,14 +58,14 @@
       "floors": 1,
       "description": "โรงซ่อมบำรุงเครื่องจักรกล อสร. ติด ท.0012",
       "dimensions": {
-        "width": 26,
-        "depth": 18,
+        "width": 30,
+        "depth": 20,
         "height": 9
       },
       "layout_position": {
-        "x": -175.0,
+        "x": -45,
         "y": 4.5,
-        "z": -65.0
+        "z": -150
       },
       "color_base": "#94A3B8",
       "roof_type": "industrial_gable",
@@ -89,8 +88,7 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised",
-      "rotation_y": 0.0
+      "model_source": "masterplan_2565_revised"
     },
     "D.0017": {
       "building_id": "D.0017",
@@ -107,9 +105,9 @@
         "height": 8
       },
       "layout_position": {
-        "x": 15.0,
+        "x": 5,
         "y": 4.0,
-        "z": -90.0
+        "z": -55
       },
       "color_base": "#F8FAFC",
       "roof_type": "curved_barrel",
@@ -168,8 +166,7 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised",
-      "rotation_y": 0.0
+      "model_source": "masterplan_2565_revised"
     },
     "D.0019": {
       "building_id": "D.0019",
@@ -186,9 +183,9 @@
         "height": 16
       },
       "layout_position": {
-        "x": 15.0,
+        "x": 35,
         "y": 8.0,
-        "z": -45.0
+        "z": -48
       },
       "color_base": "#F1F5F9",
       "roof_type": "office_stepped",
@@ -261,8 +258,7 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised",
-      "rotation_y": 0.0
+      "model_source": "masterplan_2565_revised"
     },
     "D.0025": {
       "building_id": "D.0025",
@@ -279,9 +275,9 @@
         "height": 10
       },
       "layout_position": {
-        "x": -65.0,
+        "x": 85,
         "y": 5.0,
-        "z": 95.0
+        "z": -10
       },
       "color_base": "#64748B",
       "roof_type": "industrial_flat",
@@ -304,8 +300,7 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised",
-      "rotation_y": 0.0
+      "model_source": "masterplan_2565_revised"
     },
     "D.0026": {
       "building_id": "D.0026",
@@ -322,9 +317,9 @@
         "height": 6
       },
       "layout_position": {
-        "x": -95.0,
+        "x": -75,
         "y": 3.0,
-        "z": -145.0
+        "z": -150
       },
       "color_base": "#38BDF8",
       "roof_type": "industrial_flat",
@@ -347,8 +342,7 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised",
-      "rotation_y": 0.0
+      "model_source": "masterplan_2565_revised"
     },
     "D.0031": {
       "building_id": "D.0031",
@@ -360,14 +354,14 @@
       "floors": 1,
       "description": "โรงอาหารสวัสดิการพนักงาน อหข. ชายคายื่นร่มรื่น ติดแนวสระน้ำ อหข.",
       "dimensions": {
-        "width": 22,
+        "width": 20,
         "depth": 16,
         "height": 7
       },
       "layout_position": {
-        "x": -175.0,
+        "x": -160,
         "y": 3.5,
-        "z": -160.0
+        "z": -130
       },
       "color_base": "#F8FAFC",
       "roof_type": "ohk_canteen_d0031",
@@ -398,8 +392,7 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "asbuilt_ohk_sn_2_6_revised",
-      "rotation_y": 0.0
+      "model_source": "asbuilt_ohk_sn_2_6_revised"
     },
     "D.0033": {
       "building_id": "D.0033",
@@ -411,14 +404,14 @@
       "floors": 1,
       "description": "โรงปฏิบัติการงานเชื่อมและซ่อมโครงสร้างตัวถัง อหข. พร้อมระบบดูดระบายควันอุตสาหกรรม",
       "dimensions": {
-        "width": 24,
-        "depth": 18,
-        "height": 8.5
+        "width": 22,
+        "depth": 16,
+        "height": 8
       },
       "layout_position": {
-        "x": -175.0,
-        "y": 4.25,
-        "z": -110.0
+        "x": -160,
+        "y": 4.0,
+        "z": -95
       },
       "color_base": "#94A3B8",
       "roof_type": "ohk_welding_d0033",
@@ -441,8 +434,7 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "asbuilt_ohk_sn_2_6_revised",
-      "rotation_y": 0.0
+      "model_source": "asbuilt_ohk_sn_2_6_revised"
     },
     "T.0006": {
       "building_id": "T.0006",
@@ -459,9 +451,9 @@
         "height": 10
       },
       "layout_position": {
-        "x": 65.0,
+        "x": -25,
         "y": 5.0,
-        "z": 15.0
+        "z": 15
       },
       "color_base": "#94A3B8",
       "roof_type": "curved_barrel",
@@ -484,8 +476,7 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised",
-      "rotation_y": 0.0
+      "model_source": "masterplan_2565_revised"
     },
     "T.0007": {
       "building_id": "T.0007",
@@ -502,9 +493,9 @@
         "height": 9
       },
       "layout_position": {
-        "x": 65.0,
+        "x": -25,
         "y": 4.5,
-        "z": 50.0
+        "z": 50
       },
       "color_base": "#E2E8F0",
       "roof_type": "curved_barrel",
@@ -527,8 +518,7 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised",
-      "rotation_y": 0.0
+      "model_source": "masterplan_2565_revised"
     },
     "T.0008": {
       "building_id": "T.0008",
@@ -545,9 +535,9 @@
         "height": 10
       },
       "layout_position": {
-        "x": 65.0,
+        "x": -25,
         "y": 5.0,
-        "z": -25.0
+        "z": -20
       },
       "color_base": "#94A3B8",
       "roof_type": "curved_barrel",
@@ -570,8 +560,7 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised",
-      "rotation_y": 0.0
+      "model_source": "masterplan_2565_revised"
     },
     "T.0009": {
       "building_id": "T.0009",
@@ -588,9 +577,9 @@
         "height": 9
       },
       "layout_position": {
-        "x": 65.0,
+        "x": -25,
         "y": 4.5,
-        "z": -160.0
+        "z": -85
       },
       "color_base": "#E2E8F0",
       "roof_type": "industrial_gable",
@@ -613,8 +602,7 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised",
-      "rotation_y": 0.0
+      "model_source": "masterplan_2565_revised"
     },
     "T.0010": {
       "building_id": "T.0010",
@@ -626,14 +614,14 @@
       "floors": 1,
       "description": "อาคาร Testing Lab ทดสอบอุปกรณ์เครื่องกลและชิ้นส่วนหมุน",
       "dimensions": {
-        "width": 22,
-        "depth": 18,
+        "width": 30,
+        "depth": 20,
         "height": 10
       },
       "layout_position": {
-        "x": 65.0,
+        "x": -25,
         "y": 5.0,
-        "z": -65.0
+        "z": -55
       },
       "color_base": "#94A3B8",
       "roof_type": "industrial_flat",
@@ -656,8 +644,7 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised",
-      "rotation_y": 0.0
+      "model_source": "masterplan_2565_revised"
     },
     "T.0011": {
       "building_id": "T.0011",
@@ -669,14 +656,14 @@
       "floors": 1,
       "description": "คลังเครื่องมือ อุปกรณ์ทดสอบทางวิศวกรรมเครื่องกล",
       "dimensions": {
-        "width": 34,
-        "depth": 22,
-        "height": 10
+        "width": 32,
+        "depth": 20,
+        "height": 9
       },
       "layout_position": {
-        "x": 65.0,
-        "y": 5.0,
-        "z": -115.0
+        "x": -25,
+        "y": 4.5,
+        "z": -115
       },
       "color_base": "#94A3B8",
       "roof_type": "curved_barrel",
@@ -699,8 +686,7 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised",
-      "rotation_y": 0.0
+      "model_source": "masterplan_2565_revised"
     },
     "T.0012": {
       "building_id": "T.0012",
@@ -717,9 +703,9 @@
         "height": 11
       },
       "layout_position": {
-        "x": 15.0,
+        "x": -5,
         "y": 5.5,
-        "z": -140.0
+        "z": -150
       },
       "color_base": "#94A3B8",
       "roof_type": "curved_barrel",
@@ -742,8 +728,7 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised",
-      "rotation_y": 0.0
+      "model_source": "masterplan_2565_revised"
     },
     "T.0014": {
       "building_id": "T.0014",
@@ -760,9 +745,9 @@
         "height": 11
       },
       "layout_position": {
-        "x": -55.0,
+        "x": 75,
         "y": 5.5,
-        "z": -125.0
+        "z": -75
       },
       "color_base": "#FFFFFF",
       "roof_type": "curved_barrel",
@@ -787,8 +772,7 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised",
-      "rotation_y": 0.0
+      "model_source": "masterplan_2565_revised"
     },
     "T.0015": {
       "building_id": "T.0015",
@@ -800,14 +784,14 @@
       "floors": 1,
       "description": "ห้องปฏิบัติการวิเคราะห์เคมี 2 ริมเหนือสุดของวงเวียน",
       "dimensions": {
-        "width": 26,
+        "width": 24,
         "depth": 18,
         "height": 9
       },
       "layout_position": {
-        "x": -55.0,
+        "x": 130,
         "y": 4.5,
-        "z": -90.0
+        "z": -100
       },
       "color_base": "#F8FAFC",
       "roof_type": "curved_barrel",
@@ -830,8 +814,7 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised",
-      "rotation_y": 0.0
+      "model_source": "masterplan_2565_revised"
     },
     "T.0016": {
       "building_id": "T.0016",
@@ -843,14 +826,14 @@
       "floors": 1,
       "description": "ห้องปฏิบัติการตรวจวิเคราะห์น้ำมันและสารเคมี 1",
       "dimensions": {
-        "width": 28,
+        "width": 24,
         "depth": 18,
         "height": 9
       },
       "layout_position": {
-        "x": -55.0,
+        "x": 150,
         "y": 4.5,
-        "z": -55.0
+        "z": -75
       },
       "color_base": "#E2E8F0",
       "roof_type": "curved_barrel",
@@ -873,8 +856,7 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised",
-      "rotation_y": 0.0
+      "model_source": "masterplan_2565_revised"
     },
     "T.0017": {
       "building_id": "T.0017",
@@ -886,14 +868,14 @@
       "floors": 1,
       "description": "ศูนย์พัฒนาเทคโนโลยีงานเชื่อม ติดวงเวียนเคมี",
       "dimensions": {
-        "width": 28,
+        "width": 26,
         "depth": 20,
         "height": 10
       },
       "layout_position": {
-        "x": -65.0,
+        "x": 115,
         "y": 5.0,
-        "z": 55.0
+        "z": -35
       },
       "color_base": "#E2E8F0",
       "roof_type": "curved_barrel",
@@ -916,8 +898,7 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised",
-      "rotation_y": 0.0
+      "model_source": "masterplan_2565_revised"
     },
     "T.0018": {
       "building_id": "T.0018",
@@ -929,14 +910,14 @@
       "floors": 3,
       "description": "Calibration Lab อาคารสีขาว 2 ชั้น สอบเทียบเครื่องมือวัดละเอียดสูง",
       "dimensions": {
-        "width": 32,
-        "depth": 20,
-        "height": 13
+        "width": 28,
+        "depth": 18,
+        "height": 10
       },
       "layout_position": {
-        "x": -65.0,
-        "y": 6.5,
-        "z": 15.0
+        "x": 140,
+        "y": 5.0,
+        "z": -45
       },
       "color_base": "#F8FAFC",
       "roof_type": "office_stepped",
@@ -959,8 +940,7 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised",
-      "rotation_y": 0.0
+      "model_source": "masterplan_2565_revised"
     },
     "T.0019": {
       "building_id": "T.0019",
@@ -977,9 +957,9 @@
         "height": 34
       },
       "layout_position": {
-        "x": 15.0,
+        "x": 35,
         "y": 17.0,
-        "z": 15.0
+        "z": 0
       },
       "color_base": "#FFFFFF",
       "roof_type": "office_stepped",
@@ -1326,8 +1306,7 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised",
-      "rotation_y": 0.0
+      "model_source": "masterplan_2565_revised"
     },
     "T.0020": {
       "building_id": "T.0020",
@@ -1341,12 +1320,12 @@
       "dimensions": {
         "width": 26,
         "depth": 18,
-        "height": 10
+        "height": 11
       },
       "layout_position": {
-        "x": 15.0,
-        "y": 5.0,
-        "z": 60.0
+        "x": 35,
+        "y": 5.5,
+        "z": 50
       },
       "color_base": "#F8FAFC",
       "roof_type": "curved_barrel",
@@ -1454,8 +1433,7 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised",
-      "rotation_y": 0.0
+      "model_source": "masterplan_2565_revised"
     },
     "T.0022": {
       "building_id": "T.0022",
@@ -1472,9 +1450,9 @@
         "height": 8
       },
       "layout_position": {
-        "x": -135.0,
+        "x": -135,
         "y": 4.0,
-        "z": 35.0
+        "z": -35
       },
       "color_base": "#64748B",
       "roof_type": "industrial_gable",
@@ -1497,8 +1475,7 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised",
-      "rotation_y": 0.0
+      "model_source": "masterplan_2565_revised"
     },
     "T.0023": {
       "building_id": "T.0023",
@@ -1515,9 +1492,9 @@
         "height": 9
       },
       "layout_position": {
-        "x": -135.0,
+        "x": -135,
         "y": 4.5,
-        "z": -5.0
+        "z": -65
       },
       "color_base": "#94A3B8",
       "roof_type": "industrial_gable",
@@ -1540,8 +1517,7 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised",
-      "rotation_y": 0.0
+      "model_source": "masterplan_2565_revised"
     },
     "T.0025": {
       "building_id": "T.0025",
@@ -1558,9 +1534,9 @@
         "height": 8
       },
       "layout_position": {
-        "x": -135.0,
+        "x": -95,
         "y": 4.0,
-        "z": -45.0
+        "z": -90
       },
       "color_base": "#94A3B8",
       "roof_type": "industrial_gable",
@@ -1583,8 +1559,7 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised",
-      "rotation_y": 0.0
+      "model_source": "masterplan_2565_revised"
     },
     "T.0026": {
       "building_id": "T.0026",
@@ -1596,14 +1571,14 @@
       "floors": 2,
       "description": "อาคารที่ทำการและสำนักงานบริหารการขนส่ง อหข. 2 ชั้น (แปลน L-Shape) ด้านหลังมีโรงจอดรถในร่ม 16 คัน ติดวงเวียนใหญ่",
       "dimensions": {
-        "width": 34,
-        "depth": 20,
+        "width": 26,
+        "depth": 18,
         "height": 9
       },
       "layout_position": {
-        "x": -130.0,
+        "x": -145,
         "y": 4.5,
-        "z": -215.0
+        "z": -115
       },
       "color_base": "#FFFFFF",
       "roof_type": "ohk_office_t0026",
@@ -1626,8 +1601,7 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "asbuilt_ohk_sn_2_6_revised",
-      "rotation_y": 0.0
+      "model_source": "asbuilt_ohk_sn_2_6_revised"
     },
     "T.0027": {
       "building_id": "T.0027",
@@ -1639,14 +1613,14 @@
       "floors": 1,
       "description": "อาคารโรงจอดยานพาหนะโครงสร้างเหล็กขนาดใหญ่ 12 ช่องจอด พร้อมช่องตรวจสภาพและบำรุงรักษายานพาหนะ",
       "dimensions": {
-        "width": 22,
-        "depth": 58,
-        "height": 8
+        "width": 30,
+        "depth": 20,
+        "height": 9
       },
       "layout_position": {
-        "x": -70.0,
-        "y": 4.0,
-        "z": -200.0
+        "x": -145,
+        "y": 4.5,
+        "z": -150
       },
       "color_base": "#64748B",
       "roof_type": "ohk_garage_t0027",
@@ -1669,8 +1643,7 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "asbuilt_ohk_sn_2_6_revised",
-      "rotation_y": 0.0
+      "model_source": "asbuilt_ohk_sn_2_6_revised"
     },
     "T.0028": {
       "building_id": "T.0028",
@@ -1682,14 +1655,14 @@
       "floors": 1,
       "description": "โรงงานซ่อมบำรุงเครื่องจักรกลหนักและรถเฉพาะกิจ 1 มีเครนเหนือศีรษะ (Overhead Crane) ขนาด 32 ม. และช่องประตูช่างขนาดใหญ่",
       "dimensions": {
-        "width": 45,
-        "depth": 40,
-        "height": 11
+        "width": 32,
+        "depth": 22,
+        "height": 10
       },
       "layout_position": {
-        "x": -95.0,
-        "y": 5.5,
-        "z": -110.0
+        "x": -100,
+        "y": 5.0,
+        "z": -165
       },
       "color_base": "#94A3B8",
       "roof_type": "ohk_heavy_workshop",
@@ -1712,8 +1685,7 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "asbuilt_ohk_sn_2_6_revised",
-      "rotation_y": -0.488
+      "model_source": "asbuilt_ohk_sn_2_6_revised"
     },
     "T.0029": {
       "building_id": "T.0029",
@@ -1725,14 +1697,14 @@
       "floors": 1,
       "description": "โรงงานซ่อมบำรุงเครื่องจักรกลหนัก 2 วางขนานกับ ปภ.1 มีส่วนหลังคาต่อขยายเชื่อมระหว่างอาคาร",
       "dimensions": {
-        "width": 45,
-        "depth": 40,
-        "height": 11
+        "width": 32,
+        "depth": 22,
+        "height": 10
       },
       "layout_position": {
-        "x": -145.0,
-        "y": 5.5,
-        "z": -100.0
+        "x": -140,
+        "y": 5.0,
+        "z": -180
       },
       "color_base": "#94A3B8",
       "roof_type": "ohk_heavy_workshop",
@@ -1755,8 +1727,7 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "asbuilt_ohk_sn_2_6_revised",
-      "rotation_y": -0.488
+      "model_source": "asbuilt_ohk_sn_2_6_revised"
     }
   },
   "source_document": "ผังเลขอาคาร 1-02-65 / AS-BUILT DRAWING อขน. SNO-RF11-SN-2/6",

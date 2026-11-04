@@ -276,23 +276,23 @@
       const yardGroup = new THREE.Group();
       yardGroup.name = 'Switchyard500kV';
 
-      const yardGeo = new THREE.PlaneGeometry(65, 65);
+      const yardGeo = new THREE.PlaneGeometry(65, 60);
       const yardMat = new THREE.MeshStandardMaterial({ color: 0xCBD5E1, roughness: 0.95 });
       const yard = new THREE.Mesh(yardGeo, yardMat);
       yard.rotation.x = -Math.PI / 2;
-      yard.position.set(105, 0.06, 75);
+      yard.position.set(-65, 0.06, 85);
       yard.receiveShadow = true;
       yardGroup.add(yard);
 
       const fenceMat = new THREE.MeshStandardMaterial({ color: 0x64748B, wireframe: true });
-      const fenceGeo = new THREE.BoxGeometry(66, 3.5, 66);
+      const fenceGeo = new THREE.BoxGeometry(66, 3.5, 61);
       const fence = new THREE.Mesh(fenceGeo, fenceMat);
-      fence.position.set(105, 1.75, 75);
+      fence.position.set(-65, 1.75, 85);
       yardGroup.add(fence);
 
       const steelMat = new THREE.MeshStandardMaterial({ color: 0x475569, metalness: 0.8, roughness: 0.3 });
       const gantryPositions = [
-        [85, 60], [85, 90], [125, 60], [125, 90]
+        [-85, 70], [-85, 100], [-45, 70], [-45, 100]
       ];
 
       gantryPositions.forEach(([gx, gz]) => {
@@ -316,10 +316,10 @@
         });
       });
 
-      // Transformers
+      // Step-up / Step-down Power Transformers
       const transMat = new THREE.MeshStandardMaterial({ color: 0x334155, metalness: 0.5, roughness: 0.5 });
       const finMat = new THREE.MeshStandardMaterial({ color: 0x475569, metalness: 0.6 });
-      const transPositions = [[100, 75], [110, 75]];
+      const transPositions = [[-70, 85], [-60, 85]];
 
       transPositions.forEach(([tx, tz]) => {
         const transBody = new THREE.Mesh(new THREE.BoxGeometry(5, 4.5, 6), transMat);
@@ -342,11 +342,11 @@
     // Main Football Pitch between D.0019 and D.0025
     setupMainFootballField() {
       const fieldGroup = new THREE.Group();
-      // Main Campus Football Pitch: Situated between T.0019/D.0019 and Workshop row (T.0018/T.0016)
-      const fx = -18;
-      const fz = -35;
-      const fw = 32;
-      const fd = 50;
+      // Main Campus Football Pitch: Situated between D.0019 and D.0025 flanking T.0019
+      const fx = 65;
+      const fz = -20;
+      const fw = 36;
+      const fd = 54;
 
       const turfMat = new THREE.MeshStandardMaterial({ color: 0x228B22, roughness: 0.85 });
       const pitch = new THREE.Mesh(new THREE.PlaneGeometry(fw, fd), turfMat);
@@ -401,42 +401,42 @@
       const asphaltMat = new THREE.MeshStandardMaterial({ color: 0x334155, roughness: 0.72 });
       const lineMat = new THREE.MeshBasicMaterial({ color: 0xF1F5F9 });
 
-      // 1. Main Eastern Boulevard (Entrance toward Switchyard and Admin Offices)
+      // 1. Main North-South Entrance Boulevard (Passing T.0020, T.0019, D.0019)
       const mainBoulevard = new THREE.Mesh(new THREE.PlaneGeometry(12, 360), asphaltMat);
       mainBoulevard.rotation.x = -Math.PI / 2;
-      mainBoulevard.position.set(40, 0.06, -10);
+      mainBoulevard.position.set(35, 0.06, -20);
       mainBoulevard.receiveShadow = true;
       roadGroup.add(mainBoulevard);
 
-      for (let z = -170; z <= 140; z += 12) {
+      for (let z = -170; z <= 130; z += 12) {
         const dash = new THREE.Mesh(new THREE.PlaneGeometry(0.4, 5), lineMat);
         dash.rotation.x = -Math.PI / 2;
-        dash.position.set(40, 0.08, z);
+        dash.position.set(35, 0.08, z);
         roadGroup.add(dash);
       }
 
-      // 2. Central Spine Road between Office (T.0019) and Workshop Row
-      const centralAvenue = new THREE.Mesh(new THREE.PlaneGeometry(10, 320), asphaltMat);
-      centralAvenue.rotation.x = -Math.PI / 2;
-      centralAvenue.position.set(-10, 0.05, -20);
-      centralAvenue.receiveShadow = true;
-      roadGroup.add(centralAvenue);
+      // 2. Central Workshop Avenue (Between Spine Workshops and West Ponds)
+      const spineRoad = new THREE.Mesh(new THREE.PlaneGeometry(10, 340), asphaltMat);
+      spineRoad.rotation.x = -Math.PI / 2;
+      spineRoad.position.set(-25, 0.05, -30);
+      spineRoad.receiveShadow = true;
+      roadGroup.add(spineRoad);
 
-      // 3. West Workshop Avenue (In front of T.0014, T.0015, T.0016, T.0018)
-      const westAvenue = new THREE.Mesh(new THREE.PlaneGeometry(10, 260), asphaltMat);
-      westAvenue.rotation.x = -Math.PI / 2;
-      westAvenue.position.set(-65, 0.05, -15);
-      westAvenue.receiveShadow = true;
-      roadGroup.add(westAvenue);
+      // 3. West Pond & Canal Service Road
+      const canalRoad = new THREE.Mesh(new THREE.PlaneGeometry(9, 320), asphaltMat);
+      canalRoad.rotation.x = -Math.PI / 2;
+      canalRoad.position.set(-170, 0.05, -40);
+      canalRoad.receiveShadow = true;
+      roadGroup.add(canalRoad);
 
       // 4. Horizontal Cross Streets
       const hRoads = [
-        { z: 140, x: 25, width: 140 }, // Front Gate & Substation Street
-        { z: 40, x: 0, width: 150 },  // Front of T.0019 & T.0020
-        { z: -20, x: -25, width: 160 }, // Connecting Central Spine to T.0018 Roundabout
-        { z: -65, x: 0, width: 150 },  // Behind Soccer Field, front of Canteen
-        { z: -115, x: -5, width: 160 }, // Front of T.0012 Machine Workshop
-        { z: -165, x: 0, width: 160 }  // Rear Yard & Storage Road
+        { z: 140, x: 35, width: 90 }, // Front Gate & Substation Street
+        { z: 50, x: 0, width: 140 },  // Front of T.0020 & T.0007
+        { z: 12, x: 0, width: 140 },  // Front of T.0019 & T.0006
+        { z: -48, x: 45, width: 180 }, // Between D.0019, Canteen, Roundabout
+        { z: -100, x: -10, width: 220 }, // North connection
+        { z: -150, x: -60, width: 200 }  // Heavy workshop & North connection
       ];
 
       hRoads.forEach(r => {
@@ -447,9 +447,9 @@
         roadGroup.add(road);
       });
 
-      // 5. Turnaround Loop / Roundabout in front of T.0018 & T.0016 (Matches 3D prototype & drone photo)
-      const westRound = this.createRoundabout(-65, -20, 15, 7.5);
-      roadGroup.add(westRound);
+      // 5. Eastern Science & Chemistry Roundabout (in front of T.0018 & T.0016)
+      const eastRound = this.createRoundabout(120, -60, 16, 7.5);
+      roadGroup.add(eastRound);
 
       // Diagonal Road Connector from T.0018 Roundabout to OHK Zone
       const ohkDiag = new THREE.Mesh(new THREE.PlaneGeometry(9, 90), asphaltMat);
@@ -725,17 +725,44 @@
     }
 
     setupLandscaping() {
-      const poolGeo = new THREE.PlaneGeometry(36, 12);
-      const poolMat = new THREE.MeshStandardMaterial({ color: 0x0284C7, roughness: 0.1, metalness: 0.3 });
+      // 1. Scenic Promenade Pond & Lake Behind T.0019 (Matching 3D Prototype & crop_field.jpg)
+      const poolGroup = new THREE.Group();
+      const poolGeo = new THREE.PlaneGeometry(42, 18);
+      const poolMat = new THREE.MeshStandardMaterial({
+        color: 0x0284C7,
+        roughness: 0.1,
+        metalness: 0.35,
+        transparent: true,
+        opacity: 0.92
+      });
       const pool = new THREE.Mesh(poolGeo, poolMat);
       pool.rotation.x = -Math.PI / 2;
-      pool.position.set(35, 0.08, -16);
-      this.scene.add(pool);
+      pool.position.set(35, 0.08, 24);
+      pool.receiveShadow = true;
+      poolGroup.add(pool);
+
+      // Wooden footbridges crossing the lake
+      const bridgeMat = new THREE.MeshStandardMaterial({ color: 0x78350F, roughness: 0.75 });
+      [-9, 9].forEach(bx => {
+        const bridge = new THREE.Mesh(new THREE.BoxGeometry(3.0, 0.35, 20), bridgeMat);
+        bridge.position.set(35 + bx, 0.28, 24);
+        bridge.castShadow = true;
+        poolGroup.add(bridge);
+      });
+
+      // Stone border curb
+      const poolCurb = new THREE.Mesh(
+        new THREE.BoxGeometry(43.6, 0.4, 19.6),
+        new THREE.MeshStandardMaterial({ color: 0xCBD5E1, roughness: 0.8 })
+      );
+      poolCurb.position.set(35, 0.2, 24);
+      poolGroup.add(poolCurb);
+      this.scene.add(poolGroup);
 
       const poleMat = new THREE.MeshStandardMaterial({ color: 0xE2E8F0, metalness: 0.8, roughness: 0.2 });
       [-3, 0, 3].forEach(ox => {
         const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 9, 8), poleMat);
-        pole.position.set(35 + ox, 4.5, 16);
+        pole.position.set(35 + ox, 4.5, -20);
         pole.castShadow = true;
         this.scene.add(pole);
       });
@@ -823,11 +850,11 @@
 
     setupLandmarkLabels() {
       const landmarks = [
-        { text: '⚡ ลานไกไฟฟ้า 500 kV สฟ.ไทรน้อย', x: 105, y: 19, z: 75, color: '#D97706' },
-        { text: '⚽ สนามฟุตบอล กฟผ.ไทรน้อย', x: -18, y: 8, z: -35, color: '#16A34A' },
+        { text: '⚡ สวิตช์ยาร์ด 500 kV', x: -65, y: 19, z: 85, color: '#D97706' },
+        { text: '⚽ สนามฟุตบอล', x: 65, y: 8, z: -20, color: '#16A34A' },
         { text: '💧 สระน้ำ 1, 2, 3', x: -95, y: 7, z: 20, color: '#0284C7' },
-        { text: '🚧 ทางเข้าหลัก / ท.0021 ที่ทำการ รปภ.', x: 40, y: 8, z: 145, color: '#475569' },
-        { text: '🧪 วงเวียนหน้า ท.0018 / ท.0016', x: -65, y: 8, z: -20, color: '#2563EB' },
+        { text: '🚧 ทางเข้าหลัก / ท.0021 ที่ทำการ รปภ.', x: 40, y: 8, z: 140, color: '#475569' },
+        { text: '🧪 วงเวียนหน้า ท.0018 / ท.0016', x: 120, y: 8, z: -60, color: '#2563EB' },
         // OHK Specific Landmark Pins (No Soccer field in OHK)
         { text: '🚛 วงเวียนใหญ่ศูนย์ขนส่ง อหข.', x: -130, y: 10, z: -160, color: '#7C3AED' },
         { text: '💧 สระน้ำ & ศาลาริมน้ำ อหข.', x: -185, y: 8, z: -180, color: '#0284C7' },
@@ -953,7 +980,7 @@
         this.buildOHKOfficeT0026(group, width, depth, height);
       } else if (roofType === 'ohk_garage_t0027') {
         this.buildOHKGarageT0027(group, width, depth, height);
-      } else if (roofType === 'ohk_workshop_heavy') {
+      } else if (roofType === 'ohk_workshop_heavy' || roofType === 'ohk_heavy_workshop') {
         this.buildOHKHeavyWorkshop(group, width, depth, height, bData.b_code);
       } else if (roofType === 'ohk_canteen_d0031') {
         this.buildOHKCanteenD0031(group, width, depth, height);
@@ -961,25 +988,25 @@
         this.buildOHKWeldingD0033(group, width, depth, height);
       }
       // Campus Main Architecture
-      else if (roofType === 'office_tower_9fl') {
+      else if (roofType === 'office_tower_9fl' || (roofType === 'office_stepped' && bData.b_code === 'T.0019')) {
         this.buildOfficeTower9Fl(group, width, depth, height);
-      } else if (roofType === 'parking_complex') {
+      } else if (roofType === 'parking_complex' || (roofType === 'office_stepped' && bData.b_code === 'D.0019')) {
         this.buildParkingComplex(group, width, depth, height);
-      } else if (roofType === 'curved_hall') {
+      } else if (roofType === 'curved_hall' || roofType === 'curved_barrel') {
         this.buildCurvedHall(group, width, depth, height);
-      } else if (roofType === 'competency_center') {
+      } else if (roofType === 'competency_center' || bData.b_code === 'T.0020') {
         this.buildCompetencyCenter(group, width, depth, height);
       } else if (roofType === 'gabled_large') {
         this.buildLargeWorkshop(group, width, depth, height);
-      } else if (roofType === 'gabled_warehouse' || roofType === 'gabled') {
+      } else if (roofType === 'gabled_warehouse' || roofType === 'gabled' || roofType === 'industrial_gable') {
         this.buildGabledWarehouse(group, width, depth, height);
-      } else if (roofType === 'lab_modern') {
+      } else if (roofType === 'lab_modern' || (roofType === 'office_stepped' && bData.b_code === 'T.0018')) {
         this.buildModernLab(group, width, depth, height);
       } else if (roofType === 'residential_balcony') {
         this.buildResidentialFlat(group, width, depth, height);
-      } else if (roofType === 'canteen_curved' || roofType === 'canteen') {
+      } else if (roofType === 'canteen_curved' || roofType === 'canteen' || bData.b_code === 'D.0017') {
         this.buildCanteen(group, width, depth, height);
-      } else if (roofType === 'utility_tank') {
+      } else if (roofType === 'utility_tank' || bData.b_code === 'D.0026') {
         this.buildUtilityWaterStation(group, width, depth, height);
       } else {
         const parapetMat = new THREE.MeshStandardMaterial({ color: 0x475569, roughness: 0.7 });
@@ -1612,13 +1639,13 @@
       if (!buildingsList || buildingsList.length === 0) return;
 
       // 500 kV Substation / Switchyard Origin
-      const switchyardOrigin = new THREE.Vector3(105, 5, 75);
+      const switchyardOrigin = new THREE.Vector3(-65, 5, 85);
       const subHub = new THREE.Vector3(0, 4, -10);
 
       // Main trunk line from Switchyard to Central Distribution Hub
       const trunkCurve = new THREE.QuadraticBezierCurve3(
         switchyardOrigin,
-        new THREE.Vector3(50, 22, 30),
+        new THREE.Vector3(-30, 22, 35),
         subHub
       );
       const trunkPoints = trunkCurve.getPoints(40);
@@ -1918,17 +1945,17 @@
 
     focusZone(zoneKey) {
       if (zoneKey === 'office') {
-        // Zone 1: Office Tower & Central Spine (T.0019, T.0020, D.0019, Football Field)
-        this.animateCamera({ x: 70, y: 85, z: 80 }, { x: 15, y: 10, z: 0 }, 850);
+        // Zone 1: Office & Labs (T.0019, T.0020, D.0019, Football Field)
+        this.animateCamera({ x: 65, y: 80, z: 70 }, { x: 45, y: 10, z: -15 }, 850);
       } else if (zoneKey === 'workshop') {
-        // Zone 2: Workshops & Labs (T.0018 Roundabout, T.0016, T.0015, T.0014, T.0012)
-        this.animateCamera({ x: -20, y: 85, z: 40 }, { x: -55, y: 8, z: -40 }, 850);
+        // Zone 2: Central Workshops & Warehouses (T.0006 - T.0012)
+        this.animateCamera({ x: -10, y: 80, z: 30 }, { x: -25, y: 5, z: -60 }, 850);
       } else if (zoneKey === 'switchyard') {
-        // Zone 3: Switchyard 500 kV & Admin Gate (T.0007, T.0006, T.0008, Switchyard)
-        this.animateCamera({ x: 140, y: 90, z: 120 }, { x: 95, y: 8, z: 60 }, 850);
+        // Zone 3: Switchyard 500 kV, Ponds & Residential Flat
+        this.animateCamera({ x: -60, y: 90, z: 140 }, { x: -65, y: 8, z: 85 }, 850);
       } else if (zoneKey === 'transport') {
-        // Zone 4: Transportation Hub OHK (T.0026 - T.0029, D.0031, D.0033, Roundabout, Peanut Pond)
-        this.animateCamera({ x: -95, y: 95, z: -95 }, { x: -130, y: 6, z: -160 }, 900);
+        // Zone 4: Transportation Hub (T.0026 - T.0029, D.0031, D.0033, Roundabout)
+        this.animateCamera({ x: -110, y: 85, z: -85 }, { x: -130, y: 6, z: -160 }, 850);
       }
     }
 

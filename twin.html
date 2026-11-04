@@ -14,7 +14,8 @@
   <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 
-  <!-- Core Scripts -->
+  <!-- Core Scripts & Fallback Mapping -->
+  <script src="data/building_mapping.js"></script>
   <script src="scripts/energy-twin-core.js"></script>
   <script src="scripts/energy-twin-3d.js"></script>
 
@@ -1201,7 +1202,13 @@
       // 5. Initial State Trigger
       EnergyTwin.setState({});
 
-      // 6. Update Alert Badges
+      // 6. Guarantee immediate building population
+      const initBuildings = EnergyTwin.getBuildingsList();
+      if (campusScene && initBuildings.length > 0) {
+        campusScene.populateBuildings(initBuildings);
+      }
+
+      // 7. Update Alert Badges
       updateAlertBadges();
     });
 

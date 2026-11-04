@@ -57,6 +57,18 @@
       }
     },
 
+    addListener(callback) {
+      this.subscribe(callback);
+    },
+
+    get allocationData() {
+      return this.customAllocations || this.allocationRows || [];
+    },
+
+    get currentBuildings() {
+      return this.getBuildingsList();
+    },
+
     notify(changeKey) {
       this.subscribers.forEach((cb) => {
         try {
@@ -95,6 +107,11 @@
         if (meaRes && meaRes.ok) this.meaData = await meaRes.json();
         if (valRes && valRes.ok) this.validationData = await valRes.json();
 
+        // Robust fallback: if fetch failed (e.g. CORS on file:///), use pre-bundled global
+        if (!this.mappingData && window.SAINOI_BUILDING_MAPPING) {
+          this.mappingData = window.SAINOI_BUILDING_MAPPING;
+        }
+
         // Parse allocation CSV
         if (allocRes && allocRes.ok) {
           const csvText = await allocRes.text();
@@ -117,6 +134,10 @@
         return true;
       } catch (err) {
         console.error('Failed to initialize EnergyTwin Core:', err);
+        // Even if error, fallback to pre-bundled
+        if (!this.mappingData && window.SAINOI_BUILDING_MAPPING) {
+          this.mappingData = window.SAINOI_BUILDING_MAPPING;
+        }
         return false;
       }
     },
