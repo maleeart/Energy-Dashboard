@@ -9,10 +9,10 @@
     "B.0001": {
       "building_id": "B.0001",
       "b_code": "B.0001",
-      "name": "บ.0001 อาคาร FLAT อบค.",
-      "short_name": "แฟลต อบค. (ที่พักอาศัย)",
+      "name": "บ.0001 อาคาร FLAT",
+      "short_name": "อาคารแฟลต 4 ชั้น (บ.0001)",
       "category": "residential",
-      "category_th": "อาคารที่พักอาศัย 4 ชั้น",
+      "category_th": "อาคารพักอาศัย",
       "floors": 4,
       "description": "อาคารที่พักอาศัยสวัสดิการพนักงาน 4 ชั้น ริมสระน้ำ 2",
       "dimensions": {
@@ -21,9 +21,9 @@
         "height": 14
       },
       "layout_position": {
-        "x": -135,
+        "x": -135.0,
         "y": 7.0,
-        "z": 10
+        "z": 75.0
       },
       "color_base": "#A855F7",
       "roof_type": "residential_balcony",
@@ -46,29 +46,30 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised"
+      "model_source": "masterplan_2565_revised",
+      "rotation_y": 0.0
     },
     "D.0015": {
       "building_id": "D.0015",
       "b_code": "D.0015",
-      "name": "ต.0015 โรงซ่อมเครื่องจักรกล อสร.",
-      "short_name": "โรงซ่อมเครื่องจักรกล อสร.",
+      "name": "ต.015 โรงซ่อมเครื่องจักรกล อหข.",
+      "short_name": "โรงซ่อมเครื่องจักรกล (ต.015)",
       "category": "workshop",
-      "category_th": "โรงซ่อมเครื่องจักรกล",
+      "category_th": "โรงซ่อมบำรุง",
       "floors": 1,
       "description": "โรงซ่อมบำรุงเครื่องจักรกล อสร. ติด ท.0012",
       "dimensions": {
-        "width": 30,
-        "depth": 20,
+        "width": 26,
+        "depth": 18,
         "height": 9
       },
       "layout_position": {
-        "x": -45,
+        "x": -175.0,
         "y": 4.5,
-        "z": -150
+        "z": -65.0
       },
       "color_base": "#94A3B8",
-      "roof_type": "gabled",
+      "roof_type": "industrial_gable",
       "metering": {
         "main_meter_id": "D.0015__FL01__MDB",
         "all_main_meters": [
@@ -88,15 +89,16 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised"
+      "model_source": "masterplan_2565_revised",
+      "rotation_y": 0.0
     },
     "D.0017": {
       "building_id": "D.0017",
       "b_code": "D.0017",
-      "name": "อาคารโรงอาหาร (ต.0017)",
-      "short_name": "โรงอาหารหลัก ต.0017",
+      "name": "ต.0017 อาคาร โรงอาหาร",
+      "short_name": "โรงอาหารหลัก (ต.0017)",
       "category": "service",
-      "category_th": "อาคารโรงอาหารกลาง",
+      "category_th": "อาคารสวัสดิการและบริการ",
       "floors": 1,
       "description": "โรงอาหารหลักกลางสำนักงานไทรน้อย ร้านค้า 1-5 และตู้ ATM",
       "dimensions": {
@@ -105,12 +107,12 @@
         "height": 8
       },
       "layout_position": {
-        "x": 5,
+        "x": 15.0,
         "y": 4.0,
-        "z": -55
+        "z": -90.0
       },
       "color_base": "#F8FAFC",
-      "roof_type": "canteen_curved",
+      "roof_type": "curved_barrel",
       "metering": {
         "main_meter_id": "D.0017__FL01__MDB",
         "all_main_meters": [
@@ -166,15 +168,16 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised"
+      "model_source": "masterplan_2565_revised",
+      "rotation_y": 0.0
     },
     "D.0019": {
       "building_id": "D.0019",
       "b_code": "D.0019",
-      "name": "อาคารนันทนาการพร้อมอาคารจอดรถ",
-      "short_name": "นันทนาการและจอดรถ",
-      "category": "service",
-      "category_th": "อาคารจอดรถและบริการกีฬา",
+      "name": "ต.0019 อาคาร นันทนาการพร้อมอาคารจอดรถ",
+      "short_name": "อาคารนันทนาการและจอดรถ (ต.0019)",
+      "category": "recreation",
+      "category_th": "อาคารนันทนาการและจอดรถ",
       "floors": 4,
       "description": "อาคารจอดรถ 4 ชั้น สีขาวคาดแถบเหลือง ศูนย์กีฬาฟิตเนส สหกรณ์ และร้านอาหาร",
       "dimensions": {
@@ -183,12 +186,12 @@
         "height": 16
       },
       "layout_position": {
-        "x": 35,
+        "x": 15.0,
         "y": 8.0,
-        "z": -48
+        "z": -45.0
       },
       "color_base": "#F1F5F9",
-      "roof_type": "parking_complex",
+      "roof_type": "office_stepped",
       "metering": {
         "main_meter_id": "D.0019__FL01__MDB",
         "all_main_meters": [
@@ -258,16 +261,17 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised"
+      "model_source": "masterplan_2565_revised",
+      "rotation_y": 0.0
     },
     "D.0025": {
       "building_id": "D.0025",
       "b_code": "D.0025",
-      "name": "อาคารอเนกประสงค์ (ต.0025)",
-      "short_name": "อาคารอเนกประสงค์",
+      "name": "ต.0025 อาคาร อเนกประสงค์",
+      "short_name": "อาคารอเนกประสงค์ (ต.0025)",
       "category": "service",
-      "category_th": "หอประชุมใหญ่",
-      "floors": 1,
+      "category_th": "อาคารอเนกประสงค์",
+      "floors": 2,
       "description": "หอประชุมใหญ่หลังคาโค้งสีเทา สำหรับงานประชุมและกิจกรรมสันทนาการ",
       "dimensions": {
         "width": 28,
@@ -275,12 +279,12 @@
         "height": 10
       },
       "layout_position": {
-        "x": 85,
+        "x": -65.0,
         "y": 5.0,
-        "z": -10
+        "z": 95.0
       },
       "color_base": "#64748B",
-      "roof_type": "curved_hall",
+      "roof_type": "industrial_flat",
       "metering": {
         "main_meter_id": "D.0025__FL01__MDB",
         "all_main_meters": [
@@ -300,15 +304,16 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised"
+      "model_source": "masterplan_2565_revised",
+      "rotation_y": 0.0
     },
     "D.0026": {
       "building_id": "D.0026",
       "b_code": "D.0026",
       "name": "ต.0026 อาคารระบบประปา",
-      "short_name": "อาคารระบบประปา",
+      "short_name": "อาคารระบบประปา (ต.0026)",
       "category": "utility",
-      "category_th": "สถานีสูบจ่ายน้ำประปา",
+      "category_th": "ระบบสาธารณูปโภค",
       "floors": 1,
       "description": "สถานีควบคุมระบบประปาและสูบจ่ายน้ำสำนักงาน",
       "dimensions": {
@@ -317,12 +322,12 @@
         "height": 6
       },
       "layout_position": {
-        "x": -75,
+        "x": -95.0,
         "y": 3.0,
-        "z": -150
+        "z": -145.0
       },
       "color_base": "#38BDF8",
-      "roof_type": "utility_tank",
+      "roof_type": "industrial_flat",
       "metering": {
         "main_meter_id": "D.0026__FL01__MDB",
         "all_main_meters": [
@@ -342,15 +347,16 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised"
+      "model_source": "masterplan_2565_revised",
+      "rotation_y": 0.0
     },
     "D.0031": {
       "building_id": "D.0031",
       "b_code": "D.0031",
-      "name": "อาคารโรงอาหาร อหข.",
-      "short_name": "โรงอาหาร อหข.",
+      "name": "ต.0031 อาคารโรงอาหารและบริการ อหข. (ต.0017/0030 เดิม)",
+      "short_name": "โรงอาหาร/บริการ อหข. (ต.0031)",
       "category": "service",
-      "category_th": "โรงอาหารบริการ อหข.",
+      "category_th": "อาคารบริการริมน้ำ อหข.",
       "floors": 1,
       "description": "โรงอาหารสวัสดิการพนักงาน อหข. ชายคายื่นร่มรื่น ติดแนวสระน้ำ อหข.",
       "dimensions": {
@@ -359,9 +365,9 @@
         "height": 7
       },
       "layout_position": {
-        "x": -160,
+        "x": -175.0,
         "y": 3.5,
-        "z": -190
+        "z": -160.0
       },
       "color_base": "#F8FAFC",
       "roof_type": "ohk_canteen_d0031",
@@ -398,10 +404,10 @@
     "D.0033": {
       "building_id": "D.0033",
       "b_code": "D.0033",
-      "name": "อาคารปฏิบัติการงานเชื่อม อหข.",
-      "short_name": "ปฏิบัติการงานเชื่อม อหข.",
+      "name": "ต.0033 อาคารทำการและปฏิบัติการงานเชื่อม อหข. (ท.004 เดิม)",
+      "short_name": "อาคารทำการ/งานเชื่อม อหข. (ต.0033)",
       "category": "workshop",
-      "category_th": "โรงเชื่อมโลหะ อหข.",
+      "category_th": "อาคารปฏิบัติการงานเชื่อม",
       "floors": 1,
       "description": "โรงปฏิบัติการงานเชื่อมและซ่อมโครงสร้างตัวถัง อหข. พร้อมระบบดูดระบายควันอุตสาหกรรม",
       "dimensions": {
@@ -410,9 +416,9 @@
         "height": 8.5
       },
       "layout_position": {
-        "x": -150,
+        "x": -175.0,
         "y": 4.25,
-        "z": -105
+        "z": -110.0
       },
       "color_base": "#94A3B8",
       "roof_type": "ohk_welding_d0033",
@@ -441,10 +447,10 @@
     "T.0006": {
       "building_id": "T.0006",
       "b_code": "T.0006",
-      "name": "อาคารบริหารอะไหล่กังหันก๊าซ 1 อรอ.",
-      "short_name": "บริหารอะไหล่กังหันก๊าซ 1",
-      "category": "workshop",
-      "category_th": "คลังพัสดุขนาดใหญ่",
+      "name": "ท.0006 อาคาร บริหารอะไหล่กังหันก๊าซ 1",
+      "short_name": "อะไหล่กังหันก๊าซ 1 (ท.0006)",
+      "category": "warehouse",
+      "category_th": "คลังพัสดุและอะไหล่",
       "floors": 1,
       "description": "คลังจัดเก็บและบริหารอะไหล่กังหันก๊าซ 1 หลังคาจั่วสีเทาขนาดใหญ่",
       "dimensions": {
@@ -453,12 +459,12 @@
         "height": 10
       },
       "layout_position": {
-        "x": -25,
+        "x": 65.0,
         "y": 5.0,
-        "z": 15
+        "z": 15.0
       },
       "color_base": "#94A3B8",
-      "roof_type": "gabled_warehouse",
+      "roof_type": "curved_barrel",
       "metering": {
         "main_meter_id": "T.0006__FL01__MDB",
         "all_main_meters": [
@@ -478,15 +484,16 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised"
+      "model_source": "masterplan_2565_revised",
+      "rotation_y": 0.0
     },
     "T.0007": {
       "building_id": "T.0007",
       "b_code": "T.0007",
-      "name": "อาคารกองบริหาร ชธธ.",
-      "short_name": "กองบริหาร ชธธ.",
+      "name": "ท.0007 อาคาร กองบริหาร",
+      "short_name": "อาคารกองบริหาร (ท.0007)",
       "category": "office",
-      "category_th": "อาคารสำนักงาน",
+      "category_th": "อาคารสำนักงานและบริหาร",
       "floors": 2,
       "description": "อาคารกองบริหารทั่วไป ติดทางเข้าลานสวิตช์ยาร์ด",
       "dimensions": {
@@ -495,12 +502,12 @@
         "height": 9
       },
       "layout_position": {
-        "x": -25,
+        "x": 65.0,
         "y": 4.5,
-        "z": 50
+        "z": 50.0
       },
       "color_base": "#E2E8F0",
-      "roof_type": "flat",
+      "roof_type": "curved_barrel",
       "metering": {
         "main_meter_id": "T.0007__FL01__MDB",
         "all_main_meters": [
@@ -520,15 +527,16 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised"
+      "model_source": "masterplan_2565_revised",
+      "rotation_y": 0.0
     },
     "T.0008": {
       "building_id": "T.0008",
       "b_code": "T.0008",
-      "name": "อาคารบริหารอะไหล่กังหันก๊าซ 2 อรอ.",
-      "short_name": "บริหารอะไหล่กังหันก๊าซ 2",
-      "category": "workshop",
-      "category_th": "คลังพัสดุ 2,500 ตร.ม.",
+      "name": "ท.0008 อาคาร บริหารอะไหล่กังหันก๊าซ 2",
+      "short_name": "อะไหล่กังหันก๊าซ 2 (ท.0008)",
+      "category": "warehouse",
+      "category_th": "คลังพัสดุและอะไหล่",
       "floors": 1,
       "description": "คลังพัสดุบริหารอะไหล่ 2 พื้นที่ 2,500 ตร.ม.",
       "dimensions": {
@@ -537,12 +545,12 @@
         "height": 10
       },
       "layout_position": {
-        "x": -25,
+        "x": 65.0,
         "y": 5.0,
-        "z": -20
+        "z": -25.0
       },
       "color_base": "#94A3B8",
-      "roof_type": "gabled_warehouse",
+      "roof_type": "curved_barrel",
       "metering": {
         "main_meter_id": "T.0008__FL01__MDB",
         "all_main_meters": [
@@ -562,16 +570,17 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised"
+      "model_source": "masterplan_2565_revised",
+      "rotation_y": 0.0
     },
     "T.0009": {
       "building_id": "T.0009",
       "b_code": "T.0009",
-      "name": "อาคารปฏิบัติการพิเศษ",
-      "short_name": "ปฏิบัติการพิเศษ",
+      "name": "ท.0009 อาคาร ปฏิบัติการพัสดุ (ต.0009 โรงกีฬาในร่ม)",
+      "short_name": "ปฏิบัติการพัสดุ/กีฬา (ท.0009)",
       "category": "workshop",
-      "category_th": "ห้องปฏิบัติการพิเศษ",
-      "floors": 2,
+      "category_th": "อาคารปฏิบัติการ",
+      "floors": 1,
       "description": "ห้องปฏิบัติการทดสอบและงานพิเศษทางวิศวกรรม อรอ.",
       "dimensions": {
         "width": 24,
@@ -579,12 +588,12 @@
         "height": 9
       },
       "layout_position": {
-        "x": -25,
+        "x": 65.0,
         "y": 4.5,
-        "z": -85
+        "z": -160.0
       },
       "color_base": "#E2E8F0",
-      "roof_type": "flat",
+      "roof_type": "industrial_gable",
       "metering": {
         "main_meter_id": "T.0009__FL01__MDB",
         "all_main_meters": [
@@ -604,29 +613,30 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised"
+      "model_source": "masterplan_2565_revised",
+      "rotation_y": 0.0
     },
     "T.0010": {
       "building_id": "T.0010",
       "b_code": "T.0010",
-      "name": "อาคารทดสอบเครื่องกล อรอ.",
-      "short_name": "ทดสอบเครื่องกล อรอ.",
-      "category": "workshop",
-      "category_th": "โรงทดสอบวิศวกรรม",
+      "name": "ท.0010 อาคาร ทดสอบเครื่องกล",
+      "short_name": "อาคารทดสอบเครื่องกล (ท.0010)",
+      "category": "laboratory",
+      "category_th": "ห้องปฏิบัติการทดสอบ",
       "floors": 1,
       "description": "อาคาร Testing Lab ทดสอบอุปกรณ์เครื่องกลและชิ้นส่วนหมุน",
       "dimensions": {
-        "width": 30,
-        "depth": 20,
+        "width": 22,
+        "depth": 18,
         "height": 10
       },
       "layout_position": {
-        "x": -25,
+        "x": 65.0,
         "y": 5.0,
-        "z": -55
+        "z": -65.0
       },
       "color_base": "#94A3B8",
-      "roof_type": "gabled_warehouse",
+      "roof_type": "industrial_flat",
       "metering": {
         "main_meter_id": "T.0010__FL01__MDB",
         "all_main_meters": [
@@ -646,29 +656,30 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised"
+      "model_source": "masterplan_2565_revised",
+      "rotation_y": 0.0
     },
     "T.0011": {
       "building_id": "T.0011",
       "b_code": "T.0011",
-      "name": "อาคารเครื่องมือฝ่ายบำรุงรักษาเครื่องกล อบค.",
-      "short_name": "เครื่องมือ อบค.",
+      "name": "ท.0011 อาคาร เครื่องมือฝ่ายบำรุงรักษาเครื่องกล",
+      "short_name": "เครื่องมือบำรุงรักษาเครื่องกล (ท.0011)",
       "category": "workshop",
-      "category_th": "คลังเครื่องมือ อบค.",
+      "category_th": "โรงปฏิบัติการเครื่องมือ",
       "floors": 1,
       "description": "คลังเครื่องมือ อุปกรณ์ทดสอบทางวิศวกรรมเครื่องกล",
       "dimensions": {
-        "width": 32,
-        "depth": 20,
-        "height": 9
+        "width": 34,
+        "depth": 22,
+        "height": 10
       },
       "layout_position": {
-        "x": -25,
-        "y": 4.5,
-        "z": -115
+        "x": 65.0,
+        "y": 5.0,
+        "z": -115.0
       },
       "color_base": "#94A3B8",
-      "roof_type": "gabled_warehouse",
+      "roof_type": "curved_barrel",
       "metering": {
         "main_meter_id": "T.0011__FL01__MDB",
         "all_main_meters": [
@@ -688,15 +699,16 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised"
+      "model_source": "masterplan_2565_revised",
+      "rotation_y": 0.0
     },
     "T.0012": {
       "building_id": "T.0012",
       "b_code": "T.0012",
-      "name": "อาคารบำรุงรักษาเครื่องกล อบค.",
-      "short_name": "บำรุงรักษาเครื่องกล อบค.",
+      "name": "ท.0012 อาคาร บำรุงรักษาเครื่องกล (ศูนย์ประดาน้ำ กฟผ.)",
+      "short_name": "บำรุงรักษาเครื่องกล/ประดาน้ำ (ท.0012)",
       "category": "workshop",
-      "category_th": "โรงซ่อมเครื่องกลขนาดใหญ่",
+      "category_th": "โรงปฏิบัติการเครื่องกลหนัก",
       "floors": 1,
       "description": "โรงงานซ่อมบำรุงและฟื้นฟูอุปกรณ์เครื่องกลขนาดใหญ่ ศูนย์ประดาน้ำ กฟผ.",
       "dimensions": {
@@ -705,12 +717,12 @@
         "height": 11
       },
       "layout_position": {
-        "x": -5,
+        "x": 15.0,
         "y": 5.5,
-        "z": -150
+        "z": -140.0
       },
       "color_base": "#94A3B8",
-      "roof_type": "gabled_large",
+      "roof_type": "curved_barrel",
       "metering": {
         "main_meter_id": "T.0012__FL01__MDB",
         "all_main_meters": [
@@ -730,16 +742,17 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised"
+      "model_source": "masterplan_2565_revised",
+      "rotation_y": 0.0
     },
     "T.0014": {
       "building_id": "T.0014",
       "b_code": "T.0014",
-      "name": "อาคารปฏิบัติการฝ่ายบำรุงรักษาไฟฟ้าและโยธา",
-      "short_name": "ปฏิบัติการไฟฟ้าและโยธา",
+      "name": "ท.0014 อาคาร ปฏิบัติการฝ่ายบำรุงรักษาไฟฟ้าและโยธา",
+      "short_name": "ปฏิบัติการไฟฟ้าและโยธา (ท.0014)",
       "category": "workshop",
-      "category_th": "อาคารปฏิบัติการ 2 ชั้น",
-      "floors": 2,
+      "category_th": "โรงปฏิบัติการไฟฟ้าโยธา",
+      "floors": 1,
       "description": "อาคารปฏิบัติการ 2 ชั้น สีขาวหน้าต่างแถบยาว งานไฟฟ้าและโยธา",
       "dimensions": {
         "width": 30,
@@ -747,12 +760,12 @@
         "height": 11
       },
       "layout_position": {
-        "x": 75,
+        "x": -55.0,
         "y": 5.5,
-        "z": -75
+        "z": -125.0
       },
       "color_base": "#FFFFFF",
-      "roof_type": "lab_modern",
+      "roof_type": "curved_barrel",
       "metering": {
         "main_meter_id": "T.0014__FL01__MDB",
         "all_main_meters": [
@@ -774,29 +787,30 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised"
+      "model_source": "masterplan_2565_revised",
+      "rotation_y": 0.0
     },
     "T.0015": {
       "building_id": "T.0015",
       "b_code": "T.0015",
-      "name": "อาคารศูนย์ปฏิบัติการทดสอบเคมี 2",
-      "short_name": "ทดสอบเคมี 2",
-      "category": "workshop",
+      "name": "ท.0015 อาคาร ปฏิบัติการเคมี 2",
+      "short_name": "ปฏิบัติการเคมี 2 (ท.0015)",
+      "category": "laboratory",
       "category_th": "ห้องปฏิบัติการเคมี",
-      "floors": 2,
+      "floors": 1,
       "description": "ห้องปฏิบัติการวิเคราะห์เคมี 2 ริมเหนือสุดของวงเวียน",
       "dimensions": {
-        "width": 24,
+        "width": 26,
         "depth": 18,
         "height": 9
       },
       "layout_position": {
-        "x": 130,
+        "x": -55.0,
         "y": 4.5,
-        "z": -100
+        "z": -90.0
       },
       "color_base": "#F8FAFC",
-      "roof_type": "lab_modern",
+      "roof_type": "curved_barrel",
       "metering": {
         "main_meter_id": "T.0015__FL01__MDB",
         "all_main_meters": [
@@ -816,29 +830,30 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised"
+      "model_source": "masterplan_2565_revised",
+      "rotation_y": 0.0
     },
     "T.0016": {
       "building_id": "T.0016",
       "b_code": "T.0016",
-      "name": "อาคารเคมีภัณฑ์ 1",
-      "short_name": "อาคารเคมีภัณฑ์ 1",
-      "category": "workshop",
-      "category_th": "ห้องปฏิบัติการเคมี",
-      "floors": 2,
+      "name": "ท.0016 อาคาร เคมีภัณฑ์ 1",
+      "short_name": "เคมีภัณฑ์ 1 (ท.0016)",
+      "category": "warehouse",
+      "category_th": "คลังเก็บเคมีภัณฑ์",
+      "floors": 1,
       "description": "ห้องปฏิบัติการตรวจวิเคราะห์น้ำมันและสารเคมี 1",
       "dimensions": {
-        "width": 24,
+        "width": 28,
         "depth": 18,
         "height": 9
       },
       "layout_position": {
-        "x": 150,
+        "x": -55.0,
         "y": 4.5,
-        "z": -75
+        "z": -55.0
       },
       "color_base": "#E2E8F0",
-      "roof_type": "flat",
+      "roof_type": "curved_barrel",
       "metering": {
         "main_meter_id": "T.0016__FL01__MDB",
         "all_main_meters": [
@@ -858,29 +873,30 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised"
+      "model_source": "masterplan_2565_revised",
+      "rotation_y": 0.0
     },
     "T.0017": {
       "building_id": "T.0017",
       "b_code": "T.0017",
-      "name": "อาคารศูนย์พัฒนางานเชื่อมและทดสอบฝีมือช่างเชื่อมสากล (ศงชส.)",
-      "short_name": "ศูนย์พัฒนางานเชื่อมฯ",
+      "name": "ท.0017 อาคาร ศูนย์พัฒนางานเชื่อมและทดสอบฝีมือช่างเชื่อมสากล",
+      "short_name": "ศูนย์พัฒนางานเชื่อม ศพชส. (ท.0017)",
       "category": "workshop",
-      "category_th": "ศูนย์ฝึกงานเชื่อมสากล",
-      "floors": 2,
+      "category_th": "ศูนย์ฝึกอบรมและทดสอบช่างเชื่อม",
+      "floors": 1,
       "description": "ศูนย์พัฒนาเทคโนโลยีงานเชื่อม ติดวงเวียนเคมี",
       "dimensions": {
-        "width": 26,
+        "width": 28,
         "depth": 20,
         "height": 10
       },
       "layout_position": {
-        "x": 115,
+        "x": -65.0,
         "y": 5.0,
-        "z": -35
+        "z": 55.0
       },
       "color_base": "#E2E8F0",
-      "roof_type": "gabled",
+      "roof_type": "curved_barrel",
       "metering": {
         "main_meter_id": "T.0017__FL01__MDB",
         "all_main_meters": [
@@ -900,29 +916,30 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised"
+      "model_source": "masterplan_2565_revised",
+      "rotation_y": 0.0
     },
     "T.0018": {
       "building_id": "T.0018",
       "b_code": "T.0018",
-      "name": "อาคารศูนย์มาตรวิทยาและสอบเทียบเครื่องมือวัด กฟผ.",
-      "short_name": "ศูนย์มาตรวิทยาและสอบเทียบ",
-      "category": "workshop",
-      "category_th": "ห้องปฏิบัติการสอบเทียบ",
-      "floors": 2,
+      "name": "ท.0018 อาคาร ศูนย์มาตรวิทยาและสอบเทียบเครื่องมือวัด กฟผ.",
+      "short_name": "ศูนย์มาตรวิทยาและสอบเทียบ (ท.0018)",
+      "category": "laboratory",
+      "category_th": "อาคารห้องปฏิบัติการมาตรวิทยา",
+      "floors": 3,
       "description": "Calibration Lab อาคารสีขาว 2 ชั้น สอบเทียบเครื่องมือวัดละเอียดสูง",
       "dimensions": {
-        "width": 28,
-        "depth": 18,
-        "height": 10
+        "width": 32,
+        "depth": 20,
+        "height": 13
       },
       "layout_position": {
-        "x": 140,
-        "y": 5.0,
-        "z": -45
+        "x": -65.0,
+        "y": 6.5,
+        "z": 15.0
       },
       "color_base": "#F8FAFC",
-      "roof_type": "lab_modern",
+      "roof_type": "office_stepped",
       "metering": {
         "main_meter_id": "T.0018__FL01__MDB",
         "all_main_meters": [
@@ -942,16 +959,17 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised"
+      "model_source": "masterplan_2565_revised",
+      "rotation_y": 0.0
     },
     "T.0019": {
       "building_id": "T.0019",
       "b_code": "T.0019",
-      "name": "อาคารธุรกิจบำรุงรักษา (อาคารทำการ ชธธ.)",
-      "short_name": "อาคาร ชธธ. (9 ชั้น)",
+      "name": "ท.0019 อาคาร ธุรกิจบำรุงรักษา",
+      "short_name": "อาคารธุรกิจบำรุงรักษา (ท.0019)",
       "category": "office",
-      "category_th": "อาคารสำนักงานใหญ่ 9 ชั้น",
-      "floors": 9,
+      "category_th": "อาคารสำนักงานใหญ่ 7 ชั้น",
+      "floors": 7,
       "description": "อาคารสำนักงานใหญ่ 9 ชั้น สถาปัตยกรรมกระจกสีฟ้า-ขาว ด้านหลังติดสระน้ำสวนหย่อม มีมิเตอร์รายชั้น",
       "dimensions": {
         "width": 38,
@@ -959,12 +977,12 @@
         "height": 34
       },
       "layout_position": {
-        "x": 35,
+        "x": 15.0,
         "y": 17.0,
-        "z": 0
+        "z": 15.0
       },
       "color_base": "#FFFFFF",
-      "roof_type": "office_tower_9fl",
+      "roof_type": "office_stepped",
       "metering": {
         "main_meter_id": "T.0019__FL01__Main",
         "all_main_meters": [
@@ -1308,29 +1326,30 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised"
+      "model_source": "masterplan_2565_revised",
+      "rotation_y": 0.0
     },
     "T.0020": {
       "building_id": "T.0020",
       "b_code": "T.0020",
-      "name": "อาคารศูนย์รับรองสมรรถนะงานเดินเครื่องและบำรุงรักษา",
-      "short_name": "ศูนย์รับรองสมรรถนะฯ",
+      "name": "ท.0020 อาคาร ศูนย์รับรองสมรรถนะงานเดินเครื่องและบำรุงรักษา",
+      "short_name": "ศูนย์รับรองสมรรถนะ (ท.0020)",
       "category": "office",
-      "category_th": "อาคารฝึกอบรม/สำนักงาน",
-      "floors": 3,
+      "category_th": "อาคารรับรองสมรรถนะ",
+      "floors": 2,
       "description": "อาคาร Competency Center สีขาวกระจก 3 ชั้น ศูนย์ทดสอบและรับรองมาตรฐานอาชีพ",
       "dimensions": {
         "width": 26,
         "depth": 18,
-        "height": 11
+        "height": 10
       },
       "layout_position": {
-        "x": 35,
-        "y": 5.5,
-        "z": 50
+        "x": 15.0,
+        "y": 5.0,
+        "z": 60.0
       },
       "color_base": "#F8FAFC",
-      "roof_type": "competency_center",
+      "roof_type": "curved_barrel",
       "metering": {
         "main_meter_id": "T.0020__FL01__SCB_21",
         "all_main_meters": [
@@ -1435,15 +1454,16 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised"
+      "model_source": "masterplan_2565_revised",
+      "rotation_y": 0.0
     },
     "T.0022": {
       "building_id": "T.0022",
       "b_code": "T.0022",
-      "name": "ท.0022 อาคาร Warehouse ห้องกัมมันตภาพรังสี",
-      "short_name": "ห้องกัมมันตภาพรังสี",
-      "category": "workshop",
-      "category_th": "อาคารทดสอบเฉพาะทาง",
+      "name": "ท.0022 อาคาร Warehouse ห้องกัมมันตภาพรังสี (ท.0002 เดิม)",
+      "short_name": "Warehouse กัมมันตภาพรังสี (ท.0022)",
+      "category": "warehouse",
+      "category_th": "คลังพัสดุและห้องปฏิบัติการ",
       "floors": 1,
       "description": "อาคารควบคุมพิเศษสำหรับการทดสอบแบบไม่ทำลายด้วยรังสี (NDT)",
       "dimensions": {
@@ -1452,12 +1472,12 @@
         "height": 8
       },
       "layout_position": {
-        "x": -135,
+        "x": -135.0,
         "y": 4.0,
-        "z": -35
+        "z": 35.0
       },
       "color_base": "#64748B",
-      "roof_type": "flat",
+      "roof_type": "industrial_gable",
       "metering": {
         "main_meter_id": "T.0022__FL01__MDB",
         "all_main_meters": [
@@ -1477,15 +1497,16 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised"
+      "model_source": "masterplan_2565_revised",
+      "rotation_y": 0.0
     },
     "T.0023": {
       "building_id": "T.0023",
       "b_code": "T.0023",
-      "name": "ท.0023 อาคาร Construction Shop อบค.",
-      "short_name": "Construction Shop",
+      "name": "ท.0023 อาคาร Construction Shop (ท.0001 เดิม)",
+      "short_name": "Construction Shop (ท.0023)",
       "category": "workshop",
-      "category_th": "โรงประกอบชิ้นงาน",
+      "category_th": "โรงปฏิบัติการก่อสร้าง",
       "floors": 1,
       "description": "โรงงานประกอบและสร้างชิ้นส่วนโครงสร้างวิศวกรรม",
       "dimensions": {
@@ -1494,12 +1515,12 @@
         "height": 9
       },
       "layout_position": {
-        "x": -135,
+        "x": -135.0,
         "y": 4.5,
-        "z": -65
+        "z": -5.0
       },
       "color_base": "#94A3B8",
-      "roof_type": "gabled",
+      "roof_type": "industrial_gable",
       "metering": {
         "main_meter_id": "T.0023__FL01__MDB",
         "all_main_meters": [
@@ -1519,15 +1540,16 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised"
+      "model_source": "masterplan_2565_revised",
+      "rotation_y": 0.0
     },
     "T.0025": {
       "building_id": "T.0025",
       "b_code": "T.0025",
-      "name": "ท.0025 อาคารเก็บเครื่องจักร อสร.",
-      "short_name": "เก็บเครื่องจักร อสร.",
-      "category": "utility",
-      "category_th": "คลังจัดเก็บเครื่องจักร",
+      "name": "ท.0025 อาคาร เก็บเครื่องจักร อสร. (ท.008 เดิม)",
+      "short_name": "อาคารเก็บเครื่องจักร อสร. (ท.0025)",
+      "category": "warehouse",
+      "category_th": "อาคารเก็บรักษาเครื่องจักร",
       "floors": 1,
       "description": "คลังจัดเก็บเครื่องจักร อสร. ริมสระน้ำ 3",
       "dimensions": {
@@ -1536,12 +1558,12 @@
         "height": 8
       },
       "layout_position": {
-        "x": -95,
+        "x": -135.0,
         "y": 4.0,
-        "z": -90
+        "z": -45.0
       },
       "color_base": "#94A3B8",
-      "roof_type": "gabled",
+      "roof_type": "industrial_gable",
       "metering": {
         "main_meter_id": "T.0025__FL01__MDB",
         "all_main_meters": [
@@ -1561,15 +1583,16 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised"
+      "model_source": "masterplan_2565_revised",
+      "rotation_y": 0.0
     },
     "T.0026": {
       "building_id": "T.0026",
       "b_code": "T.0026",
-      "name": "อาคารบริหารการขนส่ง (อาคารที่ทำการ อหข.)",
-      "short_name": "บริหารการขนส่ง อหข.",
+      "name": "ท.0026 อาคารสำนักงาน กขส-ห. อหข. (ท.005 เดิม)",
+      "short_name": "สำนักงานขนส่ง อหข. (ท.0026)",
       "category": "office",
-      "category_th": "อาคารสำนักงาน 2 ชั้น",
+      "category_th": "อาคารสำนักงานและบริหาร อหข.",
       "floors": 2,
       "description": "อาคารที่ทำการและสำนักงานบริหารการขนส่ง อหข. 2 ชั้น (แปลน L-Shape) ด้านหลังมีโรงจอดรถในร่ม 16 คัน ติดวงเวียนใหญ่",
       "dimensions": {
@@ -1578,9 +1601,9 @@
         "height": 9
       },
       "layout_position": {
-        "x": -145,
+        "x": -130.0,
         "y": 4.5,
-        "z": -215
+        "z": -215.0
       },
       "color_base": "#FFFFFF",
       "roof_type": "ohk_office_t0026",
@@ -1604,26 +1627,26 @@
       "mapping_status": "verified",
       "is_surveyed_coord": true,
       "model_source": "asbuilt_ohk_sn_2_6_revised",
-      "rotation_y": -0.488
+      "rotation_y": 0.0
     },
     "T.0027": {
       "building_id": "T.0027",
       "b_code": "T.0027",
-      "name": "อาคารปฏิบัติการกองขนส่ง (อาคารโรงจอดยานพาหนะ อขน.)",
-      "short_name": "โรงจอดยานพาหนะ อหข.",
-      "category": "workshop",
-      "category_th": "โรงจอดยานพาหนะและซ่อมตรวจสภาพ",
+      "name": "ท.0027 อาคารโรงจอดยานพาหนะและซ่อมตรวจสภาพ อหข. (ต.017 เดิม)",
+      "short_name": "โรงจอดยานพาหนะ อหข. (ท.0027)",
+      "category": "warehouse",
+      "category_th": "อาคารโรงจอดและซ่อมยานพาหนะ",
       "floors": 1,
       "description": "อาคารโรงจอดยานพาหนะโครงสร้างเหล็กขนาดใหญ่ 12 ช่องจอด พร้อมช่องตรวจสภาพและบำรุงรักษายานพาหนะ",
       "dimensions": {
         "width": 22,
-        "depth": 62,
+        "depth": 58,
         "height": 8
       },
       "layout_position": {
-        "x": -95,
+        "x": -70.0,
         "y": 4.0,
-        "z": -180
+        "z": -200.0
       },
       "color_base": "#64748B",
       "roof_type": "ohk_garage_t0027",
@@ -1652,24 +1675,24 @@
     "T.0028": {
       "building_id": "T.0028",
       "b_code": "T.0028",
-      "name": "อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 1 (อาคารปฏิบัติการ 1)",
-      "short_name": "ซ่อมเครื่องจักรกล 1 (ปภ.1)",
+      "name": "ท.0028 อาคารปฏิบัติการ 1 ซ่อมเครื่องจักรกลหนัก อหข.",
+      "short_name": "ปฏิบัติการ 1 เครื่องจักรกลหนัก (ท.0028)",
       "category": "workshop",
-      "category_th": "โรงซ่อมเครื่องจักรกลหนัก 1",
+      "category_th": "โรงซ่อมเครื่องจักรกลหนัก",
       "floors": 1,
       "description": "โรงงานซ่อมบำรุงเครื่องจักรกลหนักและรถเฉพาะกิจ 1 มีเครนเหนือศีรษะ (Overhead Crane) ขนาด 32 ม. และช่องประตูช่างขนาดใหญ่",
       "dimensions": {
         "width": 45,
-        "depth": 48,
+        "depth": 40,
         "height": 11
       },
       "layout_position": {
-        "x": -105,
+        "x": -95.0,
         "y": 5.5,
-        "z": -145
+        "z": -110.0
       },
       "color_base": "#94A3B8",
-      "roof_type": "ohk_workshop_heavy",
+      "roof_type": "ohk_heavy_workshop",
       "metering": {
         "main_meter_id": "T.0028__FL01__MDB",
         "all_main_meters": [
@@ -1695,24 +1718,24 @@
     "T.0029": {
       "building_id": "T.0029",
       "b_code": "T.0029",
-      "name": "อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 2 (อาคารปฏิบัติการ 2)",
-      "short_name": "ซ่อมเครื่องจักรกล 2 (ปภ.2)",
+      "name": "ท.0029 อาคารปฏิบัติการ 2 ซ่อมเครื่องจักรกลหนัก อหข.",
+      "short_name": "ปฏิบัติการ 2 เครื่องจักรกลหนัก (ท.0029)",
       "category": "workshop",
-      "category_th": "โรงซ่อมเครื่องจักรกลหนัก 2",
+      "category_th": "โรงซ่อมเครื่องจักรกลหนัก",
       "floors": 1,
       "description": "โรงงานซ่อมบำรุงเครื่องจักรกลหนัก 2 วางขนานกับ ปภ.1 มีส่วนหลังคาต่อขยายเชื่อมระหว่างอาคาร",
       "dimensions": {
         "width": 45,
-        "depth": 48,
+        "depth": 40,
         "height": 11
       },
       "layout_position": {
-        "x": -145,
+        "x": -145.0,
         "y": 5.5,
-        "z": -135
+        "z": -100.0
       },
       "color_base": "#94A3B8",
-      "roof_type": "ohk_workshop_heavy",
+      "roof_type": "ohk_heavy_workshop",
       "metering": {
         "main_meter_id": "T.0029__FL01__MDB",
         "all_main_meters": [
