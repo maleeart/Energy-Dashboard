@@ -548,12 +548,19 @@
         <button class="btn-overlay" onclick="campusScene.resetView()" title="คืนสู่มุมมองภาพรวม">
           🔄 คืนมุมมอง
         </button>
-        <button class="btn-overlay" onclick="campusScene.setTopDownView()" title="มุมมองจากด้านบน">
-          🗺️ มุมมองด้านบน
+        <button class="btn-overlay" onclick="campusScene.setTopDownView()" title="มุมมองผังบน (Master Plan)">
+          🗺️ ผังบน (2D Map)
         </button>
         <button class="btn-overlay" id="btnToggleLabels" onclick="toggleLabels()">
           🏷️ ป้ายชื่อ: เปิด
         </button>
+        <select class="btn-overlay" style="cursor:pointer; appearance:auto;" onchange="if(this.value){campusScene.focusZone(this.value); this.value='';}">
+          <option value="">🎯 ซูมเข้าโซน...</option>
+          <option value="office">🏢 โซน 1: สำนักงานและห้องแล็บ (ชธธ./เคมี)</option>
+          <option value="workshop">🔧 โซน 2: ศูนย์โรงซ่อมและคลังพัสดุ</option>
+          <option value="switchyard">⚡ โซน 3: สวิตช์ยาร์ด 500kV และที่พัก</option>
+          <option value="transport">🚛 โซน 4: ศูนย์ขนส่ง อหข.</option>
+        </select>
       </div>
 
       <!-- Quick Building Selector Dropdown / Search -->
