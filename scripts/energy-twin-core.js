@@ -238,6 +238,7 @@
           description: bMap.description,
           dimensions: bMap.dimensions,
           layout_position: bMap.layout_position,
+          rotation_y: bMap.rotation_y || 0,
           departments: bMap.departments || [],
           department_shares: bMap.department_shares || {},
           metering: bMap.metering || {},

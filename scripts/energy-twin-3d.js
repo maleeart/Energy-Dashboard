@@ -3,7 +3,11 @@
  * Three.js High-Fidelity Campus Environment, Master Plan Layout, Procedural Architecture,
  * Lighting, Shadows, OrbitControls, Smooth Raycasting, and Multi-Zone Camera Presets.
  *
- * Based on EGAT Sai Noi Master Plan (SNO-MP28-SV-1/1, 1 Feb 2565) & Campus Architectural Visuals.
+ * Detailed Architectural Specs & Civil Layout from:
+ * 1. EGAT Sai Noi Master Plan (SNO-MP28-SV-1/1, 1 Feb 2565)
+ * 2. As-Built OHK Civil & Drainage Plan (SNO-RF11-SN-2/6 & 1/6)
+ * 3. As-Built Blueprints: Office (OF12-3), Workshops (WS12-4), Vehicle Garage (MS-5), Fence (RF12)
+ * 4. High-Resolution Campus Aerial & Drone Visuals (26 June 2019 / 1 Feb 2565)
  */
 
 (function (window) {
@@ -38,21 +42,21 @@
       this.lastFrameTime = 0;
 
       // Default Camera View: Overlooking Campus from South-East
-      this.defaultCameraPos = { x: 45, y: 155, z: 200 };
-      this.defaultTargetPos = { x: -10, y: 0, z: -15 };
+      this.defaultCameraPos = { x: 50, y: 165, z: 210 };
+      this.defaultTargetPos = { x: -20, y: 0, z: -25 };
 
       this.init();
     }
 
     init() {
-      // 1. Scene & Daylight Sky Atmosphere
+      // 1. Scene & Daylight Atmosphere
       this.scene = new THREE.Scene();
-      this.scene.background = new THREE.Color(0xEDF2F7); // Crisp daylight sky tone
-      this.scene.fog = new THREE.FogExp2(0xEDF2F7, 0.0020);
+      this.scene.background = new THREE.Color(0xEDF2F7);
+      this.scene.fog = new THREE.FogExp2(0xEDF2F7, 0.0018);
 
       // 2. Camera Setup
       const aspect = this.container.clientWidth / this.container.clientHeight;
-      this.camera = new THREE.PerspectiveCamera(42, aspect, 1, 1200);
+      this.camera = new THREE.PerspectiveCamera(42, aspect, 1, 1400);
       this.camera.position.set(this.defaultCameraPos.x, this.defaultCameraPos.y, this.defaultCameraPos.z);
 
       // 3. WebGL Renderer with High-Performance Settings
@@ -75,20 +79,20 @@
       this.renderer.outputEncoding = THREE.sRGBEncoding;
       this.container.appendChild(this.renderer.domElement);
 
-      // 4. OrbitControls for Intuitive Campus Navigation
+      // 4. OrbitControls
       this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement);
       this.controls.enableDamping = true;
       this.controls.dampingFactor = 0.06;
-      this.controls.maxPolarAngle = Math.PI / 2 - 0.05; // Stay above ground
+      this.controls.maxPolarAngle = Math.PI / 2 - 0.05;
       this.controls.minDistance = 20;
-      this.controls.maxDistance = 450;
+      this.controls.maxDistance = 500;
       this.controls.target.set(this.defaultTargetPos.x, this.defaultTargetPos.y, this.defaultTargetPos.z);
       this.controls.addEventListener('change', () => { this.needsRender = true; });
 
       // 5. Daylight & Architectural Lighting
       this.setupLights();
 
-      // 6. Complete Campus Environment (Ground, Ponds, Canal, Switchyard, Football Field, Roads)
+      // 6. Complete Campus Environment (Ground, Ponds, Canal, Switchyard, Football, OHK Infrastructure)
       this.setupCampusEnvironment();
 
       // 7. Glowing Building Selection Ring
@@ -103,36 +107,36 @@
 
     setupLights() {
       // Natural Hemisphere Ambient Fill
-      const hemiLight = new THREE.HemisphereLight(0xFFFFFF, 0xCBD5E1, 0.70);
-      hemiLight.position.set(0, 200, 0);
+      const hemiLight = new THREE.HemisphereLight(0xFFFFFF, 0xCBD5E1, 0.72);
+      hemiLight.position.set(0, 220, 0);
       this.scene.add(hemiLight);
 
       // Soft Ambient Light
       const ambLight = new THREE.AmbientLight(0xFFFFFF, 0.35);
       this.scene.add(ambLight);
 
-      // Main Sun Directional Light casting realistic shadows
+      // Main Sun Directional Light
       this.dirLight = new THREE.DirectionalLight(0xFFFBEB, 0.95);
-      this.dirLight.position.set(130, 220, 110);
+      this.dirLight.position.set(140, 240, 120);
       this.dirLight.castShadow = true;
       this.dirLight.shadow.mapSize.width = 2048;
       this.dirLight.shadow.mapSize.height = 2048;
       this.dirLight.shadow.camera.near = 10;
-      this.dirLight.shadow.camera.far = 600;
-      this.dirLight.shadow.camera.left = -220;
-      this.dirLight.shadow.camera.right = 220;
-      this.dirLight.shadow.camera.top = 220;
-      this.dirLight.shadow.camera.bottom = -220;
+      this.dirLight.shadow.camera.far = 700;
+      this.dirLight.shadow.camera.left = -240;
+      this.dirLight.shadow.camera.right = 240;
+      this.dirLight.shadow.camera.top = 260;
+      this.dirLight.shadow.camera.bottom = -260;
       this.dirLight.shadow.bias = -0.0004;
       this.scene.add(this.dirLight);
     }
 
     /* ═════════════════════════════════════════════════════════════════
-       Campus Geography, Roads, Ponds, Canal, Switchyard, Sports Field
+       Campus Geography, Roads, Water Bodies, Switchyard, Sports Fields
        ═════════════════════════════════════════════════════════════════ */
     setupCampusEnvironment() {
-      // 1. Master Campus Ground Turf
-      const groundGeo = new THREE.PlaneGeometry(420, 440);
+      // 1. Master Campus Ground Turf (Extending north to cover OHK expansion)
+      const groundGeo = new THREE.PlaneGeometry(440, 520);
       const groundMat = new THREE.MeshStandardMaterial({
         color: 0x7CA96A, // Natural Thai lawn green
         roughness: 0.92,
@@ -140,32 +144,32 @@
       });
       const ground = new THREE.Mesh(groundGeo, groundMat);
       ground.rotation.x = -Math.PI / 2;
-      ground.position.set(-15, 0, -20);
+      ground.position.set(-20, 0, -40);
       ground.receiveShadow = true;
       this.scene.add(ground);
 
       // Campus Perimeter Boundary Base
-      const curbGeo = new THREE.BoxGeometry(424, 1.2, 444);
+      const curbGeo = new THREE.BoxGeometry(444, 1.2, 524);
       const curbMat = new THREE.MeshStandardMaterial({ color: 0xCBD5E1, roughness: 0.85 });
       const curb = new THREE.Mesh(curbGeo, curbMat);
-      curb.position.set(-15, -0.6, -20);
+      curb.position.set(-20, -0.6, -40);
       curb.receiveShadow = true;
       this.scene.add(curb);
 
       // 2. Western Boundary Canal (คลองขุนศรี)
       this.setupWesternCanal();
 
-      // 3. Three Retention Ponds (สระน้ำ 1, 2, 3)
-      this.setupRetentionPonds();
+      // 3. Central & South Retention Ponds (สระน้ำ 1, 2, 3)
+      this.setupCentralRetentionPonds();
 
       // 4. 500 kV Switchyard (ลานสวิตช์ยาร์ด กฟผ. ไทรน้อย)
       this.setupSwitchyard();
 
-      // 5. Football Field / Sports Pitch
-      this.setupFootballField();
+      // 5. Main Football Pitch (สนามฟุตบอลใหญ่)
+      this.setupMainFootballField();
 
-      // 6. Road Network & Roundabouts
-      this.setupRoadsAndRoundabouts();
+      // 6. Main Campus Road Network & Chemistry Roundabout
+      this.setupMainRoadsAndRoundabouts();
 
       // 7. Security Guardhouse & Entrance Gate (ท.0021)
       this.setupMainEntrance();
@@ -173,7 +177,10 @@
       // 8. Landscaping, Courtyards & Trees
       this.setupLandscaping();
 
-      // 9. Geographic 3D Landmark Labels
+      // 9. OHK Detailed Infrastructure (As-Built SNO-RF11-SN-2/6)
+      this.setupOHKInfrastructure();
+
+      // 10. Geographic 3D Landmark Labels
       this.setupLandmarkLabels();
     }
 
@@ -181,8 +188,7 @@
     setupWesternCanal() {
       const canalGroup = new THREE.Group();
 
-      // Canal Water Strip
-      const waterGeo = new THREE.PlaneGeometry(24, 400);
+      const waterGeo = new THREE.PlaneGeometry(24, 480);
       const waterMat = new THREE.MeshStandardMaterial({
         color: 0x2563EB,
         roughness: 0.15,
@@ -192,24 +198,24 @@
       });
       const canalWater = new THREE.Mesh(waterGeo, waterMat);
       canalWater.rotation.x = -Math.PI / 2;
-      canalWater.position.set(-195, 0.04, -20);
+      canalWater.position.set(-200, 0.04, -40);
       canalGroup.add(canalWater);
 
       // Concrete Canal Embankment Wall
       const wallMat = new THREE.MeshStandardMaterial({ color: 0x94A3B8, roughness: 0.8 });
-      const eastWall = new THREE.Mesh(new THREE.BoxGeometry(1.2, 1.5, 400), wallMat);
-      eastWall.position.set(-182.5, 0.5, -20);
+      const eastWall = new THREE.Mesh(new THREE.BoxGeometry(1.2, 1.5, 480), wallMat);
+      eastWall.position.set(-187.5, 0.5, -40);
       canalGroup.add(eastWall);
 
-      const westWall = new THREE.Mesh(new THREE.BoxGeometry(1.2, 1.5, 400), wallMat);
-      westWall.position.set(-207.5, 0.5, -20);
+      const westWall = new THREE.Mesh(new THREE.BoxGeometry(1.2, 1.5, 480), wallMat);
+      westWall.position.set(-212.5, 0.5, -40);
       canalGroup.add(westWall);
 
       this.scene.add(canalGroup);
     }
 
-    // Three Retention Ponds (สระน้ำ 1, 2, 3) between spine and western boundary
-    setupRetentionPonds() {
+    // Three Central Retention Ponds (สระน้ำ 1, 2, 3)
+    setupCentralRetentionPonds() {
       const pondSpecs = [
         { name: 'สระน้ำ 1', x: -95, z: 45, width: 36, depth: 44 },
         { name: 'สระน้ำ 2 (ข้างแฟลต)', x: -95, z: -5, width: 36, depth: 38 },
@@ -228,14 +234,12 @@
       pondSpecs.forEach(p => {
         const pondGroup = new THREE.Group();
 
-        // Water surface
         const pondWater = new THREE.Mesh(new THREE.PlaneGeometry(p.width, p.depth), waterMat);
         pondWater.rotation.x = -Math.PI / 2;
         pondWater.position.set(p.x, 0.05, p.z);
         pondWater.receiveShadow = true;
         pondGroup.add(pondWater);
 
-        // Stone boundary curb
         const borderGeo = new THREE.BoxGeometry(p.width + 1.6, 0.4, p.depth + 1.6);
         const border = new THREE.Mesh(borderGeo, curbMat);
         border.position.set(p.x, 0.2, p.z);
@@ -251,7 +255,6 @@
       const yardGroup = new THREE.Group();
       yardGroup.name = 'Switchyard500kV';
 
-      // Crushed rock / gravel base yard
       const yardGeo = new THREE.PlaneGeometry(65, 60);
       const yardMat = new THREE.MeshStandardMaterial({ color: 0xCBD5E1, roughness: 0.95 });
       const yard = new THREE.Mesh(yardGeo, yardMat);
@@ -260,21 +263,18 @@
       yard.receiveShadow = true;
       yardGroup.add(yard);
 
-      // Perimeter Security Chain-link Fence
       const fenceMat = new THREE.MeshStandardMaterial({ color: 0x64748B, wireframe: true });
       const fenceGeo = new THREE.BoxGeometry(66, 3.5, 61);
       const fence = new THREE.Mesh(fenceGeo, fenceMat);
       fence.position.set(-65, 1.75, 85);
       yardGroup.add(fence);
 
-      // Steel Lattice Gantry Towers (High-voltage bay frames)
       const steelMat = new THREE.MeshStandardMaterial({ color: 0x475569, metalness: 0.8, roughness: 0.3 });
       const gantryPositions = [
         [-85, 70], [-85, 100], [-45, 70], [-45, 100]
       ];
 
       gantryPositions.forEach(([gx, gz]) => {
-        // Dual vertical steel columns
         [-5, 5].forEach(ox => {
           const col = new THREE.Mesh(new THREE.BoxGeometry(0.8, 16, 0.8), steelMat);
           col.position.set(gx + ox, 8, gz);
@@ -282,13 +282,11 @@
           yardGroup.add(col);
         });
 
-        // Horizontal crossbeam
         const beam = new THREE.Mesh(new THREE.BoxGeometry(11, 0.8, 0.8), steelMat);
         beam.position.set(gx, 15.5, gz);
         beam.castShadow = true;
         yardGroup.add(beam);
 
-        // Insulator strings (Porcelain/composite hanging units)
         const insMat = new THREE.MeshStandardMaterial({ color: 0xD97706, roughness: 0.4 });
         [-3, 0, 3].forEach(ix => {
           const ins = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.2, 2.5, 8), insMat);
@@ -297,7 +295,7 @@
         });
       });
 
-      // Step-up / Step-down Power Transformer Units
+      // Transformers
       const transMat = new THREE.MeshStandardMaterial({ color: 0x334155, metalness: 0.5, roughness: 0.5 });
       const finMat = new THREE.MeshStandardMaterial({ color: 0x475569, metalness: 0.6 });
       const transPositions = [[-70, 85], [-60, 85]];
@@ -308,7 +306,6 @@
         transBody.castShadow = true;
         yardGroup.add(transBody);
 
-        // Cooling radiator fins
         const fin1 = new THREE.Mesh(new THREE.BoxGeometry(5.4, 3.5, 0.5), finMat);
         fin1.position.set(tx, 2, tz + 3.2);
         yardGroup.add(fin1);
@@ -321,15 +318,14 @@
       this.scene.add(yardGroup);
     }
 
-    // Sports Football Pitch between D.0019 and D.0025
-    setupFootballField() {
+    // Main Football Pitch between D.0019 and D.0025
+    setupMainFootballField() {
       const fieldGroup = new THREE.Group();
       const fx = 65;
       const fz = -20;
       const fw = 36;
       const fd = 54;
 
-      // Pitch Turf
       const turfMat = new THREE.MeshStandardMaterial({ color: 0x228B22, roughness: 0.85 });
       const pitch = new THREE.Mesh(new THREE.PlaneGeometry(fw, fd), turfMat);
       pitch.rotation.x = -Math.PI / 2;
@@ -337,37 +333,30 @@
       pitch.receiveShadow = true;
       fieldGroup.add(pitch);
 
-      // White Chalk Markings
       const lineMat = new THREE.MeshBasicMaterial({ color: 0xF8FAFC });
 
-      // Field boundary outline
-      const outerBorder = new THREE.Mesh(new THREE.PlaneGeometry(fw - 2, fd - 2), new THREE.MeshBasicMaterial({ color: 0x228B22 }));
       const borderLine = new THREE.Mesh(new THREE.PlaneGeometry(fw, fd), lineMat);
       borderLine.rotation.x = -Math.PI / 2;
       borderLine.position.set(fx, 0.07, fz);
       fieldGroup.add(borderLine);
 
-      // Pitch inside surface above border
       const pitchInner = new THREE.Mesh(new THREE.PlaneGeometry(fw - 1, fd - 1), turfMat);
       pitchInner.rotation.x = -Math.PI / 2;
       pitchInner.position.set(fx, 0.08, fz);
       pitchInner.receiveShadow = true;
       fieldGroup.add(pitchInner);
 
-      // Midfield line
       const midLine = new THREE.Mesh(new THREE.PlaneGeometry(fw - 1, 0.4), lineMat);
       midLine.rotation.x = -Math.PI / 2;
       midLine.position.set(fx, 0.09, fz);
       fieldGroup.add(midLine);
 
-      // Center Circle
       const circleGeo = new THREE.RingGeometry(4.8, 5.2, 32);
       const circle = new THREE.Mesh(circleGeo, lineMat);
       circle.rotation.x = -Math.PI / 2;
       circle.position.set(fx, 0.09, fz);
       fieldGroup.add(circle);
 
-      // Goal Posts (North & South)
       const goalMat = new THREE.MeshStandardMaterial({ color: 0xFFFFFF });
       [-fd / 2 + 1, fd / 2 - 1].forEach(gz => {
         const goalCross = new THREE.Mesh(new THREE.BoxGeometry(6, 0.2, 0.2), goalMat);
@@ -384,20 +373,19 @@
       this.scene.add(fieldGroup);
     }
 
-    // Complete Road Network, Boulevard, and Two Major Roundabouts
-    setupRoadsAndRoundabouts() {
+    // Main Campus Road Network & Eastern Roundabout
+    setupMainRoadsAndRoundabouts() {
       const roadGroup = new THREE.Group();
       const asphaltMat = new THREE.MeshStandardMaterial({ color: 0x334155, roughness: 0.72 });
       const lineMat = new THREE.MeshBasicMaterial({ color: 0xF1F5F9 });
 
-      // 1. Main North-South Entrance Boulevard (Passing T.0020, T.0019, D.0019)
+      // Main North-South Entrance Boulevard
       const mainRoad = new THREE.Mesh(new THREE.PlaneGeometry(12, 360), asphaltMat);
       mainRoad.rotation.x = -Math.PI / 2;
       mainRoad.position.set(35, 0.06, -20);
       mainRoad.receiveShadow = true;
       roadGroup.add(mainRoad);
 
-      // Center dash stripes on Boulevard
       for (let z = -170; z <= 130; z += 12) {
         const dash = new THREE.Mesh(new THREE.PlaneGeometry(0.4, 5), lineMat);
         dash.rotation.x = -Math.PI / 2;
@@ -405,28 +393,21 @@
         roadGroup.add(dash);
       }
 
-      // 2. Central Workshop Avenue (Between Spine Workshops and West Ponds)
-      const spineRoad = new THREE.Mesh(new THREE.PlaneGeometry(10, 340), asphaltMat);
+      // Central Workshop Avenue
+      const spineRoad = new THREE.Mesh(new THREE.PlaneGeometry(10, 320), asphaltMat);
       spineRoad.rotation.x = -Math.PI / 2;
-      spineRoad.position.set(-25, 0.05, -30);
+      spineRoad.position.set(-25, 0.05, -20);
       spineRoad.receiveShadow = true;
       roadGroup.add(spineRoad);
 
-      // 3. West Pond & Canal Service Road
-      const canalRoad = new THREE.Mesh(new THREE.PlaneGeometry(9, 320), asphaltMat);
-      canalRoad.rotation.x = -Math.PI / 2;
-      canalRoad.position.set(-170, 0.05, -40);
-      canalRoad.receiveShadow = true;
-      roadGroup.add(canalRoad);
-
-      // 4. Horizontal Cross Connectors
+      // Horizontal Cross Connectors
       const hRoads = [
-        { z: 140, x: 35, width: 90 }, // Gate entrance connection
-        { z: 50, x: 0, width: 140 },  // In front of T.0020 & T.0007
-        { z: 12, x: 0, width: 140 },  // In front of T.0019 & T.0006
-        { z: -48, x: 45, width: 180 }, // Between D.0019, Canteen, Roundabout
-        { z: -100, x: -10, width: 220 }, // North connection
-        { z: -150, x: -60, width: 200 }  // Heavy workshop & North connection
+        { z: 140, x: 35, width: 90 },
+        { z: 50, x: 0, width: 140 },
+        { z: 12, x: 0, width: 140 },
+        { z: -48, x: 45, width: 180 },
+        { z: -100, x: -10, width: 220 },
+        { z: -150, x: -50, width: 180 }
       ];
 
       hRoads.forEach(r => {
@@ -437,18 +418,14 @@
         roadGroup.add(road);
       });
 
-      // 5. Eastern Science & Chemistry Roundabout (วงเวียนวิทยาศาสตร์/เคมี)
+      // Eastern Science & Chemistry Roundabout
       const eastRound = this.createRoundabout(120, -60, 16, 7);
       roadGroup.add(eastRound);
 
-      // 6. Northern Transportation Roundabout (วงเวียนศูนย์ขนส่ง อหข.)
-      const northRound = this.createRoundabout(-125, -135, 16, 7);
-      roadGroup.add(northRound);
-
-      // 7. Marked Parking Bays in front of D.0019 & T.0019
+      // Marked Parking Bays in front of D.0019 & T.0019
       const parkingLots = [
-        { x: 52, z: -48, w: 12, d: 24 }, // D.0019 Parking Lot
-        { x: 52, z: 0, w: 10, d: 20 }     // T.0019 Parking Lot
+        { x: 52, z: -48, w: 12, d: 24 },
+        { x: 52, z: 0, w: 10, d: 20 }
       ];
 
       parkingLots.forEach(lot => {
@@ -458,7 +435,6 @@
         lotMesh.receiveShadow = true;
         roadGroup.add(lotMesh);
 
-        // Parking stall white lines
         for (let lz = lot.z - lot.d / 2 + 3; lz <= lot.z + lot.d / 2 - 3; lz += 4) {
           const stallLine = new THREE.Mesh(new THREE.PlaneGeometry(lot.w - 1, 0.25), lineMat);
           stallLine.rotation.x = -Math.PI / 2;
@@ -470,11 +446,9 @@
       this.scene.add(roadGroup);
     }
 
-    // Circular Asphalt Roundabout with Center Island
     createRoundabout(cx, cz, outerR, innerR) {
       const group = new THREE.Group();
 
-      // Asphalt Ring
       const ringGeo = new THREE.RingGeometry(innerR, outerR, 36);
       const ringMat = new THREE.MeshStandardMaterial({ color: 0x334155, roughness: 0.72, side: THREE.DoubleSide });
       const ring = new THREE.Mesh(ringGeo, ringMat);
@@ -483,7 +457,6 @@
       ring.receiveShadow = true;
       group.add(ring);
 
-      // Center Island Lawn
       const islandGeo = new THREE.CircleGeometry(innerR - 0.2, 32);
       const islandMat = new THREE.MeshStandardMaterial({ color: 0x5B8E55, roughness: 0.9 });
       const island = new THREE.Mesh(islandGeo, islandMat);
@@ -491,14 +464,12 @@
       island.position.set(cx, 0.25, cz);
       group.add(island);
 
-      // Island Curb
       const curbGeo = new THREE.CylinderGeometry(innerR, innerR, 0.4, 32, 1, true);
       const curbMat = new THREE.MeshStandardMaterial({ color: 0xCBD5E1 });
       const curb = new THREE.Mesh(curbGeo, curbMat);
       curb.position.set(cx, 0.2, cz);
       group.add(curb);
 
-      // Center Landmark Tree
       const tree = this.createTreeMesh();
       tree.position.set(cx, 0.2, cz);
       tree.scale.set(1.4, 1.4, 1.4);
@@ -507,13 +478,222 @@
       return group;
     }
 
-    // Main Security Entrance Gate & Guardhouse (ท.0021)
+    /* ═════════════════════════════════════════════════════════════════
+       Detailed OHK Infrastructure (As-Built SNO-RF11-SN-2/6)
+       Curved Retention Pond, Waterfront Gazebo, Grand Roundabout,
+       Heavy Maneuvering Apron, Futsal Field, Roads & 230kV Pylons
+       ═════════════════════════════════════════════════════════════════ */
+    setupOHKInfrastructure() {
+      const ohkGroup = new THREE.Group();
+      ohkGroup.name = 'OHK_Infrastructure';
+
+      const asphaltMat = new THREE.MeshStandardMaterial({ color: 0x334155, roughness: 0.72 });
+      const concreteApronMat = new THREE.MeshStandardMaterial({ color: 0xDCE3EB, roughness: 0.75 });
+      const waterMat = new THREE.MeshStandardMaterial({
+        color: 0x0284C7,
+        roughness: 0.12,
+        metalness: 0.45,
+        transparent: true,
+        opacity: 0.94
+      });
+      const curbMat = new THREE.MeshStandardMaterial({ color: 0xCBD5E1, roughness: 0.75 });
+
+      // ── 1. Curved Peanut-Shaped Retention Pond (สระน้ำ อหข. WL +99.00) ──
+      const pondGroup = new THREE.Group();
+      // South lobe of pond
+      const lobe1 = new THREE.Mesh(new THREE.CylinderGeometry(14, 14, 0.2, 32), waterMat);
+      lobe1.position.set(-155, 0.1, -150);
+      pondGroup.add(lobe1);
+
+      // North lobe of pond
+      const lobe2 = new THREE.Mesh(new THREE.CylinderGeometry(12, 12, 0.2, 32), waterMat);
+      lobe2.position.set(-158, 0.1, -172);
+      pondGroup.add(lobe2);
+
+      // Connecting neck
+      const neck = new THREE.Mesh(new THREE.BoxGeometry(18, 0.2, 24), waterMat);
+      neck.position.set(-156, 0.1, -161);
+      pondGroup.add(neck);
+
+      // Stone border around pond
+      const curbLobe1 = new THREE.Mesh(new THREE.CylinderGeometry(14.8, 14.8, 0.35, 32, 1, true), curbMat);
+      curbLobe1.position.set(-155, 0.2, -150);
+      pondGroup.add(curbLobe1);
+
+      const curbLobe2 = new THREE.Mesh(new THREE.CylinderGeometry(12.8, 12.8, 0.35, 32, 1, true), curbMat);
+      curbLobe2.position.set(-158, 0.2, -172);
+      pondGroup.add(curbLobe2);
+
+      // Waterfront Gazebo Pavilion (ศาลาพักผ่อนริมน้ำ อหข.) with Pier
+      const pierMat = new THREE.MeshStandardMaterial({ color: 0x78350F, roughness: 0.8 });
+      const pier = new THREE.Mesh(new THREE.BoxGeometry(2.4, 0.3, 10), pierMat);
+      pier.position.set(-145, 0.25, -161);
+      pondGroup.add(pier);
+
+      const gazeboRoofMat = new THREE.MeshStandardMaterial({ color: 0x1E293B, roughness: 0.6 });
+      const gazeboRoof = new THREE.Mesh(new THREE.ConeGeometry(3.6, 2.2, 8), gazeboRoofMat);
+      gazeboRoof.position.set(-148, 3.2, -161);
+      gazeboRoof.castShadow = true;
+      pondGroup.add(gazeboRoof);
+
+      // Gazebo deck and columns
+      const gazeboDeck = new THREE.Mesh(new THREE.CylinderGeometry(3.2, 3.2, 0.3, 8), pierMat);
+      gazeboDeck.position.set(-148, 0.3, -161);
+      pondGroup.add(gazeboDeck);
+
+      for (let a = 0; a < Math.PI * 2; a += Math.PI / 4) {
+        const col = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.08, 0.08, 2.6, 6),
+          new THREE.MeshStandardMaterial({ color: 0xCBD5E1 })
+        );
+        col.position.set(-148 + Math.cos(a) * 2.8, 1.6, -161 + Math.sin(a) * 2.8);
+        col.castShadow = true;
+        pondGroup.add(col);
+      }
+
+      ohkGroup.add(pondGroup);
+
+      // ── 2. Grand OHK Roundabout (วงเวียนใหญ่ อหข.) ──
+      const rCenter = { x: -120, z: -185 };
+      const outerR = 24;
+      const innerR = 13;
+
+      // Asphalt Ring
+      const ringGeo = new THREE.RingGeometry(innerR, outerR, 40);
+      const ring = new THREE.Mesh(ringGeo, asphaltMat);
+      ring.rotation.x = -Math.PI / 2;
+      ring.position.set(rCenter.x, 0.06, rCenter.z);
+      ring.receiveShadow = true;
+      ohkGroup.add(ring);
+
+      // Raised Landscape Island Mound
+      const moundGeo = new THREE.CylinderGeometry(innerR - 0.2, innerR - 0.1, 0.8, 36);
+      const moundMat = new THREE.MeshStandardMaterial({ color: 0x5B8E55, roughness: 0.9 });
+      const mound = new THREE.Mesh(moundGeo, moundMat);
+      mound.position.set(rCenter.x, 0.4, rCenter.z);
+      ohkGroup.add(mound);
+
+      // Decorative Walkway Rings inside Roundabout Mound
+      const walkRing1 = new THREE.Mesh(new THREE.RingGeometry(5, 7, 32), new THREE.MeshBasicMaterial({ color: 0xE2E8F0 }));
+      walkRing1.rotation.x = -Math.PI / 2;
+      walkRing1.position.set(rCenter.x, 0.81, rCenter.z);
+      ohkGroup.add(walkRing1);
+
+      // Center Landmark Palm / Tree
+      const rTree = this.createTreeMesh();
+      rTree.position.set(rCenter.x, 0.8, rCenter.z);
+      rTree.scale.set(1.5, 1.5, 1.5);
+      ohkGroup.add(rTree);
+
+      // ── 3. Heavy Vehicle Apron & Maneuvering Yard (ลานคอนกรีตลานกลับรถ อหข.) ──
+      const apronGeo = new THREE.PlaneGeometry(85, 75);
+      const apron = new THREE.Mesh(apronGeo, concreteApronMat);
+      apron.rotation.x = -Math.PI / 2;
+      apron.position.set(-110, 0.05, -165);
+      apron.receiveShadow = true;
+      ohkGroup.add(apron);
+
+      // ── 4. OHK Small Football / Futsal Pitch (สนามฟุตบอลเล็ก อหข.) ──
+      const futsalGroup = new THREE.Group();
+      const fsx = -75;
+      const fsz = -120;
+      const fsw = 22;
+      const fsd = 36;
+
+      const fTurfMat = new THREE.MeshStandardMaterial({ color: 0x16A34A, roughness: 0.85 });
+      const fPitch = new THREE.Mesh(new THREE.PlaneGeometry(fsw, fsd), fTurfMat);
+      fPitch.rotation.x = -Math.PI / 2;
+      fPitch.position.set(fsx, 0.06, fsz);
+      fPitch.receiveShadow = true;
+      futsalGroup.add(fPitch);
+
+      const fLineMat = new THREE.MeshBasicMaterial({ color: 0xF8FAFC });
+      const fBorder = new THREE.Mesh(new THREE.PlaneGeometry(fsw, fsd), fLineMat);
+      fBorder.rotation.x = -Math.PI / 2;
+      fBorder.position.set(fsx, 0.07, fsz);
+      futsalGroup.add(fBorder);
+
+      const fInner = new THREE.Mesh(new THREE.PlaneGeometry(fsw - 0.8, fsd - 0.8), fTurfMat);
+      fInner.rotation.x = -Math.PI / 2;
+      fInner.position.set(fsx, 0.08, fsz);
+      futsalGroup.add(fInner);
+
+      // Futsal Goalposts
+      const fGoalMat = new THREE.MeshStandardMaterial({ color: 0xFFFFFF });
+      [-fsd / 2 + 1, fsd / 2 - 1].forEach(gz => {
+        const goal = new THREE.Mesh(new THREE.BoxGeometry(4.2, 0.2, 0.2), fGoalMat);
+        goal.position.set(fsx, 2.0, fsz + gz);
+        futsalGroup.add(goal);
+
+        [-2.1, 2.1].forEach(gx => {
+          const post = new THREE.Mesh(new THREE.BoxGeometry(0.2, 2.0, 0.2), fGoalMat);
+          post.position.set(fsx + gx, 1.0, fsz + gz);
+          futsalGroup.add(post);
+        });
+      });
+      ohkGroup.add(futsalGroup);
+
+      // ── 5. OHK Road Network (Access & Perimeter Ring Roads) ──
+      // South Access Road from campus spine into OHK
+      const accessRoad = new THREE.Mesh(new THREE.PlaneGeometry(10, 70), asphaltMat);
+      accessRoad.rotation.x = -Math.PI / 2;
+      accessRoad.position.set(-135, 0.06, -115);
+      accessRoad.receiveShadow = true;
+      ohkGroup.add(accessRoad);
+
+      // North Perimeter Loop Road behind T.0026 & T.0027
+      const northLoop = new THREE.Mesh(new THREE.PlaneGeometry(110, 9), asphaltMat);
+      northLoop.rotation.x = -Math.PI / 2;
+      northLoop.position.set(-125, 0.06, -225);
+      northLoop.receiveShadow = true;
+      ohkGroup.add(northLoop);
+
+      // East Perimeter Road behind garage T.0027
+      const eastLoop = new THREE.Mesh(new THREE.PlaneGeometry(9, 85), asphaltMat);
+      eastLoop.rotation.x = -Math.PI / 2;
+      eastLoop.position.set(-70, 0.06, -185);
+      eastLoop.receiveShadow = true;
+      ohkGroup.add(eastLoop);
+
+      // ── 6. 230 kV Ang Thong 2 Transmission Line Right-of-Way Crossing ──
+      const pylonGroup = new THREE.Group();
+      const pylonMat = new THREE.MeshStandardMaterial({ color: 0x475569, metalness: 0.85, roughness: 0.3 });
+      const pylonCoords = [
+        [-175, -230],
+        [-65, -150]
+      ];
+
+      pylonCoords.forEach(([px, pz]) => {
+        // 4-legged lattice steel transmission tower
+        const h = 26;
+        [-2.5, 2.5].forEach(ox => {
+          [-2.5, 2.5].forEach(oz => {
+            const leg = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.35, h, 6), pylonMat);
+            leg.position.set(px + ox * 0.7, h / 2, pz + oz * 0.7);
+            leg.castShadow = true;
+            pylonGroup.add(leg);
+          });
+        });
+
+        // 3 Crossarms for 230 kV conductors
+        [h - 7, h - 3.5, h].forEach((ch, ci) => {
+          const armW = 14 - ci * 2.5;
+          const arm = new THREE.Mesh(new THREE.BoxGeometry(armW, 0.6, 0.6), pylonMat);
+          arm.position.set(px, ch, pz);
+          arm.castShadow = true;
+          pylonGroup.add(arm);
+        });
+      });
+      ohkGroup.add(pylonGroup);
+
+      this.scene.add(ohkGroup);
+    }
+
     setupMainEntrance() {
       const gateGroup = new THREE.Group();
       const gx = 40;
       const gz = 140;
 
-      // Guardhouse Building (ท.0021)
       const bMat = new THREE.MeshStandardMaterial({ color: 0xE2E8F0, roughness: 0.4 });
       const roofMat = new THREE.MeshStandardMaterial({ color: 0x1E293B, roughness: 0.6 });
 
@@ -522,28 +702,23 @@
       booth.castShadow = true;
       gateGroup.add(booth);
 
-      // Glass windows on booth
       const winMat = new THREE.MeshStandardMaterial({ color: 0x93C5FD, metalness: 0.8, roughness: 0.2 });
       const win = new THREE.Mesh(new THREE.BoxGeometry(6.1, 1.5, 3), winMat);
       win.position.set(gx + 9, 2.5, gz);
       gateGroup.add(win);
 
-      // Overhanging roof
       const roof = new THREE.Mesh(new THREE.BoxGeometry(8, 0.6, 7), roofMat);
       roof.position.set(gx + 9, 4.4, gz);
       roof.castShadow = true;
       gateGroup.add(roof);
 
-      // EGAT Blue Entrance Boom Barrier Arms (ไม้กั้นทางเข้า-ออก)
       const barrierMat = new THREE.MeshStandardMaterial({ color: 0x0284C7 });
       const poleMat = new THREE.MeshStandardMaterial({ color: 0xF59E0B });
 
-      // Center island pillar
       const pillar = new THREE.Mesh(new THREE.BoxGeometry(0.8, 1.4, 0.8), poleMat);
       pillar.position.set(gx, 0.7, gz);
       gateGroup.add(pillar);
 
-      // Boom Arm
       const arm = new THREE.Mesh(new THREE.BoxGeometry(7, 0.15, 0.15), barrierMat);
       arm.position.set(gx - 3.5, 1.1, gz);
       gateGroup.add(arm);
@@ -551,9 +726,7 @@
       this.scene.add(gateGroup);
     }
 
-    // Courtyards, Reflecting Pools, Flagpoles, and Trees
     setupLandscaping() {
-      // 1. Scenic Promenade Pond Behind T.0019
       const poolGeo = new THREE.PlaneGeometry(36, 12);
       const poolMat = new THREE.MeshStandardMaterial({ color: 0x0284C7, roughness: 0.1, metalness: 0.3 });
       const pool = new THREE.Mesh(poolGeo, poolMat);
@@ -561,7 +734,6 @@
       pool.position.set(35, 0.08, -16);
       this.scene.add(pool);
 
-      // 2. 3 National / EGAT Flagpoles in front of T.0019
       const poleMat = new THREE.MeshStandardMaterial({ color: 0xE2E8F0, metalness: 0.8, roughness: 0.2 });
       [-3, 0, 3].forEach(ox => {
         const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 9, 8), poleMat);
@@ -570,24 +742,20 @@
         this.scene.add(pole);
       });
 
-      // 3. Low-Poly Trees along Campus Corridors
       const treeCoords = [
-        // Along Boulevard
         [24, 120], [24, 90], [24, 60], [24, 30], [24, -10], [24, -40], [24, -70], [24, -100], [24, -130],
         [46, 120], [46, 90], [46, 60], [46, 30], [46, -70], [46, -100], [46, -130],
-        // Around Football pitch
         [44, -2], [44, -12], [44, -24], [44, -36], [86, -2], [86, -12], [86, -24], [86, -36],
-        // Around Retention Ponds
         [-118, 45], [-118, 25], [-118, -5], [-118, -35], [-118, -65],
         [-72, 45], [-72, 25], [-72, -5], [-72, -35],
-        // North Workshop Zone
-        [-5, -165], [-35, -165], [-65, -165], [-95, -165], [-125, -165]
+        [-5, -165], [-35, -165], [-65, -165],
+        // OHK Perimeter Trees
+        [-170, -180], [-170, -200], [-170, -220], [-120, -235], [-90, -235], [-60, -210], [-60, -170]
       ];
 
       treeCoords.forEach(([tx, tz]) => {
         const tree = this.createTreeMesh();
         tree.position.set(tx, 0, tz);
-        // Subtle random scaling for natural appearance
         const s = 0.85 + Math.random() * 0.35;
         tree.scale.set(s, s, s);
         this.scene.add(tree);
@@ -597,7 +765,6 @@
     createTreeMesh() {
       const group = new THREE.Group();
 
-      // Trunk
       const trunkGeo = new THREE.CylinderGeometry(0.25, 0.45, 2.6, 6);
       const trunkMat = new THREE.MeshStandardMaterial({ color: 0x78350F, roughness: 0.9 });
       const trunk = new THREE.Mesh(trunkGeo, trunkMat);
@@ -605,7 +772,6 @@
       trunk.castShadow = true;
       group.add(trunk);
 
-      // Foliage Canopies
       const fMat1 = new THREE.MeshStandardMaterial({ color: 0x15803D, roughness: 0.8 });
       const fMat2 = new THREE.MeshStandardMaterial({ color: 0x16A34A, roughness: 0.8 });
 
@@ -622,7 +788,6 @@
       return group;
     }
 
-    // 3D Campus Landmark Pins (Switchyard, Football, Ponds, Gate, Roundabouts)
     setupLandmarkLabels() {
       const landmarks = [
         { text: '⚡ สวิตช์ยาร์ด 500 kV', x: -65, y: 19, z: 85, color: '#D97706' },
@@ -630,7 +795,11 @@
         { text: '💧 สระน้ำ 1, 2, 3', x: -95, y: 7, z: 20, color: '#0284C7' },
         { text: '🚧 ทางเข้าหลัก / ท.0021', x: 40, y: 8, z: 140, color: '#475569' },
         { text: '🧪 วงเวียนวิทยาศาสตร์/เคมี', x: 120, y: 8, z: -60, color: '#2563EB' },
-        { text: '🚛 วงเวียนศูนย์ขนส่ง อหข.', x: -125, y: 8, z: -135, color: '#7C3AED' }
+        // OHK Specific Landmark Pins
+        { text: '🚛 วงเวียนใหญ่ศูนย์ขนส่ง อหข.', x: -120, y: 10, z: -185, color: '#7C3AED' },
+        { text: '💧 สระน้ำ & ศาลาริมน้ำ อหข.', x: -155, y: 8, z: -160, color: '#0284C7' },
+        { text: '⚽ สนามฟุตบอลเล็ก อหข.', x: -75, y: 7, z: -120, color: '#16A34A' },
+        { text: '⚡ สายส่ง 230 kV อ่างทอง 2', x: -120, y: 28, z: -190, color: '#EF4444' }
       ];
 
       landmarks.forEach(lm => {
@@ -643,33 +812,30 @@
 
     createLandmarkSprite(text, accentColor = '#D97706') {
       const canvas = document.createElement('canvas');
-      canvas.width = 340;
+      canvas.width = 360;
       canvas.height = 70;
       const ctx = canvas.getContext('2d');
 
-      // Pill Background
       ctx.fillStyle = 'rgba(15, 23, 42, 0.88)';
       ctx.beginPath();
-      ctx.roundRect(6, 6, 328, 58, 29);
+      ctx.roundRect(6, 6, 348, 58, 29);
       ctx.fill();
 
-      // Border
       ctx.lineWidth = 3;
       ctx.strokeStyle = accentColor;
       ctx.stroke();
 
-      // Text
-      ctx.font = 'bold 22px Sarabun, sans-serif';
+      ctx.font = 'bold 21px Sarabun, sans-serif';
       ctx.fillStyle = '#FFFFFF';
       ctx.textAlign = 'center';
-      ctx.fillText(text, 170, 42);
+      ctx.fillText(text, 180, 42);
 
       const texture = new THREE.CanvasTexture(canvas);
       texture.minFilter = THREE.LinearFilter;
 
       const spriteMat = new THREE.SpriteMaterial({ map: texture, transparent: true, depthTest: false });
       const sprite = new THREE.Sprite(spriteMat);
-      sprite.scale.set(15, 3.1, 1);
+      sprite.scale.set(16, 3.2, 1);
       return sprite;
     }
 
@@ -677,7 +843,6 @@
        Procedural 3D Architectural Generation for Buildings
        ═════════════════════════════════════════════════════════════════ */
     populateBuildings(buildingsList) {
-      // Clear old meshes and sprites
       this.buildingMeshes.forEach(mesh => this.scene.remove(mesh));
       this.buildingMeshes.clear();
       this.labelSprites.forEach(sprite => this.scene.remove(sprite));
@@ -690,12 +855,10 @@
         this.scene.add(buildingGroup);
         this.buildingMeshes.set(bData.b_code, buildingGroup);
 
-        // Billboard Thai Label Sprite
         const labelSprite = this.createLabelSprite(bData);
         this.scene.add(labelSprite);
         this.labelSprites.set(bData.b_code, labelSprite);
 
-        // Warning Beacon Sprite if quality anomaly exists
         if (bData.quality_status !== 'normal') {
           const warnSprite = this.createWarningSprite(bData);
           this.scene.add(warnSprite);
@@ -741,38 +904,40 @@
       // ── Architectural Detailing by Category & Real Photo Visuals ──
       const roofType = bData.roof_type;
 
-      if (roofType === 'office_tower_9fl') {
-        // T.0019 (ชธธ. 9 ชั้น - อาคารหลักกระจกฟ้าขาว พร้อมมุขทางเข้า 2 ชั้น)
+      // OHK Specific Architecture
+      if (roofType === 'ohk_office_t0026') {
+        this.buildOHKOfficeT0026(group, width, depth, height);
+      } else if (roofType === 'ohk_garage_t0027') {
+        this.buildOHKGarageT0027(group, width, depth, height);
+      } else if (roofType === 'ohk_workshop_heavy') {
+        this.buildOHKHeavyWorkshop(group, width, depth, height, bData.b_code);
+      } else if (roofType === 'ohk_canteen_d0031') {
+        this.buildOHKCanteenD0031(group, width, depth, height);
+      } else if (roofType === 'ohk_welding_d0033') {
+        this.buildOHKWeldingD0033(group, width, depth, height);
+      }
+      // Campus Main Architecture
+      else if (roofType === 'office_tower_9fl') {
         this.buildOfficeTower9Fl(group, width, depth, height);
       } else if (roofType === 'parking_complex') {
-        // D.0019 (อาคารจอดรถ 4 ชั้น ขาวคาดเหลือง)
         this.buildParkingComplex(group, width, depth, height);
       } else if (roofType === 'curved_hall') {
-        // D.0025 (อาคารอเนกประสงค์ / หอประชุมหลังคาโค้ง)
         this.buildCurvedHall(group, width, depth, height);
       } else if (roofType === 'competency_center') {
-        // T.0020 (ศูนย์รับรองสมรรถนะฯ 3 ชั้น กระจกแถบยาว)
         this.buildCompetencyCenter(group, width, depth, height);
       } else if (roofType === 'gabled_large') {
-        // T.0012 (โรงซ่อมเครื่องกลขนาดใหญ่ อบค. & ศูนย์ประดาน้ำ)
         this.buildLargeWorkshop(group, width, depth, height);
       } else if (roofType === 'gabled_warehouse' || roofType === 'gabled') {
-        // กลุ่มคลังและโรงซ่อม (T.0006, T.0008, T.0010, T.0011, D.0015, T.0023, T.0027, etc.)
         this.buildGabledWarehouse(group, width, depth, height);
       } else if (roofType === 'lab_modern') {
-        // กลุ่มห้องปฏิบัติการเคมีและมาตรวิทยา (T.0014, T.0015, T.0016, T.0017, T.0018)
         this.buildModernLab(group, width, depth, height);
       } else if (roofType === 'residential_balcony') {
-        // B.0001 (แฟลต อบค. ที่พักอาศัย 4 ชั้น ริมสระน้ำ)
         this.buildResidentialFlat(group, width, depth, height);
       } else if (roofType === 'canteen_curved' || roofType === 'canteen') {
-        // D.0017 / D.0031 (โรงอาหารหลังคาโค้ง/ลานร่มรื่น)
         this.buildCanteen(group, width, depth, height);
       } else if (roofType === 'utility_tank') {
-        // D.0026 (ระบบประปาสำนักงาน พร้อมหอถังน้ำ)
         this.buildUtilityWaterStation(group, width, depth, height);
       } else {
-        // Standard Flat Roof with Modern Parapet
         const parapetMat = new THREE.MeshStandardMaterial({ color: 0x475569, roughness: 0.7 });
         const parapet = new THREE.Mesh(new THREE.BoxGeometry(width + 0.4, 0.6, depth + 0.4), parapetMat);
         parapet.position.y = height + 0.3;
@@ -780,30 +945,223 @@
         group.add(parapet);
       }
 
-      // Position in Master Plan Coordinates
+      // Position & Orientation in Master Plan Coordinates
       group.position.set(x, 0, z);
+      if (bData.rotation_y) {
+        group.rotation.y = bData.rotation_y;
+      }
+
       return group;
     }
 
-    // Detail Builder: T.0019 (ชธธ. 9 ชั้น)
+    /* ═════════════════════════════════════════════════════════════════
+       OHK Specific Architectural Builders
+       ═════════════════════════════════════════════════════════════════ */
+    // T.0026: อาคารบริหารการขนส่ง (อาคารที่ทำการ อหข. 2 ชั้น)
+    buildOHKOfficeT0026(group, width, depth, height) {
+      const glassMat = new THREE.MeshStandardMaterial({ color: 0x60A5FA, metalness: 0.8, roughness: 0.2 });
+      const roofMat = new THREE.MeshStandardMaterial({ color: 0x1E293B, roughness: 0.65 });
+
+      // 2nd Floor Ribbon Glass Strips
+      const win = new THREE.Mesh(new THREE.BoxGeometry(width + 0.3, 1.8, depth + 0.3), glassMat);
+      win.position.y = height * 0.65 + 0.2;
+      group.add(win);
+
+      // Pitched Hip Roof section over stair tower / central entrance
+      const hipRoof = new THREE.Mesh(
+        new THREE.ConeGeometry(Math.max(width, depth) * 0.45, 3.2, 4),
+        roofMat
+      );
+      hipRoof.rotation.y = Math.PI / 4;
+      hipRoof.position.set(-width * 0.2, height + 1.6 + 0.2, 0);
+      hipRoof.castShadow = true;
+      group.add(hipRoof);
+
+      // Front Entrance Porch facing roundabout
+      const porch = new THREE.Mesh(
+        new THREE.BoxGeometry(10, 0.4, 4),
+        new THREE.MeshStandardMaterial({ color: 0x0284C7 })
+      );
+      porch.position.set(0, 3.4, depth / 2 + 2);
+      porch.castShadow = true;
+      group.add(porch);
+
+      // Rear Covered Car Park (16 car bays)
+      const carParkMat = new THREE.MeshStandardMaterial({ color: 0x475569, roughness: 0.8 });
+      const cpRoof = new THREE.Mesh(new THREE.BoxGeometry(width * 0.85, 0.3, 8), carParkMat);
+      cpRoof.position.set(0, 3.0, -depth / 2 - 4);
+      cpRoof.castShadow = true;
+      group.add(cpRoof);
+
+      // Circular Stepped Front Plaza
+      const plaza = new THREE.Mesh(
+        new THREE.CylinderGeometry(6, 6.5, 0.25, 24),
+        new THREE.MeshStandardMaterial({ color: 0xE2E8F0, roughness: 0.7 })
+      );
+      plaza.position.set(0, 0.12, depth / 2 + 6);
+      plaza.receiveShadow = true;
+      group.add(plaza);
+    }
+
+    // T.0027: อาคารโรงจอดยานพาหนะ (อขน.) - 62m Steel Frame Multi-Bay Shed
+    buildOHKGarageT0027(group, width, depth, height) {
+      const steelMat = new THREE.MeshStandardMaterial({ color: 0xB91C1C, metalness: 0.6, roughness: 0.4 }); // Red steel trusses
+      const roofMat = new THREE.MeshStandardMaterial({ color: 0x475569, roughness: 0.75 });
+
+      // Corrugated Pitched Roof
+      const roof = new THREE.Mesh(
+        new THREE.ConeGeometry(Math.max(width, depth) * 0.55, 3.5, 4),
+        roofMat
+      );
+      roof.rotation.y = Math.PI / 4;
+      roof.scale.set(width / Math.max(width, depth), 1, depth / Math.max(width, depth));
+      roof.position.y = height + 1.75 + 0.2;
+      roof.castShadow = true;
+      group.add(roof);
+
+      // 12 Drive-Through Open Service / Inspection Bays along the length
+      const bayCount = 10;
+      const baySpacing = depth / bayCount;
+      const bayMat = new THREE.MeshStandardMaterial({ color: 0x1E293B, roughness: 0.9 });
+
+      for (let i = 0; i < bayCount; i++) {
+        const bz = -depth / 2 + (i + 0.5) * baySpacing;
+
+        // Structural steel columns
+        const col = new THREE.Mesh(new THREE.BoxGeometry(0.5, height, 0.5), steelMat);
+        col.position.set(-width / 2 - 0.1, height / 2 + 0.2, bz);
+        col.castShadow = true;
+        group.add(col);
+
+        // Service Door Openings
+        const door = new THREE.Mesh(new THREE.PlaneGeometry(0.1, height * 0.75), bayMat);
+        door.position.set(-width / 2 - 0.05, height * 0.4 + 0.2, bz);
+        group.add(door);
+      }
+    }
+
+    // T.0028 & T.0029: อาคารปฏิบัติการ 1-2 (ซ่อมเครื่องจักรกลหนัก) with Overhead Crane Bay
+    buildOHKHeavyWorkshop(group, width, depth, height, bCode) {
+      const roofMat = new THREE.MeshStandardMaterial({ color: 0x475569, roughness: 0.7 });
+      const roofH = 4.5;
+
+      // Heavy Workshop Gabled Roof
+      const roof = new THREE.Mesh(
+        new THREE.ConeGeometry(Math.max(width, depth) * 0.72, roofH, 4),
+        roofMat
+      );
+      roof.rotation.y = Math.PI / 4;
+      roof.scale.set(width / Math.max(width, depth), 1, depth / Math.max(width, depth));
+      roof.position.y = height + roofH / 2 + 0.2;
+      roof.castShadow = true;
+      group.add(roof);
+
+      // Central Overhead Crane Ridge (32m Crane Bay Clerestory Monitor)
+      const craneRidge = new THREE.Mesh(
+        new THREE.BoxGeometry(width * 0.55, 2.2, depth * 0.75),
+        new THREE.MeshStandardMaterial({ color: 0x64748B, roughness: 0.6 })
+      );
+      craneRidge.position.y = height + roofH + 1.1;
+      craneRidge.castShadow = true;
+      group.add(craneRidge);
+
+      // High Roller Shutter Bay Doors for Heavy Equipment / Trucks
+      const doorMat = new THREE.MeshStandardMaterial({ color: 0x1E293B, roughness: 0.85 });
+      const hazardMat = new THREE.MeshStandardMaterial({ color: 0xF59E0B });
+
+      [-width * 0.25, 0, width * 0.25].forEach(dx => {
+        const door = new THREE.Mesh(new THREE.PlaneGeometry(width * 0.22, height * 0.72), doorMat);
+        door.position.set(dx, height * 0.36 + 0.2, depth / 2 + 0.06);
+        group.add(door);
+
+        const curbStripe = new THREE.Mesh(new THREE.BoxGeometry(width * 0.24, 0.3, 0.4), hazardMat);
+        curbStripe.position.set(dx, 0.15, depth / 2 + 0.2);
+        group.add(curbStripe);
+      });
+
+      // Side 2-Story Tool Room / Administrative Annex
+      const annex = new THREE.Mesh(
+        new THREE.BoxGeometry(6, height * 0.8, depth * 0.6),
+        new THREE.MeshStandardMaterial({ color: 0xE2E8F0 })
+      );
+      annex.position.set(-width / 2 - 3, height * 0.4 + 0.2, 0);
+      annex.castShadow = true;
+      group.add(annex);
+
+      // Covered Connector Canopy between T.0028 and T.0029
+      if (bCode === 'T.0028') {
+        const connector = new THREE.Mesh(
+          new THREE.BoxGeometry(16, 0.4, depth * 0.45),
+          new THREE.MeshStandardMaterial({ color: 0x475569 })
+        );
+        connector.position.set(-width / 2 - 8, height * 0.75, 0);
+        connector.castShadow = true;
+        group.add(connector);
+      }
+    }
+
+    // D.0031: อาคารโรงอาหาร อหข.
+    buildOHKCanteenD0031(group, width, depth, height) {
+      const roofMat = new THREE.MeshStandardMaterial({ color: 0x1E293B, roughness: 0.6 });
+      const roof = new THREE.Mesh(new THREE.BoxGeometry(width + 3, 0.8, depth + 3), roofMat);
+      roof.position.y = height + 0.4 + 0.2;
+      roof.castShadow = true;
+      group.add(roof);
+
+      // Outdoor covered patio facing the pond
+      const patio = new THREE.Mesh(
+        new THREE.BoxGeometry(width + 5, 0.2, depth + 5),
+        new THREE.MeshStandardMaterial({ color: 0xE2E8F0, roughness: 0.7 })
+      );
+      patio.position.y = 0.15;
+      patio.receiveShadow = true;
+      group.add(patio);
+    }
+
+    // D.0033: อาคารปฏิบัติการงานเชื่อม อหข.
+    buildOHKWeldingD0033(group, width, depth, height) {
+      const roofMat = new THREE.MeshStandardMaterial({ color: 0x475569, roughness: 0.7 });
+      const roofH = 2.8;
+
+      const roof = new THREE.Mesh(
+        new THREE.ConeGeometry(Math.max(width, depth) * 0.74, roofH, 4),
+        roofMat
+      );
+      roof.rotation.y = Math.PI / 4;
+      roof.scale.set(width / Math.max(width, depth), 1, depth / Math.max(width, depth));
+      roof.position.y = height + roofH / 2 + 0.2;
+      roof.castShadow = true;
+      group.add(roof);
+
+      // Industrial Ventilation Extraction Exhaust Ducts
+      const ductMat = new THREE.MeshStandardMaterial({ color: 0xCBD5E1, metalness: 0.8 });
+      [-width * 0.2, width * 0.2].forEach(dx => {
+        const duct = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.4, 2.5, 12), ductMat);
+        duct.position.set(dx, height + roofH + 1.25, 0);
+        duct.castShadow = true;
+        group.add(duct);
+      });
+    }
+
+    /* ═════════════════════════════════════════════════════════════════
+       Campus Main Architectural Builders
+       ═════════════════════════════════════════════════════════════════ */
     buildOfficeTower9Fl(group, width, depth, height) {
       const glassMat = new THREE.MeshStandardMaterial({
         color: 0x60A5FA,
         metalness: 0.85,
         roughness: 0.15
       });
-      const whiteSpandrelMat = new THREE.MeshStandardMaterial({ color: 0xF8FAFC, roughness: 0.5 });
       const floors = 9;
       const floorH = height / floors;
 
-      // 9 Floor Horizontal Glass Ribbon Strips
       for (let f = 1; f < floors; f++) {
         const win = new THREE.Mesh(new THREE.BoxGeometry(width + 0.3, floorH * 0.48, depth + 0.3), glassMat);
         win.position.y = f * floorH + 0.2;
         group.add(win);
       }
 
-      // Front Grand Entrance Canopy with Columns (มุขทางเข้าด้านหน้า)
+      // Front Grand Entrance Canopy with Columns
       const canopyH = 6.5;
       const canopyD = 8;
       const canopyW = 16;
@@ -813,7 +1171,6 @@
       canopy.castShadow = true;
       group.add(canopy);
 
-      // Support Columns
       const colMat = new THREE.MeshStandardMaterial({ color: 0xCBD5E1 });
       [-canopyW / 2 + 1, canopyW / 2 - 1].forEach(cx => {
         const col = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.4, canopyH, 12), colMat);
@@ -822,7 +1179,7 @@
         group.add(col);
       });
 
-      // Rooftop Mechanical Room / Elevator Overrun
+      // Rooftop Mechanical Penthouse
       const mechH = 4.2;
       const mech = new THREE.Mesh(
         new THREE.BoxGeometry(width * 0.42, mechH, depth * 0.42),
@@ -832,7 +1189,7 @@
       mech.castShadow = true;
       group.add(mech);
 
-      // Rooftop Communications Antenna Mast
+      // Antenna Mast
       const mastMat = new THREE.MeshStandardMaterial({ color: 0xE2E8F0, metalness: 0.9 });
       const mast = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.25, 11, 8), mastMat);
       mast.position.set(0, height + mechH + 5.5, 0);
@@ -840,28 +1197,23 @@
       group.add(mast);
     }
 
-    // Detail Builder: D.0019 (อาคารจอดรถ 4 ชั้น สีขาวคาดแถบเหลือง กฟผ.)
     buildParkingComplex(group, width, depth, height) {
-      const yellowBandMat = new THREE.MeshStandardMaterial({ color: 0xF59E0B, roughness: 0.4 }); // Signature EGAT Yellow
+      const yellowBandMat = new THREE.MeshStandardMaterial({ color: 0xF59E0B, roughness: 0.4 });
       const slabMat = new THREE.MeshStandardMaterial({ color: 0xCBD5E1, roughness: 0.8 });
       const louverMat = new THREE.MeshStandardMaterial({ color: 0x64748B, roughness: 0.7 });
 
       const floors = 4;
       const floorH = height / floors;
 
-      // Open Deck Slabs & EGAT Yellow Accent Bands
       for (let f = 1; f <= floors; f++) {
-        // Floor slab
         const slab = new THREE.Mesh(new THREE.BoxGeometry(width + 0.6, 0.5, depth + 0.6), slabMat);
         slab.position.y = f * floorH;
         group.add(slab);
 
-        // Yellow horizontal stripe band
         const band = new THREE.Mesh(new THREE.BoxGeometry(width + 0.7, 0.4, depth + 0.7), yellowBandMat);
         band.position.y = f * floorH - 1.0;
         group.add(band);
 
-        // Ventilation slats / louvers
         if (f < floors) {
           const louver = new THREE.Mesh(new THREE.BoxGeometry(width + 0.2, 0.15, depth + 0.2), louverMat);
           louver.position.y = f * floorH - 1.8;
@@ -869,21 +1221,18 @@
         }
       }
 
-      // Rooftop Parapet Railing for sports court
       const rail = new THREE.Mesh(
         new THREE.BoxGeometry(width + 0.8, 1.2, depth + 0.8),
-        new THREE.MeshStandardMaterial({ color: 0x94A3B8, wireframe: false })
+        new THREE.MeshStandardMaterial({ color: 0x94A3B8 })
       );
       rail.position.y = height + 0.6;
       group.add(rail);
     }
 
-    // Detail Builder: D.0025 (อาคารอเนกประสงค์ / หอประชุมหลังคาโค้ง)
     buildCurvedHall(group, width, depth, height) {
       const roofRadius = width * 0.6;
       const roofMat = new THREE.MeshStandardMaterial({ color: 0x334155, roughness: 0.65 });
 
-      // Curved Barrel Vault Roof
       const curveGeo = new THREE.CylinderGeometry(roofRadius, roofRadius, depth + 0.8, 32, 1, false, 0, Math.PI);
       const curvedRoof = new THREE.Mesh(curveGeo, roofMat);
       curvedRoof.rotation.z = Math.PI / 2;
@@ -892,14 +1241,12 @@
       curvedRoof.castShadow = true;
       group.add(curvedRoof);
 
-      // Glass Front Entrance Glazing
       const glassMat = new THREE.MeshStandardMaterial({ color: 0x93C5FD, metalness: 0.8, roughness: 0.2 });
       const frontGlass = new THREE.Mesh(new THREE.PlaneGeometry(width * 0.65, height * 0.75), glassMat);
       frontGlass.position.set(0, height * 0.38, depth / 2 + 0.05);
       group.add(frontGlass);
     }
 
-    // Detail Builder: T.0020 (ศูนย์รับรองสมรรถนะฯ 3 ชั้น)
     buildCompetencyCenter(group, width, depth, height) {
       const glassMat = new THREE.MeshStandardMaterial({ color: 0x60A5FA, metalness: 0.8, roughness: 0.2 });
       const floors = 3;
@@ -911,7 +1258,6 @@
         group.add(win);
       }
 
-      // Entrance Canopy
       const canopy = new THREE.Mesh(
         new THREE.BoxGeometry(10, 0.4, 4),
         new THREE.MeshStandardMaterial({ color: 0x0284C7 })
@@ -921,12 +1267,10 @@
       group.add(canopy);
     }
 
-    // Detail Builder: T.0012 (โรงบำรุงรักษาเครื่องกลขนาดใหญ่ อบค.)
     buildLargeWorkshop(group, width, depth, height) {
       const roofMat = new THREE.MeshStandardMaterial({ color: 0x475569, roughness: 0.7 });
       const roofH = 4.2;
 
-      // Pitched Triangular Roof
       const roof = new THREE.Mesh(new THREE.ConeGeometry(Math.max(width, depth) * 0.72, roofH, 4), roofMat);
       roof.position.y = height + roofH / 2 + 0.2;
       roof.rotation.y = Math.PI / 4;
@@ -934,7 +1278,6 @@
       roof.castShadow = true;
       group.add(roof);
 
-      // Raised Roof Monitor Ridge for natural daylight ventilation
       const ridge = new THREE.Mesh(
         new THREE.BoxGeometry(width * 0.6, 1.8, depth * 0.25),
         new THREE.MeshStandardMaterial({ color: 0x64748B })
@@ -943,7 +1286,6 @@
       ridge.castShadow = true;
       group.add(ridge);
 
-      // Dual High-Clearance Roller Shutter Bay Doors (ประตูม้วนโรงซ่อมขนาดใหญ่)
       const doorMat = new THREE.MeshStandardMaterial({ color: 0x1E293B, roughness: 0.85 });
       const hazardMat = new THREE.MeshStandardMaterial({ color: 0xF59E0B });
 
@@ -952,19 +1294,16 @@
         door.position.set(dx, height * 0.36 + 0.2, depth / 2 + 0.05);
         group.add(door);
 
-        // Hazard safety stripe curb
         const curbStripe = new THREE.Mesh(new THREE.BoxGeometry(width * 0.28, 0.3, 0.4), hazardMat);
         curbStripe.position.set(dx, 0.15, depth / 2 + 0.2);
         group.add(curbStripe);
       });
     }
 
-    // Detail Builder: Standard Industrial Workshop & Warehouse (T.0006, T.0008, T.0010, T.0011, etc.)
     buildGabledWarehouse(group, width, depth, height) {
       const roofMat = new THREE.MeshStandardMaterial({ color: 0x475569, roughness: 0.72 });
       const roofH = 3.2;
 
-      // Gabled Roof
       const roof = new THREE.Mesh(new THREE.ConeGeometry(Math.max(width, depth) * 0.74, roofH, 4), roofMat);
       roof.position.y = height + roofH / 2 + 0.2;
       roof.rotation.y = Math.PI / 4;
@@ -972,23 +1311,19 @@
       roof.castShadow = true;
       group.add(roof);
 
-      // Industrial Rollup Bay Door
       const doorMat = new THREE.MeshStandardMaterial({ color: 0x1E293B, roughness: 0.8 });
       const door = new THREE.Mesh(new THREE.PlaneGeometry(width * 0.36, height * 0.65), doorMat);
       door.position.set(0, height * 0.325 + 0.2, depth / 2 + 0.05);
       group.add(door);
     }
 
-    // Detail Builder: Modern Laboratory (T.0014, T.0015, T.0016, T.0017, T.0018)
     buildModernLab(group, width, depth, height) {
       const glassMat = new THREE.MeshStandardMaterial({ color: 0x93C5FD, metalness: 0.8, roughness: 0.2 });
 
-      // 2nd Floor Ribbon Window Strip
       const win = new THREE.Mesh(new THREE.BoxGeometry(width + 0.2, 1.8, depth + 0.2), glassMat);
       win.position.y = height * 0.65 + 0.2;
       group.add(win);
 
-      // Scientific Ventilation Exhaust Stacks (ท่อระบายอากาศห้องทดลองเคมี)
       const stackMat = new THREE.MeshStandardMaterial({ color: 0xCBD5E1, metalness: 0.7, roughness: 0.3 });
       [-width * 0.25, 0, width * 0.25].forEach(sx => {
         const stack = new THREE.Mesh(new THREE.CylinderGeometry(0.35, 0.35, 2.8, 12), stackMat);
@@ -998,37 +1333,29 @@
       });
     }
 
-    // Detail Builder: B.0001 (แฟลต อบค. ที่พักอาศัย 4 ชั้น)
     buildResidentialFlat(group, width, depth, height) {
       const balconyMat = new THREE.MeshStandardMaterial({ color: 0xCBD5E1, roughness: 0.6 });
-      const winMat = new THREE.MeshStandardMaterial({ color: 0x475569 });
-
       const floors = 4;
       const floorH = height / floors;
 
       for (let f = 1; f <= floors; f++) {
-        // Balcony projection slab
         const slab = new THREE.Mesh(new THREE.BoxGeometry(width + 0.8, 0.4, depth + 0.8), balconyMat);
         slab.position.y = f * floorH + 0.2;
         group.add(slab);
 
-        // Balcony safety railing
         const rail = new THREE.Mesh(new THREE.BoxGeometry(width + 0.9, 0.8, depth + 0.9), balconyMat);
         rail.position.y = f * floorH + 0.6 + 0.2;
         group.add(rail);
       }
     }
 
-    // Detail Builder: D.0017 / D.0031 (โรงอาหาร)
     buildCanteen(group, width, depth, height) {
-      // Overhanging Pavilion Roof
       const roofMat = new THREE.MeshStandardMaterial({ color: 0x1E293B, roughness: 0.6 });
       const roof = new THREE.Mesh(new THREE.BoxGeometry(width + 4, 0.8, depth + 4), roofMat);
       roof.position.y = height + 0.4 + 0.2;
       roof.castShadow = true;
       group.add(roof);
 
-      // Outdoor Dining Terrace Eaves
       const patioMat = new THREE.MeshStandardMaterial({ color: 0xE2E8F0, roughness: 0.7 });
       const patio = new THREE.Mesh(new THREE.BoxGeometry(width + 6, 0.2, depth + 6), patioMat);
       patio.position.y = 0.15;
@@ -1036,7 +1363,6 @@
       group.add(patio);
     }
 
-    // Detail Builder: D.0026 (ระบบประปาสำนักงาน พร้อมถังน้ำทรงกระบอก)
     buildUtilityWaterStation(group, width, depth, height) {
       const tankMat = new THREE.MeshStandardMaterial({
         color: 0x0284C7,
@@ -1044,7 +1370,6 @@
         roughness: 0.3
       });
 
-      // Twin elevated storage cylinders
       [-width * 0.25, width * 0.25].forEach(tx => {
         const tank = new THREE.Mesh(new THREE.CylinderGeometry(width * 0.22, width * 0.22, 5.5, 16), tankMat);
         tank.position.set(tx, height + 2.75 + 0.2, 0);
@@ -1062,24 +1387,20 @@
       canvas.height = 100;
       const ctx = canvas.getContext('2d');
 
-      // Rounded container pill
       ctx.fillStyle = 'rgba(15, 23, 42, 0.88)';
       ctx.beginPath();
       ctx.roundRect(8, 8, 384, 84, 18);
       ctx.fill();
 
-      // Golden Amber border
       ctx.lineWidth = 3.5;
       ctx.strokeStyle = '#F59E0B';
       ctx.stroke();
 
-      // Building Code (e.g. T.0019)
       ctx.font = 'bold 26px Sarabun, sans-serif';
       ctx.fillStyle = '#F59E0B';
       ctx.textAlign = 'center';
       ctx.fillText(bData.b_code, 200, 42);
 
-      // Building Thai Name
       ctx.font = '500 20px Sarabun, sans-serif';
       ctx.fillStyle = '#FFFFFF';
       ctx.fillText(bData.short_name || bData.name, 200, 74);
@@ -1105,7 +1426,6 @@
       canvas.height = 64;
       const ctx = canvas.getContext('2d');
 
-      // Alert red disc
       ctx.fillStyle = '#DC2626';
       ctx.beginPath();
       ctx.arc(32, 32, 26, 0, Math.PI * 2);
@@ -1115,7 +1435,6 @@
       ctx.lineWidth = 4;
       ctx.stroke();
 
-      // Exclamation Mark
       ctx.font = 'bold 32px sans-serif';
       ctx.fillStyle = '#FFFFFF';
       ctx.textAlign = 'center';
@@ -1137,7 +1456,7 @@
     setupSelectionRing() {
       const ringGeo = new THREE.RingGeometry(1, 1.25, 36);
       const ringMat = new THREE.MeshBasicMaterial({
-        color: 0xF59E0B, // Vibrant Amber/Gold
+        color: 0xF59E0B,
         side: THREE.DoubleSide,
         transparent: true,
         opacity: 0.95
@@ -1160,7 +1479,6 @@
           group.userData.mainMaterial.color.set(colorInfo.hex);
         }
 
-        // Toggle warning icon
         let warnSprite = this.warningSprites.get(bData.b_code);
         if (bData.quality_status !== 'normal') {
           if (!warnSprite) {
@@ -1194,7 +1512,7 @@
         this.renderer.setPixelRatio(1);
         this.renderer.shadowMap.enabled = false;
         if (this.dirLight) this.dirLight.castShadow = false;
-      } else { // low
+      } else {
         this.renderer.setPixelRatio(0.8);
         this.renderer.shadowMap.enabled = false;
         if (this.dirLight) this.dirLight.castShadow = false;
@@ -1216,7 +1534,6 @@
       this.selectedBuilding = bCode;
       const bData = group.userData.data;
 
-      // Position glowing selection ring around base
       if (this.selectionRing) {
         const radius = Math.max(bData.dimensions.width, bData.dimensions.depth) * 0.88;
         this.selectionRing.geometry.dispose();
@@ -1225,7 +1542,6 @@
         this.selectionRing.visible = true;
       }
 
-      // Smooth Fly-to Animation
       if (flyCamera) {
         const targetPos = {
           x: bData.layout_position.x,
@@ -1245,20 +1561,17 @@
       this.needsRender = true;
     }
 
-    // Reset Camera to Campus Overview
     resetView() {
       this.selectBuilding(null, false);
       this.animateCamera(this.defaultCameraPos, this.defaultTargetPos, 850);
     }
 
-    // Top-Down Orthogonal-like Map View (Master Plan View)
     setTopDownView() {
-      const topCam = { x: -10, y: 220, z: -14.99 };
-      const topTarget = { x: -10, y: 0, z: -15 };
+      const topCam = { x: -20, y: 240, z: -39.99 };
+      const topTarget = { x: -20, y: 0, z: -40 };
       this.animateCamera(topCam, topTarget, 850);
     }
 
-    // Multi-Zone Navigation Presets
     focusZone(zoneKey) {
       if (zoneKey === 'office') {
         // Zone 1: Office & Labs (T.0019, T.0020, D.0019, Chemistry Roundabout)
@@ -1270,12 +1583,11 @@
         // Zone 3: Switchyard 500 kV, Ponds & Residential Flat
         this.animateCamera({ x: -60, y: 90, z: 140 }, { x: -90, y: 5, z: 40 }, 850);
       } else if (zoneKey === 'transport') {
-        // Zone 4: Transportation Hub (T.0026 - T.0029, Roundabout)
-        this.animateCamera({ x: -110, y: 80, z: -70 }, { x: -130, y: 5, z: -145 }, 850);
+        // Zone 4: Transportation Hub (T.0026 - T.0029, Roundabout, Pond, Garage, Futsal)
+        this.animateCamera({ x: -85, y: 105, z: -80 }, { x: -125, y: 6, z: -165 }, 900);
       }
     }
 
-    // Smooth Camera Transition via Cubic Ease-In-Out
     animateCamera(destPos, destTarget, duration = 850) {
       const startCam = { x: this.camera.position.x, y: this.camera.position.y, z: this.camera.position.z };
       const startTarget = { x: this.controls.target.x, y: this.controls.target.y, z: this.controls.target.z };
@@ -1313,7 +1625,6 @@
     }
 
     setupEventListeners() {
-      // Window Resize
       window.addEventListener('resize', () => {
         if (!this.container || !this.renderer || !this.camera) return;
         const width = this.container.clientWidth;
@@ -1324,7 +1635,6 @@
         this.needsRender = true;
       });
 
-      // Pointer Move for Hover Highlight
       this.renderer.domElement.addEventListener('pointermove', (event) => {
         const rect = this.renderer.domElement.getBoundingClientRect();
         this.mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
@@ -1332,7 +1642,6 @@
         this.checkHover();
       });
 
-      // Pointer Click / Tap
       this.renderer.domElement.addEventListener('pointerup', (event) => {
         const rect = this.renderer.domElement.getBoundingClientRect();
         this.mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
@@ -1372,7 +1681,6 @@
       }
 
       if (foundBuilding !== this.hoveredBuilding) {
-        // Reset previous hovered building emissive
         if (this.hoveredBuilding) {
           const oldGroup = this.buildingMeshes.get(this.hoveredBuilding);
           if (oldGroup && oldGroup.userData.mainMaterial) {
@@ -1396,18 +1704,15 @@
       }
     }
 
-    // Render Loop with Demand-Driven Optimization
     animate(time) {
       requestAnimationFrame((t) => this.animate(t));
 
-      // Pulse Selection Ring
       if (this.selectionRing && this.selectionRing.visible) {
         const pulse = 1 + Math.sin(time * 0.005) * 0.04;
         this.selectionRing.scale.set(pulse, pulse, 1);
         this.needsRender = true;
       }
 
-      // Gentle floating animation for warning icons
       if (this.warningSprites.size > 0) {
         const floatDelta = Math.sin(time * 0.004) * 0.35;
         this.warningSprites.forEach(sprite => {
@@ -1431,7 +1736,6 @@
       }
     }
 
-    // Graceful 2D Fallback for Legacy Browsers
     showWebGLFallback() {
       if (!this.container) return;
       this.container.innerHTML = `
@@ -1449,7 +1753,6 @@
     }
   }
 
-  // Expose CampusScene globally
   window.CampusScene = CampusScene;
 
 })(window);

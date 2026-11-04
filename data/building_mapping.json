@@ -347,24 +347,24 @@
     "D.0031": {
       "building_id": "D.0031",
       "b_code": "D.0031",
-      "name": "ต.0031 อาคารโรงอาหาร อหข.",
+      "name": "อาคารโรงอาหาร อหข.",
       "short_name": "โรงอาหาร อหข.",
       "category": "service",
       "category_th": "โรงอาหารบริการ อหข.",
       "floors": 1,
-      "description": "โรงอาหารสวัสดิการส่วนกองขนส่ง อหข.",
+      "description": "โรงอาหารสวัสดิการพนักงาน อหข. ชายคายื่นร่มรื่น ติดแนวสระน้ำ อหข.",
       "dimensions": {
-        "width": 20,
+        "width": 22,
         "depth": 16,
         "height": 7
       },
       "layout_position": {
         "x": -160,
         "y": 3.5,
-        "z": -130
+        "z": -190
       },
       "color_base": "#F8FAFC",
-      "roof_type": "canteen",
+      "roof_type": "ohk_canteen_d0031",
       "metering": {
         "main_meter_id": "D.0031__FL01__MDB",
         "all_main_meters": [
@@ -392,29 +392,30 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised"
+      "model_source": "asbuilt_ohk_sn_2_6_revised",
+      "rotation_y": 0.0
     },
     "D.0033": {
       "building_id": "D.0033",
       "b_code": "D.0033",
-      "name": "ต.0033 อาคารปฏิบัติการงานเชื่อม อหข.",
+      "name": "อาคารปฏิบัติการงานเชื่อม อหข.",
       "short_name": "ปฏิบัติการงานเชื่อม อหข.",
       "category": "workshop",
       "category_th": "โรงเชื่อมโลหะ อหข.",
       "floors": 1,
-      "description": "โรงงานปฏิบัติการฝึกเชื่อมและซ่อมโครงสร้างตัวถัง อหข.",
+      "description": "โรงปฏิบัติการงานเชื่อมและซ่อมโครงสร้างตัวถัง อหข. พร้อมระบบดูดระบายควันอุตสาหกรรม",
       "dimensions": {
-        "width": 22,
-        "depth": 16,
-        "height": 8
+        "width": 24,
+        "depth": 18,
+        "height": 8.5
       },
       "layout_position": {
-        "x": -160,
-        "y": 4.0,
-        "z": -95
+        "x": -150,
+        "y": 4.25,
+        "z": -105
       },
       "color_base": "#94A3B8",
-      "roof_type": "gabled",
+      "roof_type": "ohk_welding_d0033",
       "metering": {
         "main_meter_id": "D.0033__FL01__MDB",
         "all_main_meters": [
@@ -434,7 +435,8 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised"
+      "model_source": "asbuilt_ohk_sn_2_6_revised",
+      "rotation_y": 0.0
     },
     "T.0006": {
       "building_id": "T.0006",
@@ -1564,24 +1566,24 @@
     "T.0026": {
       "building_id": "T.0026",
       "b_code": "T.0026",
-      "name": "ท.0026 อาคารบริหารการขนส่ง (กขย-ห / กขส-ห)",
+      "name": "อาคารบริหารการขนส่ง (อาคารที่ทำการ อหข.)",
       "short_name": "บริหารการขนส่ง อหข.",
       "category": "office",
-      "category_th": "อาคารสำนักงานขนส่ง",
+      "category_th": "อาคารสำนักงาน 2 ชั้น",
       "floors": 2,
-      "description": "ศูนย์ควบคุมและบริหารระบบยานพาหนะและขนส่ง อหข.",
+      "description": "อาคารที่ทำการและสำนักงานบริหารการขนส่ง อหข. 2 ชั้น (แปลน L-Shape) ด้านหลังมีโรงจอดรถในร่ม 16 คัน ติดวงเวียนใหญ่",
       "dimensions": {
-        "width": 26,
-        "depth": 18,
+        "width": 34,
+        "depth": 20,
         "height": 9
       },
       "layout_position": {
         "x": -145,
         "y": 4.5,
-        "z": -115
+        "z": -215
       },
       "color_base": "#FFFFFF",
-      "roof_type": "flat",
+      "roof_type": "ohk_office_t0026",
       "metering": {
         "main_meter_id": "T.0026__FL01__MDB",
         "all_main_meters": [
@@ -1601,29 +1603,30 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised"
+      "model_source": "asbuilt_ohk_sn_2_6_revised",
+      "rotation_y": -0.488
     },
     "T.0027": {
       "building_id": "T.0027",
       "b_code": "T.0027",
-      "name": "ท.0027 อาคารปฏิบัติการกองขนส่ง",
-      "short_name": "ปฏิบัติการกองขนส่ง",
+      "name": "อาคารปฏิบัติการกองขนส่ง (อาคารโรงจอดยานพาหนะ อขน.)",
+      "short_name": "โรงจอดยานพาหนะ อหข.",
       "category": "workshop",
-      "category_th": "โรงซ่อมบำรุงยานพาหนะ",
+      "category_th": "โรงจอดยานพาหนะและซ่อมตรวจสภาพ",
       "floors": 1,
-      "description": "โรงตรวจสภาพและซ่อมบำรุงยานพาหนะ",
+      "description": "อาคารโรงจอดยานพาหนะโครงสร้างเหล็กขนาดใหญ่ 12 ช่องจอด พร้อมช่องตรวจสภาพและบำรุงรักษายานพาหนะ",
       "dimensions": {
-        "width": 30,
-        "depth": 20,
-        "height": 9
+        "width": 22,
+        "depth": 62,
+        "height": 8
       },
       "layout_position": {
-        "x": -145,
-        "y": 4.5,
-        "z": -150
+        "x": -95,
+        "y": 4.0,
+        "z": -180
       },
-      "color_base": "#94A3B8",
-      "roof_type": "gabled",
+      "color_base": "#64748B",
+      "roof_type": "ohk_garage_t0027",
       "metering": {
         "main_meter_id": "T.0027__FL01__MDB",
         "all_main_meters": [
@@ -1643,29 +1646,30 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised"
+      "model_source": "asbuilt_ohk_sn_2_6_revised",
+      "rotation_y": 0.0
     },
     "T.0028": {
       "building_id": "T.0028",
       "b_code": "T.0028",
-      "name": "ท.0028 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 1",
-      "short_name": "ซ่อมเครื่องจักรกล 1",
+      "name": "อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 1 (อาคารปฏิบัติการ 1)",
+      "short_name": "ซ่อมเครื่องจักรกล 1 (ปภ.1)",
       "category": "workshop",
-      "category_th": "โรงซ่อมเครื่องจักรหนัก 1",
+      "category_th": "โรงซ่อมเครื่องจักรกลหนัก 1",
       "floors": 1,
-      "description": "โรงซ่อมบำรุงเครื่องจักรกลหนักและรถเฉพาะกิจ 1",
+      "description": "โรงงานซ่อมบำรุงเครื่องจักรกลหนักและรถเฉพาะกิจ 1 มีเครนเหนือศีรษะ (Overhead Crane) ขนาด 32 ม. และช่องประตูช่างขนาดใหญ่",
       "dimensions": {
-        "width": 32,
-        "depth": 22,
-        "height": 10
+        "width": 45,
+        "depth": 48,
+        "height": 11
       },
       "layout_position": {
-        "x": -100,
-        "y": 5.0,
-        "z": -165
+        "x": -105,
+        "y": 5.5,
+        "z": -145
       },
       "color_base": "#94A3B8",
-      "roof_type": "gabled",
+      "roof_type": "ohk_workshop_heavy",
       "metering": {
         "main_meter_id": "T.0028__FL01__MDB",
         "all_main_meters": [
@@ -1685,29 +1689,30 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised"
+      "model_source": "asbuilt_ohk_sn_2_6_revised",
+      "rotation_y": -0.488
     },
     "T.0029": {
       "building_id": "T.0029",
       "b_code": "T.0029",
-      "name": "ท.0029 อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 2",
-      "short_name": "ซ่อมเครื่องจักรกล 2",
+      "name": "อาคารกองซ่อมเครื่องจักรกลและยานพาหนะ 2 (อาคารปฏิบัติการ 2)",
+      "short_name": "ซ่อมเครื่องจักรกล 2 (ปภ.2)",
       "category": "workshop",
-      "category_th": "โรงซ่อมเครื่องจักรหนัก 2",
+      "category_th": "โรงซ่อมเครื่องจักรกลหนัก 2",
       "floors": 1,
-      "description": "โรงซ่อมบำรุงเครื่องจักรกลหนักและรถเฉพาะกิจ 2 ทิศเหนือสุด",
+      "description": "โรงงานซ่อมบำรุงเครื่องจักรกลหนัก 2 วางขนานกับ ปภ.1 มีส่วนหลังคาต่อขยายเชื่อมระหว่างอาคาร",
       "dimensions": {
-        "width": 32,
-        "depth": 22,
-        "height": 10
+        "width": 45,
+        "depth": 48,
+        "height": 11
       },
       "layout_position": {
-        "x": -140,
-        "y": 5.0,
-        "z": -180
+        "x": -145,
+        "y": 5.5,
+        "z": -135
       },
       "color_base": "#94A3B8",
-      "roof_type": "gabled",
+      "roof_type": "ohk_workshop_heavy",
       "metering": {
         "main_meter_id": "T.0029__FL01__MDB",
         "all_main_meters": [
@@ -1727,9 +1732,10 @@
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised"
+      "model_source": "asbuilt_ohk_sn_2_6_revised",
+      "rotation_y": -0.488
     }
   },
-  "source_document": "ผังเลขอาคารและสิ่งปลูกสร้าง พื้นที่ ไทรน้อย 1-02-65.pdf / SNO-MP28-SV-1/1",
-  "last_updated": "2026-11-04T13:40:00+07:00"
+  "source_document": "ผังเลขอาคาร 1-02-65 / AS-BUILT DRAWING อขน. SNO-RF11-SN-2/6",
+  "last_updated": "2026-11-04T14:15:00+07:00"
 }
