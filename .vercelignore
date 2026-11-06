@@ -1,0 +1,6 @@
+# Vercel Ignore file
+# Exclude raw large reference archives and test scripts from final web deployment output
+DATA TWIN/
+backup/
+tests/
+scratch/
