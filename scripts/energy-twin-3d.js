@@ -195,6 +195,9 @@
       // 7. Security Guardhouse & Entrance Gate (ท.0021)
       this.setupMainEntrance();
 
+      // 7.1 Sunflower Field & Campus Entrance Sign ("ทุ่งทานตะวัน" & ป้าย กฟผ. ไทรน้อย)
+      this.setupSunflowerFieldAndEntranceSign();
+
       // 8. Landscaping, Courtyards & Trees
       this.setupLandscaping();
 
@@ -392,6 +395,20 @@
         });
       });
 
+      // North Spectator Bleachers (Facing D.0025, matching photo: ขอบตึกเล็กๆ ท.0016 ท.0018 ท.0017 ต.0025.jpg)
+      const bleacherMat = new THREE.MeshStandardMaterial({ color: 0xCBD5E1, roughness: 0.8 });
+      const bleacherW = fw * 0.82;
+      [
+        { y: 0.35, d: 2.2, z: fz - fd / 2 - 1.2 },
+        { y: 0.70, d: 1.8, z: fz - fd / 2 - 2.6 },
+        { y: 1.05, d: 1.6, z: fz - fd / 2 - 4.0 }
+      ].forEach(step => {
+        const terrace = new THREE.Mesh(new THREE.BoxGeometry(bleacherW, step.y, step.d), bleacherMat);
+        terrace.position.set(fx, step.y / 2 + 0.05, step.z);
+        terrace.receiveShadow = true;
+        fieldGroup.add(terrace);
+      });
+
       this.scene.add(fieldGroup);
     }
 
@@ -458,10 +475,11 @@
       ohkDiag.position.set(-95, 0.05, -75);
       roadGroup.add(ohkDiag);
 
-      // Marked Parking Bays in front of D.0019 & T.0019
+      // Marked Parking Bays in front of D.0019, T.0019, and East Roundabout
       const parkingLots = [
         { x: 52, z: -48, w: 12, d: 24 },
-        { x: 52, z: 0, w: 10, d: 20 }
+        { x: 52, z: 0, w: 10, d: 20 },
+        { x: 120, z: -85, w: 22, d: 10 } // Parking bay near T.0016 & T.0018
       ];
 
       parkingLots.forEach(lot => {
@@ -478,6 +496,21 @@
           roadGroup.add(stallLine);
         }
       });
+
+      // Geometric Checkerboard Garden (Behind T.0017 near eastern perimeter)
+      const checkGroup = new THREE.Group();
+      const pMatLight = new THREE.MeshStandardMaterial({ color: 0xE2E8F0, roughness: 0.8 });
+      const pMatGrass = new THREE.MeshStandardMaterial({ color: 0x4D7C0F, roughness: 0.9 });
+      for (let gx = 0; gx < 4; gx++) {
+        for (let gz = 0; gz < 4; gz++) {
+          const tile = new THREE.Mesh(new THREE.PlaneGeometry(3.6, 3.6), (gx + gz) % 2 === 0 ? pMatLight : pMatGrass);
+          tile.rotation.x = -Math.PI / 2;
+          tile.position.set(145 + gx * 3.8, 0.07, -15 + gz * 3.8);
+          tile.receiveShadow = true;
+          checkGroup.add(tile);
+        }
+      }
+      roadGroup.add(checkGroup);
 
       this.scene.add(roadGroup);
     }
@@ -499,6 +532,12 @@
       island.rotation.x = -Math.PI / 2;
       island.position.set(cx, 0.25, cz);
       group.add(island);
+
+      // Decorative Walkway Ring in Roundabout Island
+      const innerWalk = new THREE.Mesh(new THREE.RingGeometry(3.2, 4.6, 28), new THREE.MeshBasicMaterial({ color: 0xE2E8F0 }));
+      innerWalk.rotation.x = -Math.PI / 2;
+      innerWalk.position.set(cx, 0.26, cz);
+      group.add(innerWalk);
 
       const curbGeo = new THREE.CylinderGeometry(innerR, innerR, 0.4, 32, 1, true);
       const curbMat = new THREE.MeshStandardMaterial({ color: 0xCBD5E1 });
@@ -622,6 +661,16 @@
       rTree.scale.set(1.5, 1.5, 1.5);
       ohkGroup.add(rTree);
 
+      // Pink Ixora Flowerbeds in Roundabout Island (Matching photo: ท.0026.JPG)
+      const flowerMat = new THREE.MeshStandardMaterial({ color: 0xF43F5E, roughness: 0.7 });
+      for (let fa = 0; fa < Math.PI * 2; fa += Math.PI / 4) {
+        const fx = rCenter.x + Math.cos(fa) * 7.2;
+        const fz = rCenter.z + Math.sin(fa) * 7.2;
+        const bush = new THREE.Mesh(new THREE.SphereGeometry(1.1, 8, 8), flowerMat);
+        bush.position.set(fx, 0.9, fz);
+        ohkGroup.add(bush);
+      }
+
       // ── 3. Heavy Vehicle Apron & Maneuvering Yard (ลานคอนกรีตลานกลับรถ อหข.) ──
       // Positioned in front of Heavy Workshops T.0028 & T.0029
       const apronGeo = new THREE.PlaneGeometry(65, 55);
@@ -724,7 +773,130 @@
       this.scene.add(gateGroup);
     }
 
+    // Sunflower Field & Landmark Campus Entrance Sign (ทุ่งทานตะวัน & ป้าย กฟผ. ไทรน้อย)
+    setupSunflowerFieldAndEntranceSign() {
+      const sfGroup = new THREE.Group();
+      sfGroup.name = 'SunflowerField_EntranceSign';
+
+      // 1. Sunflower field soil bed (Between 500kV switchyard and boulevard)
+      const bedGeo = new THREE.PlaneGeometry(34, 44);
+      const bedMat = new THREE.MeshStandardMaterial({
+        color: 0x4D7C0F, // Vibrant agricultural green
+        roughness: 0.9,
+        metalness: 0.05
+      });
+      const bed = new THREE.Mesh(bedGeo, bedMat);
+      bed.rotation.x = -Math.PI / 2;
+      bed.position.set(-15, 0.07, 110);
+      bed.receiveShadow = true;
+      sfGroup.add(bed);
+
+      // Decorative border curb around sunflower field
+      const curbMat = new THREE.MeshStandardMaterial({ color: 0xCBD5E1, roughness: 0.8 });
+      const curb = new THREE.Mesh(new THREE.BoxGeometry(34.8, 0.3, 44.8), curbMat);
+      curb.position.set(-15, 0.15, 110);
+      curb.receiveShadow = true;
+      sfGroup.add(curb);
+
+      // Blooming Sunflower Clusters (Golden yellow disk petals with dark centers)
+      const stemMat = new THREE.MeshStandardMaterial({ color: 0x15803D, roughness: 0.8 });
+      const petalMat = new THREE.MeshStandardMaterial({ color: 0xFACC15, roughness: 0.4 });
+      const centerMat = new THREE.MeshStandardMaterial({ color: 0x78350F, roughness: 0.9 });
+
+      for (let sx = -14; sx <= 14; sx += 3.5) {
+        for (let sz = -18; sz <= 18; sz += 4) {
+          const ox = sx + (Math.sin(sx * 3 + sz) * 0.4);
+          const oz = sz + (Math.cos(sz * 3 + sx) * 0.4);
+          const h = 1.2 + Math.abs(Math.sin(sx + sz)) * 0.4;
+
+          const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.05, h, 5), stemMat);
+          stem.position.set(-15 + ox, h / 2 + 0.1, 110 + oz);
+          sfGroup.add(stem);
+
+          // Yellow Petal Disk
+          const petal = new THREE.Mesh(new THREE.CylinderGeometry(0.42, 0.42, 0.06, 8), petalMat);
+          petal.position.set(-15 + ox, h + 0.1, 110 + oz);
+          petal.rotation.x = 0.25;
+          sfGroup.add(petal);
+
+          // Dark Seed Center
+          const center = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.2, 0.08, 8), centerMat);
+          center.position.set(-15 + ox, h + 0.12, 110 + oz);
+          center.rotation.x = 0.25;
+          sfGroup.add(center);
+        }
+      }
+
+      // 2. Iconic EGAT Sai Noi Campus Landmark Sign (ป้ายสำนักงานหน้าสวิชยาร์ด)
+      const wallMat = new THREE.MeshStandardMaterial({ color: 0xF8FAFC, roughness: 0.4 });
+      const wallBaseMat = new THREE.MeshStandardMaterial({ color: 0x1E293B, roughness: 0.7 });
+
+      const basePlinth = new THREE.Mesh(new THREE.BoxGeometry(16, 0.5, 3.2), wallBaseMat);
+      basePlinth.position.set(4, 0.25, 132);
+      basePlinth.rotation.y = -0.3;
+      basePlinth.castShadow = true;
+      sfGroup.add(basePlinth);
+
+      const signWall = new THREE.Mesh(new THREE.BoxGeometry(15, 2.2, 0.8), wallMat);
+      signWall.position.set(4, 1.5, 132);
+      signWall.rotation.y = -0.3;
+      signWall.castShadow = true;
+      sfGroup.add(signWall);
+
+      // Golden Yellow 3D Letters: "กฟผ. ไทรน้อย"
+      const goldMat = new THREE.MeshStandardMaterial({
+        color: 0xEAB308,
+        metalness: 0.85,
+        roughness: 0.25
+      });
+
+      const emblem = new THREE.Mesh(new THREE.CylinderGeometry(0.7, 0.7, 0.15, 16), goldMat);
+      emblem.rotation.x = Math.PI / 2;
+      emblem.rotation.z = -0.3;
+      emblem.position.set(4 - Math.sin(-0.3) * 0.45 - 5 * Math.cos(-0.3), 1.6, 132 + Math.cos(-0.3) * 0.45 - 5 * Math.sin(-0.3));
+      sfGroup.add(emblem);
+
+      const textBar = new THREE.Mesh(new THREE.BoxGeometry(8.5, 0.7, 0.15), goldMat);
+      textBar.position.set(4 - Math.sin(-0.3) * 0.45, 1.6, 132 + Math.cos(-0.3) * 0.45);
+      textBar.rotation.y = -0.3;
+      sfGroup.add(textBar);
+
+      // Red-paved pedestrian sidewalk along Main Entrance Boulevard
+      const redTileMat = new THREE.MeshStandardMaterial({ color: 0xB91C1C, roughness: 0.78 });
+      const sidewalk = new THREE.Mesh(new THREE.PlaneGeometry(3.2, 140), redTileMat);
+      sidewalk.rotation.x = -Math.PI / 2;
+      sidewalk.position.set(42.5, 0.07, 70);
+      sidewalk.receiveShadow = true;
+      sfGroup.add(sidewalk);
+
+      // Double-headed Campus Street Lamps along Boulevard
+      const poleMat = new THREE.MeshStandardMaterial({ color: 0xE2E8F0, metalness: 0.8, roughness: 0.3 });
+      const lightMat = new THREE.MeshBasicMaterial({ color: 0xFEF08A });
+
+      for (let lz = 10; lz <= 130; lz += 25) {
+        const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.16, 7.5, 8), poleMat);
+        pole.position.set(41.5, 3.75, lz);
+        pole.castShadow = true;
+        sfGroup.add(pole);
+
+        const arm = new THREE.Mesh(new THREE.BoxGeometry(2.4, 0.12, 0.12), poleMat);
+        arm.position.set(41.5, 7.3, lz);
+        sfGroup.add(arm);
+
+        [-1.1, 1.1].forEach(ax => {
+          const fixture = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.15, 0.3), lightMat);
+          fixture.position.set(41.5 + ax, 7.2, lz);
+          sfGroup.add(fixture);
+        });
+      }
+
+      this.scene.add(sfGroup);
+    }
+
     setupLandscaping() {
+      // 0. Steam Turbine Rotor Sculpture Plaza (ลานปฏิมากรรมกังหันไอน้ำ หน้า ท.0020)
+      this.setupSteamTurbineSculpture();
+
       // 1. Scenic Promenade Pond & Lake Behind T.0019 (Matching 3D Prototype & crop_field.jpg)
       const poolGroup = new THREE.Group();
       const poolGeo = new THREE.PlaneGeometry(42, 18);
@@ -848,6 +1020,151 @@
       return group;
     }
 
+    // Iconic Steam Turbine Rotor Sculpture Plaza (ลานปฏิมากรรมกังหันไอน้ำ หน้า ท.0020)
+    setupSteamTurbineSculpture() {
+      const scGroup = new THREE.Group();
+      scGroup.name = 'SteamTurbineSculpture';
+      const cx = 35;
+      const cz = 75;
+
+      // 1. Concentric Circular Plaza Walkways (Matching photo: ปฏิมากรรมหน้า ท.0020.JPG)
+      const paveMat1 = new THREE.MeshStandardMaterial({ color: 0xE2E8F0, roughness: 0.8 });
+      const paveMat2 = new THREE.MeshStandardMaterial({ color: 0x94A3B8, roughness: 0.85 });
+      const lawnMat = new THREE.MeshStandardMaterial({ color: 0x4D7C0F, roughness: 0.9 });
+
+      // Outer plaza ring
+      const outerRing = new THREE.Mesh(new THREE.RingGeometry(6.5, 10.5, 40), paveMat1);
+      outerRing.rotation.x = -Math.PI / 2;
+      outerRing.position.set(cx, 0.08, cz);
+      outerRing.receiveShadow = true;
+      scGroup.add(outerRing);
+
+      // Inner circular green lawn
+      const innerLawn = new THREE.Mesh(new THREE.CircleGeometry(6.4, 36), lawnMat);
+      innerLawn.rotation.x = -Math.PI / 2;
+      innerLawn.position.set(cx, 0.1, cz);
+      innerLawn.receiveShadow = true;
+      scGroup.add(innerLawn);
+
+      // Radial access walkways
+      [0, Math.PI / 2, Math.PI, (3 * Math.PI) / 2].forEach(ang => {
+        const walk = new THREE.Mesh(new THREE.PlaneGeometry(2.2, 11), paveMat2);
+        walk.rotation.x = -Math.PI / 2;
+        walk.rotation.z = ang;
+        walk.position.set(cx, 0.11, cz);
+        scGroup.add(walk);
+      });
+
+      // 2. Concrete Triangular Support Pedestals (Bearing blocks for tilted rotor)
+      const pedestalMat = new THREE.MeshStandardMaterial({ color: 0xF1F5F9, roughness: 0.6 });
+      const lowerPedestal = new THREE.Mesh(new THREE.BoxGeometry(2.2, 1.4, 2.0), pedestalMat);
+      lowerPedestal.position.set(cx - 2.5, 0.7 + 0.1, cz + 2.0);
+      lowerPedestal.castShadow = true;
+      scGroup.add(lowerPedestal);
+
+      const higherPedestal = new THREE.Mesh(new THREE.BoxGeometry(2.2, 3.2, 2.0), pedestalMat);
+      higherPedestal.position.set(cx + 2.5, 1.6 + 0.1, cz - 2.0);
+      higherPedestal.castShadow = true;
+      scGroup.add(higherPedestal);
+
+      // 3. 3D Steam Turbine Rotor (Multi-Stage Bladed Rotor Shaft)
+      const rotorGroup = new THREE.Group();
+      const rotorSteelMat = new THREE.MeshStandardMaterial({
+        color: 0x94A3B8,
+        metalness: 0.88,
+        roughness: 0.22
+      });
+      const bladeMat = new THREE.MeshStandardMaterial({
+        color: 0x64748B,
+        metalness: 0.92,
+        roughness: 0.25
+      });
+
+      // Central Rotor Shaft Cylinder (tilted ~28 degrees)
+      const shaftLength = 9.5;
+      const shaft = new THREE.Mesh(new THREE.CylinderGeometry(0.38, 0.38, shaftLength, 24), rotorSteelMat);
+      shaft.castShadow = true;
+      rotorGroup.add(shaft);
+
+      // Multi-stage bladed turbine disks (HP -> IP -> LP stages)
+      const stages = [
+        // Low Pressure (LP) - Largest bladed wheels
+        { pos: -3.4, radius: 1.45, thick: 0.28 },
+        { pos: -2.8, radius: 1.35, thick: 0.28 },
+        { pos: -2.2, radius: 1.25, thick: 0.26 },
+        { pos: -1.6, radius: 1.15, thick: 0.24 },
+        // Intermediate Pressure (IP)
+        { pos: -0.8, radius: 1.0, thick: 0.22 },
+        { pos: -0.2, radius: 0.92, thick: 0.22 },
+        { pos: 0.4, radius: 0.85, thick: 0.20 },
+        { pos: 1.0, radius: 0.80, thick: 0.20 },
+        // High Pressure (HP) - Compact stages
+        { pos: 1.8, radius: 0.72, thick: 0.18 },
+        { pos: 2.3, radius: 0.68, thick: 0.18 },
+        { pos: 2.8, radius: 0.64, thick: 0.16 },
+        { pos: 3.3, radius: 0.60, thick: 0.16 }
+      ];
+
+      stages.forEach(st => {
+        const disk = new THREE.Mesh(new THREE.CylinderGeometry(st.radius, st.radius, st.thick, 28), bladeMat);
+        disk.position.y = st.pos;
+        disk.castShadow = true;
+        rotorGroup.add(disk);
+
+        const rim = new THREE.Mesh(new THREE.TorusGeometry(st.radius, 0.03, 8, 28), rotorSteelMat);
+        rim.rotation.x = Math.PI / 2;
+        rim.position.y = st.pos;
+        rotorGroup.add(rim);
+      });
+
+      // Tilt rotor ~28° along diagonal axis
+      rotorGroup.rotation.z = -0.48;
+      rotorGroup.rotation.y = 0.55;
+      rotorGroup.position.set(cx, 2.5, cz);
+      scGroup.add(rotorGroup);
+
+      // 4. Tall Thai National Flagpole (เสาธงชาติไทย สูง 14 ม.)
+      const flagPoleMat = new THREE.MeshStandardMaterial({ color: 0xF8FAFC, metalness: 0.9, roughness: 0.2 });
+      const flagPole = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.16, 14, 12), flagPoleMat);
+      flagPole.position.set(cx + 4.8, 7.0, cz + 3.5);
+      flagPole.castShadow = true;
+      scGroup.add(flagPole);
+
+      const finial = new THREE.Mesh(new THREE.SphereGeometry(0.28, 12, 12), new THREE.MeshStandardMaterial({ color: 0xEAB308, metalness: 0.9 }));
+      finial.position.set(cx + 4.8, 14.1, cz + 3.5);
+      scGroup.add(finial);
+
+      // Thai Flag Banner (Red, White, Blue, White, Red stripes)
+      const flagCanvas = document.createElement('canvas');
+      flagCanvas.width = 180;
+      flagCanvas.height = 120;
+      const fctx = flagCanvas.getContext('2d');
+      const fh = 120;
+      fctx.fillStyle = '#EF4444'; fctx.fillRect(0, 0, 180, fh / 6);
+      fctx.fillStyle = '#FFFFFF'; fctx.fillRect(0, fh / 6, 180, fh / 6);
+      fctx.fillStyle = '#1E3A8A'; fctx.fillRect(0, (2 * fh) / 6, 180, (2 * fh) / 6);
+      fctx.fillStyle = '#FFFFFF'; fctx.fillRect(0, (4 * fh) / 6, 180, fh / 6);
+      fctx.fillStyle = '#EF4444'; fctx.fillRect(0, (5 * fh) / 6, 180, fh / 6);
+
+      const flagTex = new THREE.CanvasTexture(flagCanvas);
+      const flagMesh = new THREE.Mesh(
+        new THREE.PlaneGeometry(3.2, 2.1),
+        new THREE.MeshStandardMaterial({ map: flagTex, side: THREE.DoubleSide, roughness: 0.7 })
+      );
+      flagMesh.position.set(cx + 4.8 + 1.6, 12.8, cz + 3.5);
+      scGroup.add(flagMesh);
+
+      // Decorative shrubbery around the plaza
+      const bushMat = new THREE.MeshStandardMaterial({ color: 0x166534, roughness: 0.85 });
+      for (let a = 0; a < Math.PI * 2; a += Math.PI / 6) {
+        const bush = new THREE.Mesh(new THREE.SphereGeometry(0.55, 8, 8), bushMat);
+        bush.position.set(cx + Math.cos(a) * 6.0, 0.45, cz + Math.sin(a) * 6.0);
+        scGroup.add(bush);
+      }
+
+      this.scene.add(scGroup);
+    }
+
     setupLandmarkLabels() {
       const landmarks = [
         { text: '⚡ สวิตช์ยาร์ด 500 kV', x: -65, y: 19, z: 85, color: '#D97706' },
@@ -855,6 +1172,8 @@
         { text: '💧 สระน้ำ 1, 2, 3', x: -95, y: 7, z: 20, color: '#0284C7' },
         { text: '🚧 ทางเข้าหลัก / ท.0021 ที่ทำการ รปภ.', x: 40, y: 8, z: 140, color: '#475569' },
         { text: '🧪 วงเวียนหน้า ท.0018 / ท.0016', x: 120, y: 8, z: -60, color: '#2563EB' },
+        { text: '⚙️ ปฏิมากรรมกังหันไอน้ำ', x: 35, y: 14, z: 75, color: '#EA580C' },
+        { text: '🌻 ทุ่งทานตะวัน & ป้าย กฟผ.', x: -15, y: 8, z: 110, color: '#EAB308' },
         // OHK Specific Landmark Pins (No Soccer field in OHK)
         { text: '🚛 วงเวียนใหญ่ศูนย์ขนส่ง อหข.', x: -130, y: 10, z: -160, color: '#7C3AED' },
         { text: '💧 สระน้ำ & ศาลาริมน้ำ อหข.', x: -185, y: 8, z: -180, color: '#0284C7' },
@@ -980,6 +1299,10 @@
         this.buildOHKOfficeT0026(group, width, depth, height);
       } else if (roofType === 'ohk_garage_t0027') {
         this.buildOHKGarageT0027(group, width, depth, height);
+      } else if (roofType === 'ohk_heavy_garage_t0028') {
+        this.buildOHKHeavyGarageT0028(group, width, depth, height);
+      } else if (roofType === 'ohk_heavy_workshop_t0029') {
+        this.buildOHKHeavyWorkshopT0029(group, width, depth, height);
       } else if (roofType === 'ohk_workshop_heavy' || roofType === 'ohk_heavy_workshop') {
         this.buildOHKHeavyWorkshop(group, width, depth, height, bData.b_code);
       } else if (roofType === 'ohk_canteen_d0031') {
@@ -988,19 +1311,29 @@
         this.buildOHKWeldingD0033(group, width, depth, height);
       }
       // Campus Main Architecture
-      else if (roofType === 'office_tower_9fl' || (roofType === 'office_stepped' && bData.b_code === 'T.0019')) {
+      else if (roofType === 'metrology_center_t0018' || (roofType === 'office_stepped' && bData.b_code === 'T.0018')) {
+        this.buildMetrologyT0018(group, width, depth, height);
+      } else if (roofType === 'chemical_workshop_t0016') {
+        this.buildChemicalWorkshopT0016(group, width, depth, height);
+      } else if (roofType === 'competency_curved_t0017') {
+        this.buildCompetencyT0017(group, width, depth, height);
+      } else if (roofType === 'sports_pilotis_d0025') {
+        this.buildSportsComplexD0025(group, width, depth, height);
+      } else if (roofType === 'chem_lab_t0015') {
+        this.buildChemLabT0015(group, width, depth, height);
+      } else if (roofType === 'competency_center_t0020' || roofType === 'competency_center' || bData.b_code === 'T.0020') {
+        this.buildCompetencyCenterT0020(group, width, depth, height);
+      } else if (roofType === 'office_tower_9fl' || (roofType === 'office_stepped' && bData.b_code === 'T.0019')) {
         this.buildOfficeTower9Fl(group, width, depth, height);
       } else if (roofType === 'parking_complex' || (roofType === 'office_stepped' && bData.b_code === 'D.0019')) {
         this.buildParkingComplex(group, width, depth, height);
       } else if (roofType === 'curved_hall' || roofType === 'curved_barrel') {
         this.buildCurvedHall(group, width, depth, height);
-      } else if (roofType === 'competency_center' || bData.b_code === 'T.0020') {
-        this.buildCompetencyCenter(group, width, depth, height);
       } else if (roofType === 'gabled_large') {
         this.buildLargeWorkshop(group, width, depth, height);
       } else if (roofType === 'gabled_warehouse' || roofType === 'gabled' || roofType === 'industrial_gable') {
         this.buildGabledWarehouse(group, width, depth, height);
-      } else if (roofType === 'lab_modern' || (roofType === 'office_stepped' && bData.b_code === 'T.0018')) {
+      } else if (roofType === 'lab_modern') {
         this.buildModernLab(group, width, depth, height);
       } else if (roofType === 'residential_balcony') {
         this.buildResidentialFlat(group, width, depth, height);
@@ -1028,41 +1361,77 @@
     /* ═════════════════════════════════════════════════════════════════
        OHK Specific Architectural Builders
        ═════════════════════════════════════════════════════════════════ */
-    // T.0026: อาคารบริหารการขนส่ง (อาคารที่ทำการ อหข. 2 ชั้น)
+    // T.0026: อาคารบริหารการขนส่ง (ที่ทำการ อหข. 3 ชั้น - Matching photo: ท.0026.JPG)
     buildOHKOfficeT0026(group, width, depth, height) {
       const glassMat = new THREE.MeshStandardMaterial({ color: 0x60A5FA, metalness: 0.8, roughness: 0.2 });
-      const roofMat = new THREE.MeshStandardMaterial({ color: 0x1E293B, roughness: 0.65 });
+      const yellowMat = new THREE.MeshStandardMaterial({ color: 0xEAB308, roughness: 0.35, metalness: 0.15 }); // Bright EGAT Yellow Grid Frame
+      const roofMat = new THREE.MeshStandardMaterial({ color: 0x334155, roughness: 0.65 });
 
-      // 2nd Floor Ribbon Glass Strips
-      const win = new THREE.Mesh(new THREE.BoxGeometry(width + 0.3, 1.8, depth + 0.3), glassMat);
-      win.position.y = height * 0.65 + 0.2;
-      group.add(win);
+      // 1. Three tiers of continuous ribbon glass windows
+      const floors = 3;
+      const flH = height / floors;
+      for (let f = 1; f <= floors; f++) {
+        const win = new THREE.Mesh(new THREE.BoxGeometry(width + 0.25, flH * 0.48, depth + 0.25), glassMat);
+        win.position.y = f * flH - flH * 0.26 + 0.2;
+        group.add(win);
+      }
 
-      // Pitched Hip Roof section over stair tower / central entrance
-      const hipRoof = new THREE.Mesh(
-        new THREE.ConeGeometry(Math.max(width, depth) * 0.45, 3.2, 4),
-        roofMat
+      // 2. Prominent Bright EGAT Yellow External Structural Grid Frame (Matching photo: ท.0026.JPG)
+      const gridSpacing = width / 5;
+      for (let i = 0; i <= 5; i++) {
+        const gx = -width / 2 + i * gridSpacing;
+        const col = new THREE.Mesh(new THREE.BoxGeometry(0.5, height + 0.6, 0.6), yellowMat);
+        col.position.set(gx, (height + 0.6) / 2 + 0.2, depth / 2 + 0.3);
+        col.castShadow = true;
+        group.add(col);
+      }
+
+      // Horizontal yellow beams along floor levels and roofline
+      for (let f = 1; f <= floors + 1; f++) {
+        const beamY = (f - 1) * flH + 0.2;
+        const beam = new THREE.Mesh(new THREE.BoxGeometry(width + 0.8, 0.45, 0.6), yellowMat);
+        beam.position.set(0, beamY, depth / 2 + 0.3);
+        beam.castShadow = true;
+        group.add(beam);
+      }
+
+      // 3. Low-slope Gabled Roof with Yellow Fascia Soffit
+      const roofH = 2.4;
+      const roof = new THREE.Mesh(new THREE.ConeGeometry(Math.max(width, depth) * 0.65, roofH, 4), roofMat);
+      roof.position.y = height + roofH / 2 + 0.2;
+      roof.rotation.y = Math.PI / 4;
+      roof.scale.set(width / Math.max(width, depth), 1, depth / Math.max(width, depth));
+      roof.castShadow = true;
+      group.add(roof);
+
+      const fascia = new THREE.Mesh(new THREE.BoxGeometry(width + 1.6, 0.35, depth + 1.6), yellowMat);
+      fascia.position.y = height + 0.2;
+      group.add(fascia);
+
+      // 4. Front Entrance Drop-Off Canopy with Yellow Columns
+      const canopy = new THREE.Mesh(
+        new THREE.BoxGeometry(11, 0.4, 5.0),
+        new THREE.MeshStandardMaterial({ color: 0xF8FAFC, roughness: 0.4 })
       );
-      hipRoof.rotation.y = Math.PI / 4;
-      hipRoof.position.set(-width * 0.2, height + 1.6 + 0.2, 0);
-      hipRoof.castShadow = true;
-      group.add(hipRoof);
+      canopy.position.set(0, 3.6, depth / 2 + 2.5);
+      canopy.castShadow = true;
+      group.add(canopy);
 
-      // Front Entrance Porch facing roundabout
-      const porch = new THREE.Mesh(
-        new THREE.BoxGeometry(10, 0.4, 4),
-        new THREE.MeshStandardMaterial({ color: 0x0284C7 })
+      [-4.8, 4.8].forEach(cx => {
+        const col = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.2, 3.6, 12), yellowMat);
+        col.position.set(cx, 1.8, depth / 2 + 4.6);
+        col.castShadow = true;
+        group.add(col);
+      });
+
+      // 5. Arched Carport Wing on the West Side (Matching photo: ท.0026.JPG)
+      const carportRoof = new THREE.Mesh(
+        new THREE.BoxGeometry(10, 0.3, 14),
+        new THREE.MeshStandardMaterial({ color: 0x475569, roughness: 0.7 })
       );
-      porch.position.set(0, 3.4, depth / 2 + 2);
-      porch.castShadow = true;
-      group.add(porch);
-
-      // Rear Covered Car Park (16 car bays)
-      const carParkMat = new THREE.MeshStandardMaterial({ color: 0x475569, roughness: 0.8 });
-      const cpRoof = new THREE.Mesh(new THREE.BoxGeometry(width * 0.85, 0.3, 8), carParkMat);
-      cpRoof.position.set(0, 3.0, -depth / 2 - 4);
-      cpRoof.castShadow = true;
-      group.add(cpRoof);
+      carportRoof.position.set(-width / 2 - 5, 3.2, 0);
+      carportRoof.castShadow = true;
+      group.add(carportRoof);
 
       // Circular Stepped Front Plaza
       const plaza = new THREE.Mesh(
@@ -1171,6 +1540,107 @@
       }
     }
 
+    // T.0028: อาคารปฏิบัติการ 1 ซ่อมเครื่องจักรกลหนัก อหข. (Heavy Garage 1 - Matching photo: เล็กๆ ท.0027 ท.0028 และขวาสุด ท.0029.JPG)
+    buildOHKHeavyGarageT0028(group, width, depth, height) {
+      const roofRadius = width * 0.62;
+      const roofMat = new THREE.MeshStandardMaterial({ color: 0x475569, roughness: 0.68 });
+      const doorMat = new THREE.MeshStandardMaterial({ color: 0x1E293B, roughness: 0.85 });
+      const yellowMat = new THREE.MeshStandardMaterial({ color: 0xEAB308, roughness: 0.4 });
+      const hazardMat = new THREE.MeshStandardMaterial({ color: 0xF59E0B });
+
+      // 1. Curved Eave Roof
+      const curveGeo = new THREE.CylinderGeometry(roofRadius, roofRadius, depth + 1.0, 32, 1, false, 0, Math.PI);
+      const curvedRoof = new THREE.Mesh(curveGeo, roofMat);
+      curvedRoof.rotation.z = Math.PI / 2;
+      curvedRoof.rotation.y = Math.PI / 2;
+      curvedRoof.position.set(0, height + 0.2, 0);
+      curvedRoof.castShadow = true;
+      group.add(curvedRoof);
+
+      // Central Roof Ridge Monitor
+      const ridge = new THREE.Mesh(new THREE.BoxGeometry(width * 0.7, 1.4, depth * 0.3), new THREE.MeshStandardMaterial({ color: 0x64748B }));
+      ridge.position.y = height + roofRadius * 0.45 + 0.7;
+      ridge.castShadow = true;
+      group.add(ridge);
+
+      // 2. Exactly 4 Dark Grey Roller Shutter Doors
+      const doorW = width * 0.18;
+      const doorH = height * 0.7;
+      const doorSpacing = width / 4.5;
+      for (let i = 0; i < 4; i++) {
+        const dx = -width * 0.36 + i * doorSpacing;
+        const door = new THREE.Mesh(new THREE.PlaneGeometry(doorW, doorH), doorMat);
+        door.position.set(dx, doorH / 2 + 0.2, depth / 2 + 0.06);
+        group.add(door);
+
+        const stripe = new THREE.Mesh(new THREE.BoxGeometry(doorW + 0.2, 0.25, 0.35), hazardMat);
+        stripe.position.set(dx, 0.12, depth / 2 + 0.18);
+        group.add(stripe);
+      }
+
+      // 3. External Yellow Steel Emergency Stair on the right side
+      const stair = new THREE.Mesh(new THREE.BoxGeometry(2.2, height * 0.8, 5.5), yellowMat);
+      stair.position.set(width / 2 + 1.2, height * 0.4 + 0.2, 0);
+      stair.rotation.x = 0.45;
+      stair.castShadow = true;
+      group.add(stair);
+
+      // Connector canopy towards T.0029
+      const connector = new THREE.Mesh(
+        new THREE.BoxGeometry(14, 0.4, depth * 0.45),
+        new THREE.MeshStandardMaterial({ color: 0x475569 })
+      );
+      connector.position.set(-width / 2 - 7, height * 0.75, 0);
+      connector.castShadow = true;
+      group.add(connector);
+    }
+
+    // T.0029: อาคารปฏิบัติการ 2 ซ่อมเครื่องจักรกลหนัก อหข. (Heavy Workshop 2)
+    buildOHKHeavyWorkshopT0029(group, width, depth, height) {
+      const roofRadius = width * 0.65;
+      const roofMat = new THREE.MeshStandardMaterial({ color: 0x475569, roughness: 0.68 });
+      const doorMat = new THREE.MeshStandardMaterial({ color: 0x1E293B, roughness: 0.85 });
+      const yellowMat = new THREE.MeshStandardMaterial({ color: 0xEAB308, roughness: 0.4 });
+
+      // 1. Wide Curved Roof Profile
+      const curveGeo = new THREE.CylinderGeometry(roofRadius, roofRadius, depth + 1.2, 32, 1, false, 0, Math.PI);
+      const curvedRoof = new THREE.Mesh(curveGeo, roofMat);
+      curvedRoof.rotation.z = Math.PI / 2;
+      curvedRoof.rotation.y = Math.PI / 2;
+      curvedRoof.position.set(0, height + 0.2, 0);
+      curvedRoof.castShadow = true;
+      group.add(curvedRoof);
+
+      // Raised 32m Overhead Crane Clerestory Monitor Ridge
+      const craneMonitor = new THREE.Mesh(
+        new THREE.BoxGeometry(width * 0.6, 2.4, depth * 0.8),
+        new THREE.MeshStandardMaterial({ color: 0x64748B, roughness: 0.6 })
+      );
+      craneMonitor.position.y = height + roofRadius * 0.45 + 1.2;
+      craneMonitor.castShadow = true;
+      group.add(craneMonitor);
+
+      // Yellow exterior column supports along facade
+      [-width * 0.45, -width * 0.15, width * 0.15, width * 0.45].forEach(cx => {
+        const col = new THREE.Mesh(new THREE.BoxGeometry(0.8, height, 0.8), yellowMat);
+        col.position.set(cx, height / 2 + 0.2, depth / 2 + 0.4);
+        col.castShadow = true;
+        group.add(col);
+      });
+
+      // 2. Oversized Heavy Vehicle Equipment Bay Doors
+      [-width * 0.28, width * 0.28].forEach(dx => {
+        const door = new THREE.Mesh(new THREE.PlaneGeometry(width * 0.28, height * 0.78), doorMat);
+        door.position.set(dx, height * 0.39 + 0.2, depth / 2 + 0.06);
+        group.add(door);
+
+        const ramp = new THREE.Mesh(new THREE.BoxGeometry(width * 0.3, 0.2, 4.0), new THREE.MeshStandardMaterial({ color: 0xCBD5E1 }));
+        ramp.position.set(dx, 0.1, depth / 2 + 2.0);
+        ramp.receiveShadow = true;
+        group.add(ramp);
+      });
+    }
+
     // D.0031: อาคารโรงอาหาร อหข.
     buildOHKCanteenD0031(group, width, depth, height) {
       const roofMat = new THREE.MeshStandardMaterial({ color: 0x1E293B, roughness: 0.6 });
@@ -1266,6 +1736,356 @@
       mast.position.set(0, height + mechH + 5.5, 0);
       mast.castShadow = true;
       group.add(mast);
+    }
+
+    // T.0018: ศูนย์มาตรวิทยาและสอบเทียบเครื่องมือวัด กฟผ. (Metrology and Calibration Center - Matching photo: ท.0018.jpg)
+    buildMetrologyT0018(group, width, depth, height) {
+      const glassMat = new THREE.MeshStandardMaterial({ color: 0x93C5FD, metalness: 0.8, roughness: 0.2 });
+      const orangeMat = new THREE.MeshStandardMaterial({ color: 0xEA580C, roughness: 0.38, metalness: 0.1 }); // Vibrant EGAT Orange
+      const louverMat = new THREE.MeshStandardMaterial({ color: 0x334155, roughness: 0.7 });
+      const canopyMat = new THREE.MeshStandardMaterial({ color: 0xF8FAFC, roughness: 0.3 });
+      const steelMat = new THREE.MeshStandardMaterial({ color: 0xCBD5E1, metalness: 0.8 });
+
+      // 1. Two-level continuous ribbon windows
+      [height * 0.35, height * 0.72].forEach(wy => {
+        const win = new THREE.Mesh(new THREE.BoxGeometry(width + 0.25, 1.6, depth + 0.25), glassMat);
+        win.position.y = wy + 0.2;
+        group.add(win);
+      });
+
+      // 2. Vertical Solar Louver Fins on Upper Story (Shading windows)
+      for (let lx = -width * 0.38; lx <= width * 0.12; lx += 2.0) {
+        const fin = new THREE.Mesh(new THREE.BoxGeometry(0.15, 2.4, 0.7), louverMat);
+        fin.position.set(lx, height * 0.72 + 0.2, depth / 2 + 0.36);
+        fin.castShadow = true;
+        group.add(fin);
+      }
+
+      // 3. Iconic Vibrant EGAT Orange Entrance Cube Tower (Southwest corner)
+      const towerW = 8.5;
+      const towerD = 8.5;
+      const towerH = height + 3.2;
+      const orangeTower = new THREE.Mesh(new THREE.BoxGeometry(towerW, towerH, towerD), orangeMat);
+      orangeTower.position.set(width / 2 - towerW / 2 + 0.5, towerH / 2 + 0.2, depth / 2 - towerD / 2 + 0.5);
+      orangeTower.castShadow = true;
+      group.add(orangeTower);
+
+      // Floating horizontal orange cantilever beam
+      const orangeBeam = new THREE.Mesh(new THREE.BoxGeometry(width * 0.65, 1.2, 1.0), orangeMat);
+      orangeBeam.position.set(width * 0.1, height * 0.85 + 0.2, depth / 2 + 0.8);
+      orangeBeam.castShadow = true;
+      group.add(orangeBeam);
+
+      // 4. Cantilevered Drop-Off Entrance Canopy underneath tower
+      const canopy = new THREE.Mesh(new THREE.BoxGeometry(10, 0.45, 6), canopyMat);
+      canopy.position.set(width / 2 - towerW / 2 + 0.5, 3.8, depth / 2 + 3.0);
+      canopy.castShadow = true;
+      group.add(canopy);
+
+      [-3.8, 3.8].forEach(cx => {
+        const col = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.18, 3.8, 12), steelMat);
+        col.position.set(width / 2 - towerW / 2 + 0.5 + cx, 1.9, depth / 2 + 5.5);
+        col.castShadow = true;
+        group.add(col);
+      });
+
+      // 5. Heavy Calibration Workshop Roll-up Bay Door (North Wing)
+      const doorMat = new THREE.MeshStandardMaterial({ color: 0x1E293B, roughness: 0.85 });
+      const door = new THREE.Mesh(new THREE.PlaneGeometry(width * 0.28, height * 0.68), doorMat);
+      door.position.set(-width * 0.25, height * 0.34 + 0.2, depth / 2 + 0.06);
+      group.add(door);
+
+      // Rooftop Parapet
+      const parapetMat = new THREE.MeshStandardMaterial({ color: 0x475569, roughness: 0.7 });
+      const parapet = new THREE.Mesh(new THREE.BoxGeometry(width + 0.4, 0.6, depth + 0.4), parapetMat);
+      parapet.position.y = height + 0.3;
+      group.add(parapet);
+    }
+
+    // T.0016: อาคารปฏิบัติการเคมี (Chemical Workshop - Matching photo: ท.0016.JPG)
+    buildChemicalWorkshopT0016(group, width, depth, height) {
+      const roofRadius = width * 0.58;
+      const roofMat = new THREE.MeshStandardMaterial({ color: 0x334155, roughness: 0.6 });
+      const orangeMat = new THREE.MeshStandardMaterial({ color: 0xEA580C, roughness: 0.4 });
+      const portalMat = new THREE.MeshStandardMaterial({ color: 0xF8FAFC, roughness: 0.3 });
+      const glassMat = new THREE.MeshStandardMaterial({ color: 0x93C5FD, metalness: 0.8, roughness: 0.2 });
+
+      // 1. Curved Barrel Roof Profile with Orange Fascia Trim
+      const curveGeo = new THREE.CylinderGeometry(roofRadius, roofRadius, depth + 0.6, 32, 1, false, 0, Math.PI);
+      const curvedRoof = new THREE.Mesh(curveGeo, roofMat);
+      curvedRoof.rotation.z = Math.PI / 2;
+      curvedRoof.rotation.y = Math.PI / 2;
+      curvedRoof.position.set(0, height + 0.2, 0);
+      curvedRoof.castShadow = true;
+      group.add(curvedRoof);
+
+      // Orange Roof Edge Trim Band
+      const trimGeo = new THREE.CylinderGeometry(roofRadius + 0.08, roofRadius + 0.08, 0.4, 32, 1, false, 0, Math.PI);
+      const trimFront = new THREE.Mesh(trimGeo, orangeMat);
+      trimFront.rotation.z = Math.PI / 2;
+      trimFront.rotation.y = Math.PI / 2;
+      trimFront.position.set(0, height + 0.2, depth / 2 + 0.2);
+      group.add(trimFront);
+
+      // 2. Signature White & EGAT Orange Arch Entrance Portal (Matching photo: ท.0016.JPG)
+      const portalW = 8.0;
+      const portalH = 4.8;
+      const pFrame = new THREE.Mesh(new THREE.BoxGeometry(portalW, portalH, 1.4), portalMat);
+      pFrame.position.set(-width * 0.22, portalH / 2 + 0.2, depth / 2 + 0.7);
+      pFrame.castShadow = true;
+      group.add(pFrame);
+
+      const orangeInner = new THREE.Mesh(new THREE.BoxGeometry(portalW - 1.2, portalH - 0.8, 1.5), orangeMat);
+      orangeInner.position.set(-width * 0.22, portalH / 2 + 0.2, depth / 2 + 0.7);
+      group.add(orangeInner);
+
+      const doorMat = new THREE.MeshStandardMaterial({ color: 0x1E293B, roughness: 0.5 });
+      const door = new THREE.Mesh(new THREE.BoxGeometry(portalW - 2.4, portalH - 1.6, 1.6), doorMat);
+      door.position.set(-width * 0.22, (portalH - 1.6) / 2 + 0.2, depth / 2 + 0.7);
+      group.add(door);
+
+      // 3. Horizontal Metal Solar Louvre Screens (Above laboratory windows)
+      const louverMat = new THREE.MeshStandardMaterial({ color: 0x64748B, roughness: 0.65 });
+      const win = new THREE.Mesh(new THREE.PlaneGeometry(width * 0.45, 1.8), glassMat);
+      win.position.set(width * 0.22, height * 0.55 + 0.2, depth / 2 + 0.06);
+      group.add(win);
+
+      for (let ly = height * 0.5; ly <= height * 0.75; ly += 0.4) {
+        const louverBlade = new THREE.Mesh(new THREE.BoxGeometry(width * 0.46, 0.08, 0.45), louverMat);
+        louverBlade.position.set(width * 0.22, ly + 0.2, depth / 2 + 0.25);
+        group.add(louverBlade);
+      }
+
+      // Workshop Bay Roll-Up Shutter on East End
+      const bayDoor = new THREE.Mesh(new THREE.PlaneGeometry(width * 0.25, height * 0.7), doorMat);
+      bayDoor.position.set(width * 0.32, height * 0.35 + 0.2, -depth / 2 - 0.06);
+      bayDoor.rotation.y = Math.PI;
+      group.add(bayDoor);
+    }
+
+    // T.0017: ศูนย์พัฒนาศักยภาพบุคลากร (Competency Center - Matching photo: ขอบตึกเล็กๆ ท.0016 ท.0018 ท.0017 ต.0025.jpg)
+    buildCompetencyT0017(group, width, depth, height) {
+      const silverMat = new THREE.MeshStandardMaterial({
+        color: 0xCBD5E1,
+        metalness: 0.6,
+        roughness: 0.35
+      });
+      const glassMat = new THREE.MeshStandardMaterial({ color: 0x60A5FA, metalness: 0.85, roughness: 0.2 });
+      const cowlMat = new THREE.MeshStandardMaterial({ color: 0x64748B, metalness: 0.7, roughness: 0.4 });
+
+      // 1. Curved Roof Eaves
+      const roofRadius = width * 0.55;
+      const curveGeo = new THREE.CylinderGeometry(roofRadius, roofRadius, depth + 0.8, 32, 1, false, 0, Math.PI);
+      const curvedRoof = new THREE.Mesh(curveGeo, silverMat);
+      curvedRoof.rotation.z = Math.PI / 2;
+      curvedRoof.rotation.y = Math.PI / 2;
+      curvedRoof.position.set(0, height + 0.2, 0);
+      curvedRoof.castShadow = true;
+      group.add(curvedRoof);
+
+      // 2. Exactly 6 Cylindrical Rooftop Cowl Exhaust Vents (Spaced along ridge)
+      const cowlSpacing = (width * 0.8) / 5;
+      for (let i = 0; i < 6; i++) {
+        const cx = -width * 0.4 + i * cowlSpacing;
+        const cowlStack = new THREE.Mesh(new THREE.CylinderGeometry(0.32, 0.32, 1.8, 12), cowlMat);
+        cowlStack.position.set(cx, height + roofRadius * 0.48 + 0.9, 0);
+        cowlStack.castShadow = true;
+        group.add(cowlStack);
+
+        const cowlCap = new THREE.Mesh(new THREE.ConeGeometry(0.55, 0.4, 12), cowlMat);
+        cowlCap.position.set(cx, height + roofRadius * 0.48 + 1.9, 0);
+        cowlCap.castShadow = true;
+        group.add(cowlCap);
+      }
+
+      // 3. Continuous Ribbon Windows
+      [height * 0.4, height * 0.72].forEach(wy => {
+        const win = new THREE.Mesh(new THREE.BoxGeometry(width + 0.2, 1.5, depth + 0.2), glassMat);
+        win.position.y = wy + 0.2;
+        group.add(win);
+      });
+
+      // 4. Front Entrance Portico
+      const portico = new THREE.Mesh(
+        new THREE.BoxGeometry(8, 0.35, 4),
+        new THREE.MeshStandardMaterial({ color: 0x0284C7 })
+      );
+      portico.position.set(0, 3.4, depth / 2 + 2);
+      portico.castShadow = true;
+      group.add(portico);
+    }
+
+    // D.0025: อาคารอเนกประสงค์ / กีฬา (Sports Complex - Matching photo: ต.0025.JPG)
+    buildSportsComplexD0025(group, width, depth, height) {
+      const roofMat = new THREE.MeshStandardMaterial({ color: 0x475569, roughness: 0.7 });
+      const colMat = new THREE.MeshStandardMaterial({ color: 0xCBD5E1, roughness: 0.85 });
+      const emeraldGlassMat = new THREE.MeshStandardMaterial({
+        color: 0x059669,
+        metalness: 0.75,
+        roughness: 0.2
+      });
+
+      // 1. High-Pitched Gabled Metal Roof
+      const roofH = 4.2;
+      const roof = new THREE.Mesh(new THREE.ConeGeometry(Math.max(width, depth) * 0.72, roofH, 4), roofMat);
+      roof.position.y = height + roofH / 2 + 0.2;
+      roof.rotation.y = Math.PI / 4;
+      roof.scale.set(width / Math.max(width, depth), 1, depth / Math.max(width, depth));
+      roof.castShadow = true;
+      group.add(roof);
+
+      // 2. Ground Floor Open-Air Pilotis (เสาลอยเปิดโล่ง จอดรถยนต์ใต้ถุน)
+      const pilotisHeight = height * 0.42;
+      const colSpacingX = width / 4;
+      const colSpacingZ = depth / 3;
+
+      for (let ix = -width / 2 + 2; ix <= width / 2 - 2; ix += colSpacingX) {
+        for (let iz = -depth / 2 + 2; iz <= depth / 2 - 2; iz += colSpacingZ) {
+          const col = new THREE.Mesh(new THREE.BoxGeometry(0.7, pilotisHeight, 0.7), colMat);
+          col.position.set(ix, pilotisHeight / 2 + 0.2, iz);
+          col.castShadow = true;
+          group.add(col);
+        }
+      }
+
+      // Parked cars underneath pilotis
+      const carColors = [0x1E40AF, 0xDC2626, 0xF8FAFC, 0x475569];
+      [-width * 0.28, -width * 0.1, width * 0.1, width * 0.28].forEach((cx, idx) => {
+        const carMat = new THREE.MeshStandardMaterial({ color: carColors[idx % carColors.length], roughness: 0.4 });
+        const car = new THREE.Mesh(new THREE.BoxGeometry(2.0, 1.2, 4.2), carMat);
+        car.position.set(cx, 0.8, (idx % 2 === 0 ? 1 : -1) * 2.5);
+        car.castShadow = true;
+        group.add(car);
+      });
+
+      // 3. Second Floor Continuous Emerald Ribbon Glass
+      const win = new THREE.Mesh(new THREE.BoxGeometry(width + 0.25, height * 0.45, depth + 0.25), emeraldGlassMat);
+      win.position.y = height * 0.7 + 0.2;
+      group.add(win);
+
+      // 4. Side Annex Structure (Lower equipment/changing room wing)
+      const annex = new THREE.Mesh(
+        new THREE.BoxGeometry(7, height * 0.5, depth * 0.65),
+        new THREE.MeshStandardMaterial({ color: 0xE2E8F0, roughness: 0.7 })
+      );
+      annex.position.set(width / 2 + 3.5, height * 0.25 + 0.2, 0);
+      annex.castShadow = true;
+      group.add(annex);
+
+      // External Concrete Staircase to 2nd Floor
+      const stairMat = new THREE.MeshStandardMaterial({ color: 0x94A3B8, roughness: 0.8 });
+      const stair = new THREE.Mesh(new THREE.BoxGeometry(2.4, height * 0.45, 6), stairMat);
+      stair.position.set(-width / 2 - 1.2, height * 0.22 + 0.2, depth * 0.2);
+      stair.rotation.x = 0.4;
+      stair.castShadow = true;
+      group.add(stair);
+    }
+
+    // T.0015: ศูนย์ปฏิบัติการทดสอบเคมี (Chemistry Laboratory Center 4 Fl - Matching photo: ท.0015.jpg)
+    buildChemLabT0015(group, width, depth, height) {
+      const glassMat = new THREE.MeshStandardMaterial({ color: 0x93C5FD, metalness: 0.85, roughness: 0.2 });
+      const darkCoreMat = new THREE.MeshStandardMaterial({ color: 0x1E293B, roughness: 0.7 });
+      const canopyMat = new THREE.MeshStandardMaterial({ color: 0xF8FAFC, roughness: 0.4 });
+      const carportMat = new THREE.MeshStandardMaterial({ color: 0x0284C7, roughness: 0.5 });
+
+      // 1. 4-Story Window Bands
+      const floors = 4;
+      const flH = height / floors;
+      for (let f = 1; f <= floors; f++) {
+        const win = new THREE.Mesh(new THREE.BoxGeometry(width + 0.2, flH * 0.48, depth + 0.2), glassMat);
+        win.position.y = f * flH - flH * 0.25 + 0.2;
+        group.add(win);
+      }
+
+      // 2. Dark Charcoal Vertical Stair / Elevator Core Tower on Corner
+      const coreW = 6.5;
+      const coreD = 6.5;
+      const coreH = height + 2.5;
+      const stairCore = new THREE.Mesh(new THREE.BoxGeometry(coreW, coreH, coreD), darkCoreMat);
+      stairCore.position.set(width / 2 - coreW / 2 + 0.2, coreH / 2 + 0.2, -depth / 2 + coreD / 2 - 0.2);
+      stairCore.castShadow = true;
+      group.add(stairCore);
+
+      // 3. Cantilevered Drop-Off Entrance Canopy with Accessible Ramp
+      const canopy = new THREE.Mesh(new THREE.BoxGeometry(10, 0.4, 5.5), canopyMat);
+      canopy.position.set(-width * 0.15, 3.8, depth / 2 + 2.8);
+      canopy.castShadow = true;
+      group.add(canopy);
+
+      // 4. Covered Carport in Front (Matching photo: ท.0015.jpg)
+      const carportRoof = new THREE.Mesh(new THREE.BoxGeometry(16, 0.3, 7), carportMat);
+      carportRoof.position.set(-width * 0.15, 3.2, depth / 2 + 8.5);
+      carportRoof.castShadow = true;
+      group.add(carportRoof);
+
+      // Rooftop mechanical exhaust stacks
+      [-width * 0.25, 0].forEach(sx => {
+        const stack = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.35, 0.35, 2.8, 12),
+          new THREE.MeshStandardMaterial({ color: 0xCBD5E1, metalness: 0.7 })
+        );
+        stack.position.set(sx, height + 1.4 + 0.2, 0);
+        stack.castShadow = true;
+        group.add(stack);
+      });
+    }
+
+    // T.0020: ศูนย์รับรองสมรรถนะ (Competency Training Center - Matching photo: ลานปฏิมากรรม หน้า ท.0020.JPG)
+    buildCompetencyCenterT0020(group, width, depth, height) {
+      const glassMat = new THREE.MeshStandardMaterial({ color: 0x60A5FA, metalness: 0.8, roughness: 0.2 });
+      const stairMat = new THREE.MeshStandardMaterial({ color: 0x475569, metalness: 0.7 });
+      const railMat = new THREE.MeshStandardMaterial({ color: 0xEA580C, roughness: 0.4 }); // Vibrant Orange-Red Handrail
+
+      // 1. Two-Story Ribbon Glass Windows
+      [height * 0.35, height * 0.75].forEach(wy => {
+        const win = new THREE.Mesh(new THREE.BoxGeometry(width + 0.25, 1.8, depth + 0.25), glassMat);
+        win.position.y = wy + 0.2;
+        group.add(win);
+      });
+
+      // 2. Open Steel Fire Escape Stair Tower on West End (Matching photo: ลานปฏิมากรรม หน้า ท.0020.JPG)
+      const stairTower = new THREE.Group();
+      const stH = height + 1.2;
+      const stW = 4.0;
+      const stD = 4.0;
+
+      // 4 Corner steel columns
+      [-stW / 2, stW / 2].forEach(ox => {
+        [-stD / 2, stD / 2].forEach(oz => {
+          const col = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, stH, 6), stairMat);
+          col.position.set(ox, stH / 2 + 0.2, oz);
+          stairTower.add(col);
+        });
+      });
+
+      // Orange Handrails & landings
+      [height * 0.5, height].forEach(ly => {
+        const landing = new THREE.Mesh(new THREE.BoxGeometry(stW, 0.15, stD), stairMat);
+        landing.position.y = ly + 0.2;
+        stairTower.add(landing);
+
+        const rail = new THREE.Mesh(new THREE.BoxGeometry(stW + 0.1, 0.9, stD + 0.1), railMat);
+        rail.position.y = ly + 0.6 + 0.2;
+        stairTower.add(rail);
+      });
+
+      stairTower.position.set(-width / 2 - stW / 2 - 0.4, 0, 0);
+      group.add(stairTower);
+
+      // 3. Entrance Canopy facing the Steam Turbine Plaza
+      const canopy = new THREE.Mesh(
+        new THREE.BoxGeometry(11, 0.4, 4),
+        new THREE.MeshStandardMaterial({ color: 0x0284C7 })
+      );
+      canopy.position.set(0, 3.5, depth / 2 + 2);
+      canopy.castShadow = true;
+      group.add(canopy);
+
+      // Rooftop Parapet
+      const parapetMat = new THREE.MeshStandardMaterial({ color: 0x475569, roughness: 0.7 });
+      const parapet = new THREE.Mesh(new THREE.BoxGeometry(width + 0.4, 0.6, depth + 0.4), parapetMat);
+      parapet.position.y = height + 0.3;
+      group.add(parapet);
     }
 
     buildParkingComplex(group, width, depth, height) {
