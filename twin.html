@@ -151,6 +151,32 @@
     .btn-action.danger { background: #DC2626; color: #fff; border-color: #DC2626; }
     .btn-action.success { background: #16A34A; color: #fff; border-color: #16A34A; }
 
+    /* Quick Preset Buttons */
+    .btn-preset {
+      background: rgba(255,255,255,0.14);
+      color: rgba(255,255,255,0.92);
+      border: 1px solid rgba(255,255,255,0.24);
+      padding: 4px 9px;
+      border-radius: 5px;
+      font-size: 11px;
+      font-family: 'Sarabun', sans-serif;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+    .btn-preset:hover {
+      background: rgba(255,255,255,0.28);
+      border-color: #fff;
+      color: #fff;
+    }
+    .btn-preset.active {
+      background: var(--amber);
+      color: #0B1D51;
+      font-weight: 700;
+      border-color: var(--amber);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    }
+
     /* Alert Badge */
     .badge-count {
       background: #EF4444;
@@ -652,10 +678,24 @@
         <option value="2025">2568 (2025)</option>
       </select>
 
-      <span class="fl-label">📆 เดือน:</span>
-      <select id="selMonth" class="fl-select" onchange="onMonthChange()">
+      <span class="fl-label">📆 ตั้งแต่:</span>
+      <select id="selMonthFrom" class="fl-select" onchange="onMonthRangeChange()">
         <!-- Generated dynamically -->
       </select>
+      <span class="fl-label" style="opacity:0.8;">ถึง</span>
+      <select id="selMonthTo" class="fl-select" onchange="onMonthRangeChange()">
+        <!-- Generated dynamically -->
+      </select>
+
+      <!-- Quick Preset Range Shortcuts -->
+      <div style="display:inline-flex; gap:4px; align-items:center;">
+        <button class="btn-preset active" id="presetAll" type="button" onclick="setMonthPreset('all')" title="ดูข้อมูลทั้งปี (ม.ค. - ธ.ค.)">ทั้งปี</button>
+        <button class="btn-preset" id="presetH1" type="button" onclick="setMonthPreset('h1')" title="ดูข้อมูลครึ่งปีแรก (ม.ค. - มิ.ย.)">ครึ่งปีแรก</button>
+        <button class="btn-preset" id="presetH2" type="button" onclick="setMonthPreset('h2')" title="ดูข้อมูลครึ่งปีหลัง (ก.ค. - ธ.ค.)">ครึ่งปีหลัง</button>
+        <button class="btn-preset" id="presetLatest" type="button" onclick="setMonthPreset('latest')" title="ดูเฉพาะเดือนล่าสุด">เดือนล่าสุด</button>
+      </div>
+
+      <select id="selMonth" style="display:none"></select>
 
       <span class="fl-label">🏢 ฝ่าย/หน่วยงาน:</span>
       <select id="selDepartment" class="fl-select" onchange="onDepartmentChange()">
@@ -673,7 +713,7 @@
       <select id="selColorMode" class="fl-select" onchange="onColorModeChange()">
         <option value="target_status">ผลเทียบเป้าหมายการประหยัด (Target Comparison)</option>
         <option value="total_kwh">การใช้ไฟฟ้ารวม (Total kWh)</option>
-        <option value="mom_change">การเปลี่ยนแปลงเทียบเดือนก่อน (% MoM)</option>
+        <option value="mom_change">การเปลี่ยนแปลงเทียบเดือนก่อน / ปีก่อน (%)</option>
         <option value="data_quality">สถานะคุณภาพข้อมูล (Data Quality)</option>
         <option value="energy_intensity">ความเข้มการใช้พลังงาน (kWh/m²)</option>
       </select>
@@ -691,9 +731,9 @@
   <!-- Disclaimer Notice Banner -->
   <div class="disclaimer-banner">
     <span>
-      ℹ️ <strong>ข้อกำหนดความโปร่งใสของข้อมูล:</strong> แบบจำลองอาคาร 3D และผังวิทยาเขตอิงตาม Master Plan และ As-Built ผังสิ่งปลูกสร้างไทรน้อย | ข้อมูลไฟฟ้ารายเดือนคำนวณจากมิเตอร์ประธานและสัดส่วนจัดสรร | เชื่อมโยงบิล กฟน. เพื่อตรวจสอบ Unaccounted Energy
+      ℹ️ <strong>ความสอดคล้องของข้อมูล:</strong> ตัวเลขการใช้ไฟฟ้าคำนวณตามสัดส่วนจัดสรร (Department Allocation) เดียวกับหน้า <strong>ไฟฟ้า (แดชบอร์ด)</strong> 100% ป้องกันการนับซ้ำ
     </span>
-    <span style="font-family:'JetBrains Mono'; font-weight:700;" id="txtCampusTotalKwh">ยอดรวม: คำนวณ...</span>
+    <span style="font-family:'JetBrains Mono'; font-weight:700; display:inline-flex; align-items:center; gap:8px;" id="txtCampusTotalKwh">ยอดรวม: คำนวณ...</span>
   </div>
 
   <!-- Timeline Bar (Monthly Playback & Slider) -->
@@ -1212,20 +1252,46 @@
       updateAlertBadges();
     });
 
-    // Populate Year, Month, Building Dropdowns
+    // Populate Year, Month Range, Building Dropdowns
     function setupDropdowns() {
       const summary = EnergyTwin.summaryData;
       if (!summary || !summary.periods) return;
 
+      const selMonthFrom = document.getElementById('selMonthFrom');
+      const selMonthTo = document.getElementById('selMonthTo');
+      const TH_MONTHS = ['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'];
+
+      if (selMonthFrom && selMonthTo) {
+        selMonthFrom.innerHTML = '';
+        selMonthTo.innerHTML = '';
+        TH_MONTHS.forEach((name, i) => {
+          const mNum = i + 1;
+          const optF = document.createElement('option');
+          optF.value = mNum;
+          optF.textContent = `${name} (${String(mNum).padStart(2, '0')})`;
+          selMonthFrom.appendChild(optF);
+
+          const optT = document.createElement('option');
+          optT.value = mNum;
+          optT.textContent = `${name} (${String(mNum).padStart(2, '0')})`;
+          selMonthTo.appendChild(optT);
+        });
+
+        selMonthFrom.value = EnergyTwin.state.monthFrom || 1;
+        selMonthTo.value = EnergyTwin.state.monthTo || 12;
+      }
+
       const selMonth = document.getElementById('selMonth');
-      selMonth.innerHTML = '';
-      (summary.periods.months || []).forEach(m => {
-        const opt = document.createElement('option');
-        opt.value = m;
-        opt.textContent = m;
-        selMonth.appendChild(opt);
-      });
-      selMonth.value = EnergyTwin.state.month;
+      if (selMonth) {
+        selMonth.innerHTML = '';
+        (summary.periods.months || []).forEach(m => {
+          const opt = document.createElement('option');
+          opt.value = m;
+          opt.textContent = m;
+          selMonth.appendChild(opt);
+        });
+        selMonth.value = EnergyTwin.state.month;
+      }
 
       // Quick Building Select Dropdown
       const quickSel = document.getElementById('quickBuildingSelect');
@@ -1293,20 +1359,46 @@
       }
 
       // Sync Selectors
-      document.getElementById('selMonth').value = state.month;
-      document.getElementById('selYear').value = state.year;
-      document.getElementById('selDepartment').value = state.department;
-      document.getElementById('selColorMode').value = state.colorMode;
-      document.getElementById('quickBuildingSelect').value = state.selectedBuildingId || '';
+      if (document.getElementById('selMonthFrom')) document.getElementById('selMonthFrom').value = state.monthFrom;
+      if (document.getElementById('selMonthTo')) document.getElementById('selMonthTo').value = state.monthTo;
+      if (document.getElementById('selMonth')) document.getElementById('selMonth').value = state.month;
+      if (document.getElementById('selYear')) document.getElementById('selYear').value = state.year;
+      if (document.getElementById('selDepartment')) document.getElementById('selDepartment').value = state.department;
+      if (document.getElementById('selColorMode')) document.getElementById('selColorMode').value = state.colorMode;
+      if (document.getElementById('quickBuildingSelect')) document.getElementById('quickBuildingSelect').value = state.selectedBuildingId || '';
+
+      updatePresetButtonsActiveState(state.monthFrom, state.monthTo);
+
+      // Update Timeline Label
+      const periodLabel = EnergyTwin.getPeriodLabel ? EnergyTwin.getPeriodLabel() : state.month;
+      const lbl = document.getElementById('timelineMonthLabel');
+      if (lbl) lbl.textContent = periodLabel;
 
       const months = EnergyTwin.summaryData.periods.months || [];
       const mIdx = months.indexOf(state.month);
       if (mIdx !== -1) {
         document.getElementById('timelineSlider').value = mIdx;
-        document.getElementById('timelineMonthLabel').textContent = state.month;
       }
 
       updateAlertBadges();
+    }
+
+    // Update Quick Preset Buttons Active Highlight
+    function updatePresetButtonsActiveState(mf, mt) {
+      const pAll = document.getElementById('presetAll');
+      const pH1 = document.getElementById('presetH1');
+      const pH2 = document.getElementById('presetH2');
+      const pLatest = document.getElementById('presetLatest');
+
+      if (pAll) pAll.classList.toggle('active', mf === 1 && mt === 12);
+      if (pH1) pH1.classList.toggle('active', mf === 1 && mt === 6);
+      if (pH2) pH2.classList.toggle('active', mf === 7 && mt === 12);
+      if (pLatest) {
+        const y = EnergyTwin.state.year;
+        const months = (EnergyTwin.summaryData?.periods?.months || []).filter(m => m.startsWith(y));
+        const lastM = months.length > 0 ? parseInt(months[months.length - 1].split('-')[1], 10) : 6;
+        pLatest.classList.toggle('active', mf === lastM && mt === lastM);
+      }
     }
 
     // Update Alert Badge Count
@@ -1337,16 +1429,23 @@
         ? `<div style="font-size:11px; color:#64748B; margin-top:2px;">ชื่อเรียกอื่น: <strong>${aliases.join(', ')}</strong></div>`
         : '';
 
-      const momText = b.mom_change_pct !== null
-        ? (b.mom_change_pct > 0 ? `+${b.mom_change_pct.toFixed(1)}%` : `${b.mom_change_pct.toFixed(1)}%`)
+      const isRange = EnergyTwin.getActiveMonths().length > 1;
+      const periodLabel = EnergyTwin.getPeriodLabel ? EnergyTwin.getPeriodLabel() : EnergyTwin.state.month;
+      const currentYearNum = parseInt(EnergyTwin.state.year, 10) || 2026;
+      const targetRate = currentYearNum === 2026 ? 8 : (currentYearNum === 2025 ? 5 : 0);
+
+      const trendRate = isRange ? b.yoy_change_pct : b.mom_change_pct;
+      const trendLabel = isRange ? 'เทียบช่วงเดียวกันปีก่อน (YoY)' : 'เทียบเดือนก่อนหน้า (MoM)';
+      const trendText = trendRate !== null
+        ? (trendRate > 0 ? `+${trendRate.toFixed(1)}%` : `${trendRate.toFixed(1)}%`)
         : 'ไม่มีข้อมูล';
-      const momColor = b.mom_change_pct !== null
-        ? (b.mom_change_pct <= 0 ? '#15803D' : '#DC2626')
+      const trendColor = trendRate !== null
+        ? (trendRate <= 0 ? '#15803D' : '#DC2626')
         : '#64748B';
 
       const targetText = b.target_status === 'achieved' 
-        ? '✅ บรรลุเป้าหมาย' 
-        : (b.target_status === 'exceeded' ? '⚠️ เกินเป้าหมาย' : 'ไม่มีเป้าหมาย');
+        ? `✅ บรรลุเป้าหมาย (${b.target_variance_pct !== null && b.target_variance_pct <= 0 ? 'ลดลง ' + Math.abs(b.target_variance_pct).toFixed(1) + '%' : 'ผ่านเกณฑ์'})` 
+        : (b.target_status === 'exceeded' ? `⚠️ เกินเป้าหมาย +${b.target_variance_pct ? b.target_variance_pct.toFixed(1) : 0}%` : 'ไม่มีข้อมูลปีก่อน');
       const targetColor = b.target_status === 'achieved' ? '#15803D' : (b.target_status === 'exceeded' ? '#DC2626' : '#64748B');
 
       // Department Allocation Breakdown
@@ -1394,20 +1493,20 @@
 
         <div class="stat-badge-grid">
           <div class="stat-badge highlight">
-            <div class="stat-label">การใช้ไฟเดือน ${EnergyTwin.state.month}</div>
+            <div class="stat-label">การใช้ไฟ (${periodLabel})</div>
             <div class="stat-val">${b.monthly_kwh !== null ? b.monthly_kwh.toLocaleString('th-TH', { minimumFractionDigits: 1 }) : 'N/A'}<span class="stat-unit">kWh</span></div>
           </div>
           <div class="stat-badge">
-            <div class="stat-label">สะสมปี ${EnergyTwin.state.year} (YTD)</div>
+            <div class="stat-label">สะสมทั้งปี ${EnergyTwin.state.year} (YTD)</div>
             <div class="stat-val">${b.annual_total !== null ? b.annual_total.toLocaleString('th-TH', { minimumFractionDigits: 1 }) : 'N/A'}<span class="stat-unit">kWh</span></div>
           </div>
           <div class="stat-badge">
-            <div class="stat-label">เทียบเดือนก่อนหน้า (MoM)</div>
-            <div class="stat-val" style="color:${momColor}">${momText}</div>
+            <div class="stat-label">${trendLabel}</div>
+            <div class="stat-val" style="color:${trendColor}">${trendText}</div>
           </div>
           <div class="stat-badge">
-            <div class="stat-label">ผลเทียบเป้าหมายประหยัด</div>
-            <div class="stat-val" style="color:${targetColor}; font-size:13px;">${targetText}</div>
+            <div class="stat-label">ผลเทียบเป้าหมายประหยัด (${targetRate}%)</div>
+            <div class="stat-val" style="color:${targetColor}; font-size:12px;">${targetText}</div>
           </div>
         </div>
 
@@ -1531,7 +1630,7 @@
             </div>
             <div style="font-size:12px; font-weight:600; color:var(--txt);">${b.short_name}</div>
             <div style="display:flex; justify-content:space-between; align-items:baseline; margin-top:4px;">
-              <span style="font-size:11px; color:var(--txt2);">ใช้ไฟฟ้า:</span>
+              <span style="font-size:11px; color:var(--txt2);">ใช้ไฟ (${EnergyTwin.getPeriodLabel ? EnergyTwin.getPeriodLabel() : EnergyTwin.state.month}):</span>
               <span style="font-size:14px; font-weight:800; color:var(--pri);">
                 ${b.monthly_kwh !== null ? b.monthly_kwh.toLocaleString() : 'N/A'} <span style="font-size:10px;">kWh</span>
               </span>
@@ -1557,12 +1656,28 @@
       `).join('');
     }
 
-    // Update Campus Total
+    // Update Campus Total strictly synchronized with index.html
     function updateCampusTotalUI() {
-      const buildings = EnergyTwin.getBuildingsList();
-      const total = buildings.reduce((acc, b) => acc + (b.monthly_kwh || 0), 0);
-      document.getElementById('txtCampusTotalKwh').textContent = 
-        `ยอดรวมทุกอาคารประจำงวด: ${total.toLocaleString('th-TH', { maximumFractionDigits: 0 })} kWh`;
+      const campus = EnergyTwin.getCampusTotal();
+      const totalStr = campus.totalKwh.toLocaleString('th-TH', { maximumFractionDigits: 0 });
+      const periodLabel = campus.periodLabel;
+
+      let compHtml = '';
+      if (campus.savedPct !== null) {
+        const isSaved = campus.savedPct >= 0;
+        const icon = isSaved ? '📉 ลดลง' : '🔺 เพิ่มขึ้น';
+        const color = isSaved ? '#166534' : '#991B1B';
+        const bg = isSaved ? '#DCFCE7' : '#FEE2E2';
+        const targetText = campus.targetRate > 0 ? ` (เป้า ${campus.targetRate}%)` : '';
+        compHtml = `<span style="background:${bg}; color:${color}; padding:2px 8px; border-radius:4px; font-size:11px; font-weight:700;">${icon} ${Math.abs(campus.savedPct).toFixed(1)}%${targetText}</span>`;
+      } else {
+        compHtml = `<span style="color:#64748B; font-size:11px;">(ไม่มีข้อมูลปีก่อนเปรียบเทียบ)</span>`;
+      }
+
+      const el = document.getElementById('txtCampusTotalKwh');
+      if (el) {
+        el.innerHTML = `<span>${periodLabel}: <strong>${totalStr}</strong> kWh</span> ${compHtml}`;
+      }
     }
 
     // Visual Mode Switching (Heatmap, 3D Bars, Energy Flow)
@@ -1672,10 +1787,20 @@
           let curIdx = months.indexOf(EnergyTwin.state.month);
           curIdx = (curIdx + 1) % months.length;
           const nextMonth = months[curIdx];
+          const [y, m] = nextMonth.split('-');
+          const mNum = parseInt(m, 10);
           EnergyTwin.setState({
-            month: nextMonth,
-            year: nextMonth.substring(0, 4)
+            year: y,
+            monthFrom: mNum,
+            monthTo: mNum,
+            month: nextMonth
           });
+          const selFrom = document.getElementById('selMonthFrom');
+          const selTo = document.getElementById('selMonthTo');
+          const selYear = document.getElementById('selYear');
+          if (selYear) selYear.value = y;
+          if (selFrom) selFrom.value = mNum;
+          if (selTo) selTo.value = mNum;
         }, 1800);
       }
     }
@@ -1683,25 +1808,101 @@
     function onTimelineSliderInput(val) {
       const months = EnergyTwin.summaryData.periods.months || [];
       const chosenMonth = months[val];
-      if (chosenMonth && chosenMonth !== EnergyTwin.state.month) {
+      if (chosenMonth) {
+        const [y, m] = chosenMonth.split('-');
+        const mNum = parseInt(m, 10);
         EnergyTwin.setState({
-          month: chosenMonth,
-          year: chosenMonth.substring(0, 4)
+          year: y,
+          monthFrom: mNum,
+          monthTo: mNum,
+          month: chosenMonth
         });
+        const selFrom = document.getElementById('selMonthFrom');
+        const selTo = document.getElementById('selMonthTo');
+        const selYear = document.getElementById('selYear');
+        if (selYear) selYear.value = y;
+        if (selFrom) selFrom.value = mNum;
+        if (selTo) selTo.value = mNum;
       }
     }
 
     // Dropdown Handlers
     function onYearChange() {
       const y = document.getElementById('selYear').value;
-      const months = (EnergyTwin.summaryData.periods.months || []).filter(m => m.startsWith(y));
-      const targetMonth = months.length > 0 ? months[months.length - 1] : `${y}-01`;
-      EnergyTwin.setState({ year: y, month: targetMonth });
+      const mf = parseInt(document.getElementById('selMonthFrom')?.value, 10) || 1;
+      const mt = parseInt(document.getElementById('selMonthTo')?.value, 10) || 12;
+      EnergyTwin.setState({
+        year: y,
+        monthFrom: mf,
+        monthTo: mt,
+        month: `${y}-${String(mt).padStart(2, '0')}`
+      });
+    }
+
+    function onMonthRangeChange() {
+      const selFrom = document.getElementById('selMonthFrom');
+      const selTo = document.getElementById('selMonthTo');
+      let mf = parseInt(selFrom.value, 10);
+      let mt = parseInt(selTo.value, 10);
+
+      if (mf > mt) {
+        mt = mf;
+        selTo.value = mt;
+      }
+
+      const y = document.getElementById('selYear').value;
+      EnergyTwin.setState({
+        year: y,
+        monthFrom: mf,
+        monthTo: mt,
+        month: `${y}-${String(mt).padStart(2, '0')}`
+      });
+    }
+
+    function setMonthPreset(type) {
+      const y = document.getElementById('selYear').value;
+      let mf = 1, mt = 12;
+      if (type === 'all') {
+        mf = 1; mt = 12;
+      } else if (type === 'h1') {
+        mf = 1; mt = 6;
+      } else if (type === 'h2') {
+        mf = 7; mt = 12;
+      } else if (type === 'latest') {
+        const months = (EnergyTwin.summaryData?.periods?.months || []).filter(m => m.startsWith(y));
+        if (months.length > 0) {
+          const lastM = parseInt(months[months.length - 1].split('-')[1], 10);
+          mf = lastM; mt = lastM;
+        } else {
+          mf = 6; mt = 6;
+        }
+      }
+
+      const selFrom = document.getElementById('selMonthFrom');
+      const selTo = document.getElementById('selMonthTo');
+      if (selFrom) selFrom.value = mf;
+      if (selTo) selTo.value = mt;
+
+      EnergyTwin.setState({
+        year: y,
+        monthFrom: mf,
+        monthTo: mt,
+        month: `${y}-${String(mt).padStart(2, '0')}`
+      });
     }
 
     function onMonthChange() {
       const m = document.getElementById('selMonth').value;
-      EnergyTwin.setState({ month: m, year: m.substring(0, 4) });
+      if (m) {
+        const [y, mo] = m.split('-');
+        const mNum = parseInt(mo, 10);
+        EnergyTwin.setState({
+          year: y,
+          monthFrom: mNum,
+          monthTo: mNum,
+          month: m
+        });
+      }
     }
 
     function onDepartmentChange() {

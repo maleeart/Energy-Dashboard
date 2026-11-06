@@ -5,109 +5,126 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT / "data"
 
-def build_building_summary():
-    with open(DATA_DIR / "energy_db.json", "r", encoding="utf-8") as f:
-        energy_db = json.load(f)
+with open(DATA_DIR / "energy_db.json", "r", encoding="utf-8") as f:
+    energy_db = json.load(f)
 
-    with open(DATA_DIR / "building_mapping.json", "r", encoding="utf-8") as f:
-        mapping = json.load(f)
+with open(DATA_DIR / "building_mapping.json", "r", encoding="utf-8") as f:
+    mapping = json.load(f)
 
-    weekly_consumption = energy_db.get("weekly_consumption", [])
-    buildings = mapping.get("buildings", {})
+dept_weekly = energy_db.get("department_weekly", [])
+weekly_consumption = energy_db.get("weekly_consumption", [])
+buildings = mapping.get("buildings", {})
 
-    # Map meter_id to b_code from building_mapping
-    meter_to_building = {}
-    main_meters = set()
-    for b_code, b_info in buildings.items():
-        m_rule = b_info.get("metering", {})
-        main_m = m_rule.get("main_meter_id")
-        if main_m:
-            main_meters.add(main_m)
-            meter_to_building[main_m] = b_code
-        for m_id in m_rule.get("all_main_meters", []):
-            main_meters.add(m_id)
-            meter_to_building[m_id] = b_code
+DEPT = ["สก.ชธธ.", "อบค.", "อบฟ.", "อบย.", "อรอ.", "อคม.", "อหข.", "อสร."]
 
-    # Group weekly consumption by building and month/week
-    # Notice: Each weekly row has: week_id, week_start_date, week_end_date, meter_id, kwh, b_code
-    b_weekly = defaultdict(lambda: defaultdict(float))
-    b_monthly = defaultdict(lambda: defaultdict(float))
-    b_sub_monthly = defaultdict(lambda: defaultdict(lambda: defaultdict(float)))
+def ymd_year(d): return int(str(d)[:4])
+def ymd_month(d): return int(str(d)[5:7])
 
-    # Track all available periods
-    all_weeks = set()
-    all_months = set()
+def valid_energy_row(r):
+    kwh = float(r.get("kwh", 0) or 0)
+    flags = r.get("flags") or r.get("source_flags") or []
+    bad = any("SPIKE_SUSPECT" in str(f) or "NEGATIVE_DELTA_NOT_RESET" in str(f) or "NEGATIVE_DELTA_INVALID" in str(f) for f in flags)
+    return (not bad) and (kwh <= 2000000)
 
-    for row in weekly_consumption:
-        m_id = row.get("meter_id")
-        kwh = float(row.get("kwh", 0) or 0)
-        w_id = row.get("week_id")
-        w_end = row.get("week_end_date")
-        month = w_end[:7] if w_end else ""
+# 1. Aggregate department_weekly by building, month, and department
+b_monthly_allocated = defaultdict(lambda: defaultdict(float))
+b_monthly_by_dept = defaultdict(lambda: defaultdict(lambda: defaultdict(float)))
+dept_monthly_totals = defaultdict(lambda: defaultdict(float))
+campus_monthly_totals = defaultdict(float)
 
-        if w_id:
-            all_weeks.add(w_id)
-        if month:
-            all_months.add(month)
+all_months = set()
 
-        # Check if this meter belongs to a building's main meter
-        b_code = meter_to_building.get(m_id)
-        if b_code and m_id in main_meters:
-            if w_id:
-                b_weekly[b_code][w_id] += kwh
-            if month:
-                b_monthly[b_code][month] += kwh
+for r in dept_weekly:
+    w_end = r.get("week_end_date", "")
+    if not w_end or not valid_energy_row(r):
+        continue
 
-        # Also group submeters
-        raw_b_code = row.get("b_code")
-        if raw_b_code in buildings and m_id not in main_meters:
-            if month:
-                b_sub_monthly[raw_b_code][month][m_id] += kwh
+    month = w_end[:7]
+    all_months.add(month)
 
-    # Format result structure
-    summary_by_building = {}
-    for b_code, b_info in sorted(buildings.items()):
-        m_monthly = {m: round(b_monthly[b_code].get(m, 0.0), 2) for m in sorted(all_months)}
-        m_weekly = {w: round(b_weekly[b_code].get(w, 0.0), 2) for w in sorted(all_weeks)}
+    kwh = float(r.get("kwh", 0) or 0)
+    dept = r.get("department")
+    b_code = r.get("b_code")
 
-        # Annual totals
-        years = sorted(list({m[:4] for m in all_months if m}))
-        annual_totals = {}
-        for y in years:
-            y_months = [m for m in all_months if m.startswith(y)]
-            annual_totals[y] = round(sum(m_monthly.get(m, 0.0) for m in y_months), 2)
+    if b_code in buildings:
+        b_monthly_allocated[b_code][month] += kwh
+        if dept:
+            b_monthly_by_dept[b_code][month][dept] += kwh
 
-        summary_by_building[b_code] = {
-            "b_code": b_code,
-            "name": b_info.get("name"),
-            "short_name": b_info.get("short_name"),
-            "category": b_info.get("category"),
-            "main_meter_id": b_info.get("metering", {}).get("main_meter_id"),
-            "monthly_kwh": m_monthly,
-            "weekly_kwh": m_weekly,
-            "annual_totals": annual_totals,
-            "sub_meters_monthly": {
-                m: {sub_m: round(val, 2) for sub_m, val in sub_dict.items()}
-                for m, sub_dict in b_sub_monthly[b_code].items()
-            }
+    if dept:
+        dept_monthly_totals[dept][month] += kwh
+    campus_monthly_totals[month] += kwh
+
+# 2. Sub-meters monthly breakdown
+b_sub_monthly = defaultdict(lambda: defaultdict(lambda: defaultdict(float)))
+for r in weekly_consumption:
+    w_end = r.get("week_end_date", "")
+    if not w_end or not valid_energy_row(r):
+        continue
+    month = w_end[:7]
+    b_code = r.get("b_code")
+    m_id = r.get("meter_id")
+    is_main = r.get("is_main_meter", False)
+    kwh = float(r.get("kwh", 0) or 0)
+
+    if b_code in buildings and not is_main and m_id:
+        b_sub_monthly[b_code][month][m_id] += kwh
+
+# 3. Build summary dictionary
+years = sorted(list({m[:4] for m in all_months if m}))
+
+summary_by_building = {}
+for b_code, b_info in sorted(buildings.items()):
+    m_monthly = {m: round(b_monthly_allocated[b_code].get(m, 0.0), 2) for m in sorted(all_months)}
+    
+    annual_totals = {}
+    for y in years:
+        y_months = [m for m in all_months if m.startswith(y)]
+        annual_totals[y] = round(sum(m_monthly.get(m, 0.0) for m in y_months), 2)
+
+    by_dept_formatted = {}
+    for m in sorted(all_months):
+        by_dept_formatted[m] = {
+            d: round(b_monthly_by_dept[b_code][m].get(d, 0.0), 2)
+            for d in DEPT if b_monthly_by_dept[b_code][m].get(d, 0.0) > 0
         }
 
-    out_data = {
-        "schema_version": "1.0.0",
-        "generated_at": energy_db.get("meta", {}).get("generated_at"),
-        "periods": {
-            "months": sorted(all_months),
-            "weeks": sorted(all_weeks),
-            "years": sorted(list({m[:4] for m in all_months if m}))
-        },
-        "buildings": summary_by_building
+    summary_by_building[b_code] = {
+        "b_code": b_code,
+        "name": b_info.get("name"),
+        "short_name": b_info.get("short_name"),
+        "category": b_info.get("category"),
+        "category_th": b_info.get("category_th"),
+        "main_meter_id": b_info.get("metering", {}).get("main_meter_id"),
+        "monthly_kwh": m_monthly,
+        "monthly_by_dept": by_dept_formatted,
+        "annual_totals": annual_totals,
+        "sub_meters_monthly": {
+            m: {sub_m: round(val, 2) for sub_m, val in sub_dict.items()}
+            for m, sub_dict in b_sub_monthly[b_code].items()
+        }
     }
 
-    out_file = DATA_DIR / "building_energy_summary.json"
-    with open(out_file, "w", encoding="utf-8") as f:
-        json.dump(out_data, f, ensure_ascii=False, indent=2)
+out_data = {
+    "schema_version": "2.0.0",
+    "description": "Pre-aggregated building and department energy consumption strictly synced with index.html formulas and allocations",
+    "periods": {
+        "months": sorted(all_months),
+        "years": years
+    },
+    "campus_monthly_totals": {m: round(campus_monthly_totals[m], 2) for m in sorted(all_months)},
+    "department_monthly_totals": {
+        d: {m: round(dept_monthly_totals[d].get(m, 0.0), 2) for m in sorted(all_months)}
+        for d in DEPT
+    },
+    "buildings": summary_by_building
+}
 
-    print(f"Built {out_file} successfully! Buildings: {len(summary_by_building)}, Months: {len(all_months)}, Weeks: {len(all_weeks)}")
+out_file = DATA_DIR / "building_energy_summary.json"
+with open(out_file, "w", encoding="utf-8") as f:
+    json.dump(out_data, f, ensure_ascii=False, indent=2)
 
-if __name__ == "__main__":
-    build_building_summary()
+print(f"Successfully generated {out_file}!")
+print(f"Months: {len(all_months)}, Buildings: {len(summary_by_building)}")
+print(f"June 2026 Campus Total: {out_data['campus_monthly_totals'].get('2026-06'):,.2f} kWh")
+print(f"2026 Full Year Total: {sum(v for m, v in out_data['campus_monthly_totals'].items() if m.startswith('2026')):,.2f} kWh")
