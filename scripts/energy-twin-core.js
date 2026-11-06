@@ -53,6 +53,20 @@
     // Listeners for state change
     subscribers: [],
 
+    // Memoization Caches
+    _aliasCache: {},
+    _buildingsCache: null,
+    _buildingsCacheKey: '',
+    _campusTotalCache: null,
+    _campusTotalCacheKey: '',
+
+    invalidateCache() {
+      this._buildingsCache = null;
+      this._buildingsCacheKey = '';
+      this._campusTotalCache = null;
+      this._campusTotalCacheKey = '';
+    },
+
     subscribe(callback) {
       if (typeof callback === 'function') {
         this.subscribers.push(callback);
@@ -82,6 +96,12 @@
     },
 
     setState(updates) {
+      const keys = Object.keys(updates);
+      const cacheAffecting = ['year', 'monthFrom', 'monthTo', 'department', 'month'];
+      if (keys.some(k => cacheAffecting.includes(k))) {
+        this.invalidateCache();
+      }
+
       Object.assign(this.state, updates);
       if (updates.monthFrom !== undefined || updates.monthTo !== undefined || updates.year !== undefined) {
         const to = updates.monthTo !== undefined ? updates.monthTo : this.state.monthTo;
@@ -140,6 +160,11 @@
 
     // Grand Total and Target comparison strictly synchronized with index.html
     getCampusTotal() {
+      const cacheKey = `${this.state.year}|${this.state.monthFrom}|${this.state.monthTo}|${this.state.department}`;
+      if (this._campusTotalCache && this._campusTotalCacheKey === cacheKey) {
+        return this._campusTotalCache;
+      }
+
       const activeMonths = this.getActiveMonths();
       const prevMonths = this.getPrevPeriodMonths();
       const y = Number(this.state.year) || 2026;
@@ -181,7 +206,7 @@
         targetStatus = (savedPct >= targetRate) ? 'achieved' : (savedPct >= 0 ? 'reduced_below_target' : 'exceeded');
       }
 
-      return {
+      const result = {
         totalKwh,
         prevTotalKwh,
         diffPct,
@@ -193,6 +218,10 @@
         activeMonths,
         year: y
       };
+
+      this._campusTotalCacheKey = cacheKey;
+      this._campusTotalCache = result;
+      return result;
     },
 
     // Initialization: Load datasets concurrently
@@ -315,6 +344,7 @@
           this.mappingData.buildings[bCode].departments = Object.keys(shares);
         }
       }
+      this.invalidateCache();
     },
 
     // Save custom allocations to localStorage
@@ -323,6 +353,7 @@
         localStorage.setItem('sainoi_custom_allocations', JSON.stringify(updatedRows));
         this.customAllocations = updatedRows;
         this.applyAllocationsToMapping(updatedRows);
+        this.invalidateCache();
         this.notify('allocation_change');
         return true;
       } catch (e) {
@@ -338,6 +369,7 @@
       if (this.allocationRows.length > 0) {
         this.applyAllocationsToMapping(this.allocationRows);
       }
+      this.invalidateCache();
       this.notify('allocation_change');
     },
 
@@ -456,6 +488,12 @@
     // Get list of all buildings with current calculated metrics for the selected period
     getBuildingsList() {
       if (!this.mappingData || !this.mappingData.buildings) return [];
+
+      const cacheKey = `${this.state.year}|${this.state.monthFrom}|${this.state.monthTo}|${this.state.department}`;
+      if (this._buildingsCache && this._buildingsCacheKey === cacheKey) {
+        return this._buildingsCache;
+      }
+
       const mBuildings = this.mappingData.buildings;
       const sBuildings = (this.summaryData && this.summaryData.buildings) || {};
 
@@ -646,12 +684,17 @@
         });
       }
 
+      this._buildingsCacheKey = cacheKey;
+      this._buildingsCache = list;
       return list;
     },
 
     // Get aliases for a building from building_alias.json
     getBuildingAliases(bCode) {
       if (!this.aliasData) return [];
+      if (!this._aliasCache) this._aliasCache = {};
+      if (this._aliasCache[bCode]) return this._aliasCache[bCode];
+
       const aliases = new Set();
       const codePattern = new RegExp(`\\b${bCode.replace('.', '\\.')}\\b`, 'i');
       
@@ -663,7 +706,9 @@
           aliases.add(aliasVal.trim());
         }
       }
-      return Array.from(aliases);
+      const res = Array.from(aliases);
+      this._aliasCache[bCode] = res;
+      return res;
     },
 
     // Get event logs relevant to active period
@@ -1003,4 +1048,4 @@
 
   window.EnergyTwin = EnergyTwin;
 
-})(window);
+})(typeof window !== 'undefined' ? window : (typeof global !== 'undefined' ? global : this));

@@ -1837,19 +1837,29 @@
     }
 
     updateBuildingColors(buildingsList) {
-      buildingsList.forEach(bData => {
-        const group = this.buildingMeshes.get(bData.b_code);
-        if (group && group.userData.mainMaterial) {
+      const bMap = new Map();
+      buildingsList.forEach(b => bMap.set(b.b_code, b));
+
+      this.buildingMeshes.forEach((group, bCode) => {
+        const bData = bMap.get(bCode);
+        if (bData && group && group.userData.mainMaterial) {
           const colorInfo = window.EnergyTwin.getColorForBuilding(bData);
           group.userData.mainMaterial.color.set(colorInfo.hex);
+          group.userData.mainMaterial.opacity = 1.0;
+          group.userData.mainMaterial.transparent = false;
+        } else if (group && group.userData.mainMaterial) {
+          // Softly dim buildings not in current department filter
+          group.userData.mainMaterial.color.set(0x94A3B8);
+          group.userData.mainMaterial.opacity = 0.35;
+          group.userData.mainMaterial.transparent = true;
         }
 
-        let warnSprite = this.warningSprites.get(bData.b_code);
-        if (bData.quality_status !== 'normal') {
+        let warnSprite = this.warningSprites.get(bCode);
+        if (bData && bData.quality_status !== 'normal') {
           if (!warnSprite) {
             warnSprite = this.createWarningSprite(bData);
             this.scene.add(warnSprite);
-            this.warningSprites.set(bData.b_code, warnSprite);
+            this.warningSprites.set(bCode, warnSprite);
           }
           warnSprite.visible = true;
         } else if (warnSprite) {

@@ -1336,7 +1336,8 @@
         }
 
         if (state.selectedBuildingId) {
-          campusScene.selectBuilding(state.selectedBuildingId, true);
+          const shouldFly = (state.selectedBuildingId !== campusScene.selectedBuilding);
+          campusScene.selectBuilding(state.selectedBuildingId, shouldFly);
         } else {
           campusScene.selectBuilding(null, false);
         }
@@ -1410,6 +1411,8 @@
         badge.style.display = alerts.length > 0 ? 'inline-block' : 'none';
       }
     }
+
+    let lastRenderedBuildingCode = null;
 
     // Render Side Panel Building Details
     function renderBuildingDetail(bCode) {
@@ -1488,29 +1491,58 @@
         `;
       }
 
+      // Selective DOM Patching if same building is already loaded: avoids destroying Canvas and DOM elements
+      if (lastRenderedBuildingCode === bCode && document.getElementById('detailPeriodVal')) {
+        document.getElementById('detailPeriodLabel').textContent = `การใช้ไฟ (${periodLabel})`;
+        document.getElementById('detailPeriodVal').innerHTML = `${b.monthly_kwh !== null ? b.monthly_kwh.toLocaleString('th-TH', { minimumFractionDigits: 1 }) : 'N/A'}<span class="stat-unit">kWh</span>`;
+        document.getElementById('detailAnnualLabel').textContent = `สะสมทั้งปี ${EnergyTwin.state.year} (YTD)`;
+        document.getElementById('detailAnnualVal').innerHTML = `${b.annual_total !== null ? b.annual_total.toLocaleString('th-TH', { minimumFractionDigits: 1 }) : 'N/A'}<span class="stat-unit">kWh</span>`;
+        document.getElementById('detailTrendLabel').textContent = trendLabel;
+        const trendEl = document.getElementById('detailTrendVal');
+        if (trendEl) {
+          trendEl.textContent = trendText;
+          trendEl.style.color = trendColor;
+        }
+        document.getElementById('detailTargetLabel').textContent = `ผลเทียบเป้าหมายประหยัด (${targetRate}%)`;
+        const targetEl = document.getElementById('detailTargetVal');
+        if (targetEl) {
+          targetEl.textContent = targetText;
+          targetEl.style.color = targetColor;
+        }
+        const evCont = document.getElementById('detailEventsContainer');
+        if (evCont) evCont.innerHTML = eventsBanner;
+        const subBody = document.getElementById('detailSubMetersBody');
+        if (subBody) subBody.innerHTML = subMeterRows;
+
+        renderTrendChart(b);
+        return;
+      }
+
+      lastRenderedBuildingCode = bCode;
+
       const bodyHtml = `
         ${aliasHtml}
 
         <div class="stat-badge-grid">
           <div class="stat-badge highlight">
-            <div class="stat-label">การใช้ไฟ (${periodLabel})</div>
-            <div class="stat-val">${b.monthly_kwh !== null ? b.monthly_kwh.toLocaleString('th-TH', { minimumFractionDigits: 1 }) : 'N/A'}<span class="stat-unit">kWh</span></div>
+            <div class="stat-label" id="detailPeriodLabel">การใช้ไฟ (${periodLabel})</div>
+            <div class="stat-val" id="detailPeriodVal">${b.monthly_kwh !== null ? b.monthly_kwh.toLocaleString('th-TH', { minimumFractionDigits: 1 }) : 'N/A'}<span class="stat-unit">kWh</span></div>
           </div>
           <div class="stat-badge">
-            <div class="stat-label">สะสมทั้งปี ${EnergyTwin.state.year} (YTD)</div>
-            <div class="stat-val">${b.annual_total !== null ? b.annual_total.toLocaleString('th-TH', { minimumFractionDigits: 1 }) : 'N/A'}<span class="stat-unit">kWh</span></div>
+            <div class="stat-label" id="detailAnnualLabel">สะสมทั้งปี ${EnergyTwin.state.year} (YTD)</div>
+            <div class="stat-val" id="detailAnnualVal">${b.annual_total !== null ? b.annual_total.toLocaleString('th-TH', { minimumFractionDigits: 1 }) : 'N/A'}<span class="stat-unit">kWh</span></div>
           </div>
           <div class="stat-badge">
-            <div class="stat-label">${trendLabel}</div>
-            <div class="stat-val" style="color:${trendColor}">${trendText}</div>
+            <div class="stat-label" id="detailTrendLabel">${trendLabel}</div>
+            <div class="stat-val" id="detailTrendVal" style="color:${trendColor}">${trendText}</div>
           </div>
           <div class="stat-badge">
-            <div class="stat-label">ผลเทียบเป้าหมายประหยัด (${targetRate}%)</div>
-            <div class="stat-val" style="color:${targetColor}; font-size:12px;">${targetText}</div>
+            <div class="stat-label" id="detailTargetLabel">ผลเทียบเป้าหมายประหยัด (${targetRate}%)</div>
+            <div class="stat-val" id="detailTargetVal" style="color:${targetColor}; font-size:12px;">${targetText}</div>
           </div>
         </div>
 
-        ${eventsBanner}
+        <div id="detailEventsContainer">${eventsBanner}</div>
 
         <div>
           <div style="font-size:12px; font-weight:700; color:var(--pri); margin-bottom:6px;">📈 แนวโน้มการใช้ไฟฟ้าย้อนหลัง (kWh)</div>
@@ -1542,7 +1574,7 @@
                     <th style="text-align:right;">หน่วยใช้ (kWh)</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody id="detailSubMetersBody">
                   ${subMeterRows}
                 </tbody>
               </table>
@@ -1571,11 +1603,21 @@
       const ctx = document.getElementById('buildingTrendChart');
       if (!ctx) return;
 
-      if (trendChartInstance) trendChartInstance.destroy();
-
       const rawMonthly = (b.raw_summary && b.raw_summary.monthly_kwh) || {};
       const months = Object.keys(rawMonthly).sort().slice(-12);
       const values = months.map(m => rawMonthly[m] || 0);
+
+      if (trendChartInstance && trendChartInstance.ctx && trendChartInstance.canvas === ctx) {
+        trendChartInstance.data.labels = months.map(m => m.substring(2));
+        trendChartInstance.data.datasets[0].data = values;
+        trendChartInstance.update('none');
+        return;
+      }
+
+      if (trendChartInstance) {
+        trendChartInstance.destroy();
+        trendChartInstance = null;
+      }
 
       trendChartInstance = new Chart(ctx, {
         type: 'line',
@@ -1616,6 +1658,12 @@
     function render2DGrid(buildings) {
       const grid = document.getElementById('campus2DGrid');
       if (!grid) return;
+
+      if (EnergyTwin.state.viewMode !== '2d') {
+        grid._pendingUpdate = true;
+        return;
+      }
+      grid._pendingUpdate = false;
 
       let html = '';
       buildings.forEach(b => {
@@ -1749,6 +1797,10 @@
       if (mode === '2d') {
         v3d.style.display = 'none';
         v2d.style.display = 'block';
+        const grid = document.getElementById('campus2DGrid');
+        if (grid && (grid._pendingUpdate || !grid.innerHTML.trim())) {
+          render2DGrid(EnergyTwin.getBuildingsList());
+        }
       } else {
         v3d.style.display = 'flex';
         v2d.style.display = 'none';
@@ -1805,25 +1857,29 @@
       }
     }
 
+    let _sliderRaf = null;
     function onTimelineSliderInput(val) {
-      const months = EnergyTwin.summaryData.periods.months || [];
-      const chosenMonth = months[val];
-      if (chosenMonth) {
-        const [y, m] = chosenMonth.split('-');
-        const mNum = parseInt(m, 10);
-        EnergyTwin.setState({
-          year: y,
-          monthFrom: mNum,
-          monthTo: mNum,
-          month: chosenMonth
-        });
-        const selFrom = document.getElementById('selMonthFrom');
-        const selTo = document.getElementById('selMonthTo');
-        const selYear = document.getElementById('selYear');
-        if (selYear) selYear.value = y;
-        if (selFrom) selFrom.value = mNum;
-        if (selTo) selTo.value = mNum;
-      }
+      if (_sliderRaf) cancelAnimationFrame(_sliderRaf);
+      _sliderRaf = requestAnimationFrame(() => {
+        const months = EnergyTwin.summaryData.periods.months || [];
+        const chosenMonth = months[val];
+        if (chosenMonth) {
+          const [y, m] = chosenMonth.split('-');
+          const mNum = parseInt(m, 10);
+          EnergyTwin.setState({
+            year: y,
+            monthFrom: mNum,
+            monthTo: mNum,
+            month: chosenMonth
+          });
+          const selFrom = document.getElementById('selMonthFrom');
+          const selTo = document.getElementById('selMonthTo');
+          const selYear = document.getElementById('selYear');
+          if (selYear) selYear.value = y;
+          if (selFrom) selFrom.value = mNum;
+          if (selTo) selTo.value = mNum;
+        }
+      });
     }
 
     // Dropdown Handlers
@@ -1929,6 +1985,7 @@
 
     function closeDetailPanel() {
       document.getElementById('sideDetailPanel').classList.add('collapsed');
+      lastRenderedBuildingCode = null;
       EnergyTwin.setState({ selectedBuildingId: null });
     }
 
