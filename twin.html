@@ -1422,9 +1422,9 @@
             <span>📁 ส่งออก / นำเข้าไฟล์:</span>
           </div>
           <div style="display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
-            <a href="data/sainoi_campus_layout_template.xlsx" download="sainoi_campus_layout_template.xlsx" class="btn-action" style="text-decoration:none; color:#15803D; border-color:#86EFAC; background:#F0FDF4;" title="ดาวน์โหลดไฟล์ Excel (.xlsx) ที่มีทั้งผังเซลล์ 2D Grid Map, ตารางพิกัดอาคาร, เส้นทางถนน และวัตถุประกอบรอบๆ">
+            <button type="button" class="btn-action" style="color:#15803D; border-color:#86EFAC; background:#F0FDF4;" onclick="EnergyTwin.exportLayoutXlsx()" title="ดาวน์โหลดไฟล์ Excel (.xlsx) ที่มีทั้งผังเซลล์ 2D Grid Map, ตารางพิกัดอาคาร, เส้นทางถนน และวัตถุประกอบรอบๆ">
               📊 ดาวน์โหลด Excel (.xlsx)
-            </a>
+            </button>
             <button type="button" class="btn-action" onclick="EnergyTwin.exportLayoutCsv()" title="ดาวน์โหลดตารางพิกัดอาคารและถนนในรูปแบบ CSV">
               📄 ตารางพิกัด (CSV)
             </button>
@@ -1439,6 +1439,13 @@
             </button>
             <input type="file" id="layoutFileInput" accept=".xlsx,.xls,.csv,.json" style="display:none;" onchange="onLayoutFileSelected(event)">
           </div>
+        </div>
+
+        <!-- Excel Protected View / Edit Guidance Banner -->
+        <div style="background:#FFFBEB; border:1px solid #FDE68A; border-radius:6px; padding:6px 12px; font-size:11px; color:#92400E; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:6px;">
+          <span>
+            💡 <strong>หากเปิดไฟล์ Excel แล้วขึ้นแถบสีเหลือง 'Protected View' (มุมมองที่ได้รับการป้องกัน / อ่านอย่างเดียว):</strong> ให้กดปุ่ม <strong>[เปิดใช้งานการแก้ไข] (Enable Editing)</strong> ที่แถบสีเหลืองด้านบน หรือคลิกขวาที่ไฟล์ &gt; Properties &gt; ติ๊ก [x] Unblock เพื่อแก้ไขได้ทันที | หรือสามารถปรับแต่งบน <strong>'ผังตารางเซลล์ (Interactive Excel Grid)'</strong> บนหน้าเว็บนี้ได้โดยตรงโดยไม่ต้องเปิดโปรแกรม Excel ครับ
+          </span>
         </div>
 
         <!-- TAB 1: Interactive Excel Grid -->

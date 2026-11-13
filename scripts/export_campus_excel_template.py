@@ -11,7 +11,7 @@ import csv
 import math
 import os
 import openpyxl
-from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
+from openpyxl.styles import Font, PatternFill, Alignment, Border, Side, Protection
 from openpyxl.utils import get_column_letter
 
 def build_excel_and_csv():
@@ -647,6 +647,15 @@ def build_excel_and_csv():
         ws_lm.column_dimensions[col_letter].width = max(max_len + 3, 14)
 
     ws_lm.freeze_panes = 'A5'
+
+    # Explicitly ensure all worksheets and cells are unlocked and unprotected
+    unlocked = Protection(locked=False, hidden=False)
+    for ws in wb.worksheets:
+        ws.protection.sheet = False
+        ws.protection.disable()
+        for row in ws.iter_rows():
+            for cell in row:
+                cell.protection = unlocked
 
     # Save Excel Workbook
     xlsx_path = os.path.join('data', 'sainoi_campus_layout_template.xlsx')
