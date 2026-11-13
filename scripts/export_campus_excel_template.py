@@ -657,6 +657,9 @@ def build_excel_and_csv():
             for cell in row:
                 cell.protection = unlocked
 
+    # Explicitly remove workbook security/protection to prevent Excel read-only mode
+    wb.security = None
+
     # Save Excel Workbook
     xlsx_path = os.path.join('data', 'sainoi_campus_layout_template.xlsx')
     wb.save(xlsx_path)

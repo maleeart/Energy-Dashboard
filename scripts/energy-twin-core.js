@@ -592,106 +592,10 @@
       }
     },
 
-    // Export current layout as dynamic Excel (.xlsx) using SheetJS or fallback
+    // Export master Excel (.xlsx) template with full color palette, fonts and 4 sheets
     exportLayoutXlsx() {
-      if (typeof window !== 'undefined' && window.XLSX) {
-        try {
-          const wb = window.XLSX.utils.book_new();
-
-          // 1. Sheet: Campus_2D_Grid_Map
-          const buildings = this.mappingData ? this.mappingData.buildings : {};
-          const gridStep = 10;
-          const xMin = -210, xMax = 180;
-          const zMin = -220, zMax = 140;
-
-          const xValues = [];
-          for (let x = xMin; x <= xMax; x += gridStep) xValues.push(x);
-          const zValues = [];
-          for (let z = zMin; z <= zMax; z += gridStep) zValues.push(z);
-
-          const itemGrid = {};
-          const roadList = this.getRoadsList();
-          roadList.forEach(r => {
-            const gx = Math.round(r.x / gridStep) * gridStep;
-            const gz = Math.round(r.z / gridStep) * gridStep;
-            itemGrid[`${gx},${gz}`] = r.id;
-          });
-          Object.entries(buildings).forEach(([code, b]) => {
-            if (!b.layout_position) return;
-            const gx = Math.round(b.layout_position.x / gridStep) * gridStep;
-            const gz = Math.round(b.layout_position.z / gridStep) * gridStep;
-            itemGrid[`${gx},${gz}`] = code;
-          });
-
-          const gridAOA = [
-            ['ผังจำลองตำแหน่งอาคาร ถนน และวัตถุประกอบ 2D Campus Grid Map | การไฟฟ้าฝ่ายผลิตแห่งประเทศไทย สำนักงานไทรน้อย'],
-            ['มาตราส่วน: 1 ช่องเซลล์ = 10 x 10 เมตร | แนวนอน = พิกัด X | แนวตั้ง = พิกัด Z'],
-            ['วิธีแก้ไข: สามารถคัดลอก/ย้าย รหัสอาคาร หรือ รหัสถนน ไปวางในช่องพิกัดที่ต้องการ แล้วอัปโหลดกลับขึ้นระบบ 3D ได้ทันที'],
-            [],
-            ['Z \\ X (m)', ...xValues.map(x => `X=${x}`)]
-          ];
-          zValues.forEach(z => {
-            const row = [`Z=${z}`];
-            xValues.forEach(x => {
-              row.push(itemGrid[`${x},${z}`] || '');
-            });
-            gridAOA.push(row);
-          });
-          const wsGrid = window.XLSX.utils.aoa_to_sheet(gridAOA);
-          window.XLSX.utils.book_append_sheet(wb, wsGrid, 'Campus_2D_Grid_Map');
-
-          // 2. Sheet: Building_Coordinates
-          const bldRows = [];
-          Object.entries(buildings).sort(([a], [b]) => a.localeCompare(b)).forEach(([code, b]) => {
-            const pos = b.layout_position || { x: 0, z: 0, y: 0 };
-            const dim = b.dimensions || { width: 0, depth: 0, height: 0 };
-            bldRows.push({
-              'Building_Code': code,
-              'Building_Name': b.name || '',
-              'Category': b.category_th || '',
-              'Zone': b.zone || '',
-              'X_Coord': pos.x,
-              'Z_Coord': pos.z,
-              'Y_Coord': pos.y !== undefined ? pos.y : 0,
-              'Width_m': dim.width || 0,
-              'Depth_m': dim.depth || 0,
-              'Height_m': dim.height || 0,
-              'Primary_Meter_ID': b.primary_meter || '-'
-            });
-          });
-          const wsBld = window.XLSX.utils.json_to_sheet(bldRows);
-          window.XLSX.utils.book_append_sheet(wb, wsBld, 'Building_Coordinates');
-
-          // 3. Sheet: Road_Network
-          const roadRows = [];
-          roadList.forEach(r => {
-            roadRows.push({
-              'Road_Code': r.id,
-              'Road_Name': r.name || '',
-              'Category': r.category || 'เส้นทางถนน',
-              'Zone': 'Road Network',
-              'X_Coord': r.x,
-              'Z_Coord': r.z,
-              'Y_Coord': 0,
-              'Width_m': r.width || 8,
-              'Length_m': r.length || 50,
-              'Height_m': 0.2,
-              'Type': 'ROAD'
-            });
-          });
-          const wsRoads = window.XLSX.utils.json_to_sheet(roadRows);
-          window.XLSX.utils.book_append_sheet(wb, wsRoads, 'Road_Network');
-
-          window.XLSX.writeFile(wb, 'sainoi_campus_layout_template.xlsx');
-          return;
-        } catch (err) {
-          console.warn('SheetJS dynamic export failed, falling back to static download:', err);
-        }
-      }
-
-      // Static fallback
       const a = document.createElement('a');
-      a.href = 'data/sainoi_campus_layout_template.xlsx';
+      a.href = 'data/sainoi_campus_layout_template.xlsx?v=' + Date.now();
       a.download = 'sainoi_campus_layout_template.xlsx';
       document.body.appendChild(a);
       a.click();
