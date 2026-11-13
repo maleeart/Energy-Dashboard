@@ -14,11 +14,12 @@
   <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script>if (typeof XLSX === 'undefined') document.write('<script src="scripts/xlsx.full.min.js"><\/script>');</script>
 
   <!-- Core Scripts & Fallback Mapping -->
-  <script src="data/building_mapping.js"></script>
-  <script src="scripts/energy-twin-core.js"></script>
-  <script src="scripts/energy-twin-3d.js"></script>
+  <script src="data/building_mapping.js?v=20261113_02"></script>
+  <script src="scripts/energy-twin-core.js?v=20261113_02"></script>
+  <script src="scripts/energy-twin-3d.js?v=20261113_02"></script>
 
   <style>
     :root {
@@ -767,6 +768,15 @@
     .grid-badge.badge-water:hover {
       background: #0369A1;
     }
+    .grid-badge.badge-landmark {
+      background: #FEF3C7;
+      color: #92400E;
+      border: 1px solid #FCD34D;
+      font-size: 8.5px;
+    }
+    .grid-badge.badge-landmark:hover {
+      background: #FDE68A;
+    }
     .grid-badge.badge-active {
       outline: 2px solid #EA580C;
       box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.4);
@@ -1477,10 +1487,11 @@
             <div style="display:flex; align-items:center; gap:6px; font-size:12px;">
               <span style="font-weight:700; color:var(--pri);">แสดงบนตาราง:</span>
               <select id="gridCategoryFilter" onchange="renderInteractiveExcelGrid()" class="fl-select" style="padding:4px 8px; font-size:12px; color:var(--txt); border-color:var(--bdr); background:#fff;">
-                <option value="ALL">🌐 แสดงทั้งหมด (อาคาร + ถนน + แหล่งน้ำ)</option>
+                <option value="ALL">🌐 แสดงทั้งหมด (อาคาร + ถนน + แหล่งน้ำ + วัตถุประกอบ)</option>
                 <option value="bld">🏢 เฉพาะอาคาร (29 อาคาร)</option>
                 <option value="road">🛣️ เฉพาะถนน (15 เส้นทาง)</option>
                 <option value="water">💧 เฉพาะแหล่งน้ำ (สระน้ำ + คลอง)</option>
+                <option value="landmark">🚩 เฉพาะวัตถุประกอบ/แลนด์มาร์ค</option>
               </select>
             </div>
             <div style="display:flex; align-items:center; gap:4px; font-size:11px;">
@@ -1599,13 +1610,17 @@
         campusScene.populateBuildings(initBuildings);
       }
 
-      // 6.1 Apply saved custom road & water positions to 3D scene
+      // 6.1 Apply saved custom road, water & landmark positions to 3D scene
       if (campusScene) {
         const initRoads = EnergyTwin.getRoadsList ? EnergyTwin.getRoadsList() : [];
         initRoads.forEach(r => campusScene.updateRoadPosition(r.id, r.x, r.z));
         const initWater = EnergyTwin.getWaterList ? EnergyTwin.getWaterList() : [];
         initWater.forEach(w => {
           if (campusScene.updateWaterPosition) campusScene.updateWaterPosition(w.id, w.x, w.z);
+        });
+        const initLandmarks = EnergyTwin.getLandmarksList ? EnergyTwin.getLandmarksList() : [];
+        initLandmarks.forEach(l => {
+          if (campusScene.updateLandmarkPosition) campusScene.updateLandmarkPosition(l.id, l.x, l.z);
         });
       }
 
@@ -3038,6 +3053,24 @@
         });
       }
 
+      if (catFilter === 'ALL' || catFilter === 'landmark') {
+        const lmList = EnergyTwin.getLandmarksList ? EnergyTwin.getLandmarksList() : [];
+        lmList.forEach(l => {
+          const gx = Math.round(l.x / stepX) * stepX;
+          const gz = Math.round(l.z / stepZ) * stepZ;
+          const k = `${gx},${gz}`;
+          if (!cellMap[k]) cellMap[k] = [];
+          cellMap[k].push({
+            type: 'landmark',
+            id: l.id,
+            code: l.id.replace('SHRINE_', '').replace('PARKING_SHED_', 'P_'),
+            name: l.name,
+            x: l.x,
+            z: l.z
+          });
+        });
+      }
+
       // Build HTML for Excel Matrix
       const parts = [];
 
@@ -3093,6 +3126,16 @@
                      onclick="onGridBadgeClick(event, 'water', '${it.id}')"
                      title="💧 แหล่งน้ำ: ${it.name}\nพิกัดจริง: X=${it.x}, Z=${it.z}\n(คลิกเลือก หรือลากไปวางช่องใหม่)">
                   💧 ${it.code.substring(0, 7)}
+                </div>
+              `;
+            } else if (it.type === 'landmark') {
+              cellBadges += `
+                <div class="grid-badge badge-landmark ${isSelected ? 'badge-active' : ''}" 
+                     draggable="true" 
+                     ondragstart="onGridDragStart(event, 'landmark', '${it.id}')"
+                     onclick="onGridBadgeClick(event, 'landmark', '${it.id}')"
+                     title="🚩 วัตถุประกอบ: ${it.name}\nพิกัดจริง: X=${it.x}, Z=${it.z}\n(คลิกเลือก หรือลากไปวางช่องใหม่)">
+                  🚩 ${it.code.substring(0, 7)}
                 </div>
               `;
             }
@@ -3218,6 +3261,18 @@
         if (trigger3DFocus && campusScene) {
           campusScene.animateCamera({ x: x + 25, y: 60, z: z + 40 }, { x: x, y: 2, z: z }, 750);
         }
+      } else if (type === 'landmark') {
+        const lm = EnergyTwin.landmarks?.[id] || EnergyTwin.defaultLandmarks?.[id];
+        const name = lm ? lm.name : id;
+        const x = lm?.x ?? 0, z = lm?.z ?? 0;
+        if (infoEl) infoEl.innerHTML = `📍 กำลังเลือก: <strong>🚩 ${name}</strong> (X=${x}, Z=${z}) &nbsp;👉 <em>คลิกช่องเซลล์บนตารางที่ต้องการเพื่อย้ายตำแหน่ง</em>`;
+        if (badgeEl) {
+          badgeEl.className = 'grid-badge badge-landmark';
+          badgeEl.textContent = `🚩 ${id.replace('SHRINE_', '').replace('PARKING_SHED_', 'P_').substring(0, 8)}`;
+        }
+        if (trigger3DFocus && campusScene) {
+          campusScene.animateCamera({ x: x + 25, y: 60, z: z + 40 }, { x: x, y: 2, z: z }, 750);
+        }
       }
 
       if (actionsEl) actionsEl.style.display = 'flex';
@@ -3233,7 +3288,7 @@
       const infoEl = document.getElementById('gridSelectedInfo');
       const actionsEl = document.getElementById('gridSelectedActions');
       if (infoEl) {
-        infoEl.innerHTML = `💡 <strong>วิธีใช้ผังตาราง:</strong> คลิกที่ตัวอาคาร/ถนน/แหล่งน้ำ เพื่อเลือก แล้วคลิกช่องว่างที่ต้องการเพื่อย้ายตำแหน่ง (หรือ <strong>ลากแล้วปล่อย Drag & Drop</strong> ได้เลย) | 1 ช่อง = 10×10 ม. | อัปเดต 3D สดทันที`;
+        infoEl.innerHTML = `💡 <strong>วิธีใช้ผังตาราง:</strong> คลิกที่ตัวอาคาร/ถนน/แหล่งน้ำ/วัตถุประกอบ เพื่อเลือก แล้วคลิกช่องว่างที่ต้องการเพื่อย้ายตำแหน่ง (หรือ <strong>ลากแล้วปล่อย Drag & Drop</strong> ได้เลย) | 1 ช่อง = 10×10 ม. | อัปเดต 3D สดทันที`;
       }
       if (actionsEl) actionsEl.style.display = 'none';
       document.querySelectorAll('.grid-badge').forEach(el => el.classList.remove('badge-active'));
@@ -3249,6 +3304,11 @@
         const w = EnergyTwin.water?.[selectedGridItem.id] || EnergyTwin.defaultWater?.[selectedGridItem.id];
         if (w && campusScene) {
           campusScene.animateCamera({ x: w.x + 25, y: 60, z: w.z + 40 }, { x: w.x, y: 2, z: w.z }, 750);
+        }
+      } else if (selectedGridItem.type === 'landmark') {
+        const lm = EnergyTwin.landmarks?.[selectedGridItem.id] || EnergyTwin.defaultLandmarks?.[selectedGridItem.id];
+        if (lm && campusScene) {
+          campusScene.animateCamera({ x: lm.x + 25, y: 60, z: lm.z + 40 }, { x: lm.x, y: 2, z: lm.z }, 750);
         }
       }
     }
@@ -3269,6 +3329,16 @@
           }
           EnergyTwin.saveCustomWater({ [selectedGridItem.id]: { x: orig.x, z: orig.z } });
         }
+      } else if (selectedGridItem.type === 'landmark') {
+        const orig = EnergyTwin.defaultLandmarks?.[selectedGridItem.id];
+        if (orig && EnergyTwin.landmarks?.[selectedGridItem.id]) {
+          EnergyTwin.landmarks[selectedGridItem.id].x = orig.x;
+          EnergyTwin.landmarks[selectedGridItem.id].z = orig.z;
+          if (campusScene && campusScene.updateLandmarkPosition) {
+            campusScene.updateLandmarkPosition(selectedGridItem.id, orig.x, orig.z);
+          }
+          EnergyTwin.saveCustomLandmarks({ [selectedGridItem.id]: { x: orig.x, z: orig.z } });
+        }
       }
       renderInteractiveExcelGrid();
       if (activeLayoutTab === 'table') renderLayoutEditorList();
@@ -3285,7 +3355,7 @@
       }
     }
 
-    // Unified Layout Mover (Building, Road, or Water)
+    // Unified Layout Mover (Building, Road, Water, or Landmark)
     function moveLayoutItem(type, id, targetX, targetZ) {
       const numX = Number(targetX);
       const numZ = Number(targetZ);
@@ -3346,6 +3416,25 @@
         const infoEl = document.getElementById('gridSelectedInfo');
         if (infoEl) {
           infoEl.innerHTML = `✅ ย้าย <strong>${w.name}</strong> ไปที่พิกัด <strong>X=${numX}, Z=${numZ}</strong> เรียบร้อยแล้ว (3D อัปเดตสด)`;
+        }
+      } else if (type === 'landmark') {
+        if (!EnergyTwin.landmarks) EnergyTwin.landmarks = JSON.parse(JSON.stringify(EnergyTwin.defaultLandmarks));
+        if (!EnergyTwin.landmarks?.[id]) return;
+        const lm = EnergyTwin.landmarks[id];
+        lm.x = numX;
+        lm.z = numZ;
+
+        if (campusScene && campusScene.updateLandmarkPosition) {
+          campusScene.updateLandmarkPosition(id, numX, numZ);
+        }
+
+        // Auto-save custom landmarks
+        EnergyTwin.saveCustomLandmarks({ [id]: { x: numX, z: numZ } });
+
+        // Feedback
+        const infoEl = document.getElementById('gridSelectedInfo');
+        if (infoEl) {
+          infoEl.innerHTML = `✅ ย้าย <strong>${lm.name}</strong> ไปที่พิกัด <strong>X=${numX}, Z=${numZ}</strong> เรียบร้อยแล้ว (3D อัปเดตสด)`;
         }
       }
 
@@ -3755,15 +3844,29 @@
           }
         });
 
+        // Apply updated positions to 3D scene (Landmarks)
+        const lmList = EnergyTwin.getLandmarksList ? EnergyTwin.getLandmarksList() : [];
+        lmList.forEach(l => {
+          if (campusScene && campusScene.updateLandmarkPosition) {
+            campusScene.updateLandmarkPosition(l.id, l.x, l.z);
+          }
+        });
+
         clearGridSelection();
         renderInteractiveExcelGrid();
         renderLayoutEditorList();
 
-        let detailMsg = `✅ นำเข้าไฟล์สำเร็จ!\n`;
+        let detailMsg = `✅ นำเข้าไฟล์ผังสำเร็จ!\n`;
         detailMsg += `• ปรับปรุงตำแหน่งอาคาร: ${res?.bldCount || bList.length} หลัง\n`;
         detailMsg += `• ปรับปรุงเส้นทางถนน: ${res?.roadCount || rList.length} สาย\n`;
         if (res?.waterCount > 0 || wList.length > 0) {
           detailMsg += `• ปรับปรุงแหล่งน้ำ: ${res?.waterCount || wList.length} จุด\n`;
+        }
+        if (res?.landmarkCount > 0 || lmList.length > 0) {
+          detailMsg += `• ปรับปรุงแลนด์มาร์ค/วัตถุประกอบ: ${res?.landmarkCount || lmList.length} จุด\n`;
+        }
+        if (res?.source) {
+          detailMsg += `\nที่มา: ${res.source}`;
         }
         detailMsg += `\nโมเดล 3D และผังจำลองบนหน้าจออัปเดตเรียบร้อยแล้ว`;
         alert(detailMsg);

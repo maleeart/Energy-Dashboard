@@ -34,6 +34,7 @@
       this.landmarkSprites = [];       // array of landmark label sprites
       this.roadMeshes = new Map();     // road_id -> mesh or group
       this.waterMeshes = new Map();    // water_id -> mesh or group
+      this.landmarkMeshes = new Map(); // landmark_id -> mesh or group
 
       this.hemiLight = null;
       this.ambLight = null;
@@ -2872,6 +2873,17 @@
       const z = Number(newZ);
       if (!isNaN(x)) water.position.x = x;
       if (!isNaN(z)) water.position.z = z;
+      this.needsRender = true;
+    }
+
+    updateLandmarkPosition(landmarkId, newX, newZ) {
+      if (!this.landmarkMeshes) return;
+      const lm = this.landmarkMeshes.get(landmarkId);
+      if (!lm) return;
+      const x = Number(newX);
+      const z = Number(newZ);
+      if (!isNaN(x)) lm.position.x = x;
+      if (!isNaN(z)) lm.position.z = z;
       this.needsRender = true;
     }
 

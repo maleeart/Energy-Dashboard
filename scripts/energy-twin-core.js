@@ -272,6 +272,10 @@
         this.water = JSON.parse(JSON.stringify(this.defaultWater));
         this.loadCustomWater();
 
+        // Initialize landmarks and load saved custom landmarks
+        this.landmarks = JSON.parse(JSON.stringify(this.defaultLandmarks));
+        this.loadCustomLandmarks();
+
         // Default year and month range (default to full year matching index.html)
         if (this.summaryData && this.summaryData.periods) {
           const months = this.summaryData.periods.months || [];
@@ -477,6 +481,16 @@
           depth: w.depth
         };
       });
+      res.landmarks = {};
+      const landmarkList = this.getLandmarksList ? this.getLandmarksList() : [];
+      landmarkList.forEach(l => {
+        res.landmarks[l.id] = {
+          name: l.name,
+          category: l.category,
+          x: l.x,
+          z: l.z
+        };
+      });
       return res;
     },
 
@@ -567,6 +581,8 @@
       'POND_RETENTION_1': { name: 'สระน้ำระบายน้ำ 1 (North Pond)', x: -95, z: 45, width: 36, depth: 44, category: 'สระกักเก็บน้ำ' },
       'POND_RETENTION_2': { name: 'สระน้ำ 2 ข้างแฟลตที่พัก (Central Pond)', x: -95, z: -5, width: 36, depth: 38, category: 'สระกักเก็บน้ำ' },
       'POND_RETENTION_3': { name: 'สระน้ำ 3 หน้าโรงอาหาร (South Pond)', x: -75, z: -75, width: 32, depth: 38, category: 'สระกักเก็บน้ำ' },
+      'OHK_RETENTION_POND': { name: 'สระน้ำชะลอน้ำ อหข. (Peanut Retention Pond)', x: -171, z: -158, width: 22, depth: 38, category: 'สระกักเก็บน้ำ' },
+      'LAKE_PROMENADE': { name: 'สระน้ำและสะพานไม้ริมน้ำหลัง ท.0019', x: 35, z: 24, width: 42, depth: 18, category: 'สระน้ำและภูมิทัศน์' },
       'LAKE_FOUNTAIN': { name: 'สระน้ำพุวงเวียนหอนาฬิกา', x: 45, z: 100, width: 14, depth: 14, category: 'สระน้ำพุและภูมิทัศน์' },
       'SWIMMING_POOL': { name: 'สระว่ายน้ำสโมสรไทรน้อย', x: 100, z: -60, width: 16, depth: 25, category: 'สระว่ายน้ำสวัสดิการ' }
     },
@@ -632,12 +648,88 @@
       }));
     },
 
+    // ── Landmarks & Infrastructure Management ─────────────────────
+    defaultLandmarks: {
+      'SW_YARD': { name: 'ลานสวิตช์ยาร์ด 500 kV (Switchyard)', x: -65, z: 85, category: 'ระบบส่งไฟฟ้าแรงสูง' },
+      'FOOTBALL': { name: 'สนามฟุตบอลใหญ่ (Main Football Pitch)', x: 80, z: -46, category: 'สันทนาการและกีฬา' },
+      'TURBINE_SCULPTURE': { name: 'ลานปฏิมากรรมกังหันไอน้ำ (Turbine Plaza)', x: 35, z: 75, category: 'แลนด์มาร์คสำคัญ' },
+      'SUNFLOWER_FIELD': { name: 'ทุ่งทานตะวัน (Sunflower Field)', x: -15, z: 110, category: 'ภูมิทัศน์ธรรมชาติ' },
+      'CAMPUS_SIGN': { name: 'ป้ายสัญลักษณ์ กฟผ. ไทรน้อย', x: 4, z: 132, category: 'ป้ายแลนด์มาร์ค' },
+      'OHK_ROUNDABOUT': { name: 'วงเวียนใหญ่ศูนย์ขนส่ง อหข.', x: -135, z: -150, category: 'ระบบการจราจร' },
+      'OHK_GAZEBO': { name: 'ศาลาพักผ่อนริมน้ำ อหข.', x: -162, z: -158, category: 'อาคารสันทนาการริมน้ำ' },
+      'EAST_ROUNDABOUT': { name: 'วงเวียนฝั่งตะวันออก (East Roundabout)', x: 125, z: -60, category: 'ระบบการจราจร' },
+      'SHRINE_VISHNU': { name: 'ศาลพระวิษณุกรรม', x: 40, z: 45, category: 'สถานที่ศักดิ์สิทธิ์' },
+      'SHRINE_SEVEN_KINGS': { name: 'ศาลหลวงพ่อเจ็ดกษัตริย์', x: 35, z: -90, category: 'สถานที่ศักดิ์สิทธิ์' },
+      'PARKING_SHED_16': { name: 'โรงจอดรถยนต์ ต.0016', x: 65, z: -45, category: 'อาคารจอดรถ' },
+      'PARKING_SHED_18': { name: 'โรงจอดรถยนต์ ต.0018', x: 15, z: -165, category: 'อาคารจอดรถ' }
+    },
+    landmarks: null,
+
+    loadCustomLandmarks() {
+      try {
+        if (!this.landmarks) this.landmarks = JSON.parse(JSON.stringify(this.defaultLandmarks));
+        const saved = localStorage.getItem('sainoi_custom_landmarks');
+        if (saved) {
+          const custom = JSON.parse(saved);
+          Object.entries(custom).forEach(([lid, pos]) => {
+            if (this.landmarks[lid]) {
+              if (pos.x !== undefined && !isNaN(Number(pos.x))) this.landmarks[lid].x = Number(pos.x);
+              if (pos.z !== undefined && !isNaN(Number(pos.z))) this.landmarks[lid].z = Number(pos.z);
+            }
+          });
+        }
+      } catch (e) {
+        console.warn('Could not load custom landmarks from localStorage:', e);
+      }
+    },
+
+    saveCustomLandmarks(landmarkMap) {
+      try {
+        if (!this.landmarks) this.landmarks = JSON.parse(JSON.stringify(this.defaultLandmarks));
+        Object.entries(landmarkMap).forEach(([lid, pos]) => {
+          if (this.landmarks[lid]) {
+            if (pos.x !== undefined && !isNaN(Number(pos.x))) this.landmarks[lid].x = Number(pos.x);
+            if (pos.z !== undefined && !isNaN(Number(pos.z))) this.landmarks[lid].z = Number(pos.z);
+          }
+        });
+        localStorage.setItem('sainoi_custom_landmarks', JSON.stringify(landmarkMap));
+        this.notify('layout_change');
+        return true;
+      } catch (e) {
+        console.error('Failed to save custom landmarks:', e);
+        return false;
+      }
+    },
+
+    resetCustomLandmarks() {
+      try {
+        localStorage.removeItem('sainoi_custom_landmarks');
+        this.landmarks = JSON.parse(JSON.stringify(this.defaultLandmarks));
+        this.notify('layout_change');
+        return true;
+      } catch (e) {
+        return false;
+      }
+    },
+
+    getLandmarksList() {
+      if (!this.landmarks) this.landmarks = JSON.parse(JSON.stringify(this.defaultLandmarks));
+      return Object.entries(this.landmarks).map(([id, lm]) => ({
+        id,
+        name: lm.name,
+        category: lm.category,
+        x: lm.x,
+        z: lm.z
+      }));
+    },
+
     importCustomLayout(jsonStr) {
       try {
         const parsed = typeof jsonStr === 'string' ? JSON.parse(jsonStr) : jsonStr;
         const layoutMap = {};
         const roadMap = {};
         const waterMap = {};
+        const landmarkMap = {};
 
         const dataSrc = parsed.buildings || parsed;
         Object.entries(dataSrc).forEach(([bid, val]) => {
@@ -645,7 +737,7 @@
             if (val.x !== undefined || val.z !== undefined) {
               roadMap[bid] = { x: Number(val.x), z: Number(val.z) };
             }
-          } else if (bid.startsWith('POND_') || bid === 'WEST_CANAL' || bid === 'LAKE_FOUNTAIN' || bid === 'SWIMMING_POOL') {
+          } else if (bid.startsWith('POND_') || bid === 'WEST_CANAL' || bid === 'LAKE_FOUNTAIN' || bid === 'SWIMMING_POOL' || bid === 'OHK_RETENTION_POND' || bid === 'LAKE_PROMENADE') {
             if (val.x !== undefined || val.z !== undefined) {
               waterMap[bid] = { x: Number(val.x), z: Number(val.z) };
             }
@@ -680,11 +772,22 @@
           });
         }
 
+        if (parsed.landmarks) {
+          Object.entries(parsed.landmarks).forEach(([lid, val]) => {
+            if (val.x !== undefined || val.z !== undefined) {
+              landmarkMap[lid] = { x: Number(val.x), z: Number(val.z) };
+            }
+          });
+        }
+
         if (Object.keys(roadMap).length > 0) {
           this.saveCustomRoads(roadMap);
         }
         if (Object.keys(waterMap).length > 0) {
           this.saveCustomWater(waterMap);
+        }
+        if (Object.keys(landmarkMap).length > 0 && this.saveCustomLandmarks) {
+          this.saveCustomLandmarks(landmarkMap);
         }
 
         return this.saveCustomLayout(layoutMap);
@@ -1017,28 +1120,38 @@
     resolveWaterId(raw, xVal, zVal) {
       if (!raw || typeof raw !== 'string') return null;
       const text = raw.trim();
-      const upper = text.toUpperCase();
-      const isWater = upper.includes('LAKE') || upper.includes('POND') || upper.includes('CANAL') || upper.includes('WATER') || upper.includes('SWIMMING') || /น้ำ|สระ|คลอง|บ่อ|บึง/.test(text);
-      if (!isWater) return null;
+      const clean = text.replace(/[\[\]]/g, '').trim().toUpperCase();
 
-      if (upper.includes('CANAL') || text.includes('คลอง') || upper.includes('WEST_CA')) {
+      // Check explicit canal / west canal
+      if (clean.startsWith('WEST_CAN') || clean.includes('CANAL') || text.includes('คลอง') || clean === 'WEST_CAN' || clean.includes('WEST_CA')) {
         return 'WEST_CANAL';
       }
-      if (upper.includes('FOUNTAIN') || text.includes('น้ำพุ') || upper.includes('LAKE_FO')) {
+      // Check retention ponds
+      if (clean.startsWith('OHK_RET') || clean.startsWith('OHK_RETE') || (text.includes('อหข') && text.includes('สระ'))) {
+        return 'OHK_RETENTION_POND';
+      }
+      if (clean.startsWith('LAKE_PRO') || clean.includes('PROMENADE') || (text.includes('สระ') && text.includes('สะพาน'))) {
+        return 'LAKE_PROMENADE';
+      }
+      if (clean.startsWith('LAKE_FO') || clean.includes('FOUNTAIN') || text.includes('น้ำพุ')) {
         return 'LAKE_FOUNTAIN';
       }
-      if (upper.includes('SWIMMING') || text.includes('สระว่าย')) {
+      if (clean.startsWith('SWIMMING') || text.includes('สระว่าย')) {
         return 'SWIMMING_POOL';
       }
-      if (text.includes('1') || upper.includes('POND_1') || upper.includes('POND_RETENTION_1')) {
+      if (clean.includes('POND_1') || clean.includes('RETENTION_1') || text.includes('สระ 1') || text.includes('สระน้ำ 1')) {
         return 'POND_RETENTION_1';
       }
-      if (text.includes('2') || upper.includes('POND_2') || upper.includes('POND_RETENTION_2') || text.includes('แฟลต')) {
+      if (clean.includes('POND_2') || clean.includes('RETENTION_2') || text.includes('สระ 2') || text.includes('แฟลต')) {
         return 'POND_RETENTION_2';
       }
-      if (text.includes('3') || upper.includes('POND_3') || upper.includes('POND_RETENTION_3') || text.includes('โรงอาหาร')) {
+      if (clean.includes('POND_3') || clean.includes('RETENTION_3') || text.includes('สระ 3') || text.includes('โรงอาหาร')) {
         return 'POND_RETENTION_3';
       }
+
+      // Check generic water words
+      const isWater = clean.includes('LAKE') || clean.includes('POND') || clean.includes('CANAL') || clean.includes('WATER') || /น้ำ|สระ|คลอง|บ่อ|บึง/.test(text);
+      if (!isWater) return null;
 
       // Fallback by position
       if (xVal < -150) return 'WEST_CANAL';
@@ -1052,14 +1165,20 @@
     resolveLandmarkId(raw) {
       if (!raw || typeof raw !== 'string') return null;
       const text = raw.trim();
-      const upper = text.toUpperCase();
-      if (upper.includes('YARD_SWITCH') || text.includes('สวิตช์ยาร์ด') || text.includes('สถานีไฟฟ้า')) return 'YARD_SWITCHYARD';
-      if (upper.includes('FOOTBALL') || text.includes('ฟุตบอล') || text.includes('สนามบอล')) return 'FOOTBALL_FIELD';
-      if (upper.includes('SHRINE') || text.includes('เจ็ดกษัตริย์') || text.includes('ศาล')) return 'SHRINE_SEVEN_KINGS';
-      if (upper.includes('TURBINE') || text.includes('กังหัน')) return 'WIND_TURBINE';
-      if (upper.includes('SUNFLOWER') || text.includes('ทานตะวัน')) return 'SUNFLOWER_FIELD';
-      if (upper.includes('PARKING_SHED_16') || text.includes('ต.0016')) return 'PARKING_SHED_16';
-      if (upper.includes('PARKING_SHED_18') || text.includes('ต.0018')) return 'PARKING_SHED_18';
+      const clean = text.replace(/[\[\]]/g, '').trim().toUpperCase();
+
+      if (clean.startsWith('SW_YARD') || clean.includes('SWITCHYARD') || text.includes('สวิตช์ยาร์ด') || text.includes('สถานีไฟฟ้า')) return 'SW_YARD';
+      if (clean.startsWith('FOOTBALL') || text.includes('ฟุตบอล') || text.includes('สนามบอล')) return 'FOOTBALL';
+      if (clean.startsWith('TURBINE') || text.includes('กังหัน') || text.includes('ปฏิมากรรม')) return 'TURBINE_SCULPTURE';
+      if (clean.startsWith('SUNFLOW') || text.includes('ทานตะวัน')) return 'SUNFLOWER_FIELD';
+      if (clean.startsWith('CAMPUS_S') || clean.includes('CAMPUS_SIGN') || text.includes('ป้าย')) return 'CAMPUS_SIGN';
+      if (clean.startsWith('OHK_ROUN') || clean.includes('OHK_ROUNDABOUT') || (text.includes('วงเวียน') && text.includes('อหข'))) return 'OHK_ROUNDABOUT';
+      if (clean.startsWith('EAST_ROU') || clean.includes('EAST_ROUNDABOUT') || (text.includes('วงเวียน') && text.includes('ตะวันออก'))) return 'EAST_ROUNDABOUT';
+      if (clean.startsWith('OHK_GAZE') || clean.includes('OHK_GAZEBO') || text.includes('ศาลา')) return 'OHK_GAZEBO';
+      if (clean.startsWith('SHRINE_V') || text.includes('วิษณุ')) return 'SHRINE_VISHNU';
+      if (clean.startsWith('SHRINE_S') || clean.includes('SEVEN_KINGS') || text.includes('เจ็ดกษัตริย์')) return 'SHRINE_SEVEN_KINGS';
+      if (clean.startsWith('PARKING_SHED_18') || text.includes('ต.0018')) return 'PARKING_SHED_18';
+      if (clean.startsWith('PARKING') || text.includes('ต.0016') || text.includes('จอดรถ')) return 'PARKING_SHED_16';
       return null;
     },
 
@@ -1367,6 +1486,9 @@
       if (res.waterCount > 0 && this.saveCustomWater) {
         this.saveCustomWater(res.waterMap);
       }
+      if (res.landmarkCount > 0 && this.saveCustomLandmarks) {
+        this.saveCustomLandmarks(res.landmarkMap);
+      }
 
       return res;
     },
@@ -1381,6 +1503,8 @@
       let gridRes = null;
       let tableBldRes = null;
       let tableRoadRes = null;
+      let tableWaterRes = null;
+      let tableLandmarkRes = null;
       let gridSheetName = '';
 
       // 1. Scan ALL worksheets in the workbook
@@ -1409,6 +1533,12 @@
           if (tRes.roadCount > 0 && (!tableRoadRes || tRes.roadCount > tableRoadRes.roadCount)) {
             tableRoadRes = tRes;
           }
+          if (tRes.waterCount > 0 && (!tableWaterRes || tRes.waterCount > tableWaterRes.waterCount)) {
+            tableWaterRes = tRes;
+          }
+          if (tRes.landmarkCount > 0 && (!tableLandmarkRes || tRes.landmarkCount > tableLandmarkRes.landmarkCount)) {
+            tableLandmarkRes = tRes;
+          }
         }
       }
 
@@ -1424,17 +1554,24 @@
       };
 
       const mergedWaterMap = {
+        ...(tableWaterRes?.waterMap || {}),
         ...(tableBldRes?.waterMap || {}),
         ...(gridRes?.waterMap || {})
+      };
+
+      const mergedLandmarkMap = {
+        ...(tableLandmarkRes?.landmarkMap || {}),
+        ...(gridRes?.landmarkMap || {})
       };
 
       const bldCount = Object.keys(mergedLayoutMap).length;
       const roadCount = Object.keys(mergedRoadMap).length;
       const waterCount = Object.keys(mergedWaterMap).length;
-      const totalCount = bldCount + roadCount + waterCount;
+      const landmarkCount = Object.keys(mergedLandmarkMap).length;
+      const totalCount = bldCount + roadCount + waterCount + landmarkCount;
 
       if (totalCount === 0) {
-        throw new Error(`ไม่พบตำแหน่งพิกัดของอาคาร ถนน หรือแหล่งน้ำในไฟล์ Excel ที่อัปโหลด\n\nคำแนะนำการแก้ไข:\n1. หากแก้ไขบนผังตาราง 2D Grid: ตรวจสอบว่ามีแถวหัวตารางพิกัด X (เช่น X=-210, X=-200) และแถวพิกัด Z (เช่น Z=-220)\n2. รหัสอาคารรองรับทั้งแบบทางการ (เช่น T.0019, D.0017, B.0001) และแบบย่อ (เช่น ท.19, ต.17, ด.17, บ.1, T.19)\n3. เส้นทางถนนรองรับทั้งภาษาไทยและอังกฤษ (เช่น ถนนหลัก, ถนนโรงซ่อม, ถนนเลียบคลอง, ROAD_MAIN)\n4. แหล่งน้ำรองรับคำว่า (คลอง, สระน้ำ, สระ 1, สระ 2, สระ 3, บ่อน้ำ, LAKE, POND, CANAL)`);
+        throw new Error(`ไม่พบตำแหน่งพิกัดของอาคาร ถนน แหล่งน้ำ หรือแลนด์มาร์คในไฟล์ Excel ที่อัปโหลด\n\nคำแนะนำการแก้ไข:\n1. หากแก้ไขบนผังตาราง 2D Grid: ตรวจสอบว่ามีแถวหัวตารางพิกัด X (เช่น X=-210, X=-200) และแถวพิกัด Z (เช่น Z=-220)\n2. รหัสอาคารรองรับทั้งแบบทางการ (เช่น T.0019, D.0017, B.0001) และแบบย่อ (เช่น ท.19, ต.17, ด.17, บ.1, T.19)\n3. เส้นทางถนนรองรับทั้งภาษาไทยและอังกฤษ (เช่น ถนนหลัก, ถนนโรงซ่อม, ถนนเลียบคลอง, ROAD_MAIN)\n4. แหล่งน้ำและแลนด์มาร์ครองรับคำว่า (คลอง, สระน้ำ, สระ 1, สระ 2, สระ 3, บ่อน้ำ, LAKE, POND, CANAL, [WEST_CAN], [OHK_RETE], [SW_YARD], [CAMPUS_SIGN])`);
       }
 
       // Save custom layout (Buildings)
@@ -1452,6 +1589,11 @@
         this.saveCustomWater(mergedWaterMap);
       }
 
+      // Save custom landmarks
+      if (landmarkCount > 0 && this.saveCustomLandmarks) {
+        this.saveCustomLandmarks(mergedLandmarkMap);
+      }
+
       const sourceInfo = (gridRes && gridRes.bldCount > 0) 
         ? `ผังตารางเซลล์ชีต (${gridSheetName})` 
         : 'ตารางพิกัด (Building_Coordinates)';
@@ -1461,9 +1603,11 @@
         bldCount,
         roadCount,
         waterCount,
+        landmarkCount,
         layoutMap: mergedLayoutMap,
         roadMap: mergedRoadMap,
         waterMap: mergedWaterMap,
+        landmarkMap: mergedLandmarkMap,
         source: sourceInfo
       };
     },
