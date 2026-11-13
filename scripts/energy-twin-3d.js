@@ -171,6 +171,7 @@
       ground.position.set(-20, 0, -40);
       ground.receiveShadow = true;
       this.scene.add(ground);
+      this.groundMesh = ground;
 
       // Campus Perimeter Boundary Base
       const curbGeo = new THREE.BoxGeometry(444, 1.2, 524);
@@ -179,6 +180,15 @@
       curb.position.set(-20, -0.6, -40);
       curb.receiveShadow = true;
       this.scene.add(curb);
+      this.curbMesh = curb;
+
+      // Apply custom campus boundary if previously configured
+      if (window.EnergyTwin && typeof window.EnergyTwin.getCampusBounds === 'function') {
+        const customBounds = window.EnergyTwin.getCampusBounds();
+        if (customBounds) {
+          this.updateCampusBounds(customBounds);
+        }
+      }
 
       // 2. Western Boundary Canal (คลองขุนศรี)
       this.setupWesternCanal();
@@ -1289,6 +1299,7 @@
 
       buildingsList.forEach(bData => {
         const buildingGroup = this.createBuildingMesh(bData);
+        if (bData.hidden) buildingGroup.visible = false;
         this.scene.add(buildingGroup);
         this.buildingMeshes.set(bData.b_code, buildingGroup);
 
@@ -1304,6 +1315,7 @@
         });
 
         const labelSprite = this.createLabelSprite(bData);
+        if (bData.hidden) labelSprite.visible = false;
         this.scene.add(labelSprite);
         this.labelSprites.set(bData.b_code, labelSprite);
 
@@ -1313,6 +1325,7 @@
 
         if (hasQualityWarn || hasTargetAlert || hasSurgeAlert) {
           const warnSprite = this.createWarningSprite(bData, { hasQualityWarn, hasTargetAlert, hasSurgeAlert });
+          if (bData.hidden) warnSprite.visible = false;
           this.scene.add(warnSprite);
           this.warningSprites.set(bData.b_code, warnSprite);
         }
@@ -1410,6 +1423,44 @@
         parapet.castShadow = true;
         group.add(parapet);
       }
+
+      // Front Facing Direction Indicator (สัญลักษณ์บอกทิศทางหันหน้าอาคาร)
+      const facingGroup = new THREE.Group();
+      facingGroup.name = 'facingDirectionIndicator';
+
+      // Ground arrow chevron pointing +Z (front facade)
+      const arrowShape = new THREE.Shape();
+      const aW = Math.max(2.4, Math.min(5.5, width * 0.45));
+      const aL = Math.max(2.0, Math.min(4.0, depth * 0.35));
+      arrowShape.moveTo(0, aL);
+      arrowShape.lineTo(aW * 0.5, 0);
+      arrowShape.lineTo(aW * 0.2, 0);
+      arrowShape.lineTo(aW * 0.2, -aL * 0.4);
+      arrowShape.lineTo(-aW * 0.2, -aL * 0.4);
+      arrowShape.lineTo(-aW * 0.5, 0);
+      arrowShape.closePath();
+
+      const arrowGeo = new THREE.ShapeGeometry(arrowShape);
+      const arrowMat = new THREE.MeshBasicMaterial({
+        color: 0xF59E0B, // Amber gold direction marker
+        side: THREE.DoubleSide,
+        depthWrite: false,
+        transparent: true,
+        opacity: 0.9
+      });
+      const arrowMesh = new THREE.Mesh(arrowGeo, arrowMat);
+      arrowMesh.rotation.x = Math.PI / 2; // Flat on the ground
+      arrowMesh.position.set(0, 0.08, depth / 2 + (aL * 0.5) + 0.6);
+      facingGroup.add(arrowMesh);
+
+      // Entrance threshold bar along front facade
+      const porchMat = new THREE.MeshStandardMaterial({ color: 0x0EA5E9, roughness: 0.4 });
+      const porchGeo = new THREE.BoxGeometry(Math.max(3.5, Math.min(aW * 1.3, width * 0.7)), 0.08, 1.0);
+      const porchMesh = new THREE.Mesh(porchGeo, porchMat);
+      porchMesh.position.set(0, 0.04, depth / 2 + 0.5);
+      facingGroup.add(porchMesh);
+
+      group.add(facingGroup);
 
       // Position & Orientation in Master Plan Coordinates
       group.position.set(x, 0, z);
@@ -3014,6 +3065,65 @@
         lm.rotation.y = rot;
       }
       this.needsRender = true;
+    }
+
+    updateCampusBounds(bounds) {
+      if (!bounds || !this.groundMesh || !this.curbMesh) return;
+      const minX = bounds.minX ?? -210;
+      const maxX = bounds.maxX ?? 180;
+      const minZ = bounds.minZ ?? -220;
+      const maxZ = bounds.maxZ ?? 140;
+
+      const width = Math.max(120, (maxX - minX) + 50);
+      const depth = Math.max(120, (maxZ - minZ) + 50);
+      const centerX = (minX + maxX) / 2;
+      const centerZ = (minZ + maxZ) / 2;
+
+      if (this.groundMesh.geometry) this.groundMesh.geometry.dispose();
+      this.groundMesh.geometry = new THREE.PlaneGeometry(width, depth);
+      this.groundMesh.position.set(centerX, 0, centerZ);
+
+      if (this.curbMesh.geometry) this.curbMesh.geometry.dispose();
+      this.curbMesh.geometry = new THREE.BoxGeometry(width + 4, 1.2, depth + 4);
+      this.curbMesh.position.set(centerX, -0.6, centerZ);
+
+      this.needsRender = true;
+    }
+
+    setBuildingVisible(bCode, visible) {
+      const group = this.buildingMeshes.get(bCode);
+      if (group) group.visible = !!visible;
+      const label = this.labelSprites.get(bCode);
+      if (label) label.visible = !!visible;
+      const warn = this.warningSprites.get(bCode);
+      if (warn) warn.visible = !!visible;
+      this.needsRender = true;
+    }
+
+    setRoadVisible(roadId, visible) {
+      const road = this.roadMeshes.get(roadId);
+      if (road) {
+        road.visible = !!visible;
+        this.needsRender = true;
+      }
+    }
+
+    setWaterVisible(waterId, visible) {
+      if (!this.waterMeshes) return;
+      const water = this.waterMeshes.get(waterId);
+      if (water) {
+        water.visible = !!visible;
+        this.needsRender = true;
+      }
+    }
+
+    setLandmarkVisible(landmarkId, visible) {
+      if (!this.landmarkMeshes) return;
+      const lm = this.landmarkMeshes.get(landmarkId);
+      if (lm) {
+        lm.visible = !!visible;
+        this.needsRender = true;
+      }
     }
 
     resetView() {

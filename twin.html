@@ -18,8 +18,8 @@
 
   <!-- Core Scripts & Fallback Mapping -->
   <script src="data/building_mapping.js?v=20261113_05"></script>
-  <script src="scripts/energy-twin-core.js?v=20261113_05"></script>
-  <script src="scripts/energy-twin-3d.js?v=20261113_05"></script>
+  <script src="scripts/energy-twin-core.js?v=20261113_06"></script>
+  <script src="scripts/energy-twin-3d.js?v=20261113_06"></script>
 
   <style>
     :root {
@@ -926,6 +926,62 @@
       background: #DBEAFE;
       color: #1D4ED8;
     }
+    .card-eye-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 13px;
+      padding: 2px 4px;
+      border-radius: 4px;
+      line-height: 1;
+      transition: all 0.1s;
+    }
+    .card-eye-btn:hover {
+      background: #E2E8F0;
+      transform: scale(1.15);
+    }
+    .palette-card.item-hidden {
+      opacity: 0.55;
+      background: #F8FAFC;
+      border-style: dashed;
+    }
+    .grid-badge.badge-hidden {
+      opacity: 0.55;
+      border-style: dashed;
+      text-decoration: line-through;
+    }
+    .bounds-ctrl-btn {
+      padding: 1px 5px;
+      font-size: 10px;
+      font-weight: 700;
+      background: #FFFFFF;
+      border: 1px solid #CBD5E1;
+      border-radius: 3px;
+      cursor: pointer;
+      color: #374151;
+      transition: all 0.1s;
+    }
+    .bounds-ctrl-btn:hover {
+      background: #DBEAFE;
+      color: #1D4ED8;
+      border-color: #93C5FD;
+    }
+    .bounds-preset-btn {
+      padding: 2px 7px;
+      font-size: 10.5px;
+      font-weight: 600;
+      background: #FFFFFF;
+      border: 1px solid #CBD5E1;
+      border-radius: 12px;
+      cursor: pointer;
+      color: #475569;
+      transition: all 0.1s;
+    }
+    .bounds-preset-btn:hover {
+      background: #EFF6FF;
+      color: #1E3A8A;
+      border-color: #3B82F6;
+    }
     /* Real Physical Footprint Highlight for Selected Object */
     .excel-cell.cell-footprint-active {
       background: rgba(59, 130, 246, 0.18) !important;
@@ -1594,28 +1650,76 @@
           </button>
         </div>
 
-        <!-- Excel & CSV Import/Export Toolbar -->
+        <!-- Campus Extents & Boundary Scaling Toolbar (ขยาย/ลดขนาดเขตรวมทั้งหมด) -->
+        <div style="background:#F0FDF4; border:1px solid #BBF7D0; border-radius:6px; padding:6px 10px; display:flex; align-items:center; justify-content:space-between; gap:8px; flex-wrap:wrap;">
+          <div style="display:flex; align-items:center; gap:6px; font-size:11px; font-weight:700; color:#166534;">
+            <span>📐 ขอบเขตพื้นที่วิทยาเขต (Campus Bounds):</span>
+            <span id="campusBoundsSummaryText" style="font-family:'JetBrains Mono',monospace; font-weight:700; color:#15803D; background:#DCFCE7; padding:1px 6px; border-radius:4px; border:1px solid #86EFAC;">
+              กว้าง 390 ม. × ยาว 360 ม.
+            </span>
+            <span id="campusBoundsCoordsText" style="font-size:10px; color:#4B5563; font-family:'JetBrains Mono',monospace;">
+              (W:-210, E:180, N:-220, S:140)
+            </span>
+          </div>
+
+          <!-- Boundary Controls per Direction -->
+          <div style="display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
+            <div style="display:flex; align-items:center; gap:2px; font-size:10.5px; color:#374151;">
+              <span style="font-weight:700;">W(ตก):</span>
+              <button type="button" class="bounds-ctrl-btn" onclick="adjustCampusBound('minX', -20)" title="ขยายพื้นที่ไปทางทิศตะวันตก 20ม.">+20</button>
+              <button type="button" class="bounds-ctrl-btn" onclick="adjustCampusBound('minX', 20)" title="ลดพื้นที่ทางทิศตะวันตก 20ม.">-20</button>
+            </div>
+            <div style="display:flex; align-items:center; gap:2px; font-size:10.5px; color:#374151;">
+              <span style="font-weight:700;">E(ออก):</span>
+              <button type="button" class="bounds-ctrl-btn" onclick="adjustCampusBound('maxX', 20)" title="ขยายพื้นที่ไปทางทิศตะวันออก 20ม.">+20</button>
+              <button type="button" class="bounds-ctrl-btn" onclick="adjustCampusBound('maxX', -20)" title="ลดพื้นที่ทางทิศตะวันออก 20ม.">-20</button>
+            </div>
+            <div style="display:flex; align-items:center; gap:2px; font-size:10.5px; color:#374151;">
+              <span style="font-weight:700;">N(เหนือ):</span>
+              <button type="button" class="bounds-ctrl-btn" onclick="adjustCampusBound('minZ', -20)" title="ขยายพื้นที่ไปทางทิศเหนือ 20ม.">+20</button>
+              <button type="button" class="bounds-ctrl-btn" onclick="adjustCampusBound('minZ', 20)" title="ลดพื้นที่ทางทิศเหนือ 20ม.">-20</button>
+            </div>
+            <div style="display:flex; align-items:center; gap:2px; font-size:10.5px; color:#374151;">
+              <span style="font-weight:700;">S(ใต้):</span>
+              <button type="button" class="bounds-ctrl-btn" onclick="adjustCampusBound('maxZ', 20)" title="ขยายพื้นที่ไปทางทิศใต้ 20ม.">+20</button>
+              <button type="button" class="bounds-ctrl-btn" onclick="adjustCampusBound('maxZ', -20)" title="ลดพื้นที่ทางทิศใต้ 20ม.">-20</button>
+            </div>
+
+            <!-- Presets -->
+            <div style="display:flex; gap:3px; align-items:center; border-left:1px solid #CBD5E1; padding-left:6px; margin-left:2px;">
+              <button type="button" class="bounds-preset-btn" onclick="setCampusBoundPreset('default')" title="คืนสู่ขนาด As-Built มาตรฐาน 390×360 ม.">🎯 มาตรฐาน</button>
+              <button type="button" class="bounds-preset-btn" onclick="setCampusBoundPreset('p20')" title="ขยายพื้นที่ทุกทิศทาง +20% (470×430 ม.)">➕ 20%</button>
+              <button type="button" class="bounds-preset-btn" onclick="setCampusBoundPreset('p50')" title="ขยายพื้นที่ทุกทิศทาง +50% (590×540 ม.)">➕ 50%</button>
+              <button type="button" class="bounds-preset-btn" onclick="resetCampusBoundsToDefault()" title="ล้างค่าที่บันทึก คืนค่าขอบเขตเริ่มต้น">🔄 คืนค่า</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Excel, CSV & JSON Import/Export Toolbar -->
         <div style="background:#F8FAFC; border:1px solid var(--bdr); border-radius:6px; padding:6px 10px; display:flex; align-items:center; justify-content:space-between; gap:6px; flex-wrap:wrap;">
           <div style="display:flex; align-items:center; gap:6px; font-size:11px; font-weight:700; color:var(--pri);">
-            <span>📁 ส่งออก / นำเข้าไฟล์:</span>
+            <span>📁 ส่งออก / นำเข้าผัง:</span>
           </div>
-          <div style="display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
-            <button type="button" class="btn-action" style="color:#15803D; border-color:#86EFAC; background:#F0FDF4; font-size:11px; padding:4px 8px;" onclick="EnergyTwin.exportLayoutXlsx()" title="ดาวน์โหลดไฟล์ Excel (.xlsx) ที่มีทั้งผังเซลล์ 2D Grid Map, ตารางพิกัดอาคาร, เส้นทางถนน และวัตถุประกอบรอบๆ">
+          <div style="display:flex; gap:5px; flex-wrap:wrap; align-items:center;">
+            <button type="button" class="btn-action primary" style="font-size:11px; padding:4px 9px; font-weight:700;" onclick="EnergyTwin.exportLayoutToJson()" title="แนะนำสูงสุด: ดาวน์โหลดไฟล์ JSON ที่เก็บข้อมูลผัง 100% ครบถ้วน (พิกัด X/Z, การหมุนทิศ, ขอบเขตพื้นที่ และการซ่อน/แสดง)">
+              📄 ดาวน์โหลด JSON (แนะนำ)
+            </button>
+            <button type="button" class="btn-action" style="color:#15803D; border-color:#86EFAC; background:#F0FDF4; font-size:11px; padding:4px 8px;" onclick="EnergyTwin.exportLayoutXlsx()" title="ดาวน์โหลดไฟล์ Excel (.xlsx) ที่มีตารางพิกัดแบบกรอกค่าได้ทันที และผัง 2D Grid">
               📊 ดาวน์โหลด Excel (.xlsx)
             </button>
-            <button type="button" class="btn-action" style="font-size:11px; padding:4px 8px;" onclick="EnergyTwin.exportLayoutCsv()" title="ดาวน์โหลดตารางพิกัดอาคารและถนนในรูปแบบ CSV">
-              📄 ตารางพิกัด (CSV)
+            <button type="button" class="btn-action" style="font-size:11px; padding:4px 8px;" onclick="EnergyTwin.exportLayoutCsv()" title="ดาวน์โหลดตารางพิกัดอาคาร ถนน และแหล่งน้ำในรูปแบบ CSV">
+              📝 ตารางพิกัด (CSV)
             </button>
-            <button type="button" class="btn-action" style="font-size:11px; padding:4px 8px;" onclick="EnergyTwin.exportGridMapCsv()" title="ดาวน์โหลดผังแบบ Matrix 2D Grid ในรูปแบบ CSV (1 ช่อง = 10x10m)">
+            <button type="button" class="btn-action" style="font-size:11px; padding:4px 8px;" onclick="EnergyTwin.exportGridMapCsv()" title="ดาวน์โหลดผังแบบ Matrix 2D Grid ในรูปแบบ CSV">
               🗺️ ผัง 2D Grid (CSV)
             </button>
-            <button type="button" class="btn-action primary" style="font-size:11px; padding:4px 8px;" onclick="document.getElementById('layoutFileInput').click()" title="อัปโหลดไฟล์ Excel (.xlsx), CSV หรือ JSON ที่แก้ไขแล้วเพื่อปรับพิกัด 3D ทันที">
-              📥 อัปโหลดไฟล์ (Excel / CSV)
+            <button type="button" class="btn-action" style="background:#0284C7; color:#fff; border-color:#0284C7; font-size:11px; padding:4px 9px; font-weight:700;" onclick="document.getElementById('layoutFileInput').click()" title="อัปโหลดไฟล์ JSON, Excel (.xlsx) หรือ CSV เพื่อปรับผัง 3D ทันที">
+              📥 อัปโหลดไฟล์ (JSON / Excel / CSV)
             </button>
-            <button type="button" class="btn-action" style="font-size:11px; padding:4px 8px;" onclick="copyLayoutJsonToClipboard()" title="คัดลอกพิกัดทุกอาคารและถนนเป็น JSON">
+            <button type="button" class="btn-action" style="font-size:11px; padding:4px 8px;" onclick="copyLayoutJsonToClipboard()" title="คัดลอกพิกัดทุกอาคารและถนนเป็น JSON ลงในคลิปบอร์ด">
               📋 คัดลอก JSON
             </button>
-            <input type="file" id="layoutFileInput" accept=".xlsx,.xls,.csv,.json" style="display:none;" onchange="onLayoutFileSelected(event)">
+            <input type="file" id="layoutFileInput" accept=".json,.xlsx,.xls,.csv,.txt" style="display:none;" onchange="onLayoutFileSelected(event)">
           </div>
         </div>
 
@@ -1638,6 +1742,7 @@
                   <button type="button" class="studio-cat-chip" data-cat="road" onclick="setStudioCategory('road')">🛣️ ถนน (15)</button>
                   <button type="button" class="studio-cat-chip" data-cat="water" onclick="setStudioCategory('water')">💧 แหล่งน้ำ (8)</button>
                   <button type="button" class="studio-cat-chip" data-cat="landmark" onclick="setStudioCategory('landmark')">🚩 อื่นๆ</button>
+                  <button type="button" class="studio-cat-chip" data-cat="hidden" onclick="setStudioCategory('hidden')" style="color:#DC2626;" title="ดูเฉพาะวัตถุที่ถูกซ่อน/ลบออกจากผัง">🚫 ซ่อนอยู่</button>
                 </div>
               </div>
 
@@ -1716,13 +1821,15 @@
             <table class="sub-table" style="font-size:12px; width:100%;">
               <thead>
                 <tr style="position:sticky; top:0; background:#F8FAFC; z-index:2; box-shadow:0 1px 2px rgba(0,0,0,0.05);">
+                  <th style="width:50px; text-align:center;" title="เปิด/ปิดการแสดงผลวัตถุใน 3D และผัง">แสดง</th>
                   <th style="width:110px;">รหัส / ประเภท</th>
-                  <th style="min-width:180px;">ชื่ออาคาร / เส้นทางถนน</th>
-                  <th style="width:110px;">โซน</th>
+                  <th style="min-width:170px;">ชื่ออาคาร / เส้นทางถนน / แหล่งน้ำ</th>
+                  <th style="width:105px;">โซน</th>
                   <th style="width:75px; text-align:center;">ขนาด (กxย)</th>
-                  <th style="width:165px; text-align:center;">พิกัด X (ซ้าย-ขวา)</th>
-                  <th style="width:165px; text-align:center;">พิกัด Z (หน้า-หลัง)</th>
-                  <th style="width:120px; text-align:center;">เครื่องมือ</th>
+                  <th style="width:90px; text-align:center;">🧭 หันหน้า</th>
+                  <th style="width:160px; text-align:center;">พิกัด X (ซ้าย-ขวา)</th>
+                  <th style="width:160px; text-align:center;">พิกัด Z (หน้า-หลัง)</th>
+                  <th style="width:100px; text-align:center;">เครื่องมือ</th>
                 </tr>
               </thead>
               <tbody id="layoutEditorTableBody">
@@ -1798,7 +1905,12 @@
     function sync3DSceneFromLayout() {
       if (!campusScene) return;
 
-      // 1. Sync Buildings
+      // 0. Sync Campus Bounds
+      if (campusScene.updateCampusBounds && EnergyTwin.getCampusBounds) {
+        campusScene.updateCampusBounds(EnergyTwin.getCampusBounds());
+      }
+
+      // 1. Sync Buildings (Position, Rotation & Visibility)
       const bList = EnergyTwin.getBuildingsList ? EnergyTwin.getBuildingsList() : [];
       bList.forEach(b => {
         if (b.layout_position) {
@@ -1806,32 +1918,38 @@
           if (campusScene.updateBuildingRotation) {
             campusScene.updateBuildingRotation(b.b_code, b.rotation_y || 0);
           }
+          if (campusScene.setBuildingVisible) {
+            campusScene.setBuildingVisible(b.b_code, !b.hidden);
+          }
         }
       });
 
-      // 2. Sync Roads
+      // 2. Sync Roads (Position, Rotation, Dimensions & Visibility)
       const rList = EnergyTwin.getRoadsList ? EnergyTwin.getRoadsList() : [];
       rList.forEach(r => {
         campusScene.updateRoadPosition(r.id, r.x, r.z);
         if (campusScene.updateRoadRotation) campusScene.updateRoadRotation(r.id, r.rotation_y || 0);
         if (campusScene.updateRoadDimensions) campusScene.updateRoadDimensions(r.id, r.width, r.length);
+        if (campusScene.setRoadVisible) campusScene.setRoadVisible(r.id, !r.hidden);
       });
 
-      // 3. Sync Water
+      // 3. Sync Water (Position, Rotation, Dimensions & Visibility)
       const wList = EnergyTwin.getWaterList ? EnergyTwin.getWaterList() : [];
       wList.forEach(w => {
         if (campusScene.updateWaterPosition) campusScene.updateWaterPosition(w.id, w.x, w.z);
         if (campusScene.updateWaterRotation) campusScene.updateWaterRotation(w.id, w.rotation_y || 0);
         if (campusScene.updateWaterDimensions) campusScene.updateWaterDimensions(w.id, w.width, w.depth);
+        if (campusScene.setWaterVisible) campusScene.setWaterVisible(w.id, !w.hidden);
       });
 
-      // 4. Sync Landmarks
+      // 4. Sync Landmarks (Position, Rotation & Visibility)
       const lmList = EnergyTwin.getLandmarksList ? EnergyTwin.getLandmarksList() : [];
       lmList.forEach(l => {
         if (campusScene.updateLandmarkPosition) campusScene.updateLandmarkPosition(l.id, l.x, l.z);
         if (campusScene.updateLandmarkRotation && l.rotation_y !== undefined) {
           campusScene.updateLandmarkRotation(l.id, l.rotation_y);
         }
+        if (campusScene.setLandmarkVisible) campusScene.setLandmarkVisible(l.id, !l.hidden);
       });
 
       campusScene.needsRender = true;
@@ -3144,8 +3262,88 @@
     let selectedGridItem = null; // { type: 'bld'|'road'|'water'|'landmark', id: string }
     let studioCategory = 'ALL';
 
+    let isLayoutDragDropBound = false;
+    function setupLayoutModalDragDrop() {
+      if (isLayoutDragDropBound) return;
+      const modal = document.getElementById('layoutEditorModal');
+      if (!modal) return;
+      isLayoutDragDropBound = true;
+
+      modal.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+      });
+      modal.addEventListener('drop', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+          const fakeEvent = { target: { files: e.dataTransfer.files } };
+          onLayoutFileSelected(fakeEvent);
+        }
+      });
+    }
+
+    function updateCampusBoundsDisplay() {
+      const bounds = EnergyTwin.getCampusBounds ? EnergyTwin.getCampusBounds() : { minX: -210, maxX: 180, minZ: -220, maxZ: 140 };
+      const width = bounds.maxX - bounds.minX;
+      const depth = bounds.maxZ - bounds.minZ;
+      const summaryEl = document.getElementById('campusBoundsSummaryText');
+      const coordsEl = document.getElementById('campusBoundsCoordsText');
+      if (summaryEl) summaryEl.textContent = `กว้าง ${width} ม. × ยาว ${depth} ม.`;
+      if (coordsEl) coordsEl.textContent = `(W:${bounds.minX}, E:${bounds.maxX}, N:${bounds.minZ}, S:${bounds.maxZ})`;
+    }
+
+    function adjustCampusBound(edge, delta) {
+      const bounds = EnergyTwin.getCampusBounds ? EnergyTwin.getCampusBounds() : { minX: -210, maxX: 180, minZ: -220, maxZ: 140 };
+      bounds[edge] = (bounds[edge] || 0) + delta;
+
+      // Minimum campus size guard (at least 100m x 100m)
+      if (bounds.maxX - bounds.minX < 100) {
+        if (edge === 'minX') bounds.minX = bounds.maxX - 100;
+        if (edge === 'maxX') bounds.maxX = bounds.minX + 100;
+      }
+      if (bounds.maxZ - bounds.minZ < 100) {
+        if (edge === 'minZ') bounds.minZ = bounds.maxZ - 100;
+        if (edge === 'maxZ') bounds.maxZ = bounds.minZ + 100;
+      }
+
+      EnergyTwin.saveCampusBounds(bounds);
+      if (campusScene && campusScene.updateCampusBounds) {
+        campusScene.updateCampusBounds(bounds);
+      }
+      updateCampusBoundsDisplay();
+      renderInteractiveExcelGrid();
+    }
+
+    function setCampusBoundPreset(preset) {
+      let bounds = { minX: -210, maxX: 180, minZ: -220, maxZ: 140 };
+      if (preset === 'p20') {
+        bounds = { minX: -250, maxX: 220, minZ: -260, maxZ: 170 }; // +20%
+      } else if (preset === 'p50') {
+        bounds = { minX: -310, maxX: 280, minZ: -310, maxZ: 230 }; // +50%
+      }
+      EnergyTwin.saveCampusBounds(bounds);
+      if (campusScene && campusScene.updateCampusBounds) {
+        campusScene.updateCampusBounds(bounds);
+      }
+      updateCampusBoundsDisplay();
+      renderInteractiveExcelGrid();
+    }
+
+    function resetCampusBoundsToDefault() {
+      EnergyTwin.resetCampusBounds();
+      const bounds = EnergyTwin.getCampusBounds();
+      if (campusScene && campusScene.updateCampusBounds) {
+        campusScene.updateCampusBounds(bounds);
+      }
+      updateCampusBoundsDisplay();
+      renderInteractiveExcelGrid();
+    }
+
     function openLayoutEditorModal() {
       document.getElementById('layoutEditorModal').style.display = 'flex';
+      updateCampusBoundsDisplay();
+      setupLayoutModalDragDrop();
       if (activeLayoutTab === 'grid') {
         renderLayoutStudioPalette();
         renderInteractiveExcelGrid();
@@ -3225,7 +3423,8 @@
           height: b.dimensions?.height || 10,
           x: pos.x,
           z: pos.z,
-          rotRad: b.rotation_y || 0
+          rotRad: b.rotation_y || 0,
+          hidden: !!b.hidden
         });
       });
 
@@ -3243,7 +3442,8 @@
           depth: r.length || 50,
           x: r.x,
           z: r.z,
-          rotRad: r.rotation_y || 0
+          rotRad: r.rotation_y || 0,
+          hidden: !!r.hidden
         });
       });
 
@@ -3261,7 +3461,8 @@
           depth: w.depth || 40,
           x: w.x,
           z: w.z,
-          rotRad: w.rotation_y || 0
+          rotRad: w.rotation_y || 0,
+          hidden: !!w.hidden
         });
       });
 
@@ -3279,11 +3480,62 @@
           depth: l.depth || 10,
           x: l.x,
           z: l.z,
-          rotRad: 0
+          rotRad: l.rotation_y || 0,
+          hidden: !!l.hidden
         });
       });
 
       return items;
+    }
+
+    function isLayoutItemHidden(type, id) {
+      if (type === 'bld') {
+        return !!EnergyTwin.mappingData?.buildings?.[id]?.hidden;
+      } else if (type === 'road') {
+        const r = EnergyTwin.roads?.[id] || EnergyTwin.defaultRoads?.[id];
+        return !!r?.hidden;
+      } else if (type === 'water') {
+        const w = EnergyTwin.water?.[id] || EnergyTwin.defaultWater?.[id];
+        return !!w?.hidden;
+      } else if (type === 'landmark') {
+        const lm = EnergyTwin.landmarks?.[id] || EnergyTwin.defaultLandmarks?.[id];
+        return !!lm?.hidden;
+      }
+      return false;
+    }
+
+    function toggleItemVisibility(type, id) {
+      const curHidden = isLayoutItemHidden(type, id);
+      const newVisible = curHidden; // if curHidden true, newVisible is true (unhide)
+
+      // 1. Core state update
+      if (EnergyTwin.toggleObjectVisibility) {
+        EnergyTwin.toggleObjectVisibility(type, id, newVisible);
+      } else {
+        if (type === 'bld') EnergyTwin.saveCustomLayout({ [id]: { hidden: !newVisible } });
+        else if (type === 'road') EnergyTwin.saveCustomRoads({ [id]: { hidden: !newVisible } });
+        else if (type === 'water') EnergyTwin.saveCustomWater({ [id]: { hidden: !newVisible } });
+        else if (type === 'landmark') EnergyTwin.saveCustomLandmarks({ [id]: { hidden: !newVisible } });
+      }
+
+      // 2. 3D scene update
+      if (campusScene) {
+        if (type === 'bld' && campusScene.setBuildingVisible) campusScene.setBuildingVisible(id, newVisible);
+        else if (type === 'road' && campusScene.setRoadVisible) campusScene.setRoadVisible(id, newVisible);
+        else if (type === 'water' && campusScene.setWaterVisible) campusScene.setWaterVisible(id, newVisible);
+        else if (type === 'landmark' && campusScene.setLandmarkVisible) campusScene.setLandmarkVisible(id, newVisible);
+      }
+
+      // 3. UI refresh
+      renderLayoutStudioPalette();
+      renderStudioInspector();
+      renderInteractiveExcelGrid();
+      if (activeLayoutTab === 'table') renderLayoutEditorList();
+    }
+
+    function toggleSelectedGridItemVisibility() {
+      if (!selectedGridItem) return;
+      toggleItemVisibility(selectedGridItem.type, selectedGridItem.id);
     }
 
     function getSelectedItemPosition(item) {
@@ -3352,6 +3604,7 @@
         if (lm) {
           w = lm.width || 10;
           d = lm.depth || 10;
+          rotRad = lm.rotation_y || 0;
         }
       }
 
@@ -3387,7 +3640,11 @@
       const allItems = getAllPaletteItems();
 
       const filtered = allItems.filter(it => {
-        if (studioCategory !== 'ALL' && it.type !== studioCategory) return false;
+        if (studioCategory === 'hidden') {
+          if (!it.hidden) return false;
+        } else if (studioCategory !== 'ALL' && it.type !== studioCategory) {
+          return false;
+        }
         if (!q) return true;
         return (
           it.code.toLowerCase().includes(q) ||
@@ -3401,25 +3658,31 @@
       if (countEl) countEl.textContent = `${filtered.length} รายการ`;
 
       if (filtered.length === 0) {
-        listEl.innerHTML = `<div style="text-align:center; padding:20px; font-size:11px; color:var(--txt2);">ไม่พบวัตถุที่ตรงกับคำค้นหา</div>`;
+        listEl.innerHTML = `<div style="text-align:center; padding:20px; font-size:11px; color:var(--txt2);">${studioCategory === 'hidden' ? 'ไม่มีวัตถุที่ถูกซ่อนอยู่' : 'ไม่พบวัตถุที่ตรงกับคำค้นหา'}</div>`;
         return;
       }
 
       listEl.innerHTML = filtered.map(it => {
         const isSelected = selectedGridItem && selectedGridItem.type === it.type && selectedGridItem.id === it.id;
         const icon = it.type === 'bld' ? '🏢' : it.type === 'road' ? '🛣️' : it.type === 'water' ? '💧' : '🚩';
+        const isHidden = !!it.hidden;
 
         return `
-          <div class="palette-card ${isSelected ? 'active' : ''}" 
+          <div class="palette-card ${isSelected ? 'active' : ''} ${isHidden ? 'item-hidden' : ''}" 
                data-type="${it.type}" data-id="${it.id}"
                onclick="selectLayoutStudioItem('${it.type}', '${it.id}', true)">
-            <div style="display:flex; align-items:center; gap:8px; min-width:0;">
-              <span style="font-size:16px; flex-shrink:0;">${icon}</span>
+            <div style="display:flex; align-items:center; gap:6px; min-width:0;">
+              <button type="button" class="card-eye-btn" 
+                      onclick="event.stopPropagation(); toggleItemVisibility('${it.type}', '${it.id}')"
+                      title="${isHidden ? 'วัตถุนี้ถูกซ่อนอยู่ (คลิกเพื่อเปิดแสดงผลใน 3D และผัง)' : 'วัตถุนี้แสดงผลอยู่ (คลิกเพื่อซ่อน/ลบออกจาก 3D และผัง)'}">
+                ${isHidden ? '🚫' : '👁️'}
+              </button>
+              <span style="font-size:15px; flex-shrink:0;">${icon}</span>
               <div style="min-width:0;">
-                <div style="font-size:11.5px; font-weight:700; color:#1E293B; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:145px;">
+                <div style="font-size:11.5px; font-weight:700; color:#1E293B; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:130px; ${isHidden ? 'text-decoration:line-through; color:#94A3B8;' : ''}">
                   ${it.code}
                 </div>
-                <div style="font-size:10px; color:#64748B; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:145px;" title="${it.fullName || it.name}">
+                <div style="font-size:10px; color:#64748B; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:130px;" title="${it.fullName || it.name}">
                   ${it.name}
                 </div>
               </div>
@@ -3571,32 +3834,44 @@
         `;
       }
 
+      const isHidden = isLayoutItemHidden(type, id);
+      const comp = EnergyTwin.getCompassText ? EnergyTwin.getCompassText(rotDeg) : { dir: `${rotDeg}°`, icon: '🧭' };
+
       wrap.innerHTML = `
         <div class="studio-inspector">
           <div class="inspector-hdr">
             <div class="inspector-title" title="${name}">
               <span>${type === 'bld' ? '🏢' : type === 'road' ? '🛣️' : type === 'water' ? '💧' : '🚩'}</span>
-              <span style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:230px;">${id}: ${name}</span>
+              <span style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:210px; ${isHidden ? 'text-decoration:line-through; color:#94A3B8;' : ''}">${id}: ${name}</span>
+              ${isHidden ? '<span style="font-size:9.5px; color:#DC2626; font-weight:700; background:#FEE2E2; padding:1px 4px; border-radius:3px;">ซ่อนอยู่</span>' : ''}
             </div>
             <button type="button" onclick="clearGridSelection()" style="background:none; border:none; cursor:pointer; font-size:16px; color:#64748B; line-height:1;" title="ยกเลิกการเลือก">&times;</button>
           </div>
 
           ${dimControlsHtml}
 
-          <!-- Rotation Controls -->
+          <!-- Rotation & Facing Direction Controls (สัญลักษณ์และปุ่มหมุนทิศ) -->
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:6px; padding:6px 8px; display:flex; flex-direction:column; gap:4px;">
             <div style="display:flex; justify-content:space-between; align-items:center;">
-              <span style="font-size:11px; font-weight:700; color:#1E3A8A;">🧭 หมุนทิศ (Rotation):</span>
-              <span style="font-size:11px; font-weight:700; color:#EA580C; background:#FFF7ED; padding:1px 6px; border-radius:4px; border:1px solid #FFEDD5;">${rotDeg}°</span>
+              <span style="font-size:11px; font-weight:700; color:#1E3A8A;">🧭 ทิศทางการหันหน้า:</span>
+              <span style="font-size:11px; font-weight:700; color:#EA580C; background:#FFF7ED; padding:1px 6px; border-radius:4px; border:1px solid #FFEDD5;">
+                ${comp.icon} ${comp.dir} (${rotDeg}°)
+              </span>
             </div>
             <div class="rot-btn-group">
-              <button type="button" class="rot-btn" onclick="rotateStudioItem(-90)" title="หมุนทวนเข็ม 90 องศา">⟲ -90°</button>
-              <button type="button" class="rot-btn" onclick="rotateStudioItem(90)" title="หมุนตามเข็ม 90 องศา">⟳ +90°</button>
-              <button type="button" class="rot-btn" onclick="rotateStudioItem(180)" title="หมุนกลับ 180 องศา">🔄 180°</button>
-              <button type="button" class="rot-btn" onclick="setStudioRotation(0)" title="คืนสู่ทิศเหนือ 0 องศา">🧭 0° เหนือ</button>
+              <button type="button" class="rot-btn" onclick="setStudioRotation(180)" title="หันหน้าทิศเหนือ 180°">⬆️ เหนือ 180°</button>
+              <button type="button" class="rot-btn" onclick="setStudioRotation(90)" title="หันหน้าทิศตะวันออก 90°">➡️ ตะวันออก 90°</button>
+              <button type="button" class="rot-btn" onclick="setStudioRotation(0)" title="หันหน้าทิศใต้ 0°">⬇️ ใต้ 0°</button>
+              <button type="button" class="rot-btn" onclick="setStudioRotation(270)" title="หันหน้าทิศตะวันตก 270°">⬅️ ตะวันตก 270°</button>
+            </div>
+            <div style="display:flex; gap:3px; margin-top:2px;">
+              <button type="button" class="dim-preset-chip" style="flex:1;" onclick="rotateStudioItem(-15)" title="หมุนทวนเข็ม 15°">⟲ -15°</button>
+              <button type="button" class="dim-preset-chip" style="flex:1;" onclick="rotateStudioItem(15)" title="หมุนตามเข็ม 15°">⟳ +15°</button>
+              <button type="button" class="dim-preset-chip" style="flex:1;" onclick="rotateStudioItem(-90)" title="หมุนทวนเข็ม 90°">⟲ -90°</button>
+              <button type="button" class="dim-preset-chip" style="flex:1;" onclick="rotateStudioItem(90)" title="หมุนตามเข็ม 90°">⟳ +90°</button>
             </div>
             <div style="display:flex; align-items:center; gap:6px; margin-top:2px;">
-              <input type="range" min="0" max="360" step="15" value="${rotDeg}" 
+              <input type="range" min="0" max="360" step="5" value="${rotDeg}" 
                      oninput="onStudioRotationSlider(this.value)" 
                      style="flex:1; cursor:pointer;">
             </div>
@@ -3633,9 +3908,12 @@
             </div>
           </div>
 
-          <div style="display:flex; gap:4px;">
+          <div style="display:flex; gap:4px; margin-top:2px;">
             <button type="button" class="btn-action primary" style="flex:1; justify-content:center; padding:4px 6px; font-size:11px;" onclick="focusSelectedGridItem()">
               🎯 ส่อง 3D
+            </button>
+            <button type="button" class="btn-action ${isHidden ? 'primary' : 'danger'}" style="padding:4px 8px; font-size:11px;" onclick="toggleSelectedGridItemVisibility()" title="${isHidden ? 'เปิดแสดงวัตถุนี้ใน 3D และผัง' : 'ซ่อน/ลบวัตถุนี้ออกจาก 3D และผัง'}">
+              ${isHidden ? '👁️ แสดงวัตถุนี้' : '🗑️ ซ่อน/ลบวัตถุ'}
             </button>
             <button type="button" class="btn-action" style="padding:4px 6px; font-size:11px; color:#991B1B; border-color:#FECACA;" onclick="resetSelectedGridItem()" title="คืนค่าพิกัดเดิม">
               ↺ คืนค่า
@@ -3839,15 +4117,23 @@
       const table = document.getElementById('excelGridTable');
       if (!table) return;
 
-      const minX = -210, maxX = 180, stepX = 10;
-      const minZ = -220, maxZ = 140, stepZ = 10;
+      const bounds = EnergyTwin.getCampusBounds ? EnergyTwin.getCampusBounds() : { minX: -210, maxX: 180, minZ: -220, maxZ: 140 };
+      const minX = bounds.minX, maxX = bounds.maxX, stepX = 10;
+      const minZ = bounds.minZ, maxZ = bounds.maxZ, stepZ = 10;
 
       const cellMap = {};
 
-      // Buildings
+      // Buildings (with Facing Direction & Visibility)
       const buildings = EnergyTwin.getBuildingsList ? EnergyTwin.getBuildingsList() : [];
       buildings.forEach(b => {
+        const isHidden = !!b.hidden;
         const pos = b.layout_position || { x: 0, z: 0 };
+        const rotY = b.rotation_y || 0;
+        const rotDeg = Math.round(((rotY * 180 / Math.PI) % 360 + 360) % 360);
+        const comp = EnergyTwin.getCompassText ? EnergyTwin.getCompassText(rotDeg) : { dir: `${rotDeg}°`, icon: '🧭' };
+        // Front facade +Z in 3D: rotDeg 0 -> South (down 180deg in CSS), rotDeg 90 -> East (right 90deg in CSS), rotDeg 180 -> North (up 0deg in CSS)
+        const cssAngle = (180 - rotDeg + 360) % 360;
+
         const gx = Math.round(pos.x / stepX) * stepX;
         const gz = Math.round(pos.z / stepZ) * stepZ;
         const k = `${gx},${gz}`;
@@ -3858,7 +4144,11 @@
           code: b.b_code,
           name: b.short_name || b.name,
           x: pos.x,
-          z: pos.z
+          z: pos.z,
+          rotDeg,
+          cssAngle,
+          compass: comp,
+          hidden: isHidden
         });
       });
 
@@ -3875,7 +4165,8 @@
           code: r.id.replace('ROAD_', ''),
           name: r.name,
           x: r.x,
-          z: r.z
+          z: r.z,
+          hidden: !!r.hidden
         });
       });
 
@@ -3892,7 +4183,8 @@
           code: w.id.replace('POND_RETENTION_', 'POND_').replace('WEST_', ''),
           name: w.name,
           x: w.x,
-          z: w.z
+          z: w.z,
+          hidden: !!w.hidden
         });
       });
 
@@ -3909,7 +4201,8 @@
           code: l.id.replace('SHRINE_', '').replace('PARKING_SHED_', 'P_'),
           name: l.name,
           x: l.x,
-          z: l.z
+          z: l.z,
+          hidden: !!l.hidden
         });
       });
 
@@ -3938,44 +4231,47 @@
 
           items.forEach(it => {
             const isSelected = selectedGridItem && selectedGridItem.type === it.type && selectedGridItem.id === it.id;
+            const hiddenSign = it.hidden ? `<span style="font-size:9px; color:#DC2626; margin-left:2px;" title="วัตถุนี้ถูกซ่อนอยู่">🚫</span>` : '';
+
             if (it.type === 'bld') {
+              const arrow = `<span style="display:inline-block; transform:rotate(${it.cssAngle}deg); font-size:10px; line-height:1; color:#F59E0B; margin-right:2px;" title="หน้าอาคารหันไปทาง: ${it.compass.dir} (${it.rotDeg}°)">▲</span>`;
               cellBadges += `
-                <div class="grid-badge badge-bld ${isSelected ? 'badge-active' : ''}" 
+                <div class="grid-badge badge-bld ${isSelected ? 'badge-active' : ''} ${it.hidden ? 'badge-hidden' : ''}" 
                      draggable="true" 
                      ondragstart="onGridDragStart(event, 'bld', '${it.id}')"
                      onclick="onGridBadgeClick(event, 'bld', '${it.id}')"
-                     title="🏢 ${it.code}: ${it.name}\nพิกัดจริง: X=${it.x}, Z=${it.z}\n(คลิกเลือก หรือลากไปวางช่องใหม่)">
-                  ${it.code}
+                     title="🏢 ${it.code}: ${it.name}\n🧭 หน้าอาคาร: ${it.compass.icon} ${it.compass.dir} (${it.rotDeg}°)\n📍 พิกัด: X=${it.x}, Z=${it.z}${it.hidden ? '\n🚫 (สถานะ: ซ่อนอยู่)' : ''}\n(คลิกเลือก หรือลากไปวางช่องใหม่)">
+                  ${arrow}${it.code}${hiddenSign}
                 </div>
               `;
             } else if (it.type === 'road') {
               cellBadges += `
-                <div class="grid-badge badge-road ${isSelected ? 'badge-active' : ''}" 
+                <div class="grid-badge badge-road ${isSelected ? 'badge-active' : ''} ${it.hidden ? 'badge-hidden' : ''}" 
                      draggable="true" 
                      ondragstart="onGridDragStart(event, 'road', '${it.id}')"
                      onclick="onGridBadgeClick(event, 'road', '${it.id}')"
-                     title="🛣️ ถนน: ${it.name}\nพิกัดจริง: X=${it.x}, Z=${it.z}\n(คลิกเลือก หรือลากไปวางช่องใหม่)">
-                  🛣️ ${it.code.substring(0, 7)}
+                     title="🛣️ ถนน: ${it.name}\nพิกัดจริง: X=${it.x}, Z=${it.z}${it.hidden ? '\n🚫 (สถานะ: ซ่อนอยู่)' : ''}\n(คลิกเลือก หรือลากไปวางช่องใหม่)">
+                  🛣️ ${it.code.substring(0, 7)}${hiddenSign}
                 </div>
               `;
             } else if (it.type === 'water') {
               cellBadges += `
-                <div class="grid-badge badge-water ${isSelected ? 'badge-active' : ''}" 
+                <div class="grid-badge badge-water ${isSelected ? 'badge-active' : ''} ${it.hidden ? 'badge-hidden' : ''}" 
                      draggable="true" 
                      ondragstart="onGridDragStart(event, 'water', '${it.id}')"
                      onclick="onGridBadgeClick(event, 'water', '${it.id}')"
-                     title="💧 แหล่งน้ำ: ${it.name}\nพิกัดจริง: X=${it.x}, Z=${it.z}\n(คลิกเลือก หรือลากไปวางช่องใหม่)">
-                  💧 ${it.code.substring(0, 7)}
+                     title="💧 แหล่งน้ำ: ${it.name}\nพิกัดจริง: X=${it.x}, Z=${it.z}${it.hidden ? '\n🚫 (สถานะ: ซ่อนอยู่)' : ''}\n(คลิกเลือก หรือลากไปวางช่องใหม่)">
+                  💧 ${it.code.substring(0, 7)}${hiddenSign}
                 </div>
               `;
             } else if (it.type === 'landmark') {
               cellBadges += `
-                <div class="grid-badge badge-landmark ${isSelected ? 'badge-active' : ''}" 
+                <div class="grid-badge badge-landmark ${isSelected ? 'badge-active' : ''} ${it.hidden ? 'badge-hidden' : ''}" 
                      draggable="true" 
                      ondragstart="onGridDragStart(event, 'landmark', '${it.id}')"
                      onclick="onGridBadgeClick(event, 'landmark', '${it.id}')"
-                     title="🚩 วัตถุประกอบ: ${it.name}\nพิกัดจริง: X=${it.x}, Z=${it.z}\n(คลิกเลือก หรือลากไปวางช่องใหม่)">
-                  🚩 ${it.code.substring(0, 7)}
+                     title="🚩 วัตถุประกอบ: ${it.name}\nพิกัดจริง: X=${it.x}, Z=${it.z}${it.hidden ? '\n🚫 (สถานะ: ซ่อนอยู่)' : ''}\n(คลิกเลือก หรือลากไปวางช่องใหม่)">
+                  🚩 ${it.code.substring(0, 7)}${hiddenSign}
                 </div>
               `;
             }
@@ -4260,7 +4556,7 @@
       let html = '';
 
       // 1. Render Buildings (if zone matches)
-      if (zoneFilter !== 'road') {
+      if (zoneFilter !== 'road' && zoneFilter !== 'water') {
         const buildings = EnergyTwin.getBuildingsList ? EnergyTwin.getBuildingsList() : [];
         buildings.forEach(b => {
           const zone = getBuildingZoneKey(b.b_code);
@@ -4275,14 +4571,23 @@
           const pos = b.layout_position || { x: 0, y: 0, z: 0 };
           const dim = b.dimensions || { width: 0, depth: 0, height: 0 };
           const zoneName = getBuildingZoneName(b.b_code);
+          const rotY = b.rotation_y || 0;
+          const rotDeg = Math.round(((rotY * 180 / Math.PI) % 360 + 360) % 360);
+          const comp = EnergyTwin.getCompassText ? EnergyTwin.getCompassText(rotDeg) : { dir: `${rotDeg}°`, icon: '🧭' };
+          const isHidden = !!b.hidden;
 
           html += `
-            <tr id="layoutRow_${b.b_code}">
-              <td>
-                <span class="grid-badge badge-bld" style="font-size:11px; font-family:'JetBrains Mono';">${b.b_code}</span>
+            <tr id="layoutRow_${b.b_code}" style="${isHidden ? 'opacity:0.55; background:#F8FAFC;' : ''}">
+              <td style="text-align:center;">
+                <button type="button" class="card-eye-btn" onclick="toggleItemVisibility('bld', '${b.b_code}')" title="${isHidden ? 'คลิกเพื่อเปิดแสดงอาคารนี้' : 'คลิกเพื่อซ่อน/ลบอาคารนี้'}">
+                  ${isHidden ? '🚫' : '👁️'}
+                </button>
               </td>
               <td>
-                <div style="font-weight:600; color:var(--txt);">${b.short_name || b.name}</div>
+                <span class="grid-badge badge-bld ${isHidden ? 'badge-hidden' : ''}" style="font-size:11px; font-family:'JetBrains Mono';">${b.b_code}</span>
+              </td>
+              <td>
+                <div style="font-weight:600; color:var(--txt); ${isHidden ? 'text-decoration:line-through; color:#94A3B8;' : ''}">${b.short_name || b.name}</div>
                 <div style="font-size:10px; color:var(--txt2);">${b.name !== b.short_name ? b.name : (b.category_th || '')}</div>
               </td>
               <td>
@@ -4292,6 +4597,9 @@
               </td>
               <td style="text-align:center; font-family:'JetBrains Mono'; font-size:11px; color:var(--txt2);">
                 ${dim.width || '-'}×${dim.depth || '-'}
+              </td>
+              <td style="text-align:center; font-size:11px; font-weight:600; color:#EA580C;">
+                <span title="ทิศทางการหันหน้า: ${comp.dir} (${rotDeg}°)">${comp.icon} ${rotDeg}°</span>
               </td>
               <td style="text-align:center;">
                 <div style="display:inline-flex; align-items:center; gap:3px;">
@@ -4340,13 +4648,21 @@
           if (q && !nameMatch) return;
 
           visibleCount++;
+          const rotDeg = Math.round(((r.rotation_y || 0) * 180 / Math.PI) % 360);
+          const isHidden = !!r.hidden;
+
           html += `
-            <tr id="layoutRow_${r.id}" style="background:#F8FAFC;">
-              <td>
-                <span class="grid-badge badge-road" style="font-size:10px;">🛣️ ถนน</span>
+            <tr id="layoutRow_${r.id}" style="${isHidden ? 'opacity:0.55;' : ''} background:#F8FAFC;">
+              <td style="text-align:center;">
+                <button type="button" class="card-eye-btn" onclick="toggleItemVisibility('road', '${r.id}')" title="${isHidden ? 'คลิกเพื่อเปิดแสดงเส้นทางนี้' : 'คลิกเพื่อซ่อน/ลบเส้นทางนี้'}">
+                  ${isHidden ? '🚫' : '👁️'}
+                </button>
               </td>
               <td>
-                <div style="font-weight:600; color:#1E293B;">${r.name}</div>
+                <span class="grid-badge badge-road ${isHidden ? 'badge-hidden' : ''}" style="font-size:10px;">🛣️ ถนน</span>
+              </td>
+              <td>
+                <div style="font-weight:600; color:#1E293B; ${isHidden ? 'text-decoration:line-through; color:#94A3B8;' : ''}">${r.name}</div>
                 <div style="font-size:10px; color:#64748B; font-family:'JetBrains Mono';">${r.id} | ${r.category}</div>
               </td>
               <td>
@@ -4356,6 +4672,9 @@
               </td>
               <td style="text-align:center; font-family:'JetBrains Mono'; font-size:11px; color:var(--txt2);">
                 ${r.width}×${r.length}
+              </td>
+              <td style="text-align:center; font-size:11px; color:#64748B;">
+                ${rotDeg}°
               </td>
               <td style="text-align:center;">
                 <div style="display:inline-flex; align-items:center; gap:3px;">
@@ -4394,7 +4713,60 @@
         });
       }
 
-      tbody.innerHTML = html || '<tr><td colspan="7" style="text-align:center; padding:20px; color:var(--txt2);">ไม่พบรายการที่ค้นหา</td></tr>';
+      // 3. Render Water (when filter is 'ALL' or 'water')
+      if (zoneFilter === 'ALL' || zoneFilter === 'water') {
+        const waterList = EnergyTwin.getWaterList ? EnergyTwin.getWaterList() : [];
+        waterList.forEach(w => {
+          const nameMatch = (w.name && w.name.toLowerCase().includes(q)) || 
+                            (w.id && w.id.toLowerCase().includes(q));
+          if (q && !nameMatch) return;
+
+          visibleCount++;
+          const rotDeg = Math.round(((w.rotation_y || 0) * 180 / Math.PI) % 360);
+          const isHidden = !!w.hidden;
+
+          html += `
+            <tr id="layoutRow_${w.id}" style="${isHidden ? 'opacity:0.55;' : ''} background:#F0F9FF;">
+              <td style="text-align:center;">
+                <button type="button" class="card-eye-btn" onclick="toggleItemVisibility('water', '${w.id}')" title="${isHidden ? 'คลิกเพื่อเปิดแสดงแหล่งน้ำนี้' : 'คลิกเพื่อซ่อน/ลบแหล่งน้ำนี้'}">
+                  ${isHidden ? '🚫' : '👁️'}
+                </button>
+              </td>
+              <td>
+                <span class="grid-badge badge-water ${isHidden ? 'badge-hidden' : ''}" style="font-size:10px;">💧 แหล่งน้ำ</span>
+              </td>
+              <td>
+                <div style="font-weight:600; color:#0369A1; ${isHidden ? 'text-decoration:line-through; color:#94A3B8;' : ''}">${w.name}</div>
+                <div style="font-size:10px; color:#64748B; font-family:'JetBrains Mono';">${w.id}</div>
+              </td>
+              <td>
+                <span style="font-size:11px; color:#0369A1; background:#E0F2FE; padding:2px 6px; border-radius:4px; white-space:nowrap;">
+                  💧 ระบบระบายน้ำ
+                </span>
+              </td>
+              <td style="text-align:center; font-family:'JetBrains Mono'; font-size:11px; color:var(--txt2);">
+                ${w.width}×${w.depth}
+              </td>
+              <td style="text-align:center; font-size:11px; color:#64748B;">
+                ${rotDeg}°
+              </td>
+              <td style="text-align:center;">
+                <span style="font-family:'JetBrains Mono'; font-size:12px; font-weight:600; color:#1E293B;">${w.x}</span>
+              </td>
+              <td style="text-align:center;">
+                <span style="font-family:'JetBrains Mono'; font-size:12px; font-weight:600; color:#1E293B;">${w.z}</span>
+              </td>
+              <td style="text-align:center;">
+                <button type="button" class="btn-action primary" style="padding:3px 8px; font-size:11px;" onclick="if(campusScene) campusScene.animateCamera({ x: ${w.x} + 25, y: 60, z: ${w.z} + 40 }, { x: ${w.x}, y: 2, z: ${w.z} }, 750);" title="โฟกัสกล้อง 3D ไปที่แหล่งน้ำนี้">
+                  🎯 ส่อง
+                </button>
+              </td>
+            </tr>
+          `;
+        });
+      }
+
+      tbody.innerHTML = html || '<tr><td colspan="9" style="text-align:center; padding:20px; color:var(--txt2);">ไม่พบรายการที่ค้นหา</td></tr>';
       const countEl = document.getElementById('layoutEditorCountText');
       if (countEl) {
         countEl.textContent = `แสดง ${visibleCount} รายการ | บันทึกในเบราว์เซอร์อัตโนมัติ (LocalStorage)`;
@@ -4562,7 +4934,8 @@
             x: b.layout_position.x,
             z: b.layout_position.z,
             y: b.layout_position.y !== undefined ? b.layout_position.y : 0,
-            rotation_y: b.rotation_y !== undefined ? b.rotation_y : 0
+            rotation_y: b.rotation_y !== undefined ? b.rotation_y : 0,
+            hidden: Boolean(b.hidden)
           };
         }
       });
@@ -4577,7 +4950,8 @@
             z: r.z,
             width: r.width,
             length: r.length,
-            rotation_y: r.rotation_y !== undefined ? r.rotation_y : 0
+            rotation_y: r.rotation_y !== undefined ? r.rotation_y : 0,
+            hidden: Boolean(r.hidden)
           };
         });
       }
@@ -4592,7 +4966,8 @@
             z: w.z,
             width: w.width,
             depth: w.depth,
-            rotation_y: w.rotation_y !== undefined ? w.rotation_y : 0
+            rotation_y: w.rotation_y !== undefined ? w.rotation_y : 0,
+            hidden: Boolean(w.hidden)
           };
         });
       }
@@ -4605,7 +4980,8 @@
           landmarkMap[lid] = {
             x: l.x,
             z: l.z,
-            rotation_y: l.rotation_y !== undefined ? l.rotation_y : 0
+            rotation_y: l.rotation_y !== undefined ? l.rotation_y : 0,
+            hidden: Boolean(l.hidden)
           };
         });
       }
@@ -4699,21 +5075,28 @@
           throw new Error('รองรับเฉพาะไฟล์ .xlsx, .csv หรือ .json เท่านั้น');
         }
 
-        // Apply updated positions, rotations & dimensions to 3D scene
+        // Apply updated bounds, positions, rotations & dimensions to 3D scene
         sync3DSceneFromLayout();
+        updateCampusBoundsDisplay();
 
         clearGridSelection();
+        renderLayoutStudioPalette();
         renderInteractiveExcelGrid();
         renderLayoutEditorList();
 
+        const bCount = res?.bldCount ?? (EnergyTwin.getBuildingsList ? EnergyTwin.getBuildingsList().length : 0);
+        const rCount = res?.roadCount ?? (EnergyTwin.getRoadsList ? EnergyTwin.getRoadsList().length : 0);
+        const wCount = res?.waterCount ?? (EnergyTwin.getWaterList ? EnergyTwin.getWaterList().length : 0);
+        const lmCount = res?.landmarkCount ?? (EnergyTwin.getLandmarksList ? EnergyTwin.getLandmarksList().length : 0);
+
         let detailMsg = `✅ นำเข้าไฟล์ผังสำเร็จ!\n`;
-        detailMsg += `• ปรับปรุงตำแหน่งอาคาร: ${res?.bldCount || bList.length} หลัง\n`;
-        detailMsg += `• ปรับปรุงเส้นทางถนน: ${res?.roadCount || rList.length} สาย\n`;
-        if (res?.waterCount > 0 || wList.length > 0) {
-          detailMsg += `• ปรับปรุงแหล่งน้ำ: ${res?.waterCount || wList.length} จุด\n`;
+        detailMsg += `• ตำแหน่งอาคาร: ${bCount} หลัง\n`;
+        detailMsg += `• เส้นทางถนน: ${rCount} สาย\n`;
+        if (wCount > 0) {
+          detailMsg += `• แหล่งน้ำ: ${wCount} จุด\n`;
         }
-        if (res?.landmarkCount > 0 || lmList.length > 0) {
-          detailMsg += `• ปรับปรุงแลนด์มาร์ค/วัตถุประกอบ: ${res?.landmarkCount || lmList.length} จุด\n`;
+        if (lmCount > 0) {
+          detailMsg += `• แลนด์มาร์ค/วัตถุประกอบ: ${lmCount} จุด\n`;
         }
         if (res?.source) {
           detailMsg += `\nที่มา: ${res.source}`;

@@ -276,6 +276,9 @@
         this.landmarks = JSON.parse(JSON.stringify(this.defaultLandmarks));
         this.loadCustomLandmarks();
 
+        // Initialize campus boundary extents
+        this.loadCampusBounds();
+
         // Default year and month range (default to full year matching index.html)
         if (this.summaryData && this.summaryData.periods) {
           const months = this.summaryData.periods.months || [];
@@ -388,6 +391,71 @@
       this.notify('allocation_change');
     },
 
+    // ── Campus Boundary Extents Management ──────────────────────
+    defaultBounds: {
+      minX: -210,
+      maxX: 180,
+      minZ: -220,
+      maxZ: 140
+    },
+    bounds: null,
+
+    loadCampusBounds() {
+      try {
+        const saved = localStorage.getItem('sainoi_campus_bounds');
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          const minX = parsed.minX !== undefined ? parsed.minX : parsed.xMin;
+          const maxX = parsed.maxX !== undefined ? parsed.maxX : parsed.xMax;
+          const minZ = parsed.minZ !== undefined ? parsed.minZ : parsed.zMin;
+          const maxZ = parsed.maxZ !== undefined ? parsed.maxZ : parsed.zMax;
+          this.bounds = {
+            minX: minX !== undefined ? Number(minX) : this.defaultBounds.minX,
+            maxX: maxX !== undefined ? Number(maxX) : this.defaultBounds.maxX,
+            minZ: minZ !== undefined ? Number(minZ) : this.defaultBounds.minZ,
+            maxZ: maxZ !== undefined ? Number(maxZ) : this.defaultBounds.maxZ
+          };
+        } else {
+          this.bounds = { ...this.defaultBounds };
+        }
+      } catch (e) {
+        this.bounds = { ...this.defaultBounds };
+      }
+      return this.bounds;
+    },
+
+    saveCampusBounds(newBounds) {
+      if (!this.bounds) this.bounds = { ...this.defaultBounds };
+      const minX = newBounds.minX !== undefined ? newBounds.minX : newBounds.xMin;
+      const maxX = newBounds.maxX !== undefined ? newBounds.maxX : newBounds.xMax;
+      const minZ = newBounds.minZ !== undefined ? newBounds.minZ : newBounds.zMin;
+      const maxZ = newBounds.maxZ !== undefined ? newBounds.maxZ : newBounds.zMax;
+
+      if (minX !== undefined && !isNaN(Number(minX))) this.bounds.minX = Math.round(Number(minX) / 10) * 10;
+      if (maxX !== undefined && !isNaN(Number(maxX))) this.bounds.maxX = Math.round(Number(maxX) / 10) * 10;
+      if (minZ !== undefined && !isNaN(Number(minZ))) this.bounds.minZ = Math.round(Number(minZ) / 10) * 10;
+      if (maxZ !== undefined && !isNaN(Number(maxZ))) this.bounds.maxZ = Math.round(Number(maxZ) / 10) * 10;
+      localStorage.setItem('sainoi_campus_bounds', JSON.stringify(this.bounds));
+      if (this.notify) this.notify('layout_change');
+      return this.bounds;
+    },
+
+    resetCampusBounds() {
+      try {
+        localStorage.removeItem('sainoi_campus_bounds');
+        this.bounds = { ...this.defaultBounds };
+        this.notify('layout_change');
+        return this.bounds;
+      } catch (e) {
+        return this.defaultBounds;
+      }
+    },
+
+    getCampusBounds() {
+      if (!this.bounds) this.loadCampusBounds();
+      return this.bounds;
+    },
+
     // ── Custom 3D Building Layout Management ──────────────────────
     loadCustomLayout() {
       try {
@@ -395,12 +463,18 @@
         if (saved && this.mappingData && this.mappingData.buildings) {
           const custom = JSON.parse(saved);
           Object.entries(custom).forEach(([bid, pos]) => {
-            if (this.mappingData.buildings[bid] && this.mappingData.buildings[bid].layout_position) {
+            if (this.mappingData.buildings[bid]) {
+              if (!this.mappingData.buildings[bid].layout_position) {
+                this.mappingData.buildings[bid].layout_position = { x: 0, y: 0, z: 0 };
+              }
               if (pos.x !== undefined && !isNaN(Number(pos.x))) this.mappingData.buildings[bid].layout_position.x = Number(pos.x);
               if (pos.z !== undefined && !isNaN(Number(pos.z))) this.mappingData.buildings[bid].layout_position.z = Number(pos.z);
               if (pos.y !== undefined && !isNaN(Number(pos.y))) this.mappingData.buildings[bid].layout_position.y = Number(pos.y);
               if (pos.rotation_y !== undefined && !isNaN(Number(pos.rotation_y))) {
                 this.mappingData.buildings[bid].rotation_y = Number(pos.rotation_y);
+              }
+              if (pos.hidden !== undefined) {
+                this.mappingData.buildings[bid].hidden = Boolean(pos.hidden);
               }
             }
           });
@@ -412,7 +486,6 @@
 
     saveCustomLayout(layoutMap) {
       try {
-        if (!this.mappingData || !this.mappingData.buildings) return false;
         let fullMap = {};
         try {
           const existing = localStorage.getItem('sainoi_custom_layout');
@@ -420,19 +493,25 @@
         } catch (_) {}
 
         Object.entries(layoutMap).forEach(([bid, pos]) => {
-          if (this.mappingData.buildings[bid] && this.mappingData.buildings[bid].layout_position) {
+          if (this.mappingData && this.mappingData.buildings && this.mappingData.buildings[bid]) {
+            if (!this.mappingData.buildings[bid].layout_position) {
+              this.mappingData.buildings[bid].layout_position = { x: 0, y: 0, z: 0 };
+            }
             if (pos.x !== undefined && !isNaN(Number(pos.x))) this.mappingData.buildings[bid].layout_position.x = Number(pos.x);
             if (pos.z !== undefined && !isNaN(Number(pos.z))) this.mappingData.buildings[bid].layout_position.z = Number(pos.z);
             if (pos.y !== undefined && !isNaN(Number(pos.y))) this.mappingData.buildings[bid].layout_position.y = Number(pos.y);
             if (pos.rotation_y !== undefined && !isNaN(Number(pos.rotation_y))) {
               this.mappingData.buildings[bid].rotation_y = Number(pos.rotation_y);
             }
+            if (pos.hidden !== undefined) {
+              this.mappingData.buildings[bid].hidden = Boolean(pos.hidden);
+            }
           }
           fullMap[bid] = { ...(fullMap[bid] || {}), ...pos };
         });
         localStorage.setItem('sainoi_custom_layout', JSON.stringify(fullMap));
-        this.invalidateCache();
-        this.notify('layout_change');
+        if (this.invalidateCache) this.invalidateCache();
+        if (this.notify) this.notify('layout_change');
         return true;
       } catch (e) {
         console.error('Failed to save custom layout to localStorage:', e);
@@ -449,6 +528,7 @@
             if (this.mappingData.buildings[bid]) {
               if (orig.layout_position) this.mappingData.buildings[bid].layout_position = { ...orig.layout_position };
               this.mappingData.buildings[bid].rotation_y = orig.rotation_y || 0;
+              this.mappingData.buildings[bid].hidden = false;
             }
           });
         }
@@ -461,21 +541,73 @@
       }
     },
 
+    toggleObjectVisibility(type, id, isVisible) {
+      const hidden = !isVisible;
+      if (type === 'bld') {
+        if (this.mappingData?.buildings?.[id]) {
+          this.mappingData.buildings[id].hidden = hidden;
+          this.saveCustomLayout({ [id]: { hidden } });
+        }
+      } else if (type === 'road') {
+        if (this.roads?.[id]) {
+          this.roads[id].hidden = hidden;
+          this.saveCustomRoads({ [id]: { hidden } });
+        }
+      } else if (type === 'water') {
+        if (this.water?.[id]) {
+          this.water[id].hidden = hidden;
+          this.saveCustomWater({ [id]: { hidden } });
+        }
+      } else if (type === 'landmark') {
+        if (this.landmarks?.[id]) {
+          this.landmarks[id].hidden = hidden;
+          this.saveCustomLandmarks({ [id]: { hidden } });
+        }
+      }
+    },
+
+    getCompassText(rotDeg) {
+      const norm = ((rotDeg % 360) + 360) % 360;
+      if (norm >= 337.5 || norm < 22.5) return 'ใต้ (S 0°)';
+      if (norm >= 22.5 && norm < 67.5) return 'ต.อ.เฉียงใต้ (SE 45°)';
+      if (norm >= 67.5 && norm < 112.5) return 'ตะวันออก (E 90°)';
+      if (norm >= 112.5 && norm < 157.5) return 'ต.อ.เฉียงเหนือ (NE 135°)';
+      if (norm >= 157.5 && norm < 202.5) return 'เหนือ (N 180°)';
+      if (norm >= 202.5 && norm < 247.5) return 'ต.ต.เฉียงเหนือ (NW 225°)';
+      if (norm >= 247.5 && norm < 292.5) return 'ตะวันตก (W 270°)';
+      return 'ต.ต.เฉียงใต้ (SW 315°)';
+    },
+
     getLayoutExportData() {
       if (!this.mappingData || !this.mappingData.buildings) return {};
-      const res = { buildings: {}, roads: {}, water: {} };
+      const res = {
+        version: '2026.11.13',
+        bounds: this.getCampusBounds(),
+        buildings: {},
+        roads: {},
+        water: {},
+        landmarks: {}
+      };
+
       Object.entries(this.mappingData.buildings).forEach(([bid, b]) => {
+        const rotRad = b.rotation_y || 0;
+        const rotDeg = Math.round(((rotRad * 180 / Math.PI) % 360) + 360) % 360;
         res.buildings[bid] = {
           name: b.name,
           short_name: b.short_name,
           category_th: b.category_th,
           layout_position: { ...b.layout_position },
           dimensions: { ...b.dimensions },
-          rotation_y: b.rotation_y || 0
+          rotation_y: rotRad,
+          rotation_deg: rotDeg,
+          hidden: Boolean(b.hidden)
         };
       });
-      const roadList = this.getRoadsList();
+
+      const roadList = this.getRoadsList ? this.getRoadsList() : [];
       roadList.forEach(r => {
+        const rotRad = r.rotation_y || 0;
+        const rotDeg = Math.round(((rotRad * 180 / Math.PI) % 360) + 360) % 360;
         res.roads[r.id] = {
           name: r.name,
           category: r.category,
@@ -483,11 +615,16 @@
           z: r.z,
           width: r.width,
           length: r.length,
-          rotation_y: r.rotation_y || 0
+          rotation_y: rotRad,
+          rotation_deg: rotDeg,
+          hidden: Boolean(r.hidden)
         };
       });
-      const waterList = this.getWaterList();
+
+      const waterList = this.getWaterList ? this.getWaterList() : [];
       waterList.forEach(w => {
+        const rotRad = w.rotation_y || 0;
+        const rotDeg = Math.round(((rotRad * 180 / Math.PI) % 360) + 360) % 360;
         res.water[w.id] = {
           name: w.name,
           category: w.category,
@@ -495,20 +632,170 @@
           z: w.z,
           width: w.width,
           depth: w.depth,
-          rotation_y: w.rotation_y || 0
+          rotation_y: rotRad,
+          rotation_deg: rotDeg,
+          hidden: Boolean(w.hidden)
         };
       });
-      res.landmarks = {};
+
       const landmarkList = this.getLandmarksList ? this.getLandmarksList() : [];
       landmarkList.forEach(l => {
+        const rotRad = l.rotation_y || 0;
+        const rotDeg = Math.round(((rotRad * 180 / Math.PI) % 360) + 360) % 360;
         res.landmarks[l.id] = {
           name: l.name,
           category: l.category,
           x: l.x,
-          z: l.z
+          z: l.z,
+          rotation_y: rotRad,
+          rotation_deg: rotDeg,
+          hidden: Boolean(l.hidden)
         };
       });
+
       return res;
+    },
+
+    generateLayoutTableData() {
+      const rows = [];
+      const bList = this.getBuildingsList ? this.getBuildingsList() : [];
+      bList.forEach(b => {
+        const rotDeg = Math.round(((b.rotation_y || 0) * 180 / Math.PI) % 360);
+        const normRot = ((rotDeg % 360) + 360) % 360;
+        rows.push({
+          'รหัสวัตถุ (ID)': b.b_code,
+          'ชื่อวัตถุ (Name)': b.short_name || b.name,
+          'ประเภท (Type)': 'อาคาร (Building)',
+          'หมวดหมู่ (Category)': b.category_th || b.category || 'อาคาร',
+          'พิกัด X (แกนแนวนอน ตะวันตก-ออก)': b.layout_position ? b.layout_position.x : 0,
+          'พิกัด Z (แกนแนวตั้ง เหนือ-ใต้)': b.layout_position ? b.layout_position.z : 0,
+          'ทิศทางการหันหน้า (องศา 0-360)': normRot,
+          'ทิศทางเข็มทิศ': this.getCompassText(normRot),
+          'การแสดงผล (Status)': b.hidden ? 'ซ่อน' : 'แสดง',
+          'ความกว้าง (เมตร)': b.dimensions?.width || 20,
+          'ความยาว/ลึก (เมตร)': b.dimensions?.depth || 20
+        });
+      });
+
+      const rList = this.getRoadsList ? this.getRoadsList() : [];
+      rList.forEach(r => {
+        const rotDeg = Math.round(((r.rotation_y || 0) * 180 / Math.PI) % 360);
+        const normRot = ((rotDeg % 360) + 360) % 360;
+        rows.push({
+          'รหัสวัตถุ (ID)': r.id,
+          'ชื่อวัตถุ (Name)': r.name,
+          'ประเภท (Type)': 'ถนน (Road)',
+          'หมวดหมู่ (Category)': r.category || 'เส้นทางถนน',
+          'พิกัด X (แกนแนวนอน ตะวันตก-ออก)': r.x,
+          'พิกัด Z (แกนแนวตั้ง เหนือ-ใต้)': r.z,
+          'ทิศทางการหันหน้า (องศา 0-360)': normRot,
+          'ทิศทางเข็มทิศ': this.getCompassText(normRot),
+          'การแสดงผล (Status)': r.hidden ? 'ซ่อน' : 'แสดง',
+          'ความกว้าง (เมตร)': r.width,
+          'ความยาว/ลึก (เมตร)': r.length
+        });
+      });
+
+      const wList = this.getWaterList ? this.getWaterList() : [];
+      wList.forEach(w => {
+        const rotDeg = Math.round(((w.rotation_y || 0) * 180 / Math.PI) % 360);
+        const normRot = ((rotDeg % 360) + 360) % 360;
+        rows.push({
+          'รหัสวัตถุ (ID)': w.id,
+          'ชื่อวัตถุ (Name)': w.name,
+          'ประเภท (Type)': 'แหล่งน้ำ (Water)',
+          'หมวดหมู่ (Category)': w.category || 'แหล่งน้ำ',
+          'พิกัด X (แกนแนวนอน ตะวันตก-ออก)': w.x,
+          'พิกัด Z (แกนแนวตั้ง เหนือ-ใต้)': w.z,
+          'ทิศทางการหันหน้า (องศา 0-360)': normRot,
+          'ทิศทางเข็มทิศ': this.getCompassText(normRot),
+          'การแสดงผล (Status)': w.hidden ? 'ซ่อน' : 'แสดง',
+          'ความกว้าง (เมตร)': w.width,
+          'ความยาว/ลึก (เมตร)': w.depth
+        });
+      });
+
+      const lmList = this.getLandmarksList ? this.getLandmarksList() : [];
+      lmList.forEach(l => {
+        const rotDeg = Math.round(((l.rotation_y || 0) * 180 / Math.PI) % 360);
+        const normRot = ((rotDeg % 360) + 360) % 360;
+        rows.push({
+          'รหัสวัตถุ (ID)': l.id,
+          'ชื่อวัตถุ (Name)': l.name,
+          'ประเภท (Type)': 'แลนด์มาร์ค (Landmark)',
+          'หมวดหมู่ (Category)': l.category || 'แลนด์มาร์ค',
+          'พิกัด X (แกนแนวนอน ตะวันตก-ออก)': l.x,
+          'พิกัด Z (แกนแนวตั้ง เหนือ-ใต้)': l.z,
+          'ทิศทางการหันหน้า (องศา 0-360)': normRot,
+          'ทิศทางเข็มทิศ': this.getCompassText(normRot),
+          'การแสดงผล (Status)': l.hidden ? 'ซ่อน' : 'แสดง',
+          'ความกว้าง (เมตร)': l.width || 10,
+          'ความยาว/ลึก (เมตร)': l.depth || 10
+        });
+      });
+
+      return rows;
+    },
+
+    exportLayoutToJson() {
+      const data = this.getLayoutExportData();
+      const jsonStr = JSON.stringify(data, null, 2);
+      const blob = new Blob([jsonStr], { type: 'application/json;charset=utf-8;' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = `sainoi_campus_layout_${new Date().toISOString().slice(0, 10)}.json`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    },
+
+    exportLayoutToXlsx() {
+      if (!window.XLSX) {
+        this.exportLayoutToCsv();
+        return;
+      }
+      const rows = this.generateLayoutTableData();
+      const wb = window.XLSX.utils.book_new();
+      const ws = window.XLSX.utils.json_to_sheet(rows);
+
+      // Set column widths
+      ws['!cols'] = [
+        { wch: 18 }, // ID
+        { wch: 32 }, // Name
+        { wch: 20 }, // Type
+        { wch: 22 }, // Category
+        { wch: 16 }, // X
+        { wch: 16 }, // Z
+        { wch: 16 }, // Rotation
+        { wch: 18 }, // Compass
+        { wch: 14 }, // Status
+        { wch: 14 }, // Width
+        { wch: 14 }  // Length
+      ];
+      window.XLSX.utils.book_append_sheet(wb, ws, 'Layout_Table');
+      window.XLSX.writeFile(wb, `sainoi_campus_layout_${new Date().toISOString().slice(0, 10)}.xlsx`);
+    },
+
+    exportLayoutToCsv() {
+      const rows = this.generateLayoutTableData();
+      if (!rows || rows.length === 0) return;
+      const headers = Object.keys(rows[0]);
+      const csvLines = [headers.join(',')];
+      rows.forEach(r => {
+        const line = headers.map(h => {
+          const val = String(r[h] !== undefined ? r[h] : '');
+          return val.includes(',') ? `"${val.replace(/"/g, '""')}"` : val;
+        }).join(',');
+        csvLines.push(line);
+      });
+      const csvContent = '\uFEFF' + csvLines.join('\r\n');
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = `sainoi_campus_layout_${new Date().toISOString().slice(0, 10)}.csv`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     },
 
     // ── Road Network Management ──────────────────────────────────
@@ -546,6 +833,7 @@
               if (pos.width !== undefined && !isNaN(Number(pos.width))) this.roads[rid].width = Number(pos.width);
               if (pos.length !== undefined && !isNaN(Number(pos.length))) this.roads[rid].length = Number(pos.length);
               if (pos.rotation_y !== undefined && !isNaN(Number(pos.rotation_y))) this.roads[rid].rotation_y = Number(pos.rotation_y);
+              if (pos.hidden !== undefined) this.roads[rid].hidden = Boolean(pos.hidden);
             }
           });
         }
@@ -570,6 +858,7 @@
             if (pos.width !== undefined && !isNaN(Number(pos.width))) this.roads[rid].width = Number(pos.width);
             if (pos.length !== undefined && !isNaN(Number(pos.length))) this.roads[rid].length = Number(pos.length);
             if (pos.rotation_y !== undefined && !isNaN(Number(pos.rotation_y))) this.roads[rid].rotation_y = Number(pos.rotation_y);
+            if (pos.hidden !== undefined) this.roads[rid].hidden = Boolean(pos.hidden);
           }
           fullRoads[rid] = { ...(fullRoads[rid] || {}), ...pos };
         });
@@ -604,7 +893,8 @@
         width: r.width,
         length: r.length,
         type: r.type,
-        rotation_y: r.rotation_y || 0
+        rotation_y: r.rotation_y || 0,
+        hidden: Boolean(r.hidden)
       }));
     },
 
@@ -636,6 +926,7 @@
               if (pos.width !== undefined && !isNaN(Number(pos.width))) this.water[wid].width = Number(pos.width);
               if (pos.depth !== undefined && !isNaN(Number(pos.depth))) this.water[wid].depth = Number(pos.depth);
               if (pos.rotation_y !== undefined && !isNaN(Number(pos.rotation_y))) this.water[wid].rotation_y = Number(pos.rotation_y);
+              if (pos.hidden !== undefined) this.water[wid].hidden = Boolean(pos.hidden);
             }
           });
         }
@@ -660,6 +951,7 @@
             if (pos.width !== undefined && !isNaN(Number(pos.width))) this.water[wid].width = Number(pos.width);
             if (pos.depth !== undefined && !isNaN(Number(pos.depth))) this.water[wid].depth = Number(pos.depth);
             if (pos.rotation_y !== undefined && !isNaN(Number(pos.rotation_y))) this.water[wid].rotation_y = Number(pos.rotation_y);
+            if (pos.hidden !== undefined) this.water[wid].hidden = Boolean(pos.hidden);
           }
           fullWater[wid] = { ...(fullWater[wid] || {}), ...pos };
         });
@@ -693,7 +985,8 @@
         z: w.z,
         width: w.width,
         depth: w.depth,
-        rotation_y: w.rotation_y || 0
+        rotation_y: w.rotation_y || 0,
+        hidden: Boolean(w.hidden)
       }));
     },
 
@@ -725,6 +1018,7 @@
               if (pos.x !== undefined && !isNaN(Number(pos.x))) this.landmarks[lid].x = Number(pos.x);
               if (pos.z !== undefined && !isNaN(Number(pos.z))) this.landmarks[lid].z = Number(pos.z);
               if (pos.rotation_y !== undefined && !isNaN(Number(pos.rotation_y))) this.landmarks[lid].rotation_y = Number(pos.rotation_y);
+              if (pos.hidden !== undefined) this.landmarks[lid].hidden = Boolean(pos.hidden);
             }
           });
         }
@@ -747,6 +1041,7 @@
             if (pos.x !== undefined && !isNaN(Number(pos.x))) this.landmarks[lid].x = Number(pos.x);
             if (pos.z !== undefined && !isNaN(Number(pos.z))) this.landmarks[lid].z = Number(pos.z);
             if (pos.rotation_y !== undefined && !isNaN(Number(pos.rotation_y))) this.landmarks[lid].rotation_y = Number(pos.rotation_y);
+            if (pos.hidden !== undefined) this.landmarks[lid].hidden = Boolean(pos.hidden);
           }
           fullLandmarks[lid] = { ...(fullLandmarks[lid] || {}), ...pos };
         });
@@ -778,7 +1073,8 @@
         category: lm.category,
         x: lm.x,
         z: lm.z,
-        rotation_y: lm.rotation_y || 0
+        rotation_y: lm.rotation_y || 0,
+        hidden: Boolean(lm.hidden)
       }));
     },
 
@@ -790,27 +1086,55 @@
         const waterMap = {};
         const landmarkMap = {};
 
+        // Import campus boundary if present
+        if (parsed.bounds && this.saveCampusBounds) {
+          this.saveCampusBounds(parsed.bounds);
+        }
+
         const dataSrc = parsed.buildings || parsed;
         Object.entries(dataSrc).forEach(([bid, val]) => {
+          if (bid === 'bounds' || bid === 'version') return;
+
+          const rot = val.rotation_y !== undefined ? Number(val.rotation_y) : (val.rotation_deg !== undefined ? (Number(val.rotation_deg) * Math.PI / 180) : undefined);
+          const hid = val.hidden !== undefined ? Boolean(val.hidden) : (val.visible !== undefined ? !val.visible : undefined);
+
           if (bid.startsWith('ROAD_')) {
             if (val.x !== undefined || val.z !== undefined) {
-              roadMap[bid] = { x: Number(val.x), z: Number(val.z) };
+              roadMap[bid] = {
+                x: Number(val.x),
+                z: Number(val.z),
+                ...(rot !== undefined ? { rotation_y: rot } : {}),
+                ...(hid !== undefined ? { hidden: hid } : {}),
+                ...(val.width !== undefined ? { width: Number(val.width) } : {}),
+                ...(val.length !== undefined ? { length: Number(val.length) } : {})
+              };
             }
           } else if (bid.startsWith('POND_') || bid === 'WEST_CANAL' || bid === 'LAKE_FOUNTAIN' || bid === 'SWIMMING_POOL' || bid === 'OHK_RETENTION_POND' || bid === 'LAKE_PROMENADE') {
             if (val.x !== undefined || val.z !== undefined) {
-              waterMap[bid] = { x: Number(val.x), z: Number(val.z) };
+              waterMap[bid] = {
+                x: Number(val.x),
+                z: Number(val.z),
+                ...(rot !== undefined ? { rotation_y: rot } : {}),
+                ...(hid !== undefined ? { hidden: hid } : {}),
+                ...(val.width !== undefined ? { width: Number(val.width) } : {}),
+                ...(val.depth !== undefined ? { depth: Number(val.depth) } : {})
+              };
             }
           } else if (val.layout_position) {
             layoutMap[bid] = {
               x: Number(val.layout_position.x),
               z: Number(val.layout_position.z),
-              y: Number(val.layout_position.y)
+              y: Number(val.layout_position.y),
+              ...(rot !== undefined ? { rotation_y: rot } : {}),
+              ...(hid !== undefined ? { hidden: hid } : {})
             };
           } else if (val.x !== undefined || val.z !== undefined) {
             layoutMap[bid] = {
               x: Number(val.x),
               z: Number(val.z),
-              y: val.y !== undefined ? Number(val.y) : undefined
+              y: val.y !== undefined ? Number(val.y) : undefined,
+              ...(rot !== undefined ? { rotation_y: rot } : {}),
+              ...(hid !== undefined ? { hidden: hid } : {})
             };
           }
         });
@@ -818,7 +1142,16 @@
         if (parsed.roads) {
           Object.entries(parsed.roads).forEach(([rid, val]) => {
             if (val.x !== undefined || val.z !== undefined) {
-              roadMap[rid] = { x: Number(val.x), z: Number(val.z) };
+              const rot = val.rotation_y !== undefined ? Number(val.rotation_y) : (val.rotation_deg !== undefined ? (Number(val.rotation_deg) * Math.PI / 180) : undefined);
+              const hid = val.hidden !== undefined ? Boolean(val.hidden) : (val.visible !== undefined ? !val.visible : undefined);
+              roadMap[rid] = {
+                x: Number(val.x),
+                z: Number(val.z),
+                ...(rot !== undefined ? { rotation_y: rot } : {}),
+                ...(hid !== undefined ? { hidden: hid } : {}),
+                ...(val.width !== undefined ? { width: Number(val.width) } : {}),
+                ...(val.length !== undefined ? { length: Number(val.length) } : {})
+              };
             }
           });
         }
@@ -826,7 +1159,16 @@
         if (parsed.water) {
           Object.entries(parsed.water).forEach(([wid, val]) => {
             if (val.x !== undefined || val.z !== undefined) {
-              waterMap[wid] = { x: Number(val.x), z: Number(val.z) };
+              const rot = val.rotation_y !== undefined ? Number(val.rotation_y) : (val.rotation_deg !== undefined ? (Number(val.rotation_deg) * Math.PI / 180) : undefined);
+              const hid = val.hidden !== undefined ? Boolean(val.hidden) : (val.visible !== undefined ? !val.visible : undefined);
+              waterMap[wid] = {
+                x: Number(val.x),
+                z: Number(val.z),
+                ...(rot !== undefined ? { rotation_y: rot } : {}),
+                ...(hid !== undefined ? { hidden: hid } : {}),
+                ...(val.width !== undefined ? { width: Number(val.width) } : {}),
+                ...(val.depth !== undefined ? { depth: Number(val.depth) } : {})
+              };
             }
           });
         }
@@ -834,7 +1176,14 @@
         if (parsed.landmarks) {
           Object.entries(parsed.landmarks).forEach(([lid, val]) => {
             if (val.x !== undefined || val.z !== undefined) {
-              landmarkMap[lid] = { x: Number(val.x), z: Number(val.z) };
+              const rot = val.rotation_y !== undefined ? Number(val.rotation_y) : (val.rotation_deg !== undefined ? (Number(val.rotation_deg) * Math.PI / 180) : undefined);
+              const hid = val.hidden !== undefined ? Boolean(val.hidden) : (val.visible !== undefined ? !val.visible : undefined);
+              landmarkMap[lid] = {
+                x: Number(val.x),
+                z: Number(val.z),
+                ...(rot !== undefined ? { rotation_y: rot } : {}),
+                ...(hid !== undefined ? { hidden: hid } : {})
+              };
             }
           });
         }
@@ -1109,6 +1458,10 @@
       const text = raw.trim();
       if (!text) return null;
 
+      // Exact match check
+      if (this.canonicalBuildingCodes.has(text)) return text;
+      if (this.canonicalBuildingCodes.has(text.toUpperCase())) return text.toUpperCase();
+
       // 1. Shorthand & Standard Code regex: T.19, ท.19, ท19, T19, ท-19, T.0019, ต.17, ด.17, D.17, บ.1, etc.
       const m = text.match(/(?:^|[^\w\u0E00-\u0E7F])([TDBทดับต]\.?\s*-?\s*\d{1,4})(?:$|[^\w\u0E00-\u0E7F])/i);
       if (m) {
@@ -1143,6 +1496,13 @@
       if (!raw || typeof raw !== 'string') return null;
       const text = raw.trim();
       const upper = text.toUpperCase();
+
+      // Exact match check
+      if (this.defaultRoads && this.defaultRoads[text]) return text;
+      if (this.defaultRoads && this.defaultRoads[upper]) return upper;
+      if (this.roads && this.roads[text]) return text;
+      if (this.roads && this.roads[upper]) return upper;
+
       const isRoad = upper.includes('ROAD') || /ถนน|ทางรถ|ทางสัญจร|ถ\./.test(text);
       if (!isRoad) return null;
 
@@ -1180,6 +1540,12 @@
       if (!raw || typeof raw !== 'string') return null;
       const text = raw.trim();
       const clean = text.replace(/[\[\]]/g, '').trim().toUpperCase();
+
+      // Exact match check
+      if (this.defaultWater && this.defaultWater[text]) return text;
+      if (this.defaultWater && this.defaultWater[clean]) return clean;
+      if (this.water && this.water[text]) return text;
+      if (this.water && this.water[clean]) return clean;
 
       // Check explicit canal / west canal
       if (clean.startsWith('WEST_CAN') || clean.includes('CANAL') || text.includes('คลอง') || clean === 'WEST_CAN' || clean.includes('WEST_CA')) {
@@ -1225,6 +1591,12 @@
       if (!raw || typeof raw !== 'string') return null;
       const text = raw.trim();
       const clean = text.replace(/[\[\]]/g, '').trim().toUpperCase();
+
+      // Exact match check
+      if (this.defaultLandmarks && this.defaultLandmarks[text]) return text;
+      if (this.defaultLandmarks && this.defaultLandmarks[clean]) return clean;
+      if (this.landmarks && this.landmarks[text]) return text;
+      if (this.landmarks && this.landmarks[clean]) return clean;
 
       if (clean.startsWith('SW_YARD') || clean.includes('SWITCHYARD') || text.includes('สวิตช์ยาร์ด') || text.includes('สถานีไฟฟ้า')) return 'SW_YARD';
       if (clean.startsWith('FOOTBALL') || text.includes('ฟุตบอล') || text.includes('สนามบอล')) return 'FOOTBALL';
@@ -1365,38 +1737,19 @@
         }
       }
 
-      // Consolidate road coordinates (with corridor protection against centroid skew)
+      // Consolidate road coordinates
       const roadMap = {};
       Object.entries(roadCoords).forEach(([rid, coords]) => {
-        let avgX = coords.reduce((acc, c) => acc + c.x, 0) / coords.length;
-        let avgZ = coords.reduce((acc, c) => acc + c.z, 0) / coords.length;
-
-        // Protect linear road corridors from being warped into building zones:
-        if (rid === 'ROAD_MAIN_BOULEVARD') {
-          if (avgX > 20 || avgX < -5) avgX = 8;
-          avgZ = -30;
-        } else if (rid === 'ROAD_SPINE_WORKSHOP') {
-          if (avgZ < -100 || avgZ > 0) avgZ = -50;
-          if (avgX < -110 || avgX > -30) avgX = -60;
-        } else if (rid === 'ROAD_WEST_CANAL') {
-          if (avgX > -150) avgX = -170;
-          avgZ = -40;
-        }
+        const avgX = coords.reduce((acc, c) => acc + c.x, 0) / coords.length;
+        const avgZ = coords.reduce((acc, c) => acc + c.z, 0) / coords.length;
         roadMap[rid] = { x: Math.round(avgX), z: Math.round(avgZ) };
       });
 
-      // Consolidate water coordinates (with perimeter canal protection)
+      // Consolidate water coordinates
       const waterMap = {};
       Object.entries(waterCoords).forEach(([wid, coords]) => {
-        let avgX = coords.reduce((acc, c) => acc + c.x, 0) / coords.length;
-        let avgZ = coords.reduce((acc, c) => acc + c.z, 0) / coords.length;
-
-        // WEST_CANAL must stay on west perimeter (-200, -40).
-        // Boundary cells drawn across the northern edge must not pull the 480m canal inside campus!
-        if (wid === 'WEST_CANAL' && avgX > -170) {
-          avgX = -200;
-          avgZ = -40;
-        }
+        const avgX = coords.reduce((acc, c) => acc + c.x, 0) / coords.length;
+        const avgZ = coords.reduce((acc, c) => acc + c.z, 0) / coords.length;
         waterMap[wid] = { x: Math.round(avgX), z: Math.round(avgZ) };
       });
 
@@ -1433,22 +1786,76 @@
 
       let headerRowIdx = -1;
       let bCodeIdx = -1, xIdx = -1, zIdx = -1;
+      let rotIdx = -1, visIdx = -1, widthIdx = -1, lengthIdx = -1;
 
       for (let r = 0; r < Math.min(rows.length, 12); r++) {
         const row = rows[r];
         if (!row || !Array.isArray(row)) continue;
         const lower = row.map(c => String(c || '').toLowerCase().trim());
         let bc = -1, xi = -1, zi = -1;
+        let ri = -1, vi = -1, wi = -1, li = -1;
+
         lower.forEach((h, idx) => {
-          if (h.includes('building_code') || h.includes('b_code') || h.includes('road_code') || h.includes('water_code') || h.includes('landmark_code') || h.includes('lm_code') || h === 'code' || h.includes('รหัส') || h.includes('ชื่ออาคาร')) bc = idx;
-          if (h.includes('x_coord') || h === 'x' || h.includes('พิกัด x') || h === 'พิกัดx') xi = idx;
-          if (h.includes('z_coord') || h === 'z' || h.includes('พิกัด z') || h === 'พิกัดz') zi = idx;
+          if (!h) return;
+          // Skip meter columns
+          if (h.includes('meter') || h.includes('มิเตอร์')) return;
+
+          // Building / Object Code / ID
+          const isCode = (
+            h === 'id' || h === 'code' || h === 'b_code' || h === 'building_code' ||
+            h === 'road_code' || h === 'water_code' || h === 'landmark_code' ||
+            h.endsWith('_id') || h.startsWith('id_') || h.startsWith('id ') || h.startsWith('id(') ||
+            h.includes('รหัส') || h.includes('ชื่ออาคาร') ||
+            /\bid\b/i.test(h)
+          );
+          if (isCode && !h.includes('width') && !h.includes('grid')) {
+            if (bc === -1 || h.includes('code') || h === 'id' || h.includes('รหัส')) bc = idx;
+          }
+
+          // X Coordinate
+          if (
+            h === 'x' || h === 'x_coord' || h.includes('พิกัด x') || h === 'พิกัดx' ||
+            h.includes('แกน x') || (h.includes('พิกัด') && h.includes('x')) ||
+            (h.includes('ตะวันตก') && h.includes('ออก'))
+          ) {
+            xi = idx;
+          }
+
+          // Z Coordinate
+          if (
+            h === 'z' || h === 'z_coord' || h.includes('พิกัด z') || h === 'พิกัดz' ||
+            h.includes('แกน z') || (h.includes('พิกัด') && h.includes('z')) ||
+            (h.includes('เหนือ') && h.includes('ใต้'))
+          ) {
+            zi = idx;
+          }
+
+          // Rotation (degrees) - do not match compass / เข็มทิศ column
+          if (!h.includes('เข็มทิศ') && !h.includes('compass')) {
+            if (h.includes('rot') || h.includes('องศา') || h.includes('หมุน') || h.includes('หันหน้า')) {
+              ri = idx;
+            }
+          }
+
+          // Status / Visibility
+          if (h.includes('status') || h.includes('visible') || h.includes('hidden') || h.includes('สถานะ') || h.includes('การแสดงผล') || h === 'แสดง' || h === 'ซ่อน') {
+            vi = idx;
+          }
+
+          // Dimensions
+          if (h.includes('width') || h.includes('กว้าง')) wi = idx;
+          if (h.includes('length') || h.includes('depth') || h.includes('ยาว') || h.includes('ลึก')) li = idx;
         });
+
         if (bc !== -1 && xi !== -1 && zi !== -1) {
           headerRowIdx = r;
           bCodeIdx = bc;
           xIdx = xi;
           zIdx = zi;
+          rotIdx = ri;
+          visIdx = vi;
+          widthIdx = wi;
+          lengthIdx = li;
           break;
         }
       }
@@ -1468,27 +1875,72 @@
         const zVal = parseFloat(row[zIdx]);
         if (!rawCode || isNaN(xVal) || isNaN(zVal)) continue;
 
+        let rotRad = undefined;
+        if (rotIdx !== -1 && row[rotIdx] !== undefined && row[rotIdx] !== '') {
+          const rawRot = String(row[rotIdx]).trim();
+          const m = rawRot.match(/([-+]?\d+(?:\.\d+)?)/);
+          if (m) {
+            const deg = parseFloat(m[1]);
+            if (!isNaN(deg)) rotRad = (deg * Math.PI) / 180;
+          }
+        }
+
+        let isHidden = undefined;
+        if (visIdx !== -1 && row[visIdx] !== undefined && row[visIdx] !== '') {
+          const str = String(row[visIdx]).toLowerCase().trim();
+          isHidden = (str.includes('ซ่อน') || str === 'hidden' || str === 'false' || str === '0');
+        }
+
+        const wVal = widthIdx !== -1 ? parseFloat(row[widthIdx]) : NaN;
+        const lVal = lengthIdx !== -1 ? parseFloat(row[lengthIdx]) : NaN;
+
         const bCode = this.resolveBuildingCode(rawCode);
         if (bCode) {
-          layoutMap[bCode] = { x: xVal, z: zVal };
+          layoutMap[bCode] = {
+            x: xVal,
+            z: zVal,
+            ...(rotRad !== undefined ? { rotation_y: rotRad } : {}),
+            ...(isHidden !== undefined ? { hidden: isHidden } : {})
+          };
           continue;
         }
 
         const roadId = this.resolveRoadId(rawCode, xVal, zVal);
         if (roadId) {
-          roadMap[roadId] = { x: xVal, z: zVal };
+          roadMap[roadId] = {
+            x: xVal,
+            z: zVal,
+            ...(rotRad !== undefined ? { rotation_y: rotRad } : {}),
+            ...(isHidden !== undefined ? { hidden: isHidden } : {}),
+            ...(!isNaN(wVal) ? { width: wVal } : {}),
+            ...(!isNaN(lVal) ? { length: lVal } : {})
+          };
           continue;
         }
 
         const waterId = this.resolveWaterId(rawCode, xVal, zVal);
         if (waterId) {
-          waterMap[waterId] = { x: xVal, z: zVal };
+          waterMap[waterId] = {
+            x: xVal,
+            z: zVal,
+            ...(rotRad !== undefined ? { rotation_y: rotRad } : {}),
+            ...(isHidden !== undefined ? { hidden: isHidden } : {}),
+            ...(!isNaN(wVal) ? { width: wVal } : {}),
+            ...(!isNaN(lVal) ? { depth: lVal } : {})
+          };
           continue;
         }
 
         const lmId = this.resolveLandmarkId(rawCode);
         if (lmId) {
-          landmarkMap[lmId] = { x: xVal, z: zVal };
+          landmarkMap[lmId] = {
+            x: xVal,
+            z: zVal,
+            ...(rotRad !== undefined ? { rotation_y: rotRad } : {}),
+            ...(isHidden !== undefined ? { hidden: isHidden } : {}),
+            ...(!isNaN(wVal) ? { width: wVal } : {}),
+            ...(!isNaN(lVal) ? { depth: lVal } : {})
+          };
         }
       }
 
@@ -1982,6 +2434,7 @@
           dimensions: bMap.dimensions,
           layout_position: bMap.layout_position,
           rotation_y: bMap.rotation_y || 0,
+          hidden: Boolean(bMap.hidden),
           departments: bMap.departments || [],
           department_shares: bMap.department_shares || {},
           metering: bMap.metering || {},
