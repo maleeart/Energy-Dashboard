@@ -1,8 +1,8 @@
 """
 Export Campus Layout to Excel (.xlsx) and CSV Templates
 Generates:
-1. data/sainoi_campus_layout_template.xlsx (Visual 2D Grid Map sheet + Building Coordinates sheet + Landmarks sheet)
-2. data/sainoi_campus_layout.csv (Coordinates table with UTF-8 BOM)
+1. data/sainoi_campus_layout_template.xlsx (Visual 2D Grid Map sheet + Building Coordinates sheet + Road Network sheet + Landmarks sheet)
+2. data/sainoi_campus_layout.csv (Coordinates table for Buildings + Roads with UTF-8 BOM)
 3. data/sainoi_campus_grid_map.csv (Visual 2D Matrix Grid Map)
 """
 
@@ -57,7 +57,146 @@ def build_excel_and_csv():
         'T.0022': 'West (บ้านพัก & ริมคลอง)',
     }
 
-    # 3. Define Landmarks & Environment Objects
+    # 3. Define Road Network (Configurable road segments)
+    roads = [
+        {
+            'code': 'ROAD_MAIN_BOULEVARD',
+            'name': 'ถนนสายหลักทางเข้า (Main Boulevard)',
+            'category': 'ถนนสายหลัก (2 เลน)',
+            'zone': 'Center (ผ่านกลางสำนักงาน)',
+            'x': 8.0, 'z': -30.0, 'y': 0.0,
+            'width': 12.0, 'depth': 360.0, 'height': 0.2,
+            'desc': 'ถนนหลัก 2 เลนพร้อมเกาะกลางและเส้นปะ ผ่ากลางจากซุ้มประตูด้านหน้าขึ้นทิศเหนือ'
+        },
+        {
+            'code': 'ROAD_SPINE_WORKSHOP',
+            'name': 'ถนนสายแกนกลางโรงงาน (Spine Road)',
+            'category': 'ถนนสายรอง',
+            'zone': 'Central (หลังโรงงาน ท.0006-12)',
+            'x': -60.0, 'z': -50.0, 'y': 0.0,
+            'width': 8.0, 'depth': 280.0, 'height': 0.2,
+            'desc': 'ถนนบริการด้านหลังโรงงานฝั่งตะวันตก'
+        },
+        {
+            'code': 'ROAD_WEST_CANAL',
+            'name': 'ถนนเลียบคลองสงวน (Canal Road)',
+            'category': 'ถนนสายรอง',
+            'zone': 'West (เลียบคลองสงวนและบ้านพัก)',
+            'x': -170.0, 'z': -40.0, 'y': 0.0,
+            'width': 9.0, 'depth': 320.0, 'height': 0.2,
+            'desc': 'ถนนบริการเลียบคลองสงวนและแฟลตที่พัก'
+        },
+        {
+            'code': 'ROAD_CROSS_140',
+            'name': 'ถนนขวางหน้าซุ้มประตู-สวิตช์ยาร์ด (Z=140)',
+            'category': 'ถนนซอยเชื่อม',
+            'zone': 'Front (Z=140)',
+            'x': 8.0, 'z': 140.0, 'y': 0.0,
+            'width': 80.0, 'depth': 9.0, 'height': 0.2,
+            'desc': 'ถนนขวางหน้าสวิตช์ยาร์ดและทุ่งทานตะวัน'
+        },
+        {
+            'code': 'ROAD_CROSS_50',
+            'name': 'ถนนขวางหน้า ท.0020 & ท.0007 (Z=50)',
+            'category': 'ถนนซอยเชื่อม',
+            'zone': 'Central (Z=50)',
+            'x': 8.0, 'z': 50.0, 'y': 0.0,
+            'width': 90.0, 'depth': 9.0, 'height': 0.2,
+            'desc': 'ถนนขวางเชื่อมหน้า ท.0020 และอาคารกองบริหาร'
+        },
+        {
+            'code': 'ROAD_CROSS_15',
+            'name': 'ถนนขวางหน้า ท.0019 & ท.0006 (Z=15)',
+            'category': 'ถนนซอยเชื่อม',
+            'zone': 'Central (Z=15)',
+            'x': 8.0, 'z': 15.0, 'y': 0.0,
+            'width': 90.0, 'depth': 9.0, 'height': 0.2,
+            'desc': 'ถนนขวางหน้าอาคารธุรกิจบำรุงรักษา ท.0019'
+        },
+        {
+            'code': 'ROAD_CROSS_M20',
+            'name': 'ถนนขวางข้างสนามฟุตบอล-ท.0008 (Z=-20)',
+            'category': 'ถนนซอยเชื่อม',
+            'zone': 'Central (Z=-20)',
+            'x': 8.0, 'z': -20.0, 'y': 0.0,
+            'width': 90.0, 'depth': 9.0, 'height': 0.2,
+            'desc': 'ถนนขวางเลียบข้างสนามฟุตบอลและ ท.0008'
+        },
+        {
+            'code': 'ROAD_CROSS_M55',
+            'name': 'ถนนขวางหน้า ต.0019 นันทนาการ (Z=-55)',
+            'category': 'ถนนซอยเชื่อม',
+            'zone': 'Central (Z=-55)',
+            'x': 8.0, 'z': -55.0, 'y': 0.0,
+            'width': 90.0, 'depth': 9.0, 'height': 0.2,
+            'desc': 'ถนนขวางเชื่อมหน้าอาคารนันทนาการ ต.0019'
+        },
+        {
+            'code': 'ROAD_CROSS_M85',
+            'name': 'ถนนขวางหน้า ท.0014 ไฟฟ้าโยธา (Z=-85)',
+            'category': 'ถนนซอยเชื่อม',
+            'zone': 'Central (Z=-85)',
+            'x': 8.0, 'z': -85.0, 'y': 0.0,
+            'width': 90.0, 'depth': 9.0, 'height': 0.2,
+            'desc': 'ถนนขวางหน้าโรงปฏิบัติการไฟฟ้าและโยธา ท.0014'
+        },
+        {
+            'code': 'ROAD_CROSS_M115',
+            'name': 'ถนนขวางโรงอาหารหลัก ต.0017 (Z=-115)',
+            'category': 'ถนนซอยเชื่อม',
+            'zone': 'Central (Z=-115)',
+            'x': -15.0, 'z': -115.0, 'y': 0.0,
+            'width': 130.0, 'depth': 9.0, 'height': 0.2,
+            'desc': 'ถนนขวางเชื่อมโรงอาหารหลักและโรงเครื่องมือ ท.0011'
+        },
+        {
+            'code': 'ROAD_CROSS_M150',
+            'name': 'ถนนขวางโรงปฏิบัติการหนัก ท.0012 (Z=-150)',
+            'category': 'ถนนซอยเชื่อม',
+            'zone': 'Central (Z=-150)',
+            'x': -35.0, 'z': -150.0, 'y': 0.0,
+            'width': 140.0, 'depth': 9.0, 'height': 0.2,
+            'desc': 'ถนนขวางเชื่อมโรงปฏิบัติการเครื่องกลหนัก ท.0012'
+        },
+        {
+            'code': 'ROAD_EAST_CONNECTOR',
+            'name': 'ถนนเชื่อมสู่วงเวียนตะวันออก',
+            'category': 'ถนนเชื่อมวงเวียน',
+            'zone': 'East (Z=-60)',
+            'x': 65.0, 'z': -60.0, 'y': 0.0,
+            'width': 80.0, 'depth': 8.0, 'height': 0.2,
+            'desc': 'ถนนเชื่อมจากถนนหลักสู่วงเวียนฝั่งตะวันออก'
+        },
+        {
+            'code': 'ROAD_OHK_ACCESS',
+            'name': 'ถนนทางเข้าศูนย์ขนส่ง อหข.',
+            'category': 'ถนนขนส่ง อหข.',
+            'zone': 'Northwest (Z=-115)',
+            'x': -135.0, 'z': -115.0, 'y': 0.0,
+            'width': 9.0, 'depth': 65.0, 'height': 0.2,
+            'desc': 'ถนนทางเข้าสู่วงเวียนใหญ่ อหข.'
+        },
+        {
+            'code': 'ROAD_OHK_NORTH_LOOP',
+            'name': 'ถนนรอบ อหข. ด้านเหนือ (Z=-215)',
+            'category': 'ถนนขนส่ง อหข.',
+            'zone': 'Northwest (Z=-215)',
+            'x': -155.0, 'z': -215.0, 'y': 0.0,
+            'width': 85.0, 'depth': 8.0, 'height': 0.2,
+            'desc': 'ถนนเลียบหลังโรงซ่อมหนัก ท.0028 - ท.0029'
+        },
+        {
+            'code': 'ROAD_OHK_EAST_LOOP',
+            'name': 'ถนนเลียบโรงจอดรถ อหข.',
+            'category': 'ถนนขนส่ง อหข.',
+            'zone': 'Northwest (Z=-165)',
+            'x': -75.0, 'z': -165.0, 'y': 0.0,
+            'width': 8.0, 'depth': 65.0, 'height': 0.2,
+            'desc': 'ถนนหลังโรงจอดยานพาหนะ ท.0027'
+        }
+    ]
+
+    # 4. Define Landmarks & Environment Objects
     landmarks = [
         {
             'code': 'SW_YARD',
@@ -196,10 +335,9 @@ def build_excel_and_csv():
         }
     ]
 
-    # 4. Create Excel Workbook
+    # 5. Create Excel Workbook
     wb = openpyxl.Workbook()
 
-    # Sheet styles
     font_title = Font(name='Sarabun', size=13, bold=True, color='0B1D51')
     font_subtitle = Font(name='Sarabun', size=10, italic=True, color='475569')
     font_hdr = Font(name='Sarabun', size=11, bold=True, color='FFFFFF')
@@ -212,7 +350,6 @@ def build_excel_and_csv():
     fill_hdr = PatternFill(start_color='0B1D51', end_color='0B1D51', fill_type='solid')
     fill_grid_hdr = PatternFill(start_color='E2E8F0', end_color='E2E8F0', fill_type='solid')
 
-    # Color fills for zones & landmarks
     fill_east = PatternFill(start_color='BAE6FD', end_color='BAE6FD', fill_type='solid')     # Blue
     fill_central = PatternFill(start_color='FED7AA', end_color='FED7AA', fill_type='solid')  # Amber
     fill_ohk = PatternFill(start_color='E9D5FF', end_color='E9D5FF', fill_type='solid')      # Purple
@@ -221,19 +358,15 @@ def build_excel_and_csv():
     fill_green = PatternFill(start_color='A7F3D0', end_color='A7F3D0', fill_type='solid')    # Emerald
     fill_yard = PatternFill(start_color='CBD5E1', end_color='CBD5E1', fill_type='solid')     # Slate
     fill_sculpt = PatternFill(start_color='FDE68A', end_color='FDE68A', fill_type='solid')   # Yellow
-    fill_road = PatternFill(start_color='F1F5F9', end_color='F1F5F9', fill_type='solid')     # Gray
+    fill_road = PatternFill(start_color='E2E8F0', end_color='E2E8F0', fill_type='solid')     # Gray Road
 
     thin_border = Border(
-        left=Side(style='thin', color='CBD5E1'),
-        right=Side(style='thin', color='CBD5E1'),
-        top=Side(style='thin', color='CBD5E1'),
-        bottom=Side(style='thin', color='CBD5E1')
+        left=Side(style='thin', color='CBD5E1'), right=Side(style='thin', color='CBD5E1'),
+        top=Side(style='thin', color='CBD5E1'), bottom=Side(style='thin', color='CBD5E1')
     )
     grid_cell_border = Border(
-        left=Side(style='thin', color='E2E8F0'),
-        right=Side(style='thin', color='E2E8F0'),
-        top=Side(style='thin', color='E2E8F0'),
-        bottom=Side(style='thin', color='E2E8F0')
+        left=Side(style='thin', color='E2E8F0'), right=Side(style='thin', color='E2E8F0'),
+        top=Side(style='thin', color='E2E8F0'), bottom=Side(style='thin', color='E2E8F0')
     )
 
     # ═══════════════════════════════════════════════════════════════════
@@ -242,18 +375,16 @@ def build_excel_and_csv():
     ws_grid = wb.active
     ws_grid.title = 'Campus_2D_Grid_Map'
 
-    # Title & instructions
-    ws_grid['A1'] = 'ผังจำลองตำแหน่งอาคารและวัตถุประกอบ 2D Campus Grid Map | การไฟฟ้าฝ่ายผลิตแห่งประเทศไทย สำนักงานไทรน้อย'
+    ws_grid['A1'] = 'ผังจำลองตำแหน่งอาคาร ถนน และวัตถุประกอบ 2D Campus Grid Map | การไฟฟ้าฝ่ายผลิตแห่งประเทศไทย สำนักงานไทรน้อย'
     ws_grid['A1'].font = font_title
-    ws_grid['A2'] = '📐 มาตราส่วน: 1 ช่องเซลล์ = 10 x 10 เมตร | แกนแนวนอน (คอลัมน์) = พิกัด X (ตะวันตก - ตะวันออก) | แกนแนวตั้ง (แถว) = พิกัด Z (เหนือ - ใต้)'
+    ws_grid['A2'] = '📐 มาตราส่วน: 1 ช่องเซลล์ = 10 x 10 เมตร | แกนแนวนอน = พิกัด X (ตะวันตก - ตะวันออก) | แกนแนวตั้ง = พิกัด Z (เหนือ - ใต้)'
     ws_grid['A2'].font = font_subtitle
-    ws_grid['A3'] = '💡 วิธีแก้ไข: สามารถคัดลอก/ย้าย รหัสอาคาร (เช่น T.0019) ไปวางในช่องพิกัดที่ต้องการ หรือไปแก้ไขตัวเลขในแท็บ Building_Coordinates แล้วอัปโหลดกลับขึ้นระบบ 3D ได้ทันที'
+    ws_grid['A3'] = '💡 วิธีแก้ไข: สามารถคัดลอก/ย้าย รหัสอาคาร (เช่น T.0019) หรือ รหัสถนน (เช่น ROAD_MAIN_BOULEVARD) ไปวางในช่องพิกัดที่ต้องการ แล้วอัปโหลดกลับขึ้นระบบ 3D ได้ทันที'
     ws_grid['A3'].font = font_subtitle
 
-    # Define Grid Parameters: step = 10 meters
     grid_step = 10
-    x_min, x_max = -210, 180   # columns
-    z_min, z_max = -220, 140   # rows
+    x_min, x_max = -210, 180
+    z_min, z_max = -220, 140
 
     x_values = list(range(x_min, x_max + 1, grid_step))
     z_values = list(range(z_min, z_max + 1, grid_step))
@@ -276,11 +407,27 @@ def build_excel_and_csv():
         cell.border = thin_border
         ws_grid.column_dimensions[col_letter].width = 11
 
-    # Map item positions to grid cell (nearest 10m grid)
-    # item_grid[(grid_x, grid_z)] = { 'text': '...', 'fill': ..., 'name': '...' }
     item_grid = {}
 
-    # Place landmarks first so buildings overwrite them if overlapping
+    # 1. Place Road Network
+    for rd in roads:
+        gx = int(round(rd['x'] / grid_step) * grid_step)
+        gz = int(round(rd['z'] / grid_step) * grid_step)
+        w_span = max(1, int(round(rd['width'] / (grid_step * 2))))
+        d_span = max(1, int(round(rd['depth'] / (grid_step * 2))))
+        
+        # Mark center
+        item_grid[(gx, gz)] = { 'text': rd['code'], 'fill': fill_road }
+        
+        # Mark extended path
+        if rd['depth'] > rd['width']: # vertical road
+            for dz in range(-d_span, d_span + 1):
+                item_grid[(gx, gz + dz * grid_step)] = { 'text': rd['code'][:10], 'fill': fill_road }
+        else: # horizontal road
+            for dx in range(-w_span, w_span + 1):
+                item_grid[(gx + dx * grid_step, gz)] = { 'text': rd['code'][:10], 'fill': fill_road }
+
+    # 2. Place Landmarks
     for lm in landmarks:
         gx = int(round(lm['x'] / grid_step) * grid_step)
         gz = int(round(lm['z'] / grid_step) * grid_step)
@@ -291,18 +438,17 @@ def build_excel_and_csv():
         elif 'LAKE' in c or 'POND' in c or 'CANAL' in c: f = fill_water
         elif 'TURBINE' in c or 'SHRINE' in c or 'SUNFLOWER' in c: f = fill_sculpt
 
-        # If landmark has dimension > 20m, occupy a block
         w_span = max(1, int(round(lm['width'] / (grid_step * 2))))
         d_span = max(1, int(round(lm['depth'] / (grid_step * 2))))
         for dx in range(-w_span + 1, w_span + 1):
             for dz in range(-d_span + 1, d_span + 1):
                 item_grid[(gx + dx * grid_step, gz + dz * grid_step)] = {
-                    'text': f"[{c[:10]}]",
+                    'text': f"[{c[:8]}]",
                     'fill': f
                 }
         item_grid[(gx, gz)] = { 'text': f"[{c}]", 'fill': f }
 
-    # Place Buildings (Priority)
+    # 3. Place Buildings (Priority on top)
     for b_code, b in buildings.items():
         pos = b['layout_position']
         gx = int(round(pos['x'] / grid_step) * grid_step)
@@ -319,7 +465,6 @@ def build_excel_and_csv():
             'fill': zf
         }
 
-    # Populate rows in Excel
     for r_idx, zv in enumerate(z_values, start=first_data_row):
         row_cell = ws_grid.cell(row=r_idx, column=1, value=f'Z={zv}')
         row_cell.font = font_grid_hdr
@@ -340,14 +485,12 @@ def build_excel_and_csv():
                 cell.fill = item['fill']
                 cell.font = font_grid_cell
 
-    # Freeze panes at (col=2, row=6)
     ws_grid.freeze_panes = 'B6'
 
     # ═══════════════════════════════════════════════════════════════════
     # SHEET 2: Building_Coordinates (ตารางพิกัดอาคารทั้ง 29 หลัง)
     # ═══════════════════════════════════════════════════════════════════
     ws_bld = wb.create_sheet(title='Building_Coordinates')
-
     bld_headers = [
         'Building_Code', 'Building_Name', 'Category', 'Zone',
         'X_Coord', 'Z_Coord', 'Y_Coord',
@@ -373,16 +516,9 @@ def build_excel_and_csv():
         zn = zone_lookup.get(b_code, '-')
 
         row_vals = [
-            b_code,
-            b['name'],
-            b.get('category_th', '-'),
-            zn,
-            pos['x'],
-            pos['z'],
-            pos['y'],
-            dim['width'],
-            dim['depth'],
-            dim['height'],
+            b_code, b['name'], b.get('category_th', '-'), zn,
+            pos['x'], pos['z'], pos['y'],
+            dim['width'], dim['depth'], dim['height'],
             b.get('primary_meter', '-')
         ]
 
@@ -392,22 +528,17 @@ def build_excel_and_csv():
             if c_idx == 1:
                 cell.font = font_bold
                 cell.alignment = Alignment(horizontal='center', vertical='center')
-            elif c_idx in [5, 6]: # X, Z coordinates
+            elif c_idx in [5, 6]:
                 cell.font = font_bold
                 cell.alignment = Alignment(horizontal='right', vertical='center')
-                # Subtle highlight on editable coordinates
                 cell.fill = PatternFill(start_color='FEF3C7', end_color='FEF3C7', fill_type='solid')
             elif c_idx in [7, 8, 9, 10]:
                 cell.font = font_mono
                 cell.alignment = Alignment(horizontal='right', vertical='center')
-            elif c_idx == 11:
-                cell.font = font_mono
-                cell.alignment = Alignment(horizontal='left', vertical='center')
             else:
                 cell.font = font_normal
                 cell.alignment = Alignment(horizontal='left', vertical='center')
 
-    # Auto-adjust column widths for Sheet 2
     for col in ws_bld.columns:
         max_len = max(len(str(cell.value or '')) for cell in col)
         col_letter = get_column_letter(col[0].column)
@@ -416,10 +547,62 @@ def build_excel_and_csv():
     ws_bld.freeze_panes = 'A5'
 
     # ═══════════════════════════════════════════════════════════════════
-    # SHEET 3: Landmarks_Environment (ตารางวัตถุประกอบรอบๆ ทั้งหมด)
+    # SHEET 3: Road_Network (ตารางพิกัดถนนทุกสาย)
+    # ═══════════════════════════════════════════════════════════════════
+    ws_rd = wb.create_sheet(title='Road_Network')
+    rd_headers = [
+        'Road_Code', 'Road_Name', 'Category', 'Zone',
+        'X_Coord', 'Z_Coord', 'Y_Coord',
+        'Width_m', 'Length_m', 'Height_m',
+        'Description'
+    ]
+
+    ws_rd.cell(row=1, column=1, value='ตารางพิกัดโครงข่ายถนน (Campus Road Network Table)').font = font_title
+    ws_rd.cell(row=2, column=1, value='สามารถปรับตำแหน่งพิกัด X_Coord และ Z_Coord หรือความกว้างของถนนแต่ละสายได้').font = font_subtitle
+
+    for c_idx, h in enumerate(rd_headers, start=1):
+        cell = ws_rd.cell(row=4, column=c_idx, value=h)
+        cell.font = font_hdr
+        cell.fill = PatternFill(start_color='334155', end_color='334155', fill_type='solid')
+        cell.alignment = Alignment(horizontal='center', vertical='center')
+        cell.border = thin_border
+
+    for r_idx, rd in enumerate(roads, start=5):
+        row_vals = [
+            rd['code'], rd['name'], rd['category'], rd['zone'],
+            rd['x'], rd['z'], rd['y'],
+            rd['width'], rd['depth'], rd['height'],
+            rd['desc']
+        ]
+
+        for c_idx, val in enumerate(row_vals, start=1):
+            cell = ws_rd.cell(row=r_idx, column=c_idx, value=val)
+            cell.border = thin_border
+            if c_idx == 1:
+                cell.font = font_bold
+                cell.alignment = Alignment(horizontal='center', vertical='center')
+            elif c_idx in [5, 6]:
+                cell.font = font_bold
+                cell.alignment = Alignment(horizontal='right', vertical='center')
+                cell.fill = PatternFill(start_color='FEF3C7', end_color='FEF3C7', fill_type='solid')
+            elif c_idx in [7, 8, 9, 10]:
+                cell.font = font_mono
+                cell.alignment = Alignment(horizontal='right', vertical='center')
+            else:
+                cell.font = font_normal
+                cell.alignment = Alignment(horizontal='left', vertical='center')
+
+    for col in ws_rd.columns:
+        max_len = max(len(str(cell.value or '')) for cell in col)
+        col_letter = get_column_letter(col[0].column)
+        ws_rd.column_dimensions[col_letter].width = max(max_len + 3, 12)
+
+    ws_rd.freeze_panes = 'A5'
+
+    # ═══════════════════════════════════════════════════════════════════
+    # SHEET 4: Landmarks_Environment (ตารางวัตถุประกอบรอบๆ ทั้งหมด)
     # ═══════════════════════════════════════════════════════════════════
     ws_lm = wb.create_sheet(title='Landmarks_Environment')
-
     lm_headers = [
         'Landmark_Code', 'Landmark_Name', 'Category', 'Zone',
         'X_Coord', 'Z_Coord', 'Y_Coord',
@@ -439,16 +622,9 @@ def build_excel_and_csv():
 
     for r_idx, lm in enumerate(landmarks, start=5):
         row_vals = [
-            lm['code'],
-            lm['name'],
-            lm['category'],
-            lm['zone'],
-            lm['x'],
-            lm['z'],
-            lm['y'],
-            lm['width'],
-            lm['depth'],
-            lm['height'],
+            lm['code'], lm['name'], lm['category'], lm['zone'],
+            lm['x'], lm['z'], lm['y'],
+            lm['width'], lm['depth'], lm['height'],
             lm['desc']
         ]
 
@@ -475,10 +651,10 @@ def build_excel_and_csv():
     # Save Excel Workbook
     xlsx_path = os.path.join('data', 'sainoi_campus_layout_template.xlsx')
     wb.save(xlsx_path)
-    print(f"[OK] Generated Excel Workbook: {xlsx_path}")
+    print(f"[OK] Generated Excel Workbook with Roads: {xlsx_path}")
 
     # ═══════════════════════════════════════════════════════════════════
-    # 5. Export Standard CSV: data/sainoi_campus_layout.csv (UTF-8 with BOM)
+    # 6. Export Unified CSV: data/sainoi_campus_layout.csv (Buildings + Roads)
     # ═══════════════════════════════════════════════════════════════════
     csv_table_path = os.path.join('data', 'sainoi_campus_layout.csv')
     with open(csv_table_path, 'w', encoding='utf-8-sig', newline='') as f:
@@ -489,34 +665,34 @@ def build_excel_and_csv():
             'Width_m', 'Depth_m', 'Height_m',
             'Primary_Meter_ID'
         ])
+        # Buildings
         for b_code, b in sorted_bld_items:
             pos = b['layout_position']
             dim = b['dimensions']
             zn = zone_lookup.get(b_code, '-')
             writer.writerow([
-                b_code,
-                b['name'],
-                b.get('category_th', '-'),
-                zn,
-                pos['x'],
-                pos['z'],
-                pos['y'],
-                dim['width'],
-                dim['depth'],
-                dim['height'],
+                b_code, b['name'], b.get('category_th', '-'), zn,
+                pos['x'], pos['z'], pos['y'],
+                dim['width'], dim['depth'], dim['height'],
                 b.get('primary_meter', '-')
             ])
-    print(f"[OK] Generated CSV Coordinates Table: {csv_table_path}")
+        # Roads
+        for rd in roads:
+            writer.writerow([
+                rd['code'], rd['name'], rd['category'], rd['zone'],
+                rd['x'], rd['z'], rd['y'],
+                rd['width'], rd['depth'], rd['height'],
+                'ROAD'
+            ])
+    print(f"[OK] Generated Unified CSV Coordinates Table: {csv_table_path}")
 
     # ═══════════════════════════════════════════════════════════════════
-    # 6. Export Visual 2D Grid Map CSV: data/sainoi_campus_grid_map.csv
+    # 7. Export Visual 2D Grid Map CSV: data/sainoi_campus_grid_map.csv
     # ═══════════════════════════════════════════════════════════════════
     csv_grid_path = os.path.join('data', 'sainoi_campus_grid_map.csv')
     with open(csv_grid_path, 'w', encoding='utf-8-sig', newline='') as f:
         writer = csv.writer(f)
-        # Header row
         writer.writerow(['Z \\ X (m)'] + [f'X={xv}' for xv in x_values])
-        # Data rows
         for zv in z_values:
             row = [f'Z={zv}']
             for xv in x_values:

@@ -264,6 +264,10 @@
         // Check for saved custom 3D building layout in localStorage
         this.loadCustomLayout();
 
+        // Initialize roads and load saved custom roads
+        this.roads = JSON.parse(JSON.stringify(this.defaultRoads));
+        this.loadCustomRoads();
+
         // Default year and month range (default to full year matching index.html)
         if (this.summaryData && this.summaryData.periods) {
           const months = this.summaryData.periods.months || [];
@@ -437,9 +441,9 @@
 
     getLayoutExportData() {
       if (!this.mappingData || !this.mappingData.buildings) return {};
-      const res = {};
+      const res = { buildings: {}, roads: {} };
       Object.entries(this.mappingData.buildings).forEach(([bid, b]) => {
-        res[bid] = {
+        res.buildings[bid] = {
           name: b.name,
           short_name: b.short_name,
           category_th: b.category_th,
@@ -447,16 +451,114 @@
           dimensions: { ...b.dimensions }
         };
       });
+      const roadList = this.getRoadsList();
+      roadList.forEach(r => {
+        res.roads[r.id] = {
+          name: r.name,
+          category: r.category,
+          x: r.x,
+          z: r.z,
+          width: r.width,
+          length: r.length
+        };
+      });
       return res;
+    },
+
+    // ── Road Network Management ──────────────────────────────────
+    defaultRoads: {
+      'ROAD_MAIN_BOULEVARD': { name: 'ถนนสายหลักทางเข้า (Main Boulevard)', x: 8, z: -30, width: 12, length: 360, type: 'vertical', category: 'ถนนสายหลัก' },
+      'ROAD_SPINE_WORKSHOP': { name: 'ถนนสายแกนกลางโรงงาน (Spine Road)', x: -60, z: -50, width: 8, length: 280, type: 'vertical', category: 'ถนนสายรอง' },
+      'ROAD_WEST_CANAL': { name: 'ถนนเลียบคลองสงวน (Canal Road)', x: -170, z: -40, width: 9, length: 320, type: 'vertical', category: 'ถนนสายรอง' },
+      'ROAD_CROSS_140': { name: 'ถนนขวางหน้าซุ้มประตู-สวิตช์ยาร์ด (Z=140)', x: 8, z: 140, width: 80, length: 9, type: 'horizontal', category: 'ถนนซอยเชื่อม' },
+      'ROAD_CROSS_50': { name: 'ถนนขวางหน้า ท.0020 & ท.0007 (Z=50)', x: 8, z: 50, width: 90, length: 9, type: 'horizontal', category: 'ถนนซอยเชื่อม' },
+      'ROAD_CROSS_15': { name: 'ถนนขวางหน้า ท.0019 & ท.0006 (Z=15)', x: 8, z: 15, width: 90, length: 9, type: 'horizontal', category: 'ถนนซอยเชื่อม' },
+      'ROAD_CROSS_M20': { name: 'ถนนขวางข้างสนามฟุตบอล-ท.0008 (Z=-20)', x: 8, z: -20, width: 90, length: 9, type: 'horizontal', category: 'ถนนซอยเชื่อม' },
+      'ROAD_CROSS_M55': { name: 'ถนนขวางหน้า ต.0019 นันทนาการ (Z=-55)', x: 8, z: -55, width: 90, length: 9, type: 'horizontal', category: 'ถนนซอยเชื่อม' },
+      'ROAD_CROSS_M85': { name: 'ถนนขวางหน้า ท.0014 ไฟฟ้าโยธา (Z=-85)', x: 8, z: -85, width: 90, length: 9, type: 'horizontal', category: 'ถนนซอยเชื่อม' },
+      'ROAD_CROSS_M115': { name: 'ถนนขวางโรงอาหารหลัก ต.0017 (Z=-115)', x: -15, z: -115, width: 130, length: 9, type: 'horizontal', category: 'ถนนซอยเชื่อม' },
+      'ROAD_CROSS_M150': { name: 'ถนนขวางโรงปฏิบัติการหนัก ท.0012 (Z=-150)', x: -35, z: -150, width: 140, length: 9, type: 'horizontal', category: 'ถนนซอยเชื่อม' },
+      'ROAD_EAST_CONNECTOR': { name: 'ถนนเชื่อมสู่วงเวียนตะวันออก', x: 65, z: -60, width: 80, length: 8, type: 'horizontal', category: 'ถนนเชื่อมวงเวียน' },
+      'ROAD_OHK_ACCESS': { name: 'ถนนทางเข้าศูนย์ขนส่ง อหข.', x: -135, z: -115, width: 9, length: 65, type: 'vertical', category: 'ถนนขนส่ง อหข.' },
+      'ROAD_OHK_NORTH_LOOP': { name: 'ถนนรอบ อหข. ด้านเหนือ (Z=-215)', x: -155, z: -215, width: 85, length: 8, type: 'horizontal', category: 'ถนนขนส่ง อหข.' },
+      'ROAD_OHK_EAST_LOOP': { name: 'ถนนเลียบโรงจอดรถ อหข.', x: -75, z: -165, width: 8, length: 65, type: 'vertical', category: 'ถนนขนส่ง อหข.' }
+    },
+    roads: null,
+
+    loadCustomRoads() {
+      try {
+        if (!this.roads) this.roads = JSON.parse(JSON.stringify(this.defaultRoads));
+        const saved = localStorage.getItem('sainoi_custom_roads');
+        if (saved) {
+          const custom = JSON.parse(saved);
+          Object.entries(custom).forEach(([rid, pos]) => {
+            if (this.roads[rid]) {
+              if (pos.x !== undefined && !isNaN(Number(pos.x))) this.roads[rid].x = Number(pos.x);
+              if (pos.z !== undefined && !isNaN(Number(pos.z))) this.roads[rid].z = Number(pos.z);
+            }
+          });
+        }
+      } catch (e) {
+        console.warn('Could not load custom roads from localStorage:', e);
+      }
+    },
+
+    saveCustomRoads(roadMap) {
+      try {
+        if (!this.roads) this.roads = JSON.parse(JSON.stringify(this.defaultRoads));
+        Object.entries(roadMap).forEach(([rid, pos]) => {
+          if (this.roads[rid]) {
+            if (pos.x !== undefined && !isNaN(Number(pos.x))) this.roads[rid].x = Number(pos.x);
+            if (pos.z !== undefined && !isNaN(Number(pos.z))) this.roads[rid].z = Number(pos.z);
+          }
+        });
+        localStorage.setItem('sainoi_custom_roads', JSON.stringify(roadMap));
+        this.notify('layout_change');
+        return true;
+      } catch (e) {
+        console.error('Failed to save custom roads:', e);
+        return false;
+      }
+    },
+
+    resetCustomRoads() {
+      try {
+        localStorage.removeItem('sainoi_custom_roads');
+        this.roads = JSON.parse(JSON.stringify(this.defaultRoads));
+        this.notify('layout_change');
+        return true;
+      } catch (e) {
+        return false;
+      }
+    },
+
+    getRoadsList() {
+      if (!this.roads) this.roads = JSON.parse(JSON.stringify(this.defaultRoads));
+      return Object.entries(this.roads).map(([id, r]) => ({
+        id,
+        name: r.name,
+        category: r.category,
+        x: r.x,
+        z: r.z,
+        width: r.width,
+        length: r.length,
+        type: r.type
+      }));
     },
 
     importCustomLayout(jsonStr) {
       try {
         const parsed = typeof jsonStr === 'string' ? JSON.parse(jsonStr) : jsonStr;
         const layoutMap = {};
-        // Handles either full building object or simple {x, z, y} map
-        Object.entries(parsed).forEach(([bid, val]) => {
-          if (val.layout_position) {
+        const roadMap = {};
+
+        const dataSrc = parsed.buildings || parsed;
+        Object.entries(dataSrc).forEach(([bid, val]) => {
+          if (bid.startsWith('ROAD_')) {
+            if (val.x !== undefined || val.z !== undefined) {
+              roadMap[bid] = { x: Number(val.x), z: Number(val.z) };
+            }
+          } else if (val.layout_position) {
             layoutMap[bid] = {
               x: Number(val.layout_position.x),
               z: Number(val.layout_position.z),
@@ -470,6 +572,19 @@
             };
           }
         });
+
+        if (parsed.roads) {
+          Object.entries(parsed.roads).forEach(([rid, val]) => {
+            if (val.x !== undefined || val.z !== undefined) {
+              roadMap[rid] = { x: Number(val.x), z: Number(val.z) };
+            }
+          });
+        }
+
+        if (Object.keys(roadMap).length > 0) {
+          this.saveCustomRoads(roadMap);
+        }
+
         return this.saveCustomLayout(layoutMap);
       } catch (e) {
         console.error('Failed to import layout JSON:', e);
@@ -477,7 +592,7 @@
       }
     },
 
-    // Export current layout table as CSV
+    // Export current layout table as CSV (Buildings + Roads)
     exportLayoutCsv() {
       if (!this.mappingData || !this.mappingData.buildings) return;
       const buildings = this.mappingData.buildings;
@@ -503,6 +618,7 @@
         'B.0001': 'West (บ้านพัก & ริมคลอง)', 'T.0022': 'West (บ้านพัก & ริมคลอง)'
       };
 
+      // 1. Export Buildings
       Object.entries(buildings).sort(([a], [b]) => a.localeCompare(b)).forEach(([code, b]) => {
         const pos = b.layout_position || { x: 0, z: 0, y: 0 };
         const dim = b.dimensions || { width: 0, depth: 0, height: 0 };
@@ -523,6 +639,25 @@
         rows.push(row.join(','));
       });
 
+      // 2. Export Road Network
+      const roadList = this.getRoadsList();
+      roadList.forEach(r => {
+        const row = [
+          r.id,
+          `"${(r.name || '').replace(/"/g, '""')}"`,
+          `"${(r.category || 'เส้นทางถนน').replace(/"/g, '""')}"`,
+          `"Road Network"`,
+          r.x,
+          r.z,
+          0,
+          r.width || 8,
+          r.length || 50,
+          0.2,
+          `"ROAD"`
+        ];
+        rows.push(row.join(','));
+      });
+
       const csvContent = '\uFEFF' + rows.join('\r\n');
       const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
       const url = URL.createObjectURL(blob);
@@ -535,7 +670,7 @@
       URL.revokeObjectURL(url);
     },
 
-    // Export 2D Matrix Grid Map as CSV
+    // Export 2D Matrix Grid Map as CSV (Buildings + Roads)
     exportGridMapCsv() {
       if (!this.mappingData || !this.mappingData.buildings) return;
       const buildings = this.mappingData.buildings;
@@ -549,6 +684,16 @@
       for (let z = zMin; z <= zMax; z += gridStep) zValues.push(z);
 
       const itemGrid = {};
+
+      // 1. Mark Roads
+      const roadList = this.getRoadsList();
+      roadList.forEach(r => {
+        const gx = Math.round(r.x / gridStep) * gridStep;
+        const gz = Math.round(r.z / gridStep) * gridStep;
+        itemGrid[`${gx},${gz}`] = r.id;
+      });
+
+      // 2. Mark Buildings (priority on top)
       Object.entries(buildings).forEach(([code, b]) => {
         if (!b.layout_position) return;
         const gx = Math.round(b.layout_position.x / gridStep) * gridStep;
@@ -580,7 +725,7 @@
       URL.revokeObjectURL(url);
     },
 
-    // Parse CSV Text (Table format or 2D Grid Map matrix format)
+    // Parse CSV Text (Table format or 2D Grid Map matrix format - handles Buildings & Roads)
     parseLayoutCsvText(csvText) {
       if (!csvText || typeof csvText !== 'string') throw new Error('ไฟล์ CSV ว่างเปล่า');
       const lines = csvText.replace(/^\uFEFF/, '').trim().split(/\r?\n/).map(l => l.trim()).filter(Boolean);
@@ -615,13 +760,14 @@
 
       let bCodeIdx = -1, xIdx = -1, zIdx = -1;
       headerLower.forEach((h, idx) => {
-        if (h.includes('building_code') || h.includes('b_code') || h === 'code' || h.includes('รหัส')) bCodeIdx = idx;
+        if (h.includes('building_code') || h.includes('b_code') || h.includes('road_code') || h === 'code' || h.includes('รหัส')) bCodeIdx = idx;
         if (h.includes('x_coord') || h === 'x' || h.includes('พิกัด x')) xIdx = idx;
         if (h.includes('z_coord') || h === 'z' || h.includes('พิกัด z')) zIdx = idx;
       });
 
       const layoutMap = {};
-      const codePattern = /(T\.\d{4}|D\.\d{4}|B\.\d{4})/i;
+      const roadMap = {};
+      const codePattern = /(T\.\d{4}|D\.\d{4}|B\.\d{4}|ROAD_[A-Z0-9_]+)/i;
 
       if (bCodeIdx !== -1 && xIdx !== -1 && zIdx !== -1) {
         // Format A: Coordinates Table
@@ -634,7 +780,11 @@
           const xVal = parseFloat(row[xIdx]);
           const zVal = parseFloat(row[zIdx]);
           if (code && !isNaN(xVal) && !isNaN(zVal)) {
-            layoutMap[code] = { x: xVal, z: zVal };
+            if (code.startsWith('ROAD_')) {
+              roadMap[code] = { x: xVal, z: zVal };
+            } else {
+              layoutMap[code] = { x: xVal, z: zVal };
+            }
           }
         }
       } else {
@@ -657,24 +807,35 @@
           for (let col = 1; col < row.length; col++) {
             const cell = row[col];
             if (!cell || colXMap[col] === undefined) continue;
-            const matches = cell.match(/(T\.\d{4}|D\.\d{4}|B\.\d{4})/gi);
+            const matches = cell.match(/(T\.\d{4}|D\.\d{4}|B\.\d{4}|ROAD_[A-Z0-9_]+)/gi);
             if (matches) {
               matches.forEach(m => {
                 const code = m.toUpperCase();
-                layoutMap[code] = { x: colXMap[col], z: zVal };
+                if (code.startsWith('ROAD_')) {
+                  roadMap[code] = { x: colXMap[col], z: zVal };
+                } else {
+                  layoutMap[code] = { x: colXMap[col], z: zVal };
+                }
               });
             }
           }
         }
       }
 
-      const count = Object.keys(layoutMap).length;
-      if (count === 0) {
-        throw new Error('ไม่พบข้อมูลรหัสอาคารและพิกัดที่ถูกต้องในไฟล์ CSV (รองรับรูปแบบ Table หรือ 2D Grid Matrix)');
+      if (Object.keys(roadMap).length > 0) {
+        this.saveCustomRoads(roadMap);
       }
 
-      this.saveCustomLayout(layoutMap);
-      return { count, layoutMap };
+      const count = Object.keys(layoutMap).length + Object.keys(roadMap).length;
+      if (count === 0) {
+        throw new Error('ไม่พบข้อมูลรหัสอาคารหรือถนนและพิกัดที่ถูกต้องในไฟล์ CSV (รองรับรูปแบบ Table หรือ 2D Grid Matrix)');
+      }
+
+      if (Object.keys(layoutMap).length > 0) {
+        this.saveCustomLayout(layoutMap);
+      }
+
+      return { count, bldCount: Object.keys(layoutMap).length, roadCount: Object.keys(roadMap).length, layoutMap, roadMap };
     },
 
     // Parse XLSX (Excel) file using SheetJS (window.XLSX)
@@ -682,21 +843,35 @@
       if (!workbook || !workbook.SheetNames) throw new Error('ไฟล์ Excel ไม่ถูกต้อง');
       const sheetNames = workbook.SheetNames;
       
-      let targetSheet = null;
+      let resBld = { count: 0 }, resRoad = { count: 0 };
+
+      // 1. Parse Building Coordinates if available
       if (sheetNames.includes('Building_Coordinates')) {
-        targetSheet = workbook.Sheets['Building_Coordinates'];
-      } else if (sheetNames.includes('Campus_2D_Grid_Map')) {
-        targetSheet = workbook.Sheets['Campus_2D_Grid_Map'];
-      } else {
-        targetSheet = workbook.Sheets[sheetNames[0]];
+        const bldCsv = window.XLSX.utils.sheet_to_csv(workbook.Sheets['Building_Coordinates']);
+        resBld = this.parseLayoutCsvText(bldCsv);
       }
 
-      if (!window.XLSX || !window.XLSX.utils || !window.XLSX.utils.sheet_to_csv) {
-        throw new Error('ไม่พบไลบรารีแปลงไฟล์ XLSX ในเบราว์เซอร์ กรุณาบันทึกเป็นไฟล์ .CSV');
+      // 2. Parse Road Network if available
+      if (sheetNames.includes('Road_Network')) {
+        const rdCsv = window.XLSX.utils.sheet_to_csv(workbook.Sheets['Road_Network']);
+        try {
+          resRoad = this.parseLayoutCsvText(rdCsv);
+        } catch (e) {}
       }
 
-      const csvText = window.XLSX.utils.sheet_to_csv(targetSheet);
-      return this.parseLayoutCsvText(csvText);
+      // 3. Fallback to Campus_2D_Grid_Map or first sheet if needed
+      if (resBld.count === 0 && resRoad.count === 0) {
+        let targetSheet = null;
+        if (sheetNames.includes('Campus_2D_Grid_Map')) {
+          targetSheet = workbook.Sheets['Campus_2D_Grid_Map'];
+        } else {
+          targetSheet = workbook.Sheets[sheetNames[0]];
+        }
+        const csvText = window.XLSX.utils.sheet_to_csv(targetSheet);
+        return this.parseLayoutCsvText(csvText);
+      }
+
+      return { count: resBld.count + (resRoad.count || 0) };
     },
 
     // Commit allocation CSV to GitHub repository via GitHub REST API

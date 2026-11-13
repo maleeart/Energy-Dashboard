@@ -32,6 +32,7 @@
       this.labelSprites = new Map();   // b_code -> sprite
       this.warningSprites = new Map(); // b_code -> sprite
       this.landmarkSprites = [];       // array of landmark label sprites
+      this.roadMeshes = new Map();     // road_id -> mesh or group
 
       this.hemiLight = null;
       this.ambLight = null;
@@ -419,18 +420,21 @@
       const lineMat = new THREE.MeshBasicMaterial({ color: 0xF1F5F9 });
 
       // 1. Main North-South Entrance Boulevard (Passing between West Workshops and East Offices)
+      const mainBoulevardGroup = new THREE.Group();
       const mainBoulevard = new THREE.Mesh(new THREE.PlaneGeometry(12, 360), asphaltMat);
       mainBoulevard.rotation.x = -Math.PI / 2;
-      mainBoulevard.position.set(8, 0.06, -30);
       mainBoulevard.receiveShadow = true;
-      roadGroup.add(mainBoulevard);
+      mainBoulevardGroup.add(mainBoulevard);
 
       for (let z = -170; z <= 130; z += 12) {
         const dash = new THREE.Mesh(new THREE.PlaneGeometry(0.4, 5), lineMat);
         dash.rotation.x = -Math.PI / 2;
-        dash.position.set(8, 0.08, z);
-        roadGroup.add(dash);
+        dash.position.set(0, 0.02, z - (-30));
+        mainBoulevardGroup.add(dash);
       }
+      mainBoulevardGroup.position.set(8, 0.06, -30);
+      roadGroup.add(mainBoulevardGroup);
+      this.roadMeshes.set('ROAD_MAIN_BOULEVARD', mainBoulevardGroup);
 
       // 2. Central Workshop Avenue (Behind West Spine Workshops)
       const spineRoad = new THREE.Mesh(new THREE.PlaneGeometry(8, 280), asphaltMat);
@@ -438,6 +442,7 @@
       spineRoad.position.set(-60, 0.05, -50);
       spineRoad.receiveShadow = true;
       roadGroup.add(spineRoad);
+      this.roadMeshes.set('ROAD_SPINE_WORKSHOP', spineRoad);
 
       // 3. West Pond & Canal Service Road
       const canalRoad = new THREE.Mesh(new THREE.PlaneGeometry(9, 320), asphaltMat);
@@ -445,17 +450,18 @@
       canalRoad.position.set(-170, 0.05, -40);
       canalRoad.receiveShadow = true;
       roadGroup.add(canalRoad);
+      this.roadMeshes.set('ROAD_WEST_CANAL', canalRoad);
 
       // 4. Horizontal Cross Streets
       const hRoads = [
-        { z: 140, x: 8, width: 80 },   // Front Gate & Substation Street
-        { z: 50, x: 8, width: 90 },    // Front of T.0020 & T.0007
-        { z: 15, x: 8, width: 90 },    // Front of T.0019 & T.0006
-        { z: -20, x: 8, width: 90 },   // Street between T.0008 & Football Courtyard
-        { z: -55, x: 8, width: 90 },   // Street between T.0010 & D.0019
-        { z: -85, x: 8, width: 90 },   // Street between T.0009 & T.0014
-        { z: -115, x: -15, width: 130 }, // North connection & Canteen D.0017 street
-        { z: -150, x: -35, width: 140 }  // Heavy workshop T.0012 street
+        { id: 'ROAD_CROSS_140', z: 140, x: 8, width: 80 },   // Front Gate & Substation Street
+        { id: 'ROAD_CROSS_50', z: 50, x: 8, width: 90 },    // Front of T.0020 & T.0007
+        { id: 'ROAD_CROSS_15', z: 15, x: 8, width: 90 },    // Front of T.0019 & T.0006
+        { id: 'ROAD_CROSS_M20', z: -20, x: 8, width: 90 },   // Street between T.0008 & Football Courtyard
+        { id: 'ROAD_CROSS_M55', z: -55, x: 8, width: 90 },   // Street between T.0010 & D.0019
+        { id: 'ROAD_CROSS_M85', z: -85, x: 8, width: 90 },   // Street between T.0009 & T.0014
+        { id: 'ROAD_CROSS_M115', z: -115, x: -15, width: 130 }, // North connection & Canteen D.0017 street
+        { id: 'ROAD_CROSS_M150', z: -150, x: -35, width: 140 }  // Heavy workshop T.0012 street
       ];
 
       hRoads.forEach(r => {
@@ -464,11 +470,13 @@
         road.position.set(r.x, 0.05, r.z);
         road.receiveShadow = true;
         roadGroup.add(road);
+        this.roadMeshes.set(r.id, road);
       });
 
       // 5. Eastern Science & Chemistry Roundabout (in front of T.0018 & T.0016)
       const eastRound = this.createRoundabout(125, -60, 14, 6.5);
       roadGroup.add(eastRound);
+      this.roadMeshes.set('ROAD_EAST_ROUNDABOUT', eastRound);
 
       // East Boulevard Connector to Chemistry Roundabout
       const eastConn = new THREE.Mesh(new THREE.PlaneGeometry(80, 8), asphaltMat);
@@ -476,6 +484,7 @@
       eastConn.position.set(65, 0.05, -60);
       eastConn.receiveShadow = true;
       roadGroup.add(eastConn);
+      this.roadMeshes.set('ROAD_EAST_CONNECTOR', eastConn);
 
       // Diagonal Road Connector from T.0018 Roundabout to OHK Zone
       const ohkDiag = new THREE.Mesh(new THREE.PlaneGeometry(9, 85), asphaltMat);
@@ -696,6 +705,7 @@
       accessRoad.position.set(-135, 0.06, -115);
       accessRoad.receiveShadow = true;
       ohkGroup.add(accessRoad);
+      this.roadMeshes.set('ROAD_OHK_ACCESS', accessRoad);
 
       // North Perimeter Loop Road behind T.0028 & T.0029
       const northLoop = new THREE.Mesh(new THREE.PlaneGeometry(85, 8), asphaltMat);
@@ -703,6 +713,7 @@
       northLoop.position.set(-155, 0.06, -215);
       northLoop.receiveShadow = true;
       ohkGroup.add(northLoop);
+      this.roadMeshes.set('ROAD_OHK_NORTH_LOOP', northLoop);
 
       // East Perimeter Road behind garage T.0027
       const eastLoop = new THREE.Mesh(new THREE.PlaneGeometry(8, 65), asphaltMat);
@@ -710,6 +721,7 @@
       eastLoop.position.set(-75, 0.06, -165);
       eastLoop.receiveShadow = true;
       ohkGroup.add(eastLoop);
+      this.roadMeshes.set('ROAD_OHK_EAST_LOOP', eastLoop);
 
       // ── 6. 230 kV Ang Thong 2 Transmission Line Right-of-Way Crossing ──
       const pylonGroup = new THREE.Group();
@@ -2837,6 +2849,16 @@
       this.needsRender = true;
     }
 
+    updateRoadPosition(roadId, newX, newZ) {
+      const road = this.roadMeshes.get(roadId);
+      if (!road) return;
+      const x = Number(newX);
+      const z = Number(newZ);
+      if (!isNaN(x)) road.position.x = x;
+      if (!isNaN(z)) road.position.z = z;
+      this.needsRender = true;
+    }
+
     resetView() {
       this.selectBuilding(null, false);
       this.animateCamera(this.defaultCameraPos, this.defaultTargetPos, 850);
@@ -2862,6 +2884,12 @@
         // Zone 4: Transportation Hub (T.0026 - T.0029, D.0031, D.0033, Roundabout)
         this.animateCamera({ x: -110, y: 85, z: -85 }, { x: -130, y: 6, z: -160 }, 850);
       }
+    }
+
+    focusPoint(x, z, altitude = 65, dist = 60) {
+      const target = { x: Number(x) || 0, y: 5, z: Number(z) || 0 };
+      const cam = { x: target.x + dist * 0.45, y: altitude, z: target.z + dist };
+      this.animateCamera(cam, target, 750);
     }
 
     animateCamera(destPos, destTarget, duration = 850) {
