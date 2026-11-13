@@ -17,9 +17,9 @@
   <script>if (typeof XLSX === 'undefined') document.write('<script src="scripts/xlsx.full.min.js"><\/script>');</script>
 
   <!-- Core Scripts & Fallback Mapping -->
-  <script src="data/building_mapping.js?v=20261113_02"></script>
-  <script src="scripts/energy-twin-core.js?v=20261113_02"></script>
-  <script src="scripts/energy-twin-3d.js?v=20261113_02"></script>
+  <script src="data/building_mapping.js?v=20261113_03"></script>
+  <script src="scripts/energy-twin-core.js?v=20261113_03"></script>
+  <script src="scripts/energy-twin-3d.js?v=20261113_03"></script>
 
   <style>
     :root {
@@ -1531,7 +1531,8 @@
             </div>
             <div style="display:flex; gap:6px; flex-wrap:wrap;">
               <button class="btn-action primary" onclick="saveLayoutEditorChanges()" title="บันทึกพิกัดลงในหน่วยความจำเบราว์เซอร์">💾 บันทึกผังนี้</button>
-              <button class="btn-action danger" onclick="resetLayoutEditorToDefault()" title="คืนค่าพิกัดเริ่มต้นจากไฟล์ระบบ">🔄 คืนค่าเริ่มต้น</button>
+              <button class="btn-action" style="background:#0284C7; color:#fff;" onclick="resetRoadsAndWaterToDefault()" title="คืนค่าตำแหน่งถนน แหล่งน้ำ และแลนด์มาร์คมาตรฐาน โดยคงผังอาคารที่จัดวางไว้">🛣️ คืนค่าเฉพาะถนน/แหล่งน้ำ</button>
+              <button class="btn-action danger" onclick="resetLayoutEditorToDefault()" title="คืนค่าพิกัดเริ่มต้นจากไฟล์ระบบ">🔄 คืนค่าทั้งหมด</button>
             </div>
           </div>
 
@@ -1563,6 +1564,7 @@
           แสดง 29 อาคาร + 15 เส้นทางถนน | บันทึกในเบราว์เซอร์อัตโนมัติ (LocalStorage)
         </div>
         <div style="display:flex; gap:8px;">
+          <button class="btn-action" style="background:#0284C7; color:#fff;" onclick="resetRoadsAndWaterToDefault()" title="คืนค่าเฉพาะถนนและแหล่งน้ำมาตรฐาน โดยคงผังอาคารที่จัดวางไว้">🛣️ คืนค่าเฉพาะถนน/แหล่งน้ำ</button>
           <button class="btn-action primary" onclick="saveLayoutEditorChanges()">💾 บันทึกทั้งหมด</button>
           <button class="btn-action" style="color:var(--pri);" onclick="closeLayoutEditorModal()">ปิดหน้าต่าง</button>
         </div>
@@ -3779,6 +3781,33 @@
       renderInteractiveExcelGrid();
       renderLayoutEditorList();
       alert('🔄 คืนค่าพิกัดอาคาร เส้นทางถนน และแหล่งน้ำทั้งหมดเป็นค่าเริ่มต้นเรียบร้อยแล้ว');
+    }
+
+    function resetRoadsAndWaterToDefault() {
+      if (!confirm('⚠️ ต้องการคืนค่าตำแหน่งเส้นทางถนน แหล่งน้ำ และแลนด์มาร์คกลับสู่พิกัดมาตรฐานตามแบบ As-Built หรือไม่?\n\n(ตำแหน่งอาคาร 29 หลังที่คุณจัดวางไว้บนผัง จะยังคงอยู่เหมือนเดิมทุกประการ)')) {
+        return;
+      }
+      EnergyTwin.resetCustomRoads();
+      if (EnergyTwin.resetCustomWater) EnergyTwin.resetCustomWater();
+      if (EnergyTwin.resetCustomLandmarks) EnergyTwin.resetCustomLandmarks();
+
+      if (campusScene) {
+        const rList = EnergyTwin.getRoadsList ? EnergyTwin.getRoadsList() : [];
+        rList.forEach(r => campusScene.updateRoadPosition(r.id, r.x, r.z));
+        const wList = EnergyTwin.getWaterList ? EnergyTwin.getWaterList() : [];
+        wList.forEach(w => {
+          if (campusScene.updateWaterPosition) campusScene.updateWaterPosition(w.id, w.x, w.z);
+        });
+        const lmList = EnergyTwin.getLandmarksList ? EnergyTwin.getLandmarksList() : [];
+        lmList.forEach(l => {
+          if (campusScene.updateLandmarkPosition) campusScene.updateLandmarkPosition(l.id, l.x, l.z);
+        });
+      }
+
+      clearGridSelection();
+      renderInteractiveExcelGrid();
+      if (activeLayoutTab === 'table') renderLayoutEditorList();
+      alert('✅ คืนค่าผังถนน แหล่งน้ำ และแลนด์มาร์คสู่ตำแหน่งมาตรฐานเรียบร้อยแล้ว!\n(ตำแหน่งอาคารที่คุณจัดวางไว้ยังคงเดิม)');
     }
 
     function copyLayoutJsonToClipboard() {

@@ -522,8 +522,23 @@
           const custom = JSON.parse(saved);
           Object.entries(custom).forEach(([rid, pos]) => {
             if (this.roads[rid]) {
-              if (pos.x !== undefined && !isNaN(Number(pos.x))) this.roads[rid].x = Number(pos.x);
-              if (pos.z !== undefined && !isNaN(Number(pos.z))) this.roads[rid].z = Number(pos.z);
+              let x = Number(pos.x);
+              let z = Number(pos.z);
+              // Self-heal and protect linear corridors against distorted centroid averages
+              if (rid === 'ROAD_MAIN_BOULEVARD' && (x > 20 || x < -5 || isNaN(x))) {
+                x = this.defaultRoads.ROAD_MAIN_BOULEVARD.x;
+                z = this.defaultRoads.ROAD_MAIN_BOULEVARD.z;
+              }
+              if (rid === 'ROAD_SPINE_WORKSHOP' && (z < -100 || isNaN(z))) {
+                x = this.defaultRoads.ROAD_SPINE_WORKSHOP.x;
+                z = this.defaultRoads.ROAD_SPINE_WORKSHOP.z;
+              }
+              if (rid === 'ROAD_WEST_CANAL' && (x > -150 || isNaN(x))) {
+                x = this.defaultRoads.ROAD_WEST_CANAL.x;
+                z = this.defaultRoads.ROAD_WEST_CANAL.z;
+              }
+              if (!isNaN(x)) this.roads[rid].x = x;
+              if (!isNaN(z)) this.roads[rid].z = z;
             }
           });
         }
@@ -596,8 +611,15 @@
           const custom = JSON.parse(saved);
           Object.entries(custom).forEach(([wid, pos]) => {
             if (this.water[wid]) {
-              if (pos.x !== undefined && !isNaN(Number(pos.x))) this.water[wid].x = Number(pos.x);
-              if (pos.z !== undefined && !isNaN(Number(pos.z))) this.water[wid].z = Number(pos.z);
+              let x = Number(pos.x);
+              let z = Number(pos.z);
+              // Self-heal WEST_CANAL: Western canal must stay along west perimeter (X <= -170)
+              if (wid === 'WEST_CANAL' && (x > -170 || isNaN(x))) {
+                x = this.defaultWater.WEST_CANAL.x;
+                z = this.defaultWater.WEST_CANAL.z;
+              }
+              if (!isNaN(x)) this.water[wid].x = x;
+              if (!isNaN(z)) this.water[wid].z = z;
             }
           });
         }
@@ -1306,19 +1328,38 @@
         }
       }
 
-      // Consolidate road coordinates (average center)
+      // Consolidate road coordinates (with corridor protection against centroid skew)
       const roadMap = {};
       Object.entries(roadCoords).forEach(([rid, coords]) => {
-        const avgX = coords.reduce((acc, c) => acc + c.x, 0) / coords.length;
-        const avgZ = coords.reduce((acc, c) => acc + c.z, 0) / coords.length;
+        let avgX = coords.reduce((acc, c) => acc + c.x, 0) / coords.length;
+        let avgZ = coords.reduce((acc, c) => acc + c.z, 0) / coords.length;
+
+        // Protect linear road corridors from being warped into building zones:
+        if (rid === 'ROAD_MAIN_BOULEVARD') {
+          if (avgX > 20 || avgX < -5) avgX = 8;
+          avgZ = -30;
+        } else if (rid === 'ROAD_SPINE_WORKSHOP') {
+          if (avgZ < -100 || avgZ > 0) avgZ = -50;
+          if (avgX < -110 || avgX > -30) avgX = -60;
+        } else if (rid === 'ROAD_WEST_CANAL') {
+          if (avgX > -150) avgX = -170;
+          avgZ = -40;
+        }
         roadMap[rid] = { x: Math.round(avgX), z: Math.round(avgZ) };
       });
 
-      // Consolidate water coordinates (average center)
+      // Consolidate water coordinates (with perimeter canal protection)
       const waterMap = {};
       Object.entries(waterCoords).forEach(([wid, coords]) => {
-        const avgX = coords.reduce((acc, c) => acc + c.x, 0) / coords.length;
-        const avgZ = coords.reduce((acc, c) => acc + c.z, 0) / coords.length;
+        let avgX = coords.reduce((acc, c) => acc + c.x, 0) / coords.length;
+        let avgZ = coords.reduce((acc, c) => acc + c.z, 0) / coords.length;
+
+        // WEST_CANAL must stay on west perimeter (-200, -40).
+        // Boundary cells drawn across the northern edge must not pull the 480m canal inside campus!
+        if (wid === 'WEST_CANAL' && avgX > -170) {
+          avgX = -200;
+          avgZ = -40;
+        }
         waterMap[wid] = { x: Math.round(avgX), z: Math.round(avgZ) };
       });
 
@@ -1362,7 +1403,7 @@
         const lower = row.map(c => String(c || '').toLowerCase().trim());
         let bc = -1, xi = -1, zi = -1;
         lower.forEach((h, idx) => {
-          if (h.includes('building_code') || h.includes('b_code') || h.includes('road_code') || h.includes('water_code') || h === 'code' || h.includes('รหัส') || h.includes('ชื่ออาคาร')) bc = idx;
+          if (h.includes('building_code') || h.includes('b_code') || h.includes('road_code') || h.includes('water_code') || h.includes('landmark_code') || h.includes('lm_code') || h === 'code' || h.includes('รหัส') || h.includes('ชื่ออาคาร')) bc = idx;
           if (h.includes('x_coord') || h === 'x' || h.includes('พิกัด x') || h === 'พิกัดx') xi = idx;
           if (h.includes('z_coord') || h === 'z' || h.includes('พิกัด z') || h === 'พิกัดz') zi = idx;
         });
@@ -1542,26 +1583,30 @@
         }
       }
 
-      // 2. Merge: Grid Matrix (Sheet 1 edits) has absolute priority over tables!
+      // 2. Merge:
+      // - Buildings: Sheet 1 (2D Grid Matrix edits) has absolute priority over tables!
       const mergedLayoutMap = {
         ...(tableBldRes?.layoutMap || {}),
         ...(gridRes?.layoutMap || {})
       };
 
+      // - Roads: Explicit Road Network table (Sheet 3) has priority over 2D grid cell centroid averages!
       const mergedRoadMap = {
-        ...(tableRoadRes?.roadMap || {}),
-        ...(gridRes?.roadMap || {})
+        ...(gridRes?.roadMap || {}),
+        ...(tableRoadRes?.roadMap || {})
       };
 
+      // - Water: Explicit Landmarks & Environment table (Sheet 4) has priority over 2D grid cell centroid averages!
       const mergedWaterMap = {
-        ...(tableWaterRes?.waterMap || {}),
+        ...(gridRes?.waterMap || {}),
         ...(tableBldRes?.waterMap || {}),
-        ...(gridRes?.waterMap || {})
+        ...(tableWaterRes?.waterMap || {})
       };
 
+      // - Landmarks: Explicit Landmarks & Environment table (Sheet 4) has priority over 2D grid cell centroid averages!
       const mergedLandmarkMap = {
-        ...(tableLandmarkRes?.landmarkMap || {}),
-        ...(gridRes?.landmarkMap || {})
+        ...(gridRes?.landmarkMap || {}),
+        ...(tableLandmarkRes?.landmarkMap || {})
       };
 
       const bldCount = Object.keys(mergedLayoutMap).length;
