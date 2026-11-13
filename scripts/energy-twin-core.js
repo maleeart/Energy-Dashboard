@@ -735,7 +735,182 @@
       URL.revokeObjectURL(url);
     },
 
-    // Parse CSV Text (Table format or 2D Grid Map matrix format - handles Buildings & Roads)
+    // Parse 2D Grid Matrix rows (supports SheetJS 2D array or CSV rows)
+    parseGridMatrixRows(rows) {
+      if (!Array.isArray(rows) || rows.length < 2) return null;
+
+      // Road prefix mappings to canonical road IDs
+      const roadPrefixMap = {
+        'ROAD_MAIN': 'ROAD_MAIN_BOULEVARD',
+        'ROAD_SPINE': 'ROAD_SPINE_WORKSHOP',
+        'ROAD_WEST_C': 'ROAD_WEST_CANAL',
+        'ROAD_WEST': 'ROAD_WEST_CANAL',
+        'ROAD_CROSS_140': 'ROAD_CROSS_140',
+        'ROAD_CROSS_50': 'ROAD_CROSS_50',
+        'ROAD_CROSS_15': 'ROAD_CROSS_15',
+        'ROAD_CROSS_M20': 'ROAD_CROSS_M20',
+        'ROAD_CROSS_M55': 'ROAD_CROSS_M55',
+        'ROAD_CROSS_M85': 'ROAD_CROSS_M85',
+        'ROAD_CROSS_M115': 'ROAD_CROSS_M115',
+        'ROAD_CROSS_M150': 'ROAD_CROSS_M150',
+        'ROAD_EAST': 'ROAD_EAST_CONNECTOR',
+        'ROAD_OHK_A': 'ROAD_OHK_ACCESS',
+        'ROAD_OHK_N': 'ROAD_OHK_NORTH_LOOP',
+        'ROAD_OHK_E': 'ROAD_OHK_EAST_LOOP'
+      };
+
+      // 1. Find the header row containing X=... (scan first 15 rows)
+      let headerRowIdx = -1;
+      let colXMap = {};
+
+      for (let r = 0; r < Math.min(rows.length, 15); r++) {
+        const row = rows[r];
+        if (!row || !Array.isArray(row)) continue;
+        const candidateCols = {};
+        let xMatches = 0;
+
+        for (let c = 1; c < row.length; c++) {
+          const val = String(row[c] !== undefined && row[c] !== null ? row[c] : '').trim();
+          if (!val) continue;
+          const m = val.match(/(?:X\s*=\s*)?([-+]?\d+(\.\d+)?)/i);
+          if (m && (val.toLowerCase().includes('x=') || /^[+-]?\d+$/.test(val))) {
+            candidateCols[c] = parseFloat(m[1]);
+            xMatches++;
+          }
+        }
+
+        if (xMatches >= 3) {
+          headerRowIdx = r;
+          colXMap = candidateCols;
+          break;
+        }
+      }
+
+      if (headerRowIdx === -1 || Object.keys(colXMap).length === 0) {
+        return null; // Not a 2D Grid Matrix
+      }
+
+      const layoutMap = {};
+      const roadCoords = {}; // roadId -> array of {x, z}
+
+      // 2. Scan data rows below header row
+      for (let r = headerRowIdx + 1; r < rows.length; r++) {
+        const row = rows[r];
+        if (!row || !Array.isArray(row) || row.length === 0) continue;
+
+        // First cell has Z coordinate e.g. 'Z=-220', 'Z = -220', or '-220'
+        const firstCell = String(row[0] !== undefined && row[0] !== null ? row[0] : '').trim();
+        const mZ = firstCell.match(/[-+]?\d+(\.\d+)?/);
+        if (!mZ) continue;
+        const zVal = parseFloat(mZ[0]);
+
+        for (let c = 1; c < row.length; c++) {
+          if (colXMap[c] === undefined) continue;
+          const xVal = colXMap[c];
+          const cellVal = String(row[c] !== undefined && row[c] !== null ? row[c] : '').trim();
+          if (!cellVal) continue;
+
+          // 2.1 Match buildings (supports T.0019, D.0019, B.0001, and Thai ท.0019, ด.0019, บ.0001, etc.)
+          const bldMatches = cellVal.match(/([TDBทดับ]\.?\s*\d{4})/gi);
+          if (bldMatches) {
+            bldMatches.forEach(raw => {
+              const cleaned = raw.replace(/\s+/g, '').toUpperCase();
+              let prefix = cleaned[0];
+              if (prefix === 'ท') prefix = 'T';
+              else if (prefix === 'ด') prefix = 'D';
+              else if (prefix === 'บ') prefix = 'B';
+              const digits = cleaned.slice(-4);
+              const bCode = `${prefix}.${digits}`;
+              layoutMap[bCode] = { x: xVal, z: zVal };
+            });
+          }
+
+          // 2.2 Match roads
+          const upper = cellVal.toUpperCase();
+          if (upper.includes('ROAD_')) {
+            for (const [prefix, fullId] of Object.entries(roadPrefixMap)) {
+              if (upper.includes(prefix)) {
+                if (!roadCoords[fullId]) roadCoords[fullId] = [];
+                roadCoords[fullId].push({ x: xVal, z: zVal });
+                break;
+              }
+            }
+          }
+        }
+      }
+
+      // Consolidate road coordinates (average center)
+      const roadMap = {};
+      Object.entries(roadCoords).forEach(([rid, coords]) => {
+        if (coords.length === 1) {
+          roadMap[rid] = coords[0];
+        } else if (coords.length > 1) {
+          const avgX = coords.reduce((acc, c) => acc + c.x, 0) / coords.length;
+          const avgZ = coords.reduce((acc, c) => acc + c.z, 0) / coords.length;
+          roadMap[rid] = { x: Math.round(avgX), z: Math.round(avgZ) };
+        }
+      });
+
+      const count = Object.keys(layoutMap).length + Object.keys(roadMap).length;
+      return { layoutMap, roadMap, count, bldCount: Object.keys(layoutMap).length, roadCount: Object.keys(roadMap).length };
+    },
+
+    // Parse Coordinates Table rows (from SheetJS sheet_to_json or CSV table)
+    parseCoordinatesTableRows(rows) {
+      if (!Array.isArray(rows) || rows.length < 2) return null;
+
+      // Find header row containing building_code / b_code / road_code / x / z
+      let headerRowIdx = -1;
+      let bCodeIdx = -1, xIdx = -1, zIdx = -1;
+
+      for (let r = 0; r < Math.min(rows.length, 10); r++) {
+        const row = rows[r];
+        if (!row || !Array.isArray(row)) continue;
+        const lower = row.map(c => String(c || '').toLowerCase().trim());
+        let bc = -1, xi = -1, zi = -1;
+        lower.forEach((h, idx) => {
+          if (h.includes('building_code') || h.includes('b_code') || h.includes('road_code') || h === 'code' || h.includes('รหัส')) bc = idx;
+          if (h.includes('x_coord') || h === 'x' || h.includes('พิกัด x')) xi = idx;
+          if (h.includes('z_coord') || h === 'z' || h.includes('พิกัด z')) zi = idx;
+        });
+        if (bc !== -1 && xi !== -1 && zi !== -1) {
+          headerRowIdx = r;
+          bCodeIdx = bc;
+          xIdx = xi;
+          zIdx = zi;
+          break;
+        }
+      }
+
+      if (headerRowIdx === -1) return null;
+
+      const layoutMap = {};
+      const roadMap = {};
+      const codePattern = /(T\.\d{4}|D\.\d{4}|B\.\d{4}|ROAD_[A-Z0-9_]+)/i;
+
+      for (let r = headerRowIdx + 1; r < rows.length; r++) {
+        const row = rows[r];
+        if (!row || !Array.isArray(row) || row.length <= Math.max(bCodeIdx, xIdx, zIdx)) continue;
+        const rawCode = String(row[bCodeIdx] || '').replace(/["']/g, '').trim().toUpperCase();
+        const match = rawCode.match(codePattern);
+        const code = match ? match[1].toUpperCase() : rawCode;
+        const xVal = parseFloat(row[xIdx]);
+        const zVal = parseFloat(row[zIdx]);
+
+        if (code && !isNaN(xVal) && !isNaN(zVal)) {
+          if (code.startsWith('ROAD_')) {
+            roadMap[code] = { x: xVal, z: zVal };
+          } else {
+            layoutMap[code] = { x: xVal, z: zVal };
+          }
+        }
+      }
+
+      const count = Object.keys(layoutMap).length + Object.keys(roadMap).length;
+      return { layoutMap, roadMap, count, bldCount: Object.keys(layoutMap).length, roadCount: Object.keys(roadMap).length };
+    },
+
+    // Parse CSV Text (Auto-detects Table format or 2D Grid Matrix format)
     parseLayoutCsvText(csvText) {
       if (!csvText || typeof csvText !== 'string') throw new Error('ไฟล์ CSV ว่างเปล่า');
       const lines = csvText.replace(/^\uFEFF/, '').trim().split(/\r?\n/).map(l => l.trim()).filter(Boolean);
@@ -765,123 +940,98 @@
         return result;
       };
 
-      const firstRow = parseLine(lines[0]);
-      const headerLower = firstRow.map(h => h.toLowerCase());
+      const allRows = lines.map(l => parseLine(l));
 
-      let bCodeIdx = -1, xIdx = -1, zIdx = -1;
-      headerLower.forEach((h, idx) => {
-        if (h.includes('building_code') || h.includes('b_code') || h.includes('road_code') || h === 'code' || h.includes('รหัส')) bCodeIdx = idx;
-        if (h.includes('x_coord') || h === 'x' || h.includes('พิกัด x')) xIdx = idx;
-        if (h.includes('z_coord') || h === 'z' || h.includes('พิกัด z')) zIdx = idx;
-      });
+      // Try 1: 2D Grid Matrix (Sheet 1 format)
+      let res = this.parseGridMatrixRows(allRows);
 
-      const layoutMap = {};
-      const roadMap = {};
-      const codePattern = /(T\.\d{4}|D\.\d{4}|B\.\d{4}|ROAD_[A-Z0-9_]+)/i;
-
-      if (bCodeIdx !== -1 && xIdx !== -1 && zIdx !== -1) {
-        // Format A: Coordinates Table
-        for (let i = 1; i < lines.length; i++) {
-          const row = parseLine(lines[i]);
-          if (row.length <= Math.max(bCodeIdx, xIdx, zIdx)) continue;
-          const rawCode = row[bCodeIdx].replace(/["']/g, '').trim().toUpperCase();
-          const match = rawCode.match(codePattern);
-          const code = match ? match[1].toUpperCase() : rawCode;
-          const xVal = parseFloat(row[xIdx]);
-          const zVal = parseFloat(row[zIdx]);
-          if (code && !isNaN(xVal) && !isNaN(zVal)) {
-            if (code.startsWith('ROAD_')) {
-              roadMap[code] = { x: xVal, z: zVal };
-            } else {
-              layoutMap[code] = { x: xVal, z: zVal };
-            }
-          }
-        }
-      } else {
-        // Format B: 2D Grid Map Matrix
-        const colXMap = {};
-        for (let col = 1; col < firstRow.length; col++) {
-          const matchX = firstRow[col].match(/[-+]?\d+(\.\d+)?/);
-          if (matchX) {
-            colXMap[col] = parseFloat(matchX[0]);
-          }
-        }
-
-        for (let r = 1; r < lines.length; r++) {
-          const row = parseLine(lines[r]);
-          if (row.length === 0 || !row[0]) continue;
-          const matchZ = row[0].match(/[-+]?\d+(\.\d+)?/);
-          if (!matchZ) continue;
-          const zVal = parseFloat(matchZ[0]);
-
-          for (let col = 1; col < row.length; col++) {
-            const cell = row[col];
-            if (!cell || colXMap[col] === undefined) continue;
-            const matches = cell.match(/(T\.\d{4}|D\.\d{4}|B\.\d{4}|ROAD_[A-Z0-9_]+)/gi);
-            if (matches) {
-              matches.forEach(m => {
-                const code = m.toUpperCase();
-                if (code.startsWith('ROAD_')) {
-                  roadMap[code] = { x: colXMap[col], z: zVal };
-                } else {
-                  layoutMap[code] = { x: colXMap[col], z: zVal };
-                }
-              });
-            }
-          }
-        }
+      // Try 2: Coordinates Table format
+      if (!res || res.count === 0) {
+        res = this.parseCoordinatesTableRows(allRows);
       }
 
-      if (Object.keys(roadMap).length > 0) {
-        this.saveCustomRoads(roadMap);
+      if (!res || res.count === 0) {
+        throw new Error('ไม่พบข้อมูลรหัสอาคารหรือถนนและพิกัดที่ถูกต้องในไฟล์ CSV (รองรับทั้งแบบตารางพิกัด และแบบผังตาราง 2D Grid)');
       }
 
-      const count = Object.keys(layoutMap).length + Object.keys(roadMap).length;
-      if (count === 0) {
-        throw new Error('ไม่พบข้อมูลรหัสอาคารหรือถนนและพิกัดที่ถูกต้องในไฟล์ CSV (รองรับรูปแบบ Table หรือ 2D Grid Matrix)');
+      if (Object.keys(res.layoutMap).length > 0) {
+        this.saveCustomLayout(res.layoutMap);
+      }
+      if (Object.keys(res.roadMap).length > 0) {
+        this.saveCustomRoads(res.roadMap);
       }
 
-      if (Object.keys(layoutMap).length > 0) {
-        this.saveCustomLayout(layoutMap);
-      }
-
-      return { count, bldCount: Object.keys(layoutMap).length, roadCount: Object.keys(roadMap).length, layoutMap, roadMap };
+      return res;
     },
 
-    // Parse XLSX (Excel) file using SheetJS (window.XLSX)
+    // Parse XLSX (Excel) file using SheetJS - Prioritizes Sheet 1 (Campus_2D_Grid_Map)
     parseLayoutXlsx(workbook) {
-      if (!workbook || !workbook.SheetNames) throw new Error('ไฟล์ Excel ไม่ถูกต้อง');
+      if (!workbook || !workbook.SheetNames || workbook.SheetNames.length === 0) {
+        throw new Error('ไฟล์ Excel ไม่ถูกต้องหรือไม่พบชีตข้อมูล');
+      }
+
       const sheetNames = workbook.SheetNames;
-      
-      let resBld = { count: 0 }, resRoad = { count: 0 };
+      const firstSheetName = sheetNames[0];
 
-      // 1. Parse Building Coordinates if available
-      if (sheetNames.includes('Building_Coordinates')) {
-        const bldCsv = window.XLSX.utils.sheet_to_csv(workbook.Sheets['Building_Coordinates']);
-        resBld = this.parseLayoutCsvText(bldCsv);
+      let gridRes = null;
+      let tableBldRes = null;
+      let tableRoadRes = null;
+
+      // 1. Check Sheet 1 (or 'Campus_2D_Grid_Map') for visual 2D Grid Map
+      const gridSheetName = sheetNames.includes('Campus_2D_Grid_Map') ? 'Campus_2D_Grid_Map' : firstSheetName;
+      if (workbook.Sheets[gridSheetName]) {
+        const rows = window.XLSX.utils.sheet_to_json(workbook.Sheets[gridSheetName], { header: 1, defval: '' });
+        gridRes = this.parseGridMatrixRows(rows);
       }
 
-      // 2. Parse Road Network if available
-      if (sheetNames.includes('Road_Network')) {
-        const rdCsv = window.XLSX.utils.sheet_to_csv(workbook.Sheets['Road_Network']);
-        try {
-          resRoad = this.parseLayoutCsvText(rdCsv);
-        } catch (e) {}
+      // 2. Also check if Sheet 2 ('Building_Coordinates') or Sheet 3 ('Road_Network') exist
+      if (sheetNames.includes('Building_Coordinates') && gridSheetName !== 'Building_Coordinates') {
+        const rows = window.XLSX.utils.sheet_to_json(workbook.Sheets['Building_Coordinates'], { header: 1, defval: '' });
+        tableBldRes = this.parseCoordinatesTableRows(rows);
       }
 
-      // 3. Fallback to Campus_2D_Grid_Map or first sheet if needed
-      if (resBld.count === 0 && resRoad.count === 0) {
-        let targetSheet = null;
-        if (sheetNames.includes('Campus_2D_Grid_Map')) {
-          targetSheet = workbook.Sheets['Campus_2D_Grid_Map'];
-        } else {
-          targetSheet = workbook.Sheets[sheetNames[0]];
-        }
-        const csvText = window.XLSX.utils.sheet_to_csv(targetSheet);
-        return this.parseLayoutCsvText(csvText);
+      if (sheetNames.includes('Road_Network') && gridSheetName !== 'Road_Network') {
+        const rows = window.XLSX.utils.sheet_to_json(workbook.Sheets['Road_Network'], { header: 1, defval: '' });
+        tableRoadRes = this.parseCoordinatesTableRows(rows);
       }
 
-      return { count: resBld.count + (resRoad.count || 0) };
+      // 3. Merge: Sheet 1 (Grid Map edits) has absolute priority over Sheet 2/3!
+      const mergedLayoutMap = {
+        ...(tableBldRes?.layoutMap || {}),
+        ...(gridRes?.layoutMap || {})
+      };
+
+      const mergedRoadMap = {
+        ...(tableRoadRes?.roadMap || {}),
+        ...(gridRes?.roadMap || {})
+      };
+
+      const totalCount = Object.keys(mergedLayoutMap).length + Object.keys(mergedRoadMap).length;
+
+      if (totalCount === 0) {
+        throw new Error('ไม่พบตำแหน่งพิกัดของอาคารหรือถนนในไฟล์ Excel (ตรวจสอบว่าชีตแรกมีรหัสอาคาร เช่น T.0019 หรือชีต Building_Coordinates มีข้อมูล)');
+      }
+
+      // Save custom layout
+      if (Object.keys(mergedLayoutMap).length > 0) {
+        this.saveCustomLayout(mergedLayoutMap);
+      }
+
+      // Save custom roads
+      if (Object.keys(mergedRoadMap).length > 0) {
+        this.saveCustomRoads(mergedRoadMap);
+      }
+
+      const sourceInfo = (gridRes && gridRes.bldCount > 0) ? `ผังตารางเซลล์ชีตแรก (${gridSheetName})` : 'ตารางพิกัด (Building_Coordinates)';
+
+      return {
+        count: totalCount,
+        bldCount: Object.keys(mergedLayoutMap).length,
+        roadCount: Object.keys(mergedRoadMap).length,
+        layoutMap: mergedLayoutMap,
+        roadMap: mergedRoadMap,
+        source: sourceInfo
+      };
     },
 
     // Commit allocation CSV to GitHub repository via GitHub REST API
