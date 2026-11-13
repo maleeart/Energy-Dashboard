@@ -2855,6 +2855,19 @@
       this.needsRender = true;
     }
 
+    updateBuildingRotation(bCode, angleRad) {
+      const group = this.buildingMeshes.get(bCode);
+      if (!group) return;
+      const rot = Number(angleRad);
+      if (!isNaN(rot)) {
+        group.rotation.y = rot;
+        if (group.userData && group.userData.data) {
+          group.userData.data.rotation_y = rot;
+        }
+      }
+      this.needsRender = true;
+    }
+
     updateRoadPosition(roadId, newX, newZ) {
       const road = this.roadMeshes.get(roadId);
       if (!road) return;
@@ -2862,6 +2875,42 @@
       const z = Number(newZ);
       if (!isNaN(x)) road.position.x = x;
       if (!isNaN(z)) road.position.z = z;
+      this.needsRender = true;
+    }
+
+    updateRoadRotation(roadId, angleRad) {
+      const road = this.roadMeshes.get(roadId);
+      if (!road) return;
+      const rot = Number(angleRad);
+      if (!isNaN(rot)) {
+        if (road.isGroup) {
+          road.rotation.y = rot;
+        } else {
+          road.rotation.z = rot;
+        }
+      }
+      this.needsRender = true;
+    }
+
+    updateRoadDimensions(roadId, newWidth, newLength) {
+      const road = this.roadMeshes.get(roadId);
+      if (!road) return;
+      const w = Number(newWidth);
+      const len = Number(newLength);
+      const def = window.EnergyTwin && window.EnergyTwin.defaultRoads && window.EnergyTwin.defaultRoads[roadId];
+      if (!def) return;
+      const origW = def.width || 8;
+      const origLen = def.length || def.depth || 50;
+
+      if (!isNaN(w) && w > 0 && !isNaN(len) && len > 0) {
+        const scaleW = w / origW;
+        const scaleLen = len / origLen;
+        if (road.isGroup) {
+          road.scale.set(scaleW, 1, scaleLen);
+        } else {
+          road.scale.set(scaleW, scaleLen, 1);
+        }
+      }
       this.needsRender = true;
     }
 
@@ -2873,6 +2922,44 @@
       const z = Number(newZ);
       if (!isNaN(x)) water.position.x = x;
       if (!isNaN(z)) water.position.z = z;
+      this.needsRender = true;
+    }
+
+    updateWaterRotation(waterId, angleRad) {
+      if (!this.waterMeshes) return;
+      const water = this.waterMeshes.get(waterId);
+      if (!water) return;
+      const rot = Number(angleRad);
+      if (!isNaN(rot)) {
+        if (water.isGroup) {
+          water.rotation.y = rot;
+        } else {
+          water.rotation.z = rot;
+        }
+      }
+      this.needsRender = true;
+    }
+
+    updateWaterDimensions(waterId, newWidth, newDepth) {
+      if (!this.waterMeshes) return;
+      const water = this.waterMeshes.get(waterId);
+      if (!water) return;
+      const w = Number(newWidth);
+      const d = Number(newDepth);
+      const def = window.EnergyTwin && window.EnergyTwin.defaultWater && window.EnergyTwin.defaultWater[waterId];
+      if (!def) return;
+      const origW = def.width || 20;
+      const origD = def.depth || 40;
+
+      if (!isNaN(w) && w > 0 && !isNaN(d) && d > 0) {
+        const scaleW = w / origW;
+        const scaleD = d / origD;
+        if (water.isGroup) {
+          water.scale.set(scaleW, 1, scaleD);
+        } else {
+          water.scale.set(scaleW, scaleD, 1);
+        }
+      }
       this.needsRender = true;
     }
 

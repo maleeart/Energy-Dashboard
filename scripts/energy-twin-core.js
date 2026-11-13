@@ -399,6 +399,9 @@
               if (pos.x !== undefined && !isNaN(Number(pos.x))) this.mappingData.buildings[bid].layout_position.x = Number(pos.x);
               if (pos.z !== undefined && !isNaN(Number(pos.z))) this.mappingData.buildings[bid].layout_position.z = Number(pos.z);
               if (pos.y !== undefined && !isNaN(Number(pos.y))) this.mappingData.buildings[bid].layout_position.y = Number(pos.y);
+              if (pos.rotation_y !== undefined && !isNaN(Number(pos.rotation_y))) {
+                this.mappingData.buildings[bid].rotation_y = Number(pos.rotation_y);
+              }
             }
           });
         }
@@ -410,14 +413,24 @@
     saveCustomLayout(layoutMap) {
       try {
         if (!this.mappingData || !this.mappingData.buildings) return false;
+        let fullMap = {};
+        try {
+          const existing = localStorage.getItem('sainoi_custom_layout');
+          if (existing) fullMap = JSON.parse(existing);
+        } catch (_) {}
+
         Object.entries(layoutMap).forEach(([bid, pos]) => {
           if (this.mappingData.buildings[bid] && this.mappingData.buildings[bid].layout_position) {
             if (pos.x !== undefined && !isNaN(Number(pos.x))) this.mappingData.buildings[bid].layout_position.x = Number(pos.x);
             if (pos.z !== undefined && !isNaN(Number(pos.z))) this.mappingData.buildings[bid].layout_position.z = Number(pos.z);
             if (pos.y !== undefined && !isNaN(Number(pos.y))) this.mappingData.buildings[bid].layout_position.y = Number(pos.y);
+            if (pos.rotation_y !== undefined && !isNaN(Number(pos.rotation_y))) {
+              this.mappingData.buildings[bid].rotation_y = Number(pos.rotation_y);
+            }
           }
+          fullMap[bid] = { ...(fullMap[bid] || {}), ...pos };
         });
-        localStorage.setItem('sainoi_custom_layout', JSON.stringify(layoutMap));
+        localStorage.setItem('sainoi_custom_layout', JSON.stringify(fullMap));
         this.invalidateCache();
         this.notify('layout_change');
         return true;
@@ -433,8 +446,9 @@
         const defaultSource = window.SAINOI_BUILDING_MAPPING || null;
         if (defaultSource && defaultSource.buildings && this.mappingData && this.mappingData.buildings) {
           Object.entries(defaultSource.buildings).forEach(([bid, orig]) => {
-            if (this.mappingData.buildings[bid] && orig.layout_position) {
-              this.mappingData.buildings[bid].layout_position = { ...orig.layout_position };
+            if (this.mappingData.buildings[bid]) {
+              if (orig.layout_position) this.mappingData.buildings[bid].layout_position = { ...orig.layout_position };
+              this.mappingData.buildings[bid].rotation_y = orig.rotation_y || 0;
             }
           });
         }
@@ -456,7 +470,8 @@
           short_name: b.short_name,
           category_th: b.category_th,
           layout_position: { ...b.layout_position },
-          dimensions: { ...b.dimensions }
+          dimensions: { ...b.dimensions },
+          rotation_y: b.rotation_y || 0
         };
       });
       const roadList = this.getRoadsList();
@@ -467,7 +482,8 @@
           x: r.x,
           z: r.z,
           width: r.width,
-          length: r.length
+          length: r.length,
+          rotation_y: r.rotation_y || 0
         };
       });
       const waterList = this.getWaterList();
@@ -478,7 +494,8 @@
           x: w.x,
           z: w.z,
           width: w.width,
-          depth: w.depth
+          depth: w.depth,
+          rotation_y: w.rotation_y || 0
         };
       });
       res.landmarks = {};
@@ -539,6 +556,9 @@
               }
               if (!isNaN(x)) this.roads[rid].x = x;
               if (!isNaN(z)) this.roads[rid].z = z;
+              if (pos.width !== undefined && !isNaN(Number(pos.width))) this.roads[rid].width = Number(pos.width);
+              if (pos.length !== undefined && !isNaN(Number(pos.length))) this.roads[rid].length = Number(pos.length);
+              if (pos.rotation_y !== undefined && !isNaN(Number(pos.rotation_y))) this.roads[rid].rotation_y = Number(pos.rotation_y);
             }
           });
         }
@@ -550,13 +570,23 @@
     saveCustomRoads(roadMap) {
       try {
         if (!this.roads) this.roads = JSON.parse(JSON.stringify(this.defaultRoads));
+        let fullRoads = {};
+        try {
+          const existing = localStorage.getItem('sainoi_custom_roads');
+          if (existing) fullRoads = JSON.parse(existing);
+        } catch (_) {}
+
         Object.entries(roadMap).forEach(([rid, pos]) => {
           if (this.roads[rid]) {
             if (pos.x !== undefined && !isNaN(Number(pos.x))) this.roads[rid].x = Number(pos.x);
             if (pos.z !== undefined && !isNaN(Number(pos.z))) this.roads[rid].z = Number(pos.z);
+            if (pos.width !== undefined && !isNaN(Number(pos.width))) this.roads[rid].width = Number(pos.width);
+            if (pos.length !== undefined && !isNaN(Number(pos.length))) this.roads[rid].length = Number(pos.length);
+            if (pos.rotation_y !== undefined && !isNaN(Number(pos.rotation_y))) this.roads[rid].rotation_y = Number(pos.rotation_y);
           }
+          fullRoads[rid] = { ...(fullRoads[rid] || {}), ...pos };
         });
-        localStorage.setItem('sainoi_custom_roads', JSON.stringify(roadMap));
+        localStorage.setItem('sainoi_custom_roads', JSON.stringify(fullRoads));
         this.notify('layout_change');
         return true;
       } catch (e) {
@@ -586,7 +616,8 @@
         z: r.z,
         width: r.width,
         length: r.length,
-        type: r.type
+        type: r.type,
+        rotation_y: r.rotation_y || 0
       }));
     },
 
@@ -620,6 +651,9 @@
               }
               if (!isNaN(x)) this.water[wid].x = x;
               if (!isNaN(z)) this.water[wid].z = z;
+              if (pos.width !== undefined && !isNaN(Number(pos.width))) this.water[wid].width = Number(pos.width);
+              if (pos.depth !== undefined && !isNaN(Number(pos.depth))) this.water[wid].depth = Number(pos.depth);
+              if (pos.rotation_y !== undefined && !isNaN(Number(pos.rotation_y))) this.water[wid].rotation_y = Number(pos.rotation_y);
             }
           });
         }
@@ -631,13 +665,23 @@
     saveCustomWater(waterMap) {
       try {
         if (!this.water) this.water = JSON.parse(JSON.stringify(this.defaultWater));
+        let fullWater = {};
+        try {
+          const existing = localStorage.getItem('sainoi_custom_water');
+          if (existing) fullWater = JSON.parse(existing);
+        } catch (_) {}
+
         Object.entries(waterMap).forEach(([wid, pos]) => {
           if (this.water[wid]) {
             if (pos.x !== undefined && !isNaN(Number(pos.x))) this.water[wid].x = Number(pos.x);
             if (pos.z !== undefined && !isNaN(Number(pos.z))) this.water[wid].z = Number(pos.z);
+            if (pos.width !== undefined && !isNaN(Number(pos.width))) this.water[wid].width = Number(pos.width);
+            if (pos.depth !== undefined && !isNaN(Number(pos.depth))) this.water[wid].depth = Number(pos.depth);
+            if (pos.rotation_y !== undefined && !isNaN(Number(pos.rotation_y))) this.water[wid].rotation_y = Number(pos.rotation_y);
           }
+          fullWater[wid] = { ...(fullWater[wid] || {}), ...pos };
         });
-        localStorage.setItem('sainoi_custom_water', JSON.stringify(waterMap));
+        localStorage.setItem('sainoi_custom_water', JSON.stringify(fullWater));
         this.notify('layout_change');
         return true;
       } catch (e) {
@@ -666,7 +710,8 @@
         x: w.x,
         z: w.z,
         width: w.width,
-        depth: w.depth
+        depth: w.depth,
+        rotation_y: w.rotation_y || 0
       }));
     },
 
