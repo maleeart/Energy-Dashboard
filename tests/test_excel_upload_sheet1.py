@@ -89,20 +89,92 @@ class TestExcelUploadSheet1(unittest.TestCase):
             ('บ.0001', 'B.0001'),
             ('[T.0028]', 'T.0028'),
             ('🏢 T.0019', 'T.0019'),
-            ('T.0019 (สนง.ไทรน้อย)', 'T.0019')
+            ('T.0019 (สนง.ไทรน้อย)', 'T.0019'),
+            # Shorthand 1-4 digits
+            ('ท.19', 'T.0019'),
+            ('T.19', 'T.0019'),
+            ('ท19', 'T.0019'),
+            ('T19', 'T.0019'),
+            ('ต.17', 'D.0017'),
+            ('ด.17', 'D.0017'),
+            ('D.17', 'D.0017'),
+            ('ต.015', 'D.0015'),
+            ('บ.1', 'B.0001'),
+            ('B.1', 'B.0001'),
+            ('ท.6', 'T.0006'),
+            ('T.6', 'T.0006'),
+            ('ท.20', 'T.0020'),
+            ('ท.28', 'T.0028'),
+            ('ท.29', 'T.0029'),
+            ('ต.25', 'D.0025'),
+            ('ด.31', 'D.0031')
         ]
+        canonical = {
+            'B.0001', 'D.0015', 'D.0017', 'D.0019', 'D.0025', 'D.0026', 'D.0031', 'D.0033',
+            'T.0006', 'T.0007', 'T.0008', 'T.0009', 'T.0010', 'T.0011', 'T.0012', 'T.0014',
+            'T.0015', 'T.0016', 'T.0017', 'T.0018', 'T.0019', 'T.0020', 'T.0022', 'T.0023',
+            'T.0025', 'T.0026', 'T.0027', 'T.0028', 'T.0029'
+        }
+
         for inp, expected in cases:
-            matches = re.findall(r'([TDBทดับ]\.?\s*\d{4})', inp, re.IGNORECASE)
-            self.assertTrue(len(matches) > 0, f"Failed on {inp}")
-            raw = matches[0]
-            cleaned = re.sub(r'\s+', '', raw).upper()
-            prefix = cleaned[0]
+            m = re.search(r'(?:^|[^\w\u0E00-\u0E7F])([TDBทดับต]\.?\s*-?\s*\d{1,4})(?:$|[^\w\u0E00-\u0E7F])', inp, re.IGNORECASE)
+            self.assertIsNotNone(m, f"Failed search on {inp}")
+            token = re.sub(r'[\s\-_]', '', m.group(1)).upper()
+            prefix = token[0]
             if prefix == 'ท': prefix = 'T'
-            elif prefix == 'ด': prefix = 'D'
+            elif prefix in ('ด', 'ต'): prefix = 'D'
             elif prefix == 'บ': prefix = 'B'
-            digits = cleaned[-4:]
-            code = f"{prefix}.{digits}"
+            num_part = re.sub(r'[^0-9]', '', token)
+            num = int(num_part)
+            code = f"{prefix}.{num:04d}"
             self.assertEqual(code, expected)
+            self.assertIn(code, canonical)
+
+    def test_road_and_water_keywords(self):
+        # Road resolution
+        road_cases = [
+            ('ถนนหลัก', 'ROAD_MAIN_BOULEVARD'),
+            ('ถนนสายหลัก', 'ROAD_MAIN_BOULEVARD'),
+            ('ROAD_MAIN', 'ROAD_MAIN_BOULEVARD'),
+            ('ถนนโรงซ่อม', 'ROAD_SPINE_WORKSHOP'),
+            ('ถนนสายกลาง', 'ROAD_SPINE_WORKSHOP'),
+            ('ถนนเลียบคลอง', 'ROAD_WEST_CANAL'),
+            ('ROAD_WEST_CANAL', 'ROAD_WEST_CANAL')
+        ]
+        road_map = {
+            'ROAD_MAIN_BOULEVARD': 'ROAD_MAIN_BOULEVARD', 'ROAD_MAIN': 'ROAD_MAIN_BOULEVARD',
+            'ถนนหลัก': 'ROAD_MAIN_BOULEVARD', 'สายหลัก': 'ROAD_MAIN_BOULEVARD',
+            'ROAD_SPINE_WORKSHOP': 'ROAD_SPINE_WORKSHOP', 'ROAD_SPINE': 'ROAD_SPINE_WORKSHOP',
+            'ถนนโรงซ่อม': 'ROAD_SPINE_WORKSHOP', 'ถนนสายกลาง': 'ROAD_SPINE_WORKSHOP',
+            'ROAD_WEST_CANAL': 'ROAD_WEST_CANAL', 'ถนนเลียบคลอง': 'ROAD_WEST_CANAL'
+        }
+        for inp, exp in road_cases:
+            res = None
+            for k, v in road_map.items():
+                if k in inp.upper() or k in inp:
+                    res = v
+                    break
+            self.assertEqual(res, exp)
+
+        # Water resolution
+        water_cases = [
+            ('คลองสงวน', 'WEST_CANAL'),
+            ('สระน้ำ 1', 'POND_RETENTION_1'),
+            ('สระน้ำ 2 (ข้างแฟลต)', 'POND_RETENTION_2'),
+            ('สระน้ำ 3', 'POND_RETENTION_3'),
+            ('สระน้ำพุ', 'LAKE_FOUNTAIN'),
+            ('สระว่ายน้ำ', 'SWIMMING_POOL')
+        ]
+        for inp, exp in water_cases:
+            u = inp.upper()
+            if 'คลอง' in inp or 'CANAL' in u: res = 'WEST_CANAL'
+            elif 'น้ำพุ' in inp or 'FOUNTAIN' in u: res = 'LAKE_FOUNTAIN'
+            elif 'สระว่าย' in inp or 'SWIMMING' in u: res = 'SWIMMING_POOL'
+            elif '1' in inp: res = 'POND_RETENTION_1'
+            elif '2' in inp or 'แฟลต' in inp: res = 'POND_RETENTION_2'
+            elif '3' in inp: res = 'POND_RETENTION_3'
+            else: res = None
+            self.assertEqual(res, exp)
 
 if __name__ == '__main__':
     unittest.main()

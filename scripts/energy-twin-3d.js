@@ -33,6 +33,7 @@
       this.warningSprites = new Map(); // b_code -> sprite
       this.landmarkSprites = [];       // array of landmark label sprites
       this.roadMeshes = new Map();     // road_id -> mesh or group
+      this.waterMeshes = new Map();    // water_id -> mesh or group
 
       this.hemiLight = null;
       this.ambLight = null;
@@ -212,6 +213,7 @@
     // Western Boundary Canal: Khlong Khun Si (คลองขุนศรี)
     setupWesternCanal() {
       const canalGroup = new THREE.Group();
+      canalGroup.position.set(-200, 0, -40);
 
       const waterGeo = new THREE.PlaneGeometry(24, 480);
       const waterMat = new THREE.MeshStandardMaterial({
@@ -223,28 +225,29 @@
       });
       const canalWater = new THREE.Mesh(waterGeo, waterMat);
       canalWater.rotation.x = -Math.PI / 2;
-      canalWater.position.set(-200, 0.04, -40);
+      canalWater.position.set(0, 0.04, 0);
       canalGroup.add(canalWater);
 
       // Concrete Canal Embankment Wall
       const wallMat = new THREE.MeshStandardMaterial({ color: 0x94A3B8, roughness: 0.8 });
       const eastWall = new THREE.Mesh(new THREE.BoxGeometry(1.2, 1.5, 480), wallMat);
-      eastWall.position.set(-187.5, 0.5, -40);
+      eastWall.position.set(12.5, 0.5, 0);
       canalGroup.add(eastWall);
 
       const westWall = new THREE.Mesh(new THREE.BoxGeometry(1.2, 1.5, 480), wallMat);
-      westWall.position.set(-212.5, 0.5, -40);
+      westWall.position.set(-12.5, 0.5, 0);
       canalGroup.add(westWall);
 
       this.scene.add(canalGroup);
+      this.waterMeshes.set('WEST_CANAL', canalGroup);
     }
 
     // Three Central Retention Ponds (สระน้ำ 1, 2, 3)
     setupCentralRetentionPonds() {
       const pondSpecs = [
-        { name: 'สระน้ำ 1', x: -95, z: 45, width: 36, depth: 44 },
-        { name: 'สระน้ำ 2 (ข้างแฟลต)', x: -95, z: -5, width: 36, depth: 38 },
-        { name: 'สระน้ำ 3', x: -75, z: -75, width: 32, depth: 38 }
+        { id: 'POND_RETENTION_1', name: 'สระน้ำ 1', x: -95, z: 45, width: 36, depth: 44 },
+        { id: 'POND_RETENTION_2', name: 'สระน้ำ 2 (ข้างแฟลต)', x: -95, z: -5, width: 36, depth: 38 },
+        { id: 'POND_RETENTION_3', name: 'สระน้ำ 3', x: -75, z: -75, width: 32, depth: 38 }
       ];
 
       const waterMat = new THREE.MeshStandardMaterial({
@@ -258,20 +261,22 @@
 
       pondSpecs.forEach(p => {
         const pondGroup = new THREE.Group();
+        pondGroup.position.set(p.x, 0, p.z);
 
         const pondWater = new THREE.Mesh(new THREE.PlaneGeometry(p.width, p.depth), waterMat);
         pondWater.rotation.x = -Math.PI / 2;
-        pondWater.position.set(p.x, 0.05, p.z);
+        pondWater.position.set(0, 0.05, 0);
         pondWater.receiveShadow = true;
         pondGroup.add(pondWater);
 
         const borderGeo = new THREE.BoxGeometry(p.width + 1.6, 0.4, p.depth + 1.6);
         const border = new THREE.Mesh(borderGeo, curbMat);
-        border.position.set(p.x, 0.2, p.z);
+        border.position.set(0, 0.2, 0);
         border.receiveShadow = true;
         pondGroup.add(border);
 
         this.scene.add(pondGroup);
+        this.waterMeshes.set(p.id, pondGroup);
       });
     }
 
@@ -2856,6 +2861,17 @@
       const z = Number(newZ);
       if (!isNaN(x)) road.position.x = x;
       if (!isNaN(z)) road.position.z = z;
+      this.needsRender = true;
+    }
+
+    updateWaterPosition(waterId, newX, newZ) {
+      if (!this.waterMeshes) return;
+      const water = this.waterMeshes.get(waterId);
+      if (!water) return;
+      const x = Number(newX);
+      const z = Number(newZ);
+      if (!isNaN(x)) water.position.x = x;
+      if (!isNaN(z)) water.position.z = z;
       this.needsRender = true;
     }
 

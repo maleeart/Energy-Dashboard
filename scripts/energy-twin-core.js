@@ -268,6 +268,10 @@
         this.roads = JSON.parse(JSON.stringify(this.defaultRoads));
         this.loadCustomRoads();
 
+        // Initialize water and load saved custom water
+        this.water = JSON.parse(JSON.stringify(this.defaultWater));
+        this.loadCustomWater();
+
         // Default year and month range (default to full year matching index.html)
         if (this.summaryData && this.summaryData.periods) {
           const months = this.summaryData.periods.months || [];
@@ -441,7 +445,7 @@
 
     getLayoutExportData() {
       if (!this.mappingData || !this.mappingData.buildings) return {};
-      const res = { buildings: {}, roads: {} };
+      const res = { buildings: {}, roads: {}, water: {} };
       Object.entries(this.mappingData.buildings).forEach(([bid, b]) => {
         res.buildings[bid] = {
           name: b.name,
@@ -460,6 +464,17 @@
           z: r.z,
           width: r.width,
           length: r.length
+        };
+      });
+      const waterList = this.getWaterList();
+      waterList.forEach(w => {
+        res.water[w.id] = {
+          name: w.name,
+          category: w.category,
+          x: w.x,
+          z: w.z,
+          width: w.width,
+          depth: w.depth
         };
       });
       return res;
@@ -546,17 +561,93 @@
       }));
     },
 
+    // ── Water Network Management ──────────────────────────────────
+    defaultWater: {
+      'WEST_CANAL': { name: 'คลองสงวน (West Perimeter Canal)', x: -200, z: -40, width: 24, depth: 480, category: 'คลองระบายน้ำแนวเขต' },
+      'POND_RETENTION_1': { name: 'สระน้ำระบายน้ำ 1 (North Pond)', x: -95, z: 45, width: 36, depth: 44, category: 'สระกักเก็บน้ำ' },
+      'POND_RETENTION_2': { name: 'สระน้ำ 2 ข้างแฟลตที่พัก (Central Pond)', x: -95, z: -5, width: 36, depth: 38, category: 'สระกักเก็บน้ำ' },
+      'POND_RETENTION_3': { name: 'สระน้ำ 3 หน้าโรงอาหาร (South Pond)', x: -75, z: -75, width: 32, depth: 38, category: 'สระกักเก็บน้ำ' },
+      'LAKE_FOUNTAIN': { name: 'สระน้ำพุวงเวียนหอนาฬิกา', x: 45, z: 100, width: 14, depth: 14, category: 'สระน้ำพุและภูมิทัศน์' },
+      'SWIMMING_POOL': { name: 'สระว่ายน้ำสโมสรไทรน้อย', x: 100, z: -60, width: 16, depth: 25, category: 'สระว่ายน้ำสวัสดิการ' }
+    },
+    water: null,
+
+    loadCustomWater() {
+      try {
+        if (!this.water) this.water = JSON.parse(JSON.stringify(this.defaultWater));
+        const saved = localStorage.getItem('sainoi_custom_water');
+        if (saved) {
+          const custom = JSON.parse(saved);
+          Object.entries(custom).forEach(([wid, pos]) => {
+            if (this.water[wid]) {
+              if (pos.x !== undefined && !isNaN(Number(pos.x))) this.water[wid].x = Number(pos.x);
+              if (pos.z !== undefined && !isNaN(Number(pos.z))) this.water[wid].z = Number(pos.z);
+            }
+          });
+        }
+      } catch (e) {
+        console.warn('Could not load custom water from localStorage:', e);
+      }
+    },
+
+    saveCustomWater(waterMap) {
+      try {
+        if (!this.water) this.water = JSON.parse(JSON.stringify(this.defaultWater));
+        Object.entries(waterMap).forEach(([wid, pos]) => {
+          if (this.water[wid]) {
+            if (pos.x !== undefined && !isNaN(Number(pos.x))) this.water[wid].x = Number(pos.x);
+            if (pos.z !== undefined && !isNaN(Number(pos.z))) this.water[wid].z = Number(pos.z);
+          }
+        });
+        localStorage.setItem('sainoi_custom_water', JSON.stringify(waterMap));
+        this.notify('layout_change');
+        return true;
+      } catch (e) {
+        console.error('Failed to save custom water:', e);
+        return false;
+      }
+    },
+
+    resetCustomWater() {
+      try {
+        localStorage.removeItem('sainoi_custom_water');
+        this.water = JSON.parse(JSON.stringify(this.defaultWater));
+        this.notify('layout_change');
+        return true;
+      } catch (e) {
+        return false;
+      }
+    },
+
+    getWaterList() {
+      if (!this.water) this.water = JSON.parse(JSON.stringify(this.defaultWater));
+      return Object.entries(this.water).map(([id, w]) => ({
+        id,
+        name: w.name,
+        category: w.category,
+        x: w.x,
+        z: w.z,
+        width: w.width,
+        depth: w.depth
+      }));
+    },
+
     importCustomLayout(jsonStr) {
       try {
         const parsed = typeof jsonStr === 'string' ? JSON.parse(jsonStr) : jsonStr;
         const layoutMap = {};
         const roadMap = {};
+        const waterMap = {};
 
         const dataSrc = parsed.buildings || parsed;
         Object.entries(dataSrc).forEach(([bid, val]) => {
           if (bid.startsWith('ROAD_')) {
             if (val.x !== undefined || val.z !== undefined) {
               roadMap[bid] = { x: Number(val.x), z: Number(val.z) };
+            }
+          } else if (bid.startsWith('POND_') || bid === 'WEST_CANAL' || bid === 'LAKE_FOUNTAIN' || bid === 'SWIMMING_POOL') {
+            if (val.x !== undefined || val.z !== undefined) {
+              waterMap[bid] = { x: Number(val.x), z: Number(val.z) };
             }
           } else if (val.layout_position) {
             layoutMap[bid] = {
@@ -581,8 +672,19 @@
           });
         }
 
+        if (parsed.water) {
+          Object.entries(parsed.water).forEach(([wid, val]) => {
+            if (val.x !== undefined || val.z !== undefined) {
+              waterMap[wid] = { x: Number(val.x), z: Number(val.z) };
+            }
+          });
+        }
+
         if (Object.keys(roadMap).length > 0) {
           this.saveCustomRoads(roadMap);
+        }
+        if (Object.keys(waterMap).length > 0) {
+          this.saveCustomWater(waterMap);
         }
 
         return this.saveCustomLayout(layoutMap);
@@ -735,106 +837,352 @@
       URL.revokeObjectURL(url);
     },
 
+    // ── Canonical Mappings and Recognizers for Layout Import ─────────
+    canonicalBuildingCodes: new Set([
+      'B.0001',
+      'D.0015', 'D.0017', 'D.0019', 'D.0025', 'D.0026', 'D.0031', 'D.0033',
+      'T.0006', 'T.0007', 'T.0008', 'T.0009', 'T.0010', 'T.0011', 'T.0012',
+      'T.0014', 'T.0015', 'T.0016', 'T.0017', 'T.0018', 'T.0019', 'T.0020',
+      'T.0022', 'T.0023', 'T.0025', 'T.0026', 'T.0027', 'T.0028', 'T.0029'
+    ]),
+
+    buildingKeywordMap: {
+      'สำนักงาน': 'T.0019',
+      'สนง': 'T.0019',
+      'ชธธ': 'T.0019',
+      'หบท': 'T.0019',
+      'ธุรกิจบำรุงรักษา': 'T.0019',
+      'เคมี': 'T.0020',
+      'สมรรถนะ': 'T.0020',
+      'นันทนาการ': 'D.0019',
+      'ฟิตเนส': 'D.0019',
+      'สโมสร': 'D.0019',
+      'โรงอาหาร': 'D.0017',
+      'อาหาร': 'D.0017',
+      'คอมพิวเตอร์': 'D.0025',
+      'อเนกประสงค์': 'D.0025',
+      'ประปา': 'D.0026',
+      'แฟลต': 'B.0001',
+      'flat': 'B.0001',
+      'บ้านพัก': 'B.0001',
+      'คลังพัสดุ 1': 'T.0006',
+      'พัสดุ 1': 'T.0006',
+      'คลังพัสดุ 2': 'T.0008',
+      'พัสดุ 2': 'T.0008',
+      'กองบริหาร': 'T.0007',
+      'บร-ธ': 'T.0007',
+      'ซ่อมบำรุง': 'T.0010',
+      'เครื่องมือฝ่าย': 'T.0011',
+      'เครื่องกลหนัก': 'T.0012',
+      'โรงซ่อมหนัก': 'T.0012',
+      'อบฟ': 'T.0012',
+      'ไฟฟ้าโยธา': 'T.0014',
+      'ทดสอบช่าง': 'T.0017',
+      'ช่างสากล': 'T.0017',
+      'เครื่องมือวัด': 'T.0018',
+      'มาตรวิทยา': 'T.0018',
+      'เครื่องจักรกล อหข': 'D.0015',
+      'โรงซ่อม อหข': 'D.0015',
+      'อสร': 'D.0015',
+      'บริการ อหข': 'D.0031',
+      'ปฏิบัติการขนส่ง': 'D.0033',
+      'ก่อสร้าง': 'T.0023',
+      'construction': 'T.0023',
+      'พัฒนาพลังงาน': 'T.0022',
+      'warehouse': 'T.0022',
+      'กองพัสดุ อบค': 'T.0025',
+      'สนง.อหข': 'T.0026',
+      'สำนักงาน อหข': 'T.0026',
+      'จอดรถ อหข': 'T.0027',
+      'ตรวจสภาพ': 'T.0027',
+      'เครื่องจักรกลหนัก 1': 'T.0028',
+      'ซ่อมหนัก 1': 'T.0028',
+      'เครื่องจักรกลหนัก 2': 'T.0029',
+      'ซ่อมหนัก 2': 'T.0029'
+    },
+
+    roadPrefixMap: {
+      'ROAD_MAIN_BOULEVARD': 'ROAD_MAIN_BOULEVARD',
+      'ROAD_MAIN': 'ROAD_MAIN_BOULEVARD',
+      'ถนนหลัก': 'ROAD_MAIN_BOULEVARD',
+      'สายหลัก': 'ROAD_MAIN_BOULEVARD',
+      'ถ.หลัก': 'ROAD_MAIN_BOULEVARD',
+      'ROAD_SPINE_WORKSHOP': 'ROAD_SPINE_WORKSHOP',
+      'ROAD_SPINE': 'ROAD_SPINE_WORKSHOP',
+      'ถนนโรงซ่อม': 'ROAD_SPINE_WORKSHOP',
+      'ถนนสายกลาง': 'ROAD_SPINE_WORKSHOP',
+      'ถนนกลาง': 'ROAD_SPINE_WORKSHOP',
+      'ถ.กลาง': 'ROAD_SPINE_WORKSHOP',
+      'ROAD_WEST_CANAL': 'ROAD_WEST_CANAL',
+      'ROAD_WEST_C': 'ROAD_WEST_CANAL',
+      'ROAD_WEST': 'ROAD_WEST_CANAL',
+      'ถนนเลียบคลอง': 'ROAD_WEST_CANAL',
+      'ถ.เลียบคลอง': 'ROAD_WEST_CANAL',
+      'ROAD_CROSS_140': 'ROAD_CROSS_140',
+      'ROAD_CROSS_50': 'ROAD_CROSS_50',
+      'ROAD_CROSS_15': 'ROAD_CROSS_15',
+      'ROAD_CROSS_M20': 'ROAD_CROSS_M20',
+      'ROAD_CROSS_M55': 'ROAD_CROSS_M55',
+      'ROAD_CROSS_M85': 'ROAD_CROSS_M85',
+      'ROAD_CROSS_M115': 'ROAD_CROSS_M115',
+      'ROAD_CROSS_M150': 'ROAD_CROSS_M150',
+      'ROAD_EAST_CONNECTOR': 'ROAD_EAST_CONNECTOR',
+      'ROAD_EAST': 'ROAD_EAST_CONNECTOR',
+      'ถนนเชื่อม': 'ROAD_EAST_CONNECTOR',
+      'ROAD_OHK_ACCESS': 'ROAD_OHK_ACCESS',
+      'ROAD_OHK_A': 'ROAD_OHK_ACCESS',
+      'ถนนขนส่ง': 'ROAD_OHK_ACCESS',
+      'เข้าขนส่ง': 'ROAD_OHK_ACCESS',
+      'ROAD_OHK_NORTH_LOOP': 'ROAD_OHK_NORTH_LOOP',
+      'ROAD_OHK_N': 'ROAD_OHK_NORTH_LOOP',
+      'วงเวียนเหนือ': 'ROAD_OHK_NORTH_LOOP',
+      'ROAD_OHK_EAST_LOOP': 'ROAD_OHK_EAST_LOOP',
+      'ROAD_OHK_E': 'ROAD_OHK_EAST_LOOP',
+      'วงเวียนออก': 'ROAD_OHK_EAST_LOOP'
+    },
+
+    // Resolves cell text to canonical building code (supports T.19, ท.19, ท19, ต.17, ด.17, บ.1, names, etc.)
+    resolveBuildingCode(raw) {
+      if (!raw || typeof raw !== 'string') return null;
+      const text = raw.trim();
+      if (!text) return null;
+
+      // 1. Shorthand & Standard Code regex: T.19, ท.19, ท19, T19, ท-19, T.0019, ต.17, ด.17, D.17, บ.1, etc.
+      const m = text.match(/(?:^|[^\w\u0E00-\u0E7F])([TDBทดับต]\.?\s*-?\s*\d{1,4})(?:$|[^\w\u0E00-\u0E7F])/i);
+      if (m) {
+        const token = m[1].replace(/[\s\-_]/g, '').toUpperCase();
+        let prefix = token[0];
+        if (prefix === 'ท') prefix = 'T';
+        else if (prefix === 'ด' || prefix === 'ต') prefix = 'D';
+        else if (prefix === 'บ') prefix = 'B';
+        const numPart = token.replace(/[^0-9]/g, '');
+        if (numPart.length > 0) {
+          const num = parseInt(numPart, 10);
+          const formatted = `${prefix}.${String(num).padStart(4, '0')}`;
+          if (this.canonicalBuildingCodes.has(formatted)) {
+            return formatted;
+          }
+        }
+      }
+
+      // 2. Direct name / keyword lookup
+      const lower = text.toLowerCase();
+      for (const [kw, code] of Object.entries(this.buildingKeywordMap)) {
+        if (lower.includes(kw.toLowerCase())) {
+          return code;
+        }
+      }
+
+      return null;
+    },
+
+    // Resolves cell text to canonical road ID
+    resolveRoadId(raw, xVal, zVal) {
+      if (!raw || typeof raw !== 'string') return null;
+      const text = raw.trim();
+      const upper = text.toUpperCase();
+      const isRoad = upper.includes('ROAD') || /ถนน|ทางรถ|ทางสัญจร|ถ\./.test(text);
+      if (!isRoad) return null;
+
+      // 1. Direct prefix / keyword check
+      for (const [kw, fullId] of Object.entries(this.roadPrefixMap)) {
+        if (upper.includes(kw) || text.includes(kw)) {
+          return fullId;
+        }
+      }
+
+      // 2. Check cross roads by Z coordinate
+      if (text.includes('ขวาง') || upper.includes('CROSS')) {
+        const crossRoads = [
+          { id: 'ROAD_CROSS_140', z: 140 },
+          { id: 'ROAD_CROSS_50', z: 50 },
+          { id: 'ROAD_CROSS_15', z: 15 },
+          { id: 'ROAD_CROSS_M20', z: -20 },
+          { id: 'ROAD_CROSS_M55', z: -55 },
+          { id: 'ROAD_CROSS_M85', z: -85 },
+          { id: 'ROAD_CROSS_M115', z: -115 },
+          { id: 'ROAD_CROSS_M150', z: -150 }
+        ];
+        return crossRoads.reduce((prev, curr) => Math.abs(curr.z - zVal) < Math.abs(prev.z - zVal) ? curr : prev).id;
+      }
+
+      // 3. Fallback based on X position
+      if (xVal < -130 && zVal < -90) return 'ROAD_OHK_ACCESS';
+      if (xVal < -130) return 'ROAD_WEST_CANAL';
+      if (xVal > 20) return 'ROAD_MAIN_BOULEVARD';
+      return 'ROAD_SPINE_WORKSHOP';
+    },
+
+    // Resolves cell text to canonical water ID (supports canal, retention ponds, fountain, swimming pool)
+    resolveWaterId(raw, xVal, zVal) {
+      if (!raw || typeof raw !== 'string') return null;
+      const text = raw.trim();
+      const upper = text.toUpperCase();
+      const isWater = upper.includes('LAKE') || upper.includes('POND') || upper.includes('CANAL') || upper.includes('WATER') || upper.includes('SWIMMING') || /น้ำ|สระ|คลอง|บ่อ|บึง/.test(text);
+      if (!isWater) return null;
+
+      if (upper.includes('CANAL') || text.includes('คลอง') || upper.includes('WEST_CA')) {
+        return 'WEST_CANAL';
+      }
+      if (upper.includes('FOUNTAIN') || text.includes('น้ำพุ') || upper.includes('LAKE_FO')) {
+        return 'LAKE_FOUNTAIN';
+      }
+      if (upper.includes('SWIMMING') || text.includes('สระว่าย')) {
+        return 'SWIMMING_POOL';
+      }
+      if (text.includes('1') || upper.includes('POND_1') || upper.includes('POND_RETENTION_1')) {
+        return 'POND_RETENTION_1';
+      }
+      if (text.includes('2') || upper.includes('POND_2') || upper.includes('POND_RETENTION_2') || text.includes('แฟลต')) {
+        return 'POND_RETENTION_2';
+      }
+      if (text.includes('3') || upper.includes('POND_3') || upper.includes('POND_RETENTION_3') || text.includes('โรงอาหาร')) {
+        return 'POND_RETENTION_3';
+      }
+
+      // Fallback by position
+      if (xVal < -150) return 'WEST_CANAL';
+      if (zVal > 20) return 'POND_RETENTION_1';
+      if (zVal >= -40) return 'POND_RETENTION_2';
+      if (zVal < -40 && xVal < 0) return 'POND_RETENTION_3';
+      return 'POND_RETENTION_2';
+    },
+
+    // Resolves cell text to landmark ID
+    resolveLandmarkId(raw) {
+      if (!raw || typeof raw !== 'string') return null;
+      const text = raw.trim();
+      const upper = text.toUpperCase();
+      if (upper.includes('YARD_SWITCH') || text.includes('สวิตช์ยาร์ด') || text.includes('สถานีไฟฟ้า')) return 'YARD_SWITCHYARD';
+      if (upper.includes('FOOTBALL') || text.includes('ฟุตบอล') || text.includes('สนามบอล')) return 'FOOTBALL_FIELD';
+      if (upper.includes('SHRINE') || text.includes('เจ็ดกษัตริย์') || text.includes('ศาล')) return 'SHRINE_SEVEN_KINGS';
+      if (upper.includes('TURBINE') || text.includes('กังหัน')) return 'WIND_TURBINE';
+      if (upper.includes('SUNFLOWER') || text.includes('ทานตะวัน')) return 'SUNFLOWER_FIELD';
+      if (upper.includes('PARKING_SHED_16') || text.includes('ต.0016')) return 'PARKING_SHED_16';
+      if (upper.includes('PARKING_SHED_18') || text.includes('ต.0018')) return 'PARKING_SHED_18';
+      return null;
+    },
+
     // Parse 2D Grid Matrix rows (supports SheetJS 2D array or CSV rows)
     parseGridMatrixRows(rows) {
       if (!Array.isArray(rows) || rows.length < 2) return null;
 
-      // Road prefix mappings to canonical road IDs
-      const roadPrefixMap = {
-        'ROAD_MAIN': 'ROAD_MAIN_BOULEVARD',
-        'ROAD_SPINE': 'ROAD_SPINE_WORKSHOP',
-        'ROAD_WEST_C': 'ROAD_WEST_CANAL',
-        'ROAD_WEST': 'ROAD_WEST_CANAL',
-        'ROAD_CROSS_140': 'ROAD_CROSS_140',
-        'ROAD_CROSS_50': 'ROAD_CROSS_50',
-        'ROAD_CROSS_15': 'ROAD_CROSS_15',
-        'ROAD_CROSS_M20': 'ROAD_CROSS_M20',
-        'ROAD_CROSS_M55': 'ROAD_CROSS_M55',
-        'ROAD_CROSS_M85': 'ROAD_CROSS_M85',
-        'ROAD_CROSS_M115': 'ROAD_CROSS_M115',
-        'ROAD_CROSS_M150': 'ROAD_CROSS_M150',
-        'ROAD_EAST': 'ROAD_EAST_CONNECTOR',
-        'ROAD_OHK_A': 'ROAD_OHK_ACCESS',
-        'ROAD_OHK_N': 'ROAD_OHK_NORTH_LOOP',
-        'ROAD_OHK_E': 'ROAD_OHK_EAST_LOOP'
-      };
-
-      // 1. Find the header row containing X=... (scan first 15 rows)
+      // 1. Find the header row containing X coordinates (scan ALL rows up to 40)
       let headerRowIdx = -1;
       let colXMap = {};
+      let zColIdx = 0;
 
-      for (let r = 0; r < Math.min(rows.length, 15); r++) {
+      for (let r = 0; r < Math.min(rows.length, 40); r++) {
         const row = rows[r];
         if (!row || !Array.isArray(row)) continue;
         const candidateCols = {};
         let xMatches = 0;
 
-        for (let c = 1; c < row.length; c++) {
-          const val = String(row[c] !== undefined && row[c] !== null ? row[c] : '').trim();
+        for (let c = 0; c < row.length; c++) {
+          const raw = row[c];
+          if (raw === undefined || raw === null || raw === '') continue;
+          const val = String(raw).trim();
           if (!val) continue;
-          const m = val.match(/(?:X\s*=\s*)?([-+]?\d+(\.\d+)?)/i);
-          if (m && (val.toLowerCase().includes('x=') || /^[+-]?\d+$/.test(val))) {
-            candidateCols[c] = parseFloat(m[1]);
-            xMatches++;
+
+          // Check if cell is an X coordinate: 'X=-210', 'X = -210', 'X: -210', or numeric -210
+          const m = val.match(/(?:X\s*[:=]\s*)?([-+]?\d+(?:\.\d+)?)/i);
+          if (m) {
+            const num = parseFloat(m[1]);
+            if (/[xX]\s*[:=]/.test(val) || (!isNaN(num) && num >= -400 && num <= 400 && String(num) === m[1])) {
+              candidateCols[c] = num;
+              xMatches++;
+            }
           }
         }
 
+        // If at least 3 X coordinates found, this is the header row!
         if (xMatches >= 3) {
           headerRowIdx = r;
           colXMap = candidateCols;
+
+          // Find which column has the Z row labels
+          const minCol = Math.min(...Object.keys(candidateCols).map(Number));
+          for (let c = 0; c < minCol; c++) {
+            const v = String(row[c] || '').toLowerCase();
+            if (v.includes('z')) {
+              zColIdx = c;
+              break;
+            }
+          }
           break;
         }
       }
 
       if (headerRowIdx === -1 || Object.keys(colXMap).length === 0) {
-        return null; // Not a 2D Grid Matrix
+        return null;
       }
 
       const layoutMap = {};
-      const roadCoords = {}; // roadId -> array of {x, z}
+      const roadCoords = {};     // roadId -> array of {x, z}
+      const waterCoords = {};    // waterId -> array of {x, z}
+      const landmarkCoords = {}; // landmarkId -> array of {x, z}
 
       // 2. Scan data rows below header row
       for (let r = headerRowIdx + 1; r < rows.length; r++) {
         const row = rows[r];
         if (!row || !Array.isArray(row) || row.length === 0) continue;
 
-        // First cell has Z coordinate e.g. 'Z=-220', 'Z = -220', or '-220'
-        const firstCell = String(row[0] !== undefined && row[0] !== null ? row[0] : '').trim();
-        const mZ = firstCell.match(/[-+]?\d+(\.\d+)?/);
-        if (!mZ) continue;
-        const zVal = parseFloat(mZ[0]);
-
-        for (let c = 1; c < row.length; c++) {
-          if (colXMap[c] === undefined) continue;
-          const xVal = colXMap[c];
-          const cellVal = String(row[c] !== undefined && row[c] !== null ? row[c] : '').trim();
-          if (!cellVal) continue;
-
-          // 2.1 Match buildings (supports T.0019, D.0019, B.0001, and Thai ท.0019, ด.0019, บ.0001, etc.)
-          const bldMatches = cellVal.match(/([TDBทดับ]\.?\s*\d{4})/gi);
-          if (bldMatches) {
-            bldMatches.forEach(raw => {
-              const cleaned = raw.replace(/\s+/g, '').toUpperCase();
-              let prefix = cleaned[0];
-              if (prefix === 'ท') prefix = 'T';
-              else if (prefix === 'ด') prefix = 'D';
-              else if (prefix === 'บ') prefix = 'B';
-              const digits = cleaned.slice(-4);
-              const bCode = `${prefix}.${digits}`;
-              layoutMap[bCode] = { x: xVal, z: zVal };
-            });
-          }
-
-          // 2.2 Match roads
-          const upper = cellVal.toUpperCase();
-          if (upper.includes('ROAD_')) {
-            for (const [prefix, fullId] of Object.entries(roadPrefixMap)) {
-              if (upper.includes(prefix)) {
-                if (!roadCoords[fullId]) roadCoords[fullId] = [];
-                roadCoords[fullId].push({ x: xVal, z: zVal });
+        // Find Z coordinate for this row: check zColIdx first, then columns 0, 1, 2
+        let zVal = null;
+        const testCols = [zColIdx, 0, 1, 2].filter((v, i, a) => a.indexOf(v) === i);
+        for (const tc of testCols) {
+          if (row[tc] !== undefined && row[tc] !== null && row[tc] !== '') {
+            const zStr = String(row[tc]).trim();
+            const mZ = zStr.match(/(?:Z\s*[:=]\s*)?([-+]?\d+(?:\.\d+)?)/i);
+            if (mZ) {
+              const num = parseFloat(mZ[1]);
+              if (!isNaN(num) && num >= -500 && num <= 500) {
+                zVal = num;
                 break;
               }
             }
+          }
+        }
+
+        if (zVal === null) continue;
+
+        // Scan columns in colXMap
+        for (const [cStr, xVal] of Object.entries(colXMap)) {
+          const c = parseInt(cStr, 10);
+          if (c === zColIdx) continue;
+          const rawCell = row[c];
+          if (rawCell === undefined || rawCell === null) continue;
+          const cellVal = String(rawCell).trim();
+          if (!cellVal) continue;
+
+          // 2.1 Check building (supports T.19, ท.19, ท19, ต.17, ด.17, บ.1, etc.)
+          const bCode = this.resolveBuildingCode(cellVal);
+          if (bCode) {
+            layoutMap[bCode] = { x: xVal, z: zVal };
+            continue;
+          }
+
+          // 2.2 Check road (supports English & Thai keywords)
+          const roadId = this.resolveRoadId(cellVal, xVal, zVal);
+          if (roadId) {
+            if (!roadCoords[roadId]) roadCoords[roadId] = [];
+            roadCoords[roadId].push({ x: xVal, z: zVal });
+            continue;
+          }
+
+          // 2.3 Check water (supports canal, retention ponds, fountain, pool)
+          const waterId = this.resolveWaterId(cellVal, xVal, zVal);
+          if (waterId) {
+            if (!waterCoords[waterId]) waterCoords[waterId] = [];
+            waterCoords[waterId].push({ x: xVal, z: zVal });
+            continue;
+          }
+
+          // 2.4 Check landmark
+          const lmId = this.resolveLandmarkId(cellVal);
+          if (lmId) {
+            if (!landmarkCoords[lmId]) landmarkCoords[lmId] = [];
+            landmarkCoords[lmId].push({ x: xVal, z: zVal });
           }
         }
       }
@@ -842,36 +1190,62 @@
       // Consolidate road coordinates (average center)
       const roadMap = {};
       Object.entries(roadCoords).forEach(([rid, coords]) => {
-        if (coords.length === 1) {
-          roadMap[rid] = coords[0];
-        } else if (coords.length > 1) {
-          const avgX = coords.reduce((acc, c) => acc + c.x, 0) / coords.length;
-          const avgZ = coords.reduce((acc, c) => acc + c.z, 0) / coords.length;
-          roadMap[rid] = { x: Math.round(avgX), z: Math.round(avgZ) };
-        }
+        const avgX = coords.reduce((acc, c) => acc + c.x, 0) / coords.length;
+        const avgZ = coords.reduce((acc, c) => acc + c.z, 0) / coords.length;
+        roadMap[rid] = { x: Math.round(avgX), z: Math.round(avgZ) };
       });
 
-      const count = Object.keys(layoutMap).length + Object.keys(roadMap).length;
-      return { layoutMap, roadMap, count, bldCount: Object.keys(layoutMap).length, roadCount: Object.keys(roadMap).length };
+      // Consolidate water coordinates (average center)
+      const waterMap = {};
+      Object.entries(waterCoords).forEach(([wid, coords]) => {
+        const avgX = coords.reduce((acc, c) => acc + c.x, 0) / coords.length;
+        const avgZ = coords.reduce((acc, c) => acc + c.z, 0) / coords.length;
+        waterMap[wid] = { x: Math.round(avgX), z: Math.round(avgZ) };
+      });
+
+      // Consolidate landmark coordinates
+      const landmarkMap = {};
+      Object.entries(landmarkCoords).forEach(([lmid, coords]) => {
+        const avgX = coords.reduce((acc, c) => acc + c.x, 0) / coords.length;
+        const avgZ = coords.reduce((acc, c) => acc + c.z, 0) / coords.length;
+        landmarkMap[lmid] = { x: Math.round(avgX), z: Math.round(avgZ) };
+      });
+
+      const bldCount = Object.keys(layoutMap).length;
+      const roadCount = Object.keys(roadMap).length;
+      const waterCount = Object.keys(waterMap).length;
+      const landmarkCount = Object.keys(landmarkMap).length;
+      const total = bldCount + roadCount + waterCount + landmarkCount;
+
+      return {
+        count: total,
+        bldCount,
+        roadCount,
+        waterCount,
+        landmarkCount,
+        layoutMap,
+        roadMap,
+        waterMap,
+        landmarkMap
+      };
     },
 
     // Parse Coordinates Table rows (from SheetJS sheet_to_json or CSV table)
     parseCoordinatesTableRows(rows) {
       if (!Array.isArray(rows) || rows.length < 2) return null;
 
-      // Find header row containing building_code / b_code / road_code / x / z
       let headerRowIdx = -1;
       let bCodeIdx = -1, xIdx = -1, zIdx = -1;
 
-      for (let r = 0; r < Math.min(rows.length, 10); r++) {
+      for (let r = 0; r < Math.min(rows.length, 12); r++) {
         const row = rows[r];
         if (!row || !Array.isArray(row)) continue;
         const lower = row.map(c => String(c || '').toLowerCase().trim());
         let bc = -1, xi = -1, zi = -1;
         lower.forEach((h, idx) => {
-          if (h.includes('building_code') || h.includes('b_code') || h.includes('road_code') || h === 'code' || h.includes('รหัส')) bc = idx;
-          if (h.includes('x_coord') || h === 'x' || h.includes('พิกัด x')) xi = idx;
-          if (h.includes('z_coord') || h === 'z' || h.includes('พิกัด z')) zi = idx;
+          if (h.includes('building_code') || h.includes('b_code') || h.includes('road_code') || h.includes('water_code') || h === 'code' || h.includes('รหัส') || h.includes('ชื่ออาคาร')) bc = idx;
+          if (h.includes('x_coord') || h === 'x' || h.includes('พิกัด x') || h === 'พิกัดx') xi = idx;
+          if (h.includes('z_coord') || h === 'z' || h.includes('พิกัด z') || h === 'พิกัดz') zi = idx;
         });
         if (bc !== -1 && xi !== -1 && zi !== -1) {
           headerRowIdx = r;
@@ -886,28 +1260,58 @@
 
       const layoutMap = {};
       const roadMap = {};
-      const codePattern = /(T\.\d{4}|D\.\d{4}|B\.\d{4}|ROAD_[A-Z0-9_]+)/i;
+      const waterMap = {};
+      const landmarkMap = {};
 
       for (let r = headerRowIdx + 1; r < rows.length; r++) {
         const row = rows[r];
         if (!row || !Array.isArray(row) || row.length <= Math.max(bCodeIdx, xIdx, zIdx)) continue;
-        const rawCode = String(row[bCodeIdx] || '').replace(/["']/g, '').trim().toUpperCase();
-        const match = rawCode.match(codePattern);
-        const code = match ? match[1].toUpperCase() : rawCode;
+        const rawCode = String(row[bCodeIdx] || '').replace(/["']/g, '').trim();
         const xVal = parseFloat(row[xIdx]);
         const zVal = parseFloat(row[zIdx]);
+        if (!rawCode || isNaN(xVal) || isNaN(zVal)) continue;
 
-        if (code && !isNaN(xVal) && !isNaN(zVal)) {
-          if (code.startsWith('ROAD_')) {
-            roadMap[code] = { x: xVal, z: zVal };
-          } else {
-            layoutMap[code] = { x: xVal, z: zVal };
-          }
+        const bCode = this.resolveBuildingCode(rawCode);
+        if (bCode) {
+          layoutMap[bCode] = { x: xVal, z: zVal };
+          continue;
+        }
+
+        const roadId = this.resolveRoadId(rawCode, xVal, zVal);
+        if (roadId) {
+          roadMap[roadId] = { x: xVal, z: zVal };
+          continue;
+        }
+
+        const waterId = this.resolveWaterId(rawCode, xVal, zVal);
+        if (waterId) {
+          waterMap[waterId] = { x: xVal, z: zVal };
+          continue;
+        }
+
+        const lmId = this.resolveLandmarkId(rawCode);
+        if (lmId) {
+          landmarkMap[lmId] = { x: xVal, z: zVal };
         }
       }
 
-      const count = Object.keys(layoutMap).length + Object.keys(roadMap).length;
-      return { layoutMap, roadMap, count, bldCount: Object.keys(layoutMap).length, roadCount: Object.keys(roadMap).length };
+      const bldCount = Object.keys(layoutMap).length;
+      const roadCount = Object.keys(roadMap).length;
+      const waterCount = Object.keys(waterMap).length;
+      const landmarkCount = Object.keys(landmarkMap).length;
+      const total = bldCount + roadCount + waterCount + landmarkCount;
+
+      return {
+        count: total,
+        bldCount,
+        roadCount,
+        waterCount,
+        landmarkCount,
+        layoutMap,
+        roadMap,
+        waterMap,
+        landmarkMap
+      };
     },
 
     // Parse CSV Text (Auto-detects Table format or 2D Grid Matrix format)
@@ -951,51 +1355,64 @@
       }
 
       if (!res || res.count === 0) {
-        throw new Error('ไม่พบข้อมูลรหัสอาคารหรือถนนและพิกัดที่ถูกต้องในไฟล์ CSV (รองรับทั้งแบบตารางพิกัด และแบบผังตาราง 2D Grid)');
+        throw new Error('ไม่พบตำแหน่งพิกัดของอาคาร ถนน หรือแหล่งน้ำในไฟล์ CSV\n(รองรับทั้งแบบผังตาราง 2D Grid และตารางพิกัด Building_Coordinates, รหัสอาคารย่อ ท.19, ต.17, ถนนหลัก, สระน้ำ ฯลฯ)');
       }
 
-      if (Object.keys(res.layoutMap).length > 0) {
+      if (res.bldCount > 0) {
         this.saveCustomLayout(res.layoutMap);
       }
-      if (Object.keys(res.roadMap).length > 0) {
+      if (res.roadCount > 0) {
         this.saveCustomRoads(res.roadMap);
+      }
+      if (res.waterCount > 0 && this.saveCustomWater) {
+        this.saveCustomWater(res.waterMap);
       }
 
       return res;
     },
 
-    // Parse XLSX (Excel) file using SheetJS - Prioritizes Sheet 1 (Campus_2D_Grid_Map)
+    // Parse XLSX (Excel) file using SheetJS - Scans ALL worksheets with priority to 2D Grid Map
     parseLayoutXlsx(workbook) {
       if (!workbook || !workbook.SheetNames || workbook.SheetNames.length === 0) {
         throw new Error('ไฟล์ Excel ไม่ถูกต้องหรือไม่พบชีตข้อมูล');
       }
 
       const sheetNames = workbook.SheetNames;
-      const firstSheetName = sheetNames[0];
-
       let gridRes = null;
       let tableBldRes = null;
       let tableRoadRes = null;
+      let gridSheetName = '';
 
-      // 1. Check Sheet 1 (or 'Campus_2D_Grid_Map') for visual 2D Grid Map
-      const gridSheetName = sheetNames.includes('Campus_2D_Grid_Map') ? 'Campus_2D_Grid_Map' : firstSheetName;
-      if (workbook.Sheets[gridSheetName]) {
-        const rows = window.XLSX.utils.sheet_to_json(workbook.Sheets[gridSheetName], { header: 1, defval: '' });
-        gridRes = this.parseGridMatrixRows(rows);
+      // 1. Scan ALL worksheets in the workbook
+      for (const sName of sheetNames) {
+        const sheet = workbook.Sheets[sName];
+        if (!sheet) continue;
+        const rows = window.XLSX.utils.sheet_to_json(sheet, { header: 1, defval: '' });
+        if (!rows || rows.length < 2) continue;
+
+        // Try parsing as 2D Grid Matrix
+        const gRes = this.parseGridMatrixRows(rows);
+        if (gRes && gRes.count > 0) {
+          // If multiple sheets match, prioritize the first sheet or the one with highest count
+          if (!gridRes || gRes.count > gridRes.count || sName === sheetNames[0]) {
+            gridRes = gRes;
+            gridSheetName = sName;
+          }
+        }
+
+        // Try parsing as Coordinates Table
+        const tRes = this.parseCoordinatesTableRows(rows);
+        if (tRes && tRes.count > 0) {
+          if (tRes.bldCount > 0 && (!tableBldRes || tRes.bldCount > tableBldRes.bldCount)) {
+            tableBldRes = tRes;
+          }
+          if (tRes.roadCount > 0 && (!tableRoadRes || tRes.roadCount > tableRoadRes.roadCount)) {
+            tableRoadRes = tRes;
+          }
+        }
       }
 
-      // 2. Also check if Sheet 2 ('Building_Coordinates') or Sheet 3 ('Road_Network') exist
-      if (sheetNames.includes('Building_Coordinates') && gridSheetName !== 'Building_Coordinates') {
-        const rows = window.XLSX.utils.sheet_to_json(workbook.Sheets['Building_Coordinates'], { header: 1, defval: '' });
-        tableBldRes = this.parseCoordinatesTableRows(rows);
-      }
-
-      if (sheetNames.includes('Road_Network') && gridSheetName !== 'Road_Network') {
-        const rows = window.XLSX.utils.sheet_to_json(workbook.Sheets['Road_Network'], { header: 1, defval: '' });
-        tableRoadRes = this.parseCoordinatesTableRows(rows);
-      }
-
-      // 3. Merge: Sheet 1 (Grid Map edits) has absolute priority over Sheet 2/3!
+      // 2. Merge: Grid Matrix (Sheet 1 edits) has absolute priority over tables!
       const mergedLayoutMap = {
         ...(tableBldRes?.layoutMap || {}),
         ...(gridRes?.layoutMap || {})
@@ -1006,30 +1423,47 @@
         ...(gridRes?.roadMap || {})
       };
 
-      const totalCount = Object.keys(mergedLayoutMap).length + Object.keys(mergedRoadMap).length;
+      const mergedWaterMap = {
+        ...(tableBldRes?.waterMap || {}),
+        ...(gridRes?.waterMap || {})
+      };
+
+      const bldCount = Object.keys(mergedLayoutMap).length;
+      const roadCount = Object.keys(mergedRoadMap).length;
+      const waterCount = Object.keys(mergedWaterMap).length;
+      const totalCount = bldCount + roadCount + waterCount;
 
       if (totalCount === 0) {
-        throw new Error('ไม่พบตำแหน่งพิกัดของอาคารหรือถนนในไฟล์ Excel (ตรวจสอบว่าชีตแรกมีรหัสอาคาร เช่น T.0019 หรือชีต Building_Coordinates มีข้อมูล)');
+        throw new Error(`ไม่พบตำแหน่งพิกัดของอาคาร ถนน หรือแหล่งน้ำในไฟล์ Excel ที่อัปโหลด\n\nคำแนะนำการแก้ไข:\n1. หากแก้ไขบนผังตาราง 2D Grid: ตรวจสอบว่ามีแถวหัวตารางพิกัด X (เช่น X=-210, X=-200) และแถวพิกัด Z (เช่น Z=-220)\n2. รหัสอาคารรองรับทั้งแบบทางการ (เช่น T.0019, D.0017, B.0001) และแบบย่อ (เช่น ท.19, ต.17, ด.17, บ.1, T.19)\n3. เส้นทางถนนรองรับทั้งภาษาไทยและอังกฤษ (เช่น ถนนหลัก, ถนนโรงซ่อม, ถนนเลียบคลอง, ROAD_MAIN)\n4. แหล่งน้ำรองรับคำว่า (คลอง, สระน้ำ, สระ 1, สระ 2, สระ 3, บ่อน้ำ, LAKE, POND, CANAL)`);
       }
 
-      // Save custom layout
-      if (Object.keys(mergedLayoutMap).length > 0) {
+      // Save custom layout (Buildings)
+      if (bldCount > 0) {
         this.saveCustomLayout(mergedLayoutMap);
       }
 
       // Save custom roads
-      if (Object.keys(mergedRoadMap).length > 0) {
+      if (roadCount > 0) {
         this.saveCustomRoads(mergedRoadMap);
       }
 
-      const sourceInfo = (gridRes && gridRes.bldCount > 0) ? `ผังตารางเซลล์ชีตแรก (${gridSheetName})` : 'ตารางพิกัด (Building_Coordinates)';
+      // Save custom water
+      if (waterCount > 0 && this.saveCustomWater) {
+        this.saveCustomWater(mergedWaterMap);
+      }
+
+      const sourceInfo = (gridRes && gridRes.bldCount > 0) 
+        ? `ผังตารางเซลล์ชีต (${gridSheetName})` 
+        : 'ตารางพิกัด (Building_Coordinates)';
 
       return {
         count: totalCount,
-        bldCount: Object.keys(mergedLayoutMap).length,
-        roadCount: Object.keys(mergedRoadMap).length,
+        bldCount,
+        roadCount,
+        waterCount,
         layoutMap: mergedLayoutMap,
         roadMap: mergedRoadMap,
+        waterMap: mergedWaterMap,
         source: sourceInfo
       };
     },
