@@ -261,6 +261,9 @@
         // Check for saved custom allocations in localStorage
         this.loadCustomAllocations();
 
+        // Check for saved custom 3D building layout in localStorage
+        this.loadCustomLayout();
+
         // Default year and month range (default to full year matching index.html)
         if (this.summaryData && this.summaryData.periods) {
           const months = this.summaryData.periods.months || [];
@@ -371,6 +374,107 @@
       }
       this.invalidateCache();
       this.notify('allocation_change');
+    },
+
+    // ── Custom 3D Building Layout Management ──────────────────────
+    loadCustomLayout() {
+      try {
+        const saved = localStorage.getItem('sainoi_custom_layout');
+        if (saved && this.mappingData && this.mappingData.buildings) {
+          const custom = JSON.parse(saved);
+          Object.entries(custom).forEach(([bid, pos]) => {
+            if (this.mappingData.buildings[bid] && this.mappingData.buildings[bid].layout_position) {
+              if (pos.x !== undefined && !isNaN(Number(pos.x))) this.mappingData.buildings[bid].layout_position.x = Number(pos.x);
+              if (pos.z !== undefined && !isNaN(Number(pos.z))) this.mappingData.buildings[bid].layout_position.z = Number(pos.z);
+              if (pos.y !== undefined && !isNaN(Number(pos.y))) this.mappingData.buildings[bid].layout_position.y = Number(pos.y);
+            }
+          });
+        }
+      } catch (e) {
+        console.warn('Could not load custom layout from localStorage:', e);
+      }
+    },
+
+    saveCustomLayout(layoutMap) {
+      try {
+        if (!this.mappingData || !this.mappingData.buildings) return false;
+        Object.entries(layoutMap).forEach(([bid, pos]) => {
+          if (this.mappingData.buildings[bid] && this.mappingData.buildings[bid].layout_position) {
+            if (pos.x !== undefined && !isNaN(Number(pos.x))) this.mappingData.buildings[bid].layout_position.x = Number(pos.x);
+            if (pos.z !== undefined && !isNaN(Number(pos.z))) this.mappingData.buildings[bid].layout_position.z = Number(pos.z);
+            if (pos.y !== undefined && !isNaN(Number(pos.y))) this.mappingData.buildings[bid].layout_position.y = Number(pos.y);
+          }
+        });
+        localStorage.setItem('sainoi_custom_layout', JSON.stringify(layoutMap));
+        this.invalidateCache();
+        this.notify('layout_change');
+        return true;
+      } catch (e) {
+        console.error('Failed to save custom layout to localStorage:', e);
+        return false;
+      }
+    },
+
+    resetCustomLayout() {
+      try {
+        localStorage.removeItem('sainoi_custom_layout');
+        const defaultSource = window.SAINOI_BUILDING_MAPPING || null;
+        if (defaultSource && defaultSource.buildings && this.mappingData && this.mappingData.buildings) {
+          Object.entries(defaultSource.buildings).forEach(([bid, orig]) => {
+            if (this.mappingData.buildings[bid] && orig.layout_position) {
+              this.mappingData.buildings[bid].layout_position = { ...orig.layout_position };
+            }
+          });
+        }
+        this.invalidateCache();
+        this.notify('layout_change');
+        return true;
+      } catch (e) {
+        console.error('Failed to reset custom layout:', e);
+        return false;
+      }
+    },
+
+    getLayoutExportData() {
+      if (!this.mappingData || !this.mappingData.buildings) return {};
+      const res = {};
+      Object.entries(this.mappingData.buildings).forEach(([bid, b]) => {
+        res[bid] = {
+          name: b.name,
+          short_name: b.short_name,
+          category_th: b.category_th,
+          layout_position: { ...b.layout_position },
+          dimensions: { ...b.dimensions }
+        };
+      });
+      return res;
+    },
+
+    importCustomLayout(jsonStr) {
+      try {
+        const parsed = typeof jsonStr === 'string' ? JSON.parse(jsonStr) : jsonStr;
+        const layoutMap = {};
+        // Handles either full building object or simple {x, z, y} map
+        Object.entries(parsed).forEach(([bid, val]) => {
+          if (val.layout_position) {
+            layoutMap[bid] = {
+              x: Number(val.layout_position.x),
+              z: Number(val.layout_position.z),
+              y: Number(val.layout_position.y)
+            };
+          } else if (val.x !== undefined || val.z !== undefined) {
+            layoutMap[bid] = {
+              x: Number(val.x),
+              z: Number(val.z),
+              y: val.y !== undefined ? Number(val.y) : undefined
+            };
+          }
+        });
+        return this.saveCustomLayout(layoutMap);
+      } catch (e) {
+        console.error('Failed to import layout JSON:', e);
+        throw new Error('รูปแบบ JSON ไม่ถูกต้อง: ' + e.message);
+      }
     },
 
     // Commit allocation CSV to GitHub repository via GitHub REST API

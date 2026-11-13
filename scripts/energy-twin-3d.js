@@ -2797,6 +2797,46 @@
       this.needsRender = true;
     }
 
+    updateBuildingPosition(bCode, newX, newZ, newY = null) {
+      const group = this.buildingMeshes.get(bCode);
+      if (!group) return;
+
+      const x = Number(newX);
+      const z = Number(newZ);
+      group.position.x = x;
+      group.position.z = z;
+      if (newY !== null && !isNaN(Number(newY))) group.position.y = Number(newY);
+
+      if (group.userData && group.userData.data && group.userData.data.layout_position) {
+        group.userData.data.layout_position.x = x;
+        group.userData.data.layout_position.z = z;
+        if (newY !== null && !isNaN(Number(newY))) group.userData.data.layout_position.y = Number(newY);
+      }
+
+      // Update 3D label sprite position
+      const label = this.labelSprites.get(bCode);
+      if (label) {
+        label.position.x = x;
+        label.position.z = z;
+      }
+
+      // Update warning sprite position if present
+      const warn = this.warningSprites.get(bCode);
+      if (warn) {
+        const w = (group.userData && group.userData.data && group.userData.data.dimensions && group.userData.data.dimensions.width) || 20;
+        warn.position.x = x + w * 0.45;
+        warn.position.z = z;
+      }
+
+      // Update selection ring if active on this building
+      if (this.selectedBuilding === bCode && this.selectionRing) {
+        this.selectionRing.position.x = x;
+        this.selectionRing.position.z = z;
+      }
+
+      this.needsRender = true;
+    }
+
     resetView() {
       this.selectBuilding(null, false);
       this.animateCamera(this.defaultCameraPos, this.defaultTargetPos, 850);

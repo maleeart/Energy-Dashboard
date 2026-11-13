@@ -663,6 +663,7 @@
       </div>
     </div>
     <div style="display:flex; gap:8px;">
+      <button class="btn-action primary" onclick="openLayoutEditorModal()" title="ปรับแต่งตำแหน่งและผังอาคาร 3D"><span style="font-size:13px;">🏗️</span> จัดผังอาคาร (Layout)</button>
       <button class="btn-action" onclick="EnergyTwin.exportToCsv()">📥 ส่งออก CSV</button>
       <button class="btn-action" onclick="openGitHubTokenModal()">🔐 ตั้งค่า GitHub PAT</button>
       <button class="btn-action" onclick="openSettingsModal()">⚙️ ตั้งค่ากราฟิก</button>
@@ -1205,9 +1206,96 @@
             <option value="low">ประหยัดพลังงาน (Low) - สำหรับอุปกรณ์พกพาหรือเน็ตช้า</option>
           </select>
         </div>
+        <div style="margin-top:14px; padding-top:14px; border-top:1px solid var(--bdr);">
+          <label style="font-size:12px; font-weight:700; color:var(--pri); display:block; margin-bottom:4px;">
+            ผังอาคารและพิกัด 3D (3D Building Layout):
+          </label>
+          <p style="font-size:11px; color:var(--txt2); margin-bottom:8px;">
+            ปรับตำแหน่งพิกัด (X, Z) ของแต่ละอาคารแบบ Real-time บนโมเดล 3D และบันทึก/ส่งออกผัง
+          </p>
+          <button type="button" class="btn-action primary" style="width:100%; justify-content:center;" onclick="closeSettingsModal(); openLayoutEditorModal();">
+            🏗️ เปิดเครื่องมือจัดผังอาคาร 3D (Layout Editor)
+          </button>
+        </div>
       </div>
       <div class="modal-ftr">
         <button class="btn-action primary" onclick="closeSettingsModal()">ตกลง</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10. 3D Building Layout Editor Modal -->
+  <div class="modal-overlay" id="layoutEditorModal">
+    <div class="modal-box" style="max-width:1050px; width:95%;">
+      <div class="modal-hdr">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span style="font-size:20px;">🏗️</span>
+          <div>
+            <h3 style="margin:0; font-size:16px;">จัดผังตำแหน่งอาคาร 3D (3D Building Layout Editor)</h3>
+            <p style="margin:2px 0 0; font-size:11px; color:var(--txt2);">ปรับตำแหน่งพิกัด X (ซ้าย-ขวา) และ Z (บน-ล่าง/หน้า-หลัง) แสดงผล 3D สดทันที พร้อมระบบบันทึกและส่งออก JSON</p>
+          </div>
+        </div>
+        <button class="modal-close" onclick="closeLayoutEditorModal()">&times;</button>
+      </div>
+      <div class="modal-body" style="display:flex; flex-direction:column; gap:12px;">
+        <!-- Notice / Quick Tips -->
+        <div style="background:#EFF6FF; border:1px solid #BFDBFE; border-radius:8px; padding:10px 14px; font-size:12px; color:#1E3A8A; line-height:1.5; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;">
+          <div>
+            💡 <strong>วิธีใช้งาน:</strong> กดปุ่ม <code>-</code> หรือ <code>+</code> หรือพิมพ์ตัวเลขพิกัด โมเดล 3D จะเคลื่อนที่ตามทันทีแบบ Real-time | กดปุ่ม 🎯 เพื่อส่องกล้องไปยังอาคารนั้น
+          </div>
+          <div style="font-family:'JetBrains Mono'; font-size:11px; color:#1E40AF; background:#DBEAFE; padding:3px 8px; border-radius:4px;">
+            แกน X: ตะวันตก(-) ↔ ตะวันออก(+) | แกน Z: เหนือ(-) ↔ ใต้(+)
+          </div>
+        </div>
+
+        <!-- Filter & Action Controls -->
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;">
+          <div style="display:flex; gap:8px; flex:1; min-width:280px; align-items:center;">
+            <input type="text" id="layoutSearchInput" placeholder="🔍 ค้นหารหัส หรือ ชื่ออาคาร..." 
+                   oninput="renderLayoutEditorList()" 
+                   style="padding:6px 12px; border:1px solid var(--bdr); border-radius:6px; font-family:'Sarabun'; font-size:12px; flex:1; max-width:260px;">
+            <select id="layoutZoneFilter" onchange="renderLayoutEditorList()" 
+                    class="fl-select" style="padding:6px 10px; font-size:12px; color:var(--txt); border-color:var(--bdr); background:#fff;">
+              <option value="ALL">🌐 ทุกโซน (29 อาคาร)</option>
+              <option value="east">🏢 โซนสำนักงาน & ห้องปฏิบัติการ (East)</option>
+              <option value="central">🏭 โซนโรงงาน & พัสดุ (Central)</option>
+              <option value="ohk">🚚 โซนขนส่ง อหข. (Northwest OHK)</option>
+              <option value="west">🏡 โซนบ้านพัก & ริมคลอง (West)</option>
+            </select>
+          </div>
+          <div style="display:flex; gap:6px; flex-wrap:wrap;">
+            <button class="btn-action primary" onclick="saveLayoutEditorChanges()" title="บันทึกพิกัดลงในหน่วยความจำเบราว์เซอร์">💾 บันทึกผังนี้</button>
+            <button class="btn-action" onclick="copyLayoutJsonToClipboard()" title="คัดลอกพิกัดทุกอาคารเป็น JSON เพื่อนำไปส่งต่อให้ทีมพัฒนา">📋 คัดลอก JSON</button>
+            <button class="btn-action" onclick="openImportLayoutPrompt()" title="นำเข้าพิกัดจากข้อความ JSON">📥 นำเข้า JSON</button>
+            <button class="btn-action danger" onclick="resetLayoutEditorToDefault()" title="คืนค่าพิกัดเริ่มต้นจากไฟล์ระบบ">🔄 คืนค่าเริ่มต้น</button>
+          </div>
+        </div>
+
+        <!-- Building Coordinates Table -->
+        <div style="max-height:420px; overflow-y:auto; border:1px solid var(--bdr); border-radius:8px; background:#fff;">
+          <table class="sub-table" style="font-size:12px; width:100%;">
+            <thead>
+              <tr style="position:sticky; top:0; background:#F8FAFC; z-index:2; box-shadow:0 1px 2px rgba(0,0,0,0.05);">
+                <th style="width:90px;">รหัสอาคาร</th>
+                <th style="min-width:180px;">ชื่ออาคาร</th>
+                <th style="width:110px;">โซน</th>
+                <th style="width:70px; text-align:center;">ขนาด (กxล)</th>
+                <th style="width:165px; text-align:center;">พิกัด X (ซ้าย-ขวา)</th>
+                <th style="width:165px; text-align:center;">พิกัด Z (หน้า-หลัง)</th>
+                <th style="width:120px; text-align:center;">เครื่องมือ</th>
+              </tr>
+            </thead>
+            <tbody id="layoutEditorTableBody">
+              <!-- Generated by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-ftr" style="display:flex; justify-content:space-between; align-items:center;">
+        <div style="font-size:11px; color:var(--txt2);" id="layoutEditorCountText">
+          แสดง 29 อาคาร | บันทึกในเบราว์เซอร์อัตโนมัติ (LocalStorage)
+        </div>
+        <button class="btn-action primary" onclick="closeLayoutEditorModal()">ปิดหน้าต่าง</button>
       </div>
     </div>
   </div>
@@ -2550,6 +2638,235 @@
     function onGraphicQualityChange(val) {
       if (campusScene) campusScene.setQuality(val);
       EnergyTwin.setState({ qualityLevel: val });
+    }
+
+    /* ═════════════════════════════════════════════════════════════════
+       10. 3D BUILDING LAYOUT EDITOR CONTROLLER LOGIC
+       ═════════════════════════════════════════════════════════════════ */
+    function openLayoutEditorModal() {
+      document.getElementById('layoutEditorModal').style.display = 'flex';
+      renderLayoutEditorList();
+    }
+
+    function closeLayoutEditorModal() {
+      document.getElementById('layoutEditorModal').style.display = 'none';
+    }
+
+    function getBuildingZoneKey(bCode) {
+      if (['T.0019', 'D.0019', 'T.0020', 'D.0025', 'T.0017', 'T.0018'].includes(bCode)) return 'east';
+      if (['T.0011', 'T.0012', 'D.0017', 'D.0026', 'T.0006', 'T.0007', 'T.0008', 'T.0009', 'T.0010', 'T.0014', 'T.0015', 'T.0016', 'T.0023', 'T.0025'].includes(bCode)) return 'central';
+      if (['D.0015', 'D.0031', 'D.0033', 'T.0026', 'T.0027', 'T.0028', 'T.0029'].includes(bCode)) return 'ohk';
+      if (['B.0001', 'T.0022'].includes(bCode)) return 'west';
+      return 'other';
+    }
+
+    function getBuildingZoneName(bCode) {
+      const z = getBuildingZoneKey(bCode);
+      if (z === 'east') return '🏢 สนง. & แล็บ (East)';
+      if (z === 'central') return '🏭 โรงงาน & พัสดุ (Central)';
+      if (z === 'ohk') return '🚚 ขนส่ง อหข. (NW)';
+      if (z === 'west') return '🏡 บ้านพัก & คลอง (West)';
+      return 'ทั่วไป';
+    }
+
+    function renderLayoutEditorList() {
+      const tbody = document.getElementById('layoutEditorTableBody');
+      if (!tbody) return;
+
+      const q = (document.getElementById('layoutSearchInput')?.value || '').toLowerCase().trim();
+      const zoneFilter = document.getElementById('layoutZoneFilter')?.value || 'ALL';
+
+      const buildings = EnergyTwin.getBuildingsList ? EnergyTwin.getBuildingsList() : [];
+      let visibleCount = 0;
+
+      let html = '';
+      buildings.forEach(b => {
+        const zone = getBuildingZoneKey(b.b_code);
+        if (zoneFilter !== 'ALL' && zone !== zoneFilter) return;
+
+        const nameMatch = (b.name && b.name.toLowerCase().includes(q)) || 
+                          (b.short_name && b.short_name.toLowerCase().includes(q)) || 
+                          (b.b_code && b.b_code.toLowerCase().includes(q));
+        if (q && !nameMatch) return;
+
+        visibleCount++;
+        const pos = b.layout_position || { x: 0, y: 0, z: 0 };
+        const dim = b.dimensions || { width: 0, depth: 0, height: 0 };
+        const zoneName = getBuildingZoneName(b.b_code);
+
+        html += `
+          <tr id="layoutRow_${b.b_code}">
+            <td><strong style="color:var(--pri); font-family:'JetBrains Mono';">${b.b_code}</strong></td>
+            <td>
+              <div style="font-weight:600; color:var(--txt);">${b.short_name || b.name}</div>
+              <div style="font-size:10px; color:var(--txt2);">${b.name !== b.short_name ? b.name : (b.category_th || '')}</div>
+            </td>
+            <td>
+              <span style="font-size:11px; color:#475569; background:#F1F5F9; padding:2px 6px; border-radius:4px; white-space:nowrap;">
+                ${zoneName}
+              </span>
+            </td>
+            <td style="text-align:center; font-family:'JetBrains Mono'; font-size:11px; color:var(--txt2);">
+              ${dim.width || '-'}×${dim.depth || '-'}
+            </td>
+            <td style="text-align:center;">
+              <div style="display:inline-flex; align-items:center; gap:3px;">
+                <button type="button" class="btn-action" style="padding:2px 7px; font-size:12px; font-weight:700;" onclick="onLayoutCoordStep('${b.b_code}', 'x', -5)" title="เลื่อนไปทางตะวันตก -5m">-5</button>
+                <button type="button" class="btn-action" style="padding:2px 6px; font-size:11px;" onclick="onLayoutCoordStep('${b.b_code}', 'x', -1)" title="เลื่อนไปทางตะวันตก -1m">-</button>
+                <input type="number" step="0.5" id="layoutInput_x_${b.b_code}" value="${pos.x}" 
+                       oninput="onLayoutCoordInput('${b.b_code}', 'x', this.value)"
+                       style="width:58px; text-align:center; font-family:'JetBrains Mono'; font-size:12px; padding:3px 2px; border:1px solid var(--bdr); border-radius:4px;">
+                <button type="button" class="btn-action" style="padding:2px 6px; font-size:11px;" onclick="onLayoutCoordStep('${b.b_code}', 'x', 1)" title="เลื่อนไปทางตะวันออก +1m">+</button>
+                <button type="button" class="btn-action" style="padding:2px 7px; font-size:12px; font-weight:700;" onclick="onLayoutCoordStep('${b.b_code}', 'x', 5)" title="เลื่อนไปทางตะวันออก +5m">+5</button>
+              </div>
+            </td>
+            <td style="text-align:center;">
+              <div style="display:inline-flex; align-items:center; gap:3px;">
+                <button type="button" class="btn-action" style="padding:2px 7px; font-size:12px; font-weight:700;" onclick="onLayoutCoordStep('${b.b_code}', 'z', -5)" title="เลื่อนไปทางทิศเหนือ -5m">-5</button>
+                <button type="button" class="btn-action" style="padding:2px 6px; font-size:11px;" onclick="onLayoutCoordStep('${b.b_code}', 'z', -1)" title="เลื่อนไปทางทิศเหนือ -1m">-</button>
+                <input type="number" step="0.5" id="layoutInput_z_${b.b_code}" value="${pos.z}" 
+                       oninput="onLayoutCoordInput('${b.b_code}', 'z', this.value)"
+                       style="width:58px; text-align:center; font-family:'JetBrains Mono'; font-size:12px; padding:3px 2px; border:1px solid var(--bdr); border-radius:4px;">
+                <button type="button" class="btn-action" style="padding:2px 6px; font-size:11px;" onclick="onLayoutCoordStep('${b.b_code}', 'z', 1)" title="เลื่อนไปทางทิศใต้ +1m">+</button>
+                <button type="button" class="btn-action" style="padding:2px 7px; font-size:12px; font-weight:700;" onclick="onLayoutCoordStep('${b.b_code}', 'z', 5)" title="เลื่อนไปทางทิศใต้ +5m">+5</button>
+              </div>
+            </td>
+            <td style="text-align:center;">
+              <div style="display:inline-flex; align-items:center; gap:4px;">
+                <button type="button" class="btn-action primary" style="padding:3px 8px; font-size:11px;" onclick="focusBuildingInLayout('${b.b_code}')" title="โฟกัสกล้อง 3D ไปที่อาคารนี้">
+                  🎯 ส่อง
+                </button>
+                <button type="button" class="btn-action" style="padding:3px 6px; font-size:11px; color:var(--txt2);" onclick="resetSingleBuildingPosition('${b.b_code}')" title="คืนค่าพิกัดเดิมของอาคารนี้">
+                  ↺
+                </button>
+              </div>
+            </td>
+          </tr>
+        `;
+      });
+
+      tbody.innerHTML = html || '<tr><td colspan="7" style="text-align:center; padding:20px; color:var(--txt2);">ไม่พบอาคารที่ค้นหา</td></tr>';
+      const countEl = document.getElementById('layoutEditorCountText');
+      if (countEl) countEl.textContent = `แสดง ${visibleCount} จาก 29 อาคาร | บันทึกในเบราว์เซอร์อัตโนมัติ (LocalStorage)`;
+    }
+
+    function onLayoutCoordInput(bCode, axis, val) {
+      const num = parseFloat(val);
+      if (isNaN(num)) return;
+      if (!EnergyTwin.mappingData || !EnergyTwin.mappingData.buildings || !EnergyTwin.mappingData.buildings[bCode]) return;
+
+      const b = EnergyTwin.mappingData.buildings[bCode];
+      if (!b.layout_position) b.layout_position = { x: 0, y: 0, z: 0 };
+      b.layout_position[axis] = num;
+
+      if (campusScene) {
+        campusScene.updateBuildingPosition(bCode, b.layout_position.x, b.layout_position.z, b.layout_position.y);
+      }
+    }
+
+    function onLayoutCoordStep(bCode, axis, step) {
+      const inputEl = document.getElementById(`layoutInput_${axis}_${bCode}`);
+      if (!inputEl) return;
+      const curVal = parseFloat(inputEl.value) || 0;
+      const nextVal = Math.round((curVal + step) * 10) / 10;
+      inputEl.value = nextVal;
+      onLayoutCoordInput(bCode, axis, nextVal);
+    }
+
+    function focusBuildingInLayout(bCode) {
+      if (campusScene) {
+        campusScene.selectBuilding(bCode, true);
+      }
+      EnergyTwin.setState({ selectedBuildingId: bCode });
+    }
+
+    function resetSingleBuildingPosition(bCode) {
+      const defaultSource = window.SAINOI_BUILDING_MAPPING || null;
+      if (!defaultSource || !defaultSource.buildings || !defaultSource.buildings[bCode]) return;
+      const orig = defaultSource.buildings[bCode].layout_position;
+      if (!orig) return;
+
+      if (!EnergyTwin.mappingData || !EnergyTwin.mappingData.buildings || !EnergyTwin.mappingData.buildings[bCode]) return;
+      const b = EnergyTwin.mappingData.buildings[bCode];
+      b.layout_position.x = orig.x;
+      b.layout_position.z = orig.z;
+      if (orig.y !== undefined) b.layout_position.y = orig.y;
+
+      const ix = document.getElementById(`layoutInput_x_${bCode}`);
+      const iz = document.getElementById(`layoutInput_z_${bCode}`);
+      if (ix) ix.value = orig.x;
+      if (iz) iz.value = orig.z;
+
+      if (campusScene) {
+        campusScene.updateBuildingPosition(bCode, orig.x, orig.z, orig.y);
+      }
+    }
+
+    function saveLayoutEditorChanges() {
+      if (!EnergyTwin.mappingData || !EnergyTwin.mappingData.buildings) return;
+      const layoutMap = {};
+      Object.entries(EnergyTwin.mappingData.buildings).forEach(([bid, b]) => {
+        if (b.layout_position) {
+          layoutMap[bid] = {
+            x: b.layout_position.x,
+            z: b.layout_position.z,
+            y: b.layout_position.y !== undefined ? b.layout_position.y : 0
+          };
+        }
+      });
+      const ok = EnergyTwin.saveCustomLayout(layoutMap);
+      if (ok) {
+        alert('💾 บันทึกผังอาคารและพิกัด 3D ลงในหน่วยความจำของเครื่อง (LocalStorage) สำเร็จแล้ว!');
+      } else {
+        alert('❌ เกิดข้อผิดพลาดในการบันทึกผังอาคาร');
+      }
+    }
+
+    function resetLayoutEditorToDefault() {
+      if (!confirm('⚠️ ต้องการคืนค่าพิกัดอาคารทั้งหมดกลับเป็นค่าเริ่มต้นตามผังหลักของระบบหรือไม่?\\n\\nการปรับแต่งพิกัดที่บันทึกไว้ในเครื่องจะถูกล้าง')) {
+        return;
+      }
+      EnergyTwin.resetCustomLayout();
+      const bList = EnergyTwin.getBuildingsList();
+      bList.forEach(b => {
+        if (campusScene && b.layout_position) {
+          campusScene.updateBuildingPosition(b.b_code, b.layout_position.x, b.layout_position.z, b.layout_position.y);
+        }
+      });
+      renderLayoutEditorList();
+      alert('🔄 คืนค่าพิกัดอาคารทั้งหมดเป็นค่าเริ่มต้นเรียบร้อยแล้ว');
+    }
+
+    function copyLayoutJsonToClipboard() {
+      const data = EnergyTwin.getLayoutExportData();
+      const jsonStr = JSON.stringify(data, null, 2);
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(jsonStr).then(() => {
+          alert('📋 คัดลอกข้อมูลผังอาคารและพิกัด (JSON) ลงในคลิปบอร์ดแล้ว!\\nท่านสามารถนำข้อความนี้ไปส่งต่อให้ทีมพัฒนาเพื่อนำไปอัปเดตไฟล์ building_mapping.json ถาวรได้ทันที');
+        }).catch(err => {
+          prompt('คัดลอก JSON ด้านล่างนี้:', jsonStr);
+        });
+      } else {
+        prompt('คัดลอก JSON ด้านล่างนี้:', jsonStr);
+      }
+    }
+
+    function openImportLayoutPrompt() {
+      const input = prompt('วางข้อความ JSON พิกัดอาคารที่ต้องการนำเข้า (รองรับรูปแบบ JSON ที่ส่งออกจากระบบนี้):');
+      if (!input || !input.trim()) return;
+      try {
+        EnergyTwin.importCustomLayout(input.trim());
+        const bList = EnergyTwin.getBuildingsList();
+        bList.forEach(b => {
+          if (campusScene && b.layout_position) {
+            campusScene.updateBuildingPosition(b.b_code, b.layout_position.x, b.layout_position.z, b.layout_position.y);
+          }
+        });
+        renderLayoutEditorList();
+        alert('✅ นำเข้าข้อมูลผังอาคารและอัปเดตโมเดล 3D สำเร็จเรียบร้อย!');
+      } catch (e) {
+        alert('❌ นำเข้าข้อมูลไม่สำเร็จ: ' + e.message);
+      }
     }
   </script>
 </body>
