@@ -539,21 +539,8 @@
           const custom = JSON.parse(saved);
           Object.entries(custom).forEach(([rid, pos]) => {
             if (this.roads[rid]) {
-              let x = Number(pos.x);
-              let z = Number(pos.z);
-              // Self-heal and protect linear corridors against distorted centroid averages
-              if (rid === 'ROAD_MAIN_BOULEVARD' && (x > 20 || x < -5 || isNaN(x))) {
-                x = this.defaultRoads.ROAD_MAIN_BOULEVARD.x;
-                z = this.defaultRoads.ROAD_MAIN_BOULEVARD.z;
-              }
-              if (rid === 'ROAD_SPINE_WORKSHOP' && (z < -100 || isNaN(z))) {
-                x = this.defaultRoads.ROAD_SPINE_WORKSHOP.x;
-                z = this.defaultRoads.ROAD_SPINE_WORKSHOP.z;
-              }
-              if (rid === 'ROAD_WEST_CANAL' && (x > -150 || isNaN(x))) {
-                x = this.defaultRoads.ROAD_WEST_CANAL.x;
-                z = this.defaultRoads.ROAD_WEST_CANAL.z;
-              }
+              const x = Number(pos.x);
+              const z = Number(pos.z);
               if (!isNaN(x)) this.roads[rid].x = x;
               if (!isNaN(z)) this.roads[rid].z = z;
               if (pos.width !== undefined && !isNaN(Number(pos.width))) this.roads[rid].width = Number(pos.width);
@@ -642,13 +629,8 @@
           const custom = JSON.parse(saved);
           Object.entries(custom).forEach(([wid, pos]) => {
             if (this.water[wid]) {
-              let x = Number(pos.x);
-              let z = Number(pos.z);
-              // Self-heal WEST_CANAL: Western canal must stay along west perimeter (X <= -170)
-              if (wid === 'WEST_CANAL' && (x > -170 || isNaN(x))) {
-                x = this.defaultWater.WEST_CANAL.x;
-                z = this.defaultWater.WEST_CANAL.z;
-              }
+              const x = Number(pos.x);
+              const z = Number(pos.z);
               if (!isNaN(x)) this.water[wid].x = x;
               if (!isNaN(z)) this.water[wid].z = z;
               if (pos.width !== undefined && !isNaN(Number(pos.width))) this.water[wid].width = Number(pos.width);
@@ -742,6 +724,7 @@
             if (this.landmarks[lid]) {
               if (pos.x !== undefined && !isNaN(Number(pos.x))) this.landmarks[lid].x = Number(pos.x);
               if (pos.z !== undefined && !isNaN(Number(pos.z))) this.landmarks[lid].z = Number(pos.z);
+              if (pos.rotation_y !== undefined && !isNaN(Number(pos.rotation_y))) this.landmarks[lid].rotation_y = Number(pos.rotation_y);
             }
           });
         }
@@ -753,13 +736,21 @@
     saveCustomLandmarks(landmarkMap) {
       try {
         if (!this.landmarks) this.landmarks = JSON.parse(JSON.stringify(this.defaultLandmarks));
+        let fullLandmarks = {};
+        try {
+          const existing = localStorage.getItem('sainoi_custom_landmarks');
+          if (existing) fullLandmarks = JSON.parse(existing);
+        } catch (_) {}
+
         Object.entries(landmarkMap).forEach(([lid, pos]) => {
           if (this.landmarks[lid]) {
             if (pos.x !== undefined && !isNaN(Number(pos.x))) this.landmarks[lid].x = Number(pos.x);
             if (pos.z !== undefined && !isNaN(Number(pos.z))) this.landmarks[lid].z = Number(pos.z);
+            if (pos.rotation_y !== undefined && !isNaN(Number(pos.rotation_y))) this.landmarks[lid].rotation_y = Number(pos.rotation_y);
           }
+          fullLandmarks[lid] = { ...(fullLandmarks[lid] || {}), ...pos };
         });
-        localStorage.setItem('sainoi_custom_landmarks', JSON.stringify(landmarkMap));
+        localStorage.setItem('sainoi_custom_landmarks', JSON.stringify(fullLandmarks));
         this.notify('layout_change');
         return true;
       } catch (e) {
@@ -786,7 +777,8 @@
         name: lm.name,
         category: lm.category,
         x: lm.x,
-        z: lm.z
+        z: lm.z,
+        rotation_y: lm.rotation_y || 0
       }));
     },
 

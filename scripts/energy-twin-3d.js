@@ -243,12 +243,15 @@
       this.waterMeshes.set('WEST_CANAL', canalGroup);
     }
 
-    // Three Central Retention Ponds (สระน้ำ 1, 2, 3)
+    // Campus Retention Ponds and Water Features (8 water bodies)
     setupCentralRetentionPonds() {
       const pondSpecs = [
         { id: 'POND_RETENTION_1', name: 'สระน้ำ 1', x: -95, z: 45, width: 36, depth: 44 },
         { id: 'POND_RETENTION_2', name: 'สระน้ำ 2 (ข้างแฟลต)', x: -95, z: -5, width: 36, depth: 38 },
-        { id: 'POND_RETENTION_3', name: 'สระน้ำ 3', x: -75, z: -75, width: 32, depth: 38 }
+        { id: 'POND_RETENTION_3', name: 'สระน้ำ 3', x: -75, z: -75, width: 32, depth: 38 },
+        { id: 'LAKE_PROMENADE', name: 'สระน้ำและสะพานไม้ริมน้ำหลัง ท.0019', x: 35, z: 24, width: 42, depth: 18 },
+        { id: 'LAKE_FOUNTAIN', name: 'สระน้ำพุวงเวียนหอนาฬิกา', x: 45, z: 100, width: 14, depth: 14 },
+        { id: 'SWIMMING_POOL', name: 'สระว่ายน้ำสโมสรไทรน้อย', x: 100, z: -60, width: 16, depth: 25 }
       ];
 
       const waterMat = new THREE.MeshStandardMaterial({
@@ -347,6 +350,7 @@
       });
 
       this.scene.add(yardGroup);
+      this.landmarkMeshes.set('SW_YARD', yardGroup);
     }
 
     // Main Football Pitch between D.0019 and D.0025
@@ -417,6 +421,7 @@
       });
 
       this.scene.add(fieldGroup);
+      this.landmarkMeshes.set('FOOTBALL', fieldGroup);
     }
 
     // Main Campus Road Network & Eastern Roundabout
@@ -443,20 +448,24 @@
       this.roadMeshes.set('ROAD_MAIN_BOULEVARD', mainBoulevardGroup);
 
       // 2. Central Workshop Avenue (Behind West Spine Workshops)
+      const spineGroup = new THREE.Group();
       const spineRoad = new THREE.Mesh(new THREE.PlaneGeometry(8, 280), asphaltMat);
       spineRoad.rotation.x = -Math.PI / 2;
-      spineRoad.position.set(-60, 0.05, -50);
       spineRoad.receiveShadow = true;
-      roadGroup.add(spineRoad);
-      this.roadMeshes.set('ROAD_SPINE_WORKSHOP', spineRoad);
+      spineGroup.add(spineRoad);
+      spineGroup.position.set(-60, 0.05, -50);
+      roadGroup.add(spineGroup);
+      this.roadMeshes.set('ROAD_SPINE_WORKSHOP', spineGroup);
 
       // 3. West Pond & Canal Service Road
+      const canalRoadGroup = new THREE.Group();
       const canalRoad = new THREE.Mesh(new THREE.PlaneGeometry(9, 320), asphaltMat);
       canalRoad.rotation.x = -Math.PI / 2;
-      canalRoad.position.set(-170, 0.05, -40);
       canalRoad.receiveShadow = true;
-      roadGroup.add(canalRoad);
-      this.roadMeshes.set('ROAD_WEST_CANAL', canalRoad);
+      canalRoadGroup.add(canalRoad);
+      canalRoadGroup.position.set(-170, 0.05, -40);
+      roadGroup.add(canalRoadGroup);
+      this.roadMeshes.set('ROAD_WEST_CANAL', canalRoadGroup);
 
       // 4. Horizontal Cross Streets
       const hRoads = [
@@ -471,26 +480,31 @@
       ];
 
       hRoads.forEach(r => {
+        const hGroup = new THREE.Group();
         const road = new THREE.Mesh(new THREE.PlaneGeometry(r.width, 9), asphaltMat);
         road.rotation.x = -Math.PI / 2;
-        road.position.set(r.x, 0.05, r.z);
         road.receiveShadow = true;
-        roadGroup.add(road);
-        this.roadMeshes.set(r.id, road);
+        hGroup.add(road);
+        hGroup.position.set(r.x, 0.05, r.z);
+        roadGroup.add(hGroup);
+        this.roadMeshes.set(r.id, hGroup);
       });
 
       // 5. Eastern Science & Chemistry Roundabout (in front of T.0018 & T.0016)
       const eastRound = this.createRoundabout(125, -60, 14, 6.5);
       roadGroup.add(eastRound);
       this.roadMeshes.set('ROAD_EAST_ROUNDABOUT', eastRound);
+      this.landmarkMeshes.set('EAST_ROUNDABOUT', eastRound);
 
       // East Boulevard Connector to Chemistry Roundabout
+      const eastConnGroup = new THREE.Group();
       const eastConn = new THREE.Mesh(new THREE.PlaneGeometry(80, 8), asphaltMat);
       eastConn.rotation.x = -Math.PI / 2;
-      eastConn.position.set(65, 0.05, -60);
       eastConn.receiveShadow = true;
-      roadGroup.add(eastConn);
-      this.roadMeshes.set('ROAD_EAST_CONNECTOR', eastConn);
+      eastConnGroup.add(eastConn);
+      eastConnGroup.position.set(65, 0.05, -60);
+      roadGroup.add(eastConnGroup);
+      this.roadMeshes.set('ROAD_EAST_CONNECTOR', eastConnGroup);
 
       // Diagonal Road Connector from T.0018 Roundabout to OHK Zone
       const ohkDiag = new THREE.Mesh(new THREE.PlaneGeometry(9, 85), asphaltMat);
@@ -599,45 +613,47 @@
 
       // ── 1. Curved Peanut-Shaped Retention Pond (สระน้ำ อหข. WL +99.00) ──
       const pondGroup = new THREE.Group();
-      // South lobe of pond (near D.0031)
+      pondGroup.position.set(-171, 0, -158);
+
+      // South lobe of pond (near D.0031) - relative to (-171, -158)
       const lobe1 = new THREE.Mesh(new THREE.CylinderGeometry(11, 11, 0.2, 32), waterMat);
-      lobe1.position.set(-170, 0.1, -148);
+      lobe1.position.set(1, 0.1, 10);
       pondGroup.add(lobe1);
 
-      // North lobe of pond
+      // North lobe of pond - relative to (-171, -158)
       const lobe2 = new THREE.Mesh(new THREE.CylinderGeometry(10, 10, 0.2, 32), waterMat);
-      lobe2.position.set(-173, 0.1, -168);
+      lobe2.position.set(-2, 0.1, -10);
       pondGroup.add(lobe2);
 
-      // Connecting neck
+      // Connecting neck - relative to (-171, -158)
       const neck = new THREE.Mesh(new THREE.BoxGeometry(13, 0.2, 18), waterMat);
-      neck.position.set(-171, 0.1, -158);
+      neck.position.set(0, 0.1, 0);
       pondGroup.add(neck);
 
       // Stone border around pond
       const curbLobe1 = new THREE.Mesh(new THREE.CylinderGeometry(11.8, 11.8, 0.35, 32, 1, true), curbMat);
-      curbLobe1.position.set(-170, 0.2, -148);
+      curbLobe1.position.set(1, 0.2, 10);
       pondGroup.add(curbLobe1);
 
       const curbLobe2 = new THREE.Mesh(new THREE.CylinderGeometry(10.8, 10.8, 0.35, 32, 1, true), curbMat);
-      curbLobe2.position.set(-173, 0.2, -168);
+      curbLobe2.position.set(-2, 0.2, -10);
       pondGroup.add(curbLobe2);
 
       // Waterfront Gazebo Pavilion (ศาลาพักผ่อนริมน้ำ อหข.) with Pier
       const pierMat = new THREE.MeshStandardMaterial({ color: 0x78350F, roughness: 0.8 });
       const pier = new THREE.Mesh(new THREE.BoxGeometry(2.4, 0.3, 8), pierMat);
-      pier.position.set(-160, 0.25, -158);
+      pier.position.set(11, 0.25, 0);
       pondGroup.add(pier);
 
       const gazeboRoofMat = new THREE.MeshStandardMaterial({ color: 0x1E293B, roughness: 0.6 });
       const gazeboRoof = new THREE.Mesh(new THREE.ConeGeometry(3.2, 2.0, 8), gazeboRoofMat);
-      gazeboRoof.position.set(-162, 3.0, -158);
+      gazeboRoof.position.set(9, 3.0, 0);
       gazeboRoof.castShadow = true;
       pondGroup.add(gazeboRoof);
 
       // Gazebo deck and columns
       const gazeboDeck = new THREE.Mesh(new THREE.CylinderGeometry(2.8, 2.8, 0.3, 8), pierMat);
-      gazeboDeck.position.set(-162, 0.3, -158);
+      gazeboDeck.position.set(9, 0.3, 0);
       pondGroup.add(gazeboDeck);
 
       for (let a = 0; a < Math.PI * 2; a += Math.PI / 4) {
@@ -645,16 +661,19 @@
           new THREE.CylinderGeometry(0.08, 0.08, 2.4, 6),
           new THREE.MeshStandardMaterial({ color: 0xCBD5E1 })
         );
-        col.position.set(-162 + Math.cos(a) * 2.4, 1.5, -158 + Math.sin(a) * 2.4);
+        col.position.set(9 + Math.cos(a) * 2.4, 1.5, Math.sin(a) * 2.4);
         col.castShadow = true;
         pondGroup.add(col);
       }
 
       ohkGroup.add(pondGroup);
+      this.waterMeshes.set('OHK_RETENTION_POND', pondGroup);
 
       // ── 2. Grand OHK Roundabout (วงเวียนใหญ่ อหข.) ──
       // Positioned cleanly without intersecting any building: Center (-135, -150)
-      const rCenter = { x: -135, z: -150 };
+      const roundaboutGroup = new THREE.Group();
+      roundaboutGroup.position.set(-135, 0, -150);
+
       const outerR = 16;
       const innerR = 8.5;
 
@@ -662,38 +681,41 @@
       const ringGeo = new THREE.RingGeometry(innerR, outerR, 40);
       const ring = new THREE.Mesh(ringGeo, asphaltMat);
       ring.rotation.x = -Math.PI / 2;
-      ring.position.set(rCenter.x, 0.06, rCenter.z);
+      ring.position.set(0, 0.06, 0);
       ring.receiveShadow = true;
-      ohkGroup.add(ring);
+      roundaboutGroup.add(ring);
 
       // Raised Landscape Island Mound
       const moundGeo = new THREE.CylinderGeometry(innerR - 0.2, innerR - 0.1, 0.8, 36);
       const moundMat = new THREE.MeshStandardMaterial({ color: 0x5B8E55, roughness: 0.9 });
       const mound = new THREE.Mesh(moundGeo, moundMat);
-      mound.position.set(rCenter.x, 0.4, rCenter.z);
-      ohkGroup.add(mound);
+      mound.position.set(0, 0.4, 0);
+      roundaboutGroup.add(mound);
 
       // Decorative Walkway Ring inside Roundabout Mound
       const walkRing1 = new THREE.Mesh(new THREE.RingGeometry(3.6, 5.2, 32), new THREE.MeshBasicMaterial({ color: 0xE2E8F0 }));
       walkRing1.rotation.x = -Math.PI / 2;
-      walkRing1.position.set(rCenter.x, 0.81, rCenter.z);
-      ohkGroup.add(walkRing1);
+      walkRing1.position.set(0, 0.81, 0);
+      roundaboutGroup.add(walkRing1);
 
       // Center Landmark Palm / Tree
       const rTree = this.createTreeMesh();
-      rTree.position.set(rCenter.x, 0.8, rCenter.z);
+      rTree.position.set(0, 0.8, 0);
       rTree.scale.set(1.5, 1.5, 1.5);
-      ohkGroup.add(rTree);
+      roundaboutGroup.add(rTree);
 
       // Pink Ixora Flowerbeds in Roundabout Island (Matching photo: ท.0026.JPG)
       const flowerMat = new THREE.MeshStandardMaterial({ color: 0xF43F5E, roughness: 0.7 });
       for (let fa = 0; fa < Math.PI * 2; fa += Math.PI / 4) {
-        const fx = rCenter.x + Math.cos(fa) * 5.8;
-        const fz = rCenter.z + Math.sin(fa) * 5.8;
+        const fx = Math.cos(fa) * 5.8;
+        const fz = Math.sin(fa) * 5.8;
         const bush = new THREE.Mesh(new THREE.SphereGeometry(0.9, 8, 8), flowerMat);
         bush.position.set(fx, 0.9, fz);
-        ohkGroup.add(bush);
+        roundaboutGroup.add(bush);
       }
+
+      ohkGroup.add(roundaboutGroup);
+      this.landmarkMeshes.set('OHK_ROUNDABOUT', roundaboutGroup);
 
       // ── 3. Heavy Vehicle Apron & Maneuvering Yard (ลานคอนกรีตลานกลับรถ อหข.) ──
       // Centered in front of Heavy Workshops T.0028 & T.0029
@@ -706,28 +728,34 @@
 
       // ── 4. OHK Road Network (Access & Perimeter Ring Roads - NO Football Pitch in OHK) ──
       // South Access Road from campus spine into OHK Roundabout
+      const accessRoadGroup = new THREE.Group();
       const accessRoad = new THREE.Mesh(new THREE.PlaneGeometry(9, 65), asphaltMat);
       accessRoad.rotation.x = -Math.PI / 2;
-      accessRoad.position.set(-135, 0.06, -115);
       accessRoad.receiveShadow = true;
-      ohkGroup.add(accessRoad);
-      this.roadMeshes.set('ROAD_OHK_ACCESS', accessRoad);
+      accessRoadGroup.add(accessRoad);
+      accessRoadGroup.position.set(-135, 0.06, -115);
+      ohkGroup.add(accessRoadGroup);
+      this.roadMeshes.set('ROAD_OHK_ACCESS', accessRoadGroup);
 
       // North Perimeter Loop Road behind T.0028 & T.0029
+      const northLoopGroup = new THREE.Group();
       const northLoop = new THREE.Mesh(new THREE.PlaneGeometry(85, 8), asphaltMat);
       northLoop.rotation.x = -Math.PI / 2;
-      northLoop.position.set(-155, 0.06, -215);
       northLoop.receiveShadow = true;
-      ohkGroup.add(northLoop);
-      this.roadMeshes.set('ROAD_OHK_NORTH_LOOP', northLoop);
+      northLoopGroup.add(northLoop);
+      northLoopGroup.position.set(-155, 0.06, -215);
+      ohkGroup.add(northLoopGroup);
+      this.roadMeshes.set('ROAD_OHK_NORTH_LOOP', northLoopGroup);
 
       // East Perimeter Road behind garage T.0027
+      const eastLoopGroup = new THREE.Group();
       const eastLoop = new THREE.Mesh(new THREE.PlaneGeometry(8, 65), asphaltMat);
       eastLoop.rotation.x = -Math.PI / 2;
-      eastLoop.position.set(-75, 0.06, -165);
       eastLoop.receiveShadow = true;
-      ohkGroup.add(eastLoop);
-      this.roadMeshes.set('ROAD_OHK_EAST_LOOP', eastLoop);
+      eastLoopGroup.add(eastLoop);
+      eastLoopGroup.position.set(-75, 0.06, -165);
+      ohkGroup.add(eastLoopGroup);
+      this.roadMeshes.set('ROAD_OHK_EAST_LOOP', eastLoopGroup);
 
       // ── 6. 230 kV Ang Thong 2 Transmission Line Right-of-Way Crossing ──
       const pylonGroup = new THREE.Group();
@@ -918,6 +946,8 @@
       }
 
       this.scene.add(sfGroup);
+      this.landmarkMeshes.set('SUNFLOWER_FIELD', sfGroup);
+      this.landmarkMeshes.set('CAMPUS_SIGN', sfGroup);
     }
 
     setupLandscaping() {
@@ -1190,6 +1220,7 @@
       }
 
       this.scene.add(scGroup);
+      this.landmarkMeshes.set('TURBINE_SCULPTURE', scGroup);
     }
 
     setupLandmarkLabels() {
@@ -2886,7 +2917,7 @@
         if (road.isGroup) {
           road.rotation.y = rot;
         } else {
-          road.rotation.z = rot;
+          road.rotation.z = -rot;
         }
       }
       this.needsRender = true;
@@ -2934,7 +2965,7 @@
         if (water.isGroup) {
           water.rotation.y = rot;
         } else {
-          water.rotation.z = rot;
+          water.rotation.z = -rot;
         }
       }
       this.needsRender = true;
@@ -2971,6 +3002,17 @@
       const z = Number(newZ);
       if (!isNaN(x)) lm.position.x = x;
       if (!isNaN(z)) lm.position.z = z;
+      this.needsRender = true;
+    }
+
+    updateLandmarkRotation(landmarkId, rotY) {
+      if (!this.landmarkMeshes) return;
+      const lm = this.landmarkMeshes.get(landmarkId);
+      if (!lm) return;
+      const rot = Number(rotY);
+      if (!isNaN(rot)) {
+        lm.rotation.y = rot;
+      }
       this.needsRender = true;
     }
 

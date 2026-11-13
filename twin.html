@@ -17,9 +17,9 @@
   <script>if (typeof XLSX === 'undefined') document.write('<script src="scripts/xlsx.full.min.js"><\/script>');</script>
 
   <!-- Core Scripts & Fallback Mapping -->
-  <script src="data/building_mapping.js?v=20261113_04"></script>
-  <script src="scripts/energy-twin-core.js?v=20261113_04"></script>
-  <script src="scripts/energy-twin-3d.js?v=20261113_04"></script>
+  <script src="data/building_mapping.js?v=20261113_05"></script>
+  <script src="scripts/energy-twin-core.js?v=20261113_05"></script>
+  <script src="scripts/energy-twin-3d.js?v=20261113_05"></script>
 
   <style>
     :root {
@@ -1788,36 +1788,54 @@
       }
 
       // 6.1 Apply saved custom road, water & landmark positions, rotations & dimensions to 3D scene
-      if (campusScene) {
-        const initRoads = EnergyTwin.getRoadsList ? EnergyTwin.getRoadsList() : [];
-        initRoads.forEach(r => {
-          campusScene.updateRoadPosition(r.id, r.x, r.z);
-          if (r.rotation_y !== undefined && campusScene.updateRoadRotation) {
-            campusScene.updateRoadRotation(r.id, r.rotation_y);
-          }
-          if ((r.width !== undefined || r.length !== undefined) && campusScene.updateRoadDimensions) {
-            campusScene.updateRoadDimensions(r.id, r.width, r.length);
-          }
-        });
-        const initWater = EnergyTwin.getWaterList ? EnergyTwin.getWaterList() : [];
-        initWater.forEach(w => {
-          if (campusScene.updateWaterPosition) campusScene.updateWaterPosition(w.id, w.x, w.z);
-          if (w.rotation_y !== undefined && campusScene.updateWaterRotation) {
-            campusScene.updateWaterRotation(w.id, w.rotation_y);
-          }
-          if ((w.width !== undefined || w.depth !== undefined) && campusScene.updateWaterDimensions) {
-            campusScene.updateWaterDimensions(w.id, w.width, w.depth);
-          }
-        });
-        const initLandmarks = EnergyTwin.getLandmarksList ? EnergyTwin.getLandmarksList() : [];
-        initLandmarks.forEach(l => {
-          if (campusScene.updateLandmarkPosition) campusScene.updateLandmarkPosition(l.id, l.x, l.z);
-        });
-      }
+      sync3DSceneFromLayout();
 
       // 7. Update Alert Badges
       updateAlertBadges();
     });
+
+    // Central 3D Scene Synchronizer: ensures 3D meshes match EnergyTwin data models
+    function sync3DSceneFromLayout() {
+      if (!campusScene) return;
+
+      // 1. Sync Buildings
+      const bList = EnergyTwin.getBuildingsList ? EnergyTwin.getBuildingsList() : [];
+      bList.forEach(b => {
+        if (b.layout_position) {
+          campusScene.updateBuildingPosition(b.b_code, b.layout_position.x, b.layout_position.z, b.layout_position.y || 0);
+          if (campusScene.updateBuildingRotation) {
+            campusScene.updateBuildingRotation(b.b_code, b.rotation_y || 0);
+          }
+        }
+      });
+
+      // 2. Sync Roads
+      const rList = EnergyTwin.getRoadsList ? EnergyTwin.getRoadsList() : [];
+      rList.forEach(r => {
+        campusScene.updateRoadPosition(r.id, r.x, r.z);
+        if (campusScene.updateRoadRotation) campusScene.updateRoadRotation(r.id, r.rotation_y || 0);
+        if (campusScene.updateRoadDimensions) campusScene.updateRoadDimensions(r.id, r.width, r.length);
+      });
+
+      // 3. Sync Water
+      const wList = EnergyTwin.getWaterList ? EnergyTwin.getWaterList() : [];
+      wList.forEach(w => {
+        if (campusScene.updateWaterPosition) campusScene.updateWaterPosition(w.id, w.x, w.z);
+        if (campusScene.updateWaterRotation) campusScene.updateWaterRotation(w.id, w.rotation_y || 0);
+        if (campusScene.updateWaterDimensions) campusScene.updateWaterDimensions(w.id, w.width, w.depth);
+      });
+
+      // 4. Sync Landmarks
+      const lmList = EnergyTwin.getLandmarksList ? EnergyTwin.getLandmarksList() : [];
+      lmList.forEach(l => {
+        if (campusScene.updateLandmarkPosition) campusScene.updateLandmarkPosition(l.id, l.x, l.z);
+        if (campusScene.updateLandmarkRotation && l.rotation_y !== undefined) {
+          campusScene.updateLandmarkRotation(l.id, l.rotation_y);
+        }
+      });
+
+      campusScene.needsRender = true;
+    }
 
     // Populate Year, Month Range, Building Dropdowns
     function setupDropdowns() {
@@ -1891,7 +1909,11 @@
     }
 
     // State Change Handler
-    function onTwinStateChange(state) {
+    function onTwinStateChange(state, changeKey) {
+      if (changeKey === 'layout_change') {
+        sync3DSceneFromLayout();
+      }
+
       const buildings = EnergyTwin.getBuildingsList();
 
       // Update 3D Visuals
@@ -3139,6 +3161,7 @@
     function closeLayoutEditorModal() {
       document.getElementById('layoutEditorModal').style.display = 'none';
       clearGridSelection();
+      sync3DSceneFromLayout();
     }
 
     function switchLayoutEditorTab(tabName) {
@@ -3466,32 +3489,40 @@
       let dimControlsHtml = '';
 
       if (type === 'road') {
-        const curLen = fp.d;
-        const curW = fp.w;
+        const rObj = EnergyTwin.roads?.[id] || EnergyTwin.defaultRoads?.[id];
+        const isHorizontal = rObj?.type === 'horizontal' || (rObj?.width || 0) > (rObj?.length || 0);
+        const spanKey = isHorizontal ? 'width' : 'length';
+        const laneKey = isHorizontal ? 'length' : 'width';
+        const curSpan = rObj?.[spanKey] || (isHorizontal ? rObj?.width : rObj?.length) || 50;
+        const curLane = rObj?.[laneKey] || (isHorizontal ? rObj?.length : rObj?.width) || 8;
+
         dimControlsHtml = `
           <div style="background:#F1F5F9; border-radius:6px; padding:6px 8px; display:flex; flex-direction:column; gap:4px; border:1px solid #E2E8F0;">
             <div style="display:flex; justify-content:space-between; align-items:center;">
-              <span style="font-size:11px; font-weight:700; color:#334155;">📏 ปรับความยาวถนน (แก้ล้นซ้อนทับ):</span>
-              <span style="font-size:11px; font-weight:700; color:#1D4ED8;">${curLen} ม.</span>
+              <span style="font-size:11px; font-weight:700; color:#334155;">📏 ช่วงความยาวถนน (${isHorizontal ? 'แนวนอน E-W' : 'แนวตั้ง N-S'}):</span>
+              <span style="font-size:11px; font-weight:700; color:#1D4ED8;">${curSpan} ม.</span>
             </div>
             <div style="display:flex; gap:3px; flex-wrap:wrap; align-items:center;">
-              <button type="button" class="dim-preset-chip" onclick="updateStudioDimension('length', 30)">30ม.</button>
-              <button type="button" class="dim-preset-chip" onclick="updateStudioDimension('length', 60)">60ม.</button>
-              <button type="button" class="dim-preset-chip" onclick="updateStudioDimension('length', 90)">90ม.</button>
-              <button type="button" class="dim-preset-chip" onclick="updateStudioDimension('length', 120)">120ม.</button>
-              <button type="button" class="dim-preset-chip" onclick="resetStudioDimension('length')">As-Built</button>
-              <input type="number" min="10" max="500" step="10" value="${curLen}" 
-                     onchange="updateStudioDimension('length', this.value)" 
+              <button type="button" class="dim-preset-chip" onclick="updateStudioDimension('${spanKey}', 30)">30ม.</button>
+              <button type="button" class="dim-preset-chip" onclick="updateStudioDimension('${spanKey}', 60)">60ม.</button>
+              <button type="button" class="dim-preset-chip" onclick="updateStudioDimension('${spanKey}', 90)">90ม.</button>
+              <button type="button" class="dim-preset-chip" onclick="updateStudioDimension('${spanKey}', 120)">120ม.</button>
+              <button type="button" class="dim-preset-chip" onclick="updateStudioDimension('${spanKey}', 240)">240ม.</button>
+              <button type="button" class="dim-preset-chip" onclick="resetStudioDimension('${spanKey}')">As-Built</button>
+              <input type="number" min="10" max="600" step="5" value="${curSpan}" 
+                     onchange="updateStudioDimension('${spanKey}', this.value)" 
+                     onkeydown="if(event.key==='Enter') this.blur();"
                      style="width:48px; padding:1px 3px; font-size:10.5px; border:1px solid #CBD5E1; border-radius:4px; text-align:right;"> ม.
             </div>
             <div style="display:flex; justify-content:space-between; align-items:center; margin-top:2px;">
-              <span style="font-size:10px; color:#64748B;">ความกว้าง:</span>
-              <div style="display:flex; gap:3px;">
-                <button type="button" class="dim-preset-chip" onclick="updateStudioDimension('width', 6)">6ม.</button>
-                <button type="button" class="dim-preset-chip" onclick="updateStudioDimension('width', 9)">9ม.</button>
-                <button type="button" class="dim-preset-chip" onclick="updateStudioDimension('width', 12)">12ม.</button>
-                <input type="number" min="4" max="50" step="1" value="${curW}" 
-                       onchange="updateStudioDimension('width', this.value)" 
+              <span style="font-size:10px; color:#64748B;">ความกว้างผิวทาง:</span>
+              <div style="display:flex; gap:3px; align-items:center;">
+                <button type="button" class="dim-preset-chip" onclick="updateStudioDimension('${laneKey}', 6)">6ม.</button>
+                <button type="button" class="dim-preset-chip" onclick="updateStudioDimension('${laneKey}', 9)">9ม.</button>
+                <button type="button" class="dim-preset-chip" onclick="updateStudioDimension('${laneKey}', 12)">12ม.</button>
+                <input type="number" min="3" max="50" step="1" value="${curLane}" 
+                       onchange="updateStudioDimension('${laneKey}', this.value)" 
+                       onkeydown="if(event.key==='Enter') this.blur();"
                        style="width:40px; padding:1px 3px; font-size:10px; border:1px solid #CBD5E1; border-radius:4px; text-align:right;"> ม.
               </div>
             </div>
@@ -3510,19 +3541,22 @@
               <button type="button" class="dim-preset-chip" onclick="updateStudioDimension('depth', 40)">40ม.</button>
               <button type="button" class="dim-preset-chip" onclick="updateStudioDimension('depth', 80)">80ม.</button>
               <button type="button" class="dim-preset-chip" onclick="updateStudioDimension('depth', 160)">160ม.</button>
+              <button type="button" class="dim-preset-chip" onclick="updateStudioDimension('depth', 320)">320ม.</button>
               <button type="button" class="dim-preset-chip" onclick="resetStudioDimension('depth')">As-Built</button>
               <input type="number" min="10" max="600" step="10" value="${curLen}" 
                      onchange="updateStudioDimension('depth', this.value)" 
+                     onkeydown="if(event.key==='Enter') this.blur();"
                      style="width:48px; padding:1px 3px; font-size:10.5px; border:1px solid #CBD5E1; border-radius:4px; text-align:right;"> ม.
             </div>
             <div style="display:flex; justify-content:space-between; align-items:center; margin-top:2px;">
-              <span style="font-size:10px; color:#0369A1;">ความกว้าง:</span>
-              <div style="display:flex; gap:3px;">
+              <span style="font-size:10px; color:#0369A1;">ความกว้างคลอง/สระ:</span>
+              <div style="display:flex; gap:3px; align-items:center;">
                 <button type="button" class="dim-preset-chip" onclick="updateStudioDimension('width', 15)">15ม.</button>
                 <button type="button" class="dim-preset-chip" onclick="updateStudioDimension('width', 20)">20ม.</button>
                 <button type="button" class="dim-preset-chip" onclick="updateStudioDimension('width', 35)">35ม.</button>
                 <input type="number" min="5" max="100" step="2" value="${curW}" 
                        onchange="updateStudioDimension('width', this.value)" 
+                       onkeydown="if(event.key==='Enter') this.blur();"
                        style="width:40px; padding:1px 3px; font-size:10px; border:1px solid #CBD5E1; border-radius:4px; text-align:right;"> ม.
               </div>
             </div>
@@ -3568,17 +3602,34 @@
             </div>
           </div>
 
-          <!-- Position & Nudge Pad -->
-          <div style="display:flex; align-items:center; justify-content:space-between; gap:6px; background:#F8FAFC; border:1px solid #E2E8F0; border-radius:6px; padding:6px 8px;">
-            <div>
-              <div style="font-size:10px; color:#64748B;">พิกัดปัจจุบัน:</div>
-              <div style="font-size:11px; font-weight:700; color:var(--pri); font-family:'JetBrains Mono',monospace;">X=${pos.x}, Z=${pos.z}</div>
+          <!-- Position & Direct Coordinates Input & Nudge Pad -->
+          <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:6px; padding:6px 8px; display:flex; flex-direction:column; gap:6px;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span style="font-size:11px; font-weight:700; color:#1E3A8A;">📍 ตำแหน่งพิกัด (X, Z):</span>
+              <span style="font-size:10px; color:#64748B;">พิมพ์แก้ตัวเลขได้ทันที</span>
             </div>
-            <div style="display:flex; gap:3px;">
-              <button type="button" class="nudge-btn" onclick="nudgeStudioItem(-10, 0)" title="เลื่อนทิศตะวันตก (X-10)">⬅️</button>
-              <button type="button" class="nudge-btn" onclick="nudgeStudioItem(10, 0)" title="เลื่อนทิศตะวันออก (X+10)">➡️</button>
-              <button type="button" class="nudge-btn" onclick="nudgeStudioItem(0, -10)" title="เลื่อนทิศเหนือ (Z-10)">⬆️</button>
-              <button type="button" class="nudge-btn" onclick="nudgeStudioItem(0, 10)" title="เลื่อนทิศใต้ (Z+10)">⬇️</button>
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:6px;">
+              <div style="display:flex; align-items:center; gap:2px; background:#fff; border:1px solid #CBD5E1; border-radius:4px; padding:2px 4px;">
+                <span style="font-size:11px; font-weight:700; color:#DC2626; min-width:14px;">X:</span>
+                <button type="button" class="nudge-btn" style="padding:1px 4px; font-size:10px;" onclick="nudgeStudioItem(-5, 0)" title="เลื่อน X -5">-5</button>
+                <input type="number" id="inspectorInputX" value="${pos.x}" step="1" onchange="onStudioInspectorCoordChange('x', this.value)" onkeydown="if(event.key==='Enter') this.blur();" style="width:100%; border:none; text-align:center; font-weight:700; font-family:'JetBrains Mono',monospace; font-size:11px; outline:none;">
+                <button type="button" class="nudge-btn" style="padding:1px 4px; font-size:10px;" onclick="nudgeStudioItem(5, 0)" title="เลื่อน X +5">+5</button>
+              </div>
+              <div style="display:flex; align-items:center; gap:2px; background:#fff; border:1px solid #CBD5E1; border-radius:4px; padding:2px 4px;">
+                <span style="font-size:11px; font-weight:700; color:#2563EB; min-width:14px;">Z:</span>
+                <button type="button" class="nudge-btn" style="padding:1px 4px; font-size:10px;" onclick="nudgeStudioItem(0, -5)" title="เลื่อน Z -5">-5</button>
+                <input type="number" id="inspectorInputZ" value="${pos.z}" step="1" onchange="onStudioInspectorCoordChange('z', this.value)" onkeydown="if(event.key==='Enter') this.blur();" style="width:100%; border:none; text-align:center; font-weight:700; font-family:'JetBrains Mono',monospace; font-size:11px; outline:none;">
+                <button type="button" class="nudge-btn" style="padding:1px 4px; font-size:10px;" onclick="nudgeStudioItem(0, 5)" title="เลื่อน Z +5">+5</button>
+              </div>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span style="font-size:10px; color:#64748B;">เลื่อนทีละ 10ม. ตามทิศ:</span>
+              <div style="display:flex; gap:3px;">
+                <button type="button" class="nudge-btn" onclick="nudgeStudioItem(-10, 0)" title="เลื่อนทิศตะวันตก (X -10)">⬅️ W</button>
+                <button type="button" class="nudge-btn" onclick="nudgeStudioItem(10, 0)" title="เลื่อนทิศตะวันออก (X +10)">E ➡️</button>
+                <button type="button" class="nudge-btn" onclick="nudgeStudioItem(0, -10)" title="เลื่อนทิศเหนือ (Z -10)">⬆️ N</button>
+                <button type="button" class="nudge-btn" onclick="nudgeStudioItem(0, 10)" title="เลื่อนทิศใต้ (Z +10)">S ⬇️</button>
+              </div>
             </div>
           </div>
 
@@ -3593,6 +3644,17 @@
         </div>
       `;
       wrap.style.display = 'block';
+    }
+
+    function onStudioInspectorCoordChange(axis, val) {
+      if (!selectedGridItem) return;
+      const num = parseFloat(val);
+      if (isNaN(num)) return;
+      const pos = getSelectedItemPosition(selectedGridItem);
+      if (!pos) return;
+      const targetX = axis === 'x' ? num : pos.x;
+      const targetZ = axis === 'z' ? num : pos.z;
+      moveLayoutItem(selectedGridItem.type, selectedGridItem.id, targetX, targetZ);
     }
 
     function rotateStudioItem(deltaDeg) {
@@ -3629,6 +3691,11 @@
           campusScene.updateWaterRotation(id, rad);
         }
         EnergyTwin.saveCustomWater({ [id]: { rotation_y: rad } });
+      } else if (type === 'landmark') {
+        if (campusScene && campusScene.updateLandmarkRotation) {
+          campusScene.updateLandmarkRotation(id, rad);
+        }
+        EnergyTwin.saveCustomLandmarks({ [id]: { rotation_y: rad } });
       }
 
       renderStudioInspector();
@@ -4465,7 +4532,25 @@
       }
     }
 
-    // Save and Reset All (Buildings, Roads, Water)
+    function showLayoutSaveToast(msg = '💾 บันทึกผัง 3D เรียบร้อยแล้ว (อัปเดตโมเดลทันที)') {
+      let toast = document.getElementById('layoutSaveToast');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'layoutSaveToast';
+        toast.style.cssText = 'position:fixed; bottom:28px; right:28px; z-index:999999; background:linear-gradient(135deg, #059669, #047857); color:#fff; padding:12px 20px; border-radius:10px; font-weight:700; font-size:13px; box-shadow:0 12px 28px -4px rgba(0,0,0,0.35); display:flex; align-items:center; gap:10px; transition:all 0.3s cubic-bezier(0.16,1,0.3,1); pointer-events:none; opacity:0; transform:translateY(20px); border:1px solid rgba(255,255,255,0.25);';
+        document.body.appendChild(toast);
+      }
+      toast.innerHTML = `<span style="font-size:18px;">💾</span> ${msg}`;
+      toast.style.opacity = '1';
+      toast.style.transform = 'translateY(0)';
+      if (window._layoutToastTimer) clearTimeout(window._layoutToastTimer);
+      window._layoutToastTimer = setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(20px)';
+      }, 2500);
+    }
+
+    // Save and Reset All (Buildings, Roads, Water, Landmarks)
     function saveLayoutEditorChanges(silent = false) {
       if (!EnergyTwin.mappingData?.buildings) return;
 
@@ -4513,9 +4598,25 @@
       }
       if (EnergyTwin.saveCustomWater) EnergyTwin.saveCustomWater(waterMap);
 
+      // 4. Save Landmarks
+      const landmarkMap = {};
+      if (EnergyTwin.landmarks) {
+        Object.entries(EnergyTwin.landmarks).forEach(([lid, l]) => {
+          landmarkMap[lid] = {
+            x: l.x,
+            z: l.z,
+            rotation_y: l.rotation_y !== undefined ? l.rotation_y : 0
+          };
+        });
+      }
+      if (EnergyTwin.saveCustomLandmarks) EnergyTwin.saveCustomLandmarks(landmarkMap);
+
+      // 5. Ensure 3D scene meshes synchronize immediately
+      sync3DSceneFromLayout();
+
       if (!silent) {
         if (ok1 && ok2) {
-          alert('💾 บันทึกผังอาคาร เส้นทางถนน และแหล่งน้ำ 3D พร้อมการหมุนทิศลงในหน่วยความจำเรียบร้อยแล้ว!');
+          showLayoutSaveToast('บันทึกผังอาคาร เส้นทางถนน แหล่งน้ำ และแลนด์มาร์ค 3D ลงในหน่วยความจำเรียบร้อยแล้ว!');
         } else {
           alert('❌ เกิดข้อผิดพลาดในการบันทึกผัง');
         }
@@ -4531,36 +4632,8 @@
       if (EnergyTwin.resetCustomWater) EnergyTwin.resetCustomWater();
       if (EnergyTwin.resetCustomLandmarks) EnergyTwin.resetCustomLandmarks();
 
-      // Refresh 3D buildings
-      const bList = EnergyTwin.getBuildingsList();
-      bList.forEach(b => {
-        if (campusScene && b.layout_position) {
-          campusScene.updateBuildingPosition(b.b_code, b.layout_position.x, b.layout_position.z, b.layout_position.y);
-          if (campusScene.updateBuildingRotation) {
-            campusScene.updateBuildingRotation(b.b_code, b.rotation_y || 0);
-          }
-        }
-      });
-
-      // Refresh 3D roads
-      const rList = EnergyTwin.getRoadsList();
-      rList.forEach(r => {
-        if (campusScene) {
-          campusScene.updateRoadPosition(r.id, r.x, r.z);
-          if (campusScene.updateRoadRotation) campusScene.updateRoadRotation(r.id, r.rotation_y || 0);
-          if (campusScene.updateRoadDimensions) campusScene.updateRoadDimensions(r.id, r.width, r.length);
-        }
-      });
-
-      // Refresh 3D water
-      const wList = EnergyTwin.getWaterList ? EnergyTwin.getWaterList() : [];
-      wList.forEach(w => {
-        if (campusScene && campusScene.updateWaterPosition) {
-          campusScene.updateWaterPosition(w.id, w.x, w.z);
-          if (campusScene.updateWaterRotation) campusScene.updateWaterRotation(w.id, w.rotation_y || 0);
-          if (campusScene.updateWaterDimensions) campusScene.updateWaterDimensions(w.id, w.width, w.depth);
-        }
-      });
+      // Refresh 3D scene
+      sync3DSceneFromLayout();
 
       clearGridSelection();
       renderLayoutStudioPalette();
@@ -4577,24 +4650,8 @@
       if (EnergyTwin.resetCustomWater) EnergyTwin.resetCustomWater();
       if (EnergyTwin.resetCustomLandmarks) EnergyTwin.resetCustomLandmarks();
 
-      if (campusScene) {
-        const rList = EnergyTwin.getRoadsList ? EnergyTwin.getRoadsList() : [];
-        rList.forEach(r => {
-          campusScene.updateRoadPosition(r.id, r.x, r.z);
-          if (campusScene.updateRoadRotation) campusScene.updateRoadRotation(r.id, r.rotation_y || 0);
-          if (campusScene.updateRoadDimensions) campusScene.updateRoadDimensions(r.id, r.width, r.length);
-        });
-        const wList = EnergyTwin.getWaterList ? EnergyTwin.getWaterList() : [];
-        wList.forEach(w => {
-          if (campusScene.updateWaterPosition) campusScene.updateWaterPosition(w.id, w.x, w.z);
-          if (campusScene.updateWaterRotation) campusScene.updateWaterRotation(w.id, w.rotation_y || 0);
-          if (campusScene.updateWaterDimensions) campusScene.updateWaterDimensions(w.id, w.width, w.depth);
-        });
-        const lmList = EnergyTwin.getLandmarksList ? EnergyTwin.getLandmarksList() : [];
-        lmList.forEach(l => {
-          if (campusScene.updateLandmarkPosition) campusScene.updateLandmarkPosition(l.id, l.x, l.z);
-        });
-      }
+      // Refresh 3D scene
+      sync3DSceneFromLayout();
 
       clearGridSelection();
       renderLayoutStudioPalette();
@@ -4642,37 +4699,8 @@
           throw new Error('รองรับเฉพาะไฟล์ .xlsx, .csv หรือ .json เท่านั้น');
         }
 
-        // Apply updated positions to 3D scene (Buildings)
-        const bList = EnergyTwin.getBuildingsList ? EnergyTwin.getBuildingsList() : [];
-        bList.forEach(b => {
-          if (campusScene && b.layout_position) {
-            campusScene.updateBuildingPosition(b.b_code, b.layout_position.x, b.layout_position.z, b.layout_position.y);
-          }
-        });
-
-        // Apply updated positions to 3D scene (Roads)
-        const rList = EnergyTwin.getRoadsList ? EnergyTwin.getRoadsList() : [];
-        rList.forEach(r => {
-          if (campusScene) {
-            campusScene.updateRoadPosition(r.id, r.x, r.z);
-          }
-        });
-
-        // Apply updated positions to 3D scene (Water)
-        const wList = EnergyTwin.getWaterList ? EnergyTwin.getWaterList() : [];
-        wList.forEach(w => {
-          if (campusScene && campusScene.updateWaterPosition) {
-            campusScene.updateWaterPosition(w.id, w.x, w.z);
-          }
-        });
-
-        // Apply updated positions to 3D scene (Landmarks)
-        const lmList = EnergyTwin.getLandmarksList ? EnergyTwin.getLandmarksList() : [];
-        lmList.forEach(l => {
-          if (campusScene && campusScene.updateLandmarkPosition) {
-            campusScene.updateLandmarkPosition(l.id, l.x, l.z);
-          }
-        });
+        // Apply updated positions, rotations & dimensions to 3D scene
+        sync3DSceneFromLayout();
 
         clearGridSelection();
         renderInteractiveExcelGrid();
