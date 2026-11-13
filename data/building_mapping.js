@@ -20,14 +20,14 @@ window.SAINOI_BUILDING_MAPPING = {
       "floors": 4,
       "description": "อาคารที่พักอาศัยสวัสดิการพนักงาน 4 ชั้น ริมสระน้ำ 2",
       "dimensions": {
-        "width": 34,
-        "depth": 16,
-        "height": 14
+        "width": 32.0,
+        "depth": 16.0,
+        "height": 14.0
       },
       "layout_position": {
-        "x": -135,
+        "x": -140.0,
         "y": 7.0,
-        "z": 10
+        "z": 15.0
       },
       "color_base": "#A855F7",
       "roof_type": "residential_balcony",
@@ -62,14 +62,14 @@ window.SAINOI_BUILDING_MAPPING = {
       "floors": 1,
       "description": "โรงซ่อมบำรุงเครื่องจักรกล อสร. ติด ท.0012",
       "dimensions": {
-        "width": 30,
-        "depth": 20,
-        "height": 9
+        "width": 26.0,
+        "depth": 18.0,
+        "height": 9.0
       },
       "layout_position": {
-        "x": -45,
+        "x": -95.0,
         "y": 4.5,
-        "z": -150
+        "z": -85.0
       },
       "color_base": "#94A3B8",
       "roof_type": "industrial_gable",
@@ -104,14 +104,14 @@ window.SAINOI_BUILDING_MAPPING = {
       "floors": 1,
       "description": "โรงอาหารหลักกลางสำนักงานไทรน้อย ร้านค้า 1-5 และตู้ ATM",
       "dimensions": {
-        "width": 26,
-        "depth": 20,
-        "height": 8
+        "width": 24.0,
+        "depth": 18.0,
+        "height": 8.0
       },
       "layout_position": {
-        "x": 5,
+        "x": -55.0,
         "y": 4.0,
-        "z": -55
+        "z": -140.0
       },
       "color_base": "#F8FAFC",
       "roof_type": "curved_barrel",
@@ -182,14 +182,14 @@ window.SAINOI_BUILDING_MAPPING = {
       "floors": 4,
       "description": "อาคารจอดรถ 4 ชั้น สีขาวคาดแถบเหลือง ศูนย์กีฬาฟิตเนส สหกรณ์ และร้านอาหาร",
       "dimensions": {
-        "width": 36,
-        "depth": 24,
-        "height": 16
+        "width": 32.0,
+        "depth": 22.0,
+        "height": 16.0
       },
       "layout_position": {
-        "x": 35,
+        "x": 48.0,
         "y": 8.0,
-        "z": -48
+        "z": -50.0
       },
       "color_base": "#F1F5F9",
       "roof_type": "office_stepped",
@@ -272,19 +272,19 @@ window.SAINOI_BUILDING_MAPPING = {
       "category": "service",
       "category_th": "อาคารอเนกประสงค์",
       "floors": 2,
-      "description": "หอประชุมใหญ่หลังคาโค้งสีเทา สำหรับงานประชุมและกิจกรรมสันทนาการ",
+      "description": "อาคารอเนกประสงค์ / กีฬา (ต.0025) อาคาร 2 ชั้น หลังคาจั่วสูง ชั้นล่างเป็นลานเสาเปิดโล่ง (Pilotis) สำหรับจอดรถยนต์ ชั้นบนหน้าต่างแถบยาวกระจกสีเขียว",
       "dimensions": {
-        "width": 28,
-        "depth": 22,
-        "height": 10
+        "width": 24.0,
+        "depth": 20.0,
+        "height": 10.0
       },
       "layout_position": {
-        "x": 85,
+        "x": 82.0,
         "y": 5.0,
-        "z": -10
+        "z": -5.0
       },
-      "color_base": "#64748B",
-      "roof_type": "industrial_flat",
+      "color_base": "#E2E8F0",
+      "roof_type": "sports_pilotis_d0025",
       "metering": {
         "main_meter_id": "D.0025__FL01__MDB",
         "all_main_meters": [
@@ -316,14 +316,14 @@ window.SAINOI_BUILDING_MAPPING = {
       "floors": 1,
       "description": "สถานีควบคุมระบบประปาและสูบจ่ายน้ำสำนักงาน",
       "dimensions": {
-        "width": 18,
-        "depth": 14,
-        "height": 6
+        "width": 18.0,
+        "depth": 14.0,
+        "height": 6.0
       },
       "layout_position": {
-        "x": -75,
+        "x": -60.0,
         "y": 3.0,
-        "z": -150
+        "z": -105.0
       },
       "color_base": "#38BDF8",
       "roof_type": "industrial_flat",
@@ -358,14 +358,14 @@ window.SAINOI_BUILDING_MAPPING = {
       "floors": 1,
       "description": "โรงอาหารสวัสดิการพนักงาน อหข. ชายคายื่นร่มรื่น ติดแนวสระน้ำ อหข.",
       "dimensions": {
-        "width": 20,
-        "depth": 16,
-        "height": 7
+        "width": 20.0,
+        "depth": 16.0,
+        "height": 7.0
       },
       "layout_position": {
-        "x": -160,
+        "x": -175.0,
         "y": 3.5,
-        "z": -130
+        "z": -125.0
       },
       "color_base": "#F8FAFC",
       "roof_type": "ohk_canteen_d0031",
@@ -408,14 +408,14 @@ window.SAINOI_BUILDING_MAPPING = {
       "floors": 1,
       "description": "โรงปฏิบัติการงานเชื่อมและซ่อมโครงสร้างตัวถัง อหข. พร้อมระบบดูดระบายควันอุตสาหกรรม",
       "dimensions": {
-        "width": 22,
-        "depth": 16,
-        "height": 8
+        "width": 22.0,
+        "depth": 16.0,
+        "height": 8.0
       },
       "layout_position": {
-        "x": -160,
+        "x": -175.0,
         "y": 4.0,
-        "z": -95
+        "z": -95.0
       },
       "color_base": "#94A3B8",
       "roof_type": "ohk_welding_d0033",
@@ -450,14 +450,14 @@ window.SAINOI_BUILDING_MAPPING = {
       "floors": 1,
       "description": "คลังจัดเก็บและบริหารอะไหล่กังหันก๊าซ 1 หลังคาจั่วสีเทาขนาดใหญ่",
       "dimensions": {
-        "width": 34,
-        "depth": 22,
-        "height": 10
+        "width": 32.0,
+        "depth": 20.0,
+        "height": 10.0
       },
       "layout_position": {
-        "x": -25,
+        "x": -25.0,
         "y": 5.0,
-        "z": 15
+        "z": 15.0
       },
       "color_base": "#94A3B8",
       "roof_type": "curved_barrel",
@@ -492,14 +492,14 @@ window.SAINOI_BUILDING_MAPPING = {
       "floors": 2,
       "description": "อาคารกองบริหารทั่วไป ติดทางเข้าลานสวิตช์ยาร์ด",
       "dimensions": {
-        "width": 24,
-        "depth": 16,
-        "height": 9
+        "width": 24.0,
+        "depth": 16.0,
+        "height": 9.0
       },
       "layout_position": {
-        "x": -25,
+        "x": -25.0,
         "y": 4.5,
-        "z": 50
+        "z": 50.0
       },
       "color_base": "#E2E8F0",
       "roof_type": "curved_barrel",
@@ -534,14 +534,14 @@ window.SAINOI_BUILDING_MAPPING = {
       "floors": 1,
       "description": "คลังพัสดุบริหารอะไหล่ 2 พื้นที่ 2,500 ตร.ม.",
       "dimensions": {
-        "width": 34,
-        "depth": 22,
-        "height": 10
+        "width": 32.0,
+        "depth": 20.0,
+        "height": 10.0
       },
       "layout_position": {
-        "x": -25,
+        "x": -25.0,
         "y": 5.0,
-        "z": -20
+        "z": -20.0
       },
       "color_base": "#94A3B8",
       "roof_type": "curved_barrel",
@@ -576,14 +576,14 @@ window.SAINOI_BUILDING_MAPPING = {
       "floors": 1,
       "description": "ห้องปฏิบัติการทดสอบและงานพิเศษทางวิศวกรรม อรอ.",
       "dimensions": {
-        "width": 24,
-        "depth": 16,
-        "height": 9
+        "width": 24.0,
+        "depth": 16.0,
+        "height": 9.0
       },
       "layout_position": {
-        "x": -25,
+        "x": -25.0,
         "y": 4.5,
-        "z": -85
+        "z": -85.0
       },
       "color_base": "#E2E8F0",
       "roof_type": "industrial_gable",
@@ -618,14 +618,14 @@ window.SAINOI_BUILDING_MAPPING = {
       "floors": 1,
       "description": "อาคาร Testing Lab ทดสอบอุปกรณ์เครื่องกลและชิ้นส่วนหมุน",
       "dimensions": {
-        "width": 30,
-        "depth": 20,
-        "height": 10
+        "width": 28.0,
+        "depth": 18.0,
+        "height": 10.0
       },
       "layout_position": {
-        "x": -25,
+        "x": -25.0,
         "y": 5.0,
-        "z": -55
+        "z": -55.0
       },
       "color_base": "#94A3B8",
       "roof_type": "industrial_flat",
@@ -660,14 +660,14 @@ window.SAINOI_BUILDING_MAPPING = {
       "floors": 1,
       "description": "คลังเครื่องมือ อุปกรณ์ทดสอบทางวิศวกรรมเครื่องกล",
       "dimensions": {
-        "width": 32,
-        "depth": 20,
-        "height": 9
+        "width": 30.0,
+        "depth": 18.0,
+        "height": 9.0
       },
       "layout_position": {
-        "x": -25,
+        "x": -25.0,
         "y": 4.5,
-        "z": -115
+        "z": -115.0
       },
       "color_base": "#94A3B8",
       "roof_type": "curved_barrel",
@@ -702,14 +702,14 @@ window.SAINOI_BUILDING_MAPPING = {
       "floors": 1,
       "description": "โรงงานซ่อมบำรุงและฟื้นฟูอุปกรณ์เครื่องกลขนาดใหญ่ ศูนย์ประดาน้ำ กฟผ.",
       "dimensions": {
-        "width": 42,
-        "depth": 24,
-        "height": 11
+        "width": 38.0,
+        "depth": 22.0,
+        "height": 11.0
       },
       "layout_position": {
-        "x": -5,
+        "x": -15.0,
         "y": 5.5,
-        "z": -150
+        "z": -150.0
       },
       "color_base": "#94A3B8",
       "roof_type": "curved_barrel",
@@ -744,14 +744,14 @@ window.SAINOI_BUILDING_MAPPING = {
       "floors": 1,
       "description": "อาคารปฏิบัติการ 2 ชั้น สีขาวหน้าต่างแถบยาว งานไฟฟ้าและโยธา",
       "dimensions": {
-        "width": 30,
-        "depth": 20,
-        "height": 11
+        "width": 28.0,
+        "depth": 20.0,
+        "height": 11.0
       },
       "layout_position": {
-        "x": 75,
+        "x": 85.0,
         "y": 5.5,
-        "z": -75
+        "z": -80.0
       },
       "color_base": "#FFFFFF",
       "roof_type": "curved_barrel",
@@ -785,20 +785,20 @@ window.SAINOI_BUILDING_MAPPING = {
       "short_name": "ปฏิบัติการเคมี 2 (ท.0015)",
       "category": "laboratory",
       "category_th": "ห้องปฏิบัติการเคมี",
-      "floors": 1,
-      "description": "ห้องปฏิบัติการวิเคราะห์เคมี 2 ริมเหนือสุดของวงเวียน",
+      "floors": 4,
+      "description": "ศูนย์ปฏิบัติการทดสอบเคมี (ท.0015) อาคาร 4 ชั้น แท่นโพเดียมยื่น โถงบันไดหลักสีเข้ม หลังคาทางลาดดรอปออฟ พร้อมที่จอดรถมีหลังคาคลุมด้านหน้า",
       "dimensions": {
-        "width": 24,
-        "depth": 18,
-        "height": 9
+        "width": 26.0,
+        "depth": 18.0,
+        "height": 14.0
       },
       "layout_position": {
-        "x": 130,
-        "y": 4.5,
-        "z": -100
+        "x": 125.0,
+        "y": 7.0,
+        "z": -105.0
       },
       "color_base": "#F8FAFC",
-      "roof_type": "curved_barrel",
+      "roof_type": "chem_lab_t0015",
       "metering": {
         "main_meter_id": "T.0015__FL01__MDB",
         "all_main_meters": [
@@ -828,19 +828,19 @@ window.SAINOI_BUILDING_MAPPING = {
       "category": "warehouse",
       "category_th": "คลังเก็บเคมีภัณฑ์",
       "floors": 1,
-      "description": "ห้องปฏิบัติการตรวจวิเคราะห์น้ำมันและสารเคมี 1",
+      "description": "อาคารปฏิบัติการเคมี (ท.0016) อาคารเวิร์กช็อปสีขาว หลังคาโค้ง ซุ้มทางเข้าทรงโค้งสีขาว-ส้ม กฟผ. แผงระแนงกันแดดเมทัลชีท",
       "dimensions": {
-        "width": 24,
-        "depth": 18,
-        "height": 9
+        "width": 24.0,
+        "depth": 18.0,
+        "height": 9.0
       },
       "layout_position": {
-        "x": 150,
+        "x": 155.0,
         "y": 4.5,
-        "z": -75
+        "z": -75.0
       },
-      "color_base": "#E2E8F0",
-      "roof_type": "curved_barrel",
+      "color_base": "#F1F5F9",
+      "roof_type": "chemical_workshop_t0016",
       "metering": {
         "main_meter_id": "T.0016__FL01__MDB",
         "all_main_meters": [
@@ -870,19 +870,19 @@ window.SAINOI_BUILDING_MAPPING = {
       "category": "workshop",
       "category_th": "ศูนย์ฝึกอบรมและทดสอบช่างเชื่อม",
       "floors": 1,
-      "description": "ศูนย์พัฒนาเทคโนโลยีงานเชื่อม ติดวงเวียนเคมี",
+      "description": "ศูนย์พัฒนางานเชื่อมและทดสอบฝีมือช่างเชื่อมสากล (ท.0017) รูปทรงกระบอกโค้งมนสตรีมไลน์ คลุมเมทัลชีทสีเงิน ปล่องระบายอากาศทรงกระบอกบนหลังคา 6 จุด",
       "dimensions": {
-        "width": 26,
-        "depth": 20,
-        "height": 10
+        "width": 24.0,
+        "depth": 20.0,
+        "height": 10.0
       },
       "layout_position": {
-        "x": 115,
+        "x": 116.0,
         "y": 5.0,
-        "z": -35
+        "z": -25.0
       },
-      "color_base": "#E2E8F0",
-      "roof_type": "curved_barrel",
+      "color_base": "#CBD5E1",
+      "roof_type": "competency_curved_t0017",
       "metering": {
         "main_meter_id": "T.0017__FL01__MDB",
         "all_main_meters": [
@@ -911,20 +911,20 @@ window.SAINOI_BUILDING_MAPPING = {
       "short_name": "ศูนย์มาตรวิทยาและสอบเทียบ (ท.0018)",
       "category": "laboratory",
       "category_th": "อาคารห้องปฏิบัติการมาตรวิทยา",
-      "floors": 3,
-      "description": "Calibration Lab อาคารสีขาว 2 ชั้น สอบเทียบเครื่องมือวัดละเอียดสูง",
+      "floors": 2,
+      "description": "ศูนย์มาตรวิทยาและสอบเทียบเครื่องมือวัด กฟผ. (ท.0018) อาคาร 2 ชั้น โดดเด่นด้วยหอทางเข้าทรงลูกบาศก์สีส้มสด กฟผ. พร้อมคานยื่นแนวนอน ครีบบังแดดแนวตั้ง และเบย์เวิร์กช็อป",
       "dimensions": {
-        "width": 28,
-        "depth": 18,
-        "height": 10
+        "width": 28.0,
+        "depth": 18.0,
+        "height": 10.0
       },
       "layout_position": {
-        "x": 140,
+        "x": 150.0,
         "y": 5.0,
-        "z": -45
+        "z": -42.0
       },
       "color_base": "#F8FAFC",
-      "roof_type": "office_stepped",
+      "roof_type": "metrology_center_t0018",
       "metering": {
         "main_meter_id": "T.0018__FL01__MDB",
         "all_main_meters": [
@@ -956,14 +956,14 @@ window.SAINOI_BUILDING_MAPPING = {
       "floors": 7,
       "description": "อาคารสำนักงานใหญ่ 9 ชั้น สถาปัตยกรรมกระจกสีฟ้า-ขาว ด้านหลังติดสระน้ำสวนหย่อม มีมิเตอร์รายชั้น",
       "dimensions": {
-        "width": 38,
-        "depth": 22,
-        "height": 34
+        "width": 30.0,
+        "depth": 22.0,
+        "height": 34.0
       },
       "layout_position": {
-        "x": 35,
+        "x": 40.0,
         "y": 17.0,
-        "z": 0
+        "z": 5.0
       },
       "color_base": "#FFFFFF",
       "roof_type": "office_stepped",
@@ -1320,19 +1320,19 @@ window.SAINOI_BUILDING_MAPPING = {
       "category": "office",
       "category_th": "อาคารรับรองสมรรถนะ",
       "floors": 2,
-      "description": "อาคาร Competency Center สีขาวกระจก 3 ชั้น ศูนย์ทดสอบและรับรองมาตรฐานอาชีพ",
+      "description": "ศูนย์รับรองสมรรถนะงานเดินเครื่องและบำรุงรักษา (ท.0020) อาคาร 2 ชั้น หลังลานปฏิมากรรมกังหันไอน้ำ พร้อมบันไดหนีไฟเหล็กโปร่งราวจับสีส้ม-แดง",
       "dimensions": {
-        "width": 26,
-        "depth": 18,
-        "height": 11
+        "width": 26.0,
+        "depth": 18.0,
+        "height": 11.0
       },
       "layout_position": {
-        "x": 35,
+        "x": 45.0,
         "y": 5.5,
-        "z": 50
+        "z": 50.0
       },
       "color_base": "#F8FAFC",
-      "roof_type": "curved_barrel",
+      "roof_type": "competency_center_t0020",
       "metering": {
         "main_meter_id": "T.0020__FL01__SCB_21",
         "all_main_meters": [
@@ -1449,14 +1449,14 @@ window.SAINOI_BUILDING_MAPPING = {
       "floors": 1,
       "description": "อาคารควบคุมพิเศษสำหรับการทดสอบแบบไม่ทำลายด้วยรังสี (NDT)",
       "dimensions": {
-        "width": 24,
-        "depth": 18,
-        "height": 8
+        "width": 24.0,
+        "depth": 16.0,
+        "height": 8.0
       },
       "layout_position": {
-        "x": -135,
+        "x": -140.0,
         "y": 4.0,
-        "z": -35
+        "z": -25.0
       },
       "color_base": "#64748B",
       "roof_type": "industrial_gable",
@@ -1491,14 +1491,14 @@ window.SAINOI_BUILDING_MAPPING = {
       "floors": 1,
       "description": "โรงงานประกอบและสร้างชิ้นส่วนโครงสร้างวิศวกรรม",
       "dimensions": {
-        "width": 30,
-        "depth": 20,
-        "height": 9
+        "width": 26.0,
+        "depth": 18.0,
+        "height": 9.0
       },
       "layout_position": {
-        "x": -135,
+        "x": -140.0,
         "y": 4.5,
-        "z": -65
+        "z": -55.0
       },
       "color_base": "#94A3B8",
       "roof_type": "industrial_gable",
@@ -1533,14 +1533,14 @@ window.SAINOI_BUILDING_MAPPING = {
       "floors": 1,
       "description": "คลังจัดเก็บเครื่องจักร อสร. ริมสระน้ำ 3",
       "dimensions": {
-        "width": 26,
-        "depth": 18,
-        "height": 8
+        "width": 24.0,
+        "depth": 16.0,
+        "height": 8.0
       },
       "layout_position": {
-        "x": -95,
+        "x": -95.0,
         "y": 4.0,
-        "z": -90
+        "z": -55.0
       },
       "color_base": "#94A3B8",
       "roof_type": "industrial_gable",
@@ -1575,14 +1575,14 @@ window.SAINOI_BUILDING_MAPPING = {
       "floors": 2,
       "description": "อาคารที่ทำการและสำนักงานบริหารการขนส่ง อหข. 2 ชั้น (แปลน L-Shape) ด้านหลังมีโรงจอดรถในร่ม 16 คัน ติดวงเวียนใหญ่",
       "dimensions": {
-        "width": 26,
-        "depth": 18,
-        "height": 9
+        "width": 24.0,
+        "depth": 18.0,
+        "height": 9.0
       },
       "layout_position": {
-        "x": -145,
+        "x": -95.0,
         "y": 4.5,
-        "z": -115
+        "z": -125.0
       },
       "color_base": "#FFFFFF",
       "roof_type": "ohk_office_t0026",
@@ -1617,14 +1617,14 @@ window.SAINOI_BUILDING_MAPPING = {
       "floors": 1,
       "description": "อาคารโรงจอดยานพาหนะโครงสร้างเหล็กขนาดใหญ่ 12 ช่องจอด พร้อมช่องตรวจสภาพและบำรุงรักษายานพาหนะ",
       "dimensions": {
-        "width": 30,
-        "depth": 20,
-        "height": 9
+        "width": 24.0,
+        "depth": 24.0,
+        "height": 9.0
       },
       "layout_position": {
-        "x": -145,
+        "x": -95.0,
         "y": 4.5,
-        "z": -150
+        "z": -165.0
       },
       "color_base": "#64748B",
       "roof_type": "ohk_garage_t0027",
@@ -1657,19 +1657,19 @@ window.SAINOI_BUILDING_MAPPING = {
       "category": "workshop",
       "category_th": "โรงซ่อมเครื่องจักรกลหนัก",
       "floors": 1,
-      "description": "โรงงานซ่อมบำรุงเครื่องจักรกลหนักและรถเฉพาะกิจ 1 มีเครนเหนือศีรษะ (Overhead Crane) ขนาด 32 ม. และช่องประตูช่างขนาดใหญ่",
+      "description": "อาคารปฏิบัติการ 1 ซ่อมเครื่องจักรกลหนัก อหข. (ท.0028) โรงซ่อมหลังคาโค้งพร้อม 4 ประตูม้วนเหล็กสีเทาเข้ม บันไดเหล็กภายนอกสีเหลือง และลานคอนกรีตกลับรถบรรทุกหนัก",
       "dimensions": {
-        "width": 32,
-        "depth": 22,
-        "height": 10
+        "width": 34.0,
+        "depth": 20.0,
+        "height": 10.0
       },
       "layout_position": {
-        "x": -100,
+        "x": -135.0,
         "y": 5.0,
-        "z": -165
+        "z": -195.0
       },
       "color_base": "#94A3B8",
-      "roof_type": "ohk_heavy_workshop",
+      "roof_type": "ohk_heavy_garage_t0028",
       "metering": {
         "main_meter_id": "T.0028__FL01__MDB",
         "all_main_meters": [
@@ -1699,19 +1699,19 @@ window.SAINOI_BUILDING_MAPPING = {
       "category": "workshop",
       "category_th": "โรงซ่อมเครื่องจักรกลหนัก",
       "floors": 1,
-      "description": "โรงงานซ่อมบำรุงเครื่องจักรกลหนัก 2 วางขนานกับ ปภ.1 มีส่วนหลังคาต่อขยายเชื่อมระหว่างอาคาร",
+      "description": "อาคารปฏิบัติการ 2 ซ่อมเครื่องจักรกลหนัก อหข. (ท.0029) โรงซ่อมขนาดใหญ่หลังคาโค้ง พร้อมมอนิเตอร์ระบายอากาศและเครนเหนือศีรษะ ประตูบานเลื่อนขนาดใหญ่สำหรับรถเทรลเลอร์",
       "dimensions": {
-        "width": 32,
-        "depth": 22,
-        "height": 10
+        "width": 34.0,
+        "depth": 20.0,
+        "height": 11.0
       },
       "layout_position": {
-        "x": -140,
-        "y": 5.0,
-        "z": -180
+        "x": -175.0,
+        "y": 5.5,
+        "z": -195.0
       },
       "color_base": "#94A3B8",
-      "roof_type": "ohk_heavy_workshop",
+      "roof_type": "ohk_heavy_workshop_t0029",
       "metering": {
         "main_meter_id": "T.0029__FL01__MDB",
         "all_main_meters": [
@@ -1735,5 +1735,5 @@ window.SAINOI_BUILDING_MAPPING = {
     }
   },
   "source_document": "ผังเลขอาคาร 1-02-65 / AS-BUILT DRAWING อขน. SNO-RF11-SN-2/6",
-  "last_updated": "2026-11-04T14:15:00+07:00"
+  "last_updated": "2026-11-13T09:50:00+07:00"
 };

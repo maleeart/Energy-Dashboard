@@ -992,14 +992,18 @@
           <!-- Filled by JS -->
         </div>
 
-        <!-- Top 5 Buildings & Department Breakdown -->
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+        <!-- Top 5 Buildings, Top Surges & Department Breakdown -->
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:14px;">
           <div>
-            <div style="font-size:13px; font-weight:700; color:var(--pri); margin-bottom:6px;">🏢 5 อาคารที่ใช้ไฟฟ้าสูงสุด</div>
+            <div style="font-size:13px; font-weight:700; color:var(--pri); margin-bottom:6px;">🏢 5 อาคารที่ใช้ไฟฟ้าสูงสุด (Major Consumers)</div>
             <div id="repTopBuildingsTable" style="border:1px solid var(--bdr); border-radius:6px; overflow:hidden;"></div>
           </div>
           <div>
-            <div style="font-size:13px; font-weight:700; color:var(--pri); margin-bottom:6px;">📊 สัดส่วนการใช้ไฟฟ้าตามฝ่าย</div>
+            <div style="font-size:13px; font-weight:700; color:#D97706; margin-bottom:6px;">📈 5 อาคารที่ใช้ไฟพุ่งขึ้นสูงสุด (MoM Surges)</div>
+            <div id="repTopSurgesTable" style="border:1px solid var(--bdr); border-radius:6px; overflow:hidden;"></div>
+          </div>
+          <div>
+            <div style="font-size:13px; font-weight:700; color:var(--pri); margin-bottom:6px;">📊 สัดส่วนการใช้ไฟฟ้าตามฝ่าย (7 สายงาน)</div>
             <div id="repDeptBreakdownTable" style="border:1px solid var(--bdr); border-radius:6px; overflow:hidden;"></div>
           </div>
         </div>
@@ -2294,7 +2298,7 @@
       topTbl.innerHTML = `
         <table class="sub-table" style="font-size:11px;">
           <thead>
-            <tr><th>อาคาร</th><th style="text-align:right;">หน่วยใช้ (kWh)</th><th style="text-align:right;">สัดส่วน (%)</th></tr>
+            <tr><th>อาคาร</th><th style="text-align:right;">หน่วยใช้ (kWh)</th><th style="text-align:right;">สัดส่วน</th></tr>
           </thead>
           <tbody>
             ${(rep.topConsumers || []).map(b => `
@@ -2307,6 +2311,27 @@
           </tbody>
         </table>
       `;
+
+      // Top 5 Surges Table (MoM %)
+      const surgeTbl = document.getElementById('repTopSurgesTable');
+      if (surgeTbl) {
+        surgeTbl.innerHTML = `
+          <table class="sub-table" style="font-size:11px;">
+            <thead>
+              <tr><th>อาคาร</th><th style="text-align:right;">เพิ่มขึ้น MoM</th><th style="text-align:right;">หน่วยใช้ (kWh)</th></tr>
+            </thead>
+            <tbody>
+              ${(rep.topSurges && rep.topSurges.length > 0) ? rep.topSurges.map(b => `
+                <tr>
+                  <td><strong>${b.b_code}</strong> ${b.short_name}</td>
+                  <td style="text-align:right; font-weight:700; color:#DC2626;">+${b.mom_change_pct.toFixed(1)}%</td>
+                  <td style="text-align:right;">${b.kwh.toLocaleString('th-TH', {maximumFractionDigits:0})}</td>
+                </tr>
+              `).join('') : '<tr><td colspan="3" style="text-align:center; color:#64748B;">ไม่มีอาคารที่ใช้ไฟเพิ่มขึ้นในรอบนี้</td></tr>'}
+            </tbody>
+          </table>
+        `;
+      }
 
       // Department Breakdown Table
       const deptTbl = document.getElementById('repDeptBreakdownTable');

@@ -975,6 +975,19 @@
           pctOfTotal: totalKwh > 0 ? ((b.monthly_kwh || 0) / totalKwh) * 100 : 0
         }));
 
+      const topSurges = [...buildings]
+        .filter(b => b.mom_change_pct !== null && b.mom_change_pct > 0)
+        .sort((a, b) => (b.mom_change_pct || 0) - (a.mom_change_pct || 0))
+        .slice(0, 5)
+        .map(b => ({
+          b_code: b.b_code,
+          name: b.name,
+          short_name: b.short_name,
+          category_th: b.category_th,
+          mom_change_pct: b.mom_change_pct || 0,
+          kwh: b.monthly_kwh || 0
+        }));
+
       const activeAlerts = this.getActiveAlerts();
 
       return {
@@ -985,6 +998,7 @@
         momChangePct,
         deptTotals,
         topConsumers,
+        topSurges,
         alertsCount: activeAlerts.length,
         alerts: activeAlerts
       };

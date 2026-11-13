@@ -345,11 +345,11 @@
     // Main Football Pitch between D.0019 and D.0025
     setupMainFootballField() {
       const fieldGroup = new THREE.Group();
-      // Main Campus Football Pitch: Situated between D.0019 and D.0025 flanking T.0019
-      const fx = 65;
-      const fz = -20;
-      const fw = 36;
-      const fd = 54;
+      // Main Campus Football Pitch: Situated in the open courtyard flanked by D.0019, T.0014, and D.0025
+      const fx = 80;
+      const fz = -46;
+      const fw = 22;
+      const fd = 34;
 
       const turfMat = new THREE.MeshStandardMaterial({ color: 0x228B22, roughness: 0.85 });
       const pitch = new THREE.Mesh(new THREE.PlaneGeometry(fw, fd), turfMat);
@@ -376,7 +376,7 @@
       midLine.position.set(fx, 0.09, fz);
       fieldGroup.add(midLine);
 
-      const circleGeo = new THREE.RingGeometry(4.8, 5.2, 32);
+      const circleGeo = new THREE.RingGeometry(3.6, 4.0, 32);
       const circle = new THREE.Mesh(circleGeo, lineMat);
       circle.rotation.x = -Math.PI / 2;
       circle.position.set(fx, 0.09, fz);
@@ -384,13 +384,13 @@
 
       const goalMat = new THREE.MeshStandardMaterial({ color: 0xFFFFFF });
       [-fd / 2 + 1, fd / 2 - 1].forEach(gz => {
-        const goalCross = new THREE.Mesh(new THREE.BoxGeometry(6, 0.2, 0.2), goalMat);
-        goalCross.position.set(fx, 2.4, fz + gz);
+        const goalCross = new THREE.Mesh(new THREE.BoxGeometry(4.5, 0.2, 0.2), goalMat);
+        goalCross.position.set(fx, 2.2, fz + gz);
         fieldGroup.add(goalCross);
 
-        [-3, 3].forEach(gx => {
-          const post = new THREE.Mesh(new THREE.BoxGeometry(0.2, 2.4, 0.2), goalMat);
-          post.position.set(fx + gx, 1.2, fz + gz);
+        [-2.25, 2.25].forEach(gx => {
+          const post = new THREE.Mesh(new THREE.BoxGeometry(0.2, 2.2, 0.2), goalMat);
+          post.position.set(fx + gx, 1.1, fz + gz);
           fieldGroup.add(post);
         });
       });
@@ -399,9 +399,9 @@
       const bleacherMat = new THREE.MeshStandardMaterial({ color: 0xCBD5E1, roughness: 0.8 });
       const bleacherW = fw * 0.82;
       [
-        { y: 0.35, d: 2.2, z: fz - fd / 2 - 1.2 },
-        { y: 0.70, d: 1.8, z: fz - fd / 2 - 2.6 },
-        { y: 1.05, d: 1.6, z: fz - fd / 2 - 4.0 }
+        { y: 0.35, d: 2.0, z: fz - fd / 2 - 1.2 },
+        { y: 0.70, d: 1.6, z: fz - fd / 2 - 2.4 },
+        { y: 1.05, d: 1.4, z: fz - fd / 2 - 3.6 }
       ].forEach(step => {
         const terrace = new THREE.Mesh(new THREE.BoxGeometry(bleacherW, step.y, step.d), bleacherMat);
         terrace.position.set(fx, step.y / 2 + 0.05, step.z);
@@ -418,24 +418,24 @@
       const asphaltMat = new THREE.MeshStandardMaterial({ color: 0x334155, roughness: 0.72 });
       const lineMat = new THREE.MeshBasicMaterial({ color: 0xF1F5F9 });
 
-      // 1. Main North-South Entrance Boulevard (Passing T.0020, T.0019, D.0019)
+      // 1. Main North-South Entrance Boulevard (Passing between West Workshops and East Offices)
       const mainBoulevard = new THREE.Mesh(new THREE.PlaneGeometry(12, 360), asphaltMat);
       mainBoulevard.rotation.x = -Math.PI / 2;
-      mainBoulevard.position.set(35, 0.06, -20);
+      mainBoulevard.position.set(8, 0.06, -30);
       mainBoulevard.receiveShadow = true;
       roadGroup.add(mainBoulevard);
 
       for (let z = -170; z <= 130; z += 12) {
         const dash = new THREE.Mesh(new THREE.PlaneGeometry(0.4, 5), lineMat);
         dash.rotation.x = -Math.PI / 2;
-        dash.position.set(35, 0.08, z);
+        dash.position.set(8, 0.08, z);
         roadGroup.add(dash);
       }
 
-      // 2. Central Workshop Avenue (Between Spine Workshops and West Ponds)
-      const spineRoad = new THREE.Mesh(new THREE.PlaneGeometry(10, 340), asphaltMat);
+      // 2. Central Workshop Avenue (Behind West Spine Workshops)
+      const spineRoad = new THREE.Mesh(new THREE.PlaneGeometry(8, 280), asphaltMat);
       spineRoad.rotation.x = -Math.PI / 2;
-      spineRoad.position.set(-25, 0.05, -30);
+      spineRoad.position.set(-60, 0.05, -50);
       spineRoad.receiveShadow = true;
       roadGroup.add(spineRoad);
 
@@ -448,12 +448,14 @@
 
       // 4. Horizontal Cross Streets
       const hRoads = [
-        { z: 140, x: 35, width: 90 }, // Front Gate & Substation Street
-        { z: 50, x: 0, width: 140 },  // Front of T.0020 & T.0007
-        { z: 12, x: 0, width: 140 },  // Front of T.0019 & T.0006
-        { z: -48, x: 45, width: 180 }, // Between D.0019, Canteen, Roundabout
-        { z: -100, x: -10, width: 220 }, // North connection
-        { z: -150, x: -60, width: 200 }  // Heavy workshop & North connection
+        { z: 140, x: 8, width: 80 },   // Front Gate & Substation Street
+        { z: 50, x: 8, width: 90 },    // Front of T.0020 & T.0007
+        { z: 15, x: 8, width: 90 },    // Front of T.0019 & T.0006
+        { z: -20, x: 8, width: 90 },   // Street between T.0008 & Football Courtyard
+        { z: -55, x: 8, width: 90 },   // Street between T.0010 & D.0019
+        { z: -85, x: 8, width: 90 },   // Street between T.0009 & T.0014
+        { z: -115, x: -15, width: 130 }, // North connection & Canteen D.0017 street
+        { z: -150, x: -35, width: 140 }  // Heavy workshop T.0012 street
       ];
 
       hRoads.forEach(r => {
@@ -465,21 +467,28 @@
       });
 
       // 5. Eastern Science & Chemistry Roundabout (in front of T.0018 & T.0016)
-      const eastRound = this.createRoundabout(120, -60, 16, 7.5);
+      const eastRound = this.createRoundabout(125, -60, 14, 6.5);
       roadGroup.add(eastRound);
 
+      // East Boulevard Connector to Chemistry Roundabout
+      const eastConn = new THREE.Mesh(new THREE.PlaneGeometry(80, 8), asphaltMat);
+      eastConn.rotation.x = -Math.PI / 2;
+      eastConn.position.set(65, 0.05, -60);
+      eastConn.receiveShadow = true;
+      roadGroup.add(eastConn);
+
       // Diagonal Road Connector from T.0018 Roundabout to OHK Zone
-      const ohkDiag = new THREE.Mesh(new THREE.PlaneGeometry(9, 90), asphaltMat);
+      const ohkDiag = new THREE.Mesh(new THREE.PlaneGeometry(9, 85), asphaltMat);
       ohkDiag.rotation.x = -Math.PI / 2;
       ohkDiag.rotation.z = 0.55; // Angle northwest
-      ohkDiag.position.set(-95, 0.05, -75);
+      ohkDiag.position.set(-100, 0.05, -95);
       roadGroup.add(ohkDiag);
 
       // Marked Parking Bays in front of D.0019, T.0019, and East Roundabout
       const parkingLots = [
-        { x: 52, z: -48, w: 12, d: 24 },
-        { x: 52, z: 0, w: 10, d: 20 },
-        { x: 120, z: -85, w: 22, d: 10 } // Parking bay near T.0016 & T.0018
+        { x: 30, z: -50, w: 10, d: 20 },
+        { x: 22, z: 5, w: 8, d: 20 },
+        { x: 135, z: -75, w: 18, d: 10 } // Parking bay near T.0016 & T.0018
       ];
 
       parkingLots.forEach(lot => {
@@ -576,52 +585,52 @@
       // ── 1. Curved Peanut-Shaped Retention Pond (สระน้ำ อหข. WL +99.00) ──
       const pondGroup = new THREE.Group();
       // South lobe of pond (near D.0031)
-      const lobe1 = new THREE.Mesh(new THREE.CylinderGeometry(14, 14, 0.2, 32), waterMat);
-      lobe1.position.set(-185, 0.1, -170);
+      const lobe1 = new THREE.Mesh(new THREE.CylinderGeometry(11, 11, 0.2, 32), waterMat);
+      lobe1.position.set(-170, 0.1, -148);
       pondGroup.add(lobe1);
 
       // North lobe of pond
-      const lobe2 = new THREE.Mesh(new THREE.CylinderGeometry(12, 12, 0.2, 32), waterMat);
-      lobe2.position.set(-188, 0.1, -195);
+      const lobe2 = new THREE.Mesh(new THREE.CylinderGeometry(10, 10, 0.2, 32), waterMat);
+      lobe2.position.set(-173, 0.1, -168);
       pondGroup.add(lobe2);
 
       // Connecting neck
-      const neck = new THREE.Mesh(new THREE.BoxGeometry(16, 0.2, 24), waterMat);
-      neck.position.set(-186, 0.1, -182);
+      const neck = new THREE.Mesh(new THREE.BoxGeometry(13, 0.2, 18), waterMat);
+      neck.position.set(-171, 0.1, -158);
       pondGroup.add(neck);
 
       // Stone border around pond
-      const curbLobe1 = new THREE.Mesh(new THREE.CylinderGeometry(14.8, 14.8, 0.35, 32, 1, true), curbMat);
-      curbLobe1.position.set(-185, 0.2, -170);
+      const curbLobe1 = new THREE.Mesh(new THREE.CylinderGeometry(11.8, 11.8, 0.35, 32, 1, true), curbMat);
+      curbLobe1.position.set(-170, 0.2, -148);
       pondGroup.add(curbLobe1);
 
-      const curbLobe2 = new THREE.Mesh(new THREE.CylinderGeometry(12.8, 12.8, 0.35, 32, 1, true), curbMat);
-      curbLobe2.position.set(-188, 0.2, -195);
+      const curbLobe2 = new THREE.Mesh(new THREE.CylinderGeometry(10.8, 10.8, 0.35, 32, 1, true), curbMat);
+      curbLobe2.position.set(-173, 0.2, -168);
       pondGroup.add(curbLobe2);
 
       // Waterfront Gazebo Pavilion (ศาลาพักผ่อนริมน้ำ อหข.) with Pier
       const pierMat = new THREE.MeshStandardMaterial({ color: 0x78350F, roughness: 0.8 });
-      const pier = new THREE.Mesh(new THREE.BoxGeometry(2.4, 0.3, 10), pierMat);
-      pier.position.set(-170, 0.25, -180);
+      const pier = new THREE.Mesh(new THREE.BoxGeometry(2.4, 0.3, 8), pierMat);
+      pier.position.set(-160, 0.25, -158);
       pondGroup.add(pier);
 
       const gazeboRoofMat = new THREE.MeshStandardMaterial({ color: 0x1E293B, roughness: 0.6 });
-      const gazeboRoof = new THREE.Mesh(new THREE.ConeGeometry(3.6, 2.2, 8), gazeboRoofMat);
-      gazeboRoof.position.set(-173, 3.2, -180);
+      const gazeboRoof = new THREE.Mesh(new THREE.ConeGeometry(3.2, 2.0, 8), gazeboRoofMat);
+      gazeboRoof.position.set(-162, 3.0, -158);
       gazeboRoof.castShadow = true;
       pondGroup.add(gazeboRoof);
 
       // Gazebo deck and columns
-      const gazeboDeck = new THREE.Mesh(new THREE.CylinderGeometry(3.2, 3.2, 0.3, 8), pierMat);
-      gazeboDeck.position.set(-173, 0.3, -180);
+      const gazeboDeck = new THREE.Mesh(new THREE.CylinderGeometry(2.8, 2.8, 0.3, 8), pierMat);
+      gazeboDeck.position.set(-162, 0.3, -158);
       pondGroup.add(gazeboDeck);
 
       for (let a = 0; a < Math.PI * 2; a += Math.PI / 4) {
         const col = new THREE.Mesh(
-          new THREE.CylinderGeometry(0.08, 0.08, 2.6, 6),
+          new THREE.CylinderGeometry(0.08, 0.08, 2.4, 6),
           new THREE.MeshStandardMaterial({ color: 0xCBD5E1 })
         );
-        col.position.set(-173 + Math.cos(a) * 2.8, 1.6, -180 + Math.sin(a) * 2.8);
+        col.position.set(-162 + Math.cos(a) * 2.4, 1.5, -158 + Math.sin(a) * 2.4);
         col.castShadow = true;
         pondGroup.add(col);
       }
@@ -629,10 +638,10 @@
       ohkGroup.add(pondGroup);
 
       // ── 2. Grand OHK Roundabout (วงเวียนใหญ่ อหข.) ──
-      // Positioned cleanly without intersecting any building: Center (-130, -160)
-      const rCenter = { x: -130, z: -160 };
-      const outerR = 20;
-      const innerR = 11;
+      // Positioned cleanly without intersecting any building: Center (-135, -150)
+      const rCenter = { x: -135, z: -150 };
+      const outerR = 16;
+      const innerR = 8.5;
 
       // Asphalt Ring
       const ringGeo = new THREE.RingGeometry(innerR, outerR, 40);
@@ -650,7 +659,7 @@
       ohkGroup.add(mound);
 
       // Decorative Walkway Ring inside Roundabout Mound
-      const walkRing1 = new THREE.Mesh(new THREE.RingGeometry(4.5, 6.5, 32), new THREE.MeshBasicMaterial({ color: 0xE2E8F0 }));
+      const walkRing1 = new THREE.Mesh(new THREE.RingGeometry(3.6, 5.2, 32), new THREE.MeshBasicMaterial({ color: 0xE2E8F0 }));
       walkRing1.rotation.x = -Math.PI / 2;
       walkRing1.position.set(rCenter.x, 0.81, rCenter.z);
       ohkGroup.add(walkRing1);
@@ -664,41 +673,41 @@
       // Pink Ixora Flowerbeds in Roundabout Island (Matching photo: ท.0026.JPG)
       const flowerMat = new THREE.MeshStandardMaterial({ color: 0xF43F5E, roughness: 0.7 });
       for (let fa = 0; fa < Math.PI * 2; fa += Math.PI / 4) {
-        const fx = rCenter.x + Math.cos(fa) * 7.2;
-        const fz = rCenter.z + Math.sin(fa) * 7.2;
-        const bush = new THREE.Mesh(new THREE.SphereGeometry(1.1, 8, 8), flowerMat);
+        const fx = rCenter.x + Math.cos(fa) * 5.8;
+        const fz = rCenter.z + Math.sin(fa) * 5.8;
+        const bush = new THREE.Mesh(new THREE.SphereGeometry(0.9, 8, 8), flowerMat);
         bush.position.set(fx, 0.9, fz);
         ohkGroup.add(bush);
       }
 
       // ── 3. Heavy Vehicle Apron & Maneuvering Yard (ลานคอนกรีตลานกลับรถ อหข.) ──
-      // Positioned in front of Heavy Workshops T.0028 & T.0029
-      const apronGeo = new THREE.PlaneGeometry(65, 55);
+      // Centered in front of Heavy Workshops T.0028 & T.0029
+      const apronGeo = new THREE.PlaneGeometry(75, 60);
       const apron = new THREE.Mesh(apronGeo, concreteApronMat);
       apron.rotation.x = -Math.PI / 2;
-      apron.position.set(-120, 0.05, -115);
+      apron.position.set(-135, 0.05, -150);
       apron.receiveShadow = true;
       ohkGroup.add(apron);
 
       // ── 4. OHK Road Network (Access & Perimeter Ring Roads - NO Football Pitch in OHK) ──
       // South Access Road from campus spine into OHK Roundabout
-      const accessRoad = new THREE.Mesh(new THREE.PlaneGeometry(9, 70), asphaltMat);
+      const accessRoad = new THREE.Mesh(new THREE.PlaneGeometry(9, 65), asphaltMat);
       accessRoad.rotation.x = -Math.PI / 2;
-      accessRoad.position.set(-130, 0.06, -115);
+      accessRoad.position.set(-135, 0.06, -115);
       accessRoad.receiveShadow = true;
       ohkGroup.add(accessRoad);
 
-      // North Perimeter Loop Road behind T.0026 Office
-      const northLoop = new THREE.Mesh(new THREE.PlaneGeometry(100, 8), asphaltMat);
+      // North Perimeter Loop Road behind T.0028 & T.0029
+      const northLoop = new THREE.Mesh(new THREE.PlaneGeometry(85, 8), asphaltMat);
       northLoop.rotation.x = -Math.PI / 2;
-      northLoop.position.set(-130, 0.06, -235);
+      northLoop.position.set(-155, 0.06, -215);
       northLoop.receiveShadow = true;
       ohkGroup.add(northLoop);
 
       // East Perimeter Road behind garage T.0027
-      const eastLoop = new THREE.Mesh(new THREE.PlaneGeometry(8, 75), asphaltMat);
+      const eastLoop = new THREE.Mesh(new THREE.PlaneGeometry(8, 65), asphaltMat);
       eastLoop.rotation.x = -Math.PI / 2;
-      eastLoop.position.set(-45, 0.06, -200);
+      eastLoop.position.set(-75, 0.06, -165);
       eastLoop.receiveShadow = true;
       ohkGroup.add(eastLoop);
 
@@ -1249,8 +1258,12 @@
         this.scene.add(labelSprite);
         this.labelSprites.set(bData.b_code, labelSprite);
 
-        if (bData.quality_status !== 'normal') {
-          const warnSprite = this.createWarningSprite(bData);
+        const hasQualityWarn = bData.quality_status !== 'normal';
+        const hasTargetAlert = bData.target_status === 'exceeded' && bData.target_variance_pct !== null && bData.target_variance_pct > 10;
+        const hasSurgeAlert = bData.mom_change_pct !== null && bData.mom_change_pct > 20;
+
+        if (hasQualityWarn || hasTargetAlert || hasSurgeAlert) {
+          const warnSprite = this.createWarningSprite(bData, { hasQualityWarn, hasTargetAlert, hasSurgeAlert });
           this.scene.add(warnSprite);
           this.warningSprites.set(bData.b_code, warnSprite);
         }
@@ -2311,34 +2324,56 @@
       return sprite;
     }
 
-    createWarningSprite(bData) {
+    createWarningSprite(bData, alertTypes = {}) {
       const canvas = document.createElement('canvas');
-      canvas.width = 64;
+      canvas.width = 160;
       canvas.height = 64;
       const ctx = canvas.getContext('2d');
 
-      ctx.fillStyle = '#DC2626';
+      let badgeBg = '#DC2626';
+      let badgeText = '!';
+      let icon = '⚠️';
+
+      if (alertTypes.hasTargetAlert) {
+        badgeBg = '#DC2626'; // Red
+        const v = bData.target_variance_pct || 0;
+        badgeText = `+${v.toFixed(0)}%`;
+        icon = '🚨';
+      } else if (alertTypes.hasSurgeAlert) {
+        badgeBg = '#D97706'; // Amber
+        const m = bData.mom_change_pct || 0;
+        badgeText = `+${m.toFixed(0)}%`;
+        icon = '⚠️';
+      } else {
+        badgeBg = '#DC2626';
+        badgeText = 'ไม่มีข้อมูล';
+        icon = 'ℹ️';
+      }
+
+      // Draw rounded pill badge
+      ctx.fillStyle = badgeBg;
       ctx.beginPath();
-      ctx.arc(32, 32, 26, 0, Math.PI * 2);
+      ctx.roundRect(4, 8, 152, 48, 14);
       ctx.fill();
 
       ctx.strokeStyle = '#FFFFFF';
-      ctx.lineWidth = 4;
+      ctx.lineWidth = 3.5;
       ctx.stroke();
 
-      ctx.font = 'bold 32px sans-serif';
+      ctx.font = 'bold 22px Sarabun, sans-serif';
       ctx.fillStyle = '#FFFFFF';
       ctx.textAlign = 'center';
-      ctx.fillText('!', 32, 43);
+      ctx.fillText(`${icon} ${badgeText}`, 80, 40);
 
       const texture = new THREE.CanvasTexture(canvas);
+      texture.minFilter = THREE.LinearFilter;
       const spriteMat = new THREE.SpriteMaterial({ map: texture, transparent: true, depthTest: false });
       const sprite = new THREE.Sprite(spriteMat);
 
       const { height } = bData.dimensions;
       const { x, z } = bData.layout_position;
-      sprite.position.set(x + bData.dimensions.width * 0.45, height + 10, z);
-      sprite.scale.set(3.8, 3.8, 1);
+      sprite.position.set(x + bData.dimensions.width * 0.45, height + 10.5, z);
+      sprite.scale.set(8.5, 3.4, 1);
       sprite.userData = { b_code: bData.b_code };
 
       return sprite;
