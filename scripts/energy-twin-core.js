@@ -477,6 +477,228 @@
       }
     },
 
+    // Export current layout table as CSV
+    exportLayoutCsv() {
+      if (!this.mappingData || !this.mappingData.buildings) return;
+      const buildings = this.mappingData.buildings;
+      const headers = [
+        'Building_Code', 'Building_Name', 'Category', 'Zone',
+        'X_Coord', 'Z_Coord', 'Y_Coord',
+        'Width_m', 'Depth_m', 'Height_m',
+        'Primary_Meter_ID'
+      ];
+      const rows = [headers.join(',')];
+
+      const zoneLookup = {
+        'T.0019': 'East (สำนักงาน & แล็บ)', 'D.0019': 'East (สำนักงาน & แล็บ)', 'T.0020': 'East (สำนักงาน & แล็บ)',
+        'D.0025': 'East (สำนักงาน & แล็บ)', 'T.0017': 'East (สำนักงาน & แล็บ)', 'T.0018': 'East (สำนักงาน & แล็บ)',
+        'T.0007': 'Central (โรงงาน & คลัง)', 'T.0006': 'Central (โรงงาน & คลัง)', 'T.0008': 'Central (โรงงาน & คลัง)',
+        'T.0010': 'Central (โรงงาน & คลัง)', 'T.0009': 'Central (โรงงาน & คลัง)', 'T.0011': 'Central (โรงงาน & คลัง)',
+        'T.0012': 'Central (โรงงาน & คลัง)', 'D.0017': 'Central (โรงงาน & คลัง)', 'D.0026': 'Central (โรงงาน & คลัง)',
+        'T.0014': 'Central (โรงงาน & คลัง)', 'T.0015': 'Central (โรงงาน & คลัง)', 'T.0016': 'Central (โรงงาน & คลัง)',
+        'T.0023': 'Central (โรงงาน & คลัง)', 'T.0025': 'Central (โรงงาน & คลัง)',
+        'D.0015': 'OHK (ศูนย์ขนส่ง อหข.)', 'D.0031': 'OHK (ศูนย์ขนส่ง อหข.)', 'D.0033': 'OHK (ศูนย์ขนส่ง อหข.)',
+        'T.0026': 'OHK (ศูนย์ขนส่ง อหข.)', 'T.0027': 'OHK (ศูนย์ขนส่ง อหข.)', 'T.0028': 'OHK (ศูนย์ขนส่ง อหข.)',
+        'T.0029': 'OHK (ศูนย์ขนส่ง อหข.)',
+        'B.0001': 'West (บ้านพัก & ริมคลอง)', 'T.0022': 'West (บ้านพัก & ริมคลอง)'
+      };
+
+      Object.entries(buildings).sort(([a], [b]) => a.localeCompare(b)).forEach(([code, b]) => {
+        const pos = b.layout_position || { x: 0, z: 0, y: 0 };
+        const dim = b.dimensions || { width: 0, depth: 0, height: 0 };
+        const zn = zoneLookup[code] || '-';
+        const row = [
+          code,
+          `"${(b.name || '').replace(/"/g, '""')}"`,
+          `"${(b.category_th || '').replace(/"/g, '""')}"`,
+          `"${zn}"`,
+          pos.x,
+          pos.z,
+          pos.y !== undefined ? pos.y : 0,
+          dim.width || 0,
+          dim.depth || 0,
+          dim.height || 0,
+          `"${b.primary_meter || '-'}"`
+        ];
+        rows.push(row.join(','));
+      });
+
+      const csvContent = '\uFEFF' + rows.join('\r\n');
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'sainoi_campus_layout.csv';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    },
+
+    // Export 2D Matrix Grid Map as CSV
+    exportGridMapCsv() {
+      if (!this.mappingData || !this.mappingData.buildings) return;
+      const buildings = this.mappingData.buildings;
+      const gridStep = 10;
+      const xMin = -210, xMax = 180;
+      const zMin = -220, zMax = 140;
+
+      const xValues = [];
+      for (let x = xMin; x <= xMax; x += gridStep) xValues.push(x);
+      const zValues = [];
+      for (let z = zMin; z <= zMax; z += gridStep) zValues.push(z);
+
+      const itemGrid = {};
+      Object.entries(buildings).forEach(([code, b]) => {
+        if (!b.layout_position) return;
+        const gx = Math.round(b.layout_position.x / gridStep) * gridStep;
+        const gz = Math.round(b.layout_position.z / gridStep) * gridStep;
+        itemGrid[`${gx},${gz}`] = code;
+      });
+
+      const headerRow = ['Z \\ X (m)', ...xValues.map(x => `X=${x}`)];
+      const rows = [headerRow.join(',')];
+
+      zValues.forEach(z => {
+        const row = [`Z=${z}`];
+        xValues.forEach(x => {
+          const val = itemGrid[`${x},${z}`] || '';
+          row.push(val);
+        });
+        rows.push(row.join(','));
+      });
+
+      const csvContent = '\uFEFF' + rows.join('\r\n');
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'sainoi_campus_grid_map.csv';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    },
+
+    // Parse CSV Text (Table format or 2D Grid Map matrix format)
+    parseLayoutCsvText(csvText) {
+      if (!csvText || typeof csvText !== 'string') throw new Error('ไฟล์ CSV ว่างเปล่า');
+      const lines = csvText.replace(/^\uFEFF/, '').trim().split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+      if (lines.length < 2) throw new Error('ไฟล์ CSV มีข้อมูลไม่เพียงพอ');
+
+      const parseLine = (line) => {
+        const result = [];
+        let cur = '';
+        let inQuotes = false;
+        for (let i = 0; i < line.length; i++) {
+          const ch = line[i];
+          if (ch === '"') {
+            if (inQuotes && line[i + 1] === '"') {
+              cur += '"';
+              i++;
+            } else {
+              inQuotes = !inQuotes;
+            }
+          } else if (ch === ',' && !inQuotes) {
+            result.push(cur.trim());
+            cur = '';
+          } else {
+            cur += ch;
+          }
+        }
+        result.push(cur.trim());
+        return result;
+      };
+
+      const firstRow = parseLine(lines[0]);
+      const headerLower = firstRow.map(h => h.toLowerCase());
+
+      let bCodeIdx = -1, xIdx = -1, zIdx = -1;
+      headerLower.forEach((h, idx) => {
+        if (h.includes('building_code') || h.includes('b_code') || h === 'code' || h.includes('รหัส')) bCodeIdx = idx;
+        if (h.includes('x_coord') || h === 'x' || h.includes('พิกัด x')) xIdx = idx;
+        if (h.includes('z_coord') || h === 'z' || h.includes('พิกัด z')) zIdx = idx;
+      });
+
+      const layoutMap = {};
+      const codePattern = /(T\.\d{4}|D\.\d{4}|B\.\d{4})/i;
+
+      if (bCodeIdx !== -1 && xIdx !== -1 && zIdx !== -1) {
+        // Format A: Coordinates Table
+        for (let i = 1; i < lines.length; i++) {
+          const row = parseLine(lines[i]);
+          if (row.length <= Math.max(bCodeIdx, xIdx, zIdx)) continue;
+          const rawCode = row[bCodeIdx].replace(/["']/g, '').trim().toUpperCase();
+          const match = rawCode.match(codePattern);
+          const code = match ? match[1].toUpperCase() : rawCode;
+          const xVal = parseFloat(row[xIdx]);
+          const zVal = parseFloat(row[zIdx]);
+          if (code && !isNaN(xVal) && !isNaN(zVal)) {
+            layoutMap[code] = { x: xVal, z: zVal };
+          }
+        }
+      } else {
+        // Format B: 2D Grid Map Matrix
+        const colXMap = {};
+        for (let col = 1; col < firstRow.length; col++) {
+          const matchX = firstRow[col].match(/[-+]?\d+(\.\d+)?/);
+          if (matchX) {
+            colXMap[col] = parseFloat(matchX[0]);
+          }
+        }
+
+        for (let r = 1; r < lines.length; r++) {
+          const row = parseLine(lines[r]);
+          if (row.length === 0 || !row[0]) continue;
+          const matchZ = row[0].match(/[-+]?\d+(\.\d+)?/);
+          if (!matchZ) continue;
+          const zVal = parseFloat(matchZ[0]);
+
+          for (let col = 1; col < row.length; col++) {
+            const cell = row[col];
+            if (!cell || colXMap[col] === undefined) continue;
+            const matches = cell.match(/(T\.\d{4}|D\.\d{4}|B\.\d{4})/gi);
+            if (matches) {
+              matches.forEach(m => {
+                const code = m.toUpperCase();
+                layoutMap[code] = { x: colXMap[col], z: zVal };
+              });
+            }
+          }
+        }
+      }
+
+      const count = Object.keys(layoutMap).length;
+      if (count === 0) {
+        throw new Error('ไม่พบข้อมูลรหัสอาคารและพิกัดที่ถูกต้องในไฟล์ CSV (รองรับรูปแบบ Table หรือ 2D Grid Matrix)');
+      }
+
+      this.saveCustomLayout(layoutMap);
+      return { count, layoutMap };
+    },
+
+    // Parse XLSX (Excel) file using SheetJS (window.XLSX)
+    parseLayoutXlsx(workbook) {
+      if (!workbook || !workbook.SheetNames) throw new Error('ไฟล์ Excel ไม่ถูกต้อง');
+      const sheetNames = workbook.SheetNames;
+      
+      let targetSheet = null;
+      if (sheetNames.includes('Building_Coordinates')) {
+        targetSheet = workbook.Sheets['Building_Coordinates'];
+      } else if (sheetNames.includes('Campus_2D_Grid_Map')) {
+        targetSheet = workbook.Sheets['Campus_2D_Grid_Map'];
+      } else {
+        targetSheet = workbook.Sheets[sheetNames[0]];
+      }
+
+      if (!window.XLSX || !window.XLSX.utils || !window.XLSX.utils.sheet_to_csv) {
+        throw new Error('ไม่พบไลบรารีแปลงไฟล์ XLSX ในเบราว์เซอร์ กรุณาบันทึกเป็นไฟล์ .CSV');
+      }
+
+      const csvText = window.XLSX.utils.sheet_to_csv(targetSheet);
+      return this.parseLayoutCsvText(csvText);
+    },
+
     // Commit allocation CSV to GitHub repository via GitHub REST API
     async commitAllocationsToGithub(pat, commitMessage = 'Update department allocations via Allocation Manager') {
       if (!pat) throw new Error('กรุณาระบุ GitHub Personal Access Token (PAT)');

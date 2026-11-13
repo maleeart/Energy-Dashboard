@@ -13,6 +13,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 
   <!-- Core Scripts & Fallback Mapping -->
   <script src="data/building_mapping.js"></script>
@@ -1265,9 +1266,32 @@
           </div>
           <div style="display:flex; gap:6px; flex-wrap:wrap;">
             <button class="btn-action primary" onclick="saveLayoutEditorChanges()" title="บันทึกพิกัดลงในหน่วยความจำเบราว์เซอร์">💾 บันทึกผังนี้</button>
-            <button class="btn-action" onclick="copyLayoutJsonToClipboard()" title="คัดลอกพิกัดทุกอาคารเป็น JSON เพื่อนำไปส่งต่อให้ทีมพัฒนา">📋 คัดลอก JSON</button>
-            <button class="btn-action" onclick="openImportLayoutPrompt()" title="นำเข้าพิกัดจากข้อความ JSON">📥 นำเข้า JSON</button>
             <button class="btn-action danger" onclick="resetLayoutEditorToDefault()" title="คืนค่าพิกัดเริ่มต้นจากไฟล์ระบบ">🔄 คืนค่าเริ่มต้น</button>
+          </div>
+        </div>
+
+        <!-- Excel & CSV Import/Export Toolbar -->
+        <div style="background:#F8FAFC; border:1px solid var(--bdr); border-radius:6px; padding:8px 12px; display:flex; align-items:center; justify-content:space-between; gap:8px; flex-wrap:wrap;">
+          <div style="display:flex; align-items:center; gap:6px; font-size:11px; font-weight:700; color:var(--pri);">
+            <span>📁 ส่งออก / นำเข้าไฟล์:</span>
+          </div>
+          <div style="display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
+            <a href="data/sainoi_campus_layout_template.xlsx" download="sainoi_campus_layout_template.xlsx" class="btn-action" style="text-decoration:none; color:#15803D; border-color:#86EFAC; background:#F0FDF4;" title="ดาวน์โหลดไฟล์ Excel (.xlsx) ที่มีทั้งผังเซลล์ 2D Grid Map, ตารางพิกัดอาคาร และวัตถุประกอบรอบๆ">
+              📊 ดาวน์โหลด Excel (.xlsx)
+            </a>
+            <button type="button" class="btn-action" onclick="EnergyTwin.exportLayoutCsv()" title="ดาวน์โหลดตารางพิกัดในรูปแบบ CSV">
+              📄 ตารางพิกัด (CSV)
+            </button>
+            <button type="button" class="btn-action" onclick="EnergyTwin.exportGridMapCsv()" title="ดาวน์โหลดผังแบบ Matrix 2D Grid ในรูปแบบ CSV (1 ช่อง = 10x10m)">
+              🗺️ ผัง 2D Grid (CSV)
+            </button>
+            <button type="button" class="btn-action primary" onclick="document.getElementById('layoutFileInput').click()" title="อัปโหลดไฟล์ Excel (.xlsx), CSV หรือ JSON ที่แก้ไขแล้วเพื่อปรับพิกัด 3D ทันที">
+              📥 อัปโหลดไฟล์ (Excel / CSV)
+            </button>
+            <button type="button" class="btn-action" onclick="copyLayoutJsonToClipboard()" title="คัดลอกพิกัดทุกอาคารเป็น JSON">
+              📋 คัดลอก JSON
+            </button>
+            <input type="file" id="layoutFileInput" accept=".xlsx,.xls,.csv,.json" style="display:none;" onchange="onLayoutFileSelected(event)">
           </div>
         </div>
 
@@ -2866,6 +2890,48 @@
         alert('✅ นำเข้าข้อมูลผังอาคารและอัปเดตโมเดล 3D สำเร็จเรียบร้อย!');
       } catch (e) {
         alert('❌ นำเข้าข้อมูลไม่สำเร็จ: ' + e.message);
+      }
+    }
+
+    async function onLayoutFileSelected(event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+
+      const fileName = file.name.toLowerCase();
+      try {
+        let res = null;
+        if (fileName.endsWith('.xlsx') || fileName.endsWith('.xls')) {
+          if (!window.XLSX) {
+            throw new Error('ไม่พบไลบรารี SheetJS (XLSX) บนเบราว์เซอร์ กรุณาบันทึกเป็นไฟล์ .CSV');
+          }
+          const data = await file.arrayBuffer();
+          const workbook = window.XLSX.read(data, { type: 'array' });
+          res = EnergyTwin.parseLayoutXlsx(workbook);
+        } else if (fileName.endsWith('.csv') || fileName.endsWith('.txt')) {
+          const text = await file.text();
+          res = EnergyTwin.parseLayoutCsvText(text);
+        } else if (fileName.endsWith('.json')) {
+          const text = await file.text();
+          res = { count: Object.keys(JSON.parse(text)).length };
+          EnergyTwin.importCustomLayout(text);
+        } else {
+          throw new Error('รองรับเฉพาะไฟล์ .xlsx, .csv หรือ .json เท่านั้น');
+        }
+
+        // Apply updated positions to 3D scene
+        const bList = EnergyTwin.getBuildingsList();
+        bList.forEach(b => {
+          if (campusScene && b.layout_position) {
+            campusScene.updateBuildingPosition(b.b_code, b.layout_position.x, b.layout_position.z, b.layout_position.y);
+          }
+        });
+        renderLayoutEditorList();
+        alert(`✅ นำเข้าไฟล์สำเร็จ!\nปรับปรุงตำแหน่งของอาคารบนโมเดล 3D เรียบร้อยแล้ว (${res ? res.count : bList.length} อาคาร)`);
+      } catch (err) {
+        console.error('Error importing layout file:', err);
+        alert(`❌ ไม่สามารถนำเข้าไฟล์ได้: ${err.message}`);
+      } finally {
+        event.target.value = '';
       }
     }
   </script>
