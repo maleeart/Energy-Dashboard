@@ -279,6 +279,9 @@
         // Initialize campus boundary extents
         this.loadCampusBounds();
 
+        // Check and sync latest system default layout if available
+        await this.syncLayoutWithSystemDefault(false);
+
         // Default year and month range (default to full year matching index.html)
         if (this.summaryData && this.summaryData.periods) {
           const months = this.summaryData.periods.months || [];
@@ -476,6 +479,21 @@
               if (pos.hidden !== undefined) {
                 this.mappingData.buildings[bid].hidden = Boolean(pos.hidden);
               }
+              if (pos.dimensions || pos.width !== undefined || pos.depth !== undefined) {
+                if (!this.mappingData.buildings[bid].dimensions) {
+                  this.mappingData.buildings[bid].dimensions = { width: 20, depth: 20, height: 10 };
+                }
+                const dims = pos.dimensions || pos;
+                if (dims.width !== undefined && !isNaN(Number(dims.width))) {
+                  this.mappingData.buildings[bid].dimensions.width = Number(dims.width);
+                }
+                if (dims.depth !== undefined && !isNaN(Number(dims.depth))) {
+                  this.mappingData.buildings[bid].dimensions.depth = Number(dims.depth);
+                }
+                if (dims.height !== undefined && !isNaN(Number(dims.height))) {
+                  this.mappingData.buildings[bid].dimensions.height = Number(dims.height);
+                }
+              }
             }
           });
         }
@@ -506,6 +524,21 @@
             if (pos.hidden !== undefined) {
               this.mappingData.buildings[bid].hidden = Boolean(pos.hidden);
             }
+            if (pos.dimensions || pos.width !== undefined || pos.depth !== undefined) {
+              if (!this.mappingData.buildings[bid].dimensions) {
+                this.mappingData.buildings[bid].dimensions = { width: 20, depth: 20, height: 10 };
+              }
+              const dims = pos.dimensions || pos;
+              if (dims.width !== undefined && !isNaN(Number(dims.width))) {
+                this.mappingData.buildings[bid].dimensions.width = Number(dims.width);
+              }
+              if (dims.depth !== undefined && !isNaN(Number(dims.depth))) {
+                this.mappingData.buildings[bid].dimensions.depth = Number(dims.depth);
+              }
+              if (dims.height !== undefined && !isNaN(Number(dims.height))) {
+                this.mappingData.buildings[bid].dimensions.height = Number(dims.height);
+              }
+            }
           }
           fullMap[bid] = { ...(fullMap[bid] || {}), ...pos };
         });
@@ -517,6 +550,95 @@
         console.error('Failed to save custom layout to localStorage:', e);
         return false;
       }
+    },
+
+    updateBuildingDimension(bid, dimKey, val) {
+      if (!this.mappingData?.buildings?.[bid]) return false;
+      const b = this.mappingData.buildings[bid];
+      if (!b.dimensions) b.dimensions = { width: 20, depth: 20, height: 10 };
+      const num = Number(val);
+      if (isNaN(num) || num <= 0) return false;
+      b.dimensions[dimKey] = num;
+      return this.saveCustomLayout({ [bid]: { dimensions: { ...b.dimensions } } });
+    },
+
+    async syncLayoutWithSystemDefault(force = false) {
+      try {
+        const hasLocalDraft = typeof localStorage !== 'undefined' ? localStorage.getItem('sainoi_custom_layout') : null;
+        if (!force && hasLocalDraft) {
+          return false;
+        }
+
+        const host = (typeof window !== 'undefined' && window.location && window.location.hostname) ? window.location.hostname : '127.0.0.1';
+        let layout = null;
+        try {
+          const apiRes = await fetch('http://' + host + ':3333/api/get-default-layout', { cache: 'no-store' });
+          if (apiRes.ok) layout = await apiRes.json();
+        } catch (_) {}
+
+        if (!layout) {
+          const jsonRes = await fetch('data/campus_layout_default.json?t=' + Date.now());
+          if (jsonRes.ok) layout = await jsonRes.json();
+        }
+
+        if (layout) {
+          if (force && typeof localStorage !== 'undefined') {
+            try {
+              localStorage.removeItem('sainoi_custom_layout');
+              localStorage.removeItem('sainoi_custom_roads');
+              localStorage.removeItem('sainoi_custom_water');
+              localStorage.removeItem('sainoi_custom_landmarks');
+              localStorage.removeItem('sainoi_campus_bounds');
+            } catch (_) {}
+          }
+          this.applyCompleteLayout(layout);
+          return true;
+        }
+      } catch (err) {
+        console.warn('[EnergyTwin] Could not sync system layout:', err);
+      }
+      return false;
+    },
+
+    applyCompleteLayout(data) {
+      if (!data) return;
+      if (data.bounds && this.saveCampusBounds) {
+        this.saveCampusBounds(data.bounds);
+      }
+      if (data.buildings && this.mappingData?.buildings) {
+        Object.entries(data.buildings).forEach(([bid, b]) => {
+          const target = this.mappingData.buildings[bid];
+          if (target) {
+            if (!target.layout_position) target.layout_position = { x: 0, y: 0, z: 0 };
+            const pos = b.layout_position || { x: b.x, z: b.z };
+            if (pos.x !== undefined) target.layout_position.x = Number(pos.x);
+            if (pos.z !== undefined) target.layout_position.z = Number(pos.z);
+            target.layout_position.y = 0;
+            if (b.rotation_y !== undefined) target.rotation_y = Number(b.rotation_y);
+            if (b.hidden !== undefined) target.hidden = Boolean(b.hidden);
+            if (b.dimensions) {
+              if (!target.dimensions) target.dimensions = {};
+              if (b.dimensions.width !== undefined && !isNaN(Number(b.dimensions.width))) target.dimensions.width = Number(b.dimensions.width);
+              if (b.dimensions.depth !== undefined && !isNaN(Number(b.dimensions.depth))) target.dimensions.depth = Number(b.dimensions.depth);
+              if (b.dimensions.height !== undefined && !isNaN(Number(b.dimensions.height))) target.dimensions.height = Number(b.dimensions.height);
+            }
+          }
+        });
+      }
+      if (data.roads && this.saveCustomRoads) {
+        this.roads = JSON.parse(JSON.stringify(data.roads));
+        this.saveCustomRoads(data.roads);
+      }
+      if (data.water && this.saveCustomWater) {
+        this.water = JSON.parse(JSON.stringify(data.water));
+        this.saveCustomWater(data.water);
+      }
+      if (data.landmarks && this.saveCustomLandmarks) {
+        this.landmarks = JSON.parse(JSON.stringify(data.landmarks));
+        this.saveCustomLandmarks(data.landmarks);
+      }
+      if (this.invalidateCache) this.invalidateCache();
+      if (this.notify) this.notify('layout_change');
     },
 
     resetCustomLayout() {
@@ -1303,7 +1425,9 @@
             "z": -70,
             "category": "สันทนาการและกีฬา",
             "rotation_y": 0,
-            "hidden": false
+            "hidden": false,
+            "width": 22,
+            "depth": 34
       },
       "TURBINE_SCULPTURE": {
             "name": "ลานปฏิมากรรมกังหันไอน้ำ (Turbine Plaza)",
@@ -1335,7 +1459,9 @@
             "z": -150,
             "category": "ระบบการจราจร",
             "rotation_y": 0,
-            "hidden": false
+            "hidden": false,
+            "width": 28,
+            "depth": 28
       },
       "OHK_GAZEBO": {
             "name": "ศาลาพักผ่อนริมน้ำ อหข.",
@@ -1351,7 +1477,9 @@
             "z": -175,
             "category": "ระบบการจราจร",
             "rotation_y": 0,
-            "hidden": false
+            "hidden": false,
+            "width": 24,
+            "depth": 24
       },
       "SHRINE_VISHNU": {
             "name": "ศาลพระวิษณุกรรม",

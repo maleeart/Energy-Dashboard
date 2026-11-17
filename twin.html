@@ -1226,6 +1226,7 @@
     </div>
     <div style="display:flex; gap:8px;">
       <button class="btn-action primary" onclick="openLayoutEditorModal()" title="ปรับแต่งตำแหน่งและผังอาคาร 3D"><span style="font-size:13px;">🏗️</span> จัดผังอาคาร (Layout)</button>
+      <button class="btn-action" onclick="syncLayoutFromServer(true)" title="ดึงผังล่าสุดจากระบบ/เซิร์ฟเวอร์ส่วนกลาง (อัปเดตตรงกันทุกเครื่อง)"><span style="font-size:13px;">🔄</span> ซิงค์ผังล่าสุด</button>
       <button class="btn-action" onclick="EnergyTwin.exportToCsv()">📥 ส่งออก CSV</button>
       <button class="btn-action" onclick="openGitHubTokenModal()">🔐 ตั้งค่า GitHub PAT</button>
       <button class="btn-action" onclick="openSettingsModal()">⚙️ ตั้งค่ากราฟิก</button>
@@ -1812,47 +1813,87 @@
             <button type="button" class="btn-studio-top" onclick="toggleStudioDropdown('boundsDropdownMenu')">
               📐 ขนาดพื้นที่: <strong id="campusBoundsSummaryText" style="color:#86EFAC;">390 × 360 ม.</strong> ▼
             </button>
-            <div class="studio-dropdown-menu" id="boundsDropdownMenu">
+            <div class="studio-dropdown-menu" id="boundsDropdownMenu" style="width:320px;">
               <div style="font-weight:700; font-size:12px; margin-bottom:6px; color:#0F172A; display:flex; justify-content:space-between; align-items:center;">
                 <span>📐 ปรับขอบเขตพื้นที่วิทยาเขต:</span>
                 <span id="campusBoundsCoordsText" style="font-size:10px; color:#64748B; font-family:'JetBrains Mono';"></span>
               </div>
               <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-bottom:8px; font-size:11px;">
-                <div style="display:flex; align-items:center; justify-content:space-between; background:#F8FAFC; padding:4px 6px; border-radius:4px; border:1px solid #E2E8F0;">
-                  <span>W(ตก -X):</span>
-                  <div>
+                <div style="background:#F8FAFC; padding:4px 6px; border-radius:4px; border:1px solid #E2E8F0;">
+                  <div style="font-weight:700; color:#1E3A8A; margin-bottom:3px; font-size:10.5px;">W (ตก -X):</div>
+                  <div style="display:flex; gap:2px; flex-wrap:wrap;">
+                    <button type="button" class="bounds-ctrl-btn" onclick="adjustCampusBound('minX', -100)">+100m</button>
+                    <button type="button" class="bounds-ctrl-btn" onclick="adjustCampusBound('minX', -50)">+50m</button>
                     <button type="button" class="bounds-ctrl-btn" onclick="adjustCampusBound('minX', -20)">+20m</button>
                     <button type="button" class="bounds-ctrl-btn" onclick="adjustCampusBound('minX', 20)">-20m</button>
+                    <button type="button" class="bounds-ctrl-btn" onclick="adjustCampusBound('minX', 50)">-50m</button>
                   </div>
                 </div>
-                <div style="display:flex; align-items:center; justify-content:space-between; background:#F8FAFC; padding:4px 6px; border-radius:4px; border:1px solid #E2E8F0;">
-                  <span>E(ออก +X):</span>
-                  <div>
+                <div style="background:#F8FAFC; padding:4px 6px; border-radius:4px; border:1px solid #E2E8F0;">
+                  <div style="font-weight:700; color:#1E3A8A; margin-bottom:3px; font-size:10.5px;">E (ออก +X):</div>
+                  <div style="display:flex; gap:2px; flex-wrap:wrap;">
+                    <button type="button" class="bounds-ctrl-btn" onclick="adjustCampusBound('maxX', 100)">+100m</button>
+                    <button type="button" class="bounds-ctrl-btn" onclick="adjustCampusBound('maxX', 50)">+50m</button>
                     <button type="button" class="bounds-ctrl-btn" onclick="adjustCampusBound('maxX', 20)">+20m</button>
                     <button type="button" class="bounds-ctrl-btn" onclick="adjustCampusBound('maxX', -20)">-20m</button>
+                    <button type="button" class="bounds-ctrl-btn" onclick="adjustCampusBound('maxX', -50)">-50m</button>
                   </div>
                 </div>
-                <div style="display:flex; align-items:center; justify-content:space-between; background:#F8FAFC; padding:4px 6px; border-radius:4px; border:1px solid #E2E8F0;">
-                  <span>N(เหนือ -Z):</span>
-                  <div>
+                <div style="background:#F8FAFC; padding:4px 6px; border-radius:4px; border:1px solid #E2E8F0;">
+                  <div style="font-weight:700; color:#1E3A8A; margin-bottom:3px; font-size:10.5px;">N (เหนือ -Z):</div>
+                  <div style="display:flex; gap:2px; flex-wrap:wrap;">
+                    <button type="button" class="bounds-ctrl-btn" onclick="adjustCampusBound('minZ', -100)">+100m</button>
+                    <button type="button" class="bounds-ctrl-btn" onclick="adjustCampusBound('minZ', -50)">+50m</button>
                     <button type="button" class="bounds-ctrl-btn" onclick="adjustCampusBound('minZ', -20)">+20m</button>
                     <button type="button" class="bounds-ctrl-btn" onclick="adjustCampusBound('minZ', 20)">-20m</button>
+                    <button type="button" class="bounds-ctrl-btn" onclick="adjustCampusBound('minZ', 50)">-50m</button>
                   </div>
                 </div>
-                <div style="display:flex; align-items:center; justify-content:space-between; background:#F8FAFC; padding:4px 6px; border-radius:4px; border:1px solid #E2E8F0;">
-                  <span>S(ใต้ +Z):</span>
-                  <div>
+                <div style="background:#F8FAFC; padding:4px 6px; border-radius:4px; border:1px solid #E2E8F0;">
+                  <div style="font-weight:700; color:#1E3A8A; margin-bottom:3px; font-size:10.5px;">S (ใต้ +Z):</div>
+                  <div style="display:flex; gap:2px; flex-wrap:wrap;">
+                    <button type="button" class="bounds-ctrl-btn" onclick="adjustCampusBound('maxZ', 100)">+100m</button>
+                    <button type="button" class="bounds-ctrl-btn" onclick="adjustCampusBound('maxZ', 50)">+50m</button>
                     <button type="button" class="bounds-ctrl-btn" onclick="adjustCampusBound('maxZ', 20)">+20m</button>
                     <button type="button" class="bounds-ctrl-btn" onclick="adjustCampusBound('maxZ', -20)">-20m</button>
+                    <button type="button" class="bounds-ctrl-btn" onclick="adjustCampusBound('maxZ', -50)">-50m</button>
                   </div>
                 </div>
               </div>
+
+              <!-- Direct Numeric Input for Exact Boundary -->
+              <div style="margin-bottom:8px; padding:6px; background:#F8FAFC; border:1px solid #CBD5E1; border-radius:6px;">
+                <div style="font-size:10.5px; font-weight:700; color:#334155; margin-bottom:4px;">กรอกพิกัดขอบเขตกำหนดเอง (เมตร):</div>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:4px; font-size:10.5px;">
+                  <div style="display:flex; align-items:center; gap:3px;">
+                    <span style="width:16px; font-weight:600; color:#475569;">W:</span>
+                    <input id="inputBoundMinX" type="number" step="10" style="width:100%; padding:2px 4px; font-family:'JetBrains Mono'; font-size:11px; border:1px solid #CBD5E1; border-radius:4px;">
+                  </div>
+                  <div style="display:flex; align-items:center; gap:3px;">
+                    <span style="width:16px; font-weight:600; color:#475569;">E:</span>
+                    <input id="inputBoundMaxX" type="number" step="10" style="width:100%; padding:2px 4px; font-family:'JetBrains Mono'; font-size:11px; border:1px solid #CBD5E1; border-radius:4px;">
+                  </div>
+                  <div style="display:flex; align-items:center; gap:3px;">
+                    <span style="width:16px; font-weight:600; color:#475569;">N:</span>
+                    <input id="inputBoundMinZ" type="number" step="10" style="width:100%; padding:2px 4px; font-family:'JetBrains Mono'; font-size:11px; border:1px solid #CBD5E1; border-radius:4px;">
+                  </div>
+                  <div style="display:flex; align-items:center; gap:3px;">
+                    <span style="width:16px; font-weight:600; color:#475569;">S:</span>
+                    <input id="inputBoundMaxZ" type="number" step="10" style="width:100%; padding:2px 4px; font-family:'JetBrains Mono'; font-size:11px; border:1px solid #CBD5E1; border-radius:4px;">
+                  </div>
+                </div>
+                <button type="button" class="btn-action" style="width:100%; margin-top:5px; justify-content:center; padding:4px; font-size:11px; background:#0284C7; color:#fff;" onclick="applyCustomBoundsInput()">
+                  ✅ กำหนดขนาดขอบเขตตามนี้
+                </button>
+              </div>
+
               <div style="font-weight:600; font-size:11px; margin-bottom:4px; color:#475569;">พรีเซ็ตขนาดสำเร็จรูป:</div>
-              <div style="display:flex; gap:4px; flex-wrap:wrap;">
+              <div style="display:flex; gap:3px; flex-wrap:wrap;">
                 <button type="button" class="bounds-preset-btn" onclick="setCampusBoundPreset('default')">🎯 มาตรฐาน (390×360)</button>
-                <button type="button" class="bounds-preset-btn" onclick="setCampusBoundPreset('p20')">➕ ขยาย +20%</button>
-                <button type="button" class="bounds-preset-btn" onclick="setCampusBoundPreset('p50')">➕ ขยาย +50%</button>
-                <button type="button" class="bounds-preset-btn" onclick="resetCampusBoundsToDefault()">🔄 คืนค่า</button>
+                <button type="button" class="bounds-preset-btn" onclick="setCampusBoundPreset('m600')">📐 600×600 ม.</button>
+                <button type="button" class="bounds-preset-btn" onclick="setCampusBoundPreset('m1000')">🗺️ 1,000×1,000 ม.</button>
+                <button type="button" class="bounds-preset-btn" onclick="setCampusBoundPreset('m1500')">🌐 1,500×1,500 ม.</button>
+                <button type="button" class="bounds-preset-btn" onclick="resetCampusBoundsToDefault()">🔄 คืนค่าเดิม</button>
               </div>
             </div>
           </div>
@@ -1900,6 +1941,10 @@
           </button>
 
           <!-- Set as System Default Button -->
+          <!-- Sync from System Default Button -->
+          <button type="button" class="btn-studio-top" style="background:#0284C7; color:#fff; border-color:#0369A1; font-weight:700; padding:6px 12px; gap:4px;" onclick="syncLayoutFromServer(true)" title="ดึงผังล่าสุดจากระบบ/เซิร์ฟเวอร์ส่วนกลาง เพื่อให้ตรงกับเครื่องอื่นทันที">
+            🔄 ซิงค์ผังจากระบบ
+          </button>
           <button type="button" class="btn-studio-top" style="background:#059669; color:#fff; border-color:#047857; font-weight:700; padding:6px 12px; gap:4px;" onclick="saveCurrentLayoutAsSystemDefault()" title="บันทึกพิกัดทั้งหมดเป็นค่าเริ่มต้น (Default) ถาวรของระบบ (เขียนทับ building_mapping.json และผังหลัก)">
             📌 ตั้งเป็นค่าเริ่มต้นระบบ
           </button>
@@ -2106,6 +2151,9 @@
           campusScene.updateBuildingPosition(code, b.layout_position.x, b.layout_position.z, 0);
           if (campusScene.updateBuildingRotation) {
             campusScene.updateBuildingRotation(code, b.rotation_y || 0);
+          }
+          if (campusScene.updateBuildingDimensions && b.dimensions) {
+            campusScene.updateBuildingDimensions(code, b.dimensions.width, b.dimensions.depth, b.dimensions.height);
           }
           if (campusScene.setBuildingVisible) {
             campusScene.setBuildingVisible(code, !b.hidden);
@@ -3484,6 +3532,14 @@
       const coordsEl = document.getElementById('campusBoundsCoordsText');
       if (summaryEl) summaryEl.textContent = `กว้าง ${width} ม. × ยาว ${depth} ม.`;
       if (coordsEl) coordsEl.textContent = `(W:${bounds.minX}, E:${bounds.maxX}, N:${bounds.minZ}, S:${bounds.maxZ})`;
+      const inMinX = document.getElementById('inputBoundMinX');
+      const inMaxX = document.getElementById('inputBoundMaxX');
+      const inMinZ = document.getElementById('inputBoundMinZ');
+      const inMaxZ = document.getElementById('inputBoundMaxZ');
+      if (inMinX) inMinX.value = bounds.minX;
+      if (inMaxX) inMaxX.value = bounds.maxX;
+      if (inMinZ) inMinZ.value = bounds.minZ;
+      if (inMaxZ) inMaxZ.value = bounds.maxZ;
     }
 
     function toggleStudioDropdown(menuId) {
@@ -3528,12 +3584,43 @@
       if (layout2DStudio.isInitialized) layout2DStudio.render();
     }
 
+    function applyCustomBoundsInput() {
+      const minX = parseFloat(document.getElementById('inputBoundMinX')?.value);
+      const maxX = parseFloat(document.getElementById('inputBoundMaxX')?.value);
+      const minZ = parseFloat(document.getElementById('inputBoundMinZ')?.value);
+      const maxZ = parseFloat(document.getElementById('inputBoundMaxZ')?.value);
+
+      if (isNaN(minX) || isNaN(maxX) || isNaN(minZ) || isNaN(maxZ)) {
+        alert('กรุณากรอกพิกัดตัวเลขให้ครบถ้วน');
+        return;
+      }
+      if (maxX <= minX + 50 || maxZ <= minZ + 50) {
+        alert('ขอบเขตความกว้างและความยาวต้องมากกว่า 50 เมตร');
+        return;
+      }
+
+      const bounds = { minX, maxX, minZ, maxZ };
+      EnergyTwin.saveCampusBounds(bounds);
+      if (campusScene && campusScene.updateCampusBounds) {
+        campusScene.updateCampusBounds(bounds);
+      }
+      updateCampusBoundsDisplay();
+      if (layout2DStudio.isInitialized) layout2DStudio.render();
+      alert('✅ กำหนดขอบเขตแผนที่ใหม่เรียบร้อยแล้ว: ' + (maxX - minX) + ' × ' + (maxZ - minZ) + ' เมตร');
+    }
+
     function setCampusBoundPreset(preset) {
       let bounds = { minX: -210, maxX: 180, minZ: -220, maxZ: 140 };
       if (preset === 'p20') {
         bounds = { minX: -250, maxX: 220, minZ: -260, maxZ: 170 }; // +20%
       } else if (preset === 'p50') {
         bounds = { minX: -310, maxX: 280, minZ: -310, maxZ: 230 }; // +50%
+      } else if (preset === 'm600') {
+        bounds = { minX: -300, maxX: 300, minZ: -300, maxZ: 300 }; // 600x600m
+      } else if (preset === 'm1000') {
+        bounds = { minX: -500, maxX: 500, minZ: -500, maxZ: 500 }; // 1,000x1,000m
+      } else if (preset === 'm1500') {
+        bounds = { minX: -750, maxX: 750, minZ: -750, maxZ: 750 }; // 1,500x1,500m
       }
       EnergyTwin.saveCampusBounds(bounds);
       if (campusScene && campusScene.updateCampusBounds) {
@@ -4117,6 +4204,17 @@
         if (curW) {
           if (dimKey === 'width') curW.width = num;
           else curW.depth = num;
+        }
+      } else if (type === 'bld') {
+        const curB = EnergyTwin.mappingData?.buildings?.[id];
+        if (curB) {
+          if (!curB.dimensions) curB.dimensions = { width: 20, depth: 20, height: 12 };
+          if (dimKey === 'width') curB.dimensions.width = num;
+          else if (dimKey === 'depth' || dimKey === 'length') curB.dimensions.depth = num;
+          else if (dimKey === 'height') curB.dimensions.height = num;
+          if (campusScene && campusScene.updateBuildingDimensions) {
+            campusScene.updateBuildingDimensions(id, curB.dimensions.width, curB.dimensions.depth, curB.dimensions.height);
+          }
         }
       }
 
@@ -5178,6 +5276,45 @@
             </div>
           `;
         }
+        } else if (type === 'bld') {
+          const bObj = EnergyTwin.mappingData?.buildings?.[id];
+          const curW = bObj?.dimensions?.width || 20;
+          const curD = bObj?.dimensions?.depth || 20;
+          const curH = bObj?.dimensions?.height || 12;
+
+          dimHtml = `
+            <div style="background:#F1F5F9; border-radius:6px; padding:6px 8px; border:1px solid #CBD5E1; display:flex; flex-direction:column; gap:5px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; font-size:11px;">
+                <span style="font-weight:700; color:#1E3A8A;">📏 ปรับขนาดอาคาร (กว้าง × ยาว):</span>
+                <span style="font-weight:700; color:#059669; font-family:'JetBrains Mono';">ก ${curW} ม. × ย ${curD} ม. (สูง ${curH} ม.)</span>
+              </div>
+
+              <!-- Width Adjuster -->
+              <div style="display:flex; justify-content:space-between; align-items:center; gap:6px; font-size:11px;">
+                <span style="font-size:10.5px; font-weight:600; color:#334155; width:45px;">↔️ กว้าง:</span>
+                <div style="display:flex; align-items:center; gap:3px;">
+                  <button type="button" class="dim-preset-chip" onclick="layout2DStudio.adjustDimension('width', -5)" title="ลดความกว้าง 5 ม.">-5m</button>
+                  <button type="button" class="dim-preset-chip" onclick="layout2DStudio.adjustDimension('width', -1)" title="ลดความกว้าง 1 ม.">-1m</button>
+                  <input type="number" min="2" max="250" step="1" value="${curW}" onchange="updateStudioDimension('width', this.value)" style="width:44px; padding:1px 3px; font-size:11px; font-family:'JetBrains Mono'; font-weight:700; text-align:center; border:1px solid #CBD5E1; border-radius:4px;">
+                  <button type="button" class="dim-preset-chip" onclick="layout2DStudio.adjustDimension('width', 1)" title="เพิ่มความกว้าง 1 ม.">+1m</button>
+                  <button type="button" class="dim-preset-chip" onclick="layout2DStudio.adjustDimension('width', 5)" title="เพิ่มความกว้าง 5 ม.">+5m</button>
+                </div>
+              </div>
+
+              <!-- Depth / Length Adjuster -->
+              <div style="display:flex; justify-content:space-between; align-items:center; gap:6px; font-size:11px;">
+                <span style="font-size:10.5px; font-weight:600; color:#334155; width:45px;">↕️ ยาว:</span>
+                <div style="display:flex; align-items:center; gap:3px;">
+                  <button type="button" class="dim-preset-chip" onclick="layout2DStudio.adjustDimension('depth', -5)" title="ลดความยาว 5 ม.">-5m</button>
+                  <button type="button" class="dim-preset-chip" onclick="layout2DStudio.adjustDimension('depth', -1)" title="ลดความยาว 1 ม.">-1m</button>
+                  <input type="number" min="2" max="250" step="1" value="${curD}" onchange="updateStudioDimension('depth', this.value)" style="width:44px; padding:1px 3px; font-size:11px; font-family:'JetBrains Mono'; font-weight:700; text-align:center; border:1px solid #CBD5E1; border-radius:4px;">
+                  <button type="button" class="dim-preset-chip" onclick="layout2DStudio.adjustDimension('depth', 1)" title="เพิ่มความยาว 1 ม.">+1m</button>
+                  <button type="button" class="dim-preset-chip" onclick="layout2DStudio.adjustDimension('depth', 5)" title="เพิ่มความยาว 5 ม.">+5m</button>
+                </div>
+              </div>
+            </div>
+          `;
+        }
 
         dock.innerHTML = `
           <!-- Title Bar -->
@@ -5831,7 +5968,8 @@
             z: b.layout_position.z,
             y: 0,
             rotation_y: b.rotation_y !== undefined ? b.rotation_y : 0,
-            hidden: Boolean(b.hidden)
+            hidden: Boolean(b.hidden),
+            dimensions: b.dimensions ? { ...b.dimensions } : undefined
           };
         }
       });
@@ -5946,6 +6084,57 @@
       }
     }
 
+    
+    // Cross-device / Multi-browser Layout Synchronizer
+    async function syncLayoutFromServer(userInitiated = true) {
+      try {
+        const host = window.location.hostname || '127.0.0.1';
+        let layout = null;
+        try {
+          const apiRes = await fetch(`http://${host}:3333/api/get-default-layout`, { cache: 'no-store' });
+          if (apiRes.ok) layout = await apiRes.json();
+        } catch (_) {}
+
+        if (!layout) {
+          const fileRes = await fetch(`data/campus_layout_default.json?t=${Date.now()}`, { cache: 'no-store' });
+          if (fileRes.ok) layout = await fileRes.json();
+        }
+
+        if (layout) {
+          try {
+            localStorage.removeItem('sainoi_custom_layout');
+            localStorage.removeItem('sainoi_custom_roads');
+            localStorage.removeItem('sainoi_custom_water');
+            localStorage.removeItem('sainoi_custom_landmarks');
+            localStorage.removeItem('sainoi_campus_bounds');
+          } catch (_) {}
+
+          if (EnergyTwin.applyCompleteLayout) {
+            EnergyTwin.applyCompleteLayout(layout);
+          }
+
+          sync3DSceneFromLayout();
+          updateCampusBoundsDisplay();
+          clearGridSelection();
+          renderLayoutStudioPalette();
+          renderInteractiveExcelGrid();
+          if (typeof renderLayoutEditorList === 'function') renderLayoutEditorList();
+
+          if (userInitiated) {
+            showLayoutSaveToast('🔄 ซิงค์ผังล่าสุดจากระบบสำเร็จ ทุกเครื่องเห็นตรงกันเรียบร้อยแล้ว!');
+          }
+          return true;
+        } else {
+          if (userInitiated) alert('⚠️ ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์หรือดาวน์โหลด campus_layout_default.json ได้');
+        }
+      } catch (err) {
+        console.error('Error syncing layout:', err);
+        if (userInitiated) alert('❌ เกิดข้อผิดพลาดในการซิงค์ผัง: ' + err.message);
+      }
+      return false;
+    }
+    window.syncLayoutFromServer = syncLayoutFromServer;
+
     async function saveCurrentLayoutAsSystemDefault() {
       // 1. Ensure current edits are saved to memory and 3D scene
       saveLayoutEditorChanges(true);
@@ -5960,7 +6149,8 @@
       }
 
       try {
-        const resp = await fetch('http://127.0.0.1:3333/api/save-default-layout', {
+        const serverHost = window.location.hostname || '127.0.0.1';
+        const resp = await fetch(`http://${serverHost}:3333/api/save-default-layout`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(exportData)

@@ -1,10 +1,10 @@
 /**
  * Sai Noi Campus Building Mapping Data (Pre-bundled)
- * Auto-generated: 2026-11-17T07:28:39.227Z
+ * Auto-generated: 2026-11-17T07:44:48.609Z
  */
 window.SAINOI_BUILDING_MAPPING = {
   "schema_version": "1.0.0",
-  "generated_at": "2026-11-17T07:28:39.225Z",
+  "generated_at": "2026-11-17T07:44:48.608Z",
   "site": "การไฟฟ้าฝ่ายผลิตแห่งประเทศไทย สำนักงานไทรน้อย (EGAT Sai Noi)",
   "disclaimer": "โมเดลและตำแหน่งอาคารในระยะนำร่อง (Pilot) เป็นภาพจำลองเชิงสัญลักษณ์ (Symbolic Representation) จัดวางเพื่อความสะดวกในการสำรวจข้อมูล ไม่ใช่แบบสำรวจรังวัดจริง และไม่มีการใช้ขนาดจำลองคำนวณพื้นที่หรือ kWh/m²",
   "double_counting_policy": "ยอดการใช้ไฟฟ้ารวมของแต่ละอาคารคำนวณจากมิเตอร์ประธาน (Main Meter/MDB) เท่านั้น โดยมิเตอร์ย่อย (Sub-meters) ใช้สำหรับแจกแจงรายละเอียดและจะไม่ถูกนำไปบวกรวมกับมิเตอร์ประธานเพื่อป้องกันการนับซ้ำ",

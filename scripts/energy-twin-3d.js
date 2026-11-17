@@ -2825,6 +2825,51 @@
       this.needsRender = true;
     }
 
+    updateBuildingDimensions(bCode, newWidth, newDepth, newHeight = null) {
+      const group = this.buildingMeshes.get(bCode);
+      const bData = group?.userData?.data || (window.EnergyTwin?.mappingData?.buildings?.[bCode]);
+      if (!bData) return;
+
+      if (!bData.dimensions) bData.dimensions = { width: 20, depth: 20, height: 12 };
+      if (newWidth !== undefined && !isNaN(Number(newWidth))) bData.dimensions.width = Number(newWidth);
+      if (newDepth !== undefined && !isNaN(Number(newDepth))) bData.dimensions.depth = Number(newDepth);
+      if (newHeight !== undefined && !isNaN(Number(newHeight))) bData.dimensions.height = Number(newHeight);
+
+      const isVisible = group ? group.visible : !bData.hidden;
+
+      // Remove and dispose old mesh group
+      if (group) {
+        this.scene.remove(group);
+        group.traverse(child => {
+          if (child.isMesh && child.geometry) {
+            child.geometry.dispose();
+          }
+        });
+      }
+
+      // Recreate building mesh with newly dimensioned architecture
+      const newGroup = this.createBuildingMesh(bData);
+      newGroup.visible = isVisible;
+      this.scene.add(newGroup);
+      this.buildingMeshes.set(bCode, newGroup);
+
+      // Reposition label & alert sprites above updated roof height
+      const h = bData.dimensions.height || 12;
+      const x = bData.layout_position ? bData.layout_position.x : 0;
+      const z = bData.layout_position ? bData.layout_position.z : 0;
+      const label = this.labelSprites.get(bCode);
+      if (label) {
+        label.position.set(x, h + 8.5, z);
+      }
+      const warn = this.warningSprites ? this.warningSprites.get(bCode) : null;
+      if (warn) {
+        const w = bData.dimensions.width || 20;
+        warn.position.set(x + w * 0.45, h + 10.5, z);
+      }
+
+      this.needsRender = true;
+    }
+
     updateBuildingRotation(bCode, angleRad) {
       const group = this.buildingMeshes.get(bCode);
       if (!group) return;
