@@ -799,33 +799,41 @@
     },
 
     // ── Road Network Management ──────────────────────────────────
-    defaultRoads: {
-      'ROAD_MAIN_BOULEVARD': { name: 'ถนนสายหลักทางเข้า (Main Boulevard)', x: 8, z: -30, width: 12, length: 360, type: 'vertical', category: 'ถนนสายหลัก' },
-      'ROAD_SPINE_WORKSHOP': { name: 'ถนนสายแกนกลางโรงงาน (Spine Road)', x: -60, z: -50, width: 8, length: 280, type: 'vertical', category: 'ถนนสายรอง' },
-      'ROAD_WEST_CANAL': { name: 'ถนนเลียบคลองสงวน (Canal Road)', x: -170, z: -40, width: 9, length: 320, type: 'vertical', category: 'ถนนสายรอง' },
-      'ROAD_CROSS_140': { name: 'ถนนขวางหน้าซุ้มประตู-สวิตช์ยาร์ด (Z=140)', x: 8, z: 140, width: 80, length: 9, type: 'horizontal', category: 'ถนนซอยเชื่อม' },
-      'ROAD_CROSS_50': { name: 'ถนนขวางหน้า ท.0020 & ท.0007 (Z=50)', x: 8, z: 50, width: 90, length: 9, type: 'horizontal', category: 'ถนนซอยเชื่อม' },
-      'ROAD_CROSS_15': { name: 'ถนนขวางหน้า ท.0019 & ท.0006 (Z=15)', x: 8, z: 15, width: 90, length: 9, type: 'horizontal', category: 'ถนนซอยเชื่อม' },
-      'ROAD_CROSS_M20': { name: 'ถนนขวางข้างสนามฟุตบอล-ท.0008 (Z=-20)', x: 8, z: -20, width: 90, length: 9, type: 'horizontal', category: 'ถนนซอยเชื่อม' },
-      'ROAD_CROSS_M55': { name: 'ถนนขวางหน้า ต.0019 นันทนาการ (Z=-55)', x: 8, z: -55, width: 90, length: 9, type: 'horizontal', category: 'ถนนซอยเชื่อม' },
-      'ROAD_CROSS_M85': { name: 'ถนนขวางหน้า ท.0014 ไฟฟ้าโยธา (Z=-85)', x: 8, z: -85, width: 90, length: 9, type: 'horizontal', category: 'ถนนซอยเชื่อม' },
-      'ROAD_CROSS_M115': { name: 'ถนนขวางโรงอาหารหลัก ต.0017 (Z=-115)', x: -15, z: -115, width: 130, length: 9, type: 'horizontal', category: 'ถนนซอยเชื่อม' },
-      'ROAD_CROSS_M150': { name: 'ถนนขวางโรงปฏิบัติการหนัก ท.0012 (Z=-150)', x: -35, z: -150, width: 140, length: 9, type: 'horizontal', category: 'ถนนซอยเชื่อม' },
-      'ROAD_EAST_CONNECTOR': { name: 'ถนนเชื่อมสู่วงเวียนตะวันออก', x: 65, z: -60, width: 80, length: 8, type: 'horizontal', category: 'ถนนเชื่อมวงเวียน' },
-      'ROAD_OHK_ACCESS': { name: 'ถนนทางเข้าศูนย์ขนส่ง อหข.', x: -135, z: -115, width: 9, length: 65, type: 'vertical', category: 'ถนนขนส่ง อหข.' },
-      'ROAD_OHK_NORTH_LOOP': { name: 'ถนนรอบ อหข. ด้านเหนือ (Z=-215)', x: -155, z: -215, width: 85, length: 8, type: 'horizontal', category: 'ถนนขนส่ง อหข.' },
-      'ROAD_OHK_EAST_LOOP': { name: 'ถนนเลียบโรงจอดรถ อหข.', x: -75, z: -165, width: 8, length: 65, type: 'vertical', category: 'ถนนขนส่ง อหข.' }
+    // ── Road Network Management (3 Standard Sizes: 12m Main, 8m Secondary, 5m Access Lane) ──
+    ROAD_PRESETS: {
+      'main': { key: 'main', name: 'ถนนสายหลัก (12 ม.)', width: 12, length: 100, category: 'ถนนสายหลัก (12 ม.)' },
+      'secondary': { key: 'secondary', name: 'ถนนสายรอง (8 ม.)', width: 8, length: 60, category: 'ถนนสายรอง (8 ม.)' },
+      'lane': { key: 'lane', name: 'ทางเชื่อมซอย (5 ม.)', width: 5, length: 30, category: 'ทางเชื่อมซอย (5 ม.)' }
     },
+
+    defaultRoads: {}, // Starts empty so user can draw/customize roads from scratch!
     roads: null,
 
     loadCustomRoads() {
       try {
-        if (!this.roads) this.roads = JSON.parse(JSON.stringify(this.defaultRoads));
+        if (!this.roads) this.roads = {};
         const saved = localStorage.getItem('sainoi_custom_roads');
         if (saved) {
           const custom = JSON.parse(saved);
+          // If old legacy pre-baked road IDs exist, migrate/clear them to provide a clean slate
+          const legacyKeys = ['ROAD_MAIN_BOULEVARD', 'ROAD_SPINE_WORKSHOP', 'ROAD_WEST_CANAL', 'ROAD_CROSS_140'];
+          const hasLegacy = Object.keys(custom).some(k => legacyKeys.includes(k) || k.startsWith('ROAD_CROSS_'));
+          if (hasLegacy) {
+            const cleaned = {};
+            Object.entries(custom).forEach(([k, v]) => {
+              if (!legacyKeys.includes(k) && !k.startsWith('ROAD_CROSS_') && !k.startsWith('ROAD_OHK_') && k !== 'ROAD_EAST_CONNECTOR') {
+                cleaned[k] = v;
+              }
+            });
+            localStorage.setItem('sainoi_custom_roads', JSON.stringify(cleaned));
+            this.roads = cleaned;
+            return;
+          }
+
           Object.entries(custom).forEach(([rid, pos]) => {
-            if (this.roads[rid]) {
+            if (!this.roads[rid]) {
+              this.roads[rid] = { ...pos };
+            } else {
               const x = Number(pos.x);
               const z = Number(pos.z);
               if (!isNaN(x)) this.roads[rid].x = x;
@@ -834,6 +842,8 @@
               if (pos.length !== undefined && !isNaN(Number(pos.length))) this.roads[rid].length = Number(pos.length);
               if (pos.rotation_y !== undefined && !isNaN(Number(pos.rotation_y))) this.roads[rid].rotation_y = Number(pos.rotation_y);
               if (pos.hidden !== undefined) this.roads[rid].hidden = Boolean(pos.hidden);
+              if (pos.name) this.roads[rid].name = pos.name;
+              if (pos.category) this.roads[rid].category = pos.category;
             }
           });
         }
@@ -844,7 +854,7 @@
 
     saveCustomRoads(roadMap) {
       try {
-        if (!this.roads) this.roads = JSON.parse(JSON.stringify(this.defaultRoads));
+        if (!this.roads) this.roads = {};
         let fullRoads = {};
         try {
           const existing = localStorage.getItem('sainoi_custom_roads');
@@ -852,15 +862,19 @@
         } catch (_) {}
 
         Object.entries(roadMap).forEach(([rid, pos]) => {
-          if (this.roads[rid]) {
+          if (!this.roads[rid]) {
+            this.roads[rid] = { ...pos };
+          } else {
             if (pos.x !== undefined && !isNaN(Number(pos.x))) this.roads[rid].x = Number(pos.x);
             if (pos.z !== undefined && !isNaN(Number(pos.z))) this.roads[rid].z = Number(pos.z);
             if (pos.width !== undefined && !isNaN(Number(pos.width))) this.roads[rid].width = Number(pos.width);
             if (pos.length !== undefined && !isNaN(Number(pos.length))) this.roads[rid].length = Number(pos.length);
             if (pos.rotation_y !== undefined && !isNaN(Number(pos.rotation_y))) this.roads[rid].rotation_y = Number(pos.rotation_y);
             if (pos.hidden !== undefined) this.roads[rid].hidden = Boolean(pos.hidden);
+            if (pos.name) this.roads[rid].name = pos.name;
+            if (pos.category) this.roads[rid].category = pos.category;
           }
-          fullRoads[rid] = { ...(fullRoads[rid] || {}), ...pos };
+          fullRoads[rid] = { ...(fullRoads[rid] || {}), ...this.roads[rid] };
         });
         localStorage.setItem('sainoi_custom_roads', JSON.stringify(fullRoads));
         this.notify('layout_change');
@@ -874,7 +888,7 @@
     resetCustomRoads() {
       try {
         localStorage.removeItem('sainoi_custom_roads');
-        this.roads = JSON.parse(JSON.stringify(this.defaultRoads));
+        this.roads = {};
         this.notify('layout_change');
         return true;
       } catch (e) {
@@ -882,18 +896,98 @@
       }
     },
 
+    addRoad(presetKey = 'secondary', x = 0, z = 0, angleRad = 0) {
+      if (!this.roads) this.roads = {};
+      const preset = this.ROAD_PRESETS[presetKey] || this.ROAD_PRESETS['secondary'];
+      let nextIdx = 1;
+      while (this.roads[`ROAD_${nextIdx}`]) {
+        nextIdx++;
+      }
+      const newId = `ROAD_${nextIdx}`;
+      const newRoad = {
+        name: `ถนน ${nextIdx} (${preset.category})`,
+        category: preset.category,
+        x: Number(x) || 0,
+        z: Number(z) || 0,
+        width: preset.width,
+        length: preset.length,
+        rotation_y: Number(angleRad) || 0,
+        hidden: false
+      };
+      this.roads[newId] = newRoad;
+      this.saveCustomRoads({ [newId]: newRoad });
+      return newId;
+    },
+
+    deleteRoad(roadId) {
+      if (!this.roads || !this.roads[roadId]) return false;
+      delete this.roads[roadId];
+      try {
+        let fullRoads = {};
+        const existing = localStorage.getItem('sainoi_custom_roads');
+        if (existing) fullRoads = JSON.parse(existing);
+        delete fullRoads[roadId];
+        localStorage.setItem('sainoi_custom_roads', JSON.stringify(fullRoads));
+      } catch (_) {}
+      this.notify('layout_change');
+      return true;
+    },
+
+    clearAllRoads() {
+      this.roads = {};
+      localStorage.setItem('sainoi_custom_roads', JSON.stringify({}));
+      this.notify('layout_change');
+      return true;
+    },
+
+    duplicateRoad(roadId) {
+      if (!this.roads || !this.roads[roadId]) return null;
+      const src = this.roads[roadId];
+      let nextIdx = 1;
+      while (this.roads[`ROAD_${nextIdx}`]) {
+        nextIdx++;
+      }
+      const newId = `ROAD_${nextIdx}`;
+      const newRoad = {
+        name: `ถนน ${nextIdx} (${src.category || 'ถนน'})`,
+        category: src.category || 'ถนนสายรอง',
+        x: (src.x || 0) + 15,
+        z: (src.z || 0) + 15,
+        width: src.width || 8,
+        length: src.length || 60,
+        rotation_y: src.rotation_y || 0,
+        hidden: false
+      };
+      this.roads[newId] = newRoad;
+      this.saveCustomRoads({ [newId]: newRoad });
+      return newId;
+    },
+
+    setRoadPresetWidth(roadId, width) {
+      if (!this.roads || !this.roads[roadId]) return false;
+      const w = Number(width);
+      let cat = 'ถนนสายรอง (8 ม.)';
+      if (w >= 12) cat = 'ถนนสายหลัก (12 ม.)';
+      else if (w <= 6) cat = 'ทางเชื่อมซอย (5 ม.)';
+
+      this.roads[roadId].width = w;
+      this.roads[roadId].category = cat;
+      this.saveCustomRoads({ [roadId]: { width: w, category: cat } });
+      return true;
+    },
+
     getRoadsList() {
-      if (!this.roads) this.roads = JSON.parse(JSON.stringify(this.defaultRoads));
+      if (!this.roads) this.roads = {};
       return Object.entries(this.roads).map(([id, r]) => ({
         id,
-        name: r.name,
-        category: r.category,
-        x: r.x,
-        z: r.z,
-        width: r.width,
-        length: r.length,
-        type: r.type,
-        rotation_y: r.rotation_y || 0,
+        name: r.name || id,
+        category: r.category || 'ถนน',
+        x: Number(r.x) || 0,
+        z: Number(r.z) || 0,
+        width: Number(r.width) || 8,
+        length: Number(r.length) || 50,
+        type: r.type || 'custom',
+        rotation_y: Number(r.rotation_y) || 0,
         hidden: Boolean(r.hidden)
       }));
     },

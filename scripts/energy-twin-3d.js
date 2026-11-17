@@ -436,94 +436,20 @@
 
     // Main Campus Road Network & Eastern Roundabout
     setupMainRoadsAndRoundabouts() {
-      const roadGroup = new THREE.Group();
-      const asphaltMat = new THREE.MeshStandardMaterial({ color: 0x334155, roughness: 0.72 });
-      const lineMat = new THREE.MeshBasicMaterial({ color: 0xF1F5F9 });
+      // 1. Dynamic User-Configured Road Network Container
+      this.roadContainer = new THREE.Group();
+      this.roadContainer.name = 'DynamicRoadNetwork';
+      this.scene.add(this.roadContainer);
 
-      // 1. Main North-South Entrance Boulevard (Passing between West Workshops and East Offices)
-      const mainBoulevardGroup = new THREE.Group();
-      const mainBoulevard = new THREE.Mesh(new THREE.PlaneGeometry(12, 360), asphaltMat);
-      mainBoulevard.rotation.x = -Math.PI / 2;
-      mainBoulevard.receiveShadow = true;
-      mainBoulevardGroup.add(mainBoulevard);
-
-      for (let z = -170; z <= 130; z += 12) {
-        const dash = new THREE.Mesh(new THREE.PlaneGeometry(0.4, 5), lineMat);
-        dash.rotation.x = -Math.PI / 2;
-        dash.position.set(0, 0.02, z - (-30));
-        mainBoulevardGroup.add(dash);
-      }
-      mainBoulevardGroup.position.set(8, 0.06, -30);
-      roadGroup.add(mainBoulevardGroup);
-      this.roadMeshes.set('ROAD_MAIN_BOULEVARD', mainBoulevardGroup);
-
-      // 2. Central Workshop Avenue (Behind West Spine Workshops)
-      const spineGroup = new THREE.Group();
-      const spineRoad = new THREE.Mesh(new THREE.PlaneGeometry(8, 280), asphaltMat);
-      spineRoad.rotation.x = -Math.PI / 2;
-      spineRoad.receiveShadow = true;
-      spineGroup.add(spineRoad);
-      spineGroup.position.set(-60, 0.05, -50);
-      roadGroup.add(spineGroup);
-      this.roadMeshes.set('ROAD_SPINE_WORKSHOP', spineGroup);
-
-      // 3. West Pond & Canal Service Road
-      const canalRoadGroup = new THREE.Group();
-      const canalRoad = new THREE.Mesh(new THREE.PlaneGeometry(9, 320), asphaltMat);
-      canalRoad.rotation.x = -Math.PI / 2;
-      canalRoad.receiveShadow = true;
-      canalRoadGroup.add(canalRoad);
-      canalRoadGroup.position.set(-170, 0.05, -40);
-      roadGroup.add(canalRoadGroup);
-      this.roadMeshes.set('ROAD_WEST_CANAL', canalRoadGroup);
-
-      // 4. Horizontal Cross Streets
-      const hRoads = [
-        { id: 'ROAD_CROSS_140', z: 140, x: 8, width: 80 },   // Front Gate & Substation Street
-        { id: 'ROAD_CROSS_50', z: 50, x: 8, width: 90 },    // Front of T.0020 & T.0007
-        { id: 'ROAD_CROSS_15', z: 15, x: 8, width: 90 },    // Front of T.0019 & T.0006
-        { id: 'ROAD_CROSS_M20', z: -20, x: 8, width: 90 },   // Street between T.0008 & Football Courtyard
-        { id: 'ROAD_CROSS_M55', z: -55, x: 8, width: 90 },   // Street between T.0010 & D.0019
-        { id: 'ROAD_CROSS_M85', z: -85, x: 8, width: 90 },   // Street between T.0009 & T.0014
-        { id: 'ROAD_CROSS_M115', z: -115, x: -15, width: 130 }, // North connection & Canteen D.0017 street
-        { id: 'ROAD_CROSS_M150', z: -150, x: -35, width: 140 }  // Heavy workshop T.0012 street
-      ];
-
-      hRoads.forEach(r => {
-        const hGroup = new THREE.Group();
-        const road = new THREE.Mesh(new THREE.PlaneGeometry(r.width, 9), asphaltMat);
-        road.rotation.x = -Math.PI / 2;
-        road.receiveShadow = true;
-        hGroup.add(road);
-        hGroup.position.set(r.x, 0.05, r.z);
-        roadGroup.add(hGroup);
-        this.roadMeshes.set(r.id, hGroup);
-      });
-
-      // 5. Eastern Science & Chemistry Roundabout (in front of T.0018 & T.0016)
+      // 2. Eastern Science & Chemistry Roundabout (Landmark in front of T.0018 & T.0016)
       const eastRound = this.createRoundabout(125, -60, 14, 6.5);
-      roadGroup.add(eastRound);
+      this.scene.add(eastRound);
       this.roadMeshes.set('ROAD_EAST_ROUNDABOUT', eastRound);
       this.landmarkMeshes.set('EAST_ROUNDABOUT', eastRound);
 
-      // East Boulevard Connector to Chemistry Roundabout
-      const eastConnGroup = new THREE.Group();
-      const eastConn = new THREE.Mesh(new THREE.PlaneGeometry(80, 8), asphaltMat);
-      eastConn.rotation.x = -Math.PI / 2;
-      eastConn.receiveShadow = true;
-      eastConnGroup.add(eastConn);
-      eastConnGroup.position.set(65, 0.05, -60);
-      roadGroup.add(eastConnGroup);
-      this.roadMeshes.set('ROAD_EAST_CONNECTOR', eastConnGroup);
-
-      // Diagonal Road Connector from T.0018 Roundabout to OHK Zone
-      const ohkDiag = new THREE.Mesh(new THREE.PlaneGeometry(9, 85), asphaltMat);
-      ohkDiag.rotation.x = -Math.PI / 2;
-      ohkDiag.rotation.z = 0.55; // Angle northwest
-      ohkDiag.position.set(-100, 0.05, -95);
-      roadGroup.add(ohkDiag);
-
-      // Marked Parking Bays in front of D.0019, T.0019, and East Roundabout
+      // 3. Marked Parking Bays in front of D.0019, T.0019, and East Roundabout
+      const asphaltMat = new THREE.MeshStandardMaterial({ color: 0x334155, roughness: 0.72 });
+      const lineMat = new THREE.MeshBasicMaterial({ color: 0xF1F5F9 });
       const parkingLots = [
         { x: 30, z: -50, w: 10, d: 20 },
         { x: 22, z: 5, w: 8, d: 20 },
@@ -535,17 +461,17 @@
         lotMesh.rotation.x = -Math.PI / 2;
         lotMesh.position.set(lot.x, 0.06, lot.z);
         lotMesh.receiveShadow = true;
-        roadGroup.add(lotMesh);
+        this.scene.add(lotMesh);
 
         for (let lz = lot.z - lot.d / 2 + 3; lz <= lot.z + lot.d / 2 - 3; lz += 4) {
           const stallLine = new THREE.Mesh(new THREE.PlaneGeometry(lot.w - 1, 0.25), lineMat);
           stallLine.rotation.x = -Math.PI / 2;
           stallLine.position.set(lot.x, 0.07, lz);
-          roadGroup.add(stallLine);
+          this.scene.add(stallLine);
         }
       });
 
-      // Geometric Checkerboard Garden (Behind T.0017 near eastern perimeter)
+      // 4. Geometric Checkerboard Garden (Behind T.0017 near eastern perimeter)
       const checkGroup = new THREE.Group();
       const pMatLight = new THREE.MeshStandardMaterial({ color: 0xE2E8F0, roughness: 0.8 });
       const pMatGrass = new THREE.MeshStandardMaterial({ color: 0x4D7C0F, roughness: 0.9 });
@@ -558,9 +484,10 @@
           checkGroup.add(tile);
         }
       }
-      roadGroup.add(checkGroup);
+      this.scene.add(checkGroup);
 
-      this.scene.add(roadGroup);
+      // Initial synchronization of dynamic roads
+      this.syncRoadsFromModel();
     }
 
     createRoundabout(cx, cz, outerR, innerR) {
@@ -1424,43 +1351,7 @@
         group.add(parapet);
       }
 
-      // Front Facing Direction Indicator (สัญลักษณ์บอกทิศทางหันหน้าอาคาร)
-      const facingGroup = new THREE.Group();
-      facingGroup.name = 'facingDirectionIndicator';
-
-      // Ground arrow chevron pointing +Z (front facade)
-      const arrowShape = new THREE.Shape();
-      const aW = Math.max(2.4, Math.min(5.5, width * 0.45));
-      const aL = Math.max(2.0, Math.min(4.0, depth * 0.35));
-      arrowShape.moveTo(0, aL);
-      arrowShape.lineTo(aW * 0.5, 0);
-      arrowShape.lineTo(aW * 0.2, 0);
-      arrowShape.lineTo(aW * 0.2, -aL * 0.4);
-      arrowShape.lineTo(-aW * 0.2, -aL * 0.4);
-      arrowShape.lineTo(-aW * 0.5, 0);
-      arrowShape.closePath();
-
-      const arrowGeo = new THREE.ShapeGeometry(arrowShape);
-      const arrowMat = new THREE.MeshBasicMaterial({
-        color: 0xF59E0B, // Amber gold direction marker
-        side: THREE.DoubleSide,
-        depthWrite: false,
-        transparent: true,
-        opacity: 0.9
-      });
-      const arrowMesh = new THREE.Mesh(arrowGeo, arrowMat);
-      arrowMesh.rotation.x = Math.PI / 2; // Flat on the ground
-      arrowMesh.position.set(0, 0.08, depth / 2 + (aL * 0.5) + 0.6);
-      facingGroup.add(arrowMesh);
-
-      // Entrance threshold bar along front facade
-      const porchMat = new THREE.MeshStandardMaterial({ color: 0x0EA5E9, roughness: 0.4 });
-      const porchGeo = new THREE.BoxGeometry(Math.max(3.5, Math.min(aW * 1.3, width * 0.7)), 0.08, 1.0);
-      const porchMesh = new THREE.Mesh(porchGeo, porchMat);
-      porchMesh.position.set(0, 0.04, depth / 2 + 0.5);
-      facingGroup.add(porchMesh);
-
-      group.add(facingGroup);
+      // Directional facing indicators are rendered exclusively in the 2D Layout Studio for clean photorealism in 3D
 
       // Position & Orientation in Master Plan Coordinates
       group.position.set(x, 0, z);
@@ -2950,9 +2841,117 @@
       this.needsRender = true;
     }
 
+    // Dynamic Road Lifecycle & Synchronization
+    syncRoadsFromModel() {
+      if (!this.roadContainer) {
+        this.roadContainer = new THREE.Group();
+        this.roadContainer.name = 'DynamicRoadNetwork';
+        this.scene.add(this.roadContainer);
+      }
+      if (!this.roadMeshes) this.roadMeshes = new Map();
+
+      const roads = window.EnergyTwin && window.EnergyTwin.getRoadsList ? window.EnergyTwin.getRoadsList() : [];
+      const currentRoadIds = new Set(roads.map(r => r.id));
+
+      // 1. Remove meshes for deleted roads
+      for (const [id, mesh] of this.roadMeshes.entries()) {
+        if (id === 'ROAD_EAST_ROUNDABOUT') continue; // Preserve landmark roundabout
+        if (!currentRoadIds.has(id)) {
+          this.roadContainer.remove(mesh);
+          if (mesh.traverse) {
+            mesh.traverse(c => {
+              if (c.geometry) c.geometry.dispose();
+            });
+          }
+          this.roadMeshes.delete(id);
+        }
+      }
+
+      // 2. Add or update meshes for active roads
+      roads.forEach(r => {
+        let mesh = this.roadMeshes.get(r.id);
+        if (!mesh) {
+          mesh = this.createRoadSegmentMesh(r);
+          this.roadContainer.add(mesh);
+          this.roadMeshes.set(r.id, mesh);
+        } else {
+          this.updateRoadSegmentMesh(mesh, r);
+        }
+      });
+
+      this.needsRender = true;
+    }
+
+    createRoadSegmentMesh(r) {
+      const group = new THREE.Group();
+      group.name = 'Road_' + r.id;
+      const w = Number(r.width) || 8;
+      const len = Number(r.length) || 50;
+
+      const asphaltMat = new THREE.MeshStandardMaterial({ color: 0x334155, roughness: 0.72 });
+      const roadPlane = new THREE.Mesh(new THREE.PlaneGeometry(w, len), asphaltMat);
+      roadPlane.name = 'asphaltPlane';
+      roadPlane.rotation.x = -Math.PI / 2;
+      roadPlane.receiveShadow = true;
+      group.add(roadPlane);
+
+      // Centerline dashes
+      const lineGroup = new THREE.Group();
+      lineGroup.name = 'centerlineGroup';
+      this.buildRoadCenterline(lineGroup, w, len);
+      group.add(lineGroup);
+
+      group.position.set(Number(r.x) || 0, 0.05, Number(r.z) || 0);
+      group.rotation.y = Number(r.rotation_y) || 0;
+      group.visible = !r.hidden;
+      return group;
+    }
+
+    buildRoadCenterline(lineGroup, w, len) {
+      while (lineGroup.children.length > 0) {
+        const c = lineGroup.children.pop();
+        if (c.geometry) c.geometry.dispose();
+      }
+      if (w < 6 || len < 12) return;
+
+      const lineMat = new THREE.MeshBasicMaterial({ color: 0xF1F5F9 });
+      const dashLen = Math.min(5, Math.max(2, len * 0.08));
+      const step = dashLen * 2.2;
+
+      for (let z = -len / 2 + step; z <= len / 2 - step; z += step) {
+        const dash = new THREE.Mesh(new THREE.PlaneGeometry(0.35, dashLen), lineMat);
+        dash.rotation.x = -Math.PI / 2;
+        dash.position.set(0, 0.015, z);
+        lineGroup.add(dash);
+      }
+    }
+
+    updateRoadSegmentMesh(mesh, r) {
+      mesh.position.set(Number(r.x) || 0, 0.05, Number(r.z) || 0);
+      mesh.rotation.y = Number(r.rotation_y) || 0;
+      mesh.visible = !r.hidden;
+
+      const w = Number(r.width) || 8;
+      const len = Number(r.length) || 50;
+
+      const plane = mesh.getObjectByName('asphaltPlane');
+      if (plane) {
+        if (plane.geometry) plane.geometry.dispose();
+        plane.geometry = new THREE.PlaneGeometry(w, len);
+      }
+
+      const lineGroup = mesh.getObjectByName('centerlineGroup');
+      if (lineGroup) {
+        this.buildRoadCenterline(lineGroup, w, len);
+      }
+    }
+
     updateRoadPosition(roadId, newX, newZ) {
       const road = this.roadMeshes.get(roadId);
-      if (!road) return;
+      if (!road) {
+        this.syncRoadsFromModel();
+        return;
+      }
       const x = Number(newX);
       const z = Number(newZ);
       if (!isNaN(x)) road.position.x = x;
@@ -2962,37 +2961,44 @@
 
     updateRoadRotation(roadId, angleRad) {
       const road = this.roadMeshes.get(roadId);
-      if (!road) return;
+      if (!road) {
+        this.syncRoadsFromModel();
+        return;
+      }
       const rot = Number(angleRad);
       if (!isNaN(rot)) {
-        if (road.isGroup) {
-          road.rotation.y = rot;
-        } else {
-          road.rotation.z = -rot;
-        }
+        road.rotation.y = rot;
       }
       this.needsRender = true;
     }
 
     updateRoadDimensions(roadId, newWidth, newLength) {
       const road = this.roadMeshes.get(roadId);
-      if (!road) return;
-      const w = Number(newWidth);
-      const len = Number(newLength);
-      const def = window.EnergyTwin && window.EnergyTwin.defaultRoads && window.EnergyTwin.defaultRoads[roadId];
-      if (!def) return;
-      const origW = def.width || 8;
-      const origLen = def.length || def.depth || 50;
-
-      if (!isNaN(w) && w > 0 && !isNaN(len) && len > 0) {
-        const scaleW = w / origW;
-        const scaleLen = len / origLen;
-        if (road.isGroup) {
-          road.scale.set(scaleW, 1, scaleLen);
-        } else {
-          road.scale.set(scaleW, scaleLen, 1);
-        }
+      if (!road) {
+        this.syncRoadsFromModel();
+        return;
       }
+      const w = Number(newWidth) || 8;
+      const len = Number(newLength) || 50;
+      const plane = road.getObjectByName('asphaltPlane');
+      if (plane) {
+        if (plane.geometry) plane.geometry.dispose();
+        plane.geometry = new THREE.PlaneGeometry(w, len);
+      }
+      const lineGroup = road.getObjectByName('centerlineGroup');
+      if (lineGroup) {
+        this.buildRoadCenterline(lineGroup, w, len);
+      }
+      this.needsRender = true;
+    }
+
+    setRoadVisible(roadId, visible) {
+      const road = this.roadMeshes.get(roadId);
+      if (!road) {
+        this.syncRoadsFromModel();
+        return;
+      }
+      road.visible = Boolean(visible);
       this.needsRender = true;
     }
 

@@ -783,35 +783,242 @@
       transform: scale(1.06);
     }
 
-    /* Layout Studio 2-Column Responsive Workspace */
-    .layout-studio-wrap {
-      display: flex;
-      gap: 12px;
-      height: 560px;
-      max-height: 58vh;
-      position: relative;
+    /* ═════════════════════════════════════════════════════════════════
+       Layout 2D Live Studio - Lightweight & High Performance
+       ═════════════════════════════════════════════════════════════════ */
+    .layout-studio-modal-box {
+      max-width: 1440px !important;
+      width: 96vw !important;
+      height: 92vh !important;
+      max-height: 92vh !important;
+      display: flex !important;
+      flex-direction: column !important;
+      padding: 0 !important;
+      border-radius: 12px !important;
+      overflow: hidden !important;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.45) !important;
+      background: #FFFFFF !important;
     }
-    .layout-studio-sidebar {
-      width: 350px;
-      min-width: 320px;
-      max-width: 370px;
+
+    .studio-top-hdr {
+      padding: 10px 18px;
+      background: #0B1D51;
+      color: #fff;
       display: flex;
-      flex-direction: column;
-      gap: 8px;
-      background: #F8FAFC;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      z-index: 50;
+      flex-shrink: 0;
+    }
+
+    .btn-studio-top {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 12px;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #E2E8F0;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+    .btn-studio-top:hover {
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+
+    .studio-dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      margin-top: 6px;
+      background: #FFFFFF;
+      color: #1E293B;
       border: 1px solid #CBD5E1;
       border-radius: 8px;
       padding: 10px;
+      box-shadow: 0 16px 36px -4px rgba(0, 0, 0, 0.3);
+      display: none;
+      z-index: 99999;
+      min-width: 280px;
+    }
+    .studio-dropdown-menu.show {
+      display: block;
+    }
+
+    .studio-view-toggle {
+      padding: 5px 12px;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #CBD5E1;
+      background: transparent;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.12s;
+    }
+    .studio-view-toggle.active {
+      background: #2563EB;
+      color: #FFFFFF;
+    }
+
+    .btn-studio-save {
+      padding: 5px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #FFFFFF;
+      background: #059669;
+      border: 1px solid #10B981;
+      border-radius: 6px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s;
+    }
+    .btn-studio-save:hover {
+      background: #047857;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(5, 150, 105, 0.4);
+    }
+
+    .layout-2d-workspace {
+      display: flex;
+      flex: 1;
+      min-height: 0;
+      position: relative;
+      background: #F8FAFC;
       overflow: hidden;
     }
-    .layout-studio-main {
-      flex: 1;
-      min-width: 0;
+
+    .layout-2d-sidebar {
+      width: 290px;
+      min-width: 270px;
+      max-width: 310px;
+      background: #FFFFFF;
+      border-right: 1px solid #CBD5E1;
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      height: 100%;
+      overflow: hidden;
+      z-index: 5;
     }
+
+    .layout-2d-canvas-container {
+      flex: 1;
+      min-width: 0;
+      height: 100%;
+      position: relative;
+      background: #F1F5F9;
+      overflow: hidden;
+      user-select: none;
+    }
+
+    #layout2DCanvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      cursor: grab;
+    }
+    #layout2DCanvas:active {
+      cursor: grabbing;
+    }
+
+    .canvas-hud-toolbar {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      z-index: 20;
+      pointer-events: auto;
+    }
+    .canvas-hud-btn {
+      padding: 5px 10px;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #1E293B;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid #CBD5E1;
+      border-radius: 6px;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      transition: all 0.12s;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .canvas-hud-btn:hover {
+      background: #FFFFFF;
+      border-color: #94A3B8;
+      transform: translateY(-1px);
+    }
+    .snap-step-btn {
+      padding: 2px 7px;
+      font-size: 11px;
+      font-weight: 700;
+      border: 1px solid #CBD5E1;
+      background: #F8FAFC;
+      color: #475569;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.1s;
+    }
+    .snap-step-btn.active {
+      background: #2563EB;
+      color: #FFFFFF;
+      border-color: #2563EB;
+    }
+
+    .canvas-coord-badge {
+      position: absolute;
+      top: 14px;
+      left: 16px;
+      padding: 5px 12px;
+      font-size: 11px;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+      color: #1E3A8A;
+      background: rgba(239, 246, 255, 0.95);
+      border: 1px solid #BFDBFE;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      pointer-events: none;
+      z-index: 20;
+    }
+
+    .layout-floating-dock {
+      position: absolute;
+      bottom: 16px;
+      right: 16px;
+      width: 380px;
+      max-width: calc(100% - 32px);
+      background: rgba(255, 255, 255, 0.97);
+      backdrop-filter: blur(12px);
+      border: 1.5px solid #3B82F6;
+      border-radius: 10px;
+      padding: 12px 14px;
+      box-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.28);
+      z-index: 30;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      animation: slideUpFade 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes slideUpFade {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     .studio-cat-tabs {
       display: flex;
       gap: 4px;
@@ -843,7 +1050,7 @@
       display: flex;
       flex-direction: column;
       gap: 5px;
-      padding-right: 4px;
+      padding: 6px;
     }
     .palette-card {
       background: #FFFFFF;
@@ -867,18 +1074,26 @@
       background: #EFF6FF;
       box-shadow: 0 0 0 2px rgba(37,99,235,0.25);
     }
-    .studio-inspector {
-      background: #FFFFFF;
-      border: 1.5px solid #93C5FD;
-      border-radius: 8px;
-      padding: 10px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      box-shadow: 0 2px 8px rgba(37,99,235,0.08);
-      max-height: 250px;
-      overflow-y: auto;
+    .palette-card.item-hidden {
+      opacity: 0.55;
+      background: #F8FAFC;
+      border-style: dashed;
     }
+    .card-eye-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 13px;
+      padding: 2px 4px;
+      border-radius: 4px;
+      line-height: 1;
+      transition: all 0.1s;
+    }
+    .card-eye-btn:hover {
+      background: #E2E8F0;
+      transform: scale(1.15);
+    }
+
     .nudge-btn {
       padding: 4px 8px;
       font-size: 11px;
@@ -912,44 +1127,6 @@
       color: #1D4ED8;
       border-color: #93C5FD;
     }
-    .dim-preset-chip {
-      padding: 2px 6px;
-      font-size: 10px;
-      font-weight: 600;
-      background: #F1F5F9;
-      border: 1px solid #CBD5E1;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: all 0.1s;
-    }
-    .dim-preset-chip:hover {
-      background: #DBEAFE;
-      color: #1D4ED8;
-    }
-    .card-eye-btn {
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-size: 13px;
-      padding: 2px 4px;
-      border-radius: 4px;
-      line-height: 1;
-      transition: all 0.1s;
-    }
-    .card-eye-btn:hover {
-      background: #E2E8F0;
-      transform: scale(1.15);
-    }
-    .palette-card.item-hidden {
-      opacity: 0.55;
-      background: #F8FAFC;
-      border-style: dashed;
-    }
-    .grid-badge.badge-hidden {
-      opacity: 0.55;
-      border-style: dashed;
-      text-decoration: line-through;
-    }
     .bounds-ctrl-btn {
       padding: 1px 5px;
       font-size: 10px;
@@ -981,21 +1158,6 @@
       background: #EFF6FF;
       color: #1E3A8A;
       border-color: #3B82F6;
-    }
-    /* Real Physical Footprint Highlight for Selected Object */
-    .excel-cell.cell-footprint-active {
-      background: rgba(59, 130, 246, 0.18) !important;
-      box-shadow: inset 0 0 0 1px #3B82F6;
-      position: relative;
-    }
-    .excel-cell.cell-footprint-center {
-      background: rgba(37, 99, 235, 0.35) !important;
-      box-shadow: inset 0 0 0 2px #1D4ED8 !important;
-    }
-    /* Ghost Preview on Cell Hover */
-    .excel-cell.cell-footprint-hover {
-      background: rgba(16, 185, 129, 0.25) !important;
-      box-shadow: inset 0 0 0 1.5px #10B981 !important;
     }
 
     /* Responsive */
@@ -1624,233 +1786,251 @@
     </div>
   </div>
 
-  <!-- 10. 3D Building & Road Layout Editor Modal -->
+  <!-- 10. 2D Live Interactive Campus Layout Studio Modal -->
   <div class="modal-overlay" id="layoutEditorModal">
-    <div class="modal-box" style="max-width:1320px; width:98%;">
-      <div class="modal-hdr">
-        <div style="display:flex; align-items:center; gap:8px;">
-          <span style="font-size:22px;">🏗️</span>
+    <div class="modal-box layout-studio-modal-box">
+      <!-- Studio Top Action Bar (Compact Single-Row Header) -->
+      <div class="studio-top-hdr">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span style="font-size:22px;">🎨</span>
           <div>
-            <h3 style="margin:0; font-size:16px;">ห้องจัดผังและหมุนทิศวัตถุ 3D (Interactive Layout Studio & Excel Grid)</h3>
-            <p style="margin:2px 0 0; font-size:11px; color:var(--txt2);">เลือกจัดวางอาคาร ถนน แหล่งน้ำ และหมุนทิศ (0°-360°) ได้อิสระ พร้อมควบคุมความยาวแนวคลอง/ถนนเพื่อแก้ปัญหาซ้อนทับ และอัปเดต 3D สดทันที</p>
-          </div>
-        </div>
-        <button class="modal-close" onclick="closeLayoutEditorModal()">&times;</button>
-      </div>
-
-      <div class="modal-body" style="display:flex; flex-direction:column; gap:10px; padding:14px 18px;">
-        
-        <!-- Tab Bar: Layout Studio Grid vs Coordinates Table -->
-        <div class="layout-nav-tabs">
-          <button type="button" id="tabBtnGrid" class="layout-nav-tab active" onclick="switchLayoutEditorTab('grid')">
-            🎨 ผังและห้องจัดวาง 2D Studio (Interactive Grid & Palette)
-          </button>
-          <button type="button" id="tabBtnTable" class="layout-nav-tab" onclick="switchLayoutEditorTab('table')">
-            📋 ตารางตัวเลขพิกัด (Coordinates Table)
-          </button>
-        </div>
-
-        <!-- Campus Extents & Boundary Scaling Toolbar (ขยาย/ลดขนาดเขตรวมทั้งหมด) -->
-        <div style="background:#F0FDF4; border:1px solid #BBF7D0; border-radius:6px; padding:6px 10px; display:flex; align-items:center; justify-content:space-between; gap:8px; flex-wrap:wrap;">
-          <div style="display:flex; align-items:center; gap:6px; font-size:11px; font-weight:700; color:#166534;">
-            <span>📐 ขอบเขตพื้นที่วิทยาเขต (Campus Bounds):</span>
-            <span id="campusBoundsSummaryText" style="font-family:'JetBrains Mono',monospace; font-weight:700; color:#15803D; background:#DCFCE7; padding:1px 6px; border-radius:4px; border:1px solid #86EFAC;">
-              กว้าง 390 ม. × ยาว 360 ม.
-            </span>
-            <span id="campusBoundsCoordsText" style="font-size:10px; color:#4B5563; font-family:'JetBrains Mono',monospace;">
-              (W:-210, E:180, N:-220, S:140)
-            </span>
-          </div>
-
-          <!-- Boundary Controls per Direction -->
-          <div style="display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
-            <div style="display:flex; align-items:center; gap:2px; font-size:10.5px; color:#374151;">
-              <span style="font-weight:700;">W(ตก):</span>
-              <button type="button" class="bounds-ctrl-btn" onclick="adjustCampusBound('minX', -20)" title="ขยายพื้นที่ไปทางทิศตะวันตก 20ม.">+20</button>
-              <button type="button" class="bounds-ctrl-btn" onclick="adjustCampusBound('minX', 20)" title="ลดพื้นที่ทางทิศตะวันตก 20ม.">-20</button>
-            </div>
-            <div style="display:flex; align-items:center; gap:2px; font-size:10.5px; color:#374151;">
-              <span style="font-weight:700;">E(ออก):</span>
-              <button type="button" class="bounds-ctrl-btn" onclick="adjustCampusBound('maxX', 20)" title="ขยายพื้นที่ไปทางทิศตะวันออก 20ม.">+20</button>
-              <button type="button" class="bounds-ctrl-btn" onclick="adjustCampusBound('maxX', -20)" title="ลดพื้นที่ทางทิศตะวันออก 20ม.">-20</button>
-            </div>
-            <div style="display:flex; align-items:center; gap:2px; font-size:10.5px; color:#374151;">
-              <span style="font-weight:700;">N(เหนือ):</span>
-              <button type="button" class="bounds-ctrl-btn" onclick="adjustCampusBound('minZ', -20)" title="ขยายพื้นที่ไปทางทิศเหนือ 20ม.">+20</button>
-              <button type="button" class="bounds-ctrl-btn" onclick="adjustCampusBound('minZ', 20)" title="ลดพื้นที่ทางทิศเหนือ 20ม.">-20</button>
-            </div>
-            <div style="display:flex; align-items:center; gap:2px; font-size:10.5px; color:#374151;">
-              <span style="font-weight:700;">S(ใต้):</span>
-              <button type="button" class="bounds-ctrl-btn" onclick="adjustCampusBound('maxZ', 20)" title="ขยายพื้นที่ไปทางทิศใต้ 20ม.">+20</button>
-              <button type="button" class="bounds-ctrl-btn" onclick="adjustCampusBound('maxZ', -20)" title="ลดพื้นที่ทางทิศใต้ 20ม.">-20</button>
-            </div>
-
-            <!-- Presets -->
-            <div style="display:flex; gap:3px; align-items:center; border-left:1px solid #CBD5E1; padding-left:6px; margin-left:2px;">
-              <button type="button" class="bounds-preset-btn" onclick="setCampusBoundPreset('default')" title="คืนสู่ขนาด As-Built มาตรฐาน 390×360 ม.">🎯 มาตรฐาน</button>
-              <button type="button" class="bounds-preset-btn" onclick="setCampusBoundPreset('p20')" title="ขยายพื้นที่ทุกทิศทาง +20% (470×430 ม.)">➕ 20%</button>
-              <button type="button" class="bounds-preset-btn" onclick="setCampusBoundPreset('p50')" title="ขยายพื้นที่ทุกทิศทาง +50% (590×540 ม.)">➕ 50%</button>
-              <button type="button" class="bounds-preset-btn" onclick="resetCampusBoundsToDefault()" title="ล้างค่าที่บันทึก คืนค่าขอบเขตเริ่มต้น">🔄 คืนค่า</button>
-            </div>
+            <h3 style="margin:0; font-size:15px; color:#fff; display:flex; align-items:center; gap:8px;">
+              ผังจำลอง 2D Live Studio (Interactive Layout Editor)
+              <span style="font-size:11px; font-weight:700; background:#10B981; color:#fff; padding:1px 8px; border-radius:12px;">⚡ ลื่นไหล เบาแรงเครื่อง</span>
+            </h3>
+            <p style="margin:2px 0 0; font-size:11px; color:#94A3B8;">
+              ลากย้าย หมุนทิศทาง และปรับขนาดอาคาร/ถนนสดบนผังเวกเตอร์ 2D บันทึกแล้วอัปเดตโมเดล 3D ทันที
+            </p>
           </div>
         </div>
 
-        <!-- Excel, CSV & JSON Import/Export Toolbar -->
-        <div style="background:#F8FAFC; border:1px solid var(--bdr); border-radius:6px; padding:6px 10px; display:flex; align-items:center; justify-content:space-between; gap:6px; flex-wrap:wrap;">
-          <div style="display:flex; align-items:center; gap:6px; font-size:11px; font-weight:700; color:var(--pri);">
-            <span>📁 ส่งออก / นำเข้าผัง:</span>
+        <!-- Controls: Bounds Dropdown, Import/Export Dropdown, Tab Switch, Save, Close -->
+        <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
+          
+          <!-- Dropdown: Campus Extents & Bounds -->
+          <div style="position:relative;" id="boundsDropdownWrap">
+            <button type="button" class="btn-studio-top" onclick="toggleStudioDropdown('boundsDropdownMenu')">
+              📐 ขนาดพื้นที่: <strong id="campusBoundsSummaryText" style="color:#86EFAC;">390 × 360 ม.</strong> ▼
+            </button>
+            <div class="studio-dropdown-menu" id="boundsDropdownMenu">
+              <div style="font-weight:700; font-size:12px; margin-bottom:6px; color:#0F172A; display:flex; justify-content:space-between; align-items:center;">
+                <span>📐 ปรับขอบเขตพื้นที่วิทยาเขต:</span>
+                <span id="campusBoundsCoordsText" style="font-size:10px; color:#64748B; font-family:'JetBrains Mono';"></span>
+              </div>
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-bottom:8px; font-size:11px;">
+                <div style="display:flex; align-items:center; justify-content:space-between; background:#F8FAFC; padding:4px 6px; border-radius:4px; border:1px solid #E2E8F0;">
+                  <span>W(ตก -X):</span>
+                  <div>
+                    <button type="button" class="bounds-ctrl-btn" onclick="adjustCampusBound('minX', -20)">+20m</button>
+                    <button type="button" class="bounds-ctrl-btn" onclick="adjustCampusBound('minX', 20)">-20m</button>
+                  </div>
+                </div>
+                <div style="display:flex; align-items:center; justify-content:space-between; background:#F8FAFC; padding:4px 6px; border-radius:4px; border:1px solid #E2E8F0;">
+                  <span>E(ออก +X):</span>
+                  <div>
+                    <button type="button" class="bounds-ctrl-btn" onclick="adjustCampusBound('maxX', 20)">+20m</button>
+                    <button type="button" class="bounds-ctrl-btn" onclick="adjustCampusBound('maxX', -20)">-20m</button>
+                  </div>
+                </div>
+                <div style="display:flex; align-items:center; justify-content:space-between; background:#F8FAFC; padding:4px 6px; border-radius:4px; border:1px solid #E2E8F0;">
+                  <span>N(เหนือ -Z):</span>
+                  <div>
+                    <button type="button" class="bounds-ctrl-btn" onclick="adjustCampusBound('minZ', -20)">+20m</button>
+                    <button type="button" class="bounds-ctrl-btn" onclick="adjustCampusBound('minZ', 20)">-20m</button>
+                  </div>
+                </div>
+                <div style="display:flex; align-items:center; justify-content:space-between; background:#F8FAFC; padding:4px 6px; border-radius:4px; border:1px solid #E2E8F0;">
+                  <span>S(ใต้ +Z):</span>
+                  <div>
+                    <button type="button" class="bounds-ctrl-btn" onclick="adjustCampusBound('maxZ', 20)">+20m</button>
+                    <button type="button" class="bounds-ctrl-btn" onclick="adjustCampusBound('maxZ', -20)">-20m</button>
+                  </div>
+                </div>
+              </div>
+              <div style="font-weight:600; font-size:11px; margin-bottom:4px; color:#475569;">พรีเซ็ตขนาดสำเร็จรูป:</div>
+              <div style="display:flex; gap:4px; flex-wrap:wrap;">
+                <button type="button" class="bounds-preset-btn" onclick="setCampusBoundPreset('default')">🎯 มาตรฐาน (390×360)</button>
+                <button type="button" class="bounds-preset-btn" onclick="setCampusBoundPreset('p20')">➕ ขยาย +20%</button>
+                <button type="button" class="bounds-preset-btn" onclick="setCampusBoundPreset('p50')">➕ ขยาย +50%</button>
+                <button type="button" class="bounds-preset-btn" onclick="resetCampusBoundsToDefault()">🔄 คืนค่า</button>
+              </div>
+            </div>
           </div>
-          <div style="display:flex; gap:5px; flex-wrap:wrap; align-items:center;">
-            <button type="button" class="btn-action primary" style="font-size:11px; padding:4px 9px; font-weight:700;" onclick="EnergyTwin.exportLayoutToJson()" title="แนะนำสูงสุด: ดาวน์โหลดไฟล์ JSON ที่เก็บข้อมูลผัง 100% ครบถ้วน (พิกัด X/Z, การหมุนทิศ, ขอบเขตพื้นที่ และการซ่อน/แสดง)">
-              📄 ดาวน์โหลด JSON (แนะนำ)
+
+          <!-- Dropdown: Import/Export -->
+          <div style="position:relative;" id="importExportDropdownWrap">
+            <button type="button" class="btn-studio-top" onclick="toggleStudioDropdown('importExportDropdownMenu')">
+              📁 ส่งออก / นำเข้า ▼
             </button>
-            <button type="button" class="btn-action" style="color:#15803D; border-color:#86EFAC; background:#F0FDF4; font-size:11px; padding:4px 8px;" onclick="EnergyTwin.exportLayoutXlsx()" title="ดาวน์โหลดไฟล์ Excel (.xlsx) ที่มีตารางพิกัดแบบกรอกค่าได้ทันที และผัง 2D Grid">
-              📊 ดาวน์โหลด Excel (.xlsx)
-            </button>
-            <button type="button" class="btn-action" style="font-size:11px; padding:4px 8px;" onclick="EnergyTwin.exportLayoutCsv()" title="ดาวน์โหลดตารางพิกัดอาคาร ถนน และแหล่งน้ำในรูปแบบ CSV">
-              📝 ตารางพิกัด (CSV)
-            </button>
-            <button type="button" class="btn-action" style="font-size:11px; padding:4px 8px;" onclick="EnergyTwin.exportGridMapCsv()" title="ดาวน์โหลดผังแบบ Matrix 2D Grid ในรูปแบบ CSV">
-              🗺️ ผัง 2D Grid (CSV)
-            </button>
-            <button type="button" class="btn-action" style="background:#0284C7; color:#fff; border-color:#0284C7; font-size:11px; padding:4px 9px; font-weight:700;" onclick="document.getElementById('layoutFileInput').click()" title="อัปโหลดไฟล์ JSON, Excel (.xlsx) หรือ CSV เพื่อปรับผัง 3D ทันที">
-              📥 อัปโหลดไฟล์ (JSON / Excel / CSV)
-            </button>
-            <button type="button" class="btn-action" style="font-size:11px; padding:4px 8px;" onclick="copyLayoutJsonToClipboard()" title="คัดลอกพิกัดทุกอาคารและถนนเป็น JSON ลงในคลิปบอร์ด">
-              📋 คัดลอก JSON
-            </button>
+            <div class="studio-dropdown-menu" id="importExportDropdownMenu" style="width:260px;">
+              <div style="font-weight:700; font-size:12px; margin-bottom:6px; color:#0F172A;">บันทึกออกและนำเข้าผัง:</div>
+              <button type="button" class="btn-action primary" style="width:100%; justify-content:flex-start; margin-bottom:4px; font-size:11.5px;" onclick="EnergyTwin.exportLayoutToJson(); closeAllStudioDropdowns();">
+                📄 ดาวน์โหลด JSON (แนะนำสูงสุด)
+              </button>
+              <button type="button" class="btn-action" style="width:100%; justify-content:flex-start; margin-bottom:4px; font-size:11.5px;" onclick="EnergyTwin.exportLayoutXlsx(); closeAllStudioDropdowns();">
+                📊 ดาวน์โหลด Excel (.xlsx)
+              </button>
+              <button type="button" class="btn-action" style="width:100%; justify-content:flex-start; margin-bottom:4px; font-size:11.5px;" onclick="EnergyTwin.exportLayoutCsv(); closeAllStudioDropdowns();">
+                📝 ดาวน์โหลด CSV (ตารางพิกัด)
+              </button>
+              <button type="button" class="btn-action" style="width:100%; justify-content:flex-start; margin-bottom:4px; font-size:11.5px;" onclick="copyLayoutJsonToClipboard(); closeAllStudioDropdowns();">
+                📋 คัดลอก JSON ลงคลิปบอร์ด
+              </button>
+              <div style="border-top:1px solid #E2E8F0; margin:6px 0; padding-top:6px;">
+                <button type="button" class="btn-action" style="width:100%; justify-content:flex-start; font-size:11.5px; background:#0284C7; color:#fff;" onclick="document.getElementById('layoutFileInput').click(); closeAllStudioDropdowns();">
+                  📥 อัปโหลดไฟล์ผัง (JSON / Excel / CSV)
+                </button>
+              </div>
+            </div>
             <input type="file" id="layoutFileInput" accept=".json,.xlsx,.xls,.csv,.txt" style="display:none;" onchange="onLayoutFileSelected(event)">
           </div>
-        </div>
 
-        <!-- TAB 1: 2D Layout Studio (Sidebar Palette + Inspector & Interactive Grid) -->
-        <div id="layoutTabGrid" style="display:flex; flex-direction:column; gap:8px;">
-          <div class="layout-studio-wrap">
+          <!-- View Switcher -->
+          <div style="display:inline-flex; background:rgba(255,255,255,0.12); border-radius:6px; padding:2px; border:1px solid rgba(255,255,255,0.2);">
+            <button type="button" class="studio-view-toggle active" id="tabBtnGrid" onclick="switchLayoutEditorTab('grid')">🎨 ผัง 2D Live</button>
+            <button type="button" class="studio-view-toggle" id="tabBtnTable" onclick="switchLayoutEditorTab('table')">📋 ตารางพิกัด</button>
+          </div>
+
+          <!-- Save Button -->
+          <button type="button" class="btn-studio-save" onclick="saveLayoutEditorChanges()" title="บันทึกพิกัดและการหมุนทิศลงหน่วยความจำ และอัปเดตโมเดล 3D ทันที">
+            💾 บันทึกผัง 3D
+          </button>
+
+          <!-- Close Modal -->
+          <button type="button" class="modal-close" style="color:#fff; font-size:24px; padding:0 4px; line-height:1;" onclick="closeLayoutEditorModal()">&times;</button>
+        </div>
+      </div>
+
+      <!-- Main Studio Workspace (Tab 1: 2D Live Canvas Studio) -->
+      <div id="layoutTabGrid" class="layout-2d-workspace">
+        
+        <!-- LEFT SIDEBAR: Palette & Category Filter -->
+        <div class="layout-2d-sidebar">
+          
+          <div style="padding:10px; display:flex; flex-direction:column; gap:6px; border-bottom:1px solid #E2E8F0; background:#fff; flex-shrink:0;">
+            <input type="text" id="studioPaletteSearch" placeholder="🔍 ค้นหาอาคาร, ถนน, แหล่งน้ำ..." 
+                   oninput="renderLayoutStudioPalette()"
+                   style="width:100%; padding:6px 9px; border:1px solid #CBD5E1; border-radius:6px; font-family:'Sarabun',sans-serif; font-size:12px;">
             
-            <!-- LEFT PANEL: Object Library Palette & Selected Object Inspector -->
-            <div class="layout-studio-sidebar">
-              
-              <!-- Search & Category Filters -->
-              <div style="display:flex; flex-direction:column; gap:6px;">
-                <input type="text" id="studioPaletteSearch" placeholder="🔍 ค้นหาวัตถุ / อาคาร / ถนน..." 
-                       oninput="renderLayoutStudioPalette()"
-                       style="width:100%; padding:5px 8px; border:1px solid #CBD5E1; border-radius:6px; font-family:'Sarabun',sans-serif; font-size:12px;">
-                
-                <div class="studio-cat-tabs">
-                  <button type="button" class="studio-cat-chip active" data-cat="ALL" onclick="setStudioCategory('ALL')">🌐 ทั้งหมด</button>
-                  <button type="button" class="studio-cat-chip" data-cat="bld" onclick="setStudioCategory('bld')">🏢 อาคาร (29)</button>
-                  <button type="button" class="studio-cat-chip" data-cat="road" onclick="setStudioCategory('road')">🛣️ ถนน (15)</button>
-                  <button type="button" class="studio-cat-chip" data-cat="water" onclick="setStudioCategory('water')">💧 แหล่งน้ำ (8)</button>
-                  <button type="button" class="studio-cat-chip" data-cat="landmark" onclick="setStudioCategory('landmark')">🚩 อื่นๆ</button>
-                  <button type="button" class="studio-cat-chip" data-cat="hidden" onclick="setStudioCategory('hidden')" style="color:#DC2626;" title="ดูเฉพาะวัตถุที่ถูกซ่อน/ลบออกจากผัง">🚫 ซ่อนอยู่</button>
-                </div>
-              </div>
-
-              <!-- Selected Object Inspector & Transformation Controls -->
-              <div id="studioInspectorWrap" style="display:none;">
-                <!-- Dynamically populated by renderStudioInspector() -->
-              </div>
-
-              <!-- Scrollable Object Palette List -->
-              <div style="font-size:11px; font-weight:700; color:var(--pri); display:flex; justify-content:space-between; align-items:center; padding-top:2px;">
-                <span>📚 คลังวัตถุวิทยาเขต:</span>
-                <span id="studioPaletteCount" style="font-size:10px; color:var(--txt2); font-weight:normal;"></span>
-              </div>
-              <div class="studio-palette-list" id="studioPaletteList">
-                <!-- Dynamically rendered by JS -->
-              </div>
-
+            <div class="studio-cat-tabs">
+              <button type="button" class="studio-cat-chip active" data-cat="ALL" onclick="setStudioCategory('ALL')">🌐 ทั้งหมด</button>
+              <button type="button" class="studio-cat-chip" data-cat="bld" onclick="setStudioCategory('bld')">🏢 อาคาร (29)</button>
+              <button type="button" class="studio-cat-chip" data-cat="road" onclick="setStudioCategory('road')">🛣️ ถนน <span id="chipCountRoad">(0)</span></button>
+              <button type="button" class="studio-cat-chip" data-cat="water" onclick="setStudioCategory('water')">💧 น้ำ (8)</button>
+              <button type="button" class="studio-cat-chip" data-cat="landmark" onclick="setStudioCategory('landmark')">🚩 อื่นๆ</button>
+              <button type="button" class="studio-cat-chip" data-cat="hidden" onclick="setStudioCategory('hidden')" style="color:#DC2626;" title="ดูเฉพาะวัตถุที่ถูกซ่อน">🚫 ซ่อนอยู่</button>
             </div>
+          </div>
 
-            <!-- RIGHT PANEL: 2D Interactive Grid Viewport with Footprint Overlay -->
-            <div class="layout-studio-main">
-              
-              <!-- Quick Navigation & Status Toolbar -->
-              <div style="background:#EFF6FF; border:1px solid #BFDBFE; border-radius:6px; padding:6px 10px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;">
-                <div id="gridSelectedInfo" style="font-size:11px; color:#1E3A8A; font-weight:600; line-height:1.4;">
-                  💡 <strong>วิธีจัดผัง:</strong> เลือกวัตถุด้านซ้าย &gt; หมุนทิศหรือปรับขนาดตามต้องการ &gt; คลิกช่องบนตารางเพื่อวางตำแหน่ง (มีเส้นไฮไลต์ขนาดจริง)
-                </div>
-                <div style="display:flex; align-items:center; gap:4px; font-size:11px;">
-                  <span style="color:var(--txt2); font-weight:600;">มุมมอง:</span>
-                  <button type="button" class="btn-action" style="padding:2px 6px; font-size:10px;" onclick="scrollGridToCoord(20, 0)">🏢 ท.0019</button>
-                  <button type="button" class="btn-action" style="padding:2px 6px; font-size:10px;" onclick="scrollGridToCoord(-120, -160)">🚚 อหข.</button>
-                  <button type="button" class="btn-action" style="padding:2px 6px; font-size:10px;" onclick="scrollGridToCoord(8, 120)">🚪 ซุ้มประตู</button>
-                  <button type="button" class="btn-action" style="padding:2px 6px; font-size:10px;" onclick="scrollGridToCoord(-50, -60)">🔧 โรงซ่อม</button>
-                </div>
-              </div>
-
-              <!-- Excel Matrix Viewport -->
-              <div class="excel-grid-viewport" id="excelGridViewport" onmouseleave="clearStudioHoverFootprint()">
-                <table class="excel-grid-table" id="excelGridTable">
-                  <!-- Dynamically rendered by JS -->
-                </table>
-              </div>
-
+          <!-- Road Creator Quick Toolbar (3 Standard Sizes: 12m Main, 8m Secondary, 5m Access Lane) -->
+          <div id="studioRoadCreatorBox" style="padding:8px 10px; background:#F8FAFC; border-bottom:1px solid #E2E8F0; display:flex; flex-direction:column; gap:6px; flex-shrink:0;">
+            <div style="display:flex; justify-content:space-between; align-items:center; font-size:11px; font-weight:700; color:#1E3A8A;">
+              <span>🛣️ วาดถนนใหม่ (3 ขนาดมาตรฐาน):</span>
+              <button type="button" onclick="clearAllStudioRoads()" style="background:none; border:none; color:#DC2626; font-size:10px; cursor:pointer; text-decoration:underline; font-weight:600;" title="ลบเส้นทางถนนทั้งหมดเพื่อเริ่มวาดใหม่">🗑️ ลบถนนทั้งหมด</button>
             </div>
+            <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:4px;">
+              <button type="button" class="btn-action" style="padding:5px 3px; font-size:10px; justify-content:center; background:#EFF6FF; border-color:#BFDBFE; color:#1E40AF; flex-direction:column; gap:1px;" onclick="addNewStudioRoad('main')" title="สร้างถนนสายหลัก กว้าง 12 ม. (ยาวเริ่มต้น 100 ม.)">
+                <span style="font-weight:700;">+ สายหลัก</span>
+                <span style="font-size:9px; color:#475569;">12 ม.</span>
+              </button>
+              <button type="button" class="btn-action" style="padding:5px 3px; font-size:10px; justify-content:center; background:#F0FDF4; border-color:#BBF7D0; color:#166534; flex-direction:column; gap:1px;" onclick="addNewStudioRoad('secondary')" title="สร้างถนนสายรอง กว้าง 8 ม. (ยาวเริ่มต้น 60 ม.)">
+                <span style="font-weight:700;">+ สายรอง</span>
+                <span style="font-size:9px; color:#475569;">8 ม.</span>
+              </button>
+              <button type="button" class="btn-action" style="padding:5px 3px; font-size:10px; justify-content:center; background:#FEF3C7; border-color:#FDE68A; color:#92400E; flex-direction:column; gap:1px;" onclick="addNewStudioRoad('lane')" title="สร้างทางเชื่อมซอย กว้าง 5 ม. (ยาวเริ่มต้น 30 ม.)">
+                <span style="font-weight:700;">+ ทางเชื่อม</span>
+                <span style="font-size:9px; color:#475569;">5 ม.</span>
+              </button>
+            </div>
+          </div>
 
+          <!-- Palette Cards List -->
+          <div class="studio-palette-list" id="studioPaletteList">
+            <!-- Rendered by JS -->
+          </div>
+
+          <div style="padding:6px 10px; font-size:10.5px; color:#64748B; background:#F8FAFC; border-top:1px solid #E2E8F0; text-align:center; flex-shrink:0;">
+            💡 คลิกเลือกวัตถุบนผังหรือรายการ | ลากเพื่อย้ายพิกัด
           </div>
         </div>
 
-        <!-- TAB 2: Coordinates Table -->
-        <div id="layoutTabTable" style="display:none; flex-direction:column; gap:10px;">
-          <!-- Filter Controls -->
-          <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;">
-            <div style="display:flex; gap:8px; flex:1; min-width:280px; align-items:center;">
-              <input type="text" id="layoutSearchInput" placeholder="🔍 ค้นหารหัส หรือ ชื่ออาคาร/ถนน..." 
-                     oninput="renderLayoutEditorList()" 
-                     style="padding:6px 12px; border:1px solid var(--bdr); border-radius:6px; font-family:'Sarabun'; font-size:12px; flex:1; max-width:260px;">
-              <select id="layoutZoneFilter" onchange="renderLayoutEditorList()" 
-                      class="fl-select" style="padding:6px 10px; font-size:12px; color:var(--txt); border-color:var(--bdr); background:#fff;">
-                <option value="ALL">🌐 ทุกรายการ (29 อาคาร + 15 เส้นทางถนน)</option>
-                <option value="road">🛣️ เส้นทางถนน (Road Network - 15 เส้นทาง)</option>
-                <option value="east">🏢 โซนสำนักงาน & ห้องปฏิบัติการ (East)</option>
-                <option value="central">🏭 โซนโรงงาน & พัสดุ (Central)</option>
-                <option value="ohk">🚚 โซนขนส่ง อหข. (Northwest OHK)</option>
-                <option value="west">🏡 โซนบ้านพัก & ริมคลอง (West)</option>
-              </select>
-            </div>
-            <div style="display:flex; gap:6px; flex-wrap:wrap;">
-              <button class="btn-action primary" onclick="saveLayoutEditorChanges()" title="บันทึกพิกัดลงในหน่วยความจำเบราว์เซอร์">💾 บันทึกผังนี้</button>
-              <button class="btn-action" style="background:#0284C7; color:#fff;" onclick="resetRoadsAndWaterToDefault()" title="คืนค่าตำแหน่งถนน แหล่งน้ำ และแลนด์มาร์คมาตรฐาน โดยคงผังอาคารที่จัดวางไว้">🛣️ คืนค่าเฉพาะถนน/แหล่งน้ำ</button>
-              <button class="btn-action danger" onclick="resetLayoutEditorToDefault()" title="คืนค่าพิกัดเริ่มต้นจากไฟล์ระบบ">🔄 คืนค่าทั้งหมด</button>
+        <!-- CENTER/RIGHT: High-Performance 2D Live Canvas -->
+        <div class="layout-2d-canvas-container" id="layout2DCanvasContainer">
+          
+          <canvas id="layout2DCanvas"></canvas>
+
+          <!-- Top-Left Mouse Coordinates Display -->
+          <div class="canvas-coord-badge" id="canvasCoordBadge">
+            📍 พิกัดเมาส์: X: 0 ม., Z: 0 ม.
+          </div>
+
+          <!-- Top-Right Canvas HUD Toolbar -->
+          <div class="canvas-hud-toolbar">
+            <button type="button" class="canvas-hud-btn" onclick="layout2DStudio.zoomIn()" title="ขยายมุมมอง (Zoom In)">➕</button>
+            <button type="button" class="canvas-hud-btn" onclick="layout2DStudio.zoomOut()" title="ย่อมุมมอง (Zoom Out)">➖</button>
+            <button type="button" class="canvas-hud-btn" onclick="layout2DStudio.resetView()" title="จัดผังให้อยู่กึ่งกลางหน้าจอ">🎯 จัดกึ่งกลาง</button>
+            <div style="display:flex; align-items:center; gap:2px; background:rgba(255,255,255,0.92); border:1px solid #CBD5E1; border-radius:6px; padding:2px 6px; font-size:11px; font-weight:600; color:#334155;">
+              <span>Snap:</span>
+              <button type="button" class="snap-step-btn" data-snap="1" onclick="layout2DStudio.setSnap(1)">1ม.</button>
+              <button type="button" class="snap-step-btn active" data-snap="5" onclick="layout2DStudio.setSnap(5)">5ม.</button>
+              <button type="button" class="snap-step-btn" data-snap="10" onclick="layout2DStudio.setSnap(10)">10ม.</button>
             </div>
           </div>
 
-          <!-- Table Body -->
-          <div style="max-height:420px; overflow-y:auto; border:1px solid var(--bdr); border-radius:8px; background:#fff;">
-            <table class="sub-table" style="font-size:12px; width:100%;">
-              <thead>
-                <tr style="position:sticky; top:0; background:#F8FAFC; z-index:2; box-shadow:0 1px 2px rgba(0,0,0,0.05);">
-                  <th style="width:50px; text-align:center;" title="เปิด/ปิดการแสดงผลวัตถุใน 3D และผัง">แสดง</th>
-                  <th style="width:110px;">รหัส / ประเภท</th>
-                  <th style="min-width:170px;">ชื่ออาคาร / เส้นทางถนน / แหล่งน้ำ</th>
-                  <th style="width:105px;">โซน</th>
-                  <th style="width:75px; text-align:center;">ขนาด (กxย)</th>
-                  <th style="width:90px; text-align:center;">🧭 หันหน้า</th>
-                  <th style="width:160px; text-align:center;">พิกัด X (ซ้าย-ขวา)</th>
-                  <th style="width:160px; text-align:center;">พิกัด Z (หน้า-หลัง)</th>
-                  <th style="width:100px; text-align:center;">เครื่องมือ</th>
-                </tr>
-              </thead>
-              <tbody id="layoutEditorTableBody">
-                <!-- Generated by JS -->
-              </tbody>
-            </table>
+          <!-- Floating Transform Inspector Dock (Appears when item is selected) -->
+          <div class="layout-floating-dock" id="layoutFloatingDock" style="display:none;">
+            <!-- Populated dynamically by layout2DStudio.renderFloatingDock() -->
           </div>
+
         </div>
 
       </div>
 
-      <div class="modal-ftr" style="display:flex; justify-content:space-between; align-items:center;">
-        <div style="font-size:11px; color:var(--txt2);" id="layoutEditorCountText">
-          แสดง 29 อาคาร + 15 เส้นทางถนน | บันทึกในเบราว์เซอร์อัตโนมัติ (LocalStorage)
+      <!-- Tab 2: Coordinates Table (Tabular Data View) -->
+      <div id="layoutTabTable" style="display:none; flex:1; flex-direction:column; padding:12px 18px; gap:10px; overflow-y:auto; background:#fff;">
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;">
+          <div style="display:flex; gap:8px; flex:1; min-width:280px; align-items:center;">
+            <input type="text" id="layoutSearchInput" placeholder="🔍 ค้นหารหัส หรือ ชื่ออาคาร/ถนน..." 
+                   oninput="renderLayoutEditorList()" 
+                   style="padding:6px 12px; border:1px solid var(--bdr); border-radius:6px; font-family:'Sarabun'; font-size:12px; flex:1; max-width:260px;">
+            <select id="layoutZoneFilter" onchange="renderLayoutEditorList()" 
+                    class="fl-select" style="padding:6px 10px; font-size:12px; color:var(--txt); border-color:var(--bdr); background:#fff;">
+              <option value="ALL">🌐 ทุกรายการ (29 อาคาร + 15 เส้นทางถนน + น้ำ + แลนด์มาร์ค)</option>
+              <option value="bld">🏢 เฉพาะอาคาร</option>
+              <option value="road">🛣️ เส้นทางถนน (Road Network)</option>
+              <option value="water">💧 แหล่งน้ำและคลอง</option>
+              <option value="landmark">🚩 แลนด์มาร์คและสิ่งอำนวยความสะดวก</option>
+            </select>
+          </div>
+          <div style="display:flex; gap:6px; flex-wrap:wrap;">
+            <button type="button" class="btn-action primary" onclick="saveLayoutEditorChanges()" title="บันทึกพิกัดลงในหน่วยความจำเบราว์เซอร์">💾 บันทึกผังนี้</button>
+            <button type="button" class="btn-action" style="background:#0284C7; color:#fff;" onclick="resetRoadsAndWaterToDefault()">🛣️ คืนค่าเฉพาะถนน/แหล่งน้ำ</button>
+            <button type="button" class="btn-action danger" onclick="resetLayoutEditorToDefault()">🔄 คืนค่าทั้งหมด</button>
+          </div>
         </div>
-        <div style="display:flex; gap:8px;">
-          <button class="btn-action" style="background:#0284C7; color:#fff;" onclick="resetRoadsAndWaterToDefault()" title="คืนค่าเฉพาะถนนและแหล่งน้ำมาตรฐาน โดยคงผังอาคารที่จัดวางไว้">🛣️ คืนค่าเฉพาะถนน/แหล่งน้ำ</button>
-          <button class="btn-action primary" onclick="saveLayoutEditorChanges()">💾 บันทึกทั้งหมด</button>
-          <button class="btn-action" style="color:var(--pri);" onclick="closeLayoutEditorModal()">ปิดหน้าต่าง</button>
+
+        <div style="flex:1; max-height:calc(85vh - 160px); overflow-y:auto; border:1px solid var(--bdr); border-radius:8px; background:#fff;">
+          <table class="sub-table" style="font-size:12px; width:100%;">
+            <thead>
+              <tr style="position:sticky; top:0; background:#F8FAFC; z-index:2; box-shadow:0 1px 2px rgba(0,0,0,0.05);">
+                <th style="width:50px; text-align:center;">แสดง</th>
+                <th style="width:110px;">รหัส / ประเภท</th>
+                <th style="min-width:170px;">ชื่อวัตถุ</th>
+                <th style="width:105px;">โซน / หมวดหมู่</th>
+                <th style="width:80px; text-align:center;">ขนาด (กxย)</th>
+                <th style="width:100px; text-align:center;">🧭 หันหน้า</th>
+                <th style="width:160px; text-align:center;">พิกัด X (ซ้าย-ขวา)</th>
+                <th style="width:160px; text-align:center;">พิกัด Z (หน้า-หลัง)</th>
+                <th style="width:90px; text-align:center;">เครื่องมือ</th>
+              </tr>
+            </thead>
+            <tbody id="layoutEditorTableBody">
+              <!-- Rendered by JS -->
+            </tbody>
+          </table>
         </div>
       </div>
+
     </div>
   </div>
 
@@ -1925,13 +2105,17 @@
       });
 
       // 2. Sync Roads (Position, Rotation, Dimensions & Visibility)
-      const rList = EnergyTwin.getRoadsList ? EnergyTwin.getRoadsList() : [];
-      rList.forEach(r => {
-        campusScene.updateRoadPosition(r.id, r.x, r.z);
-        if (campusScene.updateRoadRotation) campusScene.updateRoadRotation(r.id, r.rotation_y || 0);
-        if (campusScene.updateRoadDimensions) campusScene.updateRoadDimensions(r.id, r.width, r.length);
-        if (campusScene.setRoadVisible) campusScene.setRoadVisible(r.id, !r.hidden);
-      });
+      if (campusScene.syncRoadsFromModel) {
+        campusScene.syncRoadsFromModel();
+      } else {
+        const rList = EnergyTwin.getRoadsList ? EnergyTwin.getRoadsList() : [];
+        rList.forEach(r => {
+          campusScene.updateRoadPosition(r.id, r.x, r.z);
+          if (campusScene.updateRoadRotation) campusScene.updateRoadRotation(r.id, r.rotation_y || 0);
+          if (campusScene.updateRoadDimensions) campusScene.updateRoadDimensions(r.id, r.width, r.length);
+          if (campusScene.setRoadVisible) campusScene.setRoadVisible(r.id, !r.hidden);
+        });
+      }
 
       // 3. Sync Water (Position, Rotation, Dimensions & Visibility)
       const wList = EnergyTwin.getWaterList ? EnergyTwin.getWaterList() : [];
@@ -3293,6 +3477,26 @@
       if (coordsEl) coordsEl.textContent = `(W:${bounds.minX}, E:${bounds.maxX}, N:${bounds.minZ}, S:${bounds.maxZ})`;
     }
 
+    function toggleStudioDropdown(menuId) {
+      const menu = document.getElementById(menuId);
+      if (!menu) return;
+      const isShown = menu.classList.contains('show');
+      closeAllStudioDropdowns();
+      if (!isShown) {
+        menu.classList.add('show');
+      }
+    }
+
+    function closeAllStudioDropdowns() {
+      document.querySelectorAll('.studio-dropdown-menu').forEach(m => m.classList.remove('show'));
+    }
+
+    window.addEventListener('click', (e) => {
+      if (!e.target.closest('#boundsDropdownWrap') && !e.target.closest('#importExportDropdownWrap')) {
+        closeAllStudioDropdowns();
+      }
+    });
+
     function adjustCampusBound(edge, delta) {
       const bounds = EnergyTwin.getCampusBounds ? EnergyTwin.getCampusBounds() : { minX: -210, maxX: 180, minZ: -220, maxZ: 140 };
       bounds[edge] = (bounds[edge] || 0) + delta;
@@ -3312,7 +3516,7 @@
         campusScene.updateCampusBounds(bounds);
       }
       updateCampusBoundsDisplay();
-      renderInteractiveExcelGrid();
+      if (layout2DStudio.isInitialized) layout2DStudio.render();
     }
 
     function setCampusBoundPreset(preset) {
@@ -3327,7 +3531,7 @@
         campusScene.updateCampusBounds(bounds);
       }
       updateCampusBoundsDisplay();
-      renderInteractiveExcelGrid();
+      if (layout2DStudio.isInitialized) layout2DStudio.render();
     }
 
     function resetCampusBoundsToDefault() {
@@ -3337,26 +3541,33 @@
         campusScene.updateCampusBounds(bounds);
       }
       updateCampusBoundsDisplay();
-      renderInteractiveExcelGrid();
+      if (layout2DStudio.isInitialized) layout2DStudio.render();
     }
 
     function openLayoutEditorModal() {
       document.getElementById('layoutEditorModal').style.display = 'flex';
       updateCampusBoundsDisplay();
       setupLayoutModalDragDrop();
-      if (activeLayoutTab === 'grid') {
-        renderLayoutStudioPalette();
-        renderInteractiveExcelGrid();
-        if (selectedGridItem) {
-          renderStudioInspector();
-          highlightStudioActiveFootprint();
+      requestAnimationFrame(() => {
+        if (!layout2DStudio.isInitialized) {
+          layout2DStudio.init();
+        } else {
+          layout2DStudio.resize();
         }
-      } else {
-        renderLayoutEditorList();
-      }
+        if (activeLayoutTab === 'grid') {
+          renderLayoutStudioPalette();
+          layout2DStudio.render();
+          if (selectedGridItem) {
+            layout2DStudio.renderFloatingDock();
+          }
+        } else {
+          renderLayoutEditorList();
+        }
+      });
     }
 
     function closeLayoutEditorModal() {
+      closeAllStudioDropdowns();
       document.getElementById('layoutEditorModal').style.display = 'none';
       clearGridSelection();
       sync3DSceneFromLayout();
@@ -3375,7 +3586,15 @@
         tabGrid.style.display = 'flex';
         tabTable.style.display = 'none';
         renderLayoutStudioPalette();
-        renderInteractiveExcelGrid();
+        requestAnimationFrame(() => {
+          if (!layout2DStudio.isInitialized) {
+            layout2DStudio.init();
+          } else {
+            layout2DStudio.resize();
+            layout2DStudio.render();
+            if (selectedGridItem) layout2DStudio.renderFloatingDock();
+          }
+        });
       } else {
         btnGrid.classList.remove('active');
         btnTable.classList.add('active');
@@ -3629,12 +3848,21 @@
         if (el.dataset.cat === cat) el.classList.add('active');
         else el.classList.remove('active');
       });
+      const roadCreatorBox = document.getElementById('studioRoadCreatorBox');
+      if (roadCreatorBox) {
+        roadCreatorBox.style.display = (cat === 'road' || cat === 'ALL') ? 'flex' : 'none';
+      }
       renderLayoutStudioPalette();
     }
 
     function renderLayoutStudioPalette() {
       const listEl = document.getElementById('studioPaletteList');
       if (!listEl) return;
+
+      // Update dynamic road count in category chip
+      const roadCount = EnergyTwin.getRoadsList ? EnergyTwin.getRoadsList().length : 0;
+      const chipRoad = document.getElementById('chipCountRoad');
+      if (chipRoad) chipRoad.textContent = `(${roadCount})`;
 
       const q = (document.getElementById('studioPaletteSearch')?.value || '').toLowerCase().trim();
       const allItems = getAllPaletteItems();
@@ -3658,7 +3886,7 @@
       if (countEl) countEl.textContent = `${filtered.length} รายการ`;
 
       if (filtered.length === 0) {
-        listEl.innerHTML = `<div style="text-align:center; padding:20px; font-size:11px; color:var(--txt2);">${studioCategory === 'hidden' ? 'ไม่มีวัตถุที่ถูกซ่อนอยู่' : 'ไม่พบวัตถุที่ตรงกับคำค้นหา'}</div>`;
+        listEl.innerHTML = `<div style="text-align:center; padding:20px; font-size:11px; color:var(--txt2);">${studioCategory === 'hidden' ? 'ไม่มีวัตถุที่ถูกซ่อนอยู่' : (studioCategory === 'road' ? 'ยังไม่มีเส้นทางถนนในระบบ<br><span style=\"color:#2563EB; font-weight:700;\">คลิกปุ่ม \"+ เพิ่มถนน\" ด้านบน เพื่อเริ่มวาดได้ทันที</span>' : 'ไม่พบวัตถุที่ตรงกับคำค้นหา')}</div>`;
         return;
       }
 
@@ -3671,37 +3899,130 @@
           <div class="palette-card ${isSelected ? 'active' : ''} ${isHidden ? 'item-hidden' : ''}" 
                data-type="${it.type}" data-id="${it.id}"
                onclick="selectLayoutStudioItem('${it.type}', '${it.id}', true)">
-            <div style="display:flex; align-items:center; gap:6px; min-width:0;">
+            <div style="display:flex; align-items:center; gap:6px; min-width:0; flex:1;">
               <button type="button" class="card-eye-btn" 
                       onclick="event.stopPropagation(); toggleItemVisibility('${it.type}', '${it.id}')"
                       title="${isHidden ? 'วัตถุนี้ถูกซ่อนอยู่ (คลิกเพื่อเปิดแสดงผลใน 3D และผัง)' : 'วัตถุนี้แสดงผลอยู่ (คลิกเพื่อซ่อน/ลบออกจาก 3D และผัง)'}">
                 ${isHidden ? '🚫' : '👁️'}
               </button>
               <span style="font-size:15px; flex-shrink:0;">${icon}</span>
-              <div style="min-width:0;">
-                <div style="font-size:11.5px; font-weight:700; color:#1E293B; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:130px; ${isHidden ? 'text-decoration:line-through; color:#94A3B8;' : ''}">
+              <div style="min-width:0; flex:1;">
+                <div style="font-size:11.5px; font-weight:700; color:#1E293B; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:120px; ${isHidden ? 'text-decoration:line-through; color:#94A3B8;' : ''}">
                   ${it.code}
                 </div>
-                <div style="font-size:10px; color:#64748B; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:130px;" title="${it.fullName || it.name}">
+                <div style="font-size:10px; color:#64748B; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:120px;" title="${it.fullName || it.name}">
                   ${it.name}
                 </div>
               </div>
             </div>
-            <div style="display:flex; flex-direction:column; align-items:flex-end; gap:2px; flex-shrink:0;">
-              <span style="font-size:9.5px; font-weight:600; color:#1E3A8A; background:#EFF6FF; padding:1px 5px; border-radius:4px; border:1px solid #DBEAFE;">📐 ${it.width}×${it.depth}ม.</span>
-              <span style="font-size:9px; color:#64748B; font-family:'JetBrains Mono';">(${it.x}, ${it.z})</span>
+            <div style="display:flex; align-items:center; gap:4px; flex-shrink:0;">
+              <div style="display:flex; flex-direction:column; align-items:flex-end; gap:2px;">
+                <span style="font-size:9.5px; font-weight:600; color:#1E3A8A; background:#EFF6FF; padding:1px 5px; border-radius:4px; border:1px solid #DBEAFE;">📐 ${it.width}×${it.depth}ม.</span>
+                <span style="font-size:9px; color:#64748B; font-family:'JetBrains Mono';">(${it.x}, ${it.z})</span>
+              </div>
+              ${it.type === 'road' ? `
+                <button type="button" class="card-eye-btn" style="color:#DC2626; padding:2px 4px; font-size:11px;" 
+                        onclick="event.stopPropagation(); deleteSelectedStudioRoad('${it.id}')" 
+                        title="ลบถนนเส้นนี้">
+                  🗑️
+                </button>
+              ` : ''}
             </div>
           </div>
         `;
       }).join('');
     }
 
+    // ── Road Network Management Helpers (3 Standard Sizes) ──
+    function addNewStudioRoad(presetKey = 'secondary') {
+      const snap = (layout2DStudio && layout2DStudio.snap) ? layout2DStudio.snap : 5;
+      let camX = 0, camZ = 0;
+      if (layout2DStudio && layout2DStudio.camera) {
+        camX = Math.round(layout2DStudio.camera.x / snap) * snap;
+        camZ = Math.round(layout2DStudio.camera.z / snap) * snap;
+      }
+      const newRoadId = EnergyTwin.addRoad ? EnergyTwin.addRoad(presetKey, camX, camZ, 0) : null;
+      if (newRoadId) {
+        sync3DSceneFromLayout();
+        renderLayoutStudioPalette();
+        if (layout2DStudio && layout2DStudio.isInitialized) {
+          layout2DStudio.selectItem('road', newRoadId, false);
+          layout2DStudio.render();
+        }
+      }
+    }
+
+    function deleteSelectedStudioRoad(roadId) {
+      const targetId = roadId || (selectedGridItem && selectedGridItem.type === 'road' ? selectedGridItem.id : null);
+      if (!targetId) return;
+
+      if (confirm(`🗑️ ยืนยันการลบ ${targetId} ออกจากผังหรือไม่?`)) {
+        if (EnergyTwin.deleteRoad) EnergyTwin.deleteRoad(targetId);
+        if (selectedGridItem && selectedGridItem.id === targetId) {
+          clearGridSelection();
+        }
+        sync3DSceneFromLayout();
+        renderLayoutStudioPalette();
+        if (layout2DStudio && layout2DStudio.isInitialized) {
+          layout2DStudio.render();
+          layout2DStudio.renderFloatingDock();
+        }
+      }
+    }
+
+    function duplicateSelectedStudioRoad() {
+      if (!selectedGridItem || selectedGridItem.type !== 'road') return;
+      const newRoadId = EnergyTwin.duplicateRoad ? EnergyTwin.duplicateRoad(selectedGridItem.id) : null;
+      if (newRoadId) {
+        sync3DSceneFromLayout();
+        renderLayoutStudioPalette();
+        if (layout2DStudio && layout2DStudio.isInitialized) {
+          layout2DStudio.selectItem('road', newRoadId, false);
+          layout2DStudio.render();
+        }
+      }
+    }
+
+    function setStudioRoadWidth(width) {
+      if (!selectedGridItem || selectedGridItem.type !== 'road') return;
+      const w = Number(width);
+      if (EnergyTwin.setRoadPresetWidth) {
+        EnergyTwin.setRoadPresetWidth(selectedGridItem.id, w);
+      }
+      const r = EnergyTwin.roads?.[selectedGridItem.id];
+      if (r && campusScene && campusScene.updateRoadDimensions) {
+        campusScene.updateRoadDimensions(selectedGridItem.id, w, r.length || 50);
+      }
+      renderLayoutStudioPalette();
+      if (layout2DStudio && layout2DStudio.isInitialized) {
+        layout2DStudio.renderFloatingDock();
+        layout2DStudio.render();
+      }
+    }
+
+    function clearAllStudioRoads() {
+      if (!confirm('⚠️ ต้องการลบเส้นทางถนนทั้งหมดในระบบหรือไม่?\\n\\nเส้นทางถนนเดิมจะถูกล้างออกทั้งหมด เพื่อให้คุณวาดถนนใหม่ได้ตามต้องการ')) {
+        return;
+      }
+      if (EnergyTwin.clearAllRoads) EnergyTwin.clearAllRoads();
+      if (selectedGridItem && selectedGridItem.type === 'road') {
+        clearGridSelection();
+      }
+      sync3DSceneFromLayout();
+      renderLayoutStudioPalette();
+      if (layout2DStudio && layout2DStudio.isInitialized) {
+        layout2DStudio.render();
+        layout2DStudio.renderFloatingDock();
+      }
+    }
+
     // Select & Focus
     function selectLayoutStudioItem(type, id, trigger3DFocus = true) {
       selectedGridItem = { type, id };
 
-      renderStudioInspector();
-      highlightStudioActiveFootprint();
+      if (layout2DStudio && layout2DStudio.isInitialized) {
+        layout2DStudio.selectItem(type, id, true);
+      }
 
       // Highlight card in palette
       document.querySelectorAll('.palette-card').forEach(el => {
@@ -3713,215 +4034,16 @@
         }
       });
 
-      // Highlight badge on grid
-      document.querySelectorAll('.grid-badge').forEach(el => el.classList.remove('badge-active'));
-      const activeBadges = document.querySelectorAll(`[draggable="true"][onclick*="'${id}'"]`);
-      activeBadges.forEach(el => el.classList.add('badge-active'));
-
-      // Update instructions info
-      const infoEl = document.getElementById('gridSelectedInfo');
-      const pos = getSelectedItemPosition({ type, id });
-      const name = getSelectedItemName({ type, id });
-      const fp = getObjectFootprintHalfCells({ type, id });
-      if (infoEl) {
-        infoEl.innerHTML = `📍 กำลังเลือก: <strong>[${id}] ${name}</strong> (X=${pos.x}, Z=${pos.z} | ${fp.effectiveW.toFixed(0)}×${fp.effectiveD.toFixed(0)} ม.) &nbsp;👉 <em>คลิกช่องเซลล์บนตารางเพื่อวางตำแหน่ง</em>`;
-      }
-
       if (trigger3DFocus) {
         focusSelectedGridItem();
       }
     }
 
-    // Selected Object Inspector
+    // Selected Object Inspector Proxy
     function renderStudioInspector() {
-      const wrap = document.getElementById('studioInspectorWrap');
-      if (!wrap) return;
-
-      if (!selectedGridItem) {
-        wrap.style.display = 'none';
-        wrap.innerHTML = '';
-        return;
+      if (layout2DStudio && layout2DStudio.isInitialized) {
+        layout2DStudio.renderFloatingDock();
       }
-
-      const { type, id } = selectedGridItem;
-      const pos = getSelectedItemPosition({ type, id });
-      const name = getSelectedItemName({ type, id });
-      const fp = getObjectFootprintHalfCells({ type, id });
-      const rotDeg = fp.rotDeg;
-
-      let dimControlsHtml = '';
-
-      if (type === 'road') {
-        const rObj = EnergyTwin.roads?.[id] || EnergyTwin.defaultRoads?.[id];
-        const isHorizontal = rObj?.type === 'horizontal' || (rObj?.width || 0) > (rObj?.length || 0);
-        const spanKey = isHorizontal ? 'width' : 'length';
-        const laneKey = isHorizontal ? 'length' : 'width';
-        const curSpan = rObj?.[spanKey] || (isHorizontal ? rObj?.width : rObj?.length) || 50;
-        const curLane = rObj?.[laneKey] || (isHorizontal ? rObj?.length : rObj?.width) || 8;
-
-        dimControlsHtml = `
-          <div style="background:#F1F5F9; border-radius:6px; padding:6px 8px; display:flex; flex-direction:column; gap:4px; border:1px solid #E2E8F0;">
-            <div style="display:flex; justify-content:space-between; align-items:center;">
-              <span style="font-size:11px; font-weight:700; color:#334155;">📏 ช่วงความยาวถนน (${isHorizontal ? 'แนวนอน E-W' : 'แนวตั้ง N-S'}):</span>
-              <span style="font-size:11px; font-weight:700; color:#1D4ED8;">${curSpan} ม.</span>
-            </div>
-            <div style="display:flex; gap:3px; flex-wrap:wrap; align-items:center;">
-              <button type="button" class="dim-preset-chip" onclick="updateStudioDimension('${spanKey}', 30)">30ม.</button>
-              <button type="button" class="dim-preset-chip" onclick="updateStudioDimension('${spanKey}', 60)">60ม.</button>
-              <button type="button" class="dim-preset-chip" onclick="updateStudioDimension('${spanKey}', 90)">90ม.</button>
-              <button type="button" class="dim-preset-chip" onclick="updateStudioDimension('${spanKey}', 120)">120ม.</button>
-              <button type="button" class="dim-preset-chip" onclick="updateStudioDimension('${spanKey}', 240)">240ม.</button>
-              <button type="button" class="dim-preset-chip" onclick="resetStudioDimension('${spanKey}')">As-Built</button>
-              <input type="number" min="10" max="600" step="5" value="${curSpan}" 
-                     onchange="updateStudioDimension('${spanKey}', this.value)" 
-                     onkeydown="if(event.key==='Enter') this.blur();"
-                     style="width:48px; padding:1px 3px; font-size:10.5px; border:1px solid #CBD5E1; border-radius:4px; text-align:right;"> ม.
-            </div>
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:2px;">
-              <span style="font-size:10px; color:#64748B;">ความกว้างผิวทาง:</span>
-              <div style="display:flex; gap:3px; align-items:center;">
-                <button type="button" class="dim-preset-chip" onclick="updateStudioDimension('${laneKey}', 6)">6ม.</button>
-                <button type="button" class="dim-preset-chip" onclick="updateStudioDimension('${laneKey}', 9)">9ม.</button>
-                <button type="button" class="dim-preset-chip" onclick="updateStudioDimension('${laneKey}', 12)">12ม.</button>
-                <input type="number" min="3" max="50" step="1" value="${curLane}" 
-                       onchange="updateStudioDimension('${laneKey}', this.value)" 
-                       onkeydown="if(event.key==='Enter') this.blur();"
-                       style="width:40px; padding:1px 3px; font-size:10px; border:1px solid #CBD5E1; border-radius:4px; text-align:right;"> ม.
-              </div>
-            </div>
-          </div>
-        `;
-      } else if (type === 'water') {
-        const curLen = fp.d;
-        const curW = fp.w;
-        dimControlsHtml = `
-          <div style="background:#F0F9FF; border-radius:6px; padding:6px 8px; display:flex; flex-direction:column; gap:4px; border:1px solid #BAE6FD;">
-            <div style="display:flex; justify-content:space-between; align-items:center;">
-              <span style="font-size:11px; font-weight:700; color:#0369A1;">💧 ปรับความยาว/ลึกคลอง-สระ:</span>
-              <span style="font-size:11px; font-weight:700; color:#0284C7;">${curLen} ม.</span>
-            </div>
-            <div style="display:flex; gap:3px; flex-wrap:wrap; align-items:center;">
-              <button type="button" class="dim-preset-chip" onclick="updateStudioDimension('depth', 40)">40ม.</button>
-              <button type="button" class="dim-preset-chip" onclick="updateStudioDimension('depth', 80)">80ม.</button>
-              <button type="button" class="dim-preset-chip" onclick="updateStudioDimension('depth', 160)">160ม.</button>
-              <button type="button" class="dim-preset-chip" onclick="updateStudioDimension('depth', 320)">320ม.</button>
-              <button type="button" class="dim-preset-chip" onclick="resetStudioDimension('depth')">As-Built</button>
-              <input type="number" min="10" max="600" step="10" value="${curLen}" 
-                     onchange="updateStudioDimension('depth', this.value)" 
-                     onkeydown="if(event.key==='Enter') this.blur();"
-                     style="width:48px; padding:1px 3px; font-size:10.5px; border:1px solid #CBD5E1; border-radius:4px; text-align:right;"> ม.
-            </div>
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:2px;">
-              <span style="font-size:10px; color:#0369A1;">ความกว้างคลอง/สระ:</span>
-              <div style="display:flex; gap:3px; align-items:center;">
-                <button type="button" class="dim-preset-chip" onclick="updateStudioDimension('width', 15)">15ม.</button>
-                <button type="button" class="dim-preset-chip" onclick="updateStudioDimension('width', 20)">20ม.</button>
-                <button type="button" class="dim-preset-chip" onclick="updateStudioDimension('width', 35)">35ม.</button>
-                <input type="number" min="5" max="100" step="2" value="${curW}" 
-                       onchange="updateStudioDimension('width', this.value)" 
-                       onkeydown="if(event.key==='Enter') this.blur();"
-                       style="width:40px; padding:1px 3px; font-size:10px; border:1px solid #CBD5E1; border-radius:4px; text-align:right;"> ม.
-              </div>
-            </div>
-          </div>
-        `;
-      } else {
-        dimControlsHtml = `
-          <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:6px; padding:4px 8px; font-size:11px; color:#475569; display:flex; justify-content:space-between;">
-            <span>📐 ขนาดกายภาพ:</span>
-            <strong style="color:var(--pri);">กว้าง ${fp.w} ม. × ลึก ${fp.d} ม.</strong>
-          </div>
-        `;
-      }
-
-      const isHidden = isLayoutItemHidden(type, id);
-      const comp = EnergyTwin.getCompassText ? EnergyTwin.getCompassText(rotDeg) : { dir: `${rotDeg}°`, icon: '🧭' };
-
-      wrap.innerHTML = `
-        <div class="studio-inspector">
-          <div class="inspector-hdr">
-            <div class="inspector-title" title="${name}">
-              <span>${type === 'bld' ? '🏢' : type === 'road' ? '🛣️' : type === 'water' ? '💧' : '🚩'}</span>
-              <span style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:210px; ${isHidden ? 'text-decoration:line-through; color:#94A3B8;' : ''}">${id}: ${name}</span>
-              ${isHidden ? '<span style="font-size:9.5px; color:#DC2626; font-weight:700; background:#FEE2E2; padding:1px 4px; border-radius:3px;">ซ่อนอยู่</span>' : ''}
-            </div>
-            <button type="button" onclick="clearGridSelection()" style="background:none; border:none; cursor:pointer; font-size:16px; color:#64748B; line-height:1;" title="ยกเลิกการเลือก">&times;</button>
-          </div>
-
-          ${dimControlsHtml}
-
-          <!-- Rotation & Facing Direction Controls (สัญลักษณ์และปุ่มหมุนทิศ) -->
-          <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:6px; padding:6px 8px; display:flex; flex-direction:column; gap:4px;">
-            <div style="display:flex; justify-content:space-between; align-items:center;">
-              <span style="font-size:11px; font-weight:700; color:#1E3A8A;">🧭 ทิศทางการหันหน้า:</span>
-              <span style="font-size:11px; font-weight:700; color:#EA580C; background:#FFF7ED; padding:1px 6px; border-radius:4px; border:1px solid #FFEDD5;">
-                ${comp.icon} ${comp.dir} (${rotDeg}°)
-              </span>
-            </div>
-            <div class="rot-btn-group">
-              <button type="button" class="rot-btn" onclick="setStudioRotation(180)" title="หันหน้าทิศเหนือ 180°">⬆️ เหนือ 180°</button>
-              <button type="button" class="rot-btn" onclick="setStudioRotation(90)" title="หันหน้าทิศตะวันออก 90°">➡️ ตะวันออก 90°</button>
-              <button type="button" class="rot-btn" onclick="setStudioRotation(0)" title="หันหน้าทิศใต้ 0°">⬇️ ใต้ 0°</button>
-              <button type="button" class="rot-btn" onclick="setStudioRotation(270)" title="หันหน้าทิศตะวันตก 270°">⬅️ ตะวันตก 270°</button>
-            </div>
-            <div style="display:flex; gap:3px; margin-top:2px;">
-              <button type="button" class="dim-preset-chip" style="flex:1;" onclick="rotateStudioItem(-15)" title="หมุนทวนเข็ม 15°">⟲ -15°</button>
-              <button type="button" class="dim-preset-chip" style="flex:1;" onclick="rotateStudioItem(15)" title="หมุนตามเข็ม 15°">⟳ +15°</button>
-              <button type="button" class="dim-preset-chip" style="flex:1;" onclick="rotateStudioItem(-90)" title="หมุนทวนเข็ม 90°">⟲ -90°</button>
-              <button type="button" class="dim-preset-chip" style="flex:1;" onclick="rotateStudioItem(90)" title="หมุนตามเข็ม 90°">⟳ +90°</button>
-            </div>
-            <div style="display:flex; align-items:center; gap:6px; margin-top:2px;">
-              <input type="range" min="0" max="360" step="5" value="${rotDeg}" 
-                     oninput="onStudioRotationSlider(this.value)" 
-                     style="flex:1; cursor:pointer;">
-            </div>
-          </div>
-
-          <!-- Position & Direct Coordinates Input & Nudge Pad -->
-          <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:6px; padding:6px 8px; display:flex; flex-direction:column; gap:6px;">
-            <div style="display:flex; justify-content:space-between; align-items:center;">
-              <span style="font-size:11px; font-weight:700; color:#1E3A8A;">📍 ตำแหน่งพิกัด (X, Z):</span>
-              <span style="font-size:10px; color:#64748B;">พิมพ์แก้ตัวเลขได้ทันที</span>
-            </div>
-            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:6px;">
-              <div style="display:flex; align-items:center; gap:2px; background:#fff; border:1px solid #CBD5E1; border-radius:4px; padding:2px 4px;">
-                <span style="font-size:11px; font-weight:700; color:#DC2626; min-width:14px;">X:</span>
-                <button type="button" class="nudge-btn" style="padding:1px 4px; font-size:10px;" onclick="nudgeStudioItem(-5, 0)" title="เลื่อน X -5">-5</button>
-                <input type="number" id="inspectorInputX" value="${pos.x}" step="1" onchange="onStudioInspectorCoordChange('x', this.value)" onkeydown="if(event.key==='Enter') this.blur();" style="width:100%; border:none; text-align:center; font-weight:700; font-family:'JetBrains Mono',monospace; font-size:11px; outline:none;">
-                <button type="button" class="nudge-btn" style="padding:1px 4px; font-size:10px;" onclick="nudgeStudioItem(5, 0)" title="เลื่อน X +5">+5</button>
-              </div>
-              <div style="display:flex; align-items:center; gap:2px; background:#fff; border:1px solid #CBD5E1; border-radius:4px; padding:2px 4px;">
-                <span style="font-size:11px; font-weight:700; color:#2563EB; min-width:14px;">Z:</span>
-                <button type="button" class="nudge-btn" style="padding:1px 4px; font-size:10px;" onclick="nudgeStudioItem(0, -5)" title="เลื่อน Z -5">-5</button>
-                <input type="number" id="inspectorInputZ" value="${pos.z}" step="1" onchange="onStudioInspectorCoordChange('z', this.value)" onkeydown="if(event.key==='Enter') this.blur();" style="width:100%; border:none; text-align:center; font-weight:700; font-family:'JetBrains Mono',monospace; font-size:11px; outline:none;">
-                <button type="button" class="nudge-btn" style="padding:1px 4px; font-size:10px;" onclick="nudgeStudioItem(0, 5)" title="เลื่อน Z +5">+5</button>
-              </div>
-            </div>
-            <div style="display:flex; justify-content:space-between; align-items:center;">
-              <span style="font-size:10px; color:#64748B;">เลื่อนทีละ 10ม. ตามทิศ:</span>
-              <div style="display:flex; gap:3px;">
-                <button type="button" class="nudge-btn" onclick="nudgeStudioItem(-10, 0)" title="เลื่อนทิศตะวันตก (X -10)">⬅️ W</button>
-                <button type="button" class="nudge-btn" onclick="nudgeStudioItem(10, 0)" title="เลื่อนทิศตะวันออก (X +10)">E ➡️</button>
-                <button type="button" class="nudge-btn" onclick="nudgeStudioItem(0, -10)" title="เลื่อนทิศเหนือ (Z -10)">⬆️ N</button>
-                <button type="button" class="nudge-btn" onclick="nudgeStudioItem(0, 10)" title="เลื่อนทิศใต้ (Z +10)">S ⬇️</button>
-              </div>
-            </div>
-          </div>
-
-          <div style="display:flex; gap:4px; margin-top:2px;">
-            <button type="button" class="btn-action primary" style="flex:1; justify-content:center; padding:4px 6px; font-size:11px;" onclick="focusSelectedGridItem()">
-              🎯 ส่อง 3D
-            </button>
-            <button type="button" class="btn-action ${isHidden ? 'primary' : 'danger'}" style="padding:4px 8px; font-size:11px;" onclick="toggleSelectedGridItemVisibility()" title="${isHidden ? 'เปิดแสดงวัตถุนี้ใน 3D และผัง' : 'ซ่อน/ลบวัตถุนี้ออกจาก 3D และผัง'}">
-              ${isHidden ? '👁️ แสดงวัตถุนี้' : '🗑️ ซ่อน/ลบวัตถุ'}
-            </button>
-            <button type="button" class="btn-action" style="padding:4px 6px; font-size:11px; color:#991B1B; border-color:#FECACA;" onclick="resetSelectedGridItem()" title="คืนค่าพิกัดเดิม">
-              ↺ คืนค่า
-            </button>
-          </div>
-        </div>
-      `;
-      wrap.style.display = 'block';
     }
 
     function onStudioInspectorCoordChange(axis, val) {
@@ -3978,6 +4100,10 @@
 
       renderStudioInspector();
       highlightStudioActiveFootprint();
+      if (layout2DStudio && layout2DStudio.isInitialized) {
+        layout2DStudio.renderFloatingDock();
+        layout2DStudio.render();
+      }
     }
 
     function updateStudioDimension(dimKey, val) {
@@ -4051,339 +4177,933 @@
       moveLayoutItem(selectedGridItem.type, selectedGridItem.id, targetX, targetZ);
     }
 
-    // Footprint Highlighting Controller
-    function highlightStudioActiveFootprint() {
-      document.querySelectorAll('.cell-footprint-active, .cell-footprint-center').forEach(el => {
-        el.classList.remove('cell-footprint-active', 'cell-footprint-center');
-      });
+    // ── Layout 2D Live Studio Engine (Lightweight Canvas Vector Map) ──
+    const layout2DStudio = {
+      canvas: null,
+      ctx: null,
+      container: null,
+      camera: { x: 0, z: -40, zoom: 1.15 },
+      snap: 5, // 1m, 5m, 10m
+      isPanning: false,
+      isDragging: false,
+      draggedItem: null,
+      dragOffset: { x: 0, z: 0 },
+      panStart: { x: 0, y: 0, camX: 0, camZ: -40 },
+      hoveredItem: null,
+      isInitialized: false,
 
-      if (!selectedGridItem) return;
+      init() {
+        this.canvas = document.getElementById('layout2DCanvas');
+        this.container = document.getElementById('layout2DCanvasContainer');
+        if (!this.canvas || !this.container) return;
+        this.ctx = this.canvas.getContext('2d');
 
-      const pos = getSelectedItemPosition(selectedGridItem);
-      if (!pos) return;
+        this.resize();
+        window.addEventListener('resize', () => {
+          if (activeLayoutTab === 'grid' && document.getElementById('layoutEditorModal')?.style.display === 'flex') {
+            this.resize();
+            this.render();
+          }
+        });
 
-      const gx = Math.round(pos.x / 10) * 10;
-      const gz = Math.round(pos.z / 10) * 10;
-      const fp = getObjectFootprintHalfCells(selectedGridItem);
+        // Mouse events
+        this.canvas.addEventListener('mousedown', (e) => this.onMouseDown(e));
+        window.addEventListener('mousemove', (e) => this.onMouseMove(e));
+        window.addEventListener('mouseup', (e) => this.onMouseUp(e));
+        this.canvas.addEventListener('wheel', (e) => this.onWheel(e), { passive: false });
 
-      const minX = gx - fp.halfX * 10;
-      const maxX = gx + fp.halfX * 10;
-      const minZ = gz - fp.halfZ * 10;
-      const maxZ = gz + fp.halfZ * 10;
+        // Touch events for mobile/tablets
+        this.canvas.addEventListener('touchstart', (e) => this.onTouchStart(e), { passive: false });
+        this.canvas.addEventListener('touchmove', (e) => this.onTouchMove(e), { passive: false });
+        this.canvas.addEventListener('touchend', (e) => this.onTouchEnd(e));
 
-      for (let z = minZ; z <= maxZ; z += 10) {
-        for (let x = minX; x <= maxX; x += 10) {
-          const cell = document.querySelector(`.excel-cell[data-x="${x}"][data-z="${z}"]`);
-          if (cell) {
-            cell.classList.add('cell-footprint-active');
-            if (x === gx && z === gz) {
-              cell.classList.add('cell-footprint-center');
-            }
+        // Keyboard navigation
+        window.addEventListener('keydown', (e) => this.onKeyDown(e));
+
+        this.isInitialized = true;
+        this.resetView();
+        this.render();
+      },
+
+      resize() {
+        if (!this.canvas || !this.container) return;
+        const rect = this.container.getBoundingClientRect();
+        const dpr = window.devicePixelRatio || 1;
+        this.width = rect.width > 0 ? rect.width : (this.container.clientWidth || 800);
+        this.height = rect.height > 0 ? rect.height : (this.container.clientHeight || 600);
+        this.canvas.width = Math.max(300, Math.round(this.width * dpr));
+        this.canvas.height = Math.max(300, Math.round(this.height * dpr));
+      },
+
+      worldToScreen(wx, wz) {
+        const cx = this.width / 2;
+        const cy = this.height / 2;
+        return {
+          x: cx + (wx - this.camera.x) * this.camera.zoom,
+          y: cy + (wz - this.camera.z) * this.camera.zoom
+        };
+      },
+
+      screenToWorld(sx, sy) {
+        const cx = this.width / 2;
+        const cy = this.height / 2;
+        return {
+          x: this.camera.x + (sx - cx) / this.camera.zoom,
+          z: this.camera.z + (sy - cy) / this.camera.zoom
+        };
+      },
+
+      setSnap(step) {
+        this.snap = Number(step) || 5;
+        document.querySelectorAll('.snap-step-btn').forEach(btn => {
+          if (Number(btn.dataset.snap) === this.snap) btn.classList.add('active');
+          else btn.classList.remove('active');
+        });
+        this.renderFloatingDock();
+      },
+
+      zoomIn() {
+        this.camera.zoom = Math.min(4.0, this.camera.zoom * 1.25);
+        this.render();
+      },
+
+      zoomOut() {
+        this.camera.zoom = Math.max(0.3, this.camera.zoom / 1.25);
+        this.render();
+      },
+
+      resetView() {
+        const bounds = EnergyTwin.getCampusBounds ? EnergyTwin.getCampusBounds() : { minX: -210, maxX: 180, minZ: -220, maxZ: 140 };
+        this.camera.x = (bounds.minX + bounds.maxX) / 2;
+        this.camera.z = (bounds.minZ + bounds.maxZ) / 2;
+        const bw = bounds.maxX - bounds.minX;
+        const bh = bounds.maxZ - bounds.minZ;
+        const cw = (this.width || 800) * 0.85;
+        const ch = (this.height || 600) * 0.85;
+        this.camera.zoom = Math.max(0.4, Math.min(cw / bw, ch / bh));
+        this.render();
+      },
+
+      selectItem(type, id, centerCamera = false) {
+        selectedGridItem = { type, id };
+        if (centerCamera) {
+          const pos = getSelectedItemPosition({ type, id });
+          if (pos) {
+            this.camera.x = pos.x;
+            this.camera.z = pos.z;
           }
         }
-      }
-    }
+        this.renderFloatingDock();
+        this.render();
 
-    function highlightStudioHoverFootprint(targetX, targetZ) {
-      document.querySelectorAll('.cell-footprint-hover').forEach(el => el.classList.remove('cell-footprint-hover'));
+        // Highlight card in sidebar palette
+        document.querySelectorAll('.palette-card').forEach(el => {
+          if (el.dataset.id === id && el.dataset.type === type) {
+            el.classList.add('active');
+            el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          } else {
+            el.classList.remove('active');
+          }
+        });
+      },
 
-      if (!selectedGridItem) return;
+      clearSelection() {
+        selectedGridItem = null;
+        this.renderFloatingDock();
+        this.render();
+        document.querySelectorAll('.palette-card').forEach(el => el.classList.remove('active'));
+      },
 
-      const gx = Math.round(targetX / 10) * 10;
-      const gz = Math.round(targetZ / 10) * 10;
-      const fp = getObjectFootprintHalfCells(selectedGridItem);
+      getItemAt(wx, wz) {
+        const allItems = getAllPaletteItems();
+        // Hit priority: buildings > landmarks > water > roads
+        const sorted = allItems.slice().sort((a, b) => {
+          const p = { bld: 4, landmark: 3, water: 2, road: 1 };
+          return (p[b.type] || 0) - (p[a.type] || 0);
+        });
 
-      const minX = gx - fp.halfX * 10;
-      const maxX = gx + fp.halfX * 10;
-      const minZ = gz - fp.halfZ * 10;
-      const maxZ = gz + fp.halfZ * 10;
-
-      for (let z = minZ; z <= maxZ; z += 10) {
-        for (let x = minX; x <= maxX; x += 10) {
-          const cell = document.querySelector(`.excel-cell[data-x="${x}"][data-z="${z}"]`);
-          if (cell) {
-            cell.classList.add('cell-footprint-hover');
+        for (const it of sorted) {
+          const hw = (it.width || 20) / 2;
+          const hd = (it.depth || 20) / 2;
+          const rad = it.rotRad || 0;
+          const dx = wx - it.x;
+          const dz = wz - it.z;
+          const cos = Math.cos(-rad);
+          const sin = Math.sin(-rad);
+          const lx = dx * cos - dz * sin;
+          const lz = dx * sin + dz * cos;
+          if (Math.abs(lx) <= hw && Math.abs(lz) <= hd) {
+            return it;
           }
         }
-      }
-    }
+        return null;
+      },
 
-    function clearStudioHoverFootprint() {
-      document.querySelectorAll('.cell-footprint-hover').forEach(el => el.classList.remove('cell-footprint-hover'));
-    }
+      onMouseDown(e) {
+        if (e.button !== 0) return;
+        const rect = this.canvas.getBoundingClientRect();
+        const sx = e.clientX - rect.left;
+        const sy = e.clientY - rect.top;
+        const wCoord = this.screenToWorld(sx, sy);
 
-    // ── Interactive Excel Grid Controller ────────────────────────────
-    function renderInteractiveExcelGrid() {
-      const table = document.getElementById('excelGridTable');
-      if (!table) return;
+        const hit = this.getItemAt(wCoord.x, wCoord.z);
+        if (hit) {
+          this.selectItem(hit.type, hit.id, false);
+          this.isDragging = true;
+          this.draggedItem = hit;
+          this.dragOffset = { x: wCoord.x - hit.x, z: wCoord.z - hit.z };
+          this.canvas.style.cursor = 'grabbing';
+        } else {
+          this.isPanning = true;
+          this.panStart = { x: e.clientX, y: e.clientY, camX: this.camera.x, camZ: this.camera.z };
+          this.canvas.style.cursor = 'grabbing';
+        }
+      },
 
-      const bounds = EnergyTwin.getCampusBounds ? EnergyTwin.getCampusBounds() : { minX: -210, maxX: 180, minZ: -220, maxZ: 140 };
-      const minX = bounds.minX, maxX = bounds.maxX, stepX = 10;
-      const minZ = bounds.minZ, maxZ = bounds.maxZ, stepZ = 10;
+      onMouseMove(e) {
+        if (!this.canvas) return;
+        const rect = this.canvas.getBoundingClientRect();
+        const sx = e.clientX - rect.left;
+        const sy = e.clientY - rect.top;
+        const wCoord = this.screenToWorld(sx, sy);
 
-      const cellMap = {};
+        // Update top-left coordinates badge
+        const badge = document.getElementById('canvasCoordBadge');
+        if (badge) {
+          badge.textContent = `📍 พิกัดเมาส์: X: ${Math.round(wCoord.x)} ม., Z: ${Math.round(wCoord.z)} ม.`;
+        }
 
-      // Buildings (with Facing Direction & Visibility)
-      const buildings = EnergyTwin.getBuildingsList ? EnergyTwin.getBuildingsList() : [];
-      buildings.forEach(b => {
-        const isHidden = !!b.hidden;
-        const pos = b.layout_position || { x: 0, z: 0 };
-        const rotY = b.rotation_y || 0;
-        const rotDeg = Math.round(((rotY * 180 / Math.PI) % 360 + 360) % 360);
+        if (this.isDragging && this.draggedItem) {
+          let rawX = wCoord.x - this.dragOffset.x;
+          let rawZ = wCoord.z - this.dragOffset.z;
+          let newX = Math.round(rawX / this.snap) * this.snap;
+          let newZ = Math.round(rawZ / this.snap) * this.snap;
+
+          moveLayoutItem(this.draggedItem.type, this.draggedItem.id, newX, newZ);
+          this.renderFloatingDock();
+          this.render();
+          return;
+        }
+
+        if (this.isPanning) {
+          const dx = (e.clientX - this.panStart.x) / this.camera.zoom;
+          const dz = (e.clientY - this.panStart.y) / this.camera.zoom;
+          this.camera.x = this.panStart.camX - dx;
+          this.camera.z = this.panStart.camZ - dz;
+          this.render();
+          return;
+        }
+
+        // Hover detection
+        const hit = this.getItemAt(wCoord.x, wCoord.z);
+        if (hit !== this.hoveredItem) {
+          this.hoveredItem = hit;
+          this.canvas.style.cursor = hit ? 'pointer' : 'grab';
+          this.render();
+        }
+      },
+
+      onMouseUp(e) {
+        if (this.isDragging) {
+          this.isDragging = false;
+          this.draggedItem = null;
+          saveLayoutEditorChanges(true);
+        }
+        if (this.isPanning) {
+          this.isPanning = false;
+        }
+        if (this.canvas) {
+          this.canvas.style.cursor = this.hoveredItem ? 'pointer' : 'grab';
+        }
+      },
+
+      onWheel(e) {
+        e.preventDefault();
+        const rect = this.canvas.getBoundingClientRect();
+        const sx = e.clientX - rect.left;
+        const sy = e.clientY - rect.top;
+        const beforeZoom = this.screenToWorld(sx, sy);
+
+        const factor = e.deltaY < 0 ? 1.15 : 0.87;
+        const newZoom = Math.max(0.3, Math.min(4.0, this.camera.zoom * factor));
+        this.camera.zoom = newZoom;
+
+        const afterZoom = this.screenToWorld(sx, sy);
+        this.camera.x += (beforeZoom.x - afterZoom.x);
+        this.camera.z += (beforeZoom.z - afterZoom.z);
+
+        this.render();
+      },
+
+      onTouchStart(e) {
+        if (e.touches.length === 1) {
+          const t = e.touches[0];
+          this.onMouseDown({ button: 0, clientX: t.clientX, clientY: t.clientY });
+        }
+      },
+      onTouchMove(e) {
+        if (e.touches.length === 1) {
+          const t = e.touches[0];
+          this.onMouseMove({ clientX: t.clientX, clientY: t.clientY });
+        }
+      },
+      onTouchEnd(e) {
+        this.onMouseUp(e);
+      },
+
+      onKeyDown(e) {
+        if (!selectedGridItem || document.getElementById('layoutEditorModal')?.style.display !== 'flex') return;
+        if (['INPUT', 'SELECT', 'TEXTAREA'].includes(document.activeElement?.tagName)) return;
+
+        let dx = 0, dz = 0;
+        if (e.key === 'ArrowUp') dz = -this.snap;
+        else if (e.key === 'ArrowDown') dz = this.snap;
+        else if (e.key === 'ArrowLeft') dx = -this.snap;
+        else if (e.key === 'ArrowRight') dx = this.snap;
+        else if (e.key === 'r' || e.key === 'R') {
+          rotateStudioItem(45);
+          e.preventDefault();
+          return;
+        } else if (e.key === 'Escape') {
+          this.clearSelection();
+          e.preventDefault();
+          return;
+        }
+
+        if (dx !== 0 || dz !== 0) {
+          e.preventDefault();
+          nudgeStudioItem(dx, dz);
+          this.render();
+        }
+      },
+
+      render() {
+        if (!this.ctx || !this.canvas) return;
+        const ctx = this.ctx;
+        const dpr = window.devicePixelRatio || 1;
+
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.clearRect(0, 0, this.width, this.height);
+
+        const bounds = EnergyTwin.getCampusBounds ? EnergyTwin.getCampusBounds() : { minX: -210, maxX: 180, minZ: -220, maxZ: 140 };
+
+        // 1. Campus Lawn & Perimeter
+        const bTopLeft = this.worldToScreen(bounds.minX, bounds.minZ);
+        const bBotRight = this.worldToScreen(bounds.maxX, bounds.maxZ);
+        const bW = bBotRight.x - bTopLeft.x;
+        const bH = bBotRight.y - bTopLeft.y;
+
+        // Background outside campus
+        ctx.fillStyle = '#CBD5E1';
+        ctx.fillRect(0, 0, this.width, this.height);
+
+        // Campus Lawn Turf
+        ctx.fillStyle = '#E8F5E9';
+        ctx.fillRect(bTopLeft.x, bTopLeft.y, bW, bH);
+
+        // Perimeter fence
+        ctx.strokeStyle = '#15803D';
+        ctx.lineWidth = 2;
+        ctx.setLineDash([8, 6]);
+        ctx.strokeRect(bTopLeft.x, bTopLeft.y, bW, bH);
+        ctx.setLineDash([]);
+
+        // Compass edge labels
+        ctx.font = 'bold 11px "JetBrains Mono", sans-serif';
+        ctx.fillStyle = '#166534';
+        ctx.textAlign = 'center';
+        ctx.fillText('▲ ทิศเหนือ (North -Z)', bTopLeft.x + bW / 2, Math.max(20, bTopLeft.y - 8));
+        ctx.fillText('▼ ทิศใต้ (South +Z)', bTopLeft.x + bW / 2, Math.min(this.height - 10, bBotRight.y + 16));
+        ctx.save();
+        ctx.translate(Math.max(16, bTopLeft.x - 10), bTopLeft.y + bH / 2);
+        ctx.rotate(-Math.PI / 2);
+        ctx.fillText('◀ ทิศตะวันตก (West -X)', 0, 0);
+        ctx.restore();
+        ctx.save();
+        ctx.translate(Math.min(this.width - 16, bBotRight.x + 16), bTopLeft.y + bH / 2);
+        ctx.rotate(Math.PI / 2);
+        ctx.fillText('▶ ทิศตะวันออก (East +X)', 0, 0);
+        ctx.restore();
+
+        // 2. Grid lines
+        // Minor 10m lines
+        ctx.strokeStyle = 'rgba(148, 163, 184, 0.4)';
+        ctx.lineWidth = 0.5;
+        ctx.beginPath();
+        for (let x = Math.ceil(bounds.minX / 10) * 10; x <= bounds.maxX; x += 10) {
+          if (x % 50 === 0) continue;
+          const p1 = this.worldToScreen(x, bounds.minZ);
+          const p2 = this.worldToScreen(x, bounds.maxZ);
+          ctx.moveTo(p1.x, p1.y);
+          ctx.lineTo(p2.x, p2.y);
+        }
+        for (let z = Math.ceil(bounds.minZ / 10) * 10; z <= bounds.maxZ; z += 10) {
+          if (z % 50 === 0) continue;
+          const p1 = this.worldToScreen(bounds.minX, z);
+          const p2 = this.worldToScreen(bounds.maxX, z);
+          ctx.moveTo(p1.x, p1.y);
+          ctx.lineTo(p2.x, p2.y);
+        }
+        ctx.stroke();
+
+        // Major 50m lines
+        ctx.strokeStyle = 'rgba(100, 116, 139, 0.7)';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        for (let x = Math.ceil(bounds.minX / 50) * 50; x <= bounds.maxX; x += 50) {
+          const p1 = this.worldToScreen(x, bounds.minZ);
+          const p2 = this.worldToScreen(x, bounds.maxZ);
+          ctx.moveTo(p1.x, p1.y);
+          ctx.lineTo(p2.x, p2.y);
+        }
+        for (let z = Math.ceil(bounds.minZ / 50) * 50; z <= bounds.maxZ; z += 50) {
+          const p1 = this.worldToScreen(bounds.minX, z);
+          const p2 = this.worldToScreen(bounds.maxX, z);
+          ctx.moveTo(p1.x, p1.y);
+          ctx.lineTo(p2.x, p2.y);
+        }
+        ctx.stroke();
+
+        // Axis numbers
+        ctx.font = '10px "JetBrains Mono", monospace';
+        ctx.fillStyle = '#475569';
+        ctx.textAlign = 'center';
+        for (let x = Math.ceil(bounds.minX / 50) * 50; x <= bounds.maxX; x += 50) {
+          const p = this.worldToScreen(x, bounds.maxZ);
+          ctx.fillText((x > 0 ? `+${x}` : `${x}`), p.x, p.y - 4);
+        }
+        ctx.textAlign = 'left';
+        for (let z = Math.ceil(bounds.minZ / 50) * 50; z <= bounds.maxZ; z += 50) {
+          const p = this.worldToScreen(bounds.minX, z);
+          ctx.fillText((z > 0 ? `+${z}` : `${z}`), p.x + 4, p.y - 3);
+        }
+
+        // Center spine axes (X=0, Z=0)
+        ctx.strokeStyle = '#3B82F6';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        const axX1 = this.worldToScreen(bounds.minX, 0);
+        const axX2 = this.worldToScreen(bounds.maxX, 0);
+        ctx.moveTo(axX1.x, axX1.y);
+        ctx.lineTo(axX2.x, axX2.y);
+        const axZ1 = this.worldToScreen(0, bounds.minZ);
+        const axZ2 = this.worldToScreen(0, bounds.maxZ);
+        ctx.moveTo(axZ1.x, axZ1.y);
+        ctx.lineTo(axZ2.x, axZ2.y);
+        ctx.stroke();
+
+        const allItems = getAllPaletteItems();
+
+        // 3. Draw Water Features
+        allItems.filter(it => it.type === 'water').forEach(w => this.drawWaterItem(ctx, w));
+
+        // 4. Draw Roads
+        allItems.filter(it => it.type === 'road').forEach(r => this.drawRoadItem(ctx, r));
+
+        // 5. Draw Landmarks
+        allItems.filter(it => it.type === 'landmark').forEach(lm => this.drawLandmarkItem(ctx, lm));
+
+        // 6. Draw Buildings (Top Layer)
+        allItems.filter(it => it.type === 'bld').forEach(b => this.drawBuildingItem(ctx, b));
+      },
+
+      drawRoadItem(ctx, r) {
+        const isSel = selectedGridItem && selectedGridItem.type === 'road' && selectedGridItem.id === r.id;
+        const isHov = this.hoveredItem && this.hoveredItem.type === 'road' && this.hoveredItem.id === r.id;
+        const p = this.worldToScreen(r.x, r.z);
+        const w = (r.width || 8) * this.camera.zoom;
+        const d = (r.depth || 50) * this.camera.zoom;
+        const rad = r.rotRad || 0;
+
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(-rad);
+
+        if (r.hidden) ctx.globalAlpha = 0.3;
+
+        if (isSel) {
+          ctx.strokeStyle = '#EA580C';
+          ctx.lineWidth = 4;
+          ctx.strokeRect(-w / 2 - 3, -d / 2 - 3, w + 6, d + 6);
+        } else if (isHov) {
+          ctx.strokeStyle = '#38BDF8';
+          ctx.lineWidth = 2;
+          ctx.strokeRect(-w / 2 - 2, -d / 2 - 2, w + 4, d + 4);
+        }
+
+        ctx.fillStyle = isSel ? '#475569' : '#64748B';
+        ctx.fillRect(-w / 2, -d / 2, w, d);
+        ctx.strokeStyle = '#334155';
+        ctx.lineWidth = 1;
+        ctx.strokeRect(-w / 2, -d / 2, w, d);
+
+        // Center line
+        ctx.strokeStyle = '#FFFFFF';
+        ctx.lineWidth = Math.max(1, 1.2 * this.camera.zoom);
+        ctx.setLineDash([6 * this.camera.zoom, 4 * this.camera.zoom]);
+        ctx.beginPath();
+        if (d >= w) {
+          ctx.moveTo(0, -d / 2);
+          ctx.lineTo(0, d / 2);
+        } else {
+          ctx.moveTo(-w / 2, 0);
+          ctx.lineTo(w / 2, 0);
+        }
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        if (this.camera.zoom > 0.7 && Math.max(w, d) > 25) {
+          ctx.font = 'bold 9px "Sarabun", sans-serif';
+          ctx.fillStyle = '#FFFFFF';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText(r.name, 0, 0);
+        }
+
+        ctx.restore();
+      },
+
+      drawWaterItem(ctx, w) {
+        const isSel = selectedGridItem && selectedGridItem.type === 'water' && selectedGridItem.id === w.id;
+        const isHov = this.hoveredItem && this.hoveredItem.type === 'water' && this.hoveredItem.id === w.id;
+        const p = this.worldToScreen(w.x, w.z);
+        const width = (w.width || 20) * this.camera.zoom;
+        const depth = (w.depth || 40) * this.camera.zoom;
+        const rad = w.rotRad || 0;
+
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(-rad);
+
+        if (w.hidden) ctx.globalAlpha = 0.3;
+
+        if (isSel) {
+          ctx.strokeStyle = '#EA580C';
+          ctx.lineWidth = 4;
+          ctx.strokeRect(-width / 2 - 3, -depth / 2 - 3, width + 6, depth + 6);
+        } else if (isHov) {
+          ctx.strokeStyle = '#0284C7';
+          ctx.lineWidth = 2;
+          ctx.strokeRect(-width / 2 - 2, -depth / 2 - 2, width + 4, depth + 4);
+        }
+
+        ctx.fillStyle = '#38BDF8';
+        ctx.fillRect(-width / 2, -depth / 2, width, depth);
+        ctx.strokeStyle = '#0284C7';
+        ctx.lineWidth = 1.5;
+        ctx.strokeRect(-width / 2, -depth / 2, width, depth);
+
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.6)';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        const rw = width * 0.5;
+        ctx.moveTo(-rw / 2, -depth * 0.2);
+        ctx.lineTo(rw / 2, -depth * 0.2);
+        ctx.moveTo(-rw / 3, depth * 0.2);
+        ctx.lineTo(rw / 3, depth * 0.2);
+        ctx.stroke();
+
+        if (this.camera.zoom > 0.6) {
+          ctx.font = 'bold 10px "Sarabun", sans-serif';
+          ctx.fillStyle = '#0C4A6E';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText(w.name, 0, 0);
+        }
+
+        ctx.restore();
+      },
+
+      drawLandmarkItem(ctx, lm) {
+        const isSel = selectedGridItem && selectedGridItem.type === 'landmark' && selectedGridItem.id === lm.id;
+        const isHov = this.hoveredItem && this.hoveredItem.type === 'landmark' && this.hoveredItem.id === lm.id;
+        const p = this.worldToScreen(lm.x, lm.z);
+        const width = (lm.width || 15) * this.camera.zoom;
+        const depth = (lm.depth || 15) * this.camera.zoom;
+        const rad = lm.rotRad || 0;
+
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(-rad);
+
+        if (lm.hidden) ctx.globalAlpha = 0.3;
+
+        if (isSel) {
+          ctx.strokeStyle = '#EA580C';
+          ctx.lineWidth = 4;
+          ctx.strokeRect(-width / 2 - 3, -depth / 2 - 3, width + 6, depth + 6);
+        } else if (isHov) {
+          ctx.strokeStyle = '#8B5CF6';
+          ctx.lineWidth = 2;
+          ctx.strokeRect(-width / 2 - 2, -depth / 2 - 2, width + 4, depth + 4);
+        }
+
+        if (lm.id === 'FOOTBALL') {
+          ctx.fillStyle = '#22C55E';
+          ctx.fillRect(-width / 2, -depth / 2, width, depth);
+          ctx.strokeStyle = '#FFFFFF';
+          ctx.lineWidth = 1.5;
+          ctx.strokeRect(-width / 2 + 2, -depth / 2 + 2, width - 4, depth - 4);
+          ctx.beginPath();
+          ctx.arc(0, 0, Math.min(width, depth) * 0.2, 0, Math.PI * 2);
+          ctx.stroke();
+        } else if (lm.id === 'SW_YARD') {
+          ctx.fillStyle = '#F3E8FF';
+          ctx.fillRect(-width / 2, -depth / 2, width, depth);
+          ctx.strokeStyle = '#9333EA';
+          ctx.lineWidth = 1.5;
+          ctx.strokeRect(-width / 2, -depth / 2, width, depth);
+        } else {
+          ctx.fillStyle = '#FEF3C7';
+          ctx.fillRect(-width / 2, -depth / 2, width, depth);
+          ctx.strokeStyle = '#D97706';
+          ctx.lineWidth = 1.2;
+          ctx.strokeRect(-width / 2, -depth / 2, width, depth);
+        }
+
+        if (this.camera.zoom > 0.6) {
+          ctx.font = 'bold 10px "Sarabun", sans-serif';
+          ctx.fillStyle = '#1E293B';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText(lm.name, 0, 0);
+        }
+
+        ctx.restore();
+      },
+
+      drawBuildingItem(ctx, b) {
+        const isSel = selectedGridItem && selectedGridItem.type === 'bld' && selectedGridItem.id === b.id;
+        const isHov = this.hoveredItem && this.hoveredItem.type === 'bld' && this.hoveredItem.id === b.id;
+        const p = this.worldToScreen(b.x, b.z);
+        const width = (b.width || 20) * this.camera.zoom;
+        const depth = (b.depth || 20) * this.camera.zoom;
+        const rad = b.rotRad || 0;
+
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(-rad);
+
+        if (b.hidden) ctx.globalAlpha = 0.35;
+
+        // Selection highlight ring & facing direction ray
+        if (isSel) {
+          ctx.strokeStyle = '#EA580C';
+          ctx.lineWidth = 4;
+          ctx.strokeRect(-width / 2 - 3, -depth / 2 - 3, width + 6, depth + 6);
+
+          ctx.strokeStyle = '#F59E0B';
+          ctx.lineWidth = 2.5;
+          ctx.beginPath();
+          ctx.moveTo(0, depth / 2);
+          ctx.lineTo(0, depth / 2 + 25 * this.camera.zoom);
+          ctx.stroke();
+        } else if (isHov) {
+          ctx.strokeStyle = '#3B82F6';
+          ctx.lineWidth = 2.5;
+          ctx.strokeRect(-width / 2 - 2, -depth / 2 - 2, width + 4, depth + 4);
+        }
+
+        // Color by Zone
+        let fillColor = '#DBEAFE', strokeColor = '#1D4ED8';
+        if (b.zone.includes('สนง')) {
+          fillColor = isSel ? '#BFDBFE' : '#DBEAFE';
+          strokeColor = '#1D4ED8';
+        } else if (b.zone.includes('โรงงาน') || b.zone.includes('พัสดุ')) {
+          fillColor = isSel ? '#FED7AA' : '#FFEDD5';
+          strokeColor = '#C2410C';
+        } else if (b.zone.includes('อหข')) {
+          fillColor = isSel ? '#99F6E4' : '#CCFBF1';
+          strokeColor = '#0F766E';
+        } else if (b.zone.includes('บ้านพัก')) {
+          fillColor = isSel ? '#BBF7D0' : '#DCFCE7';
+          strokeColor = '#15803D';
+        }
+
+        ctx.fillStyle = fillColor;
+        ctx.fillRect(-width / 2, -depth / 2, width, depth);
+
+        ctx.strokeStyle = strokeColor;
+        ctx.lineWidth = 1.8;
+        if (b.hidden) ctx.setLineDash([4, 3]);
+        ctx.strokeRect(-width / 2, -depth / 2, width, depth);
+        ctx.setLineDash([]);
+
+        // Front Entrance Threshold & Golden Chevron Arrow at local +Y (front of building)
+        const porchW = Math.min(width * 0.7, 24 * this.camera.zoom);
+        ctx.fillStyle = '#06B6D4';
+        ctx.fillRect(-porchW / 2, depth / 2 - 2, porchW, 4);
+
+        ctx.fillStyle = '#F59E0B';
+        ctx.beginPath();
+        const arrSize = Math.max(4, 5 * this.camera.zoom);
+        ctx.moveTo(0, depth / 2 + arrSize + 2);
+        ctx.lineTo(-arrSize, depth / 2 + 1);
+        ctx.lineTo(arrSize, depth / 2 + 1);
+        ctx.closePath();
+        ctx.fill();
+
+        // Building Code & Short Name
+        ctx.font = `bold ${Math.max(9, 11 * Math.min(1.4, this.camera.zoom))}px "JetBrains Mono", sans-serif`;
+        ctx.fillStyle = '#0F172A';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(b.code, 0, (depth > 26 ? -depth * 0.15 : 0));
+
+        if (depth > 26 && this.camera.zoom > 0.65) {
+          ctx.font = '9px "Sarabun", sans-serif';
+          ctx.fillStyle = '#334155';
+          ctx.fillText(b.name.substring(0, 14), 0, depth * 0.22);
+        }
+
+        if (b.hidden) {
+          ctx.fillStyle = '#DC2626';
+          ctx.font = 'bold 10px sans-serif';
+          ctx.fillText('🚫 ซ่อน', 0, 0);
+        }
+
+        ctx.restore();
+      },
+
+      renderFloatingDock() {
+        const dock = document.getElementById('layoutFloatingDock');
+        if (!dock) return;
+
+        if (!selectedGridItem) {
+          dock.style.display = 'none';
+          dock.innerHTML = '';
+          return;
+        }
+
+        const { type, id } = selectedGridItem;
+        const pos = getSelectedItemPosition({ type, id });
+        const name = getSelectedItemName({ type, id });
+        const fp = getObjectFootprintHalfCells({ type, id });
+        const rotDeg = fp.rotDeg;
         const comp = EnergyTwin.getCompassText ? EnergyTwin.getCompassText(rotDeg) : { dir: `${rotDeg}°`, icon: '🧭' };
-        // Front facade +Z in 3D: rotDeg 0 -> South (down 180deg in CSS), rotDeg 90 -> East (right 90deg in CSS), rotDeg 180 -> North (up 0deg in CSS)
-        const cssAngle = (180 - rotDeg + 360) % 360;
+        const isHidden = isLayoutItemHidden(type, id);
+        const icon = type === 'bld' ? '🏢' : type === 'road' ? '🛣️' : type === 'water' ? '💧' : '🚩';
 
-        const gx = Math.round(pos.x / stepX) * stepX;
-        const gz = Math.round(pos.z / stepZ) * stepZ;
-        const k = `${gx},${gz}`;
-        if (!cellMap[k]) cellMap[k] = [];
-        cellMap[k].push({
-          type: 'bld',
-          id: b.b_code,
-          code: b.b_code,
-          name: b.short_name || b.name,
-          x: pos.x,
-          z: pos.z,
-          rotDeg,
-          cssAngle,
-          compass: comp,
-          hidden: isHidden
-        });
-      });
+        let dimHtml = '';
+        if (type === 'road') {
+          const rObj = EnergyTwin.roads?.[id] || EnergyTwin.defaultRoads?.[id];
+          const curW = rObj?.width || 8;
+          const curL = rObj?.length || 60;
 
-      // Roads
-      const roads = EnergyTwin.getRoadsList ? EnergyTwin.getRoadsList() : [];
-      roads.forEach(r => {
-        const gx = Math.round(r.x / stepX) * stepX;
-        const gz = Math.round(r.z / stepZ) * stepZ;
-        const k = `${gx},${gz}`;
-        if (!cellMap[k]) cellMap[k] = [];
-        cellMap[k].push({
-          type: 'road',
-          id: r.id,
-          code: r.id.replace('ROAD_', ''),
-          name: r.name,
-          x: r.x,
-          z: r.z,
-          hidden: !!r.hidden
-        });
-      });
-
-      // Water
-      const waterList = EnergyTwin.getWaterList ? EnergyTwin.getWaterList() : [];
-      waterList.forEach(w => {
-        const gx = Math.round(w.x / stepX) * stepX;
-        const gz = Math.round(w.z / stepZ) * stepZ;
-        const k = `${gx},${gz}`;
-        if (!cellMap[k]) cellMap[k] = [];
-        cellMap[k].push({
-          type: 'water',
-          id: w.id,
-          code: w.id.replace('POND_RETENTION_', 'POND_').replace('WEST_', ''),
-          name: w.name,
-          x: w.x,
-          z: w.z,
-          hidden: !!w.hidden
-        });
-      });
-
-      // Landmarks
-      const lmList = EnergyTwin.getLandmarksList ? EnergyTwin.getLandmarksList() : [];
-      lmList.forEach(l => {
-        const gx = Math.round(l.x / stepX) * stepX;
-        const gz = Math.round(l.z / stepZ) * stepZ;
-        const k = `${gx},${gz}`;
-        if (!cellMap[k]) cellMap[k] = [];
-        cellMap[k].push({
-          type: 'landmark',
-          id: l.id,
-          code: l.id.replace('SHRINE_', '').replace('PARKING_SHED_', 'P_'),
-          name: l.name,
-          x: l.x,
-          z: l.z,
-          hidden: !!l.hidden
-        });
-      });
-
-      const parts = [];
-
-      // 1. Header row (Columns X)
-      parts.push('<thead><tr>');
-      parts.push('<th class="excel-th-corner">Z \\ X</th>');
-      for (let x = minX; x <= maxX; x += stepX) {
-        const sign = x > 0 ? `+${x}` : `${x}`;
-        parts.push(`<th class="excel-th-col" data-col-x="${x}">${sign}</th>`);
-      }
-      parts.push('</tr></thead>');
-
-      // 2. Body rows (Rows Z)
-      parts.push('<tbody>');
-      for (let z = minZ; z <= maxZ; z += stepZ) {
-        const signZ = z > 0 ? `+${z}` : `${z}`;
-        parts.push('<tr>');
-        parts.push(`<th class="excel-th-row" data-row-z="${z}">${signZ}</th>`);
-
-        for (let x = minX; x <= maxX; x += stepX) {
-          const k = `${x},${z}`;
-          const items = cellMap[k] || [];
-          let cellBadges = '';
-
-          items.forEach(it => {
-            const isSelected = selectedGridItem && selectedGridItem.type === it.type && selectedGridItem.id === it.id;
-            const hiddenSign = it.hidden ? `<span style="font-size:9px; color:#DC2626; margin-left:2px;" title="วัตถุนี้ถูกซ่อนอยู่">🚫</span>` : '';
-
-            if (it.type === 'bld') {
-              const arrow = `<span style="display:inline-block; transform:rotate(${it.cssAngle}deg); font-size:10px; line-height:1; color:#F59E0B; margin-right:2px;" title="หน้าอาคารหันไปทาง: ${it.compass.dir} (${it.rotDeg}°)">▲</span>`;
-              cellBadges += `
-                <div class="grid-badge badge-bld ${isSelected ? 'badge-active' : ''} ${it.hidden ? 'badge-hidden' : ''}" 
-                     draggable="true" 
-                     ondragstart="onGridDragStart(event, 'bld', '${it.id}')"
-                     onclick="onGridBadgeClick(event, 'bld', '${it.id}')"
-                     title="🏢 ${it.code}: ${it.name}\n🧭 หน้าอาคาร: ${it.compass.icon} ${it.compass.dir} (${it.rotDeg}°)\n📍 พิกัด: X=${it.x}, Z=${it.z}${it.hidden ? '\n🚫 (สถานะ: ซ่อนอยู่)' : ''}\n(คลิกเลือก หรือลากไปวางช่องใหม่)">
-                  ${arrow}${it.code}${hiddenSign}
+          dimHtml = `
+            <div style="background:#F1F5F9; border-radius:6px; padding:6px 8px; border:1px solid #CBD5E1; display:flex; flex-direction:column; gap:4px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; font-size:11px;">
+                <span style="font-weight:700; color:#1E3A8A;">📏 ขนาดมาตรฐาน (3 ขนาด):</span>
+                <span style="font-weight:700; color:#2563EB;">กว้าง ${curW} ม. × ยาว ${curL} ม.</span>
+              </div>
+              <!-- 3 Standard Size Buttons -->
+              <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:4px; margin-top:2px;">
+                <button type="button" class="dim-preset-chip ${curW === 12 ? 'active' : ''}" style="${curW === 12 ? 'background:#2563EB; color:#fff; font-weight:700; border-color:#1D4ED8;' : ''}" onclick="setStudioRoadWidth(12)" title="ถนนสายหลัก (12 ม.)">
+                  🛣️ 12ม. (สายหลัก)
+                </button>
+                <button type="button" class="dim-preset-chip ${curW === 8 ? 'active' : ''}" style="${curW === 8 ? 'background:#059669; color:#fff; font-weight:700; border-color:#047857;' : ''}" onclick="setStudioRoadWidth(8)" title="ถนนสายรอง (8 ม.)">
+                  🚗 8ม. (สายรอง)
+                </button>
+                <button type="button" class="dim-preset-chip ${curW === 5 ? 'active' : ''}" style="${curW === 5 ? 'background:#D97706; color:#fff; font-weight:700; border-color:#B45309;' : ''}" onclick="setStudioRoadWidth(5)" title="ทางเชื่อมซอย (5 ม.)">
+                  🚶 5ม. (ทางเชื่อม)
+                </button>
+              </div>
+              <!-- Road Length Adjusters -->
+              <div style="display:flex; justify-content:space-between; align-items:center; gap:6px; margin-top:3px; padding-top:4px; border-top:1px dashed #CBD5E1;">
+                <span style="font-size:10.5px; font-weight:600; color:#475569;">ยืด/หดความยาว:</span>
+                <div style="display:flex; gap:3px;">
+                  <button type="button" class="dim-preset-chip" onclick="layout2DStudio.adjustDimension('length', -20)" title="ลดความยาว 20 ม.">-20m</button>
+                  <button type="button" class="dim-preset-chip" onclick="layout2DStudio.adjustDimension('length', -10)" title="ลดความยาว 10 ม.">-10m</button>
+                  <button type="button" class="dim-preset-chip" onclick="layout2DStudio.adjustDimension('length', 10)" title="เพิ่มความยาว 10 ม.">+10m</button>
+                  <button type="button" class="dim-preset-chip" onclick="layout2DStudio.adjustDimension('length', 20)" title="เพิ่มความยาว 20 ม.">+20m</button>
                 </div>
-              `;
-            } else if (it.type === 'road') {
-              cellBadges += `
-                <div class="grid-badge badge-road ${isSelected ? 'badge-active' : ''} ${it.hidden ? 'badge-hidden' : ''}" 
-                     draggable="true" 
-                     ondragstart="onGridDragStart(event, 'road', '${it.id}')"
-                     onclick="onGridBadgeClick(event, 'road', '${it.id}')"
-                     title="🛣️ ถนน: ${it.name}\nพิกัดจริง: X=${it.x}, Z=${it.z}${it.hidden ? '\n🚫 (สถานะ: ซ่อนอยู่)' : ''}\n(คลิกเลือก หรือลากไปวางช่องใหม่)">
-                  🛣️ ${it.code.substring(0, 7)}${hiddenSign}
-                </div>
-              `;
-            } else if (it.type === 'water') {
-              cellBadges += `
-                <div class="grid-badge badge-water ${isSelected ? 'badge-active' : ''} ${it.hidden ? 'badge-hidden' : ''}" 
-                     draggable="true" 
-                     ondragstart="onGridDragStart(event, 'water', '${it.id}')"
-                     onclick="onGridBadgeClick(event, 'water', '${it.id}')"
-                     title="💧 แหล่งน้ำ: ${it.name}\nพิกัดจริง: X=${it.x}, Z=${it.z}${it.hidden ? '\n🚫 (สถานะ: ซ่อนอยู่)' : ''}\n(คลิกเลือก หรือลากไปวางช่องใหม่)">
-                  💧 ${it.code.substring(0, 7)}${hiddenSign}
-                </div>
-              `;
-            } else if (it.type === 'landmark') {
-              cellBadges += `
-                <div class="grid-badge badge-landmark ${isSelected ? 'badge-active' : ''} ${it.hidden ? 'badge-hidden' : ''}" 
-                     draggable="true" 
-                     ondragstart="onGridDragStart(event, 'landmark', '${it.id}')"
-                     onclick="onGridBadgeClick(event, 'landmark', '${it.id}')"
-                     title="🚩 วัตถุประกอบ: ${it.name}\nพิกัดจริง: X=${it.x}, Z=${it.z}${it.hidden ? '\n🚫 (สถานะ: ซ่อนอยู่)' : ''}\n(คลิกเลือก หรือลากไปวางช่องใหม่)">
-                  🚩 ${it.code.substring(0, 7)}${hiddenSign}
-                </div>
-              `;
-            }
-          });
+              </div>
+            </div>
+          `;
+        } else if (type === 'water') {
+          const wtObj = EnergyTwin.water?.[id] || EnergyTwin.defaultWater?.[id];
+          const curW = wtObj?.width || 20;
+          const curL = wtObj?.depth || 40;
 
-          parts.push(`
-            <td class="excel-cell" 
-                data-x="${x}" 
-                data-z="${z}" 
-                ondragover="onGridDragOver(event)" 
-                ondragleave="onGridDragLeave(event)" 
-                ondrop="onGridDrop(event, ${x}, ${z})" 
-                onmouseenter="onGridCellHover(${x}, ${z})"
-                onclick="onGridCellClick(${x}, ${z})"
-                title="พิกัดช่อง: X=${x}, Z=${z}">
-              ${cellBadges}
-            </td>
-          `);
+          dimHtml = `
+            <div style="background:#F1F5F9; border-radius:6px; padding:6px 8px; border:1px solid #CBD5E1; display:flex; flex-direction:column; gap:4px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; font-size:11px;">
+                <span style="font-weight:700; color:#1E3A8A;">📏 ขนาดแหล่งน้ำ (กว้าง × ลึก):</span>
+                <span style="font-weight:700; color:#0284C7;">${curW} ม. × ${curL} ม.</span>
+              </div>
+              <div style="display:flex; justify-content:space-between; align-items:center; gap:6px;">
+                <span style="font-size:10.5px; color:#475569;">กว้าง:</span>
+                <div style="display:flex; gap:3px;">
+                  <button type="button" class="dim-preset-chip" onclick="layout2DStudio.adjustDimension('width', -5)">-5m</button>
+                  <button type="button" class="dim-preset-chip" onclick="layout2DStudio.adjustDimension('width', 5)">+5m</button>
+                </div>
+                <span style="font-size:10.5px; color:#475569; margin-left:4px;">ลึก:</span>
+                <div style="display:flex; gap:3px;">
+                  <button type="button" class="dim-preset-chip" onclick="layout2DStudio.adjustDimension('depth', -5)">-5m</button>
+                  <button type="button" class="dim-preset-chip" onclick="layout2DStudio.adjustDimension('depth', 5)">+5m</button>
+                </div>
+              </div>
+            </div>
+          `;
         }
-        parts.push('</tr>');
+
+        dock.innerHTML = `
+          <!-- Title Bar -->
+          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #E2E8F0; padding-bottom:6px;">
+            <div style="display:flex; align-items:center; gap:6px; min-width:0;">
+              <span style="font-size:16px;">${icon}</span>
+              <div style="min-width:0;">
+                <div style="font-size:12.5px; font-weight:700; color:#0F172A; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:260px;">
+                  ${id}: ${name}
+                </div>
+                <div style="font-size:10px; color:#64748B;">
+                  ขนาด: ${fp.w}×${fp.d} ม. ${isHidden ? ' • <span style="color:#DC2626; font-weight:700;">🚫 ซ่อนอยู่</span>' : ''}
+                </div>
+              </div>
+            </div>
+            <button type="button" onclick="layout2DStudio.clearSelection()" style="background:none; border:none; cursor:pointer; font-size:18px; color:#64748B; padding:0 4px; line-height:1;" title="ยกเลิกการเลือก">&times;</button>
+          </div>
+
+          <!-- Position & D-Pad Controls -->
+          <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:6px; padding:6px 8px; display:flex; flex-direction:column; gap:5px;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span style="font-size:11px; font-weight:700; color:#1E3A8A;">🕹️ เลื่อนตำแหน่ง (D-Pad):</span>
+              <span style="font-family:'JetBrains Mono'; font-weight:700; font-size:11.5px; color:#059669; background:#ECFDF5; padding:1px 6px; border-radius:4px; border:1px solid #A7F3D0;">
+                X: ${pos.x} ม. | Z: ${pos.z} ม.
+              </span>
+            </div>
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:8px;">
+              <!-- D-Pad Arrows -->
+              <div style="display:inline-grid; grid-template-columns: repeat(3, 30px); gap:3px;">
+                <div></div>
+                <button type="button" class="nudge-btn" onclick="layout2DStudio.nudge(0, -layout2DStudio.snap)" title="เลื่อนทิศเหนือ (N -Z)">⬆️</button>
+                <div></div>
+                <button type="button" class="nudge-btn" onclick="layout2DStudio.nudge(-layout2DStudio.snap, 0)" title="เลื่อนทิศตะวันตก (W -X)">⬅️</button>
+                <div style="text-align:center; font-size:10px; line-height:26px; color:#64748B; font-weight:700;">${layout2DStudio.snap}m</div>
+                <button type="button" class="nudge-btn" onclick="layout2DStudio.nudge(layout2DStudio.snap, 0)" title="เลื่อนทิศตะวันออก (E +X)">➡️</button>
+                <div></div>
+                <button type="button" class="nudge-btn" onclick="layout2DStudio.nudge(0, layout2DStudio.snap)" title="เลื่อนทิศใต้ (S +Z)">⬇️</button>
+                <div></div>
+              </div>
+
+              <!-- Direct input & quick step toggle -->
+              <div style="display:flex; flex-direction:column; gap:4px; flex:1;">
+                <div style="display:flex; align-items:center; gap:4px;">
+                  <span style="font-size:10px; font-weight:700; color:#334155; width:16px;">X:</span>
+                  <input type="number" step="${layout2DStudio.snap}" value="${pos.x}" 
+                         onchange="moveLayoutItem('${type}', '${id}', this.value, ${pos.z})" 
+                         style="flex:1; padding:2px 4px; font-size:11px; font-family:'JetBrains Mono'; font-weight:700; text-align:right; border:1px solid #CBD5E1; border-radius:4px;">
+                  <span style="font-size:10px; color:#64748B;">ม.</span>
+                </div>
+                <div style="display:flex; align-items:center; gap:4px;">
+                  <span style="font-size:10px; font-weight:700; color:#334155; width:16px;">Z:</span>
+                  <input type="number" step="${layout2DStudio.snap}" value="${pos.z}" 
+                         onchange="moveLayoutItem('${type}', '${id}', ${pos.x}, this.value)" 
+                         style="flex:1; padding:2px 4px; font-size:11px; font-family:'JetBrains Mono'; font-weight:700; text-align:right; border:1px solid #CBD5E1; border-radius:4px;">
+                  <span style="font-size:10px; color:#64748B;">ม.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Facing Direction / Orientation Controls -->
+          <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:6px; padding:6px 8px; display:flex; flex-direction:column; gap:4px;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span style="font-size:11px; font-weight:700; color:#1E3A8A;">🧭 ${type === 'road' ? 'แนวเส้นทางถนน (Orientation):' : 'หมุนทิศทางหน้าอาคาร:'}</span>
+              <span style="font-size:11px; font-weight:700; color:#EA580C; background:#FFF7ED; padding:1px 6px; border-radius:4px; border:1px solid #FFEDD5;">
+                ${comp.icon} ${comp.dir} (${rotDeg}°)
+              </span>
+            </div>
+            ${type === 'road' ? `
+              <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap:4px;">
+                <button type="button" class="rot-btn ${rotDeg === 0 || rotDeg === 180 ? 'active' : ''}" onclick="setStudioRotation(0)">⬆️ แนวตั้ง เหนือ-ใต้ (0°)</button>
+                <button type="button" class="rot-btn ${rotDeg === 90 || rotDeg === 270 ? 'active' : ''}" onclick="setStudioRotation(90)">➡️ แนวนอน ออก-ตก (90°)</button>
+              </div>
+              <div style="display:flex; gap:3px; margin-top:2px;">
+                <button type="button" class="dim-preset-chip" style="flex:1;" onclick="rotateStudioItem(-45)">↺ หมุน -45°</button>
+                <button type="button" class="dim-preset-chip" style="flex:1;" onclick="rotateStudioItem(45)">↻ หมุน +45°</button>
+              </div>
+            ` : `
+              <!-- Cardinal 8 Direction Quick Buttons -->
+              <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:3px;">
+                <button type="button" class="rot-btn ${rotDeg === 180 ? 'active' : ''}" onclick="setStudioRotation(180)">⬆️ เหนือ 180°</button>
+                <button type="button" class="rot-btn ${rotDeg === 90 ? 'active' : ''}" onclick="setStudioRotation(90)">➡️ ออก 90°</button>
+                <button type="button" class="rot-btn ${rotDeg === 0 ? 'active' : ''}" onclick="setStudioRotation(0)">⬇️ ใต้ 0°</button>
+                <button type="button" class="rot-btn ${rotDeg === 270 ? 'active' : ''}" onclick="setStudioRotation(270)">⬅️ ตก 270°</button>
+              </div>
+              <div style="display:flex; gap:3px; margin-top:2px;">
+                <button type="button" class="dim-preset-chip" style="flex:1;" onclick="rotateStudioItem(-45)">↺ หมุนซ้าย 45°</button>
+                <button type="button" class="dim-preset-chip" style="flex:1;" onclick="rotateStudioItem(45)">↻ หมุนขวา 45°</button>
+              </div>
+            `}
+          </div>
+
+          ${dimHtml}
+
+          <!-- Action Buttons -->
+          ${type === 'road' ? `
+            <div style="display:flex; gap:4px; margin-top:2px;">
+              <button type="button" class="btn-action" style="flex:1; justify-content:center; padding:5px 6px; font-size:11px; background:#F0FDF4; border-color:#BBF7D0; color:#166534;" onclick="duplicateSelectedStudioRoad()" title="คัดลอกสร้างถนนเส้นใหม่ที่ขนาดเท่ากัน">
+                📋 ทำซ้ำ
+              </button>
+              <button type="button" class="btn-action ${isHidden ? 'primary' : 'secondary'}" style="padding:5px 6px; font-size:11px;" onclick="toggleSelectedGridItemVisibility()" title="${isHidden ? 'แสดงถนน' : 'ซ่อนถนน'}">
+                ${isHidden ? '👁️ แสดง' : '🚫 ซ่อน'}
+              </button>
+              <button type="button" class="btn-action danger" style="padding:5px 6px; font-size:11px; color:#DC2626; border-color:#FECACA;" onclick="deleteSelectedStudioRoad('${id}')" title="ลบเส้นทางถนนนี้ออกจากผัง">
+                🗑️ ลบถนน
+              </button>
+            </div>
+          ` : `
+            <div style="display:flex; gap:4px; margin-top:2px;">
+              <button type="button" class="btn-action ${isHidden ? 'primary' : 'danger'}" style="flex:1; justify-content:center; padding:5px 8px; font-size:11px;" onclick="toggleSelectedGridItemVisibility()">
+                ${isHidden ? '👁️ เปิดแสดงวัตถุนี้' : '🚫 ซ่อนวัตถุนี้'}
+              </button>
+              <button type="button" class="btn-action" style="padding:5px 8px; font-size:11px; color:#DC2626; border-color:#FECACA;" onclick="resetSelectedGridItem()" title="คืนสู่พิกัดเริ่มต้น As-Built">
+                ↺ คืนค่าเดิม
+              </button>
+            </div>
+          `}
+        `;
+        dock.style.display = 'flex';
+      },
+
+      nudge(dx, dz) {
+        if (!selectedGridItem) return;
+        nudgeStudioItem(dx, dz);
+        this.renderFloatingDock();
+        this.render();
+      },
+
+      adjustDimension(dimKey, delta) {
+        if (!selectedGridItem) return;
+        const fp = getObjectFootprintHalfCells(selectedGridItem);
+        let cur = dimKey === 'width' ? fp.w : fp.d;
+        let next = Math.max(2, cur + delta);
+        updateStudioDimension(dimKey, next);
+        this.renderFloatingDock();
+        this.render();
       }
-      parts.push('</tbody>');
+    };
 
-      table.innerHTML = parts.join('');
-
-      highlightStudioActiveFootprint();
-
-      const totalB = EnergyTwin.getBuildingsList ? EnergyTwin.getBuildingsList().length : 29;
-      const totalR = EnergyTwin.getRoadsList ? EnergyTwin.getRoadsList().length : 15;
-      const totalW = EnergyTwin.getWaterList ? EnergyTwin.getWaterList().length : 8;
-      const countEl = document.getElementById('layoutEditorCountText');
-      if (countEl) {
-        countEl.textContent = `แสดง ${totalB} อาคาร + ${totalR} เส้นทางถนน + ${totalW} แหล่งน้ำ | ผังตารางเซลล์ละเอียด 10×10ม. | บันทึก LocalStorage อัตโนมัติ`;
+    // Stubs for backward compatibility
+    function renderInteractiveExcelGrid() {
+      if (layout2DStudio.isInitialized) {
+        layout2DStudio.render();
+        if (selectedGridItem) layout2DStudio.renderFloatingDock();
       }
     }
-
-    // Grid Cell Events
-    function onGridCellHover(targetX, targetZ) {
-      if (selectedGridItem) {
-        highlightStudioHoverFootprint(targetX, targetZ);
-      }
-    }
-
-    function onGridCellClick(targetX, targetZ) {
-      if (selectedGridItem) {
-        moveLayoutItem(selectedGridItem.type, selectedGridItem.id, targetX, targetZ);
-        clearStudioHoverFootprint();
-      }
-    }
-
-    function onGridBadgeClick(event, type, id) {
-      event.stopPropagation();
-      selectLayoutStudioItem(type, id, true);
-    }
-
-    // Grid Drag & Drop
-    function onGridDragStart(event, type, id) {
-      event.stopPropagation();
-      try {
-        event.dataTransfer.setData('text/plain', JSON.stringify({ type, id }));
-        event.dataTransfer.effectAllowed = 'move';
-      } catch (e) {}
-      selectLayoutStudioItem(type, id, false);
-    }
-
-    function onGridDragOver(event) {
-      event.preventDefault();
-      try { event.dataTransfer.dropEffect = 'move'; } catch (e) {}
-      event.currentTarget.classList.add('drag-over');
-    }
-
-    function onGridDragLeave(event) {
-      event.currentTarget.classList.remove('drag-over');
-    }
-
-    function onGridDrop(event, targetX, targetZ) {
-      event.preventDefault();
-      event.currentTarget.classList.remove('drag-over');
-
-      let payload = null;
-      try {
-        const raw = event.dataTransfer.getData('text/plain');
-        if (raw) payload = JSON.parse(raw);
-      } catch (e) {}
-
-      if (!payload && selectedGridItem) {
-        payload = selectedGridItem;
-      }
-
-      if (payload && payload.id) {
-        moveLayoutItem(payload.type, payload.id, targetX, targetZ);
-        clearStudioHoverFootprint();
-      }
-    }
-
     function clearGridSelection() {
-      selectedGridItem = null;
-      const infoEl = document.getElementById('gridSelectedInfo');
-      if (infoEl) {
-        infoEl.innerHTML = `💡 <strong>วิธีจัดผัง:</strong> เลือกวัตถุด้านซ้าย &gt; หมุนทิศหรือปรับขนาดตามต้องการ &gt; คลิกช่องบนตารางเพื่อวางตำแหน่ง (มีเส้นไฮไลต์ขนาดจริง)`;
+      if (layout2DStudio.isInitialized) {
+        layout2DStudio.clearSelection();
+      } else {
+        selectedGridItem = null;
       }
-      const inspectorWrap = document.getElementById('studioInspectorWrap');
-      if (inspectorWrap) {
-        inspectorWrap.style.display = 'none';
-        inspectorWrap.innerHTML = '';
-      }
-      document.querySelectorAll('.palette-card').forEach(el => el.classList.remove('active'));
-      document.querySelectorAll('.grid-badge').forEach(el => el.classList.remove('badge-active'));
-      document.querySelectorAll('.cell-footprint-active, .cell-footprint-center, .cell-footprint-hover').forEach(el => {
-        el.classList.remove('cell-footprint-active', 'cell-footprint-center', 'cell-footprint-hover');
-      });
     }
+    function highlightStudioActiveFootprint() {
+      if (layout2DStudio.isInitialized) layout2DStudio.render();
+    }
+    function highlightStudioHoverFootprint() {}
+    function clearStudioHoverFootprint() {}
 
     function focusSelectedGridItem() {
       if (!selectedGridItem) return;
