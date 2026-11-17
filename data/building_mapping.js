@@ -1,10 +1,10 @@
 /**
  * Sai Noi Campus Building Mapping Data (Pre-bundled)
- * Auto-generated: 2026-11-17T08:01:09.837Z
+ * Auto-generated: 2026-11-17T08:23:54.429Z
  */
 window.SAINOI_BUILDING_MAPPING = {
   "schema_version": "1.0.0",
-  "generated_at": "2026-11-17T08:01:09.835Z",
+  "generated_at": "2026-11-17T08:23:54.428Z",
   "site": "การไฟฟ้าฝ่ายผลิตแห่งประเทศไทย สำนักงานไทรน้อย (EGAT Sai Noi)",
   "disclaimer": "โมเดลและตำแหน่งอาคารในระยะนำร่อง (Pilot) เป็นภาพจำลองเชิงสัญลักษณ์ (Symbolic Representation) จัดวางเพื่อความสะดวกในการสำรวจข้อมูล ไม่ใช่แบบสำรวจรังวัดจริง และไม่มีการใช้ขนาดจำลองคำนวณพื้นที่หรือ kWh/m²",
   "double_counting_policy": "ยอดการใช้ไฟฟ้ารวมของแต่ละอาคารคำนวณจากมิเตอร์ประธาน (Main Meter/MDB) เท่านั้น โดยมิเตอร์ย่อย (Sub-meters) ใช้สำหรับแจกแจงรายละเอียดและจะไม่ถูกนำไปบวกรวมกับมิเตอร์ประธานเพื่อป้องกันการนับซ้ำ",
@@ -113,9 +113,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 8
       },
       "layout_position": {
-        "x": 0,
+        "x": 5,
         "y": 0,
-        "z": -135
+        "z": -140
       },
       "color_base": "#F8FAFC",
       "roof_type": "curved_barrel",
@@ -193,9 +193,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 16
       },
       "layout_position": {
-        "x": 50,
+        "x": 52,
         "y": 0,
-        "z": -85
+        "z": -95
       },
       "color_base": "#F1F5F9",
       "roof_type": "office_stepped",
@@ -269,7 +269,7 @@ window.SAINOI_BUILDING_MAPPING = {
       "mapping_status": "verified",
       "is_surveyed_coord": true,
       "model_source": "masterplan_2565_revised",
-      "rotation_y": 4.71238898038469,
+      "rotation_y": 5.672320068981571,
       "hidden": false
     },
     "D.0025": {
@@ -287,9 +287,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 10
       },
       "layout_position": {
-        "x": 100,
+        "x": 105,
         "y": 0,
-        "z": -120
+        "z": -40
       },
       "color_base": "#E2E8F0",
       "roof_type": "sports_pilotis_d0025",
@@ -473,7 +473,7 @@ window.SAINOI_BUILDING_MAPPING = {
       "layout_position": {
         "x": 5,
         "y": 0,
-        "z": -5
+        "z": -10
       },
       "color_base": "#94A3B8",
       "roof_type": "curved_barrel",
@@ -561,7 +561,7 @@ window.SAINOI_BUILDING_MAPPING = {
       "layout_position": {
         "x": 5,
         "y": 0,
-        "z": -65
+        "z": -55
       },
       "color_base": "#94A3B8",
       "roof_type": "curved_barrel",
@@ -605,7 +605,7 @@ window.SAINOI_BUILDING_MAPPING = {
       "layout_position": {
         "x": -35,
         "y": 0,
-        "z": -100
+        "z": -95
       },
       "color_base": "#E2E8F0",
       "roof_type": "industrial_gable",
@@ -647,9 +647,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 10
       },
       "layout_position": {
-        "x": 0,
+        "x": 5,
         "y": 0,
-        "z": -100
+        "z": -105
       },
       "color_base": "#94A3B8",
       "roof_type": "industrial_flat",
@@ -779,9 +779,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 11
       },
       "layout_position": {
-        "x": 81,
+        "x": 92,
         "y": 0,
-        "z": -236
+        "z": -155
       },
       "color_base": "#FFFFFF",
       "roof_type": "curved_barrel",
@@ -825,9 +825,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 14
       },
       "layout_position": {
-        "x": 124,
+        "x": 135,
         "y": 0,
-        "z": -214
+        "z": -135
       },
       "color_base": "#F8FAFC",
       "roof_type": "chem_lab_t0015",
@@ -869,9 +869,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 9
       },
       "layout_position": {
-        "x": 155,
+        "x": 168,
         "y": 0,
-        "z": -195
+        "z": -115
       },
       "color_base": "#F1F5F9",
       "roof_type": "chemical_workshop_t0016",
@@ -913,9 +913,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 10
       },
       "layout_position": {
-        "x": 124,
+        "x": 135,
         "y": 0,
-        "z": -136
+        "z": -60
       },
       "color_base": "#CBD5E1",
       "roof_type": "competency_curved_t0017",
@@ -957,9 +957,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 10
       },
       "layout_position": {
-        "x": 158,
+        "x": 168,
         "y": 0,
-        "z": -140
+        "z": -65
       },
       "color_base": "#F8FAFC",
       "roof_type": "metrology_center_t0018",
@@ -1001,9 +1001,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 34
       },
       "layout_position": {
-        "x": 50,
+        "x": 48,
         "y": 0,
-        "z": -25
+        "z": -35
       },
       "color_base": "#FFFFFF",
       "roof_type": "office_stepped",
@@ -1369,9 +1369,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 11
       },
       "layout_position": {
-        "x": 50,
+        "x": 42,
         "y": 0,
-        "z": 25
+        "z": 20
       },
       "color_base": "#F8FAFC",
       "roof_type": "competency_center_t0020",

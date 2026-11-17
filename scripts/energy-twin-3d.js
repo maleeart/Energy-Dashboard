@@ -374,9 +374,9 @@
     setupMainFootballField() {
       const fieldGroup = new THREE.Group();
       fieldGroup.name = 'FootballField';
-      // Center position in campus layout
-      const fx = 76;
-      const fz = -164;
+      // Center position in campus layout (matching aerial reference photo)
+      const fx = 92;
+      const fz = -85;
       const fw = 28;
       const fd = 56;
 
@@ -464,7 +464,7 @@
       this.scene.add(this.roadContainer);
 
       // 2. Eastern Science & Chemistry Roundabout (Landmark in front of T.0018 & T.0016)
-      const eastRound = this.createRoundabout(135, -175, 12, 5.5);
+      const eastRound = this.createRoundabout(148, -95, 12, 5.5);
       eastRound.name = 'Roundabout_East';
       this.scene.add(eastRound);
       this.roadMeshes.set('ROAD_EAST_ROUNDABOUT', eastRound);
@@ -1159,21 +1159,23 @@
 
     setupLandmarkLabels() {
       const landmarks = [
-        { text: '⚡ สวิตช์ยาร์ด 500 kV', x: -25, y: 19, z: 110, color: '#D97706' },
-        { text: '⚽ สนามฟุตบอล', x: 120, y: 8, z: -70, color: '#16A34A' },
-        { text: '💧 สระน้ำ 1, 2, 3', x: -85, y: 7, z: -40, color: '#0284C7' },
-        { text: '🚧 ทางเข้าหลัก / ท.0021 ที่ทำการ รปภ.', x: 40, y: 8, z: 140, color: '#475569' },
-        { text: '🧪 วงเวียนหน้า ท.0018 / ท.0016', x: 140, y: 8, z: -175, color: '#2563EB' },
-        { text: '⚙️ ปฏิมากรรมกังหันไอน้ำ', x: 55, y: 14, z: 55, color: '#EA580C' },
-        { text: '🌻 ทุ่งทานตะวัน & ป้าย กฟผ.', x: 10, y: 8, z: 115, color: '#EAB308' },
+        { id: 'SW_YARD', text: '⚡ สวิตช์ยาร์ด 500 kV', x: -25, y: 19, z: 110, color: '#D97706' },
+        { id: 'FOOTBALL', text: '⚽ สนามฟุตบอล', x: 92, y: 8, z: -85, color: '#16A34A' },
+        { id: 'POND_RETENTION_1', text: '💧 สระน้ำ 1, 2, 3', x: -85, y: 7, z: -40, color: '#0284C7' },
+        { id: 'CAMPUS_ENTRANCE', text: '🚧 ทางเข้าหลัก / ท.0021 ที่ทำการ รปภ.', x: 40, y: 8, z: 140, color: '#475569' },
+        { id: 'EAST_ROUNDABOUT', text: '🧪 วงเวียนหน้า ท.0018 / ท.0016', x: 148, y: 8, z: -95, color: '#2563EB' },
+        { id: 'TURBINE_SCULPTURE', text: '⚙️ ปฏิมากรรมกังหันไอน้ำ', x: 55, y: 14, z: 55, color: '#EA580C' },
+        { id: 'SUNFLOWER_FIELD', text: '🌻 ทุ่งทานตะวัน & ป้าย กฟผ.', x: 10, y: 8, z: 115, color: '#EAB308' },
         // OHK Specific Landmark Pins (No Soccer field in OHK)
-        { text: '🚛 วงเวียนใหญ่ศูนย์ขนส่ง อหข.', x: -130, y: 10, z: -160, color: '#7C3AED' },
-        { text: '💧 สระน้ำ & ศาลาริมน้ำ อหข.', x: -185, y: 8, z: -180, color: '#0284C7' },
-        { text: '⚡ สายส่ง 230 kV อ่างทอง 2', x: -120, y: 28, z: -190, color: '#EF4444' }
+        { id: 'OHK_ROUNDABOUT', text: '🚛 วงเวียนใหญ่ศูนย์ขนส่ง อหข.', x: -130, y: 10, z: -160, color: '#7C3AED' },
+        { id: 'OHK_RETENTION_POND', text: '💧 สระน้ำ & ศาลาริมน้ำ อหข.', x: -185, y: 8, z: -180, color: '#0284C7' },
+        { id: 'TRANS_LINE_ANGTHONG', text: '⚡ สายส่ง 230 kV อ่างทอง 2', x: -120, y: 28, z: -190, color: '#EF4444' }
       ];
 
       landmarks.forEach(lm => {
         const sprite = this.createLandmarkSprite(lm.text, lm.color);
+        sprite.name = lm.id;
+        sprite.userData = { id: lm.id };
         sprite.position.set(lm.x, lm.y, lm.z);
         this.scene.add(sprite);
         this.landmarkSprites.push(sprite);
@@ -3135,11 +3137,19 @@
     updateLandmarkPosition(landmarkId, newX, newZ) {
       if (!this.landmarkMeshes) return;
       const lm = this.landmarkMeshes.get(landmarkId);
-      if (!lm) return;
       const x = Number(newX);
       const z = Number(newZ);
-      if (!isNaN(x)) lm.position.x = x;
-      if (!isNaN(z)) lm.position.z = z;
+      if (lm) {
+        if (!isNaN(x)) lm.position.x = x;
+        if (!isNaN(z)) lm.position.z = z;
+      }
+      if (this.landmarkSprites) {
+        const sprite = this.landmarkSprites.find(s => s.name === landmarkId || (s.userData && s.userData.id === landmarkId));
+        if (sprite) {
+          if (!isNaN(x)) sprite.position.x = x;
+          if (!isNaN(z)) sprite.position.z = z;
+        }
+      }
       this.needsRender = true;
     }
 
