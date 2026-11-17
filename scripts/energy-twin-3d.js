@@ -3281,13 +3281,9 @@
     animate(time) {
       requestAnimationFrame((t) => this.animate(t));
 
-      // Performance: When 2D Layout Editor modal is open, pause heavy 3D pulsing loops
+      // Performance: When 2D Layout Editor modal is open, completely pause 3D loop (0% GPU/CPU usage)
       const layoutModal = document.getElementById('layoutEditorModal');
       if (layoutModal && layoutModal.style.display === 'flex') {
-        if (this.needsRender || this.isAnimatingCamera) {
-          this.renderer.render(this.scene, this.camera);
-          this.needsRender = false;
-        }
         return;
       }
 
