@@ -862,39 +862,7 @@
       // 0. Steam Turbine Rotor Sculpture Plaza (ลานปฏิมากรรมกังหันไอน้ำ หน้า ท.0020)
       this.setupSteamTurbineSculpture();
 
-      // 1. Scenic Promenade Pond & Lake Behind T.0019 (Matching 3D Prototype & crop_field.jpg)
-      const poolGroup = new THREE.Group();
-      const poolGeo = new THREE.PlaneGeometry(42, 18);
-      const poolMat = new THREE.MeshStandardMaterial({
-        color: 0x0284C7,
-        roughness: 0.1,
-        metalness: 0.35,
-        transparent: true,
-        opacity: 0.92
-      });
-      const pool = new THREE.Mesh(poolGeo, poolMat);
-      pool.rotation.x = -Math.PI / 2;
-      pool.position.set(35, 0.08, 24);
-      pool.receiveShadow = true;
-      poolGroup.add(pool);
-
-      // Wooden footbridges crossing the lake
-      const bridgeMat = new THREE.MeshStandardMaterial({ color: 0x78350F, roughness: 0.75 });
-      [-9, 9].forEach(bx => {
-        const bridge = new THREE.Mesh(new THREE.BoxGeometry(3.0, 0.35, 20), bridgeMat);
-        bridge.position.set(35 + bx, 0.28, 24);
-        bridge.castShadow = true;
-        poolGroup.add(bridge);
-      });
-
-      // Stone border curb
-      const poolCurb = new THREE.Mesh(
-        new THREE.BoxGeometry(43.6, 0.4, 19.6),
-        new THREE.MeshStandardMaterial({ color: 0xCBD5E1, roughness: 0.8 })
-      );
-      poolCurb.position.set(35, 0.2, 24);
-      poolGroup.add(poolCurb);
-      this.scene.add(poolGroup);
+      // Note: Scenic Promenade Pond (LAKE_PROMENADE) is managed dynamically in setupCentralRetentionPonds and waterMeshes
 
       const poleMat = new THREE.MeshStandardMaterial({ color: 0xE2E8F0, metalness: 0.8, roughness: 0.2 });
       [-3, 0, 3].forEach(ox => {
@@ -925,21 +893,31 @@
 
       // ── Shrines & Iconic Campus Monuments from 3D Prototype (19-6-63) ──
       // 1. พระวิษณุกรรม Shrine (Between T.0020 and T.0007)
+      const shrineGroup = new THREE.Group();
+      shrineGroup.name = 'Shrine_Vishnu';
       const shrineMat = new THREE.MeshStandardMaterial({ color: 0xD97706, roughness: 0.4 });
       const shrineBase = new THREE.Mesh(new THREE.BoxGeometry(3.5, 1.2, 3.5), new THREE.MeshStandardMaterial({ color: 0xF1F5F9 }));
-      shrineBase.position.set(40, 0.6, 45);
-      this.scene.add(shrineBase);
+      shrineBase.position.set(0, 0.6, 0);
+      shrineGroup.add(shrineBase);
       const shrineStatue = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.9, 2.0, 8), shrineMat);
-      shrineStatue.position.set(40, 2.2, 45);
-      this.scene.add(shrineStatue);
+      shrineStatue.position.set(0, 2.2, 0);
+      shrineGroup.add(shrineStatue);
+      shrineGroup.position.set(40, 0, 45);
+      this.scene.add(shrineGroup);
+      this.landmarkMeshes.set('SHRINE_VISHNU', shrineGroup);
 
       // 2. หลวงพ่อเจ็ดกษัตริย์ Shrine (Near Canteen D.0017 and T.0010)
+      const shrine2Group = new THREE.Group();
+      shrine2Group.name = 'Shrine_SevenKings';
       const shrine2Base = new THREE.Mesh(new THREE.BoxGeometry(3.2, 1.0, 3.2), new THREE.MeshStandardMaterial({ color: 0xF1F5F9 }));
-      shrine2Base.position.set(35, 0.5, -90);
-      this.scene.add(shrine2Base);
+      shrine2Base.position.set(0, 0.5, 0);
+      shrine2Group.add(shrine2Base);
       const shrine2Statue = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.8, 1.8, 8), shrineMat);
-      shrine2Statue.position.set(35, 1.9, -90);
-      this.scene.add(shrine2Statue);
+      shrine2Statue.position.set(0, 1.9, 0);
+      shrine2Group.add(shrine2Statue);
+      shrine2Group.position.set(35, 0, -90);
+      this.scene.add(shrine2Group);
+      this.landmarkMeshes.set('SHRINE_SEVEN_KINGS', shrine2Group);
 
       // 3. Blue Parking Sheds: ต.0016 and ต.0018
       const shedMat = new THREE.MeshStandardMaterial({ color: 0x1E40AF, roughness: 0.5 });
@@ -947,16 +925,20 @@
       const shed16 = new THREE.Mesh(new THREE.BoxGeometry(6, 3.5, 26), shedMat);
       shed16.position.set(65, 1.75, -45);
       this.scene.add(shed16);
+      this.landmarkMeshes.set('PARKING_SHED_16', shed16);
+
       // ต.0018 โรงจอดรถยนต์ (In front of T.0012)
       const shed18 = new THREE.Mesh(new THREE.BoxGeometry(30, 3.5, 7), shedMat);
       shed18.position.set(15, 1.75, -165);
       this.scene.add(shed18);
+      this.landmarkMeshes.set('PARKING_SHED_18', shed18);
 
       // 4. ลานกองของ อบค. (Behind T.0012)
       const storageYard = new THREE.Mesh(new THREE.PlaneGeometry(36, 24), new THREE.MeshStandardMaterial({ color: 0xCBD5E1, roughness: 0.9 }));
       storageYard.rotation.x = -Math.PI / 2;
       storageYard.position.set(15, 0.05, -195);
       this.scene.add(storageYard);
+      this.landmarkMeshes.set('STORAGE_YARD', storageYard);
     }
 
     createTreeMesh() {
@@ -2767,33 +2749,34 @@
       const z = Number(newZ);
       group.position.x = x;
       group.position.z = z;
-      if (newY !== null && !isNaN(Number(newY))) group.position.y = Number(newY);
+      // All buildings sit flush on ground plane (Y = 0)
+      group.position.y = 0;
 
       if (group.userData && group.userData.data && group.userData.data.layout_position) {
         group.userData.data.layout_position.x = x;
         group.userData.data.layout_position.z = z;
-        if (newY !== null && !isNaN(Number(newY))) group.userData.data.layout_position.y = Number(newY);
+        group.userData.data.layout_position.y = 0;
       }
 
-      // Update 3D label sprite position
+      const bData = group.userData?.data;
+      const height = (bData && bData.dimensions && bData.dimensions.height) || 12;
+
+      // Update 3D label sprite position accurately above the roof
       const label = this.labelSprites.get(bCode);
       if (label) {
-        label.position.x = x;
-        label.position.z = z;
+        label.position.set(x, height + 8.5, z);
       }
 
       // Update warning sprite position if present
       const warn = this.warningSprites.get(bCode);
       if (warn) {
-        const w = (group.userData && group.userData.data && group.userData.data.dimensions && group.userData.data.dimensions.width) || 20;
-        warn.position.x = x + w * 0.45;
-        warn.position.z = z;
+        const w = (bData && bData.dimensions && bData.dimensions.width) || 20;
+        warn.position.set(x + w * 0.45, height + 10.5, z);
       }
 
       // Update selection ring if active on this building
       if (this.selectedBuilding === bCode && this.selectionRing) {
-        this.selectionRing.position.x = x;
-        this.selectionRing.position.z = z;
+        this.selectionRing.position.set(x, 0.14, z);
       }
 
       this.needsRender = true;
@@ -2882,10 +2865,17 @@
     createRoadSegmentMesh(r) {
       const group = new THREE.Group();
       group.name = 'Road_' + r.id;
+      group.userData = { roadId: r.id };
       const w = Number(r.width) || 8;
       const len = Number(r.length) || 50;
 
-      const asphaltMat = new THREE.MeshStandardMaterial({ color: 0x334155, roughness: 0.72 });
+      const asphaltMat = new THREE.MeshStandardMaterial({
+        color: 0x334155,
+        roughness: 0.72,
+        polygonOffset: true,
+        polygonOffsetFactor: -1,
+        polygonOffsetUnits: -1
+      });
       const roadPlane = new THREE.Mesh(new THREE.PlaneGeometry(w, len), asphaltMat);
       roadPlane.name = 'asphaltPlane';
       roadPlane.rotation.x = -Math.PI / 2;
@@ -2898,7 +2888,7 @@
       this.buildRoadCenterline(lineGroup, w, len);
       group.add(lineGroup);
 
-      group.position.set(Number(r.x) || 0, 0.05, Number(r.z) || 0);
+      group.position.set(Number(r.x) || 0, 0.08, Number(r.z) || 0);
       group.rotation.y = Number(r.rotation_y) || 0;
       group.visible = !r.hidden;
       return group;
@@ -2911,20 +2901,25 @@
       }
       if (w < 6 || len < 12) return;
 
-      const lineMat = new THREE.MeshBasicMaterial({ color: 0xF1F5F9 });
+      const lineMat = new THREE.MeshBasicMaterial({
+        color: 0xF1F5F9,
+        polygonOffset: true,
+        polygonOffsetFactor: -2,
+        polygonOffsetUnits: -2
+      });
       const dashLen = Math.min(5, Math.max(2, len * 0.08));
       const step = dashLen * 2.2;
 
       for (let z = -len / 2 + step; z <= len / 2 - step; z += step) {
         const dash = new THREE.Mesh(new THREE.PlaneGeometry(0.35, dashLen), lineMat);
         dash.rotation.x = -Math.PI / 2;
-        dash.position.set(0, 0.015, z);
+        dash.position.set(0, 0.02, z);
         lineGroup.add(dash);
       }
     }
 
     updateRoadSegmentMesh(mesh, r) {
-      mesh.position.set(Number(r.x) || 0, 0.05, Number(r.z) || 0);
+      mesh.position.set(Number(r.x) || 0, 0.08, Number(r.z) || 0);
       mesh.rotation.y = Number(r.rotation_y) || 0;
       mesh.visible = !r.hidden;
 

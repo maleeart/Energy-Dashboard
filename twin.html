@@ -1876,6 +1876,9 @@
               <button type="button" class="btn-action" style="width:100%; justify-content:flex-start; margin-bottom:4px; font-size:11.5px;" onclick="copyLayoutJsonToClipboard(); closeAllStudioDropdowns();">
                 📋 คัดลอก JSON ลงคลิปบอร์ด
               </button>
+              <button type="button" class="btn-action" style="width:100%; justify-content:flex-start; margin-bottom:4px; font-size:11.5px; background:#ECFDF5; color:#065F46; border:1px solid #A7F3D0; font-weight:600;" onclick="saveCurrentLayoutAsSystemDefault(); closeAllStudioDropdowns();">
+                📌 บันทึกผังนี้เป็นค่าเริ่มต้นถาวรของระบบ
+              </button>
               <div style="border-top:1px solid #E2E8F0; margin:6px 0; padding-top:6px;">
                 <button type="button" class="btn-action" style="width:100%; justify-content:flex-start; font-size:11.5px; background:#0284C7; color:#fff;" onclick="document.getElementById('layoutFileInput').click(); closeAllStudioDropdowns();">
                   📥 อัปโหลดไฟล์ผัง (JSON / Excel / CSV)
@@ -1894,6 +1897,11 @@
           <!-- Save Button -->
           <button type="button" class="btn-studio-save" onclick="saveLayoutEditorChanges()" title="บันทึกพิกัดและการหมุนทิศลงหน่วยความจำ และอัปเดตโมเดล 3D ทันที">
             💾 บันทึกและอัปเดต 3D
+          </button>
+
+          <!-- Set as System Default Button -->
+          <button type="button" class="btn-studio-top" style="background:#059669; color:#fff; border-color:#047857; font-weight:700; padding:6px 12px; gap:4px;" onclick="saveCurrentLayoutAsSystemDefault()" title="บันทึกพิกัดทั้งหมดเป็นค่าเริ่มต้น (Default) ถาวรของระบบ (เขียนทับ building_mapping.json และผังหลัก)">
+            📌 ตั้งเป็นค่าเริ่มต้นระบบ
           </button>
 
           <!-- Close Modal -->
@@ -2093,13 +2101,14 @@
       // 1. Sync Buildings (Position, Rotation & Visibility)
       const bList = EnergyTwin.getBuildingsList ? EnergyTwin.getBuildingsList() : [];
       bList.forEach(b => {
+        const code = b.b_code || b.id;
         if (b.layout_position) {
-          campusScene.updateBuildingPosition(b.b_code, b.layout_position.x, b.layout_position.z, b.layout_position.y || 0);
+          campusScene.updateBuildingPosition(code, b.layout_position.x, b.layout_position.z, 0);
           if (campusScene.updateBuildingRotation) {
-            campusScene.updateBuildingRotation(b.b_code, b.rotation_y || 0);
+            campusScene.updateBuildingRotation(code, b.rotation_y || 0);
           }
           if (campusScene.setBuildingVisible) {
-            campusScene.setBuildingVisible(b.b_code, !b.hidden);
+            campusScene.setBuildingVisible(code, !b.hidden);
           }
         }
       });
@@ -5805,7 +5814,7 @@
           layoutMap[bid] = {
             x: b.layout_position.x,
             z: b.layout_position.z,
-            y: b.layout_position.y !== undefined ? b.layout_position.y : 0,
+            y: 0,
             rotation_y: b.rotation_y !== undefined ? b.rotation_y : 0,
             hidden: Boolean(b.hidden)
           };
@@ -5919,6 +5928,45 @@
         });
       } else {
         prompt('คัดลอก JSON ด้านล่างนี้:', jsonStr);
+      }
+    }
+
+    async function saveCurrentLayoutAsSystemDefault() {
+      // 1. Ensure current edits are saved to memory and 3D scene
+      saveLayoutEditorChanges(true);
+
+      const exportData = EnergyTwin.getLayoutExportData();
+      const bldCount = Object.keys(exportData.buildings || {}).length;
+      const roadCount = Object.keys(exportData.roads || {}).length;
+      const waterCount = Object.keys(exportData.water || {}).length;
+
+      if (!confirm(`📌 ยืนยันการตั้งค่าผังปัจจุบันเป็น "ค่าเริ่มต้นถาวรของระบบ (System Default)" หรือไม่?\n\n• อาคารทั้งหมด: ${bldCount} หลัง\n• เส้นทางถนน: ${roadCount} เส้น\n• แหล่งน้ำ: ${waterCount} แห่ง\n\nระบบจะบันทึกทับไฟล์ building_mapping.json, building_mapping.js, CSV และค่าเริ่มต้น 3D ในโครงการโดยตรง`)) {
+        return;
+      }
+
+      try {
+        const resp = await fetch('http://127.0.0.1:3333/api/save-default-layout', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(exportData)
+        });
+
+        if (resp.ok) {
+          const res = await resp.json();
+          alert(`✅ สำเร็จ! ${res.message}\n\nไฟล์ที่อัปเดตถาวร:\n• ` + (res.updated || []).join('\n• '));
+          return;
+        }
+      } catch (err) {
+        console.warn('Bridge server not reachable:', err);
+      }
+
+      // Fallback if local bridge server is not reachable
+      const jsonStr = JSON.stringify(exportData, null, 2);
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(jsonStr);
+        alert('📋 บันทึกลงหน่วยความจำเบราว์เซอร์เรียบร้อยแล้ว!\n\n(เนื่องจากเบราว์เซอร์ทำงานในโหมด Client จึงได้ทำการ "คัดลอก JSON ผังล่าสุดลงในคลิปบอร์ด" ให้ท่านแล้วโดยอัตโนมัติ)\n\n👉 ท่านสามารถกด Ctrl+V วางในห้องแชท เพื่อให้ AI บันทึกทับไฟล์ building_mapping.json และผังระบบได้ทันที!');
+      } else {
+        prompt('คัดลอก JSON ผังล่าสุดนี้ส่งให้ AI:', jsonStr);
       }
     }
 
