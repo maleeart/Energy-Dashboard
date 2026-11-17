@@ -3918,7 +3918,7 @@
             <div style="display:flex; align-items:center; gap:4px; flex-shrink:0;">
               <div style="display:flex; flex-direction:column; align-items:flex-end; gap:2px;">
                 <span style="font-size:9.5px; font-weight:600; color:#1E3A8A; background:#EFF6FF; padding:1px 5px; border-radius:4px; border:1px solid #DBEAFE;">📐 ${it.width}×${it.depth}ม.</span>
-                <span style="font-size:9px; color:#64748B; font-family:'JetBrains Mono';">(${it.x}, ${it.z})</span>
+                <span class="palette-coord" style="font-size:9px; color:#64748B; font-family:'JetBrains Mono';">(${it.x}, ${it.z})</span>
               </div>
               ${it.type === 'road' ? `
                 <button type="button" class="card-eye-btn" style="color:#DC2626; padding:2px 4px; font-size:11px;" 
@@ -4025,26 +4025,12 @@
       showLayoutSaveToast('🗑️ ลบเส้นทางถนนทั้งหมดเรียบร้อยแล้ว (เริ่มวาดใหม่ได้ทันที)');
     }
 
-    // Select & Focus
-    function selectLayoutStudioItem(type, id, trigger3DFocus = true) {
-      selectedGridItem = { type, id };
-
+    // Select & Focus in 2D Studio (Pure 2D, zero lag)
+    function selectLayoutStudioItem(type, id) {
       if (layout2DStudio && layout2DStudio.isInitialized) {
         layout2DStudio.selectItem(type, id, true);
-      }
-
-      // Highlight card in palette
-      document.querySelectorAll('.palette-card').forEach(el => {
-        if (el.dataset.id === id && el.dataset.type === type) {
-          el.classList.add('active');
-          el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        } else {
-          el.classList.remove('active');
-        }
-      });
-
-      if (trigger3DFocus) {
-        focusSelectedGridItem();
+      } else {
+        selectedGridItem = { type, id };
       }
     }
 
@@ -4309,6 +4295,7 @@
       },
 
       selectItem(type, id, centerCamera = false) {
+        const isAlreadySelected = selectedGridItem && selectedGridItem.type === type && selectedGridItem.id === id;
         selectedGridItem = { type, id };
         if (centerCamera) {
           const pos = getSelectedItemPosition({ type, id });
@@ -4317,18 +4304,20 @@
             this.camera.z = pos.z;
           }
         }
-        this.renderFloatingDock();
+        if (!isAlreadySelected) {
+          this.renderFloatingDock();
+        }
         this.render();
 
-        // Highlight card in sidebar palette
-        document.querySelectorAll('.palette-card').forEach(el => {
-          if (el.dataset.id === id && el.dataset.type === type) {
-            el.classList.add('active');
-            el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-          } else {
-            el.classList.remove('active');
-          }
+        // Fast highlight card in sidebar palette without smooth-scroll thrashing
+        const activeCard = document.querySelector(`.palette-card[data-id="${id}"][data-type="${type}"]`);
+        document.querySelectorAll('.palette-card.active').forEach(el => {
+          if (el !== activeCard) el.classList.remove('active');
         });
+        if (activeCard && !activeCard.classList.contains('active')) {
+          activeCard.classList.add('active');
+          activeCard.scrollIntoView({ block: 'nearest', behavior: 'auto' });
+        }
       },
 
       clearSelection() {
@@ -4502,9 +4491,11 @@
         if (this.isDragging) {
           this.isDragging = false;
           if (this.draggedItem) {
-            saveLayoutEditorChanges(true);
-            renderLayoutStudioPalette();
-            this.renderFloatingDock();
+            this.updateDockPosBadge(this.draggedItem.x, this.draggedItem.z);
+            const activeCardCoord = document.querySelector(`.palette-card.active .palette-coord`);
+            if (activeCardCoord) {
+              activeCardCoord.textContent = `(${this.draggedItem.x}, ${this.draggedItem.z})`;
+            }
           }
           this.draggedItem = null;
           this.requestRender();
@@ -5233,20 +5224,8 @@
 
     function focusSelectedGridItem() {
       if (!selectedGridItem) return;
-      if (selectedGridItem.type === 'bld') {
-        focusBuildingInLayout(selectedGridItem.id);
-      } else if (selectedGridItem.type === 'road') {
-        focusRoadInLayout(selectedGridItem.id);
-      } else if (selectedGridItem.type === 'water') {
-        const w = EnergyTwin.water?.[selectedGridItem.id] || EnergyTwin.defaultWater?.[selectedGridItem.id];
-        if (w && campusScene) {
-          campusScene.animateCamera({ x: w.x + 25, y: 60, z: w.z + 40 }, { x: w.x, y: 2, z: w.z }, 750);
-        }
-      } else if (selectedGridItem.type === 'landmark') {
-        const lm = EnergyTwin.landmarks?.[selectedGridItem.id] || EnergyTwin.defaultLandmarks?.[selectedGridItem.id];
-        if (lm && campusScene) {
-          campusScene.animateCamera({ x: lm.x + 25, y: 60, z: lm.z + 40 }, { x: lm.x, y: 2, z: lm.z }, 750);
-        }
+      if (layout2DStudio && layout2DStudio.isInitialized) {
+        layout2DStudio.selectItem(selectedGridItem.type, selectedGridItem.id, true);
       }
     }
 
@@ -5359,12 +5338,10 @@
         layout2DStudio.updateDockPosBadge(numX, numZ);
         layout2DStudio.requestRender();
       }
-      renderInteractiveExcelGrid();
-      if (selectedGridItem && selectedGridItem.type === type && selectedGridItem.id === id) {
-        renderStudioInspector();
-        highlightStudioActiveFootprint();
+      const activeCardCoord = document.querySelector(`.palette-card.active .palette-coord`);
+      if (activeCardCoord) {
+        activeCardCoord.textContent = `(${numX}, ${numZ})`;
       }
-      renderLayoutStudioPalette();
       if (activeLayoutTab === 'table') {
         renderLayoutEditorList();
       }
@@ -5583,7 +5560,7 @@
                 <span style="font-family:'JetBrains Mono'; font-size:12px; font-weight:600; color:#1E293B;">${w.z}</span>
               </td>
               <td style="text-align:center;">
-                <button type="button" class="btn-action primary" style="padding:3px 8px; font-size:11px;" onclick="if(campusScene) campusScene.animateCamera({ x: ${w.x} + 25, y: 60, z: ${w.z} + 40 }, { x: ${w.x}, y: 2, z: ${w.z} }, 750);" title="โฟกัสกล้อง 3D ไปที่แหล่งน้ำนี้">
+                <button type="button" class="btn-action primary" style="padding:3px 8px; font-size:11px;" onclick="switchLayoutEditorTab('grid'); selectLayoutStudioItem('water', '${w.id}');" title="โฟกัสไปที่แหล่งน้ำนี้ในผัง 2D">
                   🎯 ส่อง
                 </button>
               </td>
@@ -5624,10 +5601,8 @@
     }
 
     function focusBuildingInLayout(bCode) {
-      if (campusScene) {
-        campusScene.selectBuilding(bCode, true);
-      }
-      EnergyTwin.setState({ selectedBuildingId: bCode });
+      switchLayoutEditorTab('grid');
+      selectLayoutStudioItem('bld', bCode);
     }
 
     function resetSingleBuildingPosition(bCode) {
@@ -5681,15 +5656,8 @@
     }
 
     function focusRoadInLayout(roadId) {
-      const r = EnergyTwin.roads?.[roadId];
-      if (!r) return;
-      if (campusScene) {
-        if (typeof campusScene.focusPoint === 'function') {
-          campusScene.focusPoint(r.x, r.z, 65, 60);
-        } else {
-          campusScene.animateCamera({ x: r.x + 30, y: 70, z: r.z + 50 }, { x: r.x, y: 5, z: r.z }, 750);
-        }
-      }
+      switchLayoutEditorTab('grid');
+      selectLayoutStudioItem('road', roadId);
     }
 
     function resetSingleRoadPosition(roadId) {
