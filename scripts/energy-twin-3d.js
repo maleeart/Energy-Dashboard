@@ -298,7 +298,7 @@
     setupSwitchyard() {
       const yardGroup = new THREE.Group();
       yardGroup.name = 'Switchyard500kV';
-      yardGroup.position.set(-65, 0, 85);
+      yardGroup.position.set(-25, 0, 110);
 
       const yardGeo = new THREE.PlaneGeometry(65, 60);
       const yardMat = new THREE.MeshStandardMaterial({
@@ -370,13 +370,13 @@
       this.landmarkMeshes.set('SW_YARD', yardGroup);
     }
 
-    // Main Football Pitch between D.0019, T.0014, and D.0025
+    // Main Football Pitch
     setupMainFootballField() {
       const fieldGroup = new THREE.Group();
       fieldGroup.name = 'FootballField';
-      // Center position in the quadrangle between D.0019, T.0014, and D.0025
-      const fx = 80;
-      const fz = -43;
+      // Center position in campus layout
+      const fx = 120;
+      const fz = -70;
       const fw = 22;
       const fd = 34;
 
@@ -463,7 +463,7 @@
       this.scene.add(this.roadContainer);
 
       // 2. Eastern Science & Chemistry Roundabout (Landmark in front of T.0018 & T.0016)
-      const eastRound = this.createRoundabout(120, -62, 12, 5.5);
+      const eastRound = this.createRoundabout(140, -175, 12, 5.5);
       eastRound.name = 'Roundabout_East';
       this.scene.add(eastRound);
       this.roadMeshes.set('ROAD_EAST_ROUNDABOUT', eastRound);
@@ -1001,8 +1001,8 @@
     setupSteamTurbineSculpture() {
       const scGroup = new THREE.Group();
       scGroup.name = 'SteamTurbineSculpture';
-      const cx = 35;
-      const cz = 75;
+      const cx = 55;
+      const cz = 55;
       scGroup.position.set(cx, 0, cz);
 
       // 1. Concentric Circular Plaza Walkways (Matching photo: ปฏิมากรรมหน้า ท.0020.JPG)
@@ -1158,13 +1158,13 @@
 
     setupLandmarkLabels() {
       const landmarks = [
-        { text: '⚡ สวิตช์ยาร์ด 500 kV', x: -65, y: 19, z: 85, color: '#D97706' },
-        { text: '⚽ สนามฟุตบอล', x: 80, y: 8, z: -43, color: '#16A34A' },
-        { text: '💧 สระน้ำ 1, 2, 3', x: -95, y: 7, z: 20, color: '#0284C7' },
+        { text: '⚡ สวิตช์ยาร์ด 500 kV', x: -25, y: 19, z: 110, color: '#D97706' },
+        { text: '⚽ สนามฟุตบอล', x: 120, y: 8, z: -70, color: '#16A34A' },
+        { text: '💧 สระน้ำ 1, 2, 3', x: -85, y: 7, z: -40, color: '#0284C7' },
         { text: '🚧 ทางเข้าหลัก / ท.0021 ที่ทำการ รปภ.', x: 40, y: 8, z: 140, color: '#475569' },
-        { text: '🧪 วงเวียนหน้า ท.0018 / ท.0016', x: 120, y: 8, z: -62, color: '#2563EB' },
-        { text: '⚙️ ปฏิมากรรมกังหันไอน้ำ', x: 35, y: 14, z: 75, color: '#EA580C' },
-        { text: '🌻 ทุ่งทานตะวัน & ป้าย กฟผ.', x: -15, y: 8, z: 110, color: '#EAB308' },
+        { text: '🧪 วงเวียนหน้า ท.0018 / ท.0016', x: 140, y: 8, z: -175, color: '#2563EB' },
+        { text: '⚙️ ปฏิมากรรมกังหันไอน้ำ', x: 55, y: 14, z: 55, color: '#EA580C' },
+        { text: '🌻 ทุ่งทานตะวัน & ป้าย กฟผ.', x: 10, y: 8, z: 115, color: '#EAB308' },
         // OHK Specific Landmark Pins (No Soccer field in OHK)
         { text: '🚛 วงเวียนใหญ่ศูนย์ขนส่ง อหข.', x: -130, y: 10, z: -160, color: '#7C3AED' },
         { text: '💧 สระน้ำ & ศาลาริมน้ำ อหข.', x: -185, y: 8, z: -180, color: '#0284C7' },

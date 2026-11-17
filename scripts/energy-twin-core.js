@@ -806,7 +806,128 @@
       'lane': { key: 'lane', name: 'ทางเชื่อมซอย (5 ม.)', width: 5, length: 30, category: 'ทางเชื่อมซอย (5 ม.)' }
     },
 
-    defaultRoads: {}, // Starts empty so user can draw/customize roads from scratch!
+    defaultRoads: {
+      "ROAD_1": {
+            "name": "ROAD_1",
+            "x": 25,
+            "z": -40,
+            "width": 12,
+            "length": 360,
+            "category": "ถนน",
+            "rotation_y": 0,
+            "hidden": false
+      },
+      "ROAD_2": {
+            "name": "ROAD_2",
+            "x": 75,
+            "z": -175,
+            "width": 8,
+            "length": 90,
+            "category": "ถนน",
+            "rotation_y": 1.5707963267948966,
+            "hidden": false
+      },
+      "ROAD_3": {
+            "name": "ROAD_3",
+            "x": -5,
+            "z": -215,
+            "width": 8,
+            "length": 50,
+            "category": "ถนน",
+            "rotation_y": 4.71238898038469,
+            "hidden": false
+      },
+      "ROAD_4": {
+            "name": "ROAD_4",
+            "x": -25,
+            "z": -185,
+            "width": 8,
+            "length": 50,
+            "category": "ถนน",
+            "rotation_y": 0,
+            "hidden": false
+      },
+      "ROAD_5": {
+            "name": "ROAD_5",
+            "x": -15,
+            "z": -160,
+            "width": 8,
+            "length": 80,
+            "category": "ถนน",
+            "rotation_y": 4.71238898038469,
+            "hidden": false
+      },
+      "ROAD_6": {
+            "name": "ROAD_6",
+            "x": -15,
+            "z": -135,
+            "width": 5,
+            "length": 40,
+            "category": "ถนน",
+            "rotation_y": 0,
+            "hidden": false
+      },
+      "ROAD_7": {
+            "name": "ROAD_7",
+            "x": -35,
+            "z": -120,
+            "width": 5,
+            "length": 40,
+            "category": "ถนน",
+            "rotation_y": 4.71238898038469,
+            "hidden": false
+      },
+      "ROAD_8": {
+            "name": "ROAD_8",
+            "x": 70,
+            "z": -45,
+            "width": 5,
+            "length": 260,
+            "category": "ถนน",
+            "rotation_y": 0,
+            "hidden": false
+      },
+      "ROAD_9": {
+            "name": "ROAD_9",
+            "x": -15,
+            "z": -35,
+            "width": 8,
+            "length": 70,
+            "category": "ถนน",
+            "rotation_y": 1.5707963267948966,
+            "hidden": false
+      },
+      "ROAD_10": {
+            "name": "ROAD_10",
+            "x": -15,
+            "z": 55,
+            "width": 8,
+            "length": 80,
+            "category": "ถนน",
+            "rotation_y": 4.71238898038469,
+            "hidden": false
+      },
+      "ROAD_11": {
+            "name": "ROAD_11",
+            "x": -55,
+            "z": -75,
+            "width": 8,
+            "length": 270,
+            "category": "ถนน",
+            "rotation_y": 0,
+            "hidden": false
+      },
+      "ROAD_12": {
+            "name": "ROAD_12",
+            "x": 45,
+            "z": 85,
+            "width": 5,
+            "length": 50,
+            "category": "ถนน",
+            "rotation_y": 1.5707963267948966,
+            "hidden": false
+      }
+},
     roads: null,
 
     loadCustomRoads() {
@@ -1004,15 +1125,87 @@
 
     // ── Water Network Management ──────────────────────────────────
     defaultWater: {
-      'WEST_CANAL': { name: 'คลองสงวน (West Perimeter Canal)', x: -200, z: -40, width: 24, depth: 480, category: 'คลองระบายน้ำแนวเขต' },
-      'POND_RETENTION_1': { name: 'สระน้ำระบายน้ำ 1 (North Pond)', x: -95, z: 45, width: 36, depth: 44, category: 'สระกักเก็บน้ำ' },
-      'POND_RETENTION_2': { name: 'สระน้ำ 2 ข้างแฟลตที่พัก (Central Pond)', x: -95, z: -5, width: 36, depth: 38, category: 'สระกักเก็บน้ำ' },
-      'POND_RETENTION_3': { name: 'สระน้ำ 3 หน้าโรงอาหาร (South Pond)', x: -75, z: -75, width: 32, depth: 38, category: 'สระกักเก็บน้ำ' },
-      'OHK_RETENTION_POND': { name: 'สระน้ำชะลอน้ำ อหข. (Peanut Retention Pond)', x: -171, z: -158, width: 22, depth: 38, category: 'สระกักเก็บน้ำ' },
-      'LAKE_PROMENADE': { name: 'สระน้ำและสะพานไม้ริมน้ำหลัง ท.0019', x: 35, z: 24, width: 42, depth: 18, category: 'สระน้ำและภูมิทัศน์' },
-      'LAKE_FOUNTAIN': { name: 'สระน้ำพุวงเวียนหอนาฬิกา', x: 45, z: 100, width: 14, depth: 14, category: 'สระน้ำพุและภูมิทัศน์' },
-      'SWIMMING_POOL': { name: 'สระว่ายน้ำสโมสรไทรน้อย', x: 100, z: -60, width: 16, depth: 25, category: 'สระว่ายน้ำสวัสดิการ' }
-    },
+      "WEST_CANAL": {
+            "name": "คลองสงวน (West Perimeter Canal)",
+            "x": 0,
+            "z": -235,
+            "width": 24,
+            "depth": 480,
+            "category": "คลองระบายน้ำแนวเขต",
+            "rotation_y": 1.5707963267948966,
+            "hidden": false
+      },
+      "POND_RETENTION_1": {
+            "name": "สระน้ำระบายน้ำ 1 (North Pond)",
+            "x": -85,
+            "z": -65,
+            "width": 36,
+            "depth": 44,
+            "category": "สระกักเก็บน้ำ",
+            "rotation_y": 0,
+            "hidden": false
+      },
+      "POND_RETENTION_2": {
+            "name": "สระน้ำ 2 ข้างแฟลตที่พัก (Central Pond)",
+            "x": -85,
+            "z": -15,
+            "width": 36,
+            "depth": 38,
+            "category": "สระกักเก็บน้ำ",
+            "rotation_y": 0,
+            "hidden": false
+      },
+      "POND_RETENTION_3": {
+            "name": "สระน้ำ 3 หน้าโรงอาหาร (South Pond)",
+            "x": 245,
+            "z": -75,
+            "width": 32,
+            "depth": 38,
+            "category": "สระกักเก็บน้ำ",
+            "rotation_y": 0,
+            "hidden": true
+      },
+      "OHK_RETENTION_POND": {
+            "name": "สระน้ำชะลอน้ำ อหข. (Peanut Retention Pond)",
+            "x": -120,
+            "z": -90,
+            "width": 22,
+            "depth": 38,
+            "category": "สระกักเก็บน้ำ",
+            "rotation_y": 0,
+            "hidden": false
+      },
+      "LAKE_PROMENADE": {
+            "name": "สระน้ำและสะพานไม้ริมน้ำหลัง ท.0019",
+            "x": 115,
+            "z": 0,
+            "width": 42,
+            "depth": 18,
+            "category": "สระน้ำและภูมิทัศน์",
+            "rotation_y": 1.5707963267948966,
+            "hidden": false
+      },
+      "LAKE_FOUNTAIN": {
+            "name": "สระน้ำพุวงเวียนหอนาฬิกา",
+            "x": 255,
+            "z": -115,
+            "width": 14,
+            "depth": 14,
+            "category": "สระน้ำพุและภูมิทัศน์",
+            "rotation_y": 0,
+            "hidden": true
+      },
+      "SWIMMING_POOL": {
+            "name": "สระว่ายน้ำสโมสรไทรน้อย",
+            "x": 265,
+            "z": -145,
+            "width": 16,
+            "depth": 25,
+            "category": "สระว่ายน้ำสวัสดิการ",
+            "rotation_y": 0,
+            "hidden": true
+      }
+},
     water: null,
 
     loadCustomWater() {
@@ -1096,19 +1289,103 @@
 
     // ── Landmarks & Infrastructure Management ─────────────────────
     defaultLandmarks: {
-      'SW_YARD': { name: 'ลานสวิตช์ยาร์ด 500 kV (Switchyard)', x: -65, z: 85, category: 'ระบบส่งไฟฟ้าแรงสูง' },
-      'FOOTBALL': { name: 'สนามฟุตบอลใหญ่ (Main Football Pitch)', x: 80, z: -43, width: 22, depth: 34, category: 'สันทนาการและกีฬา' },
-      'TURBINE_SCULPTURE': { name: 'ลานปฏิมากรรมกังหันไอน้ำ (Turbine Plaza)', x: 35, z: 75, category: 'แลนด์มาร์คสำคัญ' },
-      'SUNFLOWER_FIELD': { name: 'ทุ่งทานตะวัน (Sunflower Field)', x: -15, z: 110, category: 'ภูมิทัศน์ธรรมชาติ' },
-      'CAMPUS_SIGN': { name: 'ป้ายสัญลักษณ์ กฟผ. ไทรน้อย', x: 4, z: 132, category: 'ป้ายแลนด์มาร์ค' },
-      'OHK_ROUNDABOUT': { name: 'วงเวียนใหญ่ศูนย์ขนส่ง อหข.', x: -135, z: -150, width: 28, depth: 28, category: 'ระบบการจราจร' },
-      'OHK_GAZEBO': { name: 'ศาลาพักผ่อนริมน้ำ อหข.', x: -162, z: -158, category: 'อาคารสันทนาการริมน้ำ' },
-      'EAST_ROUNDABOUT': { name: 'วงเวียนฝั่งตะวันออก (East Roundabout)', x: 120, z: -62, width: 24, depth: 24, category: 'ระบบการจราจร' },
-      'SHRINE_VISHNU': { name: 'ศาลพระวิษณุกรรม', x: 40, z: 45, category: 'สถานที่ศักดิ์สิทธิ์' },
-      'SHRINE_SEVEN_KINGS': { name: 'ศาลหลวงพ่อเจ็ดกษัตริย์', x: 35, z: -90, category: 'สถานที่ศักดิ์สิทธิ์' },
-      'PARKING_SHED_16': { name: 'โรงจอดรถยนต์ ต.0016', x: 65, z: -45, category: 'อาคารจอดรถ' },
-      'PARKING_SHED_18': { name: 'โรงจอดรถยนต์ ต.0018', x: 15, z: -165, category: 'อาคารจอดรถ' }
-    },
+      "SW_YARD": {
+            "name": "ลานสวิตช์ยาร์ด 500 kV (Switchyard)",
+            "x": -25,
+            "z": 110,
+            "category": "ระบบส่งไฟฟ้าแรงสูง",
+            "rotation_y": 0,
+            "hidden": false
+      },
+      "FOOTBALL": {
+            "name": "สนามฟุตบอลใหญ่ (Main Football Pitch)",
+            "x": 120,
+            "z": -70,
+            "category": "สันทนาการและกีฬา",
+            "rotation_y": 0,
+            "hidden": false
+      },
+      "TURBINE_SCULPTURE": {
+            "name": "ลานปฏิมากรรมกังหันไอน้ำ (Turbine Plaza)",
+            "x": 55,
+            "z": 55,
+            "category": "แลนด์มาร์คสำคัญ",
+            "rotation_y": 0,
+            "hidden": false
+      },
+      "SUNFLOWER_FIELD": {
+            "name": "ทุ่งทานตะวัน (Sunflower Field)",
+            "x": 10,
+            "z": 115,
+            "category": "ภูมิทัศน์ธรรมชาติ",
+            "rotation_y": 0,
+            "hidden": false
+      },
+      "CAMPUS_SIGN": {
+            "name": "ป้ายสัญลักษณ์ กฟผ. ไทรน้อย",
+            "x": -5,
+            "z": 130,
+            "category": "ป้ายแลนด์มาร์ค",
+            "rotation_y": 0,
+            "hidden": false
+      },
+      "OHK_ROUNDABOUT": {
+            "name": "วงเวียนใหญ่ศูนย์ขนส่ง อหข.",
+            "x": -155,
+            "z": -150,
+            "category": "ระบบการจราจร",
+            "rotation_y": 0,
+            "hidden": false
+      },
+      "OHK_GAZEBO": {
+            "name": "ศาลาพักผ่อนริมน้ำ อหข.",
+            "x": -140,
+            "z": -105,
+            "category": "อาคารสันทนาการริมน้ำ",
+            "rotation_y": 0,
+            "hidden": false
+      },
+      "EAST_ROUNDABOUT": {
+            "name": "วงเวียนฝั่งตะวันออก (East Roundabout)",
+            "x": 140,
+            "z": -175,
+            "category": "ระบบการจราจร",
+            "rotation_y": 0,
+            "hidden": false
+      },
+      "SHRINE_VISHNU": {
+            "name": "ศาลพระวิษณุกรรม",
+            "x": 85,
+            "z": 0,
+            "category": "สถานที่ศักดิ์สิทธิ์",
+            "rotation_y": 0,
+            "hidden": false
+      },
+      "SHRINE_SEVEN_KINGS": {
+            "name": "ศาลหลวงพ่อเจ็ดกษัตริย์",
+            "x": -110,
+            "z": -120,
+            "category": "สถานที่ศักดิ์สิทธิ์",
+            "rotation_y": 0,
+            "hidden": false
+      },
+      "PARKING_SHED_16": {
+            "name": "โรงจอดรถยนต์ ต.0016",
+            "x": 270,
+            "z": -180,
+            "category": "อาคารจอดรถ",
+            "rotation_y": 0,
+            "hidden": true
+      },
+      "PARKING_SHED_18": {
+            "name": "โรงจอดรถยนต์ ต.0018",
+            "x": 205,
+            "z": -205,
+            "category": "อาคารจอดรถ",
+            "rotation_y": 0,
+            "hidden": true
+      }
+},
     landmarks: null,
 
     loadCustomLandmarks() {

@@ -1,6 +1,10 @@
+/**
+ * Sai Noi Campus Building Mapping Data (Pre-bundled)
+ * Auto-generated: 2026-11-17T07:28:39.227Z
+ */
 window.SAINOI_BUILDING_MAPPING = {
   "schema_version": "1.0.0",
-  "generated_at": "2026-11-02T14:30:00+07:00",
+  "generated_at": "2026-11-17T07:28:39.225Z",
   "site": "การไฟฟ้าฝ่ายผลิตแห่งประเทศไทย สำนักงานไทรน้อย (EGAT Sai Noi)",
   "disclaimer": "โมเดลและตำแหน่งอาคารในระยะนำร่อง (Pilot) เป็นภาพจำลองเชิงสัญลักษณ์ (Symbolic Representation) จัดวางเพื่อความสะดวกในการสำรวจข้อมูล ไม่ใช่แบบสำรวจรังวัดจริง และไม่มีการใช้ขนาดจำลองคำนวณพื้นที่หรือ kWh/m²",
   "double_counting_policy": "ยอดการใช้ไฟฟ้ารวมของแต่ละอาคารคำนวณจากมิเตอร์ประธาน (Main Meter/MDB) เท่านั้น โดยมิเตอร์ย่อย (Sub-meters) ใช้สำหรับแจกแจงรายละเอียดและจะไม่ถูกนำไปบวกรวมกับมิเตอร์ประธานเพื่อป้องกันการนับซ้ำ",
@@ -46,7 +50,9 @@ window.SAINOI_BUILDING_MAPPING = {
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised"
+      "model_source": "masterplan_2565_revised",
+      "rotation_y": 0,
+      "hidden": false
     },
     "D.0015": {
       "building_id": "D.0015",
@@ -63,9 +69,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 9
       },
       "layout_position": {
-        "x": -95,
+        "x": -70,
         "y": 0,
-        "z": -85
+        "z": -190
       },
       "color_base": "#94A3B8",
       "roof_type": "industrial_gable",
@@ -88,7 +94,9 @@ window.SAINOI_BUILDING_MAPPING = {
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised"
+      "model_source": "masterplan_2565_revised",
+      "rotation_y": 4.71238898038469,
+      "hidden": false
     },
     "D.0017": {
       "building_id": "D.0017",
@@ -105,9 +113,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 8
       },
       "layout_position": {
-        "x": -55,
+        "x": 0,
         "y": 0,
-        "z": -140
+        "z": -135
       },
       "color_base": "#F8FAFC",
       "roof_type": "curved_barrel",
@@ -166,7 +174,9 @@ window.SAINOI_BUILDING_MAPPING = {
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised"
+      "model_source": "masterplan_2565_revised",
+      "rotation_y": 1.5707963267948966,
+      "hidden": false
     },
     "D.0019": {
       "building_id": "D.0019",
@@ -183,9 +193,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 16
       },
       "layout_position": {
-        "x": 48,
+        "x": 50,
         "y": 0,
-        "z": -50
+        "z": -85
       },
       "color_base": "#F1F5F9",
       "roof_type": "office_stepped",
@@ -258,7 +268,9 @@ window.SAINOI_BUILDING_MAPPING = {
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised"
+      "model_source": "masterplan_2565_revised",
+      "rotation_y": 4.71238898038469,
+      "hidden": false
     },
     "D.0025": {
       "building_id": "D.0025",
@@ -275,9 +287,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 10
       },
       "layout_position": {
-        "x": 82,
+        "x": 120,
         "y": 0,
-        "z": -5
+        "z": -110
       },
       "color_base": "#E2E8F0",
       "roof_type": "sports_pilotis_d0025",
@@ -300,7 +312,9 @@ window.SAINOI_BUILDING_MAPPING = {
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised"
+      "model_source": "masterplan_2565_revised",
+      "rotation_y": 3.141592653589793,
+      "hidden": false
     },
     "D.0026": {
       "building_id": "D.0026",
@@ -317,9 +331,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 6
       },
       "layout_position": {
-        "x": -60,
+        "x": -40,
         "y": 0,
-        "z": -105
+        "z": -210
       },
       "color_base": "#38BDF8",
       "roof_type": "industrial_flat",
@@ -342,7 +356,9 @@ window.SAINOI_BUILDING_MAPPING = {
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised"
+      "model_source": "masterplan_2565_revised",
+      "rotation_y": 0,
+      "hidden": false
     },
     "D.0031": {
       "building_id": "D.0031",
@@ -359,9 +375,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 7
       },
       "layout_position": {
-        "x": -175,
+        "x": -160,
         "y": 0,
-        "z": -125
+        "z": -90
       },
       "color_base": "#F8FAFC",
       "roof_type": "ohk_canteen_d0031",
@@ -392,7 +408,9 @@ window.SAINOI_BUILDING_MAPPING = {
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "asbuilt_ohk_sn_2_6_revised"
+      "model_source": "asbuilt_ohk_sn_2_6_revised",
+      "rotation_y": 3.141592653589793,
+      "hidden": false
     },
     "D.0033": {
       "building_id": "D.0033",
@@ -409,9 +427,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 8
       },
       "layout_position": {
-        "x": -175,
+        "x": -95,
         "y": 0,
-        "z": -95
+        "z": -205
       },
       "color_base": "#94A3B8",
       "roof_type": "ohk_welding_d0033",
@@ -434,7 +452,9 @@ window.SAINOI_BUILDING_MAPPING = {
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "asbuilt_ohk_sn_2_6_revised"
+      "model_source": "asbuilt_ohk_sn_2_6_revised",
+      "rotation_y": 0,
+      "hidden": false
     },
     "T.0006": {
       "building_id": "T.0006",
@@ -451,9 +471,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 10
       },
       "layout_position": {
-        "x": -25,
+        "x": 5,
         "y": 0,
-        "z": 15
+        "z": -5
       },
       "color_base": "#94A3B8",
       "roof_type": "curved_barrel",
@@ -476,7 +496,9 @@ window.SAINOI_BUILDING_MAPPING = {
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised"
+      "model_source": "masterplan_2565_revised",
+      "rotation_y": 1.5707963267948966,
+      "hidden": false
     },
     "T.0007": {
       "building_id": "T.0007",
@@ -493,9 +515,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 9
       },
       "layout_position": {
-        "x": -25,
+        "x": 5,
         "y": 0,
-        "z": 50
+        "z": 30
       },
       "color_base": "#E2E8F0",
       "roof_type": "curved_barrel",
@@ -518,7 +540,9 @@ window.SAINOI_BUILDING_MAPPING = {
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised"
+      "model_source": "masterplan_2565_revised",
+      "rotation_y": 1.5707963267948966,
+      "hidden": false
     },
     "T.0008": {
       "building_id": "T.0008",
@@ -535,9 +559,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 10
       },
       "layout_position": {
-        "x": -25,
+        "x": 5,
         "y": 0,
-        "z": -20
+        "z": -65
       },
       "color_base": "#94A3B8",
       "roof_type": "curved_barrel",
@@ -560,7 +584,9 @@ window.SAINOI_BUILDING_MAPPING = {
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised"
+      "model_source": "masterplan_2565_revised",
+      "rotation_y": 1.5707963267948966,
+      "hidden": false
     },
     "T.0009": {
       "building_id": "T.0009",
@@ -577,9 +603,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 9
       },
       "layout_position": {
-        "x": -25,
+        "x": -35,
         "y": 0,
-        "z": -85
+        "z": -100
       },
       "color_base": "#E2E8F0",
       "roof_type": "industrial_gable",
@@ -602,7 +628,9 @@ window.SAINOI_BUILDING_MAPPING = {
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised"
+      "model_source": "masterplan_2565_revised",
+      "rotation_y": 3.141592653589793,
+      "hidden": false
     },
     "T.0010": {
       "building_id": "T.0010",
@@ -619,9 +647,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 10
       },
       "layout_position": {
-        "x": -25,
+        "x": 0,
         "y": 0,
-        "z": -55
+        "z": -100
       },
       "color_base": "#94A3B8",
       "roof_type": "industrial_flat",
@@ -644,7 +672,9 @@ window.SAINOI_BUILDING_MAPPING = {
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised"
+      "model_source": "masterplan_2565_revised",
+      "rotation_y": 3.141592653589793,
+      "hidden": false
     },
     "T.0011": {
       "building_id": "T.0011",
@@ -661,9 +691,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 9
       },
       "layout_position": {
-        "x": -25,
+        "x": -35,
         "y": 0,
-        "z": -115
+        "z": -135
       },
       "color_base": "#94A3B8",
       "roof_type": "curved_barrel",
@@ -686,7 +716,9 @@ window.SAINOI_BUILDING_MAPPING = {
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised"
+      "model_source": "masterplan_2565_revised",
+      "rotation_y": 0,
+      "hidden": false
     },
     "T.0012": {
       "building_id": "T.0012",
@@ -703,9 +735,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 11
       },
       "layout_position": {
-        "x": -15,
+        "x": 0,
         "y": 0,
-        "z": -150
+        "z": -190
       },
       "color_base": "#94A3B8",
       "roof_type": "curved_barrel",
@@ -728,7 +760,9 @@ window.SAINOI_BUILDING_MAPPING = {
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised"
+      "model_source": "masterplan_2565_revised",
+      "rotation_y": 1.5707963267948966,
+      "hidden": false
     },
     "T.0014": {
       "building_id": "T.0014",
@@ -745,9 +779,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 11
       },
       "layout_position": {
-        "x": 85,
+        "x": 55,
         "y": 0,
-        "z": -80
+        "z": -200
       },
       "color_base": "#FFFFFF",
       "roof_type": "curved_barrel",
@@ -772,7 +806,9 @@ window.SAINOI_BUILDING_MAPPING = {
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised"
+      "model_source": "masterplan_2565_revised",
+      "rotation_y": 0,
+      "hidden": false
     },
     "T.0015": {
       "building_id": "T.0015",
@@ -789,9 +825,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 14
       },
       "layout_position": {
-        "x": 125,
+        "x": 100,
         "y": 0,
-        "z": -105
+        "z": -200
       },
       "color_base": "#F8FAFC",
       "roof_type": "chem_lab_t0015",
@@ -814,7 +850,9 @@ window.SAINOI_BUILDING_MAPPING = {
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised"
+      "model_source": "masterplan_2565_revised",
+      "rotation_y": 0,
+      "hidden": false
     },
     "T.0016": {
       "building_id": "T.0016",
@@ -831,9 +869,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 9
       },
       "layout_position": {
-        "x": 155,
+        "x": 140,
         "y": 0,
-        "z": -75
+        "z": -205
       },
       "color_base": "#F1F5F9",
       "roof_type": "chemical_workshop_t0016",
@@ -856,7 +894,9 @@ window.SAINOI_BUILDING_MAPPING = {
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised"
+      "model_source": "masterplan_2565_revised",
+      "rotation_y": 0,
+      "hidden": false
     },
     "T.0017": {
       "building_id": "T.0017",
@@ -873,9 +913,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 10
       },
       "layout_position": {
-        "x": 116,
+        "x": 140,
         "y": 0,
-        "z": -25
+        "z": -140
       },
       "color_base": "#CBD5E1",
       "roof_type": "competency_curved_t0017",
@@ -898,7 +938,9 @@ window.SAINOI_BUILDING_MAPPING = {
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised"
+      "model_source": "masterplan_2565_revised",
+      "rotation_y": 3.141592653589793,
+      "hidden": false
     },
     "T.0018": {
       "building_id": "T.0018",
@@ -915,9 +957,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 10
       },
       "layout_position": {
-        "x": 150,
+        "x": 170,
         "y": 0,
-        "z": -42
+        "z": -175
       },
       "color_base": "#F8FAFC",
       "roof_type": "metrology_center_t0018",
@@ -940,7 +982,9 @@ window.SAINOI_BUILDING_MAPPING = {
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised"
+      "model_source": "masterplan_2565_revised",
+      "rotation_y": 4.71238898038469,
+      "hidden": false
     },
     "T.0019": {
       "building_id": "T.0019",
@@ -957,9 +1001,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 34
       },
       "layout_position": {
-        "x": 40,
+        "x": 50,
         "y": 0,
-        "z": 5
+        "z": -25
       },
       "color_base": "#FFFFFF",
       "roof_type": "office_stepped",
@@ -1306,7 +1350,9 @@ window.SAINOI_BUILDING_MAPPING = {
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised"
+      "model_source": "masterplan_2565_revised",
+      "rotation_y": 4.71238898038469,
+      "hidden": false
     },
     "T.0020": {
       "building_id": "T.0020",
@@ -1323,9 +1369,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 11
       },
       "layout_position": {
-        "x": 45,
+        "x": 50,
         "y": 0,
-        "z": 50
+        "z": 25
       },
       "color_base": "#F8FAFC",
       "roof_type": "competency_center_t0020",
@@ -1433,7 +1479,9 @@ window.SAINOI_BUILDING_MAPPING = {
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised"
+      "model_source": "masterplan_2565_revised",
+      "rotation_y": 4.71238898038469,
+      "hidden": false
     },
     "T.0022": {
       "building_id": "T.0022",
@@ -1475,7 +1523,9 @@ window.SAINOI_BUILDING_MAPPING = {
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised"
+      "model_source": "masterplan_2565_revised",
+      "rotation_y": 0,
+      "hidden": false
     },
     "T.0023": {
       "building_id": "T.0023",
@@ -1517,7 +1567,9 @@ window.SAINOI_BUILDING_MAPPING = {
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised"
+      "model_source": "masterplan_2565_revised",
+      "rotation_y": 0,
+      "hidden": false
     },
     "T.0025": {
       "building_id": "T.0025",
@@ -1534,9 +1586,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 8
       },
       "layout_position": {
-        "x": -95,
+        "x": -85,
         "y": 0,
-        "z": -55
+        "z": -100
       },
       "color_base": "#94A3B8",
       "roof_type": "industrial_gable",
@@ -1559,7 +1611,9 @@ window.SAINOI_BUILDING_MAPPING = {
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "masterplan_2565_revised"
+      "model_source": "masterplan_2565_revised",
+      "rotation_y": 3.141592653589793,
+      "hidden": false
     },
     "T.0026": {
       "building_id": "T.0026",
@@ -1576,9 +1630,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 9
       },
       "layout_position": {
-        "x": -95,
+        "x": -185,
         "y": 0,
-        "z": -125
+        "z": -115
       },
       "color_base": "#FFFFFF",
       "roof_type": "ohk_office_t0026",
@@ -1601,7 +1655,9 @@ window.SAINOI_BUILDING_MAPPING = {
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "asbuilt_ohk_sn_2_6_revised"
+      "model_source": "asbuilt_ohk_sn_2_6_revised",
+      "rotation_y": 3.141592653589793,
+      "hidden": false
     },
     "T.0027": {
       "building_id": "T.0027",
@@ -1618,9 +1674,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 9
       },
       "layout_position": {
-        "x": -95,
+        "x": -175,
         "y": 0,
-        "z": -165
+        "z": -195
       },
       "color_base": "#64748B",
       "roof_type": "ohk_garage_t0027",
@@ -1643,7 +1699,9 @@ window.SAINOI_BUILDING_MAPPING = {
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "asbuilt_ohk_sn_2_6_revised"
+      "model_source": "asbuilt_ohk_sn_2_6_revised",
+      "rotation_y": 0,
+      "hidden": false
     },
     "T.0028": {
       "building_id": "T.0028",
@@ -1685,7 +1743,9 @@ window.SAINOI_BUILDING_MAPPING = {
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "asbuilt_ohk_sn_2_6_revised"
+      "model_source": "asbuilt_ohk_sn_2_6_revised",
+      "rotation_y": 0,
+      "hidden": false
     },
     "T.0029": {
       "building_id": "T.0029",
@@ -1702,9 +1762,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 11
       },
       "layout_position": {
-        "x": -175,
+        "x": -105,
         "y": 0,
-        "z": -195
+        "z": -150
       },
       "color_base": "#94A3B8",
       "roof_type": "ohk_heavy_workshop_t0029",
@@ -1727,7 +1787,9 @@ window.SAINOI_BUILDING_MAPPING = {
       "area_m2": null,
       "mapping_status": "verified",
       "is_surveyed_coord": true,
-      "model_source": "asbuilt_ohk_sn_2_6_revised"
+      "model_source": "asbuilt_ohk_sn_2_6_revised",
+      "rotation_y": 4.71238898038469,
+      "hidden": false
     }
   },
   "source_document": "ผังเลขอาคาร 1-02-65 / AS-BUILT DRAWING อขน. SNO-RF11-SN-2/6",
