@@ -3210,6 +3210,8 @@
       });
 
       this.renderer.domElement.addEventListener('pointermove', (event) => {
+        const modal = document.getElementById('layoutEditorModal');
+        if (modal && modal.style.display === 'flex') return;
         const rect = this.renderer.domElement.getBoundingClientRect();
         this.mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
         this.mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
@@ -3217,6 +3219,8 @@
       });
 
       this.renderer.domElement.addEventListener('pointerup', (event) => {
+        const modal = document.getElementById('layoutEditorModal');
+        if (modal && modal.style.display === 'flex') return;
         const rect = this.renderer.domElement.getBoundingClientRect();
         this.mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
         this.mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;

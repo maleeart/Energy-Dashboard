@@ -4201,6 +4201,10 @@
       panStart: { x: 0, y: 0, camX: 0, camZ: -40 },
       hoveredItem: null,
       isInitialized: false,
+      _canvasRect: null,
+      bgCanvas: null,
+      bgCtx: null,
+      bgDirty: true,
 
       init() {
         this.canvas = document.getElementById('layout2DCanvas');
@@ -4235,6 +4239,12 @@
         this.render();
       },
 
+      cacheCanvasRect() {
+        if (this.canvas) {
+          this._canvasRect = this.canvas.getBoundingClientRect();
+        }
+      },
+
       resize() {
         if (!this.canvas || !this.container) return;
         const rect = this.container.getBoundingClientRect();
@@ -4243,6 +4253,15 @@
         this.height = rect.height > 0 ? rect.height : (this.container.clientHeight || 600);
         this.canvas.width = Math.max(300, Math.round(this.width * dpr));
         this.canvas.height = Math.max(300, Math.round(this.height * dpr));
+        this.cacheCanvasRect();
+
+        if (!this.bgCanvas) {
+          this.bgCanvas = document.createElement('canvas');
+          this.bgCtx = this.bgCanvas.getContext('2d');
+        }
+        this.bgCanvas.width = this.canvas.width;
+        this.bgCanvas.height = this.canvas.height;
+        this.bgDirty = true;
       },
 
       worldToScreen(wx, wz) {
@@ -4274,12 +4293,14 @@
 
       zoomIn() {
         this.camera.zoom = Math.min(4.0, this.camera.zoom * 1.25);
-        this.render();
+        this.bgDirty = true;
+        this.requestRender();
       },
 
       zoomOut() {
         this.camera.zoom = Math.max(0.3, this.camera.zoom / 1.25);
-        this.render();
+        this.bgDirty = true;
+        this.requestRender();
       },
 
       resetView() {
@@ -4291,6 +4312,7 @@
         const cw = (this.width || 800) * 0.85;
         const ch = (this.height || 600) * 0.85;
         this.camera.zoom = Math.max(0.4, Math.min(cw / bw, ch / bh));
+        this.bgDirty = true;
         this.render();
       },
 
@@ -4336,77 +4358,103 @@
         });
       },
 
-      updateDockPosBadge(x, z) {
+      updateDockPosBadge(x, z, updateInputs = false) {
         const badge = document.getElementById('dockPosBadge');
         if (badge) badge.textContent = `X: ${x} ม. | Z: ${z} ม.`;
-        const ix = document.getElementById('dockInputX');
-        if (ix && document.activeElement !== ix) ix.value = x;
-        const iz = document.getElementById('dockInputZ');
-        if (iz && document.activeElement !== iz) iz.value = z;
+        if (updateInputs) {
+          const ix = document.getElementById('dockInputX');
+          if (ix && document.activeElement !== ix) ix.value = x;
+          const iz = document.getElementById('dockInputZ');
+          if (iz && document.activeElement !== iz) iz.value = z;
+        }
       },
 
       getItemAt(wx, wz) {
         // Fast direct hit-test without array allocations (Priority: Buildings > Landmarks > Water > Roads)
         if (EnergyTwin.mappingData?.buildings) {
-          for (const [id, b] of Object.entries(EnergyTwin.mappingData.buildings)) {
+          const blds = EnergyTwin.mappingData.buildings;
+          for (const id in blds) {
+            const b = blds[id];
             const pos = b.layout_position || { x: 0, z: 0 };
-            const hw = (b.dimensions?.width || 20) / 2;
-            const hd = (b.dimensions?.depth || 20) / 2;
+            const hw = (b.dimensions?.width || 20) * 0.5;
+            const hd = (b.dimensions?.depth || 20) * 0.5;
             const rad = b.rotation_y || 0;
             const dx = wx - pos.x;
             const dz = wz - pos.z;
-            const cos = Math.cos(-rad);
-            const sin = Math.sin(-rad);
-            const lx = dx * cos - dz * sin;
-            const lz = dx * sin + dz * cos;
+            let lx = dx;
+            let lz = dz;
+            if (rad !== 0) {
+              const cos = Math.cos(-rad);
+              const sin = Math.sin(-rad);
+              lx = dx * cos - dz * sin;
+              lz = dx * sin + dz * cos;
+            }
             if (Math.abs(lx) <= hw && Math.abs(lz) <= hd) {
               return { type: 'bld', id, ...b, x: pos.x, z: pos.z, width: hw * 2, depth: hd * 2, rotRad: rad };
             }
           }
         }
         if (EnergyTwin.landmarks) {
-          for (const [id, lm] of Object.entries(EnergyTwin.landmarks)) {
-            const hw = (lm.width || 15) / 2;
-            const hd = (lm.depth || 15) / 2;
+          const lms = EnergyTwin.landmarks;
+          for (const id in lms) {
+            const lm = lms[id];
+            const hw = (lm.width || 15) * 0.5;
+            const hd = (lm.depth || 15) * 0.5;
             const rad = lm.rotation_y || 0;
             const dx = wx - lm.x;
             const dz = wz - lm.z;
-            const cos = Math.cos(-rad);
-            const sin = Math.sin(-rad);
-            const lx = dx * cos - dz * sin;
-            const lz = dx * sin + dz * cos;
+            let lx = dx;
+            let lz = dz;
+            if (rad !== 0) {
+              const cos = Math.cos(-rad);
+              const sin = Math.sin(-rad);
+              lx = dx * cos - dz * sin;
+              lz = dx * sin + dz * cos;
+            }
             if (Math.abs(lx) <= hw && Math.abs(lz) <= hd) {
               return { type: 'landmark', id, ...lm, width: hw * 2, depth: hd * 2, rotRad: rad };
             }
           }
         }
         if (EnergyTwin.water) {
-          for (const [id, w] of Object.entries(EnergyTwin.water)) {
-            const hw = (w.width || 20) / 2;
-            const hd = (w.depth || 40) / 2;
+          const wts = EnergyTwin.water;
+          for (const id in wts) {
+            const w = wts[id];
+            const hw = (w.width || 20) * 0.5;
+            const hd = (w.depth || 40) * 0.5;
             const rad = w.rotation_y || 0;
             const dx = wx - w.x;
             const dz = wz - w.z;
-            const cos = Math.cos(-rad);
-            const sin = Math.sin(-rad);
-            const lx = dx * cos - dz * sin;
-            const lz = dx * sin + dz * cos;
+            let lx = dx;
+            let lz = dz;
+            if (rad !== 0) {
+              const cos = Math.cos(-rad);
+              const sin = Math.sin(-rad);
+              lx = dx * cos - dz * sin;
+              lz = dx * sin + dz * cos;
+            }
             if (Math.abs(lx) <= hw && Math.abs(lz) <= hd) {
               return { type: 'water', id, ...w, rotRad: rad };
             }
           }
         }
         if (EnergyTwin.roads) {
-          for (const [id, r] of Object.entries(EnergyTwin.roads)) {
-            const hw = (r.width || 8) / 2;
-            const hd = (r.length || 50) / 2;
+          const rds = EnergyTwin.roads;
+          for (const id in rds) {
+            const r = rds[id];
+            const hw = (r.width || 8) * 0.5;
+            const hd = (r.length || 50) * 0.5;
             const rad = r.rotation_y || 0;
             const dx = wx - r.x;
             const dz = wz - r.z;
-            const cos = Math.cos(-rad);
-            const sin = Math.sin(-rad);
-            const lx = dx * cos - dz * sin;
-            const lz = dx * sin + dz * cos;
+            let lx = dx;
+            let lz = dz;
+            if (rad !== 0) {
+              const cos = Math.cos(-rad);
+              const sin = Math.sin(-rad);
+              lx = dx * cos - dz * sin;
+              lz = dx * sin + dz * cos;
+            }
             if (Math.abs(lx) <= hw && Math.abs(lz) <= hd) {
               return { type: 'road', id, ...r, depth: r.length || 50, rotRad: rad };
             }
@@ -4417,16 +4465,21 @@
 
       onMouseDown(e) {
         if (e.button !== 0) return;
-        const rect = this.canvas.getBoundingClientRect();
+        this.cacheCanvasRect();
+        const rect = this._canvasRect || this.canvas.getBoundingClientRect();
         const sx = e.clientX - rect.left;
         const sy = e.clientY - rect.top;
         const wCoord = this.screenToWorld(sx, sy);
 
         const hit = this.getItemAt(wCoord.x, wCoord.z);
         if (hit) {
-          this.selectItem(hit.type, hit.id, false);
+          const isAlreadySelected = selectedGridItem && selectedGridItem.type === hit.type && selectedGridItem.id === hit.id;
+          if (!isAlreadySelected) {
+            this.selectItem(hit.type, hit.id, false);
+          }
           this.isDragging = true;
           this.draggedItem = hit;
+          this.hoveredItem = hit;
           this.dragOffset = { x: wCoord.x - hit.x, z: wCoord.z - hit.z };
           this.canvas.style.cursor = 'grabbing';
         } else {
@@ -4438,16 +4491,10 @@
 
       onMouseMove(e) {
         if (!this.canvas) return;
-        const rect = this.canvas.getBoundingClientRect();
+        const rect = this._canvasRect || this.canvas.getBoundingClientRect();
         const sx = e.clientX - rect.left;
         const sy = e.clientY - rect.top;
         const wCoord = this.screenToWorld(sx, sy);
-
-        // Update top-left coordinates badge
-        const badge = document.getElementById('canvasCoordBadge');
-        if (badge) {
-          badge.textContent = `📍 พิกัดเมาส์: X: ${Math.round(wCoord.x)} ม., Z: ${Math.round(wCoord.z)} ม.`;
-        }
 
         if (this.isDragging && this.draggedItem) {
           const rawX = wCoord.x - this.dragOffset.x;
@@ -4459,10 +4506,16 @@
             this.draggedItem.x = newX;
             this.draggedItem.z = newZ;
             applyLiveDragItem(this.draggedItem.type, this.draggedItem.id, newX, newZ);
-            this.updateDockPosBadge(newX, newZ);
+            this.updateDockPosBadge(newX, newZ, false);
             this.requestRender();
           }
           return;
+        }
+
+        // Only update coordinate badge when not dragging to prevent layout thrashing
+        const badge = document.getElementById('canvasCoordBadge');
+        if (badge) {
+          badge.textContent = `📍 พิกัดเมาส์: X: ${Math.round(wCoord.x)} ม., Z: ${Math.round(wCoord.z)} ม.`;
         }
 
         if (this.isPanning) {
@@ -4470,16 +4523,19 @@
           const dz = (e.clientY - this.panStart.y) / this.camera.zoom;
           this.camera.x = this.panStart.camX - dx;
           this.camera.z = this.panStart.camZ - dz;
+          this.bgDirty = true;
           this.requestRender();
           return;
         }
 
-        // Throttled hover detection
+        // Throttled hover detection with key comparison to avoid infinite render loop
         const now = performance.now();
-        if (!this._lastHoverTime || (now - this._lastHoverTime) > 35) {
+        if (!this._lastHoverTime || (now - this._lastHoverTime) > 40) {
           this._lastHoverTime = now;
           const hit = this.getItemAt(wCoord.x, wCoord.z);
-          if (hit !== this.hoveredItem) {
+          const hitKey = hit ? `${hit.type}:${hit.id}` : null;
+          const curKey = this.hoveredItem ? `${this.hoveredItem.type}:${this.hoveredItem.id}` : null;
+          if (hitKey !== curKey) {
             this.hoveredItem = hit;
             this.canvas.style.cursor = hit ? 'pointer' : 'grab';
             this.requestRender();
@@ -4491,7 +4547,8 @@
         if (this.isDragging) {
           this.isDragging = false;
           if (this.draggedItem) {
-            this.updateDockPosBadge(this.draggedItem.x, this.draggedItem.z);
+            this.hoveredItem = this.draggedItem;
+            this.updateDockPosBadge(this.draggedItem.x, this.draggedItem.z, true);
             const activeCardCoord = document.querySelector(`.palette-card.active .palette-coord`);
             if (activeCardCoord) {
               activeCardCoord.textContent = `(${this.draggedItem.x}, ${this.draggedItem.z})`;
@@ -4510,7 +4567,7 @@
 
       onWheel(e) {
         e.preventDefault();
-        const rect = this.canvas.getBoundingClientRect();
+        const rect = this._canvasRect || this.canvas.getBoundingClientRect();
         const sx = e.clientX - rect.left;
         const sy = e.clientY - rect.top;
         const beforeZoom = this.screenToWorld(sx, sy);
@@ -4523,6 +4580,7 @@
         this.camera.x += (beforeZoom.x - afterZoom.x);
         this.camera.z += (beforeZoom.z - afterZoom.z);
 
+        this.bgDirty = true;
         this.requestRender();
       },
 
@@ -4568,10 +4626,17 @@
         }
       },
 
-      render() {
-        if (!this.ctx || !this.canvas) return;
-        const ctx = this.ctx;
+      renderBackground() {
+        if (!this.canvas) return;
         const dpr = window.devicePixelRatio || 1;
+        if (!this.bgCanvas) {
+          this.bgCanvas = document.createElement('canvas');
+          this.bgCtx = this.bgCanvas.getContext('2d');
+          this.bgCanvas.width = Math.max(300, Math.round(this.width * dpr));
+          this.bgCanvas.height = Math.max(300, Math.round(this.height * dpr));
+        }
+        const ctx = this.bgCtx;
+        if (!ctx) return;
 
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
         ctx.clearRect(0, 0, this.width, this.height);
@@ -4682,31 +4747,57 @@
         ctx.moveTo(axZ1.x, axZ1.y);
         ctx.lineTo(axZ2.x, axZ2.y);
         ctx.stroke();
+      },
+
+      render() {
+        if (!this.ctx || !this.canvas) return;
+        const ctx = this.ctx;
+        const dpr = window.devicePixelRatio || 1;
+
+        if (this.bgDirty || !this.bgCanvas) {
+          this.renderBackground();
+          this.bgDirty = false;
+        }
+
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.drawImage(this.bgCanvas, 0, 0);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+        // Precompute building font string once per frame to avoid recalculating per building
+        this._bldCodeFont = `bold ${Math.max(9, Math.round(11 * Math.min(1.4, this.camera.zoom)))}px "JetBrains Mono", sans-serif`;
 
         // 3. Draw Water Features
         if (EnergyTwin.water) {
-          Object.entries(EnergyTwin.water).forEach(([id, w]) => {
+          const wts = EnergyTwin.water;
+          for (const id in wts) {
+            const w = wts[id];
             this.drawWaterItem(ctx, { id, ...w, rotRad: w.rotation_y || 0 });
-          });
+          }
         }
 
         // 4. Draw Roads
         if (EnergyTwin.roads) {
-          Object.entries(EnergyTwin.roads).forEach(([id, r]) => {
+          const rds = EnergyTwin.roads;
+          for (const id in rds) {
+            const r = rds[id];
             this.drawRoadItem(ctx, { id, ...r, depth: r.length || 50, rotRad: r.rotation_y || 0 });
-          });
+          }
         }
 
         // 5. Draw Landmarks
         if (EnergyTwin.landmarks) {
-          Object.entries(EnergyTwin.landmarks).forEach(([id, lm]) => {
+          const lms = EnergyTwin.landmarks;
+          for (const id in lms) {
+            const lm = lms[id];
             this.drawLandmarkItem(ctx, { id, ...lm, rotRad: lm.rotation_y || 0 });
-          });
+          }
         }
 
         // 6. Draw Buildings (Top Layer)
         if (EnergyTwin.mappingData?.buildings) {
-          Object.entries(EnergyTwin.mappingData.buildings).forEach(([id, b]) => {
+          const blds = EnergyTwin.mappingData.buildings;
+          for (const id in blds) {
+            const b = blds[id];
             const pos = b.layout_position || { x: 0, z: 0 };
             this.drawBuildingItem(ctx, {
               id,
@@ -4720,7 +4811,7 @@
               rotRad: b.rotation_y || 0,
               hidden: !!b.hidden
             });
-          });
+          }
         }
       },
 
@@ -4961,7 +5052,7 @@
         ctx.fill();
 
         // Building Code & Short Name
-        ctx.font = `bold ${Math.max(9, 11 * Math.min(1.4, this.camera.zoom))}px "JetBrains Mono", sans-serif`;
+        ctx.font = this._bldCodeFont || 'bold 11px "JetBrains Mono", sans-serif';
         ctx.fillStyle = '#0F172A';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
@@ -5335,7 +5426,7 @@
       }
 
       if (layout2DStudio && layout2DStudio.isInitialized) {
-        layout2DStudio.updateDockPosBadge(numX, numZ);
+        layout2DStudio.updateDockPosBadge(numX, numZ, true);
         layout2DStudio.requestRender();
       }
       const activeCardCoord = document.querySelector(`.palette-card.active .palette-coord`);
