@@ -852,9 +852,19 @@
       }
     },
 
-    saveCustomRoads(roadMap) {
+    saveCustomRoads(roadMap, replaceAll = false) {
       try {
         if (!this.roads) this.roads = {};
+        if (replaceAll) {
+          this.roads = {};
+          Object.entries(roadMap || {}).forEach(([rid, r]) => {
+            this.roads[rid] = { ...r };
+          });
+          localStorage.setItem('sainoi_custom_roads', JSON.stringify(this.roads));
+          this.notify('layout_change');
+          return true;
+        }
+
         let fullRoads = {};
         try {
           const existing = localStorage.getItem('sainoi_custom_roads');

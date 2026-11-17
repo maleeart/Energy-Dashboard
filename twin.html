@@ -3957,7 +3957,16 @@
       if (!targetId) return;
 
       if (confirm(`🗑️ ยืนยันการลบ ${targetId} ออกจากผังหรือไม่?`)) {
-        if (EnergyTwin.deleteRoad) EnergyTwin.deleteRoad(targetId);
+        if (EnergyTwin.deleteRoad) {
+          EnergyTwin.deleteRoad(targetId);
+        } else if (EnergyTwin.roads) {
+          delete EnergyTwin.roads[targetId];
+          try {
+            const cur = JSON.parse(localStorage.getItem('sainoi_custom_roads') || '{}');
+            delete cur[targetId];
+            localStorage.setItem('sainoi_custom_roads', JSON.stringify(cur));
+          } catch (_) {}
+        }
         if (selectedGridItem && selectedGridItem.id === targetId) {
           clearGridSelection();
         }
@@ -3967,6 +3976,7 @@
           layout2DStudio.render();
           layout2DStudio.renderFloatingDock();
         }
+        showLayoutSaveToast(`🗑️ ลบถนน ${targetId} เรียบร้อยแล้ว`);
       }
     }
 
@@ -3980,6 +3990,7 @@
           layout2DStudio.selectItem('road', newRoadId, false);
           layout2DStudio.render();
         }
+        showLayoutSaveToast(`📋 คัดลอกสร้างถนน ${newRoadId} เรียบร้อยแล้ว`);
       }
     }
 
@@ -4001,10 +4012,15 @@
     }
 
     function clearAllStudioRoads() {
-      if (!confirm('⚠️ ต้องการลบเส้นทางถนนทั้งหมดในระบบหรือไม่?\\n\\nเส้นทางถนนเดิมจะถูกล้างออกทั้งหมด เพื่อให้คุณวาดถนนใหม่ได้ตามต้องการ')) {
+      if (!confirm('⚠️ ต้องการลบเส้นทางถนนทั้งหมดในระบบหรือไม่?\n\nเส้นทางถนนเดิมจะถูกล้างออกทั้งหมด เพื่อให้คุณวาดถนนใหม่ได้ตามต้องการ')) {
         return;
       }
-      if (EnergyTwin.clearAllRoads) EnergyTwin.clearAllRoads();
+      if (EnergyTwin.clearAllRoads) {
+        EnergyTwin.clearAllRoads();
+      } else {
+        EnergyTwin.roads = {};
+        try { localStorage.setItem('sainoi_custom_roads', '{}'); } catch (_) {}
+      }
       if (selectedGridItem && selectedGridItem.type === 'road') {
         clearGridSelection();
       }
@@ -4014,6 +4030,7 @@
         layout2DStudio.render();
         layout2DStudio.renderFloatingDock();
       }
+      showLayoutSaveToast('🗑️ ลบเส้นทางถนนทั้งหมดเรียบร้อยแล้ว (เริ่มวาดใหม่ได้ทันที)');
     }
 
     // Select & Focus
@@ -4177,6 +4194,48 @@
       moveLayoutItem(selectedGridItem.type, selectedGridItem.id, targetX, targetZ);
     }
 
+    // Lightweight In-Memory Live Drag Position Updater (Zero disk writes, zero DOM thrashing during drag)
+    function applyLiveDragItem(type, id, newX, newZ) {
+      if (type === 'bld') {
+        const b = EnergyTwin.mappingData?.buildings?.[id];
+        if (b) {
+          if (!b.layout_position) b.layout_position = { x: 0, y: 0, z: 0 };
+          b.layout_position.x = newX;
+          b.layout_position.z = newZ;
+          if (campusScene && campusScene.updateBuildingPosition) {
+            campusScene.updateBuildingPosition(id, newX, newZ, b.layout_position.y || 0);
+          }
+        }
+      } else if (type === 'road') {
+        const r = EnergyTwin.roads?.[id];
+        if (r) {
+          r.x = newX;
+          r.z = newZ;
+          if (campusScene && campusScene.updateRoadPosition) {
+            campusScene.updateRoadPosition(id, newX, newZ);
+          }
+        }
+      } else if (type === 'water') {
+        const w = EnergyTwin.water?.[id];
+        if (w) {
+          w.x = newX;
+          w.z = newZ;
+          if (campusScene && campusScene.updateWaterPosition) {
+            campusScene.updateWaterPosition(id, newX, newZ);
+          }
+        }
+      } else if (type === 'landmark') {
+        const lm = EnergyTwin.landmarks?.[id];
+        if (lm) {
+          lm.x = newX;
+          lm.z = newZ;
+          if (campusScene && campusScene.updateLandmarkPosition) {
+            campusScene.updateLandmarkPosition(id, newX, newZ);
+          }
+        }
+      }
+    }
+
     // ── Layout 2D Live Studio Engine (Lightweight Canvas Vector Map) ──
     const layout2DStudio = {
       canvas: null,
@@ -4314,26 +4373,89 @@
         document.querySelectorAll('.palette-card').forEach(el => el.classList.remove('active'));
       },
 
-      getItemAt(wx, wz) {
-        const allItems = getAllPaletteItems();
-        // Hit priority: buildings > landmarks > water > roads
-        const sorted = allItems.slice().sort((a, b) => {
-          const p = { bld: 4, landmark: 3, water: 2, road: 1 };
-          return (p[b.type] || 0) - (p[a.type] || 0);
+      requestRender() {
+        if (this._renderPending) return;
+        this._renderPending = true;
+        requestAnimationFrame(() => {
+          this._renderPending = false;
+          this.render();
         });
+      },
 
-        for (const it of sorted) {
-          const hw = (it.width || 20) / 2;
-          const hd = (it.depth || 20) / 2;
-          const rad = it.rotRad || 0;
-          const dx = wx - it.x;
-          const dz = wz - it.z;
-          const cos = Math.cos(-rad);
-          const sin = Math.sin(-rad);
-          const lx = dx * cos - dz * sin;
-          const lz = dx * sin + dz * cos;
-          if (Math.abs(lx) <= hw && Math.abs(lz) <= hd) {
-            return it;
+      updateDockPosBadge(x, z) {
+        const badge = document.getElementById('dockPosBadge');
+        if (badge) badge.textContent = `X: ${x} ม. | Z: ${z} ม.`;
+        const ix = document.getElementById('dockInputX');
+        if (ix && document.activeElement !== ix) ix.value = x;
+        const iz = document.getElementById('dockInputZ');
+        if (iz && document.activeElement !== iz) iz.value = z;
+      },
+
+      getItemAt(wx, wz) {
+        // Fast direct hit-test without array allocations (Priority: Buildings > Landmarks > Water > Roads)
+        if (EnergyTwin.mappingData?.buildings) {
+          for (const [id, b] of Object.entries(EnergyTwin.mappingData.buildings)) {
+            const pos = b.layout_position || { x: 0, z: 0 };
+            const hw = (b.dimensions?.width || 20) / 2;
+            const hd = (b.dimensions?.depth || 20) / 2;
+            const rad = b.rotation_y || 0;
+            const dx = wx - pos.x;
+            const dz = wz - pos.z;
+            const cos = Math.cos(-rad);
+            const sin = Math.sin(-rad);
+            const lx = dx * cos - dz * sin;
+            const lz = dx * sin + dz * cos;
+            if (Math.abs(lx) <= hw && Math.abs(lz) <= hd) {
+              return { type: 'bld', id, ...b, x: pos.x, z: pos.z, width: hw * 2, depth: hd * 2, rotRad: rad };
+            }
+          }
+        }
+        if (EnergyTwin.landmarks) {
+          for (const [id, lm] of Object.entries(EnergyTwin.landmarks)) {
+            const hw = (lm.width || 15) / 2;
+            const hd = (lm.depth || 15) / 2;
+            const rad = lm.rotation_y || 0;
+            const dx = wx - lm.x;
+            const dz = wz - lm.z;
+            const cos = Math.cos(-rad);
+            const sin = Math.sin(-rad);
+            const lx = dx * cos - dz * sin;
+            const lz = dx * sin + dz * cos;
+            if (Math.abs(lx) <= hw && Math.abs(lz) <= hd) {
+              return { type: 'landmark', id, ...lm, width: hw * 2, depth: hd * 2, rotRad: rad };
+            }
+          }
+        }
+        if (EnergyTwin.water) {
+          for (const [id, w] of Object.entries(EnergyTwin.water)) {
+            const hw = (w.width || 20) / 2;
+            const hd = (w.depth || 40) / 2;
+            const rad = w.rotation_y || 0;
+            const dx = wx - w.x;
+            const dz = wz - w.z;
+            const cos = Math.cos(-rad);
+            const sin = Math.sin(-rad);
+            const lx = dx * cos - dz * sin;
+            const lz = dx * sin + dz * cos;
+            if (Math.abs(lx) <= hw && Math.abs(lz) <= hd) {
+              return { type: 'water', id, ...w, rotRad: rad };
+            }
+          }
+        }
+        if (EnergyTwin.roads) {
+          for (const [id, r] of Object.entries(EnergyTwin.roads)) {
+            const hw = (r.width || 8) / 2;
+            const hd = (r.length || 50) / 2;
+            const rad = r.rotation_y || 0;
+            const dx = wx - r.x;
+            const dz = wz - r.z;
+            const cos = Math.cos(-rad);
+            const sin = Math.sin(-rad);
+            const lx = dx * cos - dz * sin;
+            const lz = dx * sin + dz * cos;
+            if (Math.abs(lx) <= hw && Math.abs(lz) <= hd) {
+              return { type: 'road', id, ...r, depth: r.length || 50, rotRad: rad };
+            }
           }
         }
         return null;
@@ -4374,14 +4496,18 @@
         }
 
         if (this.isDragging && this.draggedItem) {
-          let rawX = wCoord.x - this.dragOffset.x;
-          let rawZ = wCoord.z - this.dragOffset.z;
-          let newX = Math.round(rawX / this.snap) * this.snap;
-          let newZ = Math.round(rawZ / this.snap) * this.snap;
+          const rawX = wCoord.x - this.dragOffset.x;
+          const rawZ = wCoord.z - this.dragOffset.z;
+          const newX = Math.round(rawX / this.snap) * this.snap;
+          const newZ = Math.round(rawZ / this.snap) * this.snap;
 
-          moveLayoutItem(this.draggedItem.type, this.draggedItem.id, newX, newZ);
-          this.renderFloatingDock();
-          this.render();
+          if (newX !== this.draggedItem.x || newZ !== this.draggedItem.z) {
+            this.draggedItem.x = newX;
+            this.draggedItem.z = newZ;
+            applyLiveDragItem(this.draggedItem.type, this.draggedItem.id, newX, newZ);
+            this.updateDockPosBadge(newX, newZ);
+            this.requestRender();
+          }
           return;
         }
 
@@ -4390,24 +4516,33 @@
           const dz = (e.clientY - this.panStart.y) / this.camera.zoom;
           this.camera.x = this.panStart.camX - dx;
           this.camera.z = this.panStart.camZ - dz;
-          this.render();
+          this.requestRender();
           return;
         }
 
-        // Hover detection
-        const hit = this.getItemAt(wCoord.x, wCoord.z);
-        if (hit !== this.hoveredItem) {
-          this.hoveredItem = hit;
-          this.canvas.style.cursor = hit ? 'pointer' : 'grab';
-          this.render();
+        // Throttled hover detection
+        const now = performance.now();
+        if (!this._lastHoverTime || (now - this._lastHoverTime) > 35) {
+          this._lastHoverTime = now;
+          const hit = this.getItemAt(wCoord.x, wCoord.z);
+          if (hit !== this.hoveredItem) {
+            this.hoveredItem = hit;
+            this.canvas.style.cursor = hit ? 'pointer' : 'grab';
+            this.requestRender();
+          }
         }
       },
 
       onMouseUp(e) {
         if (this.isDragging) {
           this.isDragging = false;
+          if (this.draggedItem) {
+            saveLayoutEditorChanges(true);
+            renderLayoutStudioPalette();
+            this.renderFloatingDock();
+          }
           this.draggedItem = null;
-          saveLayoutEditorChanges(true);
+          this.requestRender();
         }
         if (this.isPanning) {
           this.isPanning = false;
@@ -4432,7 +4567,7 @@
         this.camera.x += (beforeZoom.x - afterZoom.x);
         this.camera.z += (beforeZoom.z - afterZoom.z);
 
-        this.render();
+        this.requestRender();
       },
 
       onTouchStart(e) {
@@ -4592,19 +4727,45 @@
         ctx.lineTo(axZ2.x, axZ2.y);
         ctx.stroke();
 
-        const allItems = getAllPaletteItems();
-
         // 3. Draw Water Features
-        allItems.filter(it => it.type === 'water').forEach(w => this.drawWaterItem(ctx, w));
+        if (EnergyTwin.water) {
+          Object.entries(EnergyTwin.water).forEach(([id, w]) => {
+            this.drawWaterItem(ctx, { id, ...w, rotRad: w.rotation_y || 0 });
+          });
+        }
 
         // 4. Draw Roads
-        allItems.filter(it => it.type === 'road').forEach(r => this.drawRoadItem(ctx, r));
+        if (EnergyTwin.roads) {
+          Object.entries(EnergyTwin.roads).forEach(([id, r]) => {
+            this.drawRoadItem(ctx, { id, ...r, depth: r.length || 50, rotRad: r.rotation_y || 0 });
+          });
+        }
 
         // 5. Draw Landmarks
-        allItems.filter(it => it.type === 'landmark').forEach(lm => this.drawLandmarkItem(ctx, lm));
+        if (EnergyTwin.landmarks) {
+          Object.entries(EnergyTwin.landmarks).forEach(([id, lm]) => {
+            this.drawLandmarkItem(ctx, { id, ...lm, rotRad: lm.rotation_y || 0 });
+          });
+        }
 
         // 6. Draw Buildings (Top Layer)
-        allItems.filter(it => it.type === 'bld').forEach(b => this.drawBuildingItem(ctx, b));
+        if (EnergyTwin.mappingData?.buildings) {
+          Object.entries(EnergyTwin.mappingData.buildings).forEach(([id, b]) => {
+            const pos = b.layout_position || { x: 0, z: 0 };
+            this.drawBuildingItem(ctx, {
+              id,
+              code: b.b_code || id,
+              name: b.short_name || b.name,
+              zone: getBuildingZoneName(id),
+              width: b.dimensions?.width || 20,
+              depth: b.dimensions?.depth || 20,
+              x: pos.x,
+              z: pos.z,
+              rotRad: b.rotation_y || 0,
+              hidden: !!b.hidden
+            });
+          });
+        }
       },
 
       drawRoadItem(ctx, r) {
@@ -4968,7 +5129,7 @@
           <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:6px; padding:6px 8px; display:flex; flex-direction:column; gap:5px;">
             <div style="display:flex; justify-content:space-between; align-items:center;">
               <span style="font-size:11px; font-weight:700; color:#1E3A8A;">🕹️ เลื่อนตำแหน่ง (D-Pad):</span>
-              <span style="font-family:'JetBrains Mono'; font-weight:700; font-size:11.5px; color:#059669; background:#ECFDF5; padding:1px 6px; border-radius:4px; border:1px solid #A7F3D0;">
+              <span id="dockPosBadge" style="font-family:'JetBrains Mono'; font-weight:700; font-size:11.5px; color:#059669; background:#ECFDF5; padding:1px 6px; border-radius:4px; border:1px solid #A7F3D0;">
                 X: ${pos.x} ม. | Z: ${pos.z} ม.
               </span>
             </div>
@@ -4990,14 +5151,14 @@
               <div style="display:flex; flex-direction:column; gap:4px; flex:1;">
                 <div style="display:flex; align-items:center; gap:4px;">
                   <span style="font-size:10px; font-weight:700; color:#334155; width:16px;">X:</span>
-                  <input type="number" step="${layout2DStudio.snap}" value="${pos.x}" 
+                  <input id="dockInputX" type="number" step="${layout2DStudio.snap}" value="${pos.x}" 
                          onchange="moveLayoutItem('${type}', '${id}', this.value, ${pos.z})" 
                          style="flex:1; padding:2px 4px; font-size:11px; font-family:'JetBrains Mono'; font-weight:700; text-align:right; border:1px solid #CBD5E1; border-radius:4px;">
                   <span style="font-size:10px; color:#64748B;">ม.</span>
                 </div>
                 <div style="display:flex; align-items:center; gap:4px;">
                   <span style="font-size:10px; font-weight:700; color:#334155; width:16px;">Z:</span>
-                  <input type="number" step="${layout2DStudio.snap}" value="${pos.z}" 
+                  <input id="dockInputZ" type="number" step="${layout2DStudio.snap}" value="${pos.z}" 
                          onchange="moveLayoutItem('${type}', '${id}', ${pos.x}, this.value)" 
                          style="flex:1; padding:2px 4px; font-size:11px; font-family:'JetBrains Mono'; font-weight:700; text-align:right; border:1px solid #CBD5E1; border-radius:4px;">
                   <span style="font-size:10px; color:#64748B;">ม.</span>
@@ -5675,7 +5836,7 @@
           };
         });
       }
-      const ok2 = EnergyTwin.saveCustomRoads(roadMap);
+      const ok2 = EnergyTwin.saveCustomRoads(roadMap, true);
 
       // 3. Save Water
       const waterMap = {};

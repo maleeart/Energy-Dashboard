@@ -663,36 +663,7 @@
       apron.receiveShadow = true;
       ohkGroup.add(apron);
 
-      // ── 4. OHK Road Network (Access & Perimeter Ring Roads - NO Football Pitch in OHK) ──
-      // South Access Road from campus spine into OHK Roundabout
-      const accessRoadGroup = new THREE.Group();
-      const accessRoad = new THREE.Mesh(new THREE.PlaneGeometry(9, 65), asphaltMat);
-      accessRoad.rotation.x = -Math.PI / 2;
-      accessRoad.receiveShadow = true;
-      accessRoadGroup.add(accessRoad);
-      accessRoadGroup.position.set(-135, 0.06, -115);
-      ohkGroup.add(accessRoadGroup);
-      this.roadMeshes.set('ROAD_OHK_ACCESS', accessRoadGroup);
-
-      // North Perimeter Loop Road behind T.0028 & T.0029
-      const northLoopGroup = new THREE.Group();
-      const northLoop = new THREE.Mesh(new THREE.PlaneGeometry(85, 8), asphaltMat);
-      northLoop.rotation.x = -Math.PI / 2;
-      northLoop.receiveShadow = true;
-      northLoopGroup.add(northLoop);
-      northLoopGroup.position.set(-155, 0.06, -215);
-      ohkGroup.add(northLoopGroup);
-      this.roadMeshes.set('ROAD_OHK_NORTH_LOOP', northLoopGroup);
-
-      // East Perimeter Road behind garage T.0027
-      const eastLoopGroup = new THREE.Group();
-      const eastLoop = new THREE.Mesh(new THREE.PlaneGeometry(8, 65), asphaltMat);
-      eastLoop.rotation.x = -Math.PI / 2;
-      eastLoop.receiveShadow = true;
-      eastLoopGroup.add(eastLoop);
-      eastLoopGroup.position.set(-75, 0.06, -165);
-      ohkGroup.add(eastLoopGroup);
-      this.roadMeshes.set('ROAD_OHK_EAST_LOOP', eastLoopGroup);
+      // Note: OHK access and perimeter roads are now part of the user-drawn dynamic road network
 
       // ── 6. 230 kV Ang Thong 2 Transmission Line Right-of-Way Crossing ──
       const pylonGroup = new THREE.Group();
@@ -2857,15 +2828,41 @@
       for (const [id, mesh] of this.roadMeshes.entries()) {
         if (id === 'ROAD_EAST_ROUNDABOUT') continue; // Preserve landmark roundabout
         if (!currentRoadIds.has(id)) {
-          this.roadContainer.remove(mesh);
+          if (mesh.parent) mesh.parent.remove(mesh);
+          else this.roadContainer.remove(mesh);
           if (mesh.traverse) {
             mesh.traverse(c => {
               if (c.geometry) c.geometry.dispose();
+              if (c.material) {
+                if (Array.isArray(c.material)) c.material.forEach(m => m.dispose());
+                else c.material.dispose();
+              }
             });
           }
           this.roadMeshes.delete(id);
         }
       }
+
+      // Also clean any orphaned meshes in roadContainer
+      const orphaned = [];
+      this.roadContainer.children.forEach(c => {
+        const rid = c.userData?.roadId || (c.name?.startsWith('Road_') ? c.name.replace('Road_', '') : null);
+        if (rid && !currentRoadIds.has(rid)) {
+          orphaned.push(c);
+        }
+      });
+      orphaned.forEach(c => {
+        this.roadContainer.remove(c);
+        if (c.traverse) {
+          c.traverse(m => {
+            if (m.geometry) m.geometry.dispose();
+            if (m.material) {
+              if (Array.isArray(m.material)) m.material.forEach(mat => mat.dispose());
+              else m.material.dispose();
+            }
+          });
+        }
+      });
 
       // 2. Add or update meshes for active roads
       roads.forEach(r => {
@@ -3283,6 +3280,16 @@
 
     animate(time) {
       requestAnimationFrame((t) => this.animate(t));
+
+      // Performance: When 2D Layout Editor modal is open, pause heavy 3D pulsing loops
+      const layoutModal = document.getElementById('layoutEditorModal');
+      if (layoutModal && layoutModal.style.display === 'flex') {
+        if (this.needsRender || this.isAnimatingCamera) {
+          this.renderer.render(this.scene, this.camera);
+          this.needsRender = false;
+        }
+        return;
+      }
 
       if (this.selectionRing && this.selectionRing.visible) {
         const pulse = 1 + Math.sin(time * 0.005) * 0.04;
