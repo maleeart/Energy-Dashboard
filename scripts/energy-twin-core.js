@@ -564,11 +564,6 @@
 
     async syncLayoutWithSystemDefault(force = false) {
       try {
-        const hasLocalDraft = typeof localStorage !== 'undefined' ? localStorage.getItem('sainoi_custom_layout') : null;
-        if (!force && hasLocalDraft) {
-          return false;
-        }
-
         const host = (typeof window !== 'undefined' && window.location && window.location.hostname) ? window.location.hostname : '127.0.0.1';
         let layout = null;
         try {
@@ -577,22 +572,32 @@
         } catch (_) {}
 
         if (!layout) {
-          const jsonRes = await fetch('data/campus_layout_default.json?t=' + Date.now());
+          const jsonRes = await fetch('data/campus_layout_default.json?t=' + Date.now(), { cache: 'no-store' });
           if (jsonRes.ok) layout = await jsonRes.json();
         }
 
         if (layout) {
-          if (force && typeof localStorage !== 'undefined') {
-            try {
-              localStorage.removeItem('sainoi_custom_layout');
-              localStorage.removeItem('sainoi_custom_roads');
-              localStorage.removeItem('sainoi_custom_water');
-              localStorage.removeItem('sainoi_custom_landmarks');
-              localStorage.removeItem('sainoi_campus_bounds');
-            } catch (_) {}
+          const lastSynced = typeof localStorage !== 'undefined' ? localStorage.getItem('sainoi_layout_last_synced') : null;
+          const isNewSystemVersion = layout.updated_at && layout.updated_at !== lastSynced;
+          const hasLocalDraft = typeof localStorage !== 'undefined' ? Boolean(localStorage.getItem('sainoi_custom_layout')) : false;
+
+          // If forced, or if a new system version has been published, or if no local draft exists, sync!
+          if (force || isNewSystemVersion || !hasLocalDraft) {
+            if (typeof localStorage !== 'undefined') {
+              try {
+                localStorage.removeItem('sainoi_custom_layout');
+                localStorage.removeItem('sainoi_custom_roads');
+                localStorage.removeItem('sainoi_custom_water');
+                localStorage.removeItem('sainoi_custom_landmarks');
+                localStorage.removeItem('sainoi_campus_bounds');
+                if (layout.updated_at) {
+                  localStorage.setItem('sainoi_layout_last_synced', layout.updated_at);
+                }
+              } catch (_) {}
+            }
+            this.applyCompleteLayout(layout);
+            return true;
           }
-          this.applyCompleteLayout(layout);
-          return true;
         }
       } catch (err) {
         console.warn('[EnergyTwin] Could not sync system layout:', err);
