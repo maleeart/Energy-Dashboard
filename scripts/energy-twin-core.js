@@ -946,8 +946,8 @@
       },
       "ROAD_2": {
             "name": "ROAD_2",
-            "x": 90,
-            "z": -95,
+            "x": 80,
+            "z": -110,
             "width": 8,
             "length": 110,
             "category": "ถนน",
@@ -1304,12 +1304,12 @@
       },
       "LAKE_PROMENADE": {
             "name": "สระน้ำและสะพานไม้ริมน้ำหลัง ท.0019",
-            "x": 82,
+            "x": 85,
             "z": -25,
             "width": 36,
-            "depth": 28,
+            "depth": 32,
             "category": "สระน้ำและภูมิทัศน์",
-            "rotation_y": 2.530727415391778,
+            "rotation_y": 0,
             "hidden": false
       },
       "LAKE_FOUNTAIN": {
@@ -1426,10 +1426,10 @@
       },
       "FOOTBALL": {
             "name": "สนามฟุตบอลใหญ่ (Main Football Pitch)",
-            "x": 92,
+            "x": 88,
             "z": -85,
             "category": "สันทนาการและกีฬา",
-            "rotation_y": 2.530727415391778,
+            "rotation_y": 0,
             "hidden": false,
             "width": 28,
             "depth": 56
@@ -1478,8 +1478,8 @@
       },
       "EAST_ROUNDABOUT": {
             "name": "วงเวียนฝั่งตะวันออก (East Roundabout)",
-            "x": 148,
-            "z": -95,
+            "x": 135,
+            "z": -110,
             "category": "ระบบการจราจร",
             "rotation_y": 0,
             "hidden": false,

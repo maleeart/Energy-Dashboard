@@ -374,14 +374,14 @@
     setupMainFootballField() {
       const fieldGroup = new THREE.Group();
       fieldGroup.name = 'FootballField';
-      // Center position in campus layout (matching aerial reference photo)
-      const fx = 92;
+      // Center position in campus layout (entrance-aligned perspective)
+      const fx = 88;
       const fz = -85;
       const fw = 28;
       const fd = 56;
 
       fieldGroup.position.set(fx, 0, fz);
-      fieldGroup.rotation.y = 2.5307;
+      fieldGroup.rotation.y = 0;
 
       const turfMat = new THREE.MeshStandardMaterial({
         color: 0x228B22,
@@ -464,7 +464,7 @@
       this.scene.add(this.roadContainer);
 
       // 2. Eastern Science & Chemistry Roundabout (Landmark in front of T.0018 & T.0016)
-      const eastRound = this.createRoundabout(148, -95, 12, 5.5);
+      const eastRound = this.createRoundabout(135, -110, 12, 5.5);
       eastRound.name = 'Roundabout_East';
       this.scene.add(eastRound);
       this.roadMeshes.set('ROAD_EAST_ROUNDABOUT', eastRound);
@@ -1160,10 +1160,10 @@
     setupLandmarkLabels() {
       const landmarks = [
         { id: 'SW_YARD', text: '⚡ สวิตช์ยาร์ด 500 kV', x: -25, y: 19, z: 110, color: '#D97706' },
-        { id: 'FOOTBALL', text: '⚽ สนามฟุตบอล', x: 92, y: 8, z: -85, color: '#16A34A' },
+        { id: 'FOOTBALL', text: '⚽ สนามฟุตบอล', x: 88, y: 8, z: -85, color: '#16A34A' },
         { id: 'POND_RETENTION_1', text: '💧 สระน้ำ 1, 2, 3', x: -85, y: 7, z: -40, color: '#0284C7' },
         { id: 'CAMPUS_ENTRANCE', text: '🚧 ทางเข้าหลัก / ท.0021 ที่ทำการ รปภ.', x: 40, y: 8, z: 140, color: '#475569' },
-        { id: 'EAST_ROUNDABOUT', text: '🧪 วงเวียนหน้า ท.0018 / ท.0016', x: 148, y: 8, z: -95, color: '#2563EB' },
+        { id: 'EAST_ROUNDABOUT', text: '🧪 วงเวียนหน้า ท.0018 / ท.0016', x: 135, y: 8, z: -110, color: '#2563EB' },
         { id: 'TURBINE_SCULPTURE', text: '⚙️ ปฏิมากรรมกังหันไอน้ำ', x: 55, y: 14, z: 55, color: '#EA580C' },
         { id: 'SUNFLOWER_FIELD', text: '🌻 ทุ่งทานตะวัน & ป้าย กฟผ.', x: 10, y: 8, z: 115, color: '#EAB308' },
         // OHK Specific Landmark Pins (No Soccer field in OHK)

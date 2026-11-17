@@ -265,6 +265,10 @@ function applyDefaultLayout(payload) {
   return updatedFiles;
 }
 
-server.listen(PORT, '0.0.0.0', () => {
-  console.log(`[Layout Sync Server] Listening on http://0.0.0.0:${PORT} (All network interfaces)`);
-});
+if (require.main === module) {
+  server.listen(PORT, '0.0.0.0', () => {
+    console.log(`[Layout Sync Server] Listening on http://0.0.0.0:${PORT} (All network interfaces)`);
+  });
+}
+
+module.exports = { applyDefaultLayout };

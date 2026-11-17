@@ -1,10 +1,10 @@
 {
-  "version": "2026.11.13",
-  "updated_at": "2026-11-17T08:23:54.425Z",
+  "version": "2026.11.17",
+  "updated_at": "2026-11-17T08:49:47.999Z",
   "bounds": {
     "minX": -210,
-    "maxX": 200,
-    "minZ": -220,
+    "maxX": 190,
+    "minZ": -230,
     "maxZ": 140
   },
   "buildings": {
@@ -49,7 +49,7 @@
       "short_name": "โรงอาหารหลัก (ต.0017)",
       "category_th": "อาคารสวัสดิการและบริการ",
       "layout_position": {
-        "x": 5,
+        "x": 25,
         "y": 0,
         "z": -140
       },
@@ -67,17 +67,17 @@
       "short_name": "อาคารนันทนาการและจอดรถ (ต.0019)",
       "category_th": "อาคารนันทนาการและจอดรถ",
       "layout_position": {
-        "x": 52,
+        "x": 50,
         "y": 0,
-        "z": -95
+        "z": -85
       },
       "dimensions": {
         "width": 32,
         "depth": 22,
         "height": 16
       },
-      "rotation_y": 5.672320068981571,
-      "rotation_deg": 325,
+      "rotation_y": 4.71238898038469,
+      "rotation_deg": 270,
       "hidden": false
     },
     "D.0025": {
@@ -85,17 +85,17 @@
       "short_name": "อาคารอเนกประสงค์ (ต.0025)",
       "category_th": "อาคารอเนกประสงค์",
       "layout_position": {
-        "x": 105,
+        "x": 88,
         "y": 0,
-        "z": -40
+        "z": -35
       },
       "dimensions": {
         "width": 26,
         "depth": 22,
         "height": 10
       },
-      "rotation_y": 2.530727415391778,
-      "rotation_deg": 145,
+      "rotation_y": 0,
+      "rotation_deg": 0,
       "hidden": false
     },
     "D.0026": {
@@ -103,7 +103,7 @@
       "short_name": "อาคารระบบประปา (ต.0026)",
       "category_th": "ระบบสาธารณูปโภค",
       "layout_position": {
-        "x": -40,
+        "x": -35,
         "y": 0,
         "z": -210
       },
@@ -159,7 +159,7 @@
       "layout_position": {
         "x": 5,
         "y": 0,
-        "z": -10
+        "z": -15
       },
       "dimensions": {
         "width": 32,
@@ -195,7 +195,7 @@
       "layout_position": {
         "x": 5,
         "y": 0,
-        "z": -55
+        "z": -60
       },
       "dimensions": {
         "width": 32,
@@ -213,7 +213,7 @@
       "layout_position": {
         "x": -35,
         "y": 0,
-        "z": -95
+        "z": -90
       },
       "dimensions": {
         "width": 24,
@@ -229,7 +229,7 @@
       "short_name": "อาคารทดสอบเครื่องกล (ท.0010)",
       "category_th": "ห้องปฏิบัติการทดสอบ",
       "layout_position": {
-        "x": 5,
+        "x": 15,
         "y": 0,
         "z": -105
       },
@@ -238,8 +238,8 @@
         "depth": 18,
         "height": 10
       },
-      "rotation_y": 3.141592653589793,
-      "rotation_deg": 180,
+      "rotation_y": 0,
+      "rotation_deg": 0,
       "hidden": false
     },
     "T.0011": {
@@ -247,9 +247,9 @@
       "short_name": "เครื่องมือบำรุงรักษาเครื่องกล (ท.0011)",
       "category_th": "โรงปฏิบัติการเครื่องมือ",
       "layout_position": {
-        "x": -35,
+        "x": -15,
         "y": 0,
-        "z": -135
+        "z": -115
       },
       "dimensions": {
         "width": 30,
@@ -265,9 +265,9 @@
       "short_name": "บำรุงรักษาเครื่องกล/ประดาน้ำ (ท.0012)",
       "category_th": "โรงปฏิบัติการเครื่องกลหนัก",
       "layout_position": {
-        "x": 0,
+        "x": 15,
         "y": 0,
-        "z": -190
+        "z": -180
       },
       "dimensions": {
         "width": 38,
@@ -283,7 +283,7 @@
       "short_name": "ปฏิบัติการไฟฟ้าและโยธา (ท.0014)",
       "category_th": "โรงปฏิบัติการไฟฟ้าโยธา",
       "layout_position": {
-        "x": 92,
+        "x": 82,
         "y": 0,
         "z": -155
       },
@@ -292,8 +292,8 @@
         "depth": 20,
         "height": 11
       },
-      "rotation_y": 2.530727415391778,
-      "rotation_deg": 145,
+      "rotation_y": 0,
+      "rotation_deg": 0,
       "hidden": false
     },
     "T.0015": {
@@ -301,17 +301,17 @@
       "short_name": "ปฏิบัติการเคมี 2 (ท.0015)",
       "category_th": "ห้องปฏิบัติการเคมี",
       "layout_position": {
-        "x": 135,
+        "x": 125,
         "y": 0,
-        "z": -135
+        "z": -148
       },
       "dimensions": {
         "width": 26,
         "depth": 20,
         "height": 14
       },
-      "rotation_y": 2.530727415391778,
-      "rotation_deg": 145,
+      "rotation_y": 0,
+      "rotation_deg": 0,
       "hidden": false
     },
     "T.0016": {
@@ -319,17 +319,17 @@
       "short_name": "เคมีภัณฑ์ 1 (ท.0016)",
       "category_th": "คลังเก็บเคมีภัณฑ์",
       "layout_position": {
-        "x": 168,
+        "x": 158,
         "y": 0,
-        "z": -115
+        "z": -135
       },
       "dimensions": {
         "width": 26,
         "depth": 18,
         "height": 9
       },
-      "rotation_y": 4.101523742186675,
-      "rotation_deg": 235,
+      "rotation_y": 1.5707963267948966,
+      "rotation_deg": 90,
       "hidden": false
     },
     "T.0017": {
@@ -337,9 +337,9 @@
       "short_name": "ศูนย์พัฒนางานเชื่อม ศพชส. (ท.0017)",
       "category_th": "ศูนย์ฝึกอบรมและทดสอบช่างเชื่อม",
       "layout_position": {
-        "x": 135,
+        "x": 128,
         "y": 0,
-        "z": -60
+        "z": -75
       },
       "dimensions": {
         "width": 24,
@@ -355,17 +355,17 @@
       "short_name": "ศูนย์มาตรวิทยาและสอบเทียบ (ท.0018)",
       "category_th": "อาคารห้องปฏิบัติการมาตรวิทยา",
       "layout_position": {
-        "x": 168,
+        "x": 158,
         "y": 0,
-        "z": -65
+        "z": -80
       },
       "dimensions": {
         "width": 32,
         "depth": 18,
         "height": 10
       },
-      "rotation_y": 5.672320068981571,
-      "rotation_deg": 325,
+      "rotation_y": 1.5707963267948966,
+      "rotation_deg": 90,
       "hidden": false
     },
     "T.0019": {
@@ -375,7 +375,7 @@
       "layout_position": {
         "x": 48,
         "y": 0,
-        "z": -35
+        "z": -25
       },
       "dimensions": {
         "width": 30,
@@ -391,9 +391,9 @@
       "short_name": "ศูนย์รับรองสมรรถนะ (ท.0020)",
       "category_th": "อาคารรับรองสมรรถนะ",
       "layout_position": {
-        "x": 42,
+        "x": 48,
         "y": 0,
-        "z": 20
+        "z": 25
       },
       "dimensions": {
         "width": 26,
@@ -546,8 +546,8 @@
     "ROAD_2": {
       "name": "ROAD_2",
       "category": "ถนน",
-      "x": 90,
-      "z": -95,
+      "x": 80,
+      "z": -110,
       "width": 8,
       "length": 110,
       "rotation_y": 1.5707963267948966,
@@ -724,12 +724,12 @@
     "LAKE_PROMENADE": {
       "name": "สระน้ำและสะพานไม้ริมน้ำหลัง ท.0019",
       "category": "สระน้ำและภูมิทัศน์",
-      "x": 82,
+      "x": 85,
       "z": -25,
       "width": 36,
-      "depth": 28,
-      "rotation_y": 2.530727415391778,
-      "rotation_deg": 90,
+      "depth": 32,
+      "rotation_y": 0,
+      "rotation_deg": 0,
       "hidden": false
     },
     "LAKE_FOUNTAIN": {
@@ -767,12 +767,12 @@
     },
     "FOOTBALL": {
       "name": "สนามฟุตบอลใหญ่ (Main Football Pitch)",
-      "x": 92,
+      "x": 88,
       "z": -85,
       "width": 28,
       "depth": 56,
-      "rotation_y": 2.530727415391778,
-      "rotation_deg": 145,
+      "rotation_y": 0,
+      "rotation_deg": 0,
       "category": "สันทนาการและกีฬา",
       "hidden": false
     },
@@ -825,8 +825,8 @@
     },
     "EAST_ROUNDABOUT": {
       "name": "วงเวียนฝั่งตะวันออก (East Roundabout)",
-      "x": 148,
-      "z": -95,
+      "x": 135,
+      "z": -110,
       "width": 24,
       "depth": 24,
       "rotation_y": 0,
