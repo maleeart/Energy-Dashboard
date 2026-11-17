@@ -1294,9 +1294,9 @@
       },
       "OHK_RETENTION_POND": {
             "name": "สระน้ำชะลอน้ำ อหข. (Peanut Retention Pond)",
-            "x": -120,
-            "z": -90,
-            "width": 22,
+            "x": -115,
+            "z": -100,
+            "width": 24,
             "depth": 38,
             "category": "สระกักเก็บน้ำ",
             "rotation_y": 0,
@@ -1460,8 +1460,8 @@
       },
       "OHK_ROUNDABOUT": {
             "name": "วงเวียนใหญ่ศูนย์ขนส่ง อหข.",
-            "x": -155,
-            "z": -150,
+            "x": -148,
+            "z": -155,
             "category": "ระบบการจราจร",
             "rotation_y": 0,
             "hidden": false,
@@ -1470,8 +1470,8 @@
       },
       "OHK_GAZEBO": {
             "name": "ศาลาพักผ่อนริมน้ำ อหข.",
-            "x": -140,
-            "z": -105,
+            "x": -106,
+            "z": -100,
             "category": "อาคารสันทนาการริมน้ำ",
             "rotation_y": 0,
             "hidden": false

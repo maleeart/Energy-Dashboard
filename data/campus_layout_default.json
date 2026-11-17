@@ -1,6 +1,6 @@
 {
   "version": "2026.11.17",
-  "updated_at": "2026-11-17T08:49:47.999Z",
+  "updated_at": "2026-11-17T08:55:45.990Z",
   "bounds": {
     "minX": -210,
     "maxX": 190,
@@ -31,17 +31,17 @@
       "short_name": "โรงซ่อมเครื่องจักรกล (ต.015)",
       "category_th": "โรงซ่อมบำรุง",
       "layout_position": {
-        "x": -70,
+        "x": -65,
         "y": 0,
-        "z": -190
+        "z": -140
       },
       "dimensions": {
         "width": 26,
         "depth": 18,
         "height": 9
       },
-      "rotation_y": 4.71238898038469,
-      "rotation_deg": 270,
+      "rotation_y": 0,
+      "rotation_deg": 0,
       "hidden": false
     },
     "D.0017": {
@@ -121,17 +121,17 @@
       "short_name": "โรงอาหาร/บริการ อหข. (ต.0031)",
       "category_th": "อาคารบริการริมน้ำ อหข.",
       "layout_position": {
-        "x": -160,
+        "x": -142,
         "y": 0,
-        "z": -90
+        "z": -98
       },
       "dimensions": {
         "width": 20,
         "depth": 16,
         "height": 7
       },
-      "rotation_y": 3.141592653589793,
-      "rotation_deg": 180,
+      "rotation_y": 0,
+      "rotation_deg": 0,
       "hidden": false
     },
     "D.0033": {
@@ -139,9 +139,9 @@
       "short_name": "อาคารทำการ/งานเชื่อม อหข. (ต.0033)",
       "category_th": "อาคารปฏิบัติการงานเชื่อม",
       "layout_position": {
-        "x": -95,
+        "x": -65,
         "y": 0,
-        "z": -205
+        "z": -180
       },
       "dimensions": {
         "width": 22,
@@ -409,7 +409,7 @@
       "short_name": "Warehouse กัมมันตภาพรังสี (ท.0022)",
       "category_th": "คลังพัสดุและห้องปฏิบัติการ",
       "layout_position": {
-        "x": -140,
+        "x": -145,
         "y": 0,
         "z": -25
       },
@@ -427,7 +427,7 @@
       "short_name": "Construction Shop (ท.0023)",
       "category_th": "โรงปฏิบัติการก่อสร้าง",
       "layout_position": {
-        "x": -140,
+        "x": -145,
         "y": 0,
         "z": -55
       },
@@ -445,9 +445,9 @@
       "short_name": "อาคารเก็บเครื่องจักร อสร. (ท.0025)",
       "category_th": "อาคารเก็บรักษาเครื่องจักร",
       "layout_position": {
-        "x": -85,
+        "x": -75,
         "y": 0,
-        "z": -100
+        "z": -95
       },
       "dimensions": {
         "width": 24,
@@ -463,17 +463,17 @@
       "short_name": "สำนักงานขนส่ง อหข. (ท.0026)",
       "category_th": "อาคารสำนักงานและบริหาร อหข.",
       "layout_position": {
-        "x": -185,
+        "x": -168,
         "y": 0,
-        "z": -115
+        "z": -120
       },
       "dimensions": {
         "width": 24,
         "depth": 18,
-        "height": 9
+        "height": 11
       },
-      "rotation_y": 3.141592653589793,
-      "rotation_deg": 180,
+      "rotation_y": 0,
+      "rotation_deg": 0,
       "hidden": false
     },
     "T.0027": {
@@ -481,13 +481,13 @@
       "short_name": "โรงจอดยานพาหนะ อหข. (ท.0027)",
       "category_th": "อาคารโรงจอดและซ่อมยานพาหนะ",
       "layout_position": {
-        "x": -175,
+        "x": -145,
         "y": 0,
-        "z": -195
+        "z": -200
       },
       "dimensions": {
         "width": 24,
-        "depth": 24,
+        "depth": 45,
         "height": 9
       },
       "rotation_y": 0,
@@ -499,7 +499,7 @@
       "short_name": "ปฏิบัติการ 1 เครื่องจักรกลหนัก (ท.0028)",
       "category_th": "โรงซ่อมเครื่องจักรกลหนัก",
       "layout_position": {
-        "x": -135,
+        "x": -95,
         "y": 0,
         "z": -195
       },
@@ -517,17 +517,17 @@
       "short_name": "ปฏิบัติการ 2 เครื่องจักรกลหนัก (ท.0029)",
       "category_th": "โรงซ่อมเครื่องจักรกลหนัก",
       "layout_position": {
-        "x": -105,
+        "x": -95,
         "y": 0,
         "z": -150
       },
       "dimensions": {
         "width": 34,
-        "depth": 20,
+        "depth": 22,
         "height": 11
       },
-      "rotation_y": 4.71238898038469,
-      "rotation_deg": 270,
+      "rotation_y": 0,
+      "rotation_deg": 0,
       "hidden": false
     }
   },
@@ -713,9 +713,9 @@
     "OHK_RETENTION_POND": {
       "name": "สระน้ำชะลอน้ำ อหข. (Peanut Retention Pond)",
       "category": "สระกักเก็บน้ำ",
-      "x": -120,
-      "z": -90,
-      "width": 22,
+      "x": -115,
+      "z": -100,
+      "width": 24,
       "depth": 38,
       "rotation_y": 0,
       "rotation_deg": 0,
@@ -805,22 +805,22 @@
     },
     "OHK_ROUNDABOUT": {
       "name": "วงเวียนใหญ่ศูนย์ขนส่ง อหข.",
-      "category": "ระบบการจราจร",
-      "x": -155,
-      "z": -150,
+      "x": -148,
+      "z": -155,
       "width": 28,
       "depth": 28,
       "rotation_y": 0,
       "rotation_deg": 0,
+      "category": "ระบบการจราจร",
       "hidden": false
     },
     "OHK_GAZEBO": {
       "name": "ศาลาพักผ่อนริมน้ำ อหข.",
-      "category": "อาคารสันทนาการริมน้ำ",
-      "x": -140,
-      "z": -105,
+      "x": -106,
+      "z": -100,
       "rotation_y": 0,
       "rotation_deg": 0,
+      "category": "อาคารสันทนาการริมน้ำ",
       "hidden": false
     },
     "EAST_ROUNDABOUT": {

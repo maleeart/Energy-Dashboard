@@ -581,7 +581,7 @@
 
       // ── 1. Curved Peanut-Shaped Retention Pond (สระน้ำ อหข. WL +99.00) ──
       const pondGroup = new THREE.Group();
-      pondGroup.position.set(-171, 0, -158);
+      pondGroup.position.set(-115, 0, -100);
 
       // South lobe of pond (near D.0031) - relative to (-171, -158)
       const lobe1 = new THREE.Mesh(new THREE.CylinderGeometry(11, 11, 0.2, 32), waterMat);
@@ -638,9 +638,9 @@
       this.waterMeshes.set('OHK_RETENTION_POND', pondGroup);
 
       // ── 2. Grand OHK Roundabout (วงเวียนใหญ่ อหข.) ──
-      // Positioned cleanly without intersecting any building: Center (-135, -150)
+      // Positioned cleanly without intersecting any building: Center (-148, -155)
       const roundaboutGroup = new THREE.Group();
-      roundaboutGroup.position.set(-135, 0, -150);
+      roundaboutGroup.position.set(-148, 0, -155);
 
       const outerR = 16;
       const innerR = 8.5;
@@ -690,7 +690,7 @@
       const apronGeo = new THREE.PlaneGeometry(75, 60);
       const apron = new THREE.Mesh(apronGeo, concreteApronMat);
       apron.rotation.x = -Math.PI / 2;
-      apron.position.set(-135, 0.05, -150);
+      apron.position.set(-110, 0.05, -165);
       apron.receiveShadow = true;
       ohkGroup.add(apron);
 
@@ -1167,8 +1167,8 @@
         { id: 'TURBINE_SCULPTURE', text: '⚙️ ปฏิมากรรมกังหันไอน้ำ', x: 55, y: 14, z: 55, color: '#EA580C' },
         { id: 'SUNFLOWER_FIELD', text: '🌻 ทุ่งทานตะวัน & ป้าย กฟผ.', x: 10, y: 8, z: 115, color: '#EAB308' },
         // OHK Specific Landmark Pins (No Soccer field in OHK)
-        { id: 'OHK_ROUNDABOUT', text: '🚛 วงเวียนใหญ่ศูนย์ขนส่ง อหข.', x: -130, y: 10, z: -160, color: '#7C3AED' },
-        { id: 'OHK_RETENTION_POND', text: '💧 สระน้ำ & ศาลาริมน้ำ อหข.', x: -185, y: 8, z: -180, color: '#0284C7' },
+        { id: 'OHK_ROUNDABOUT', text: '🚛 วงเวียนใหญ่ศูนย์ขนส่ง อหข.', x: -148, y: 10, z: -155, color: '#7C3AED' },
+        { id: 'OHK_RETENTION_POND', text: '💧 สระน้ำ & ศาลาริมน้ำ อหข.', x: -115, y: 8, z: -100, color: '#0284C7' },
         { id: 'TRANS_LINE_ANGTHONG', text: '⚡ สายส่ง 230 kV อ่างทอง 2', x: -120, y: 28, z: -190, color: '#EF4444' }
       ];
 
