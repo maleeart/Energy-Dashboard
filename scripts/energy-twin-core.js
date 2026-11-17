@@ -944,7 +944,7 @@
             "x": 75,
             "z": -175,
             "width": 8,
-            "length": 90,
+            "length": 100,
             "category": "ถนน",
             "rotation_y": 1.5707963267948966,
             "hidden": false
@@ -1421,13 +1421,13 @@
       },
       "FOOTBALL": {
             "name": "สนามฟุตบอลใหญ่ (Main Football Pitch)",
-            "x": 120,
-            "z": -70,
+            "x": 76,
+            "z": -164,
             "category": "สันทนาการและกีฬา",
-            "rotation_y": 0,
+            "rotation_y": 2.530727415391778,
             "hidden": false,
-            "width": 22,
-            "depth": 34
+            "width": 28,
+            "depth": 56
       },
       "TURBINE_SCULPTURE": {
             "name": "ลานปฏิมากรรมกังหันไอน้ำ (Turbine Plaza)",
@@ -1473,7 +1473,7 @@
       },
       "EAST_ROUNDABOUT": {
             "name": "วงเวียนฝั่งตะวันออก (East Roundabout)",
-            "x": 140,
+            "x": 135,
             "z": -175,
             "category": "ระบบการจราจร",
             "rotation_y": 0,

@@ -1,10 +1,10 @@
 /**
  * Sai Noi Campus Building Mapping Data (Pre-bundled)
- * Auto-generated: 2026-11-17T07:44:48.609Z
+ * Auto-generated: 2026-11-17T08:01:09.837Z
  */
 window.SAINOI_BUILDING_MAPPING = {
   "schema_version": "1.0.0",
-  "generated_at": "2026-11-17T07:44:48.608Z",
+  "generated_at": "2026-11-17T08:01:09.835Z",
   "site": "การไฟฟ้าฝ่ายผลิตแห่งประเทศไทย สำนักงานไทรน้อย (EGAT Sai Noi)",
   "disclaimer": "โมเดลและตำแหน่งอาคารในระยะนำร่อง (Pilot) เป็นภาพจำลองเชิงสัญลักษณ์ (Symbolic Representation) จัดวางเพื่อความสะดวกในการสำรวจข้อมูล ไม่ใช่แบบสำรวจรังวัดจริง และไม่มีการใช้ขนาดจำลองคำนวณพื้นที่หรือ kWh/m²",
   "double_counting_policy": "ยอดการใช้ไฟฟ้ารวมของแต่ละอาคารคำนวณจากมิเตอร์ประธาน (Main Meter/MDB) เท่านั้น โดยมิเตอร์ย่อย (Sub-meters) ใช้สำหรับแจกแจงรายละเอียดและจะไม่ถูกนำไปบวกรวมกับมิเตอร์ประธานเพื่อป้องกันการนับซ้ำ",
@@ -282,14 +282,14 @@ window.SAINOI_BUILDING_MAPPING = {
       "floors": 2,
       "description": "อาคารอเนกประสงค์ / กีฬา (ต.0025) อาคาร 2 ชั้น หลังคาจั่วสูง ชั้นล่างเป็นลานเสาเปิดโล่ง (Pilotis) สำหรับจอดรถยนต์ ชั้นบนหน้าต่างแถบยาวกระจกสีเขียว",
       "dimensions": {
-        "width": 24,
-        "depth": 20,
+        "width": 26,
+        "depth": 22,
         "height": 10
       },
       "layout_position": {
-        "x": 120,
+        "x": 100,
         "y": 0,
-        "z": -110
+        "z": -120
       },
       "color_base": "#E2E8F0",
       "roof_type": "sports_pilotis_d0025",
@@ -313,7 +313,7 @@ window.SAINOI_BUILDING_MAPPING = {
       "mapping_status": "verified",
       "is_surveyed_coord": true,
       "model_source": "masterplan_2565_revised",
-      "rotation_y": 3.141592653589793,
+      "rotation_y": 2.530727415391778,
       "hidden": false
     },
     "D.0026": {
@@ -774,14 +774,14 @@ window.SAINOI_BUILDING_MAPPING = {
       "floors": 1,
       "description": "อาคารปฏิบัติการ 2 ชั้น สีขาวหน้าต่างแถบยาว งานไฟฟ้าและโยธา",
       "dimensions": {
-        "width": 28,
+        "width": 30,
         "depth": 20,
         "height": 11
       },
       "layout_position": {
-        "x": 55,
+        "x": 81,
         "y": 0,
-        "z": -200
+        "z": -236
       },
       "color_base": "#FFFFFF",
       "roof_type": "curved_barrel",
@@ -807,7 +807,7 @@ window.SAINOI_BUILDING_MAPPING = {
       "mapping_status": "verified",
       "is_surveyed_coord": true,
       "model_source": "masterplan_2565_revised",
-      "rotation_y": 0,
+      "rotation_y": 2.530727415391778,
       "hidden": false
     },
     "T.0015": {
@@ -821,13 +821,13 @@ window.SAINOI_BUILDING_MAPPING = {
       "description": "ศูนย์ปฏิบัติการทดสอบเคมี (ท.0015) อาคาร 4 ชั้น แท่นโพเดียมยื่น โถงบันไดหลักสีเข้ม หลังคาทางลาดดรอปออฟ พร้อมที่จอดรถมีหลังคาคลุมด้านหน้า",
       "dimensions": {
         "width": 26,
-        "depth": 18,
+        "depth": 20,
         "height": 14
       },
       "layout_position": {
-        "x": 100,
+        "x": 124,
         "y": 0,
-        "z": -200
+        "z": -214
       },
       "color_base": "#F8FAFC",
       "roof_type": "chem_lab_t0015",
@@ -851,7 +851,7 @@ window.SAINOI_BUILDING_MAPPING = {
       "mapping_status": "verified",
       "is_surveyed_coord": true,
       "model_source": "masterplan_2565_revised",
-      "rotation_y": 0,
+      "rotation_y": 2.530727415391778,
       "hidden": false
     },
     "T.0016": {
@@ -864,14 +864,14 @@ window.SAINOI_BUILDING_MAPPING = {
       "floors": 1,
       "description": "อาคารปฏิบัติการเคมี (ท.0016) อาคารเวิร์กช็อปสีขาว หลังคาโค้ง ซุ้มทางเข้าทรงโค้งสีขาว-ส้ม กฟผ. แผงระแนงกันแดดเมทัลชีท",
       "dimensions": {
-        "width": 24,
+        "width": 26,
         "depth": 18,
         "height": 9
       },
       "layout_position": {
-        "x": 140,
+        "x": 155,
         "y": 0,
-        "z": -205
+        "z": -195
       },
       "color_base": "#F1F5F9",
       "roof_type": "chemical_workshop_t0016",
@@ -895,7 +895,7 @@ window.SAINOI_BUILDING_MAPPING = {
       "mapping_status": "verified",
       "is_surveyed_coord": true,
       "model_source": "masterplan_2565_revised",
-      "rotation_y": 0,
+      "rotation_y": 4.101523742186675,
       "hidden": false
     },
     "T.0017": {
@@ -913,9 +913,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 10
       },
       "layout_position": {
-        "x": 140,
+        "x": 124,
         "y": 0,
-        "z": -140
+        "z": -136
       },
       "color_base": "#CBD5E1",
       "roof_type": "competency_curved_t0017",
@@ -952,14 +952,14 @@ window.SAINOI_BUILDING_MAPPING = {
       "floors": 2,
       "description": "ศูนย์มาตรวิทยาและสอบเทียบเครื่องมือวัด กฟผ. (ท.0018) อาคาร 2 ชั้น โดดเด่นด้วยหอทางเข้าทรงลูกบาศก์สีส้มสด กฟผ. พร้อมคานยื่นแนวนอน ครีบบังแดดแนวตั้ง และเบย์เวิร์กช็อป",
       "dimensions": {
-        "width": 28,
+        "width": 32,
         "depth": 18,
         "height": 10
       },
       "layout_position": {
-        "x": 170,
+        "x": 158,
         "y": 0,
-        "z": -175
+        "z": -140
       },
       "color_base": "#F8FAFC",
       "roof_type": "metrology_center_t0018",
@@ -983,7 +983,7 @@ window.SAINOI_BUILDING_MAPPING = {
       "mapping_status": "verified",
       "is_surveyed_coord": true,
       "model_source": "masterplan_2565_revised",
-      "rotation_y": 4.71238898038469,
+      "rotation_y": 5.672320068981571,
       "hidden": false
     },
     "T.0019": {

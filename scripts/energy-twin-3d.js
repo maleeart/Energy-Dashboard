@@ -375,12 +375,13 @@
       const fieldGroup = new THREE.Group();
       fieldGroup.name = 'FootballField';
       // Center position in campus layout
-      const fx = 120;
-      const fz = -70;
-      const fw = 22;
-      const fd = 34;
+      const fx = 76;
+      const fz = -164;
+      const fw = 28;
+      const fd = 56;
 
       fieldGroup.position.set(fx, 0, fz);
+      fieldGroup.rotation.y = 2.5307;
 
       const turfMat = new THREE.MeshStandardMaterial({
         color: 0x228B22,
@@ -463,7 +464,7 @@
       this.scene.add(this.roadContainer);
 
       // 2. Eastern Science & Chemistry Roundabout (Landmark in front of T.0018 & T.0016)
-      const eastRound = this.createRoundabout(140, -175, 12, 5.5);
+      const eastRound = this.createRoundabout(135, -175, 12, 5.5);
       eastRound.name = 'Roundabout_East';
       this.scene.add(eastRound);
       this.roadMeshes.set('ROAD_EAST_ROUNDABOUT', eastRound);
