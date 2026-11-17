@@ -1097,13 +1097,13 @@
     // ── Landmarks & Infrastructure Management ─────────────────────
     defaultLandmarks: {
       'SW_YARD': { name: 'ลานสวิตช์ยาร์ด 500 kV (Switchyard)', x: -65, z: 85, category: 'ระบบส่งไฟฟ้าแรงสูง' },
-      'FOOTBALL': { name: 'สนามฟุตบอลใหญ่ (Main Football Pitch)', x: 80, z: -46, category: 'สันทนาการและกีฬา' },
+      'FOOTBALL': { name: 'สนามฟุตบอลใหญ่ (Main Football Pitch)', x: 80, z: -43, width: 22, depth: 34, category: 'สันทนาการและกีฬา' },
       'TURBINE_SCULPTURE': { name: 'ลานปฏิมากรรมกังหันไอน้ำ (Turbine Plaza)', x: 35, z: 75, category: 'แลนด์มาร์คสำคัญ' },
       'SUNFLOWER_FIELD': { name: 'ทุ่งทานตะวัน (Sunflower Field)', x: -15, z: 110, category: 'ภูมิทัศน์ธรรมชาติ' },
       'CAMPUS_SIGN': { name: 'ป้ายสัญลักษณ์ กฟผ. ไทรน้อย', x: 4, z: 132, category: 'ป้ายแลนด์มาร์ค' },
-      'OHK_ROUNDABOUT': { name: 'วงเวียนใหญ่ศูนย์ขนส่ง อหข.', x: -135, z: -150, category: 'ระบบการจราจร' },
+      'OHK_ROUNDABOUT': { name: 'วงเวียนใหญ่ศูนย์ขนส่ง อหข.', x: -135, z: -150, width: 28, depth: 28, category: 'ระบบการจราจร' },
       'OHK_GAZEBO': { name: 'ศาลาพักผ่อนริมน้ำ อหข.', x: -162, z: -158, category: 'อาคารสันทนาการริมน้ำ' },
-      'EAST_ROUNDABOUT': { name: 'วงเวียนฝั่งตะวันออก (East Roundabout)', x: 125, z: -60, category: 'ระบบการจราจร' },
+      'EAST_ROUNDABOUT': { name: 'วงเวียนฝั่งตะวันออก (East Roundabout)', x: 120, z: -62, width: 24, depth: 24, category: 'ระบบการจราจร' },
       'SHRINE_VISHNU': { name: 'ศาลพระวิษณุกรรม', x: 40, z: 45, category: 'สถานที่ศักดิ์สิทธิ์' },
       'SHRINE_SEVEN_KINGS': { name: 'ศาลหลวงพ่อเจ็ดกษัตริย์', x: 35, z: -90, category: 'สถานที่ศักดิ์สิทธิ์' },
       'PARKING_SHED_16': { name: 'โรงจอดรถยนต์ ต.0016', x: 65, z: -45, category: 'อาคารจอดรถ' },
@@ -1177,6 +1177,8 @@
         category: lm.category,
         x: lm.x,
         z: lm.z,
+        width: lm.width || (id === 'FOOTBALL' ? 22 : (id === 'EAST_ROUNDABOUT' || id === 'OHK_ROUNDABOUT' ? 24 : 15)),
+        depth: lm.depth || (id === 'FOOTBALL' ? 34 : (id === 'EAST_ROUNDABOUT' || id === 'OHK_ROUNDABOUT' ? 24 : 15)),
         rotation_y: lm.rotation_y || 0,
         hidden: Boolean(lm.hidden)
       }));

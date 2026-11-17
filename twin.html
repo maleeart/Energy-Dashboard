@@ -4964,6 +4964,21 @@
           ctx.beginPath();
           ctx.arc(0, 0, Math.min(width, depth) * 0.2, 0, Math.PI * 2);
           ctx.stroke();
+        } else if (lm.id === 'EAST_ROUNDABOUT' || lm.id === 'OHK_ROUNDABOUT') {
+          const r = Math.min(width, depth) / 2;
+          ctx.fillStyle = '#334155';
+          ctx.beginPath();
+          ctx.arc(0, 0, r, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.fillStyle = '#5B8E55';
+          ctx.beginPath();
+          ctx.arc(0, 0, r * 0.5, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.strokeStyle = '#E2E8F0';
+          ctx.lineWidth = 1.5;
+          ctx.beginPath();
+          ctx.arc(0, 0, r * 0.68, 0, Math.PI * 2);
+          ctx.stroke();
         } else if (lm.id === 'SW_YARD') {
           ctx.fillStyle = '#F3E8FF';
           ctx.fillRect(-width / 2, -depth / 2, width, depth);

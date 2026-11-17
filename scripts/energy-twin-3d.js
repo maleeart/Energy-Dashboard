@@ -298,24 +298,31 @@
     setupSwitchyard() {
       const yardGroup = new THREE.Group();
       yardGroup.name = 'Switchyard500kV';
+      yardGroup.position.set(-65, 0, 85);
 
       const yardGeo = new THREE.PlaneGeometry(65, 60);
-      const yardMat = new THREE.MeshStandardMaterial({ color: 0xCBD5E1, roughness: 0.95 });
+      const yardMat = new THREE.MeshStandardMaterial({
+        color: 0xCBD5E1,
+        roughness: 0.95,
+        polygonOffset: true,
+        polygonOffsetFactor: -1,
+        polygonOffsetUnits: -1
+      });
       const yard = new THREE.Mesh(yardGeo, yardMat);
       yard.rotation.x = -Math.PI / 2;
-      yard.position.set(-65, 0.06, 85);
+      yard.position.set(0, 0.06, 0);
       yard.receiveShadow = true;
       yardGroup.add(yard);
 
       const fenceMat = new THREE.MeshStandardMaterial({ color: 0x64748B, wireframe: true });
       const fenceGeo = new THREE.BoxGeometry(66, 3.5, 61);
       const fence = new THREE.Mesh(fenceGeo, fenceMat);
-      fence.position.set(-65, 1.75, 85);
+      fence.position.set(0, 1.75, 0);
       yardGroup.add(fence);
 
       const steelMat = new THREE.MeshStandardMaterial({ color: 0x475569, metalness: 0.8, roughness: 0.3 });
       const gantryPositions = [
-        [-85, 70], [-85, 100], [-45, 70], [-45, 100]
+        [-20, -15], [-20, 15], [20, -15], [20, 15]
       ];
 
       gantryPositions.forEach(([gx, gz]) => {
@@ -342,7 +349,7 @@
       // Step-up / Step-down Power Transformers
       const transMat = new THREE.MeshStandardMaterial({ color: 0x334155, metalness: 0.5, roughness: 0.5 });
       const finMat = new THREE.MeshStandardMaterial({ color: 0x475569, metalness: 0.6 });
-      const transPositions = [[-70, 85], [-60, 85]];
+      const transPositions = [[-5, 0], [5, 0]];
 
       transPositions.forEach(([tx, tz]) => {
         const transBody = new THREE.Mesh(new THREE.BoxGeometry(5, 4.5, 6), transMat);
@@ -363,55 +370,69 @@
       this.landmarkMeshes.set('SW_YARD', yardGroup);
     }
 
-    // Main Football Pitch between D.0019 and D.0025
+    // Main Football Pitch between D.0019, T.0014, and D.0025
     setupMainFootballField() {
       const fieldGroup = new THREE.Group();
-      // Main Campus Football Pitch: Situated in the open courtyard flanked by D.0019, T.0014, and D.0025
+      fieldGroup.name = 'FootballField';
+      // Center position in the quadrangle between D.0019, T.0014, and D.0025
       const fx = 80;
-      const fz = -46;
+      const fz = -43;
       const fw = 22;
       const fd = 34;
 
-      const turfMat = new THREE.MeshStandardMaterial({ color: 0x228B22, roughness: 0.85 });
+      fieldGroup.position.set(fx, 0, fz);
+
+      const turfMat = new THREE.MeshStandardMaterial({
+        color: 0x228B22,
+        roughness: 0.85,
+        polygonOffset: true,
+        polygonOffsetFactor: -1,
+        polygonOffsetUnits: -1
+      });
       const pitch = new THREE.Mesh(new THREE.PlaneGeometry(fw, fd), turfMat);
       pitch.rotation.x = -Math.PI / 2;
-      pitch.position.set(fx, 0.06, fz);
+      pitch.position.set(0, 0.08, 0);
       pitch.receiveShadow = true;
       fieldGroup.add(pitch);
 
-      const lineMat = new THREE.MeshBasicMaterial({ color: 0xF8FAFC });
+      const lineMat = new THREE.MeshBasicMaterial({
+        color: 0xF8FAFC,
+        polygonOffset: true,
+        polygonOffsetFactor: -2,
+        polygonOffsetUnits: -2
+      });
 
       const borderLine = new THREE.Mesh(new THREE.PlaneGeometry(fw, fd), lineMat);
       borderLine.rotation.x = -Math.PI / 2;
-      borderLine.position.set(fx, 0.07, fz);
+      borderLine.position.set(0, 0.09, 0);
       fieldGroup.add(borderLine);
 
       const pitchInner = new THREE.Mesh(new THREE.PlaneGeometry(fw - 1, fd - 1), turfMat);
       pitchInner.rotation.x = -Math.PI / 2;
-      pitchInner.position.set(fx, 0.08, fz);
+      pitchInner.position.set(0, 0.10, 0);
       pitchInner.receiveShadow = true;
       fieldGroup.add(pitchInner);
 
       const midLine = new THREE.Mesh(new THREE.PlaneGeometry(fw - 1, 0.4), lineMat);
       midLine.rotation.x = -Math.PI / 2;
-      midLine.position.set(fx, 0.09, fz);
+      midLine.position.set(0, 0.11, 0);
       fieldGroup.add(midLine);
 
       const circleGeo = new THREE.RingGeometry(3.6, 4.0, 32);
       const circle = new THREE.Mesh(circleGeo, lineMat);
       circle.rotation.x = -Math.PI / 2;
-      circle.position.set(fx, 0.09, fz);
+      circle.position.set(0, 0.11, 0);
       fieldGroup.add(circle);
 
       const goalMat = new THREE.MeshStandardMaterial({ color: 0xFFFFFF });
       [-fd / 2 + 1, fd / 2 - 1].forEach(gz => {
         const goalCross = new THREE.Mesh(new THREE.BoxGeometry(4.5, 0.2, 0.2), goalMat);
-        goalCross.position.set(fx, 2.2, fz + gz);
+        goalCross.position.set(0, 2.2, gz);
         fieldGroup.add(goalCross);
 
         [-2.25, 2.25].forEach(gx => {
           const post = new THREE.Mesh(new THREE.BoxGeometry(0.2, 2.2, 0.2), goalMat);
-          post.position.set(fx + gx, 1.1, fz + gz);
+          post.position.set(gx, 1.1, gz);
           fieldGroup.add(post);
         });
       });
@@ -420,12 +441,12 @@
       const bleacherMat = new THREE.MeshStandardMaterial({ color: 0xCBD5E1, roughness: 0.8 });
       const bleacherW = fw * 0.82;
       [
-        { y: 0.35, d: 2.0, z: fz - fd / 2 - 1.2 },
-        { y: 0.70, d: 1.6, z: fz - fd / 2 - 2.4 },
-        { y: 1.05, d: 1.4, z: fz - fd / 2 - 3.6 }
+        { y: 0.35, d: 2.0, z: -fd / 2 - 1.2 },
+        { y: 0.70, d: 1.6, z: -fd / 2 - 2.4 },
+        { y: 1.05, d: 1.4, z: -fd / 2 - 3.6 }
       ].forEach(step => {
         const terrace = new THREE.Mesh(new THREE.BoxGeometry(bleacherW, step.y, step.d), bleacherMat);
-        terrace.position.set(fx, step.y / 2 + 0.05, step.z);
+        terrace.position.set(0, step.y / 2 + 0.05, step.z);
         terrace.receiveShadow = true;
         fieldGroup.add(terrace);
       });
@@ -442,7 +463,8 @@
       this.scene.add(this.roadContainer);
 
       // 2. Eastern Science & Chemistry Roundabout (Landmark in front of T.0018 & T.0016)
-      const eastRound = this.createRoundabout(125, -60, 14, 6.5);
+      const eastRound = this.createRoundabout(120, -62, 12, 5.5);
+      eastRound.name = 'Roundabout_East';
       this.scene.add(eastRound);
       this.roadMeshes.set('ROAD_EAST_ROUNDABOUT', eastRound);
       this.landmarkMeshes.set('EAST_ROUNDABOUT', eastRound);
@@ -492,12 +514,20 @@
 
     createRoundabout(cx, cz, outerR, innerR) {
       const group = new THREE.Group();
+      group.position.set(cx, 0, cz);
 
       const ringGeo = new THREE.RingGeometry(innerR, outerR, 36);
-      const ringMat = new THREE.MeshStandardMaterial({ color: 0x334155, roughness: 0.72, side: THREE.DoubleSide });
+      const ringMat = new THREE.MeshStandardMaterial({
+        color: 0x334155,
+        roughness: 0.72,
+        side: THREE.DoubleSide,
+        polygonOffset: true,
+        polygonOffsetFactor: -1,
+        polygonOffsetUnits: -1
+      });
       const ring = new THREE.Mesh(ringGeo, ringMat);
       ring.rotation.x = -Math.PI / 2;
-      ring.position.set(cx, 0.06, cz);
+      ring.position.set(0, 0.08, 0);
       ring.receiveShadow = true;
       group.add(ring);
 
@@ -505,23 +535,23 @@
       const islandMat = new THREE.MeshStandardMaterial({ color: 0x5B8E55, roughness: 0.9 });
       const island = new THREE.Mesh(islandGeo, islandMat);
       island.rotation.x = -Math.PI / 2;
-      island.position.set(cx, 0.25, cz);
+      island.position.set(0, 0.25, 0);
       group.add(island);
 
       // Decorative Walkway Ring in Roundabout Island
-      const innerWalk = new THREE.Mesh(new THREE.RingGeometry(3.2, 4.6, 28), new THREE.MeshBasicMaterial({ color: 0xE2E8F0 }));
+      const innerWalk = new THREE.Mesh(new THREE.RingGeometry(innerR * 0.45, innerR * 0.75, 28), new THREE.MeshBasicMaterial({ color: 0xE2E8F0 }));
       innerWalk.rotation.x = -Math.PI / 2;
-      innerWalk.position.set(cx, 0.26, cz);
+      innerWalk.position.set(0, 0.26, 0);
       group.add(innerWalk);
 
       const curbGeo = new THREE.CylinderGeometry(innerR, innerR, 0.4, 32, 1, true);
       const curbMat = new THREE.MeshStandardMaterial({ color: 0xCBD5E1 });
       const curb = new THREE.Mesh(curbGeo, curbMat);
-      curb.position.set(cx, 0.2, cz);
+      curb.position.set(0, 0.2, 0);
       group.add(curb);
 
       const tree = this.createTreeMesh();
-      tree.position.set(cx, 0.2, cz);
+      tree.position.set(0, 0.2, 0);
       tree.scale.set(1.4, 1.4, 1.4);
       group.add(tree);
 
@@ -973,23 +1003,36 @@
       scGroup.name = 'SteamTurbineSculpture';
       const cx = 35;
       const cz = 75;
+      scGroup.position.set(cx, 0, cz);
 
       // 1. Concentric Circular Plaza Walkways (Matching photo: ปฏิมากรรมหน้า ท.0020.JPG)
-      const paveMat1 = new THREE.MeshStandardMaterial({ color: 0xE2E8F0, roughness: 0.8 });
-      const paveMat2 = new THREE.MeshStandardMaterial({ color: 0x94A3B8, roughness: 0.85 });
+      const paveMat1 = new THREE.MeshStandardMaterial({
+        color: 0xE2E8F0,
+        roughness: 0.8,
+        polygonOffset: true,
+        polygonOffsetFactor: -1,
+        polygonOffsetUnits: -1
+      });
+      const paveMat2 = new THREE.MeshStandardMaterial({
+        color: 0x94A3B8,
+        roughness: 0.85,
+        polygonOffset: true,
+        polygonOffsetFactor: -1,
+        polygonOffsetUnits: -1
+      });
       const lawnMat = new THREE.MeshStandardMaterial({ color: 0x4D7C0F, roughness: 0.9 });
 
       // Outer plaza ring
       const outerRing = new THREE.Mesh(new THREE.RingGeometry(6.5, 10.5, 40), paveMat1);
       outerRing.rotation.x = -Math.PI / 2;
-      outerRing.position.set(cx, 0.08, cz);
+      outerRing.position.set(0, 0.08, 0);
       outerRing.receiveShadow = true;
       scGroup.add(outerRing);
 
       // Inner circular green lawn
       const innerLawn = new THREE.Mesh(new THREE.CircleGeometry(6.4, 36), lawnMat);
       innerLawn.rotation.x = -Math.PI / 2;
-      innerLawn.position.set(cx, 0.1, cz);
+      innerLawn.position.set(0, 0.1, 0);
       innerLawn.receiveShadow = true;
       scGroup.add(innerLawn);
 
@@ -998,19 +1041,19 @@
         const walk = new THREE.Mesh(new THREE.PlaneGeometry(2.2, 11), paveMat2);
         walk.rotation.x = -Math.PI / 2;
         walk.rotation.z = ang;
-        walk.position.set(cx, 0.11, cz);
+        walk.position.set(0, 0.11, 0);
         scGroup.add(walk);
       });
 
       // 2. Concrete Triangular Support Pedestals (Bearing blocks for tilted rotor)
       const pedestalMat = new THREE.MeshStandardMaterial({ color: 0xF1F5F9, roughness: 0.6 });
       const lowerPedestal = new THREE.Mesh(new THREE.BoxGeometry(2.2, 1.4, 2.0), pedestalMat);
-      lowerPedestal.position.set(cx - 2.5, 0.7 + 0.1, cz + 2.0);
+      lowerPedestal.position.set(-2.5, 0.7 + 0.1, 2.0);
       lowerPedestal.castShadow = true;
       scGroup.add(lowerPedestal);
 
       const higherPedestal = new THREE.Mesh(new THREE.BoxGeometry(2.2, 3.2, 2.0), pedestalMat);
-      higherPedestal.position.set(cx + 2.5, 1.6 + 0.1, cz - 2.0);
+      higherPedestal.position.set(2.5, 1.6 + 0.1, -2.0);
       higherPedestal.castShadow = true;
       scGroup.add(higherPedestal);
 
@@ -1067,18 +1110,18 @@
       // Tilt rotor ~28° along diagonal axis
       rotorGroup.rotation.z = -0.48;
       rotorGroup.rotation.y = 0.55;
-      rotorGroup.position.set(cx, 2.5, cz);
+      rotorGroup.position.set(0, 2.5, 0);
       scGroup.add(rotorGroup);
 
       // 4. Tall Thai National Flagpole (เสาธงชาติไทย สูง 14 ม.)
       const flagPoleMat = new THREE.MeshStandardMaterial({ color: 0xF8FAFC, metalness: 0.9, roughness: 0.2 });
       const flagPole = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.16, 14, 12), flagPoleMat);
-      flagPole.position.set(cx + 4.8, 7.0, cz + 3.5);
+      flagPole.position.set(4.8, 7.0, 3.5);
       flagPole.castShadow = true;
       scGroup.add(flagPole);
 
       const finial = new THREE.Mesh(new THREE.SphereGeometry(0.28, 12, 12), new THREE.MeshStandardMaterial({ color: 0xEAB308, metalness: 0.9 }));
-      finial.position.set(cx + 4.8, 14.1, cz + 3.5);
+      finial.position.set(4.8, 14.1, 3.5);
       scGroup.add(finial);
 
       // Thai Flag Banner (Red, White, Blue, White, Red stripes)
@@ -1098,14 +1141,14 @@
         new THREE.PlaneGeometry(3.2, 2.1),
         new THREE.MeshStandardMaterial({ map: flagTex, side: THREE.DoubleSide, roughness: 0.7 })
       );
-      flagMesh.position.set(cx + 4.8 + 1.6, 12.8, cz + 3.5);
+      flagMesh.position.set(4.8 + 1.6, 12.8, 3.5);
       scGroup.add(flagMesh);
 
       // Decorative shrubbery around the plaza
       const bushMat = new THREE.MeshStandardMaterial({ color: 0x166534, roughness: 0.85 });
       for (let a = 0; a < Math.PI * 2; a += Math.PI / 6) {
         const bush = new THREE.Mesh(new THREE.SphereGeometry(0.55, 8, 8), bushMat);
-        bush.position.set(cx + Math.cos(a) * 6.0, 0.45, cz + Math.sin(a) * 6.0);
+        bush.position.set(Math.cos(a) * 6.0, 0.45, Math.sin(a) * 6.0);
         scGroup.add(bush);
       }
 
@@ -1116,10 +1159,10 @@
     setupLandmarkLabels() {
       const landmarks = [
         { text: '⚡ สวิตช์ยาร์ด 500 kV', x: -65, y: 19, z: 85, color: '#D97706' },
-        { text: '⚽ สนามฟุตบอล', x: 65, y: 8, z: -20, color: '#16A34A' },
+        { text: '⚽ สนามฟุตบอล', x: 80, y: 8, z: -43, color: '#16A34A' },
         { text: '💧 สระน้ำ 1, 2, 3', x: -95, y: 7, z: 20, color: '#0284C7' },
         { text: '🚧 ทางเข้าหลัก / ท.0021 ที่ทำการ รปภ.', x: 40, y: 8, z: 140, color: '#475569' },
-        { text: '🧪 วงเวียนหน้า ท.0018 / ท.0016', x: 120, y: 8, z: -60, color: '#2563EB' },
+        { text: '🧪 วงเวียนหน้า ท.0018 / ท.0016', x: 120, y: 8, z: -62, color: '#2563EB' },
         { text: '⚙️ ปฏิมากรรมกังหันไอน้ำ', x: 35, y: 14, z: 75, color: '#EA580C' },
         { text: '🌻 ทุ่งทานตะวัน & ป้าย กฟผ.', x: -15, y: 8, z: 110, color: '#EAB308' },
         // OHK Specific Landmark Pins (No Soccer field in OHK)

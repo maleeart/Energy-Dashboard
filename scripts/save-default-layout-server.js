@@ -171,6 +171,8 @@ function applyDefaultLayout(payload) {
           rotation_y: Number(l.rotation_y) || 0,
           hidden: Boolean(l.hidden)
         };
+        if (l.width !== undefined && !isNaN(Number(l.width))) cleanLandmarks[lid].width = Number(l.width);
+        if (l.depth !== undefined && !isNaN(Number(l.depth))) cleanLandmarks[lid].depth = Number(l.depth);
       });
       const lmStr = JSON.stringify(cleanLandmarks, null, 6);
       coreCode = coreCode.replace(
