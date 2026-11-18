@@ -17,9 +17,9 @@
   <script>if (typeof XLSX === 'undefined') document.write('<script src="scripts/xlsx.full.min.js"><\/script>');</script>
 
   <!-- Core Scripts & Fallback Mapping -->
-  <script src="data/building_mapping.js?v=20261117_09"></script>
-  <script src="scripts/energy-twin-core.js?v=20261117_09"></script>
-  <script src="scripts/energy-twin-3d.js?v=20261117_09"></script>
+  <script src="data/building_mapping.js?v=20261118_01"></script>
+  <script src="scripts/energy-twin-core.js?v=20261118_01"></script>
+  <script src="scripts/energy-twin-3d.js?v=20261118_01"></script>
 
   <style>
     :root {
@@ -6147,28 +6147,46 @@
         return;
       }
 
-      try {
-        const serverHost = window.location.hostname || '127.0.0.1';
-        const resp = await fetch(`http://${serverHost}:3333/api/save-default-layout`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(exportData)
-        });
+      const endpoints = [
+        `http://${window.location.hostname || '127.0.0.1'}:3333/api/save-default-layout`,
+        'http://127.0.0.1:3333/api/save-default-layout',
+        'http://localhost:3333/api/save-default-layout'
+      ];
 
-        if (resp.ok) {
-          const res = await resp.json();
-          alert(`✅ สำเร็จ! ${res.message}\n\nไฟล์ที่อัปเดตถาวร:\n• ` + (res.updated || []).join('\n• '));
-          return;
-        }
-      } catch (err) {
-        console.warn('Bridge server not reachable:', err);
+      for (const endpoint of endpoints) {
+        try {
+          const resp = await fetch(endpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(exportData),
+            signal: AbortSignal.timeout ? AbortSignal.timeout(3000) : undefined
+          });
+
+          if (resp.ok) {
+            const res = await resp.json();
+            alert(`✅ สำเร็จ! ${res.message}\n\nไฟล์ที่อัปเดตถาวร:\n• ` + (res.updated || []).join('\n• '));
+            return;
+          }
+        } catch (_) {}
       }
 
       // Fallback if local bridge server is not reachable
       const jsonStr = JSON.stringify(exportData, null, 2);
+      try {
+        const blob = new Blob([jsonStr], { type: 'application/json;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `campus_layout_default_${new Date().toISOString().slice(0, 10)}.json`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      } catch (_) {}
+
       if (navigator.clipboard && navigator.clipboard.writeText) {
         await navigator.clipboard.writeText(jsonStr);
-        alert('📋 บันทึกลงหน่วยความจำเบราว์เซอร์เรียบร้อยแล้ว!\n\n(เนื่องจากเบราว์เซอร์ทำงานในโหมด Client จึงได้ทำการ "คัดลอก JSON ผังล่าสุดลงในคลิปบอร์ด" ให้ท่านแล้วโดยอัตโนมัติ)\n\n👉 ท่านสามารถกด Ctrl+V วางในห้องแชท เพื่อให้ AI บันทึกทับไฟล์ building_mapping.json และผังระบบได้ทันที!');
+        alert('💾 บันทึกลงหน่วยความจำเรียบร้อยแล้ว!\n\n1. ระบบได้ "ดาวน์โหลดไฟล์ผัง JSON" เก็บไว้ในเครื่องท่านเรียบร้อยแล้ว\n2. และได้ทำการ "คัดลอก JSON ผังล่าสุดลงในคลิปบอร์ด" ให้ท่านแล้ว\n\n👉 ท่านสามารถกด Ctrl+V ในแชท AI ได้ทันที หรือหากต้องการให้ระบบเซฟไฟล์อัตโนมัติ กรุณาเปิดรัน save-default-layout-server.js');
       } else {
         prompt('คัดลอก JSON ผังล่าสุดนี้ส่งให้ AI:', jsonStr);
       }

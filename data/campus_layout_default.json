@@ -1,11 +1,11 @@
 {
-  "version": "2026.11.17",
-  "updated_at": "2026-11-17T08:55:45.990Z",
+  "version": "2026.11.18",
+  "updated_at": "2026-11-18T01:58:55.435Z",
   "bounds": {
-    "minX": -210,
-    "maxX": 190,
-    "minZ": -230,
-    "maxZ": 140
+    "minX": -320,
+    "maxX": 280,
+    "minZ": -300,
+    "maxZ": 320
   },
   "buildings": {
     "B.0001": {
@@ -13,17 +13,17 @@
       "short_name": "อาคารแฟลต 4 ชั้น (บ.0001)",
       "category_th": "อาคารพักอาศัย",
       "layout_position": {
-        "x": -140,
+        "x": -195,
         "y": 0,
-        "z": 15
+        "z": 60
       },
       "dimensions": {
-        "width": 32,
-        "depth": 16,
+        "width": 16,
+        "depth": 32,
         "height": 14
       },
-      "rotation_y": 0,
-      "rotation_deg": 0,
+      "rotation_y": 1.5707963267948966,
+      "rotation_deg": 90,
       "hidden": false
     },
     "D.0015": {
@@ -31,17 +31,17 @@
       "short_name": "โรงซ่อมเครื่องจักรกล (ต.015)",
       "category_th": "โรงซ่อมบำรุง",
       "layout_position": {
-        "x": -65,
+        "x": -130,
         "y": 0,
-        "z": -140
+        "z": -175
       },
       "dimensions": {
         "width": 26,
         "depth": 18,
         "height": 9
       },
-      "rotation_y": 0,
-      "rotation_deg": 0,
+      "rotation_y": 4.71238898038469,
+      "rotation_deg": 270,
       "hidden": false
     },
     "D.0017": {
@@ -49,9 +49,9 @@
       "short_name": "โรงอาหารหลัก (ต.0017)",
       "category_th": "อาคารสวัสดิการและบริการ",
       "layout_position": {
-        "x": 25,
+        "x": 40,
         "y": 0,
-        "z": -140
+        "z": -125
       },
       "dimensions": {
         "width": 24,
@@ -67,9 +67,9 @@
       "short_name": "อาคารนันทนาการและจอดรถ (ต.0019)",
       "category_th": "อาคารนันทนาการและจอดรถ",
       "layout_position": {
-        "x": 50,
+        "x": 95,
         "y": 0,
-        "z": -85
+        "z": -130
       },
       "dimensions": {
         "width": 32,
@@ -85,17 +85,17 @@
       "short_name": "อาคารอเนกประสงค์ (ต.0025)",
       "category_th": "อาคารอเนกประสงค์",
       "layout_position": {
-        "x": 88,
+        "x": 180,
         "y": 0,
-        "z": -35
+        "z": -100
       },
       "dimensions": {
         "width": 26,
         "depth": 22,
         "height": 10
       },
-      "rotation_y": 0,
-      "rotation_deg": 0,
+      "rotation_y": 3.141592653589793,
+      "rotation_deg": 180,
       "hidden": false
     },
     "D.0026": {
@@ -103,17 +103,17 @@
       "short_name": "อาคารระบบประปา (ต.0026)",
       "category_th": "ระบบสาธารณูปโภค",
       "layout_position": {
-        "x": -35,
+        "x": -50,
         "y": 0,
-        "z": -210
+        "z": -215
       },
       "dimensions": {
         "width": 18,
         "depth": 14,
         "height": 6
       },
-      "rotation_y": 0,
-      "rotation_deg": 0,
+      "rotation_y": 1.5707963267948966,
+      "rotation_deg": 90,
       "hidden": false
     },
     "D.0031": {
@@ -121,17 +121,17 @@
       "short_name": "โรงอาหาร/บริการ อหข. (ต.0031)",
       "category_th": "อาคารบริการริมน้ำ อหข.",
       "layout_position": {
-        "x": -142,
+        "x": -240,
         "y": 0,
-        "z": -98
+        "z": -95
       },
       "dimensions": {
         "width": 20,
         "depth": 16,
         "height": 7
       },
-      "rotation_y": 0,
-      "rotation_deg": 0,
+      "rotation_y": 3.141592653589793,
+      "rotation_deg": 180,
       "hidden": false
     },
     "D.0033": {
@@ -139,13 +139,13 @@
       "short_name": "อาคารทำการ/งานเชื่อม อหข. (ต.0033)",
       "category_th": "อาคารปฏิบัติการงานเชื่อม",
       "layout_position": {
-        "x": -65,
+        "x": -175,
         "y": 0,
-        "z": -180
+        "z": -250
       },
       "dimensions": {
         "width": 22,
-        "depth": 16,
+        "depth": 22,
         "height": 8
       },
       "rotation_y": 0,
@@ -157,13 +157,13 @@
       "short_name": "อะไหล่กังหันก๊าซ 1 (ท.0006)",
       "category_th": "คลังพัสดุและอะไหล่",
       "layout_position": {
-        "x": 5,
+        "x": 30,
         "y": 0,
-        "z": -15
+        "z": -20
       },
       "dimensions": {
         "width": 32,
-        "depth": 20,
+        "depth": 38,
         "height": 10
       },
       "rotation_y": 1.5707963267948966,
@@ -175,13 +175,13 @@
       "short_name": "อาคารกองบริหาร (ท.0007)",
       "category_th": "อาคารสำนักงานและบริหาร",
       "layout_position": {
-        "x": 5,
+        "x": 30,
         "y": 0,
-        "z": 30
+        "z": 15
       },
       "dimensions": {
         "width": 24,
-        "depth": 16,
+        "depth": 38,
         "height": 9
       },
       "rotation_y": 1.5707963267948966,
@@ -193,13 +193,13 @@
       "short_name": "อะไหล่กังหันก๊าซ 2 (ท.0008)",
       "category_th": "คลังพัสดุและอะไหล่",
       "layout_position": {
-        "x": 5,
+        "x": 35,
         "y": 0,
-        "z": -60
+        "z": -70
       },
       "dimensions": {
         "width": 32,
-        "depth": 20,
+        "depth": 30,
         "height": 10
       },
       "rotation_y": 1.5707963267948966,
@@ -211,12 +211,12 @@
       "short_name": "ปฏิบัติการพัสดุ/กีฬา (ท.0009)",
       "category_th": "อาคารปฏิบัติการ",
       "layout_position": {
-        "x": -35,
+        "x": -20,
         "y": 0,
-        "z": -90
+        "z": -85
       },
       "dimensions": {
-        "width": 24,
+        "width": 16,
         "depth": 16,
         "height": 9
       },
@@ -229,17 +229,17 @@
       "short_name": "อาคารทดสอบเครื่องกล (ท.0010)",
       "category_th": "ห้องปฏิบัติการทดสอบ",
       "layout_position": {
-        "x": 15,
+        "x": 40,
         "y": 0,
-        "z": -105
+        "z": -100
       },
       "dimensions": {
-        "width": 28,
-        "depth": 18,
+        "width": 18,
+        "depth": 28,
         "height": 10
       },
-      "rotation_y": 0,
-      "rotation_deg": 0,
+      "rotation_y": 1.5707963267948966,
+      "rotation_deg": 90,
       "hidden": false
     },
     "T.0011": {
@@ -247,13 +247,13 @@
       "short_name": "เครื่องมือบำรุงรักษาเครื่องกล (ท.0011)",
       "category_th": "โรงปฏิบัติการเครื่องมือ",
       "layout_position": {
-        "x": -15,
+        "x": 5,
         "y": 0,
-        "z": -115
+        "z": -130
       },
       "dimensions": {
-        "width": 30,
-        "depth": 18,
+        "width": 18,
+        "depth": 30,
         "height": 9
       },
       "rotation_y": 0,
@@ -265,9 +265,9 @@
       "short_name": "บำรุงรักษาเครื่องกล/ประดาน้ำ (ท.0012)",
       "category_th": "โรงปฏิบัติการเครื่องกลหนัก",
       "layout_position": {
-        "x": 15,
+        "x": 40,
         "y": 0,
-        "z": -180
+        "z": -185
       },
       "dimensions": {
         "width": 38,
@@ -283,9 +283,9 @@
       "short_name": "ปฏิบัติการไฟฟ้าและโยธา (ท.0014)",
       "category_th": "โรงปฏิบัติการไฟฟ้าโยธา",
       "layout_position": {
-        "x": 82,
+        "x": 105,
         "y": 0,
-        "z": -155
+        "z": -195
       },
       "dimensions": {
         "width": 30,
@@ -301,9 +301,9 @@
       "short_name": "ปฏิบัติการเคมี 2 (ท.0015)",
       "category_th": "ห้องปฏิบัติการเคมี",
       "layout_position": {
-        "x": 125,
+        "x": 155,
         "y": 0,
-        "z": -148
+        "z": -195
       },
       "dimensions": {
         "width": 26,
@@ -319,17 +319,17 @@
       "short_name": "เคมีภัณฑ์ 1 (ท.0016)",
       "category_th": "คลังเก็บเคมีภัณฑ์",
       "layout_position": {
-        "x": 158,
+        "x": 200,
         "y": 0,
-        "z": -135
+        "z": -210
       },
       "dimensions": {
         "width": 26,
         "depth": 18,
         "height": 9
       },
-      "rotation_y": 1.5707963267948966,
-      "rotation_deg": 90,
+      "rotation_y": 0,
+      "rotation_deg": 0,
       "hidden": false
     },
     "T.0017": {
@@ -337,9 +337,9 @@
       "short_name": "ศูนย์พัฒนางานเชื่อม ศพชส. (ท.0017)",
       "category_th": "ศูนย์ฝึกอบรมและทดสอบช่างเชื่อม",
       "layout_position": {
-        "x": 128,
+        "x": 200,
         "y": 0,
-        "z": -75
+        "z": -130
       },
       "dimensions": {
         "width": 24,
@@ -355,17 +355,17 @@
       "short_name": "ศูนย์มาตรวิทยาและสอบเทียบ (ท.0018)",
       "category_th": "อาคารห้องปฏิบัติการมาตรวิทยา",
       "layout_position": {
-        "x": 158,
+        "x": 240,
         "y": 0,
-        "z": -80
+        "z": -165
       },
       "dimensions": {
         "width": 32,
         "depth": 18,
         "height": 10
       },
-      "rotation_y": 1.5707963267948966,
-      "rotation_deg": 90,
+      "rotation_y": 4.71238898038469,
+      "rotation_deg": 270,
       "hidden": false
     },
     "T.0019": {
@@ -373,9 +373,9 @@
       "short_name": "อาคารธุรกิจบำรุงรักษา (ท.0019)",
       "category_th": "อาคารสำนักงานใหญ่ 7 ชั้น",
       "layout_position": {
-        "x": 48,
+        "x": 95,
         "y": 0,
-        "z": -25
+        "z": -65
       },
       "dimensions": {
         "width": 30,
@@ -391,9 +391,9 @@
       "short_name": "ศูนย์รับรองสมรรถนะ (ท.0020)",
       "category_th": "อาคารรับรองสมรรถนะ",
       "layout_position": {
-        "x": 48,
+        "x": 95,
         "y": 0,
-        "z": 25
+        "z": -5
       },
       "dimensions": {
         "width": 26,
@@ -409,17 +409,17 @@
       "short_name": "Warehouse กัมมันตภาพรังสี (ท.0022)",
       "category_th": "คลังพัสดุและห้องปฏิบัติการ",
       "layout_position": {
-        "x": -145,
+        "x": -195,
         "y": 0,
-        "z": -25
+        "z": 10
       },
       "dimensions": {
         "width": 24,
         "depth": 16,
         "height": 8
       },
-      "rotation_y": 0,
-      "rotation_deg": 0,
+      "rotation_y": 1.5707963267948966,
+      "rotation_deg": 90,
       "hidden": false
     },
     "T.0023": {
@@ -427,17 +427,17 @@
       "short_name": "Construction Shop (ท.0023)",
       "category_th": "โรงปฏิบัติการก่อสร้าง",
       "layout_position": {
-        "x": -145,
+        "x": -195,
         "y": 0,
-        "z": -55
+        "z": -35
       },
       "dimensions": {
         "width": 26,
         "depth": 18,
         "height": 9
       },
-      "rotation_y": 0,
-      "rotation_deg": 0,
+      "rotation_y": 1.5707963267948966,
+      "rotation_deg": 90,
       "hidden": false
     },
     "T.0025": {
@@ -445,13 +445,13 @@
       "short_name": "อาคารเก็บเครื่องจักร อสร. (ท.0025)",
       "category_th": "อาคารเก็บรักษาเครื่องจักร",
       "layout_position": {
-        "x": -75,
+        "x": -130,
         "y": 0,
-        "z": -95
+        "z": -110
       },
       "dimensions": {
         "width": 24,
-        "depth": 16,
+        "depth": 20,
         "height": 8
       },
       "rotation_y": 3.141592653589793,
@@ -463,17 +463,17 @@
       "short_name": "สำนักงานขนส่ง อหข. (ท.0026)",
       "category_th": "อาคารสำนักงานและบริหาร อหข.",
       "layout_position": {
-        "x": -168,
+        "x": -275,
         "y": 0,
-        "z": -120
+        "z": -110
       },
       "dimensions": {
         "width": 24,
         "depth": 18,
         "height": 11
       },
-      "rotation_y": 0,
-      "rotation_deg": 0,
+      "rotation_y": 3.141592653589793,
+      "rotation_deg": 180,
       "hidden": false
     },
     "T.0027": {
@@ -481,13 +481,13 @@
       "short_name": "โรงจอดยานพาหนะ อหข. (ท.0027)",
       "category_th": "อาคารโรงจอดและซ่อมยานพาหนะ",
       "layout_position": {
-        "x": -145,
+        "x": -265,
         "y": 0,
-        "z": -200
+        "z": -215
       },
       "dimensions": {
-        "width": 24,
-        "depth": 45,
+        "width": 60,
+        "depth": 39,
         "height": 9
       },
       "rotation_y": 0,
@@ -499,13 +499,13 @@
       "short_name": "ปฏิบัติการ 1 เครื่องจักรกลหนัก (ท.0028)",
       "category_th": "โรงซ่อมเครื่องจักรกลหนัก",
       "layout_position": {
-        "x": -95,
+        "x": -210,
         "y": 0,
-        "z": -195
+        "z": -215
       },
       "dimensions": {
         "width": 34,
-        "depth": 20,
+        "depth": 39,
         "height": 10
       },
       "rotation_y": 0,
@@ -517,151 +517,189 @@
       "short_name": "ปฏิบัติการ 2 เครื่องจักรกลหนัก (ท.0029)",
       "category_th": "โรงซ่อมเครื่องจักรกลหนัก",
       "layout_position": {
-        "x": -95,
+        "x": -185,
         "y": 0,
-        "z": -150
+        "z": -160
       },
       "dimensions": {
         "width": 34,
         "depth": 22,
         "height": 11
       },
-      "rotation_y": 0,
-      "rotation_deg": 0,
+      "rotation_y": 4.71238898038469,
+      "rotation_deg": 270,
       "hidden": false
     }
   },
   "roads": {
     "ROAD_1": {
       "name": "ROAD_1",
-      "category": "ถนน",
-      "x": 25,
-      "z": -40,
+      "x": 65,
+      "z": 40,
       "width": 12,
-      "length": 360,
+      "length": 510,
       "rotation_y": 0,
-      "rotation_deg": 0,
-      "hidden": false
-    },
-    "ROAD_2": {
-      "name": "ROAD_2",
       "category": "ถนน",
-      "x": 80,
-      "z": -110,
-      "width": 8,
-      "length": 110,
-      "rotation_y": 1.5707963267948966,
-      "rotation_deg": 90,
-      "hidden": false
-    },
-    "ROAD_3": {
-      "name": "ROAD_3",
-      "category": "ถนน",
-      "x": -5,
-      "z": -215,
-      "width": 8,
-      "length": 50,
-      "rotation_y": 4.71238898038469,
-      "rotation_deg": 270,
       "hidden": false
     },
     "ROAD_4": {
       "name": "ROAD_4",
-      "category": "ถนน",
-      "x": -25,
-      "z": -185,
+      "x": -155,
+      "z": -15,
       "width": 8,
-      "length": 50,
+      "length": 230,
       "rotation_y": 0,
-      "rotation_deg": 0,
-      "hidden": false
-    },
-    "ROAD_5": {
-      "name": "ROAD_5",
       "category": "ถนน",
-      "x": -15,
-      "z": -160,
-      "width": 8,
-      "length": 80,
-      "rotation_y": 4.71238898038469,
-      "rotation_deg": 270,
       "hidden": false
     },
     "ROAD_6": {
       "name": "ROAD_6",
-      "category": "ถนน",
-      "x": -15,
-      "z": -135,
+      "x": -35,
+      "z": -95,
       "width": 5,
-      "length": 40,
+      "length": 260,
       "rotation_y": 0,
-      "rotation_deg": 0,
+      "category": "ถนน",
       "hidden": false
     },
     "ROAD_7": {
       "name": "ROAD_7",
-      "category": "ถนน",
-      "x": -35,
-      "z": -120,
+      "x": -5,
+      "z": -105,
       "width": 5,
-      "length": 40,
+      "length": 50,
       "rotation_y": 4.71238898038469,
-      "rotation_deg": 270,
+      "category": "ถนน",
       "hidden": false
     },
     "ROAD_8": {
       "name": "ROAD_8",
-      "category": "ถนน",
-      "x": 70,
-      "z": -45,
+      "x": 20,
+      "z": -160,
       "width": 5,
-      "length": 260,
+      "length": 110,
       "rotation_y": 0,
-      "rotation_deg": 0,
+      "category": "ถนน",
       "hidden": false
     },
     "ROAD_9": {
       "name": "ROAD_9",
-      "category": "ถนน",
-      "x": -15,
-      "z": -35,
+      "x": -120,
+      "z": 105,
       "width": 8,
       "length": 70,
       "rotation_y": 1.5707963267948966,
-      "rotation_deg": 90,
-      "hidden": false
-    },
-    "ROAD_10": {
-      "name": "ROAD_10",
       "category": "ถนน",
-      "x": -15,
-      "z": 55,
-      "width": 8,
-      "length": 80,
-      "rotation_y": 4.71238898038469,
-      "rotation_deg": 270,
       "hidden": false
     },
     "ROAD_11": {
       "name": "ROAD_11",
-      "category": "ถนน",
-      "x": -55,
-      "z": -75,
+      "x": -135,
+      "z": -130,
       "width": 8,
-      "length": 270,
-      "rotation_y": 0,
-      "rotation_deg": 0,
+      "length": 200,
+      "rotation_y": 4.71238898038469,
+      "category": "ถนน",
       "hidden": false
     },
     "ROAD_12": {
       "name": "ROAD_12",
+      "x": 15,
+      "z": 35,
+      "width": 5,
+      "length": 100,
+      "rotation_y": 1.5707963267948966,
       "category": "ถนน",
-      "x": 45,
-      "z": 85,
+      "hidden": false
+    },
+    "ROAD_13": {
+      "name": "ROAD_13",
+      "x": 125,
+      "z": -165,
+      "width": 5,
+      "length": 110,
+      "rotation_y": 4.71238898038469,
+      "category": "ถนน",
+      "hidden": false
+    },
+    "ROAD_3": {
+      "name": "ROAD_3",
+      "x": 20,
+      "z": -220,
+      "width": 5,
+      "length": 100,
+      "rotation_y": 4.71238898038469,
+      "category": "ถนน",
+      "hidden": false
+    },
+    "ROAD_2": {
+      "name": "ROAD_2",
+      "x": 95,
+      "z": -95,
       "width": 5,
       "length": 50,
-      "rotation_y": 1.5707963267948966,
-      "rotation_deg": 90,
+      "rotation_y": 4.71238898038469,
+      "category": "ถนน",
+      "hidden": false
+    },
+    "ROAD_14": {
+      "name": "ROAD_14",
+      "x": 125,
+      "z": -55,
+      "width": 5,
+      "length": 220,
+      "rotation_y": 0,
+      "category": "ถนน",
+      "hidden": false
+    },
+    "ROAD_15": {
+      "name": "ROAD_15",
+      "x": 95,
+      "z": -35,
+      "width": 5,
+      "length": 50,
+      "rotation_y": 4.71238898038469,
+      "category": "ถนน",
+      "hidden": false
+    },
+    "ROAD_16": {
+      "name": "ROAD_16",
+      "x": 95,
+      "z": 50,
+      "width": 5,
+      "length": 50,
+      "rotation_y": 4.71238898038469,
+      "category": "ถนน",
+      "hidden": false
+    },
+    "ROAD_17": {
+      "name": "ROAD_17",
+      "x": 15,
+      "z": -150,
+      "width": 5,
+      "length": 90,
+      "rotation_y": 4.71238898038469,
+      "category": "ถนน",
+      "hidden": false
+    },
+    "ROAD_18": {
+      "name": "ROAD_18",
+      "x": 15,
+      "z": -45,
+      "width": 5,
+      "length": 100,
+      "rotation_y": 4.71238898038469,
+      "category": "ถนน",
+      "hidden": false
+    },
+    "ROAD_5": {
+      "name": "ROAD_5",
+      "x": -155,
+      "z": -150,
+      "width": 5,
+      "length": 140,
+      "rotation_y": 0,
+      "category": "ถนน",
       "hidden": false
     }
   },
@@ -670,9 +708,9 @@
       "name": "คลองสงวน (West Perimeter Canal)",
       "category": "คลองระบายน้ำแนวเขต",
       "x": 0,
-      "z": -235,
-      "width": 24,
-      "depth": 480,
+      "z": -275,
+      "width": 19,
+      "depth": 560,
       "rotation_y": 1.5707963267948966,
       "rotation_deg": 90,
       "hidden": false
@@ -680,8 +718,8 @@
     "POND_RETENTION_1": {
       "name": "สระน้ำระบายน้ำ 1 (North Pond)",
       "category": "สระกักเก็บน้ำ",
-      "x": -85,
-      "z": -65,
+      "x": -120,
+      "z": -45,
       "width": 36,
       "depth": 44,
       "rotation_y": 0,
@@ -691,8 +729,8 @@
     "POND_RETENTION_2": {
       "name": "สระน้ำ 2 ข้างแฟลตที่พัก (Central Pond)",
       "category": "สระกักเก็บน้ำ",
-      "x": -85,
-      "z": -15,
+      "x": -125,
+      "z": 25,
       "width": 36,
       "depth": 38,
       "rotation_y": 0,
@@ -702,8 +740,8 @@
     "POND_RETENTION_3": {
       "name": "สระน้ำ 3 หน้าโรงอาหาร (South Pond)",
       "category": "สระกักเก็บน้ำ",
-      "x": 245,
-      "z": -75,
+      "x": 335,
+      "z": -140,
       "width": 32,
       "depth": 38,
       "rotation_y": 0,
@@ -713,10 +751,10 @@
     "OHK_RETENTION_POND": {
       "name": "สระน้ำชะลอน้ำ อหข. (Peanut Retention Pond)",
       "category": "สระกักเก็บน้ำ",
-      "x": -115,
-      "z": -100,
-      "width": 24,
-      "depth": 38,
+      "x": -200,
+      "z": -95,
+      "width": 19,
+      "depth": 23,
       "rotation_y": 0,
       "rotation_deg": 0,
       "hidden": false
@@ -724,10 +762,10 @@
     "LAKE_PROMENADE": {
       "name": "สระน้ำและสะพานไม้ริมน้ำหลัง ท.0019",
       "category": "สระน้ำและภูมิทัศน์",
-      "x": 85,
-      "z": -25,
-      "width": 36,
-      "depth": 32,
+      "x": 165,
+      "z": -40,
+      "width": 26,
+      "depth": 47,
       "rotation_y": 0,
       "rotation_deg": 0,
       "hidden": false
@@ -735,8 +773,8 @@
     "LAKE_FOUNTAIN": {
       "name": "สระน้ำพุวงเวียนหอนาฬิกา",
       "category": "สระน้ำพุและภูมิทัศน์",
-      "x": 255,
-      "z": -115,
+      "x": 345,
+      "z": -230,
       "width": 14,
       "depth": 14,
       "rotation_y": 0,
@@ -746,8 +784,8 @@
     "SWIMMING_POOL": {
       "name": "สระว่ายน้ำสโมสรไทรน้อย",
       "category": "สระว่ายน้ำสวัสดิการ",
-      "x": 265,
-      "z": -145,
+      "x": 345,
+      "z": -185,
       "width": 16,
       "depth": 25,
       "rotation_y": 0,
@@ -759,28 +797,28 @@
     "SW_YARD": {
       "name": "ลานสวิตช์ยาร์ด 500 kV (Switchyard)",
       "category": "ระบบส่งไฟฟ้าแรงสูง",
-      "x": -25,
-      "z": 110,
+      "x": -45,
+      "z": 205,
       "rotation_y": 0,
       "rotation_deg": 0,
       "hidden": false
     },
     "FOOTBALL": {
       "name": "สนามฟุตบอลใหญ่ (Main Football Pitch)",
-      "x": 88,
-      "z": -85,
-      "width": 28,
-      "depth": 56,
+      "category": "สันทนาการและกีฬา",
+      "x": 145,
+      "z": -125,
       "rotation_y": 0,
       "rotation_deg": 0,
-      "category": "สันทนาการและกีฬา",
-      "hidden": false
+      "hidden": false,
+      "width": 28,
+      "depth": 56
     },
     "TURBINE_SCULPTURE": {
       "name": "ลานปฏิมากรรมกังหันไอน้ำ (Turbine Plaza)",
       "category": "แลนด์มาร์คสำคัญ",
-      "x": 55,
-      "z": 55,
+      "x": 95,
+      "z": 30,
       "rotation_y": 0,
       "rotation_deg": 0,
       "hidden": false
@@ -788,8 +826,8 @@
     "SUNFLOWER_FIELD": {
       "name": "ทุ่งทานตะวัน (Sunflower Field)",
       "category": "ภูมิทัศน์ธรรมชาติ",
-      "x": 10,
-      "z": 115,
+      "x": -15,
+      "z": 260,
       "rotation_y": 0,
       "rotation_deg": 0,
       "hidden": false
@@ -797,48 +835,48 @@
     "CAMPUS_SIGN": {
       "name": "ป้ายสัญลักษณ์ กฟผ. ไทรน้อย",
       "category": "ป้ายแลนด์มาร์ค",
-      "x": -5,
-      "z": 130,
+      "x": -30,
+      "z": 285,
       "rotation_y": 0,
       "rotation_deg": 0,
       "hidden": false
     },
     "OHK_ROUNDABOUT": {
       "name": "วงเวียนใหญ่ศูนย์ขนส่ง อหข.",
-      "x": -148,
-      "z": -155,
-      "width": 28,
-      "depth": 28,
+      "category": "ระบบการจราจร",
+      "x": -265,
+      "z": -160,
       "rotation_y": 0,
       "rotation_deg": 0,
-      "category": "ระบบการจราจร",
-      "hidden": false
+      "hidden": false,
+      "width": 28,
+      "depth": 28
     },
     "OHK_GAZEBO": {
       "name": "ศาลาพักผ่อนริมน้ำ อหข.",
-      "x": -106,
-      "z": -100,
+      "category": "อาคารสันทนาการริมน้ำ",
+      "x": -220,
+      "z": -70,
       "rotation_y": 0,
       "rotation_deg": 0,
-      "category": "อาคารสันทนาการริมน้ำ",
       "hidden": false
     },
     "EAST_ROUNDABOUT": {
       "name": "วงเวียนฝั่งตะวันออก (East Roundabout)",
-      "x": 135,
-      "z": -110,
-      "width": 24,
-      "depth": 24,
+      "category": "ระบบการจราจร",
+      "x": 200,
+      "z": -165,
       "rotation_y": 0,
       "rotation_deg": 0,
-      "category": "ระบบการจราจร",
-      "hidden": false
+      "hidden": false,
+      "width": 24,
+      "depth": 24
     },
     "SHRINE_VISHNU": {
       "name": "ศาลพระวิษณุกรรม",
       "category": "สถานที่ศักดิ์สิทธิ์",
-      "x": 85,
-      "z": 0,
+      "x": 140,
+      "z": -80,
       "rotation_y": 0,
       "rotation_deg": 0,
       "hidden": false
@@ -846,8 +884,8 @@
     "SHRINE_SEVEN_KINGS": {
       "name": "ศาลหลวงพ่อเจ็ดกษัตริย์",
       "category": "สถานที่ศักดิ์สิทธิ์",
-      "x": -110,
-      "z": -120,
+      "x": -175,
+      "z": -110,
       "rotation_y": 0,
       "rotation_deg": 0,
       "hidden": false
@@ -855,8 +893,8 @@
     "PARKING_SHED_16": {
       "name": "โรงจอดรถยนต์ ต.0016",
       "category": "อาคารจอดรถ",
-      "x": 270,
-      "z": -180,
+      "x": 385,
+      "z": -170,
       "rotation_y": 0,
       "rotation_deg": 0,
       "hidden": true
@@ -864,8 +902,8 @@
     "PARKING_SHED_18": {
       "name": "โรงจอดรถยนต์ ต.0018",
       "category": "อาคารจอดรถ",
-      "x": 205,
-      "z": -205,
+      "x": 375,
+      "z": -200,
       "rotation_y": 0,
       "rotation_deg": 0,
       "hidden": true

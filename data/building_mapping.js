@@ -1,10 +1,10 @@
 /**
  * Sai Noi Campus Building Mapping Data (Pre-bundled)
- * Auto-generated: 2026-11-17T08:55:45.997Z
+ * Auto-generated: 2026-11-18T01:58:55.442Z
  */
 window.SAINOI_BUILDING_MAPPING = {
   "schema_version": "1.0.0",
-  "generated_at": "2026-11-17T08:55:45.994Z",
+  "generated_at": "2026-11-18T01:58:55.441Z",
   "site": "การไฟฟ้าฝ่ายผลิตแห่งประเทศไทย สำนักงานไทรน้อย (EGAT Sai Noi)",
   "disclaimer": "โมเดลและตำแหน่งอาคารในระยะนำร่อง (Pilot) เป็นภาพจำลองเชิงสัญลักษณ์ (Symbolic Representation) จัดวางเพื่อความสะดวกในการสำรวจข้อมูล ไม่ใช่แบบสำรวจรังวัดจริง และไม่มีการใช้ขนาดจำลองคำนวณพื้นที่หรือ kWh/m²",
   "double_counting_policy": "ยอดการใช้ไฟฟ้ารวมของแต่ละอาคารคำนวณจากมิเตอร์ประธาน (Main Meter/MDB) เท่านั้น โดยมิเตอร์ย่อย (Sub-meters) ใช้สำหรับแจกแจงรายละเอียดและจะไม่ถูกนำไปบวกรวมกับมิเตอร์ประธานเพื่อป้องกันการนับซ้ำ",
@@ -20,14 +20,14 @@ window.SAINOI_BUILDING_MAPPING = {
       "floors": 4,
       "description": "อาคารที่พักอาศัยสวัสดิการพนักงาน 4 ชั้น ริมสระน้ำ 2",
       "dimensions": {
-        "width": 32,
-        "depth": 16,
+        "width": 16,
+        "depth": 32,
         "height": 14
       },
       "layout_position": {
-        "x": -140,
+        "x": -195,
         "y": 0,
-        "z": 15
+        "z": 60
       },
       "color_base": "#A855F7",
       "roof_type": "residential_balcony",
@@ -51,7 +51,7 @@ window.SAINOI_BUILDING_MAPPING = {
       "mapping_status": "verified",
       "is_surveyed_coord": true,
       "model_source": "masterplan_2565_revised",
-      "rotation_y": 0,
+      "rotation_y": 1.5707963267948966,
       "hidden": false
     },
     "D.0015": {
@@ -69,9 +69,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 9
       },
       "layout_position": {
-        "x": -65,
+        "x": -130,
         "y": 0,
-        "z": -140
+        "z": -175
       },
       "color_base": "#94A3B8",
       "roof_type": "industrial_gable",
@@ -95,7 +95,7 @@ window.SAINOI_BUILDING_MAPPING = {
       "mapping_status": "verified",
       "is_surveyed_coord": true,
       "model_source": "masterplan_2565_revised",
-      "rotation_y": 0,
+      "rotation_y": 4.71238898038469,
       "hidden": false
     },
     "D.0017": {
@@ -113,9 +113,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 8
       },
       "layout_position": {
-        "x": 25,
+        "x": 40,
         "y": 0,
-        "z": -140
+        "z": -125
       },
       "color_base": "#F8FAFC",
       "roof_type": "curved_barrel",
@@ -193,9 +193,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 16
       },
       "layout_position": {
-        "x": 50,
+        "x": 95,
         "y": 0,
-        "z": -85
+        "z": -130
       },
       "color_base": "#F1F5F9",
       "roof_type": "office_stepped",
@@ -287,9 +287,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 10
       },
       "layout_position": {
-        "x": 88,
+        "x": 180,
         "y": 0,
-        "z": -35
+        "z": -100
       },
       "color_base": "#E2E8F0",
       "roof_type": "sports_pilotis_d0025",
@@ -313,7 +313,7 @@ window.SAINOI_BUILDING_MAPPING = {
       "mapping_status": "verified",
       "is_surveyed_coord": true,
       "model_source": "masterplan_2565_revised",
-      "rotation_y": 0,
+      "rotation_y": 3.141592653589793,
       "hidden": false
     },
     "D.0026": {
@@ -331,9 +331,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 6
       },
       "layout_position": {
-        "x": -35,
+        "x": -50,
         "y": 0,
-        "z": -210
+        "z": -215
       },
       "color_base": "#38BDF8",
       "roof_type": "industrial_flat",
@@ -357,7 +357,7 @@ window.SAINOI_BUILDING_MAPPING = {
       "mapping_status": "verified",
       "is_surveyed_coord": true,
       "model_source": "masterplan_2565_revised",
-      "rotation_y": 0,
+      "rotation_y": 1.5707963267948966,
       "hidden": false
     },
     "D.0031": {
@@ -375,9 +375,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 7
       },
       "layout_position": {
-        "x": -142,
+        "x": -240,
         "y": 0,
-        "z": -98
+        "z": -95
       },
       "color_base": "#F8FAFC",
       "roof_type": "ohk_canteen_d0031",
@@ -409,7 +409,7 @@ window.SAINOI_BUILDING_MAPPING = {
       "mapping_status": "verified",
       "is_surveyed_coord": true,
       "model_source": "asbuilt_ohk_sn_2_6_revised",
-      "rotation_y": 0,
+      "rotation_y": 3.141592653589793,
       "hidden": false
     },
     "D.0033": {
@@ -423,13 +423,13 @@ window.SAINOI_BUILDING_MAPPING = {
       "description": "โรงปฏิบัติการงานเชื่อมและซ่อมโครงสร้างตัวถัง อหข. พร้อมระบบดูดระบายควันอุตสาหกรรม",
       "dimensions": {
         "width": 22,
-        "depth": 16,
+        "depth": 22,
         "height": 8
       },
       "layout_position": {
-        "x": -65,
+        "x": -175,
         "y": 0,
-        "z": -180
+        "z": -250
       },
       "color_base": "#94A3B8",
       "roof_type": "ohk_welding_d0033",
@@ -467,13 +467,13 @@ window.SAINOI_BUILDING_MAPPING = {
       "description": "คลังจัดเก็บและบริหารอะไหล่กังหันก๊าซ 1 หลังคาจั่วสีเทาขนาดใหญ่",
       "dimensions": {
         "width": 32,
-        "depth": 20,
+        "depth": 38,
         "height": 10
       },
       "layout_position": {
-        "x": 5,
+        "x": 30,
         "y": 0,
-        "z": -15
+        "z": -20
       },
       "color_base": "#94A3B8",
       "roof_type": "curved_barrel",
@@ -511,13 +511,13 @@ window.SAINOI_BUILDING_MAPPING = {
       "description": "อาคารกองบริหารทั่วไป ติดทางเข้าลานสวิตช์ยาร์ด",
       "dimensions": {
         "width": 24,
-        "depth": 16,
+        "depth": 38,
         "height": 9
       },
       "layout_position": {
-        "x": 5,
+        "x": 30,
         "y": 0,
-        "z": 30
+        "z": 15
       },
       "color_base": "#E2E8F0",
       "roof_type": "curved_barrel",
@@ -555,13 +555,13 @@ window.SAINOI_BUILDING_MAPPING = {
       "description": "คลังพัสดุบริหารอะไหล่ 2 พื้นที่ 2,500 ตร.ม.",
       "dimensions": {
         "width": 32,
-        "depth": 20,
+        "depth": 30,
         "height": 10
       },
       "layout_position": {
-        "x": 5,
+        "x": 35,
         "y": 0,
-        "z": -60
+        "z": -70
       },
       "color_base": "#94A3B8",
       "roof_type": "curved_barrel",
@@ -598,14 +598,14 @@ window.SAINOI_BUILDING_MAPPING = {
       "floors": 1,
       "description": "ห้องปฏิบัติการทดสอบและงานพิเศษทางวิศวกรรม อรอ.",
       "dimensions": {
-        "width": 24,
+        "width": 16,
         "depth": 16,
         "height": 9
       },
       "layout_position": {
-        "x": -35,
+        "x": -20,
         "y": 0,
-        "z": -90
+        "z": -85
       },
       "color_base": "#E2E8F0",
       "roof_type": "industrial_gable",
@@ -642,14 +642,14 @@ window.SAINOI_BUILDING_MAPPING = {
       "floors": 1,
       "description": "อาคาร Testing Lab ทดสอบอุปกรณ์เครื่องกลและชิ้นส่วนหมุน",
       "dimensions": {
-        "width": 28,
-        "depth": 18,
+        "width": 18,
+        "depth": 28,
         "height": 10
       },
       "layout_position": {
-        "x": 15,
+        "x": 40,
         "y": 0,
-        "z": -105
+        "z": -100
       },
       "color_base": "#94A3B8",
       "roof_type": "industrial_flat",
@@ -673,7 +673,7 @@ window.SAINOI_BUILDING_MAPPING = {
       "mapping_status": "verified",
       "is_surveyed_coord": true,
       "model_source": "masterplan_2565_revised",
-      "rotation_y": 0,
+      "rotation_y": 1.5707963267948966,
       "hidden": false
     },
     "T.0011": {
@@ -686,14 +686,14 @@ window.SAINOI_BUILDING_MAPPING = {
       "floors": 1,
       "description": "คลังเครื่องมือ อุปกรณ์ทดสอบทางวิศวกรรมเครื่องกล",
       "dimensions": {
-        "width": 30,
-        "depth": 18,
+        "width": 18,
+        "depth": 30,
         "height": 9
       },
       "layout_position": {
-        "x": -15,
+        "x": 5,
         "y": 0,
-        "z": -115
+        "z": -130
       },
       "color_base": "#94A3B8",
       "roof_type": "curved_barrel",
@@ -735,9 +735,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 11
       },
       "layout_position": {
-        "x": 15,
+        "x": 40,
         "y": 0,
-        "z": -180
+        "z": -185
       },
       "color_base": "#94A3B8",
       "roof_type": "curved_barrel",
@@ -779,9 +779,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 11
       },
       "layout_position": {
-        "x": 82,
+        "x": 105,
         "y": 0,
-        "z": -155
+        "z": -195
       },
       "color_base": "#FFFFFF",
       "roof_type": "curved_barrel",
@@ -825,9 +825,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 14
       },
       "layout_position": {
-        "x": 125,
+        "x": 155,
         "y": 0,
-        "z": -148
+        "z": -195
       },
       "color_base": "#F8FAFC",
       "roof_type": "chem_lab_t0015",
@@ -869,9 +869,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 9
       },
       "layout_position": {
-        "x": 158,
+        "x": 200,
         "y": 0,
-        "z": -135
+        "z": -210
       },
       "color_base": "#F1F5F9",
       "roof_type": "chemical_workshop_t0016",
@@ -895,7 +895,7 @@ window.SAINOI_BUILDING_MAPPING = {
       "mapping_status": "verified",
       "is_surveyed_coord": true,
       "model_source": "masterplan_2565_revised",
-      "rotation_y": 1.5707963267948966,
+      "rotation_y": 0,
       "hidden": false
     },
     "T.0017": {
@@ -913,9 +913,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 10
       },
       "layout_position": {
-        "x": 128,
+        "x": 200,
         "y": 0,
-        "z": -75
+        "z": -130
       },
       "color_base": "#CBD5E1",
       "roof_type": "competency_curved_t0017",
@@ -957,9 +957,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 10
       },
       "layout_position": {
-        "x": 158,
+        "x": 240,
         "y": 0,
-        "z": -80
+        "z": -165
       },
       "color_base": "#F8FAFC",
       "roof_type": "metrology_center_t0018",
@@ -983,7 +983,7 @@ window.SAINOI_BUILDING_MAPPING = {
       "mapping_status": "verified",
       "is_surveyed_coord": true,
       "model_source": "masterplan_2565_revised",
-      "rotation_y": 1.5707963267948966,
+      "rotation_y": 4.71238898038469,
       "hidden": false
     },
     "T.0019": {
@@ -1001,9 +1001,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 34
       },
       "layout_position": {
-        "x": 48,
+        "x": 95,
         "y": 0,
-        "z": -25
+        "z": -65
       },
       "color_base": "#FFFFFF",
       "roof_type": "office_stepped",
@@ -1369,9 +1369,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 11
       },
       "layout_position": {
-        "x": 48,
+        "x": 95,
         "y": 0,
-        "z": 25
+        "z": -5
       },
       "color_base": "#F8FAFC",
       "roof_type": "competency_center_t0020",
@@ -1498,9 +1498,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 8
       },
       "layout_position": {
-        "x": -145,
+        "x": -195,
         "y": 0,
-        "z": -25
+        "z": 10
       },
       "color_base": "#64748B",
       "roof_type": "industrial_gable",
@@ -1524,7 +1524,7 @@ window.SAINOI_BUILDING_MAPPING = {
       "mapping_status": "verified",
       "is_surveyed_coord": true,
       "model_source": "masterplan_2565_revised",
-      "rotation_y": 0,
+      "rotation_y": 1.5707963267948966,
       "hidden": false
     },
     "T.0023": {
@@ -1542,9 +1542,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 9
       },
       "layout_position": {
-        "x": -145,
+        "x": -195,
         "y": 0,
-        "z": -55
+        "z": -35
       },
       "color_base": "#94A3B8",
       "roof_type": "industrial_gable",
@@ -1568,7 +1568,7 @@ window.SAINOI_BUILDING_MAPPING = {
       "mapping_status": "verified",
       "is_surveyed_coord": true,
       "model_source": "masterplan_2565_revised",
-      "rotation_y": 0,
+      "rotation_y": 1.5707963267948966,
       "hidden": false
     },
     "T.0025": {
@@ -1582,13 +1582,13 @@ window.SAINOI_BUILDING_MAPPING = {
       "description": "คลังจัดเก็บเครื่องจักร อสร. ริมสระน้ำ 3",
       "dimensions": {
         "width": 24,
-        "depth": 16,
+        "depth": 20,
         "height": 8
       },
       "layout_position": {
-        "x": -75,
+        "x": -130,
         "y": 0,
-        "z": -95
+        "z": -110
       },
       "color_base": "#94A3B8",
       "roof_type": "industrial_gable",
@@ -1630,9 +1630,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 11
       },
       "layout_position": {
-        "x": -168,
+        "x": -275,
         "y": 0,
-        "z": -120
+        "z": -110
       },
       "color_base": "#FFFFFF",
       "roof_type": "ohk_office_t0026",
@@ -1656,7 +1656,7 @@ window.SAINOI_BUILDING_MAPPING = {
       "mapping_status": "verified",
       "is_surveyed_coord": true,
       "model_source": "asbuilt_ohk_sn_2_6_revised",
-      "rotation_y": 0,
+      "rotation_y": 3.141592653589793,
       "hidden": false
     },
     "T.0027": {
@@ -1669,14 +1669,14 @@ window.SAINOI_BUILDING_MAPPING = {
       "floors": 1,
       "description": "อาคารโรงจอดยานพาหนะโครงสร้างเหล็กขนาดใหญ่ 12 ช่องจอด พร้อมช่องตรวจสภาพและบำรุงรักษายานพาหนะ",
       "dimensions": {
-        "width": 24,
-        "depth": 45,
+        "width": 60,
+        "depth": 39,
         "height": 9
       },
       "layout_position": {
-        "x": -145,
+        "x": -265,
         "y": 0,
-        "z": -200
+        "z": -215
       },
       "color_base": "#64748B",
       "roof_type": "ohk_garage_t0027",
@@ -1714,13 +1714,13 @@ window.SAINOI_BUILDING_MAPPING = {
       "description": "อาคารปฏิบัติการ 1 ซ่อมเครื่องจักรกลหนัก อหข. (ท.0028) โรงซ่อมหลังคาโค้งพร้อม 4 ประตูม้วนเหล็กสีเทาเข้ม บันไดเหล็กภายนอกสีเหลือง และลานคอนกรีตกลับรถบรรทุกหนัก",
       "dimensions": {
         "width": 34,
-        "depth": 20,
+        "depth": 39,
         "height": 10
       },
       "layout_position": {
-        "x": -95,
+        "x": -210,
         "y": 0,
-        "z": -195
+        "z": -215
       },
       "color_base": "#94A3B8",
       "roof_type": "ohk_heavy_garage_t0028",
@@ -1762,9 +1762,9 @@ window.SAINOI_BUILDING_MAPPING = {
         "height": 11
       },
       "layout_position": {
-        "x": -95,
+        "x": -185,
         "y": 0,
-        "z": -150
+        "z": -160
       },
       "color_base": "#94A3B8",
       "roof_type": "ohk_heavy_workshop_t0029",
@@ -1788,7 +1788,7 @@ window.SAINOI_BUILDING_MAPPING = {
       "mapping_status": "verified",
       "is_surveyed_coord": true,
       "model_source": "asbuilt_ohk_sn_2_6_revised",
-      "rotation_y": 0,
+      "rotation_y": 4.71238898038469,
       "hidden": false
     }
   },

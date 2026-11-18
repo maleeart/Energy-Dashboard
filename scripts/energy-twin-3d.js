@@ -375,8 +375,8 @@
       const fieldGroup = new THREE.Group();
       fieldGroup.name = 'FootballField';
       // Center position in campus layout (entrance-aligned perspective)
-      const fx = 88;
-      const fz = -85;
+      const fx = 145;
+      const fz = -125;
       const fw = 28;
       const fd = 56;
 
@@ -464,7 +464,7 @@
       this.scene.add(this.roadContainer);
 
       // 2. Eastern Science & Chemistry Roundabout (Landmark in front of T.0018 & T.0016)
-      const eastRound = this.createRoundabout(135, -110, 12, 5.5);
+      const eastRound = this.createRoundabout(200, -165, 12, 5.5);
       eastRound.name = 'Roundabout_East';
       this.scene.add(eastRound);
       this.roadMeshes.set('ROAD_EAST_ROUNDABOUT', eastRound);
@@ -581,7 +581,7 @@
 
       // ── 1. Curved Peanut-Shaped Retention Pond (สระน้ำ อหข. WL +99.00) ──
       const pondGroup = new THREE.Group();
-      pondGroup.position.set(-115, 0, -100);
+      pondGroup.position.set(-200, 0, -95);
 
       // South lobe of pond (near D.0031) - relative to (-171, -158)
       const lobe1 = new THREE.Mesh(new THREE.CylinderGeometry(11, 11, 0.2, 32), waterMat);
@@ -638,9 +638,9 @@
       this.waterMeshes.set('OHK_RETENTION_POND', pondGroup);
 
       // ── 2. Grand OHK Roundabout (วงเวียนใหญ่ อหข.) ──
-      // Positioned cleanly without intersecting any building: Center (-148, -155)
+      // Positioned cleanly without intersecting any building: Center (-265, -160)
       const roundaboutGroup = new THREE.Group();
-      roundaboutGroup.position.set(-148, 0, -155);
+      roundaboutGroup.position.set(-265, 0, -160);
 
       const outerR = 16;
       const innerR = 8.5;
@@ -690,7 +690,7 @@
       const apronGeo = new THREE.PlaneGeometry(75, 60);
       const apron = new THREE.Mesh(apronGeo, concreteApronMat);
       apron.rotation.x = -Math.PI / 2;
-      apron.position.set(-110, 0.05, -165);
+      apron.position.set(-210, 0.05, -185);
       apron.receiveShadow = true;
       ohkGroup.add(apron);
 
@@ -1002,8 +1002,8 @@
     setupSteamTurbineSculpture() {
       const scGroup = new THREE.Group();
       scGroup.name = 'SteamTurbineSculpture';
-      const cx = 55;
-      const cz = 55;
+      const cx = 95;
+      const cz = 30;
       scGroup.position.set(cx, 0, cz);
 
       // 1. Concentric Circular Plaza Walkways (Matching photo: ปฏิมากรรมหน้า ท.0020.JPG)
@@ -1159,17 +1159,17 @@
 
     setupLandmarkLabels() {
       const landmarks = [
-        { id: 'SW_YARD', text: '⚡ สวิตช์ยาร์ด 500 kV', x: -25, y: 19, z: 110, color: '#D97706' },
-        { id: 'FOOTBALL', text: '⚽ สนามฟุตบอล', x: 88, y: 8, z: -85, color: '#16A34A' },
-        { id: 'POND_RETENTION_1', text: '💧 สระน้ำ 1, 2, 3', x: -85, y: 7, z: -40, color: '#0284C7' },
+        { id: 'SW_YARD', text: '⚡ สวิตช์ยาร์ด 500 kV', x: -45, y: 19, z: 205, color: '#D97706' },
+        { id: 'FOOTBALL', text: '⚽ สนามฟุตบอล', x: 145, y: 8, z: -125, color: '#16A34A' },
+        { id: 'POND_RETENTION_1', text: '💧 สระน้ำ 1, 2, 3', x: -120, y: 7, z: -45, color: '#0284C7' },
         { id: 'CAMPUS_ENTRANCE', text: '🚧 ทางเข้าหลัก / ท.0021 ที่ทำการ รปภ.', x: 40, y: 8, z: 140, color: '#475569' },
-        { id: 'EAST_ROUNDABOUT', text: '🧪 วงเวียนหน้า ท.0018 / ท.0016', x: 135, y: 8, z: -110, color: '#2563EB' },
-        { id: 'TURBINE_SCULPTURE', text: '⚙️ ปฏิมากรรมกังหันไอน้ำ', x: 55, y: 14, z: 55, color: '#EA580C' },
-        { id: 'SUNFLOWER_FIELD', text: '🌻 ทุ่งทานตะวัน & ป้าย กฟผ.', x: 10, y: 8, z: 115, color: '#EAB308' },
+        { id: 'EAST_ROUNDABOUT', text: '🧪 วงเวียนหน้า ท.0018 / ท.0016', x: 200, y: 8, z: -165, color: '#2563EB' },
+        { id: 'TURBINE_SCULPTURE', text: '⚙️ ปฏิมากรรมกังหันไอน้ำ', x: 95, y: 14, z: 30, color: '#EA580C' },
+        { id: 'SUNFLOWER_FIELD', text: '🌻 ทุ่งทานตะวัน & ป้าย กฟผ.', x: -15, y: 8, z: 260, color: '#EAB308' },
         // OHK Specific Landmark Pins (No Soccer field in OHK)
-        { id: 'OHK_ROUNDABOUT', text: '🚛 วงเวียนใหญ่ศูนย์ขนส่ง อหข.', x: -148, y: 10, z: -155, color: '#7C3AED' },
-        { id: 'OHK_RETENTION_POND', text: '💧 สระน้ำ & ศาลาริมน้ำ อหข.', x: -115, y: 8, z: -100, color: '#0284C7' },
-        { id: 'TRANS_LINE_ANGTHONG', text: '⚡ สายส่ง 230 kV อ่างทอง 2', x: -120, y: 28, z: -190, color: '#EF4444' }
+        { id: 'OHK_ROUNDABOUT', text: '🚛 วงเวียนใหญ่ศูนย์ขนส่ง อหข.', x: -265, y: 10, z: -160, color: '#7C3AED' },
+        { id: 'OHK_RETENTION_POND', text: '💧 สระน้ำ & ศาลาริมน้ำ อหข.', x: -200, y: 8, z: -95, color: '#0284C7' },
+        { id: 'TRANS_LINE_ANGTHONG', text: '⚡ สายส่ง 230 kV อ่างทอง 2', x: -175, y: 28, z: -230, color: '#EF4444' }
       ];
 
       landmarks.forEach(lm => {
