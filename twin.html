@@ -6170,8 +6170,29 @@
         } catch (_) {}
       }
 
-      // Fallback if local bridge server is not reachable
-      const jsonStr = JSON.stringify(exportData, null, 2);
+      // Fallback 1: Native File System Access API (Direct Save to data/campus_layout_default.json without needing any background server)
+      if (window.showSaveFilePicker) {
+        try {
+          const handle = await window.showSaveFilePicker({
+            suggestedName: 'campus_layout_default.json',
+            types: [{
+              description: 'Campus Layout Default JSON',
+              accept: { 'application/json': ['.json'] }
+            }]
+          });
+          const writable = await handle.createWritable();
+          await writable.write(jsonStr);
+          await writable.close();
+          alert('✅ บันทึกไฟล์ campus_layout_default.json ลงเครื่องเรียบร้อยแล้ว!\n\n(บันทึกตรงสู่โฟลเดอร์โครงการได้ทันทีโดยไม่ต้องเปิด Server ใดๆ ค้างไว้)');
+          return;
+        } catch (pickErr) {
+          // If user cancelled the picker dialog, return quietly
+          if (pickErr.name === 'AbortError') return;
+          console.warn('showSaveFilePicker error:', pickErr);
+        }
+      }
+
+      // Fallback 2: Automatic File Download
       try {
         const blob = new Blob([jsonStr], { type: 'application/json;charset=utf-8;' });
         const url = URL.createObjectURL(blob);
