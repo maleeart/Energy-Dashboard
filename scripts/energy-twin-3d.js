@@ -732,67 +732,81 @@
 
     setupMainEntrance() {
       const gateGroup = new THREE.Group();
-      const gx = 40;
+      gateGroup.name = 'CampusEntranceGate';
+      const gx = 65;
       const gz = 140;
 
-      const bMat = new THREE.MeshStandardMaterial({ color: 0xE2E8F0, roughness: 0.4 });
-      const roofMat = new THREE.MeshStandardMaterial({ color: 0x1E293B, roughness: 0.6 });
+      // 1. Guardhouse Security Booth (ท.0021)
+      const baseMat = new THREE.MeshStandardMaterial({ color: 0x64748B, roughness: 0.85 });
+      const boothPlinth = new THREE.Mesh(new THREE.BoxGeometry(6.8, 0.4, 5.8), baseMat);
+      boothPlinth.position.set(0, 0.2, 0);
+      boothPlinth.receiveShadow = true;
+      gateGroup.add(boothPlinth);
 
-      const booth = new THREE.Mesh(new THREE.BoxGeometry(6, 4.2, 5), bMat);
-      booth.position.set(gx + 9, 2.1, gz);
+      const boothMat = new THREE.MeshStandardMaterial({ color: 0x334155, roughness: 0.5 });
+      const booth = new THREE.Mesh(new THREE.BoxGeometry(5.8, 3.8, 4.8), boothMat);
+      booth.position.set(0, 2.1, 0);
       booth.castShadow = true;
+      booth.receiveShadow = true;
       gateGroup.add(booth);
 
-      const winMat = new THREE.MeshStandardMaterial({ color: 0x93C5FD, metalness: 0.8, roughness: 0.2 });
-      const win = new THREE.Mesh(new THREE.BoxGeometry(6.1, 1.5, 3), winMat);
-      win.position.set(gx + 9, 2.5, gz);
+      // Panoramic tinted glass observation windows
+      const winMat = new THREE.MeshStandardMaterial({ color: 0x60A5FA, metalness: 0.85, roughness: 0.15 });
+      const win = new THREE.Mesh(new THREE.BoxGeometry(5.9, 1.4, 3.8), winMat);
+      win.position.set(0, 2.4, 0);
       gateGroup.add(win);
 
-      const roof = new THREE.Mesh(new THREE.BoxGeometry(8, 0.6, 7), roofMat);
-      roof.position.set(gx + 9, 4.4, gz);
+      // Modern Architectural Overhanging Canopy
+      const roofMat = new THREE.MeshStandardMaterial({ color: 0x0F172A, roughness: 0.6 });
+      const roof = new THREE.Mesh(new THREE.BoxGeometry(8.0, 0.5, 7.0), roofMat);
+      roof.position.set(0, 4.25, 0);
       roof.castShadow = true;
       gateGroup.add(roof);
 
-      const barrierMat = new THREE.MeshStandardMaterial({ color: 0x0284C7 });
-      const poleMat = new THREE.MeshStandardMaterial({ color: 0xF59E0B });
+      // 2. Automated Boom Barrier Gate
+      const poleMat = new THREE.MeshStandardMaterial({ color: 0xF59E0B, roughness: 0.35, metalness: 0.2 });
+      const barrierMat = new THREE.MeshStandardMaterial({ color: 0xDC2626, roughness: 0.4 });
 
       const pillar = new THREE.Mesh(new THREE.BoxGeometry(0.8, 1.4, 0.8), poleMat);
-      pillar.position.set(gx, 0.7, gz);
+      pillar.position.set(-4.5, 0.7, 0);
+      pillar.castShadow = true;
       gateGroup.add(pillar);
 
       const arm = new THREE.Mesh(new THREE.BoxGeometry(7, 0.15, 0.15), barrierMat);
-      arm.position.set(gx - 3.5, 1.1, gz);
+      arm.position.set(-8.0, 1.1, 0);
       gateGroup.add(arm);
 
+      gateGroup.position.set(gx, 0, gz);
       this.scene.add(gateGroup);
+      this.landmarkMeshes.set('CAMPUS_ENTRANCE', gateGroup);
     }
 
-    // Sunflower Field & Landmark Campus Entrance Sign (ทุ่งทานตะวัน & ป้าย กฟผ. ไทรน้อย)
-    setupSunflowerFieldAndEntranceSign() {
-      const sfGroup = new THREE.Group();
-      sfGroup.name = 'SunflowerField_EntranceSign';
+    // Sunflower Field (ทุ่งทานตะวัน)
+    setupSunflowerField() {
+      const sunflowerGroup = new THREE.Group();
+      sunflowerGroup.name = 'SunflowerField';
 
-      // 1. Sunflower field soil bed (Between 500kV switchyard and boulevard)
+      // 1. Sunflower field soil bed (Natural agricultural green)
       const bedGeo = new THREE.PlaneGeometry(34, 44);
       const bedMat = new THREE.MeshStandardMaterial({
-        color: 0x4D7C0F, // Vibrant agricultural green
+        color: 0x4D7C0F,
         roughness: 0.9,
         metalness: 0.05
       });
       const bed = new THREE.Mesh(bedGeo, bedMat);
       bed.rotation.x = -Math.PI / 2;
-      bed.position.set(-15, 0.07, 110);
+      bed.position.set(0, 0.07, 0);
       bed.receiveShadow = true;
-      sfGroup.add(bed);
+      sunflowerGroup.add(bed);
 
       // Decorative border curb around sunflower field
-      const curbMat = new THREE.MeshStandardMaterial({ color: 0xCBD5E1, roughness: 0.8 });
+      const curbMat = new THREE.MeshStandardMaterial({ color: 0x64748B, roughness: 0.8 });
       const curb = new THREE.Mesh(new THREE.BoxGeometry(34.8, 0.3, 44.8), curbMat);
-      curb.position.set(-15, 0.15, 110);
+      curb.position.set(0, 0.15, 0);
       curb.receiveShadow = true;
-      sfGroup.add(curb);
+      sunflowerGroup.add(curb);
 
-      // Blooming Sunflower Clusters (Golden yellow disk petals with dark centers)
+      // Blooming Sunflower Clusters (Golden yellow disk petals with dark seed centers)
       const stemMat = new THREE.MeshStandardMaterial({ color: 0x15803D, roughness: 0.8 });
       const petalMat = new THREE.MeshStandardMaterial({ color: 0xFACC15, roughness: 0.4 });
       const centerMat = new THREE.MeshStandardMaterial({ color: 0x78350F, roughness: 0.9 });
@@ -804,89 +818,108 @@
           const h = 1.2 + Math.abs(Math.sin(sx + sz)) * 0.4;
 
           const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.05, h, 5), stemMat);
-          stem.position.set(-15 + ox, h / 2 + 0.1, 110 + oz);
-          sfGroup.add(stem);
+          stem.position.set(ox, h / 2 + 0.1, oz);
+          sunflowerGroup.add(stem);
 
           // Yellow Petal Disk
           const petal = new THREE.Mesh(new THREE.CylinderGeometry(0.42, 0.42, 0.06, 8), petalMat);
-          petal.position.set(-15 + ox, h + 0.1, 110 + oz);
+          petal.position.set(ox, h + 0.1, oz);
           petal.rotation.x = 0.25;
-          sfGroup.add(petal);
+          sunflowerGroup.add(petal);
 
           // Dark Seed Center
           const center = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.2, 0.08, 8), centerMat);
-          center.position.set(-15 + ox, h + 0.12, 110 + oz);
+          center.position.set(ox, h + 0.12, oz);
           center.rotation.x = 0.25;
-          sfGroup.add(center);
+          sunflowerGroup.add(center);
         }
       }
 
-      // 2. Iconic EGAT Sai Noi Campus Landmark Sign (ป้ายสำนักงานหน้าสวิชยาร์ด)
-      const wallMat = new THREE.MeshStandardMaterial({ color: 0xF8FAFC, roughness: 0.4 });
-      const wallBaseMat = new THREE.MeshStandardMaterial({ color: 0x1E293B, roughness: 0.7 });
+      sunflowerGroup.position.set(-15, 0, 260);
+      this.scene.add(sunflowerGroup);
+      this.landmarkMeshes.set('SUNFLOWER_FIELD', sunflowerGroup);
+    }
 
-      const basePlinth = new THREE.Mesh(new THREE.BoxGeometry(16, 0.5, 3.2), wallBaseMat);
-      basePlinth.position.set(4, 0.25, 132);
-      basePlinth.rotation.y = -0.3;
+    // Iconic EGAT Sai Noi Campus Landmark Sign (ป้ายสัญลักษณ์ กฟผ. ไทรน้อย)
+    setupCampusEntranceSign() {
+      const signGroup = new THREE.Group();
+      signGroup.name = 'CampusEntranceSign';
+
+      // 1. Dark Slate Concrete Plinth Base
+      const plinthMat = new THREE.MeshStandardMaterial({ color: 0x0F172A, roughness: 0.75 });
+      const basePlinth = new THREE.Mesh(new THREE.BoxGeometry(16, 0.5, 3.2), plinthMat);
+      basePlinth.position.set(0, 0.25, 0);
       basePlinth.castShadow = true;
-      sfGroup.add(basePlinth);
+      basePlinth.receiveShadow = true;
+      signGroup.add(basePlinth);
 
+      // 2. Premium EGAT Dark Granite Monument Wall with Gold Trim
+      const wallMat = new THREE.MeshStandardMaterial({ color: 0x1E293B, roughness: 0.55, metalness: 0.2 });
       const signWall = new THREE.Mesh(new THREE.BoxGeometry(15, 2.2, 0.8), wallMat);
-      signWall.position.set(4, 1.5, 132);
-      signWall.rotation.y = -0.3;
+      signWall.position.set(0, 1.5, 0);
       signWall.castShadow = true;
-      sfGroup.add(signWall);
+      signWall.receiveShadow = true;
+      signGroup.add(signWall);
 
-      // Golden Yellow 3D Letters: "กฟผ. ไทรน้อย"
+      // Gold Trim Frame around Sign Wall
+      const goldBorderMat = new THREE.MeshStandardMaterial({ color: 0xD97706, metalness: 0.8, roughness: 0.25 });
+      const goldBorderTop = new THREE.Mesh(new THREE.BoxGeometry(15.2, 0.08, 0.85), goldBorderMat);
+      goldBorderTop.position.set(0, 2.62, 0);
+      signGroup.add(goldBorderTop);
+
+      // 3. Golden Yellow 3D Letters: "กฟผ. ไทรน้อย" & Circular Emblem
       const goldMat = new THREE.MeshStandardMaterial({
         color: 0xEAB308,
-        metalness: 0.85,
-        roughness: 0.25
+        metalness: 0.88,
+        roughness: 0.22
       });
 
       const emblem = new THREE.Mesh(new THREE.CylinderGeometry(0.7, 0.7, 0.15, 16), goldMat);
       emblem.rotation.x = Math.PI / 2;
-      emblem.rotation.z = -0.3;
-      emblem.position.set(4 - Math.sin(-0.3) * 0.45 - 5 * Math.cos(-0.3), 1.6, 132 + Math.cos(-0.3) * 0.45 - 5 * Math.sin(-0.3));
-      sfGroup.add(emblem);
+      emblem.position.set(-5.0, 1.6, 0.45);
+      signGroup.add(emblem);
 
       const textBar = new THREE.Mesh(new THREE.BoxGeometry(8.5, 0.7, 0.15), goldMat);
-      textBar.position.set(4 - Math.sin(-0.3) * 0.45, 1.6, 132 + Math.cos(-0.3) * 0.45);
-      textBar.rotation.y = -0.3;
-      sfGroup.add(textBar);
+      textBar.position.set(1.0, 1.6, 0.45);
+      signGroup.add(textBar);
 
-      // Red-paved pedestrian sidewalk along Main Entrance Boulevard
-      const redTileMat = new THREE.MeshStandardMaterial({ color: 0xB91C1C, roughness: 0.78 });
-      const sidewalk = new THREE.Mesh(new THREE.PlaneGeometry(3.2, 140), redTileMat);
-      sidewalk.rotation.x = -Math.PI / 2;
-      sidewalk.position.set(42.5, 0.07, 70);
-      sidewalk.receiveShadow = true;
-      sfGroup.add(sidewalk);
+      signGroup.position.set(-30, 0, 285);
+      signGroup.rotation.y = -0.3;
+      this.scene.add(signGroup);
+      this.landmarkMeshes.set('CAMPUS_SIGN', signGroup);
+    }
 
-      // Double-headed Campus Street Lamps along Boulevard
-      const poleMat = new THREE.MeshStandardMaterial({ color: 0xE2E8F0, metalness: 0.8, roughness: 0.3 });
+    // Street Lamps along Main Entrance Boulevard (ROAD_1)
+    setupBoulevardStreetLamps() {
+      const lampsGroup = new THREE.Group();
+      lampsGroup.name = 'BoulevardStreetLamps';
+
+      const poleMat = new THREE.MeshStandardMaterial({ color: 0x64748B, metalness: 0.8, roughness: 0.3 });
       const lightMat = new THREE.MeshBasicMaterial({ color: 0xFEF08A });
 
-      for (let lz = 10; lz <= 130; lz += 25) {
+      for (let lz = 10; lz <= 240; lz += 30) {
         const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.16, 7.5, 8), poleMat);
-        pole.position.set(41.5, 3.75, lz);
+        pole.position.set(58, 3.75, lz);
         pole.castShadow = true;
-        sfGroup.add(pole);
+        lampsGroup.add(pole);
 
         const arm = new THREE.Mesh(new THREE.BoxGeometry(2.4, 0.12, 0.12), poleMat);
-        arm.position.set(41.5, 7.3, lz);
-        sfGroup.add(arm);
+        arm.position.set(58, 7.3, lz);
+        lampsGroup.add(arm);
 
         [-1.1, 1.1].forEach(ax => {
           const fixture = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.15, 0.3), lightMat);
-          fixture.position.set(41.5 + ax, 7.2, lz);
-          sfGroup.add(fixture);
+          fixture.position.set(58 + ax, 7.2, lz);
+          lampsGroup.add(fixture);
         });
       }
+      this.scene.add(lampsGroup);
+    }
 
-      this.scene.add(sfGroup);
-      this.landmarkMeshes.set('SUNFLOWER_FIELD', sfGroup);
-      this.landmarkMeshes.set('CAMPUS_SIGN', sfGroup);
+    setupSunflowerFieldAndEntranceSign() {
+      this.setupSunflowerField();
+      this.setupCampusEntranceSign();
+      this.setupBoulevardStreetLamps();
     }
 
     setupLandscaping() {
@@ -965,11 +998,50 @@
       this.landmarkMeshes.set('PARKING_SHED_18', shed18);
 
       // 4. ลานกองของ อบค. (Behind T.0012)
-      const storageYard = new THREE.Mesh(new THREE.PlaneGeometry(36, 24), new THREE.MeshStandardMaterial({ color: 0xCBD5E1, roughness: 0.9 }));
-      storageYard.rotation.x = -Math.PI / 2;
-      storageYard.position.set(15, 0.05, -195);
-      this.scene.add(storageYard);
-      this.landmarkMeshes.set('STORAGE_YARD', storageYard);
+      const yardGroup = new THREE.Group();
+      yardGroup.name = 'StorageYard';
+
+      // Base pad: asphalt/gravel
+      const yardBase = new THREE.Mesh(
+        new THREE.BoxGeometry(36, 0.2, 24),
+        new THREE.MeshStandardMaterial({ color: 0x334155, roughness: 0.85 })
+      );
+      yardBase.position.set(0, 0.1, 0);
+      yardBase.receiveShadow = true;
+      yardGroup.add(yardBase);
+
+      // Concrete perimeter curb
+      const yardCurb = new THREE.Mesh(
+        new THREE.BoxGeometry(36.8, 0.35, 24.8),
+        new THREE.MeshStandardMaterial({ color: 0x64748B, roughness: 0.8 })
+      );
+      yardCurb.position.set(0, 0.18, 0);
+      yardGroup.add(yardCurb);
+
+      // Stored equipment crates & industrial containers
+      const c1 = new THREE.Mesh(new THREE.BoxGeometry(6, 2.4, 2.5), new THREE.MeshStandardMaterial({ color: 0x0284C7, roughness: 0.45 }));
+      c1.position.set(-10, 1.4, -5);
+      c1.castShadow = true;
+      yardGroup.add(c1);
+
+      const c2 = new THREE.Mesh(new THREE.BoxGeometry(6, 2.4, 2.5), new THREE.MeshStandardMaterial({ color: 0xEA580C, roughness: 0.45 }));
+      c2.position.set(-10, 1.4, 3);
+      c2.castShadow = true;
+      yardGroup.add(c2);
+
+      const c3 = new THREE.Mesh(new THREE.BoxGeometry(5, 1.8, 3), new THREE.MeshStandardMaterial({ color: 0x15803D, roughness: 0.5 }));
+      c3.position.set(6, 1.1, -4);
+      c3.castShadow = true;
+      yardGroup.add(c3);
+
+      const c4 = new THREE.Mesh(new THREE.CylinderGeometry(0.9, 0.9, 1.6, 12), new THREE.MeshStandardMaterial({ color: 0x78350F, roughness: 0.8 }));
+      c4.position.set(6, 1.0, 4);
+      c4.castShadow = true;
+      yardGroup.add(c4);
+
+      yardGroup.position.set(15, 0, -195);
+      this.scene.add(yardGroup);
+      this.landmarkMeshes.set('STORAGE_YARD', yardGroup);
     }
 
     createTreeMesh() {
@@ -2959,10 +3031,11 @@
       group.userData = { roadId: r.id };
       const w = Number(r.width) || 8;
       const len = Number(r.length) || 50;
+      const isRedWalkway = (r.id && r.id.includes('RED')) || r.category === 'ทางเท้า' || (r.category && r.category.includes('ทางเท้า')) || r.color === 'red';
 
       const asphaltMat = new THREE.MeshStandardMaterial({
-        color: 0x334155,
-        roughness: 0.72,
+        color: isRedWalkway ? 0xB91C1C : 0x334155,
+        roughness: isRedWalkway ? 0.68 : 0.72,
         polygonOffset: true,
         polygonOffsetFactor: -1,
         polygonOffsetUnits: -1
@@ -2973,10 +3046,10 @@
       roadPlane.receiveShadow = true;
       group.add(roadPlane);
 
-      // Centerline dashes
+      // Centerline dashes or walkway border
       const lineGroup = new THREE.Group();
       lineGroup.name = 'centerlineGroup';
-      this.buildRoadCenterline(lineGroup, w, len);
+      this.buildRoadCenterline(lineGroup, w, len, isRedWalkway);
       group.add(lineGroup);
 
       group.position.set(Number(r.x) || 0, 0.08, Number(r.z) || 0);
@@ -2985,11 +3058,32 @@
       return group;
     }
 
-    buildRoadCenterline(lineGroup, w, len) {
+    buildRoadCenterline(lineGroup, w, len, isRedWalkway = false) {
       while (lineGroup.children.length > 0) {
         const c = lineGroup.children.pop();
         if (c.geometry) c.geometry.dispose();
+        if (c.material) c.material.dispose();
       }
+
+      if (isRedWalkway) {
+        // Red paving border curbs along each side of the walkway
+        const curbMat = new THREE.MeshStandardMaterial({
+          color: 0x94A3B8,
+          roughness: 0.8,
+          polygonOffset: true,
+          polygonOffsetFactor: -2,
+          polygonOffsetUnits: -2
+        });
+        const curbW = Math.min(0.3, w * 0.1);
+        [-w / 2 + curbW / 2, w / 2 - curbW / 2].forEach(cx => {
+          const curb = new THREE.Mesh(new THREE.PlaneGeometry(curbW, len), curbMat);
+          curb.rotation.x = -Math.PI / 2;
+          curb.position.set(cx, 0.02, 0);
+          lineGroup.add(curb);
+        });
+        return;
+      }
+
       if (w < 6 || len < 12) return;
 
       const lineMat = new THREE.MeshBasicMaterial({
@@ -3016,16 +3110,20 @@
 
       const w = Number(r.width) || 8;
       const len = Number(r.length) || 50;
+      const isRedWalkway = (r.id && r.id.includes('RED')) || r.category === 'ทางเท้า' || (r.category && r.category.includes('ทางเท้า')) || r.color === 'red';
 
       const plane = mesh.getObjectByName('asphaltPlane');
       if (plane) {
         if (plane.geometry) plane.geometry.dispose();
         plane.geometry = new THREE.PlaneGeometry(w, len);
+        if (plane.material) {
+          plane.material.color.setHex(isRedWalkway ? 0xB91C1C : 0x334155);
+        }
       }
 
       const lineGroup = mesh.getObjectByName('centerlineGroup');
       if (lineGroup) {
-        this.buildRoadCenterline(lineGroup, w, len);
+        this.buildRoadCenterline(lineGroup, w, len, isRedWalkway);
       }
     }
 

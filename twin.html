@@ -17,9 +17,9 @@
   <script>if (typeof XLSX === 'undefined') document.write('<script src="scripts/xlsx.full.min.js"><\/script>');</script>
 
   <!-- Core Scripts & Fallback Mapping -->
-  <script src="data/building_mapping.js?v=20261118_02"></script>
-  <script src="scripts/energy-twin-core.js?v=20261118_02"></script>
-  <script src="scripts/energy-twin-3d.js?v=20261118_02"></script>
+  <script src="data/building_mapping.js?v=20261118_04"></script>
+  <script src="scripts/energy-twin-core.js?v=20261118_04"></script>
+  <script src="scripts/energy-twin-3d.js?v=20261118_04"></script>
 
   <style>
     :root {
@@ -152,6 +152,90 @@
     .btn-action.primary:hover { background: #E58E00; }
     .btn-action.danger { background: #DC2626; color: #fff; border-color: #DC2626; }
     .btn-action.success { background: #16A34A; color: #fff; border-color: #16A34A; }
+
+    /* High-contrast contextual rules for action buttons inside light-theme containers */
+    .studio-dropdown-menu .btn-action,
+    .modal-body .btn-action,
+    .modal-ftr .btn-action,
+    #layoutTabTable .btn-action,
+    .layout-2d-sidebar .btn-action,
+    .side-panel .btn-action {
+      background: #F1F5F9;
+      color: #0F172A;
+      border: 1px solid #CBD5E1;
+      font-weight: 600;
+    }
+    .studio-dropdown-menu .btn-action:hover,
+    .modal-body .btn-action:hover,
+    .modal-ftr .btn-action:hover,
+    #layoutTabTable .btn-action:hover,
+    .layout-2d-sidebar .btn-action:hover,
+    .side-panel .btn-action:hover {
+      background: #E2E8F0;
+      color: #1E3A8A;
+      border-color: #94A3B8;
+    }
+    .studio-dropdown-menu .btn-action.primary,
+    .modal-body .btn-action.primary,
+    .modal-ftr .btn-action.primary,
+    #layoutTabTable .btn-action.primary,
+    .layout-2d-sidebar .btn-action.primary,
+    .side-panel .btn-action.primary {
+      background: #F59E0B;
+      color: #0B1D51;
+      border-color: #D97706;
+      font-weight: 700;
+    }
+    .studio-dropdown-menu .btn-action.primary:hover,
+    .modal-body .btn-action.primary:hover,
+    .modal-ftr .btn-action.primary:hover,
+    #layoutTabTable .btn-action.primary:hover,
+    .layout-2d-sidebar .btn-action.primary:hover,
+    .side-panel .btn-action.primary:hover {
+      background: #D97706;
+      color: #FFFFFF;
+    }
+    .studio-dropdown-menu .btn-action.danger,
+    .modal-body .btn-action.danger,
+    .modal-ftr .btn-action.danger,
+    #layoutTabTable .btn-action.danger {
+      background: #DC2626;
+      color: #FFFFFF;
+      border-color: #B91C1C;
+      font-weight: 700;
+    }
+    .studio-dropdown-menu .btn-action.danger:hover,
+    .modal-body .btn-action.danger:hover,
+    .modal-ftr .btn-action.danger:hover,
+    #layoutTabTable .btn-action.danger:hover {
+      background: #B91C1C;
+    }
+
+    /* High-contrast Coordinate Step Buttons in Table */
+    .coord-step-btn {
+      padding: 2px 7px;
+      font-size: 11px;
+      font-weight: 700;
+      background: #F8FAFC;
+      color: #1E293B;
+      border: 1px solid #CBD5E1;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.1s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .coord-step-btn:hover {
+      background: #DBEAFE;
+      color: #1D4ED8;
+      border-color: #93C5FD;
+    }
+    .coord-step-btn.step-large {
+      background: #E2E8F0;
+      font-weight: 800;
+      color: #0F172A;
+    }
 
     /* Quick Preset Buttons */
     .btn-preset {
@@ -817,22 +901,24 @@
     .btn-studio-top {
       display: inline-flex;
       align-items: center;
-      gap: 5px;
-      padding: 5px 12px;
-      font-size: 11.5px;
-      font-weight: 600;
-      color: #E2E8F0;
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.22);
+      gap: 6px;
+      padding: 6px 12px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #FFFFFF;
+      background: #1E293B;
+      border: 1px solid #475569;
       border-radius: 6px;
       cursor: pointer;
       transition: all 0.15s;
       white-space: nowrap;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
     }
     .btn-studio-top:hover {
-      background: rgba(255, 255, 255, 0.2);
-      color: #fff;
-      border-color: rgba(255, 255, 255, 0.4);
+      background: #334155;
+      color: #FFFFFF;
+      border-color: #94A3B8;
+      transform: translateY(-1px);
     }
 
     .studio-dropdown-menu {
@@ -1917,14 +2003,14 @@
               <button type="button" class="btn-action" style="width:100%; justify-content:flex-start; margin-bottom:4px; font-size:11.5px;" onclick="copyLayoutJsonToClipboard(); closeAllStudioDropdowns();">
                 📋 คัดลอก JSON ลงคลิปบอร์ด
               </button>
-              <button type="button" class="btn-action" style="width:100%; justify-content:flex-start; margin-bottom:4px; font-size:11.5px; background:#1F2937; color:#fff; border:1px solid #111827; font-weight:600;" onclick="commitLayoutToGitHub(); closeAllStudioDropdowns();">
+              <button type="button" class="btn-action" style="width:100%; justify-content:flex-start; margin-bottom:4px; font-size:11.5px; background:#4F46E5; color:#ffffff; border:1px solid #4338CA; font-weight:700;" onclick="commitLayoutToGitHub(); closeAllStudioDropdowns();">
                 ☁️ บันทึกผังขึ้น GitHub (Cloud Commit)
               </button>
-              <button type="button" class="btn-action" style="width:100%; justify-content:flex-start; margin-bottom:4px; font-size:11.5px; background:#ECFDF5; color:#065F46; border:1px solid #A7F3D0; font-weight:600;" onclick="saveCurrentLayoutAsSystemDefault(); closeAllStudioDropdowns();">
+              <button type="button" class="btn-action" style="width:100%; justify-content:flex-start; margin-bottom:4px; font-size:11.5px; background:#ECFDF5; color:#065F46; border:1px solid #A7F3D0; font-weight:700;" onclick="saveCurrentLayoutAsSystemDefault(); closeAllStudioDropdowns();">
                 📌 บันทึกผังนี้เป็นค่าเริ่มต้นถาวรของระบบ
               </button>
               <div style="border-top:1px solid #E2E8F0; margin:6px 0; padding-top:6px;">
-                <button type="button" class="btn-action" style="width:100%; justify-content:flex-start; font-size:11.5px; background:#0284C7; color:#fff;" onclick="document.getElementById('layoutFileInput').click(); closeAllStudioDropdowns();">
+                <button type="button" class="btn-action" style="width:100%; justify-content:flex-start; font-size:11.5px; background:#0284C7; color:#fff; font-weight:700;" onclick="document.getElementById('layoutFileInput').click(); closeAllStudioDropdowns();">
                   📥 อัปโหลดไฟล์ผัง (JSON / Excel / CSV)
                 </button>
               </div>
@@ -1952,7 +2038,7 @@
             📌 ตั้งเป็นค่าเริ่มต้นระบบ
           </button>
           <!-- Cloud Commit to GitHub Button -->
-          <button type="button" class="btn-studio-top" style="background:#1F2937; color:#fff; border-color:#111827; font-weight:700; padding:6px 12px; gap:5px;" onclick="commitLayoutToGitHub()" title="บันทึกผังนี้ขึ้น GitHub Repository ทันที (ซิงค์ตรงกับคลาวด์ ไม่ต้องเปิด server ใช้ได้จากทุกเครื่องในโลก)">
+          <button type="button" class="btn-studio-top" style="background:#4F46E5; color:#ffffff; border-color:#4338CA; font-weight:800; padding:6px 14px; gap:6px; box-shadow:0 2px 8px rgba(79,70,229,0.4);" onclick="commitLayoutToGitHub()" title="บันทึกผังนี้ขึ้น GitHub Repository ทันที (ซิงค์ตรงกับคลาวด์ ไม่ต้องเปิด server ใช้ได้จากทุกเครื่องในโลก)">
             ☁️ บันทึกลง GitHub
           </button>
 
@@ -4953,26 +5039,35 @@
           ctx.strokeRect(-w / 2 - 2, -d / 2 - 2, w + 4, d + 4);
         }
 
-        ctx.fillStyle = isSel ? '#475569' : '#64748B';
+        const isRedWalkway = (r.id && r.id.includes('RED')) || r.category === 'ทางเท้า' || (r.category && r.category.includes('ทางเท้า')) || r.color === 'red';
+
+        ctx.fillStyle = isRedWalkway ? (isSel ? '#EF4444' : '#DC2626') : (isSel ? '#475569' : '#64748B');
         ctx.fillRect(-w / 2, -d / 2, w, d);
-        ctx.strokeStyle = '#334155';
+        ctx.strokeStyle = isRedWalkway ? '#991B1B' : '#334155';
         ctx.lineWidth = 1;
         ctx.strokeRect(-w / 2, -d / 2, w, d);
 
-        // Center line
-        ctx.strokeStyle = '#FFFFFF';
-        ctx.lineWidth = Math.max(1, 1.2 * this.camera.zoom);
-        ctx.setLineDash([6 * this.camera.zoom, 4 * this.camera.zoom]);
-        ctx.beginPath();
-        if (d >= w) {
-          ctx.moveTo(0, -d / 2);
-          ctx.lineTo(0, d / 2);
+        if (isRedWalkway) {
+          // Walkway borders
+          ctx.strokeStyle = '#FECACA';
+          ctx.lineWidth = Math.max(1, 1 * this.camera.zoom);
+          ctx.strokeRect(-w / 2 + 1, -d / 2 + 1, w - 2, d - 2);
         } else {
-          ctx.moveTo(-w / 2, 0);
-          ctx.lineTo(w / 2, 0);
+          // Highway center line
+          ctx.strokeStyle = '#FFFFFF';
+          ctx.lineWidth = Math.max(1, 1.2 * this.camera.zoom);
+          ctx.setLineDash([6 * this.camera.zoom, 4 * this.camera.zoom]);
+          ctx.beginPath();
+          if (d >= w) {
+            ctx.moveTo(0, -d / 2);
+            ctx.lineTo(0, d / 2);
+          } else {
+            ctx.moveTo(-w / 2, 0);
+            ctx.lineTo(w / 2, 0);
+          }
+          ctx.stroke();
+          ctx.setLineDash([]);
         }
-        ctx.stroke();
-        ctx.setLineDash([]);
 
         if (this.camera.zoom > 0.7 && Math.max(w, d) > 25) {
           ctx.font = 'bold 9px "Sarabun", sans-serif';
@@ -5664,24 +5759,24 @@
               </td>
               <td style="text-align:center;">
                 <div style="display:inline-flex; align-items:center; gap:3px;">
-                  <button type="button" class="btn-action" style="padding:2px 7px; font-size:12px; font-weight:700;" onclick="onLayoutCoordStep('${b.b_code}', 'x', -5)" title="เลื่อนไปทางตะวันตก -5m">-5</button>
-                  <button type="button" class="btn-action" style="padding:2px 6px; font-size:11px;" onclick="onLayoutCoordStep('${b.b_code}', 'x', -1)" title="เลื่อนไปทางตะวันตก -1m">-</button>
+                  <button type="button" class="coord-step-btn step-large" onclick="onLayoutCoordStep('${b.b_code}', 'x', -5)" title="เลื่อนไปทางตะวันตก -5m">-5</button>
+                  <button type="button" class="coord-step-btn" onclick="onLayoutCoordStep('${b.b_code}', 'x', -1)" title="เลื่อนไปทางตะวันตก -1m">-</button>
                   <input type="number" step="0.5" id="layoutInput_x_${b.b_code}" value="${pos.x}" 
                          oninput="onLayoutCoordInput('${b.b_code}', 'x', this.value)"
-                         style="width:58px; text-align:center; font-family:'JetBrains Mono'; font-size:12px; padding:3px 2px; border:1px solid var(--bdr); border-radius:4px;">
-                  <button type="button" class="btn-action" style="padding:2px 6px; font-size:11px;" onclick="onLayoutCoordStep('${b.b_code}', 'x', 1)" title="เลื่อนไปทางตะวันออก +1m">+</button>
-                  <button type="button" class="btn-action" style="padding:2px 7px; font-size:12px; font-weight:700;" onclick="onLayoutCoordStep('${b.b_code}', 'x', 5)" title="เลื่อนไปทางตะวันออก +5m">+5</button>
+                         style="width:58px; text-align:center; font-family:'JetBrains Mono'; font-size:12px; padding:3px 2px; border:1px solid var(--bdr); border-radius:4px; background:#fff;">
+                  <button type="button" class="coord-step-btn" onclick="onLayoutCoordStep('${b.b_code}', 'x', 1)" title="เลื่อนไปทางตะวันออก +1m">+</button>
+                  <button type="button" class="coord-step-btn step-large" onclick="onLayoutCoordStep('${b.b_code}', 'x', 5)" title="เลื่อนไปทางตะวันออก +5m">+5</button>
                 </div>
               </td>
               <td style="text-align:center;">
                 <div style="display:inline-flex; align-items:center; gap:3px;">
-                  <button type="button" class="btn-action" style="padding:2px 7px; font-size:12px; font-weight:700;" onclick="onLayoutCoordStep('${b.b_code}', 'z', -5)" title="เลื่อนไปทางทิศเหนือ -5m">-5</button>
-                  <button type="button" class="btn-action" style="padding:2px 6px; font-size:11px;" onclick="onLayoutCoordStep('${b.b_code}', 'z', -1)" title="เลื่อนไปทางทิศเหนือ -1m">-</button>
+                  <button type="button" class="coord-step-btn step-large" onclick="onLayoutCoordStep('${b.b_code}', 'z', -5)" title="เลื่อนไปทางทิศเหนือ -5m">-5</button>
+                  <button type="button" class="coord-step-btn" onclick="onLayoutCoordStep('${b.b_code}', 'z', -1)" title="เลื่อนไปทางทิศเหนือ -1m">-</button>
                   <input type="number" step="0.5" id="layoutInput_z_${b.b_code}" value="${pos.z}" 
                          oninput="onLayoutCoordInput('${b.b_code}', 'z', this.value)"
-                         style="width:58px; text-align:center; font-family:'JetBrains Mono'; font-size:12px; padding:3px 2px; border:1px solid var(--bdr); border-radius:4px;">
-                  <button type="button" class="btn-action" style="padding:2px 6px; font-size:11px;" onclick="onLayoutCoordStep('${b.b_code}', 'z', 1)" title="เลื่อนไปทางทิศใต้ +1m">+</button>
-                  <button type="button" class="btn-action" style="padding:2px 7px; font-size:12px; font-weight:700;" onclick="onLayoutCoordStep('${b.b_code}', 'z', 5)" title="เลื่อนไปทางทิศใต้ +5m">+5</button>
+                         style="width:58px; text-align:center; font-family:'JetBrains Mono'; font-size:12px; padding:3px 2px; border:1px solid var(--bdr); border-radius:4px; background:#fff;">
+                  <button type="button" class="coord-step-btn" onclick="onLayoutCoordStep('${b.b_code}', 'z', 1)" title="เลื่อนไปทางทิศใต้ +1m">+</button>
+                  <button type="button" class="coord-step-btn step-large" onclick="onLayoutCoordStep('${b.b_code}', 'z', 5)" title="เลื่อนไปทางทิศใต้ +5m">+5</button>
                 </div>
               </td>
               <td style="text-align:center;">
@@ -5689,7 +5784,7 @@
                   <button type="button" class="btn-action primary" style="padding:3px 8px; font-size:11px;" onclick="focusBuildingInLayout('${b.b_code}')" title="โฟกัสกล้อง 3D ไปที่อาคารนี้">
                     🎯 ส่อง
                   </button>
-                  <button type="button" class="btn-action" style="padding:3px 6px; font-size:11px; color:var(--txt2);" onclick="resetSingleBuildingPosition('${b.b_code}')" title="คืนค่าพิกัดเดิมของอาคารนี้">
+                  <button type="button" class="coord-step-btn" style="padding:3px 7px; font-size:12px; font-weight:700; color:#475569;" onclick="resetSingleBuildingPosition('${b.b_code}')" title="คืนค่าพิกัดเดิมของอาคารนี้">
                     ↺
                   </button>
                 </div>
@@ -5739,24 +5834,24 @@
               </td>
               <td style="text-align:center;">
                 <div style="display:inline-flex; align-items:center; gap:3px;">
-                  <button type="button" class="btn-action" style="padding:2px 7px; font-size:12px; font-weight:700;" onclick="onRoadCoordStep('${r.id}', 'x', -5)" title="เลื่อนถนนไปทางตะวันตก -5m">-5</button>
-                  <button type="button" class="btn-action" style="padding:2px 6px; font-size:11px;" onclick="onRoadCoordStep('${r.id}', 'x', -1)" title="เลื่อนถนนไปทางตะวันตก -1m">-</button>
+                  <button type="button" class="coord-step-btn step-large" onclick="onRoadCoordStep('${r.id}', 'x', -5)" title="เลื่อนถนนไปทางตะวันตก -5m">-5</button>
+                  <button type="button" class="coord-step-btn" onclick="onRoadCoordStep('${r.id}', 'x', -1)" title="เลื่อนถนนไปทางตะวันตก -1m">-</button>
                   <input type="number" step="1" id="layoutRoadInput_x_${r.id}" value="${r.x}" 
                          oninput="onRoadCoordInput('${r.id}', 'x', this.value)"
                          style="width:58px; text-align:center; font-family:'JetBrains Mono'; font-size:12px; padding:3px 2px; border:1px solid var(--bdr); border-radius:4px; background:#fff;">
-                  <button type="button" class="btn-action" style="padding:2px 6px; font-size:11px;" onclick="onRoadCoordStep('${r.id}', 'x', 1)" title="เลื่อนถนนไปทางตะวันออก +1m">+</button>
-                  <button type="button" class="btn-action" style="padding:2px 7px; font-size:12px; font-weight:700;" onclick="onRoadCoordStep('${r.id}', 'x', 5)" title="เลื่อนถนนไปทางตะวันออก +5m">+5</button>
+                  <button type="button" class="coord-step-btn" onclick="onRoadCoordStep('${r.id}', 'x', 1)" title="เลื่อนถนนไปทางตะวันออก +1m">+</button>
+                  <button type="button" class="coord-step-btn step-large" onclick="onRoadCoordStep('${r.id}', 'x', 5)" title="เลื่อนถนนไปทางตะวันออก +5m">+5</button>
                 </div>
               </td>
               <td style="text-align:center;">
                 <div style="display:inline-flex; align-items:center; gap:3px;">
-                  <button type="button" class="btn-action" style="padding:2px 7px; font-size:12px; font-weight:700;" onclick="onRoadCoordStep('${r.id}', 'z', -5)" title="เลื่อนถนนไปทางทิศเหนือ -5m">-5</button>
-                  <button type="button" class="btn-action" style="padding:2px 6px; font-size:11px;" onclick="onRoadCoordStep('${r.id}', 'z', -1)" title="เลื่อนถนนไปทางทิศเหนือ -1m">-</button>
+                  <button type="button" class="coord-step-btn step-large" onclick="onRoadCoordStep('${r.id}', 'z', -5)" title="เลื่อนถนนไปทางทิศเหนือ -5m">-5</button>
+                  <button type="button" class="coord-step-btn" onclick="onRoadCoordStep('${r.id}', 'z', -1)" title="เลื่อนถนนไปทางทิศเหนือ -1m">-</button>
                   <input type="number" step="1" id="layoutRoadInput_z_${r.id}" value="${r.z}" 
                          oninput="onRoadCoordInput('${r.id}', 'z', this.value)"
                          style="width:58px; text-align:center; font-family:'JetBrains Mono'; font-size:12px; padding:3px 2px; border:1px solid var(--bdr); border-radius:4px; background:#fff;">
-                  <button type="button" class="btn-action" style="padding:2px 6px; font-size:11px;" onclick="onRoadCoordStep('${r.id}', 'z', 1)" title="เลื่อนถนนไปทางทิศใต้ +1m">+</button>
-                  <button type="button" class="btn-action" style="padding:2px 7px; font-size:12px; font-weight:700;" onclick="onRoadCoordStep('${r.id}', 'z', 5)" title="เลื่อนถนนไปทางทิศใต้ +5m">+5</button>
+                  <button type="button" class="coord-step-btn" onclick="onRoadCoordStep('${r.id}', 'z', 1)" title="เลื่อนถนนไปทางทิศใต้ +1m">+</button>
+                  <button type="button" class="coord-step-btn step-large" onclick="onRoadCoordStep('${r.id}', 'z', 5)" title="เลื่อนถนนไปทางทิศใต้ +5m">+5</button>
                 </div>
               </td>
               <td style="text-align:center;">
@@ -5764,7 +5859,7 @@
                   <button type="button" class="btn-action primary" style="padding:3px 8px; font-size:11px;" onclick="focusRoadInLayout('${r.id}')" title="โฟกัสกล้อง 3D ไปที่ถนนนี้">
                     🎯 ส่อง
                   </button>
-                  <button type="button" class="btn-action" style="padding:3px 6px; font-size:11px; color:var(--txt2);" onclick="resetSingleRoadPosition('${r.id}')" title="คืนค่าพิกัดเดิมของถนนเส้นนี้">
+                  <button type="button" class="coord-step-btn" style="padding:3px 7px; font-size:12px; font-weight:700; color:#475569;" onclick="resetSingleRoadPosition('${r.id}')" title="คืนค่าพิกัดเดิมของถนนเส้นนี้">
                     ↺
                   </button>
                 </div>
@@ -5827,11 +5922,103 @@
         });
       }
 
+      // 4. Render Landmarks (when filter is 'ALL' or 'landmark')
+      if (zoneFilter === 'ALL' || zoneFilter === 'landmark') {
+        const landmarks = EnergyTwin.getLandmarksList ? EnergyTwin.getLandmarksList() : [];
+        landmarks.forEach(lm => {
+          const nameMatch = (lm.name && lm.name.toLowerCase().includes(q)) || 
+                            (lm.id && lm.id.toLowerCase().includes(q)) ||
+                            (lm.category && lm.category.toLowerCase().includes(q));
+          if (q && !nameMatch) return;
+
+          visibleCount++;
+          const rotDeg = Math.round(((lm.rotation_y || 0) * 180 / Math.PI) % 360);
+          const isHidden = !!lm.hidden;
+
+          html += `
+            <tr id="layoutRow_${lm.id}" style="${isHidden ? 'opacity:0.55;' : ''} background:#FEF3C7;">
+              <td style="text-align:center;">
+                <button type="button" class="card-eye-btn" onclick="toggleItemVisibility('landmark', '${lm.id}')" title="${isHidden ? 'คลิกเพื่อเปิดแสดงแลนด์มาร์คนี้' : 'คลิกเพื่อซ่อน/ลบแลนด์มาร์คนี้'}">
+                  ${isHidden ? '🚫' : '👁️'}
+                </button>
+              </td>
+              <td>
+                <span class="grid-badge badge-landmark ${isHidden ? 'badge-hidden' : ''}" style="font-size:10px;">🚩 แลนด์มาร์ค</span>
+              </td>
+              <td>
+                <div style="font-weight:600; color:#92400E; ${isHidden ? 'text-decoration:line-through; color:#94A3B8;' : ''}">${lm.name}</div>
+                <div style="font-size:10px; color:#64748B; font-family:'JetBrains Mono';">${lm.id} | ${lm.category || ''}</div>
+              </td>
+              <td>
+                <span style="font-size:11px; color:#92400E; background:#FDE68A; padding:2px 6px; border-radius:4px; white-space:nowrap;">
+                  🚩 แลนด์มาร์ค
+                </span>
+              </td>
+              <td style="text-align:center; font-family:'JetBrains Mono'; font-size:11px; color:var(--txt2);">
+                ${lm.width || 15}×${lm.depth || 15}
+              </td>
+              <td style="text-align:center; font-size:11px; color:#64748B;">
+                ${rotDeg}°
+              </td>
+              <td style="text-align:center;">
+                <div style="display:inline-flex; align-items:center; gap:3px;">
+                  <button type="button" class="coord-step-btn step-large" onclick="onLandmarkCoordStep('${lm.id}', 'x', -5)" title="เลื่อนไปทางตะวันตก -5m">-5</button>
+                  <button type="button" class="coord-step-btn" onclick="onLandmarkCoordStep('${lm.id}', 'x', -1)" title="เลื่อนไปทางตะวันตก -1m">-</button>
+                  <input type="number" step="1" id="layoutLandmarkInput_x_${lm.id}" value="${lm.x}" 
+                         oninput="onLandmarkCoordInput('${lm.id}', 'x', this.value)"
+                         style="width:58px; text-align:center; font-family:'JetBrains Mono'; font-size:12px; padding:3px 2px; border:1px solid var(--bdr); border-radius:4px; background:#fff;">
+                  <button type="button" class="coord-step-btn" onclick="onLandmarkCoordStep('${lm.id}', 'x', 1)" title="เลื่อนไปทางตะวันออก +1m">+</button>
+                  <button type="button" class="coord-step-btn step-large" onclick="onLandmarkCoordStep('${lm.id}', 'x', 5)" title="เลื่อนไปทางตะวันออก +5m">+5</button>
+                </div>
+              </td>
+              <td style="text-align:center;">
+                <div style="display:inline-flex; align-items:center; gap:3px;">
+                  <button type="button" class="coord-step-btn step-large" onclick="onLandmarkCoordStep('${lm.id}', 'z', -5)" title="เลื่อนไปทางทิศเหนือ -5m">-5</button>
+                  <button type="button" class="coord-step-btn" onclick="onLandmarkCoordStep('${lm.id}', 'z', -1)" title="เลื่อนไปทางทิศเหนือ -1m">-</button>
+                  <input type="number" step="1" id="layoutLandmarkInput_z_${lm.id}" value="${lm.z}" 
+                         oninput="onLandmarkCoordInput('${lm.id}', 'z', this.value)"
+                         style="width:58px; text-align:center; font-family:'JetBrains Mono'; font-size:12px; padding:3px 2px; border:1px solid var(--bdr); border-radius:4px; background:#fff;">
+                  <button type="button" class="coord-step-btn" onclick="onLandmarkCoordStep('${lm.id}', 'z', 1)" title="เลื่อนไปทางทิศใต้ +1m">+</button>
+                  <button type="button" class="coord-step-btn step-large" onclick="onLandmarkCoordStep('${lm.id}', 'z', 5)" title="เลื่อนไปทางทิศใต้ +5m">+5</button>
+                </div>
+              </td>
+              <td style="text-align:center;">
+                <div style="display:inline-flex; align-items:center; gap:4px;">
+                  <button type="button" class="btn-action primary" style="padding:3px 8px; font-size:11px;" onclick="switchLayoutEditorTab('grid'); selectLayoutStudioItem('landmark', '${lm.id}');" title="โฟกัสไปที่แลนด์มาร์คนี้ในผัง 2D">
+                    🎯 ส่อง
+                  </button>
+                </div>
+              </td>
+            </tr>
+          `;
+        });
+      }
+
       tbody.innerHTML = html || '<tr><td colspan="9" style="text-align:center; padding:20px; color:var(--txt2);">ไม่พบรายการที่ค้นหา</td></tr>';
       const countEl = document.getElementById('layoutEditorCountText');
       if (countEl) {
         countEl.textContent = `แสดง ${visibleCount} รายการ | บันทึกในเบราว์เซอร์อัตโนมัติ (LocalStorage)`;
       }
+    }
+
+    // Landmark coordinate handlers
+    function onLandmarkCoordInput(id, axis, val) {
+      const num = parseFloat(val);
+      if (isNaN(num)) return;
+      if (!EnergyTwin.landmarks || !EnergyTwin.landmarks[id]) return;
+      EnergyTwin.landmarks[id][axis] = num;
+      if (layout2DStudio && layout2DStudio.isInitialized) {
+        layout2DStudio.requestRender();
+      }
+    }
+
+    function onLandmarkCoordStep(id, axis, step) {
+      const inputEl = document.getElementById(`layoutLandmarkInput_${axis}_${id}`);
+      if (!inputEl) return;
+      const curVal = parseFloat(inputEl.value) || 0;
+      const nextVal = Math.round((curVal + step) * 10) / 10;
+      inputEl.value = nextVal;
+      onLandmarkCoordInput(id, axis, nextVal);
     }
 
     // Building coordinate handlers

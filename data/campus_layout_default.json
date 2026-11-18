@@ -701,6 +701,16 @@
       "rotation_y": 0,
       "category": "ถนน",
       "hidden": false
+    },
+    "ROAD_ENTRANCE_RED": {
+      "name": "ทางเดิน/ถนนทางเข้าหลักสีแดง",
+      "x": 65,
+      "z": 140,
+      "width": 4,
+      "length": 140,
+      "rotation_y": 0,
+      "category": "ทางเท้า",
+      "hidden": false
     }
   },
   "water": {
@@ -907,6 +917,28 @@
       "rotation_y": 0,
       "rotation_deg": 0,
       "hidden": true
+    },
+    "CAMPUS_ENTRANCE": {
+      "name": "ซุ้มประตูและป้อมยามทางเข้าหลัก (ท.0021)",
+      "category": "ระบบรักษาความปลอดภัย",
+      "x": 65,
+      "z": 140,
+      "rotation_y": 0,
+      "rotation_deg": 0,
+      "hidden": false,
+      "width": 14,
+      "depth": 10
+    },
+    "STORAGE_YARD": {
+      "name": "ลานกองของ อบค. (Storage Yard)",
+      "category": "ลานจัดเก็บพัสดุ",
+      "x": 15,
+      "z": -195,
+      "rotation_y": 0,
+      "rotation_deg": 0,
+      "hidden": false,
+      "width": 36,
+      "depth": 24
     }
   }
 }

@@ -1103,13 +1103,25 @@
             "category": "ถนน",
             "rotation_y": 0,
             "hidden": false
+      },
+      "ROAD_ENTRANCE_RED": {
+            "name": "ทางเดิน/ถนนทางเข้าหลักสีแดง",
+            "x": 65,
+            "z": 140,
+            "width": 4,
+            "length": 140,
+            "category": "ทางเท้า",
+            "rotation_y": 0,
+            "hidden": false
       }
 },
     roads: null,
 
     loadCustomRoads() {
       try {
-        if (!this.roads) this.roads = {};
+        if (!this.roads || Object.keys(this.roads).length === 0) {
+          this.roads = JSON.parse(JSON.stringify(this.defaultRoads));
+        }
         const saved = localStorage.getItem('sainoi_custom_roads');
         if (saved) {
           const custom = JSON.parse(saved);
@@ -1125,26 +1137,31 @@
             });
             localStorage.setItem('sainoi_custom_roads', JSON.stringify(cleaned));
             this.roads = cleaned;
-            return;
+          } else {
+            Object.entries(custom).forEach(([rid, pos]) => {
+              if (!this.roads[rid]) {
+                this.roads[rid] = { ...pos };
+              } else {
+                const x = Number(pos.x);
+                const z = Number(pos.z);
+                if (!isNaN(x)) this.roads[rid].x = x;
+                if (!isNaN(z)) this.roads[rid].z = z;
+                if (pos.width !== undefined && !isNaN(Number(pos.width))) this.roads[rid].width = Number(pos.width);
+                if (pos.length !== undefined && !isNaN(Number(pos.length))) this.roads[rid].length = Number(pos.length);
+                if (pos.rotation_y !== undefined && !isNaN(Number(pos.rotation_y))) this.roads[rid].rotation_y = Number(pos.rotation_y);
+                if (pos.hidden !== undefined) this.roads[rid].hidden = Boolean(pos.hidden);
+                if (pos.name) this.roads[rid].name = pos.name;
+                if (pos.category) this.roads[rid].category = pos.category;
+              }
+            });
           }
-
-          Object.entries(custom).forEach(([rid, pos]) => {
-            if (!this.roads[rid]) {
-              this.roads[rid] = { ...pos };
-            } else {
-              const x = Number(pos.x);
-              const z = Number(pos.z);
-              if (!isNaN(x)) this.roads[rid].x = x;
-              if (!isNaN(z)) this.roads[rid].z = z;
-              if (pos.width !== undefined && !isNaN(Number(pos.width))) this.roads[rid].width = Number(pos.width);
-              if (pos.length !== undefined && !isNaN(Number(pos.length))) this.roads[rid].length = Number(pos.length);
-              if (pos.rotation_y !== undefined && !isNaN(Number(pos.rotation_y))) this.roads[rid].rotation_y = Number(pos.rotation_y);
-              if (pos.hidden !== undefined) this.roads[rid].hidden = Boolean(pos.hidden);
-              if (pos.name) this.roads[rid].name = pos.name;
-              if (pos.category) this.roads[rid].category = pos.category;
-            }
-          });
         }
+        // Guarantee all default roads exist
+        Object.entries(this.defaultRoads).forEach(([k, defVal]) => {
+          if (!this.roads[k]) {
+            this.roads[k] = JSON.parse(JSON.stringify(defVal));
+          }
+        });
       } catch (e) {
         console.warn('Could not load custom roads from localStorage:', e);
       }
@@ -1567,6 +1584,26 @@
             "category": "อาคารจอดรถ",
             "rotation_y": 0,
             "hidden": true
+      },
+      "CAMPUS_ENTRANCE": {
+            "name": "ซุ้มประตูและป้อมยามทางเข้าหลัก (ท.0021)",
+            "x": 65,
+            "z": 140,
+            "category": "ระบบรักษาความปลอดภัย",
+            "rotation_y": 0,
+            "hidden": false,
+            "width": 14,
+            "depth": 10
+      },
+      "STORAGE_YARD": {
+            "name": "ลานกองของ อบค. (Storage Yard)",
+            "x": 15,
+            "z": -195,
+            "category": "ลานจัดเก็บพัสดุ",
+            "rotation_y": 0,
+            "hidden": false,
+            "width": 36,
+            "depth": 24
       }
 },
     landmarks: null,
@@ -1586,6 +1623,12 @@
             }
           });
         }
+        // Guarantee all default landmarks exist
+        Object.entries(this.defaultLandmarks).forEach(([k, defVal]) => {
+          if (!this.landmarks[k]) {
+            this.landmarks[k] = JSON.parse(JSON.stringify(defVal));
+          }
+        });
       } catch (e) {
         console.warn('Could not load custom landmarks from localStorage:', e);
       }
