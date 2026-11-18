@@ -2808,6 +2808,136 @@
       return await res.json();
     },
 
+    // Commit campus layout default JSON to GitHub repository via GitHub REST API
+    async commitLayoutToGithub(pat, commitMessage) {
+      if (!pat) throw new Error('กรุณาระบุ GitHub Personal Access Token (PAT)');
+      const repo = 'maleeart/Energy-Dashboard';
+      const branch = 'main';
+
+      // 1. Prepare export layout data
+      const exportData = this.getLayoutExportData();
+      exportData.version = exportData.version || '2026.11.18';
+      exportData.updated_at = new Date().toISOString();
+
+      const layoutJsonStr = JSON.stringify(exportData, null, 2);
+      const encodedContent = btoa(unescape(encodeURIComponent(layoutJsonStr)));
+
+      const path = 'data/campus_layout_default.json';
+      const apiUrl = `https://api.github.com/repos/${repo}/contents/${path}`;
+
+      // 2. Get current file SHA
+      const getRes = await fetch(apiUrl, {
+        headers: {
+          'Authorization': `Bearer ${pat}`,
+          'Accept': 'application/vnd.github.v3+json'
+        }
+      });
+
+      if (!getRes.ok && getRes.status !== 404) {
+        throw new Error(`ไม่สามารถเข้าถึง GitHub ได้ (HTTP ${getRes.status}) กรุณาตรวจสอบสิทธิ์ของ Token`);
+      }
+
+      let currentSha = null;
+      if (getRes.ok) {
+        const fileData = await getRes.json();
+        currentSha = fileData.sha;
+      }
+
+      const msg = commitMessage || `Update campus layout default via Digital Twin Studio (${new Date().toLocaleDateString('th-TH')})`;
+
+      // 3. Put commit for campus_layout_default.json
+      const putBody = {
+        message: msg,
+        content: encodedContent,
+        branch: branch
+      };
+      if (currentSha) putBody.sha = currentSha;
+
+      const putRes = await fetch(apiUrl, {
+        method: 'PUT',
+        headers: {
+          'Authorization': `Bearer ${pat}`,
+          'Accept': 'application/vnd.github.v3+json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(putBody)
+      });
+
+      if (!putRes.ok) {
+        const errJson = await putRes.json().catch(() => ({}));
+        throw new Error(`การบันทึกขึ้น GitHub ล้มเหลว: ${errJson.message || putRes.statusText}`);
+      }
+
+      const putResult = await putRes.json();
+
+      // 4. Update data/building_mapping.json as secondary file (best-effort)
+      try {
+        if (this.mappingData && exportData.buildings) {
+          const mapping = JSON.parse(JSON.stringify(this.mappingData));
+          Object.entries(exportData.buildings).forEach(([bid, b]) => {
+            if (mapping.buildings && mapping.buildings[bid]) {
+              const target = mapping.buildings[bid];
+              const pos = b.layout_position || { x: b.x, z: b.z };
+              if (!target.layout_position) target.layout_position = { x: 0, y: 0, z: 0 };
+              if (pos.x !== undefined) target.layout_position.x = Number(pos.x);
+              if (pos.z !== undefined) target.layout_position.z = Number(pos.z);
+              if (b.rotation_y !== undefined) target.rotation_y = Number(b.rotation_y);
+              if (b.hidden !== undefined) target.hidden = Boolean(b.hidden);
+              if (b.dimensions) target.dimensions = b.dimensions;
+            }
+          });
+          mapping.generated_at = new Date().toISOString();
+          const mapJsonStr = JSON.stringify(mapping, null, 2);
+          const mapEncoded = btoa(unescape(encodeURIComponent(mapJsonStr)));
+
+          const mapPath = 'data/building_mapping.json';
+          const mapApiUrl = `https://api.github.com/repos/${repo}/contents/${mapPath}`;
+          const mapGet = await fetch(mapApiUrl, {
+            headers: { 'Authorization': `Bearer ${pat}`, 'Accept': 'application/vnd.github.v3+json' }
+          });
+          if (mapGet.ok) {
+            const mapData = await mapGet.json();
+            await fetch(mapApiUrl, {
+              method: 'PUT',
+              headers: {
+                'Authorization': `Bearer ${pat}`,
+                'Accept': 'application/vnd.github.v3+json',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                message: `Update building_mapping.json via Digital Twin Studio`,
+                content: mapEncoded,
+                sha: mapData.sha,
+                branch: branch
+              })
+            });
+          }
+        }
+      } catch (e) {
+        console.warn('Secondary mapping commit failed (non-fatal):', e);
+      }
+
+      // Update local last synced timestamp
+      if (typeof localStorage !== 'undefined') {
+        localStorage.setItem('sainoi_layout_last_synced', exportData.updated_at);
+      }
+
+      return putResult;
+    },
+
+    // Fetch commit history for layout default JSON
+    async fetchLayoutCommitHistory(pat = '') {
+      const repo = 'maleeart/Energy-Dashboard';
+      const path = 'data/campus_layout_default.json';
+      const url = `https://api.github.com/repos/${repo}/commits?path=${path}&per_page=10`;
+      const headers = { 'Accept': 'application/vnd.github.v3+json' };
+      if (pat) headers['Authorization'] = `Bearer ${pat}`;
+
+      const res = await fetch(url, { headers });
+      if (!res.ok) throw new Error('ไม่สามารถดึงประวัติ Commit ได้');
+      return await res.json();
+    },
+
     // Background loader for full energy_db.json
     async loadFullEnergyDb(basePath = '') {
       if (this.fullEnergyDb) return this.fullEnergyDb;

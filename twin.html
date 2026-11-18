@@ -17,9 +17,9 @@
   <script>if (typeof XLSX === 'undefined') document.write('<script src="scripts/xlsx.full.min.js"><\/script>');</script>
 
   <!-- Core Scripts & Fallback Mapping -->
-  <script src="data/building_mapping.js?v=20261118_01"></script>
-  <script src="scripts/energy-twin-core.js?v=20261118_01"></script>
-  <script src="scripts/energy-twin-3d.js?v=20261118_01"></script>
+  <script src="data/building_mapping.js?v=20261118_02"></script>
+  <script src="scripts/energy-twin-core.js?v=20261118_02"></script>
+  <script src="scripts/energy-twin-3d.js?v=20261118_02"></script>
 
   <style>
     :root {
@@ -1917,6 +1917,9 @@
               <button type="button" class="btn-action" style="width:100%; justify-content:flex-start; margin-bottom:4px; font-size:11.5px;" onclick="copyLayoutJsonToClipboard(); closeAllStudioDropdowns();">
                 📋 คัดลอก JSON ลงคลิปบอร์ด
               </button>
+              <button type="button" class="btn-action" style="width:100%; justify-content:flex-start; margin-bottom:4px; font-size:11.5px; background:#1F2937; color:#fff; border:1px solid #111827; font-weight:600;" onclick="commitLayoutToGitHub(); closeAllStudioDropdowns();">
+                ☁️ บันทึกผังขึ้น GitHub (Cloud Commit)
+              </button>
               <button type="button" class="btn-action" style="width:100%; justify-content:flex-start; margin-bottom:4px; font-size:11.5px; background:#ECFDF5; color:#065F46; border:1px solid #A7F3D0; font-weight:600;" onclick="saveCurrentLayoutAsSystemDefault(); closeAllStudioDropdowns();">
                 📌 บันทึกผังนี้เป็นค่าเริ่มต้นถาวรของระบบ
               </button>
@@ -1947,6 +1950,10 @@
           </button>
           <button type="button" class="btn-studio-top" style="background:#059669; color:#fff; border-color:#047857; font-weight:700; padding:6px 12px; gap:4px;" onclick="saveCurrentLayoutAsSystemDefault()" title="บันทึกพิกัดทั้งหมดเป็นค่าเริ่มต้น (Default) ถาวรของระบบ (เขียนทับ building_mapping.json และผังหลัก)">
             📌 ตั้งเป็นค่าเริ่มต้นระบบ
+          </button>
+          <!-- Cloud Commit to GitHub Button -->
+          <button type="button" class="btn-studio-top" style="background:#1F2937; color:#fff; border-color:#111827; font-weight:700; padding:6px 12px; gap:5px;" onclick="commitLayoutToGitHub()" title="บันทึกผังนี้ขึ้น GitHub Repository ทันที (ซิงค์ตรงกับคลาวด์ ไม่ต้องเปิด server ใช้ได้จากทุกเครื่องในโลก)">
+            ☁️ บันทึกลง GitHub
           </button>
 
           <!-- Close Modal -->
@@ -6212,6 +6219,61 @@
         prompt('คัดลอก JSON ผังล่าสุดนี้ส่งให้ AI:', jsonStr);
       }
     }
+
+    async function commitLayoutToGitHub() {
+      // 1. Ensure current edits are saved to memory and 3D scene
+      saveLayoutEditorChanges(true);
+
+      const pat = localStorage.getItem('egat_github_pat');
+      if (!pat) {
+        alert('🔐 ยังไม่พบ GitHub Personal Access Token (PAT) ในเครื่องนี้\n\nระบบจะเปิดหน้าต่างตั้งค่า Token ให้ท่านกรอกเพื่อเชื่อมต่อกับ GitHub');
+        openGitHubTokenModal();
+        return;
+      }
+
+      const exportData = EnergyTwin.getLayoutExportData();
+      const bldCount = Object.keys(exportData.buildings || {}).length;
+      const roadCount = Object.keys(exportData.roads || {}).length;
+      const waterCount = Object.keys(exportData.water || {}).length;
+
+      const now = new Date();
+      const dateStr = now.toLocaleDateString('th-TH');
+      const timeStr = now.toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit' });
+      const defaultMsg = `Update campus layout default (${dateStr} ${timeStr})`;
+
+      const commitMsg = prompt(
+        `☁️ ยืนยันการบันทึกผังขึ้น GitHub Repository หรือไม่?\n\n• อาคาร: ${bldCount} หลัง | ถนน: ${roadCount} เส้น | แหล่งน้ำ: ${waterCount} แห่ง\n• Repository: maleeart/Energy-Dashboard (branch: main)\n\nกรุณากรอกข้อความบันทึก (Commit Message):`,
+        defaultMsg
+      );
+      if (!commitMsg) return;
+
+      const origCursor = document.body.style.cursor;
+      document.body.style.cursor = 'wait';
+
+      try {
+        const res = await EnergyTwin.commitLayoutToGithub(pat, commitMsg);
+        document.body.style.cursor = origCursor;
+
+        const shaShort = (res?.commit?.sha || '').substring(0, 7);
+        alert(
+          `✅ บันทึกผังขึ้น GitHub สำเร็จเรียบร้อยแล้ว!\n\n` +
+          `• Commit SHA: ${shaShort}\n` +
+          `• ไฟล์ที่อัปเดต: data/campus_layout_default.json & building_mapping.json\n` +
+          `• ผู้บันทึก: ${res?.commit?.author?.name || 'Admin'}\n\n` +
+          `🌐 ทุกเครื่องที่เปิดระบบนี้ (ไม่ว่าจะเปิดจากเครื่องไหนในวง LAN หรือเปิดผ่านเว็บ) จะได้รับผังใหม่นี้โดยอัตโนมัติ!`
+        );
+      } catch (err) {
+        document.body.style.cursor = origCursor;
+        console.error('GitHub layout commit error:', err);
+        if (err.message && (err.message.includes('401') || err.message.includes('Bad credentials') || err.message.includes('403'))) {
+          alert(`❌ เกิดข้อผิดพลาดด้านสิทธิ์ของ GitHub Token:\n${err.message}\n\nกรุณาตรวจสอบว่า Token ยังไม่หมดอายุ และมีสิทธิ์ (scope: repo หรือ contents:write)`);
+          openGitHubTokenModal();
+        } else {
+          alert(`❌ บันทึกขึ้น GitHub ไม่สำเร็จ: ${err.message}`);
+        }
+      }
+    }
+    window.commitLayoutToGitHub = commitLayoutToGitHub;
 
     async function onLayoutFileSelected(event) {
       const file = event.target.files && event.target.files[0];
