@@ -1,6 +1,10 @@
 # Vercel Ignore file
-# Exclude raw large reference archives and test scripts from final web deployment output
+# Exclude raw large reference archives, backup copies, and test scripts from final web deployment output
 DATA TWIN/
+"DATA TWIN"/
 backup/
 tests/
 scratch/
+scripts/backup/
+*.bat
+*.md
