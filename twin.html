@@ -2276,12 +2276,15 @@
         if (campusScene.setWaterVisible) campusScene.setWaterVisible(w.id, !w.hidden);
       });
 
-      // 4. Sync Landmarks (Position, Rotation & Visibility)
+      // 4. Sync Landmarks (Position, Rotation, Dimensions & Visibility)
       const lmList = EnergyTwin.getLandmarksList ? EnergyTwin.getLandmarksList() : [];
       lmList.forEach(l => {
         if (campusScene.updateLandmarkPosition) campusScene.updateLandmarkPosition(l.id, l.x, l.z);
         if (campusScene.updateLandmarkRotation && l.rotation_y !== undefined) {
           campusScene.updateLandmarkRotation(l.id, l.rotation_y);
+        }
+        if (campusScene.updateLandmarkDimensions && l.width && l.depth) {
+          campusScene.updateLandmarkDimensions(l.id, l.width, l.depth);
         }
         if (campusScene.setLandmarkVisible) campusScene.setLandmarkVisible(l.id, !l.hidden);
       });

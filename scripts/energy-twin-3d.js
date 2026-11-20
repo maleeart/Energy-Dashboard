@@ -221,22 +221,87 @@
       this.setupLandmarkLabels();
     }
 
+    // Procedural Water Ripple Texture Generator
+    createWaterTexture(type = 'lake') {
+      const canvas = document.createElement('canvas');
+      canvas.width = 256;
+      canvas.height = 256;
+      const ctx = canvas.getContext('2d');
+
+      if (type === 'pool') {
+        // Swimming pool: vibrant cyan with pool floor grid & subtle caustics
+        ctx.fillStyle = '#06B6D4'; // Cyan-500
+        ctx.fillRect(0, 0, 256, 256);
+
+        // Subtle pool tile pattern
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.22)';
+        ctx.lineWidth = 1;
+        for (let x = 0; x <= 256; x += 16) {
+          ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, 256); ctx.stroke();
+        }
+        for (let y = 0; y <= 256; y += 16) {
+          ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(256, y); ctx.stroke();
+        }
+
+        // Shimmering light caustic bands
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.15)';
+        for (let i = 0; i < 4; i++) {
+          ctx.beginPath();
+          ctx.arc(64 + i * 48, 64 + (i % 2) * 64, 40, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      } else {
+        // Natural pond/lake/canal: deep aquatic cerulean blue with organic water waves
+        const grad = ctx.createLinearGradient(0, 0, 256, 256);
+        grad.addColorStop(0, '#0284C7');   // Sky-600
+        grad.addColorStop(0.5, '#0369A1'); // Sky-700
+        grad.addColorStop(1, '#0284C7');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, 256, 256);
+
+        // Gentle surface caustics / ripple waves
+        ctx.fillStyle = 'rgba(56, 189, 248, 0.35)'; // Sky blue ripple bands
+        for (let y = 16; y < 256; y += 32) {
+          ctx.beginPath();
+          ctx.ellipse(128 + ((y % 64 === 0) ? 24 : -24), y, 110, 9, 0, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.2)'; // Sunlit wave crests
+        for (let y = 32; y < 256; y += 48) {
+          ctx.beginPath();
+          ctx.ellipse(80 + ((y % 96 === 0) ? 48 : 0), y, 64, 5, 0, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+      const texture = new THREE.CanvasTexture(canvas);
+      texture.wrapS = THREE.RepeatWrapping;
+      texture.wrapT = THREE.RepeatWrapping;
+      texture.repeat.set(2, 2);
+      return texture;
+    }
+
     // Western Boundary Canal: Khlong Khun Si (คลองขุนศรี)
     setupWesternCanal() {
       const canalGroup = new THREE.Group();
+      canalGroup.name = 'Water_WEST_CANAL';
       canalGroup.position.set(-200, 0, -40);
 
       const waterGeo = new THREE.PlaneGeometry(24, 480);
       const waterMat = new THREE.MeshStandardMaterial({
-        color: 0x2563EB,
-        roughness: 0.15,
-        metalness: 0.5,
+        map: this.createWaterTexture('lake'),
+        color: 0x0284C7,
+        roughness: 0.35,
+        metalness: 0.08,
         transparent: true,
-        opacity: 0.92
+        opacity: 0.95,
+        depthWrite: true
       });
       const canalWater = new THREE.Mesh(waterGeo, waterMat);
       canalWater.rotation.x = -Math.PI / 2;
-      canalWater.position.set(0, 0.04, 0);
+      canalWater.position.set(0, 0.12, 0);
+      canalWater.receiveShadow = true;
       canalGroup.add(canalWater);
 
       // Concrete Canal Embankment Wall
@@ -256,38 +321,125 @@
     // Campus Retention Ponds and Water Features (8 water bodies)
     setupCentralRetentionPonds() {
       const pondSpecs = [
-        { id: 'POND_RETENTION_1', name: 'สระน้ำ 1', x: -95, z: 45, width: 36, depth: 44 },
-        { id: 'POND_RETENTION_2', name: 'สระน้ำ 2 (ข้างแฟลต)', x: -95, z: -5, width: 36, depth: 38 },
-        { id: 'POND_RETENTION_3', name: 'สระน้ำ 3', x: -75, z: -75, width: 32, depth: 38 },
-        { id: 'LAKE_PROMENADE', name: 'สระน้ำและสะพานไม้ริมน้ำหลัง ท.0019', x: 35, z: 24, width: 42, depth: 18 },
-        { id: 'LAKE_FOUNTAIN', name: 'สระน้ำพุวงเวียนหอนาฬิกา', x: 45, z: 100, width: 14, depth: 14 },
-        { id: 'SWIMMING_POOL', name: 'สระว่ายน้ำสโมสรไทรน้อย', x: 100, z: -60, width: 16, depth: 25 }
+        { id: 'POND_RETENTION_1', name: 'สระน้ำ 1', x: -120, z: -45, width: 36, depth: 44, type: 'lake' },
+        { id: 'POND_RETENTION_2', name: 'สระน้ำ 2 (ข้างแฟลต)', x: -125, z: 25, width: 36, depth: 38, type: 'lake' },
+        { id: 'POND_RETENTION_3', name: 'สระน้ำ 3', x: 335, z: -140, width: 32, depth: 38, type: 'lake' },
+        { id: 'LAKE_PROMENADE', name: 'สระน้ำและสะพานไม้ริมน้ำหลัง ท.0019', x: 165, z: -40, width: 26, depth: 47, type: 'lake' },
+        { id: 'LAKE_FOUNTAIN', name: 'สระน้ำพุวงเวียนหอนาฬิกา', x: 345, z: -230, width: 14, depth: 14, type: 'fountain' },
+        { id: 'SWIMMING_POOL', name: 'สระว่ายน้ำสโมสรไทรน้อย', x: 345, z: -185, width: 16, depth: 25, type: 'pool' }
       ];
 
-      const waterMat = new THREE.MeshStandardMaterial({
+      const lakeTex = this.createWaterTexture('lake');
+      const poolTex = this.createWaterTexture('pool');
+
+      const lakeWaterMat = new THREE.MeshStandardMaterial({
+        map: lakeTex,
         color: 0x0284C7,
-        roughness: 0.12,
-        metalness: 0.45,
+        roughness: 0.35,
+        metalness: 0.08,
         transparent: true,
-        opacity: 0.94
+        opacity: 0.95,
+        depthWrite: true
       });
-      const curbMat = new THREE.MeshStandardMaterial({ color: 0xCBD5E1, roughness: 0.75 });
+
+      const poolWaterMat = new THREE.MeshStandardMaterial({
+        map: poolTex,
+        color: 0x06B6D4,
+        roughness: 0.25,
+        metalness: 0.08,
+        transparent: true,
+        opacity: 0.96,
+        depthWrite: true
+      });
+
+      const curbMat = new THREE.MeshStandardMaterial({ color: 0x94A3B8, roughness: 0.8 });
+      const poolCurbMat = new THREE.MeshStandardMaterial({ color: 0xF8FAFC, roughness: 0.5 }); // White coping tile
 
       pondSpecs.forEach(p => {
         const pondGroup = new THREE.Group();
+        pondGroup.name = 'Water_' + p.id;
         pondGroup.position.set(p.x, 0, p.z);
 
+        const isPool = p.type === 'pool';
+        const isFountain = p.type === 'fountain';
+        const waterMat = isPool ? poolWaterMat : lakeWaterMat;
+        const curMat = isPool ? poolCurbMat : curbMat;
+
+        // 1. Water Plane (Elevated at Y=0.12 - safely above turf ground Y=0, completely visible)
         const pondWater = new THREE.Mesh(new THREE.PlaneGeometry(p.width, p.depth), waterMat);
         pondWater.rotation.x = -Math.PI / 2;
-        pondWater.position.set(0, 0.05, 0);
+        pondWater.position.set(0, 0.12, 0);
         pondWater.receiveShadow = true;
         pondGroup.add(pondWater);
 
-        const borderGeo = new THREE.BoxGeometry(p.width + 1.6, 0.4, p.depth + 1.6);
-        const border = new THREE.Mesh(borderGeo, curbMat);
-        border.position.set(0, 0.2, 0);
-        border.receiveShadow = true;
-        pondGroup.add(border);
+        // 2. Perimeter Curb Enclosure (Hollow border around water edges, NOT a solid box)
+        const curbThick = isPool ? 0.6 : 0.8;
+        const curbH = isPool ? 0.22 : 0.28;
+        const curbY = curbH / 2;
+
+        // North curb
+        const nCurb = new THREE.Mesh(new THREE.BoxGeometry(p.width + curbThick * 2, curbH, curbThick), curMat);
+        nCurb.position.set(0, curbY, -p.depth / 2 - curbThick / 2);
+        nCurb.receiveShadow = true;
+        pondGroup.add(nCurb);
+
+        // South curb
+        const sCurb = new THREE.Mesh(new THREE.BoxGeometry(p.width + curbThick * 2, curbH, curbThick), curMat);
+        sCurb.position.set(0, curbY, p.depth / 2 + curbThick / 2);
+        sCurb.receiveShadow = true;
+        pondGroup.add(sCurb);
+
+        // East curb
+        const eCurb = new THREE.Mesh(new THREE.BoxGeometry(curbThick, curbH, p.depth), curMat);
+        eCurb.position.set(p.width / 2 + curbThick / 2, curbY, 0);
+        eCurb.receiveShadow = true;
+        pondGroup.add(eCurb);
+
+        // West curb
+        const wCurb = new THREE.Mesh(new THREE.BoxGeometry(curbThick, curbH, p.depth), curMat);
+        wCurb.position.set(-p.width / 2 - curbThick / 2, curbY, 0);
+        wCurb.receiveShadow = true;
+        pondGroup.add(wCurb);
+
+        // Special features for specific bodies of water:
+        if (p.id === 'LAKE_PROMENADE') {
+          // Teak wooden boardwalk pier along water edge (หลัง ท.0019)
+          const pierMat = new THREE.MeshStandardMaterial({ color: 0x92400E, roughness: 0.75 });
+          const pier = new THREE.Mesh(new THREE.BoxGeometry(p.width * 0.75, 0.35, 3.2), pierMat);
+          pier.position.set(0, 0.22, -p.depth / 2 + 1.6);
+          pier.receiveShadow = true;
+          pondGroup.add(pier);
+
+          const railMat = new THREE.MeshStandardMaterial({ color: 0x78350F, roughness: 0.6 });
+          const rail = new THREE.Mesh(new THREE.BoxGeometry(p.width * 0.75, 0.6, 0.15), railMat);
+          rail.position.set(0, 0.65, -p.depth / 2 + 3.0);
+          pondGroup.add(rail);
+        } else if (isFountain) {
+          // Decorative fountain basin & water spray
+          const fountainBase = new THREE.Mesh(new THREE.CylinderGeometry(2.4, 2.8, 0.6, 16), curbMat);
+          fountainBase.position.set(0, 0.3, 0);
+          pondGroup.add(fountainBase);
+
+          const sprayMat = new THREE.MeshStandardMaterial({
+            color: 0xBAE6FD,
+            roughness: 0.1,
+            metalness: 0.1,
+            transparent: true,
+            opacity: 0.7
+          });
+          const spray = new THREE.Mesh(new THREE.ConeGeometry(0.8, 3.5, 8), sprayMat);
+          spray.position.set(0, 2.0, 0);
+          pondGroup.add(spray);
+        } else if (isPool) {
+          // Swimming lane lines
+          const laneMat = new THREE.MeshBasicMaterial({ color: 0x0284C7 });
+          [-p.width / 4, 0, p.width / 4].forEach(lx => {
+            const lane = new THREE.Mesh(new THREE.PlaneGeometry(0.2, p.depth - 2), laneMat);
+            lane.rotation.x = -Math.PI / 2;
+            lane.position.set(lx, 0.13, 0);
+            pondGroup.add(lane);
+          });
+        }
 
         this.scene.add(pondGroup);
         this.waterMeshes.set(p.id, pondGroup);
@@ -370,6 +522,105 @@
       this.landmarkMeshes.set('SW_YARD', yardGroup);
     }
 
+    // Procedural Football Pitch Texture with regulation lines and alternating mowing stripes
+    createFootballPitchTexture(fw = 28, fd = 56) {
+      const canvas = document.createElement('canvas');
+      canvas.width = 512;
+      canvas.height = 1024;
+      const ctx = canvas.getContext('2d');
+      const w = canvas.width;
+      const h = canvas.height;
+
+      // 1. Alternating Grass Mowing Stripes (Deep lush stadium green)
+      const numStripes = 14;
+      const stripeH = h / numStripes;
+      for (let i = 0; i < numStripes; i++) {
+        ctx.fillStyle = (i % 2 === 0) ? '#15803D' : '#16A34A'; // Tailwind green-700 / green-600
+        ctx.fillRect(0, i * stripeH, w, stripeH);
+      }
+
+      // Outer margin padding in canvas pixels
+      const padX = 28;
+      const padY = 40;
+      const pitchW = w - padX * 2;
+      const pitchH = h - padY * 2;
+
+      // White Pitch Markings
+      ctx.strokeStyle = '#FFFFFF';
+      ctx.lineWidth = 6;
+      ctx.lineJoin = 'miter';
+
+      // 2. Touchlines & Goal lines (Boundary)
+      ctx.strokeRect(padX, padY, pitchW, pitchH);
+
+      // 3. Halfway Line
+      const midY = padY + pitchH / 2;
+      ctx.beginPath();
+      ctx.moveTo(padX, midY);
+      ctx.lineTo(padX + pitchW, midY);
+      ctx.stroke();
+
+      // 4. Center Circle & Center Spot
+      const centerR = pitchW * 0.18;
+      ctx.beginPath();
+      ctx.arc(w / 2, midY, centerR, 0, Math.PI * 2);
+      ctx.stroke();
+
+      ctx.fillStyle = '#FFFFFF';
+      ctx.beginPath();
+      ctx.arc(w / 2, midY, 6, 0, Math.PI * 2);
+      ctx.fill();
+
+      // 5. Penalty Areas (18-yard box)
+      const penW = pitchW * 0.54;
+      const penH = pitchH * 0.16;
+      const penX = padX + (pitchW - penW) / 2;
+
+      // North Penalty Box
+      ctx.strokeRect(penX, padY, penW, penH);
+      // North Goal Area (6-yard box)
+      const goalBoxW = pitchW * 0.28;
+      const goalBoxH = pitchH * 0.06;
+      ctx.strokeRect(padX + (pitchW - goalBoxW) / 2, padY, goalBoxW, goalBoxH);
+      // North Penalty Spot
+      ctx.beginPath();
+      ctx.arc(w / 2, padY + penH * 0.72, 5, 0, Math.PI * 2);
+      ctx.fill();
+      // North Penalty Arc (D-arc)
+      ctx.beginPath();
+      ctx.arc(w / 2, padY + penH * 0.72, centerR * 0.8, 0.65, Math.PI - 0.65);
+      ctx.stroke();
+
+      // South Penalty Box
+      ctx.strokeRect(penX, padY + pitchH - penH, penW, penH);
+      // South Goal Area
+      ctx.strokeRect(padX + (pitchW - goalBoxW) / 2, padY + pitchH - goalBoxH, goalBoxW, goalBoxH);
+      // South Penalty Spot
+      ctx.beginPath();
+      ctx.arc(w / 2, padY + pitchH - penH * 0.72, 5, 0, Math.PI * 2);
+      ctx.fill();
+      // South Penalty Arc (D-arc)
+      ctx.beginPath();
+      ctx.arc(w / 2, padY + pitchH - penH * 0.72, centerR * 0.8, Math.PI + 0.65, Math.PI * 2 - 0.65);
+      ctx.stroke();
+
+      // 6. Corner Arcs
+      const cornerR = 18;
+      // Top-Left
+      ctx.beginPath(); ctx.arc(padX, padY, cornerR, 0, Math.PI / 2); ctx.stroke();
+      // Top-Right
+      ctx.beginPath(); ctx.arc(padX + pitchW, padY, cornerR, Math.PI / 2, Math.PI); ctx.stroke();
+      // Bottom-Left
+      ctx.beginPath(); ctx.arc(padX, padY + pitchH, cornerR, -Math.PI / 2, 0); ctx.stroke();
+      // Bottom-Right
+      ctx.beginPath(); ctx.arc(padX + pitchW, padY + pitchH, cornerR, Math.PI, Math.PI * 1.5); ctx.stroke();
+
+      const texture = new THREE.CanvasTexture(canvas);
+      texture.wrapS = THREE.ClampToEdgeWrapping;
+      texture.wrapT = THREE.ClampToEdgeWrapping;
+      return texture;
+    }
+
     // Main Football Pitch
     setupMainFootballField() {
       const fieldGroup = new THREE.Group();
@@ -383,63 +634,42 @@
       fieldGroup.position.set(fx, 0, fz);
       fieldGroup.rotation.y = 0;
 
+      // 1. Single Crisp Textured Pitch Mesh (No overlapping planes, No Z-fighting, No polygonOffset bugs)
+      const pitchTexture = this.createFootballPitchTexture(fw, fd);
       const turfMat = new THREE.MeshStandardMaterial({
-        color: 0x228B22,
+        map: pitchTexture,
         roughness: 0.85,
-        polygonOffset: true,
-        polygonOffsetFactor: -1,
-        polygonOffsetUnits: -1
+        metalness: 0.05
       });
       const pitch = new THREE.Mesh(new THREE.PlaneGeometry(fw, fd), turfMat);
       pitch.rotation.x = -Math.PI / 2;
-      pitch.position.set(0, 0.08, 0);
+      pitch.position.set(0, 0.12, 0);
       pitch.receiveShadow = true;
       fieldGroup.add(pitch);
 
-      const lineMat = new THREE.MeshBasicMaterial({
-        color: 0xF8FAFC,
-        polygonOffset: true,
-        polygonOffsetFactor: -2,
-        polygonOffsetUnits: -2
-      });
-
-      const borderLine = new THREE.Mesh(new THREE.PlaneGeometry(fw, fd), lineMat);
-      borderLine.rotation.x = -Math.PI / 2;
-      borderLine.position.set(0, 0.09, 0);
-      fieldGroup.add(borderLine);
-
-      const pitchInner = new THREE.Mesh(new THREE.PlaneGeometry(fw - 1, fd - 1), turfMat);
-      pitchInner.rotation.x = -Math.PI / 2;
-      pitchInner.position.set(0, 0.10, 0);
-      pitchInner.receiveShadow = true;
-      fieldGroup.add(pitchInner);
-
-      const midLine = new THREE.Mesh(new THREE.PlaneGeometry(fw - 1, 0.4), lineMat);
-      midLine.rotation.x = -Math.PI / 2;
-      midLine.position.set(0, 0.11, 0);
-      fieldGroup.add(midLine);
-
-      const circleGeo = new THREE.RingGeometry(3.6, 4.0, 32);
-      const circle = new THREE.Mesh(circleGeo, lineMat);
-      circle.rotation.x = -Math.PI / 2;
-      circle.position.set(0, 0.11, 0);
-      fieldGroup.add(circle);
-
-      const goalMat = new THREE.MeshStandardMaterial({ color: 0xFFFFFF });
-      [-fd / 2 + 1, fd / 2 - 1].forEach(gz => {
-        const goalCross = new THREE.Mesh(new THREE.BoxGeometry(4.5, 0.2, 0.2), goalMat);
-        goalCross.position.set(0, 2.2, gz);
+      // 2. Regulation White Goal Posts with Nets at Both Ends
+      const goalMat = new THREE.MeshStandardMaterial({ color: 0xFFFFFF, roughness: 0.3 });
+      [-fd / 2 + 1.2, fd / 2 - 1.2].forEach(gz => {
+        const goalCross = new THREE.Mesh(new THREE.BoxGeometry(5.2, 0.22, 0.22), goalMat);
+        goalCross.position.set(0, 2.4, gz);
         fieldGroup.add(goalCross);
 
-        [-2.25, 2.25].forEach(gx => {
-          const post = new THREE.Mesh(new THREE.BoxGeometry(0.2, 2.2, 0.2), goalMat);
-          post.position.set(gx, 1.1, gz);
+        [-2.6, 2.6].forEach(gx => {
+          const post = new THREE.Mesh(new THREE.BoxGeometry(0.22, 2.4, 0.22), goalMat);
+          post.position.set(gx, 1.2, gz);
           fieldGroup.add(post);
         });
+
+        // Goal net back frame
+        const netDepth = (gz < 0) ? -1.8 : 1.8;
+        const netMat = new THREE.MeshBasicMaterial({ color: 0xE2E8F0, wireframe: true, transparent: true, opacity: 0.45 });
+        const netBox = new THREE.Mesh(new THREE.BoxGeometry(5.2, 2.4, 1.8), netMat);
+        netBox.position.set(0, 1.2, gz + netDepth / 2);
+        fieldGroup.add(netBox);
       });
 
-      // North Spectator Bleachers (Facing D.0025, matching photo: ขอบตึกเล็กๆ ท.0016 ท.0018 ท.0017 ต.0025.jpg)
-      const bleacherMat = new THREE.MeshStandardMaterial({ color: 0xCBD5E1, roughness: 0.8 });
+      // 3. North Spectator Bleachers (Facing D.0025)
+      const bleacherMat = new THREE.MeshStandardMaterial({ color: 0x94A3B8, roughness: 0.8 });
       const bleacherW = fw * 0.82;
       [
         { y: 0.35, d: 2.0, z: -fd / 2 - 1.2 },
@@ -571,31 +801,37 @@
       const asphaltMat = new THREE.MeshStandardMaterial({ color: 0x334155, roughness: 0.72 });
       const concreteApronMat = new THREE.MeshStandardMaterial({ color: 0xDCE3EB, roughness: 0.75 });
       const waterMat = new THREE.MeshStandardMaterial({
+        map: this.createWaterTexture('lake'),
         color: 0x0284C7,
-        roughness: 0.12,
-        metalness: 0.45,
+        roughness: 0.35,
+        metalness: 0.08,
         transparent: true,
-        opacity: 0.94
+        opacity: 0.95,
+        depthWrite: true
       });
-      const curbMat = new THREE.MeshStandardMaterial({ color: 0xCBD5E1, roughness: 0.75 });
+      const curbMat = new THREE.MeshStandardMaterial({ color: 0x94A3B8, roughness: 0.8, side: THREE.DoubleSide });
 
       // ── 1. Curved Peanut-Shaped Retention Pond (สระน้ำ อหข. WL +99.00) ──
       const pondGroup = new THREE.Group();
+      pondGroup.name = 'Water_OHK_RETENTION_POND';
       pondGroup.position.set(-200, 0, -95);
 
       // South lobe of pond (near D.0031) - relative to (-171, -158)
-      const lobe1 = new THREE.Mesh(new THREE.CylinderGeometry(11, 11, 0.2, 32), waterMat);
-      lobe1.position.set(1, 0.1, 10);
+      const lobe1 = new THREE.Mesh(new THREE.CylinderGeometry(11, 11, 0.25, 32), waterMat);
+      lobe1.position.set(1, 0.13, 10);
+      lobe1.receiveShadow = true;
       pondGroup.add(lobe1);
 
       // North lobe of pond - relative to (-171, -158)
-      const lobe2 = new THREE.Mesh(new THREE.CylinderGeometry(10, 10, 0.2, 32), waterMat);
-      lobe2.position.set(-2, 0.1, -10);
+      const lobe2 = new THREE.Mesh(new THREE.CylinderGeometry(10, 10, 0.25, 32), waterMat);
+      lobe2.position.set(-2, 0.13, -10);
+      lobe2.receiveShadow = true;
       pondGroup.add(lobe2);
 
       // Connecting neck - relative to (-171, -158)
-      const neck = new THREE.Mesh(new THREE.BoxGeometry(13, 0.2, 18), waterMat);
-      neck.position.set(0, 0.1, 0);
+      const neck = new THREE.Mesh(new THREE.BoxGeometry(13, 0.25, 18), waterMat);
+      neck.position.set(0, 0.13, 0);
+      neck.receiveShadow = true;
       pondGroup.add(neck);
 
       // Stone border around pond
@@ -3258,6 +3494,22 @@
       const rot = Number(rotY);
       if (!isNaN(rot)) {
         lm.rotation.y = rot;
+      }
+      this.needsRender = true;
+    }
+
+    updateLandmarkDimensions(landmarkId, newWidth, newDepth) {
+      if (!this.landmarkMeshes) return;
+      const lm = this.landmarkMeshes.get(landmarkId);
+      if (!lm) return;
+      const w = Number(newWidth);
+      const d = Number(newDepth);
+      const def = window.EnergyTwin && window.EnergyTwin.defaultLandmarks && window.EnergyTwin.defaultLandmarks[landmarkId];
+      if (!def) return;
+      const origW = def.width || 28;
+      const origD = def.depth || 56;
+      if (!isNaN(w) && w > 0 && !isNaN(d) && d > 0) {
+        lm.scale.set(w / origW, 1, d / origD);
       }
       this.needsRender = true;
     }
