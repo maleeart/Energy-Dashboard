@@ -535,9 +535,9 @@
       "name": "ROAD_1",
       "category": "ถนน",
       "x": 65,
-      "z": 40,
+      "z": -10,
       "width": 12,
-      "length": 510,
+      "length": 420,
       "rotation_y": 0,
       "rotation_deg": 0,
       "hidden": false
@@ -722,7 +722,7 @@
       "name": "ROAD_ENTRANCE_RED",
       "category": "ถนน",
       "x": 65,
-      "z": 140,
+      "z": 125,
       "width": 4,
       "length": 140,
       "rotation_y": 0,
@@ -824,8 +824,8 @@
     "SW_YARD": {
       "name": "ลานสวิตช์ยาร์ด 500 kV (Switchyard)",
       "category": "ระบบส่งไฟฟ้าแรงสูง",
-      "x": -45,
-      "z": 205,
+      "x": -10,
+      "z": 145,
       "rotation_y": 0,
       "rotation_deg": 0,
       "hidden": false
@@ -851,8 +851,8 @@
     "SUNFLOWER_FIELD": {
       "name": "ทุ่งทานตะวัน (Sunflower Field)",
       "category": "ภูมิทัศน์ธรรมชาติ",
-      "x": -15,
-      "z": 260,
+      "x": 20,
+      "z": 180,
       "rotation_y": 0,
       "rotation_deg": 0,
       "hidden": false
@@ -860,8 +860,8 @@
     "CAMPUS_SIGN": {
       "name": "ป้ายสัญลักษณ์ กฟผ. ไทรน้อย",
       "category": "ป้ายแลนด์มาร์ค",
-      "x": -30,
-      "z": 285,
+      "x": -10,
+      "z": 195,
       "rotation_y": 0,
       "rotation_deg": 0,
       "hidden": false
@@ -933,7 +933,7 @@
       "name": "ซุ้มประตูและป้อมยามทางเข้าหลัก (ท.0021)",
       "category": "ระบบรักษาความปลอดภัย",
       "x": 65,
-      "z": 140,
+      "z": 200,
       "rotation_y": 0,
       "rotation_deg": 0,
       "hidden": false
@@ -948,5 +948,5 @@
       "hidden": false
     }
   },
-  "updated_at": "2026-11-20T01:48:08.274Z"
+  "updated_at": "2026-11-20T01:51:12.918Z"
 }
