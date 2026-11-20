@@ -220,9 +220,10 @@
       });
       const outerGround = new THREE.Mesh(outerGeo, outerMat);
       outerGround.rotation.x = -Math.PI / 2;
-      outerGround.position.set(-20, -0.65, -40);
+      outerGround.position.set(-20, -0.70, -40);
       outerGround.receiveShadow = true;
       this.scene.add(outerGround);
+      this.outerGroundMesh = outerGround;
 
       // 1. Master Campus Ground Turf (Rich lush Thai lawn with procedural texture)
       this.lawnTexture = this.createLawnTexture();
@@ -231,21 +232,26 @@
         map: this.lawnTexture,
         color: 0x487535, // Rich healthy Thai lawn green
         roughness: 0.94,
-        metalness: 0.02
+        metalness: 0.02,
+        polygonOffset: true,
+        polygonOffsetFactor: -1,
+        polygonOffsetUnits: -1
       });
       const ground = new THREE.Mesh(groundGeo, groundMat);
       ground.rotation.x = -Math.PI / 2;
-      ground.position.set(-20, 0, -40);
+      ground.position.set(-20, 0.02, -40); // Elevated to +0.02 strictly above pedestal top
       ground.receiveShadow = true;
+      ground.renderOrder = 1;
       this.scene.add(ground);
       this.groundMesh = ground;
 
-      // Campus Perimeter Boundary Base (Architectural stone curb)
+      // Campus Perimeter Boundary Base (Architectural stone curb pedestal)
       const curbGeo = new THREE.BoxGeometry(444, 1.2, 524);
       const curbMat = new THREE.MeshStandardMaterial({ color: 0x64748B, roughness: 0.85 });
       const curb = new THREE.Mesh(curbGeo, curbMat);
-      curb.position.set(-20, -0.6, -40);
+      curb.position.set(-20, -0.65, -40); // Top face is at -0.65 + 0.6 = -0.05 (strictly BELOW the ground at +0.02)
       curb.receiveShadow = true;
+      curb.renderOrder = 0;
       this.scene.add(curb);
       this.curbMesh = curb;
 
@@ -3595,7 +3601,8 @@
 
       if (this.groundMesh.geometry) this.groundMesh.geometry.dispose();
       this.groundMesh.geometry = new THREE.PlaneGeometry(width, depth);
-      this.groundMesh.position.set(centerX, 0, centerZ);
+      this.groundMesh.position.set(centerX, 0.02, centerZ);
+      this.groundMesh.renderOrder = 1;
 
       if (this.lawnTexture) {
         this.lawnTexture.repeat.set(width / 20, depth / 20);
@@ -3603,7 +3610,12 @@
 
       if (this.curbMesh.geometry) this.curbMesh.geometry.dispose();
       this.curbMesh.geometry = new THREE.BoxGeometry(width + 4, 1.2, depth + 4);
-      this.curbMesh.position.set(centerX, -0.6, centerZ);
+      this.curbMesh.position.set(centerX, -0.65, centerZ);
+      this.curbMesh.renderOrder = 0;
+
+      if (this.outerGroundMesh) {
+        this.outerGroundMesh.position.set(centerX, -0.70, centerZ);
+      }
 
       this.needsRender = true;
     }
