@@ -1,6 +1,5 @@
 {
-  "version": "2026.11.18",
-  "updated_at": "2026-11-18T01:58:55.435Z",
+  "version": "2026.11.13",
   "bounds": {
     "minX": -320,
     "maxX": 280,
@@ -534,182 +533,200 @@
   "roads": {
     "ROAD_1": {
       "name": "ROAD_1",
+      "category": "ถนน",
       "x": 65,
       "z": 40,
       "width": 12,
       "length": 510,
       "rotation_y": 0,
-      "category": "ถนน",
+      "rotation_deg": 0,
       "hidden": false
     },
     "ROAD_4": {
       "name": "ROAD_4",
+      "category": "ถนน",
       "x": -155,
       "z": -15,
       "width": 8,
       "length": 230,
       "rotation_y": 0,
-      "category": "ถนน",
+      "rotation_deg": 0,
       "hidden": false
     },
     "ROAD_6": {
       "name": "ROAD_6",
+      "category": "ถนน",
       "x": -35,
       "z": -95,
       "width": 5,
       "length": 260,
       "rotation_y": 0,
-      "category": "ถนน",
+      "rotation_deg": 0,
       "hidden": false
     },
     "ROAD_7": {
       "name": "ROAD_7",
+      "category": "ถนน",
       "x": -5,
       "z": -105,
       "width": 5,
       "length": 50,
       "rotation_y": 4.71238898038469,
-      "category": "ถนน",
+      "rotation_deg": 270,
       "hidden": false
     },
     "ROAD_8": {
       "name": "ROAD_8",
+      "category": "ถนน",
       "x": 20,
       "z": -160,
       "width": 5,
       "length": 110,
       "rotation_y": 0,
-      "category": "ถนน",
+      "rotation_deg": 0,
       "hidden": false
     },
     "ROAD_9": {
       "name": "ROAD_9",
+      "category": "ถนน",
       "x": -120,
       "z": 105,
       "width": 8,
       "length": 70,
       "rotation_y": 1.5707963267948966,
-      "category": "ถนน",
+      "rotation_deg": 90,
       "hidden": false
     },
     "ROAD_11": {
       "name": "ROAD_11",
+      "category": "ถนน",
       "x": -135,
       "z": -130,
       "width": 8,
       "length": 200,
       "rotation_y": 4.71238898038469,
-      "category": "ถนน",
+      "rotation_deg": 270,
       "hidden": false
     },
     "ROAD_12": {
       "name": "ROAD_12",
+      "category": "ถนน",
       "x": 15,
       "z": 35,
       "width": 5,
       "length": 100,
       "rotation_y": 1.5707963267948966,
-      "category": "ถนน",
+      "rotation_deg": 90,
       "hidden": false
     },
     "ROAD_13": {
       "name": "ROAD_13",
+      "category": "ถนน",
       "x": 125,
       "z": -165,
       "width": 5,
       "length": 110,
       "rotation_y": 4.71238898038469,
-      "category": "ถนน",
+      "rotation_deg": 270,
       "hidden": false
     },
     "ROAD_3": {
       "name": "ROAD_3",
+      "category": "ถนน",
       "x": 20,
       "z": -220,
       "width": 5,
       "length": 100,
       "rotation_y": 4.71238898038469,
-      "category": "ถนน",
+      "rotation_deg": 270,
       "hidden": false
     },
     "ROAD_2": {
       "name": "ROAD_2",
+      "category": "ถนน",
       "x": 95,
       "z": -95,
       "width": 5,
       "length": 50,
       "rotation_y": 4.71238898038469,
-      "category": "ถนน",
+      "rotation_deg": 270,
       "hidden": false
     },
     "ROAD_14": {
       "name": "ROAD_14",
+      "category": "ถนน",
       "x": 125,
       "z": -55,
       "width": 5,
       "length": 220,
       "rotation_y": 0,
-      "category": "ถนน",
+      "rotation_deg": 0,
       "hidden": false
     },
     "ROAD_15": {
       "name": "ROAD_15",
+      "category": "ถนน",
       "x": 95,
       "z": -35,
       "width": 5,
       "length": 50,
       "rotation_y": 4.71238898038469,
-      "category": "ถนน",
+      "rotation_deg": 270,
       "hidden": false
     },
     "ROAD_16": {
       "name": "ROAD_16",
+      "category": "ถนน",
       "x": 95,
       "z": 50,
       "width": 5,
       "length": 50,
       "rotation_y": 4.71238898038469,
-      "category": "ถนน",
+      "rotation_deg": 270,
       "hidden": false
     },
     "ROAD_17": {
       "name": "ROAD_17",
+      "category": "ถนน",
       "x": 15,
       "z": -150,
       "width": 5,
       "length": 90,
       "rotation_y": 4.71238898038469,
-      "category": "ถนน",
+      "rotation_deg": 270,
       "hidden": false
     },
     "ROAD_18": {
       "name": "ROAD_18",
+      "category": "ถนน",
       "x": 15,
       "z": -45,
       "width": 5,
       "length": 100,
       "rotation_y": 4.71238898038469,
-      "category": "ถนน",
+      "rotation_deg": 270,
       "hidden": false
     },
     "ROAD_5": {
       "name": "ROAD_5",
+      "category": "ถนน",
       "x": -155,
       "z": -150,
       "width": 5,
       "length": 140,
       "rotation_y": 0,
-      "category": "ถนน",
+      "rotation_deg": 0,
       "hidden": false
     },
     "ROAD_ENTRANCE_RED": {
-      "name": "ทางเดิน/ถนนทางเข้าหลักสีแดง",
+      "name": "ROAD_ENTRANCE_RED",
+      "category": "ถนน",
       "x": 65,
       "z": 140,
       "width": 4,
       "length": 140,
       "rotation_y": 0,
-      "category": "ทางเท้า",
+      "rotation_deg": 0,
       "hidden": false
     }
   },
@@ -728,8 +745,8 @@
     "POND_RETENTION_1": {
       "name": "สระน้ำระบายน้ำ 1 (North Pond)",
       "category": "สระกักเก็บน้ำ",
-      "x": -120,
-      "z": -45,
+      "x": -125,
+      "z": -70,
       "width": 36,
       "depth": 44,
       "rotation_y": 0,
@@ -742,7 +759,7 @@
       "x": -125,
       "z": 25,
       "width": 36,
-      "depth": 38,
+      "depth": 88,
       "rotation_y": 0,
       "rotation_deg": 0,
       "hidden": false
@@ -765,8 +782,8 @@
       "z": -95,
       "width": 19,
       "depth": 23,
-      "rotation_y": 0,
-      "rotation_deg": 0,
+      "rotation_y": 4.71238898038469,
+      "rotation_deg": 270,
       "hidden": false
     },
     "LAKE_PROMENADE": {
@@ -820,9 +837,7 @@
       "z": -125,
       "rotation_y": 0,
       "rotation_deg": 0,
-      "hidden": false,
-      "width": 28,
-      "depth": 56
+      "hidden": false
     },
     "TURBINE_SCULPTURE": {
       "name": "ลานปฏิมากรรมกังหันไอน้ำ (Turbine Plaza)",
@@ -858,9 +873,7 @@
       "z": -160,
       "rotation_y": 0,
       "rotation_deg": 0,
-      "hidden": false,
-      "width": 28,
-      "depth": 28
+      "hidden": false
     },
     "OHK_GAZEBO": {
       "name": "ศาลาพักผ่อนริมน้ำ อหข.",
@@ -878,9 +891,7 @@
       "z": -165,
       "rotation_y": 0,
       "rotation_deg": 0,
-      "hidden": false,
-      "width": 24,
-      "depth": 24
+      "hidden": false
     },
     "SHRINE_VISHNU": {
       "name": "ศาลพระวิษณุกรรม",
@@ -894,8 +905,8 @@
     "SHRINE_SEVEN_KINGS": {
       "name": "ศาลหลวงพ่อเจ็ดกษัตริย์",
       "category": "สถานที่ศักดิ์สิทธิ์",
-      "x": -175,
-      "z": -110,
+      "x": -170,
+      "z": -115,
       "rotation_y": 0,
       "rotation_deg": 0,
       "hidden": false
@@ -925,9 +936,7 @@
       "z": 140,
       "rotation_y": 0,
       "rotation_deg": 0,
-      "hidden": false,
-      "width": 14,
-      "depth": 10
+      "hidden": false
     },
     "STORAGE_YARD": {
       "name": "ลานกองของ อบค. (Storage Yard)",
@@ -936,9 +945,8 @@
       "z": -195,
       "rotation_y": 0,
       "rotation_deg": 0,
-      "hidden": false,
-      "width": 36,
-      "depth": 24
+      "hidden": false
     }
-  }
+  },
+  "updated_at": "2026-11-20T01:48:08.274Z"
 }
