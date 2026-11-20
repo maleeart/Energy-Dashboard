@@ -1119,9 +1119,6 @@
 
     loadCustomRoads() {
       try {
-        if (!this.roads || Object.keys(this.roads).length === 0) {
-          this.roads = JSON.parse(JSON.stringify(this.defaultRoads));
-        }
         const saved = localStorage.getItem('sainoi_custom_roads');
         if (saved) {
           const custom = JSON.parse(saved);
@@ -1138,32 +1135,20 @@
             localStorage.setItem('sainoi_custom_roads', JSON.stringify(cleaned));
             this.roads = cleaned;
           } else {
+            this.roads = {};
             Object.entries(custom).forEach(([rid, pos]) => {
-              if (!this.roads[rid]) {
-                this.roads[rid] = { ...pos };
-              } else {
-                const x = Number(pos.x);
-                const z = Number(pos.z);
-                if (!isNaN(x)) this.roads[rid].x = x;
-                if (!isNaN(z)) this.roads[rid].z = z;
-                if (pos.width !== undefined && !isNaN(Number(pos.width))) this.roads[rid].width = Number(pos.width);
-                if (pos.length !== undefined && !isNaN(Number(pos.length))) this.roads[rid].length = Number(pos.length);
-                if (pos.rotation_y !== undefined && !isNaN(Number(pos.rotation_y))) this.roads[rid].rotation_y = Number(pos.rotation_y);
-                if (pos.hidden !== undefined) this.roads[rid].hidden = Boolean(pos.hidden);
-                if (pos.name) this.roads[rid].name = pos.name;
-                if (pos.category) this.roads[rid].category = pos.category;
-              }
+              this.roads[rid] = { ...pos };
             });
           }
+        } else {
+          // If no custom roads saved yet, initialize from default roads
+          this.roads = JSON.parse(JSON.stringify(this.defaultRoads));
         }
-        // Guarantee all default roads exist
-        Object.entries(this.defaultRoads).forEach(([k, defVal]) => {
-          if (!this.roads[k]) {
-            this.roads[k] = JSON.parse(JSON.stringify(defVal));
-          }
-        });
       } catch (e) {
         console.warn('Could not load custom roads from localStorage:', e);
+        if (!this.roads) {
+          this.roads = JSON.parse(JSON.stringify(this.defaultRoads));
+        }
       }
     },
 
@@ -1213,7 +1198,7 @@
     resetCustomRoads() {
       try {
         localStorage.removeItem('sainoi_custom_roads');
-        this.roads = {};
+        this.roads = JSON.parse(JSON.stringify(this.defaultRoads));
         this.notify('layout_change');
         return true;
       } catch (e) {

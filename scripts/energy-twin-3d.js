@@ -773,45 +773,6 @@
       this.roadMeshes.set('ROAD_EAST_ROUNDABOUT', eastRound);
       this.landmarkMeshes.set('EAST_ROUNDABOUT', eastRound);
 
-      // 3. Marked Parking Bays in front of D.0019, T.0019, and East Roundabout
-      const asphaltMat = new THREE.MeshStandardMaterial({ color: 0x334155, roughness: 0.72 });
-      const lineMat = new THREE.MeshBasicMaterial({ color: 0xF1F5F9 });
-      const parkingLots = [
-        { x: 30, z: -50, w: 10, d: 20 },
-        { x: 22, z: 5, w: 8, d: 20 },
-        { x: 135, z: -75, w: 18, d: 10 } // Parking bay near T.0016 & T.0018
-      ];
-
-      parkingLots.forEach(lot => {
-        const lotMesh = new THREE.Mesh(new THREE.PlaneGeometry(lot.w, lot.d), asphaltMat);
-        lotMesh.rotation.x = -Math.PI / 2;
-        lotMesh.position.set(lot.x, 0.06, lot.z);
-        lotMesh.receiveShadow = true;
-        this.scene.add(lotMesh);
-
-        for (let lz = lot.z - lot.d / 2 + 3; lz <= lot.z + lot.d / 2 - 3; lz += 4) {
-          const stallLine = new THREE.Mesh(new THREE.PlaneGeometry(lot.w - 1, 0.25), lineMat);
-          stallLine.rotation.x = -Math.PI / 2;
-          stallLine.position.set(lot.x, 0.07, lz);
-          this.scene.add(stallLine);
-        }
-      });
-
-      // 4. Geometric Checkerboard Garden (Behind T.0017 near eastern perimeter)
-      const checkGroup = new THREE.Group();
-      const pMatLight = new THREE.MeshStandardMaterial({ color: 0xE2E8F0, roughness: 0.8 });
-      const pMatGrass = new THREE.MeshStandardMaterial({ color: 0x4D7C0F, roughness: 0.9 });
-      for (let gx = 0; gx < 4; gx++) {
-        for (let gz = 0; gz < 4; gz++) {
-          const tile = new THREE.Mesh(new THREE.PlaneGeometry(3.6, 3.6), (gx + gz) % 2 === 0 ? pMatLight : pMatGrass);
-          tile.rotation.x = -Math.PI / 2;
-          tile.position.set(145 + gx * 3.8, 0.07, -15 + gz * 3.8);
-          tile.receiveShadow = true;
-          checkGroup.add(tile);
-        }
-      }
-      this.scene.add(checkGroup);
-
       // Initial synchronization of dynamic roads
       this.syncRoadsFromModel();
     }
