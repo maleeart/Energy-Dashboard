@@ -66,11 +66,53 @@
       this.init();
     }
 
+    // Procedural Lush Lawn Turf Texture Generator
+    createLawnTexture() {
+      const canvas = document.createElement('canvas');
+      canvas.width = 512;
+      canvas.height = 512;
+      const ctx = canvas.getContext('2d');
+
+      // 1. Base vibrant natural Thai lawn green
+      ctx.fillStyle = '#416D2E';
+      ctx.fillRect(0, 0, 512, 512);
+
+      // 2. Subtle organic grass variation / mowing bands
+      const stripeH = 32;
+      for (let y = 0; y < 512; y += stripeH) {
+        ctx.fillStyle = ((y / stripeH) % 2 === 0) ? 'rgba(78, 126, 56, 0.40)' : 'rgba(54, 92, 38, 0.40)';
+        ctx.fillRect(0, y, 512, stripeH);
+      }
+
+      // 3. Fine grass blade stippling / micro-texture
+      ctx.fillStyle = 'rgba(92, 148, 66, 0.28)';
+      for (let i = 0; i < 1200; i++) {
+        const x = Math.random() * 512;
+        const y = Math.random() * 512;
+        const s = Math.random() * 3 + 1;
+        ctx.fillRect(x, y, s, s * 2);
+      }
+
+      ctx.fillStyle = 'rgba(35, 60, 24, 0.32)';
+      for (let i = 0; i < 900; i++) {
+        const x = Math.random() * 512;
+        const y = Math.random() * 512;
+        const s = Math.random() * 2 + 1;
+        ctx.fillRect(x, y, s, s);
+      }
+
+      const texture = new THREE.CanvasTexture(canvas);
+      texture.wrapS = THREE.RepeatWrapping;
+      texture.wrapT = THREE.RepeatWrapping;
+      texture.repeat.set(22, 26);
+      return texture;
+    }
+
     init() {
-      // 1. Scene & Daylight Atmosphere
+      // 1. Scene & Atmosphere (Soft elegant sunny sky blue & balanced fog)
       this.scene = new THREE.Scene();
-      this.scene.background = new THREE.Color(0xEDF2F7);
-      this.scene.fog = new THREE.FogExp2(0xEDF2F7, 0.0018);
+      this.scene.background = new THREE.Color(0xD4E4F7);
+      this.scene.fog = new THREE.FogExp2(0xD4E4F7, 0.0012);
 
       // 2. Camera Setup
       const aspect = this.container.clientWidth / this.container.clientHeight;
@@ -130,17 +172,17 @@
     }
 
     setupLights() {
-      // Natural Hemisphere Ambient Fill
-      this.hemiLight = new THREE.HemisphereLight(0xFFFFFF, 0xCBD5E1, 0.72);
+      // Natural Hemisphere Ambient Fill (Sky blue + Ground bounce green)
+      this.hemiLight = new THREE.HemisphereLight(0xD8EEFD, 0x3E5C28, 0.60);
       this.hemiLight.position.set(0, 220, 0);
       this.scene.add(this.hemiLight);
 
       // Soft Ambient Light
-      this.ambLight = new THREE.AmbientLight(0xFFFFFF, 0.35);
+      this.ambLight = new THREE.AmbientLight(0xFFFFFF, 0.28);
       this.scene.add(this.ambLight);
 
       // Main Sun Directional Light
-      this.dirLight = new THREE.DirectionalLight(0xFFFBEB, 0.95);
+      this.dirLight = new THREE.DirectionalLight(0xFFFDF2, 0.82);
       this.dirLight.position.set(140, 240, 120);
       this.dirLight.castShadow = true;
       this.dirLight.shadow.mapSize.width = 2048;
@@ -159,12 +201,27 @@
        Campus Geography, Roads, Water Bodies, Switchyard, Sports Fields
        ═════════════════════════════════════════════════════════════════ */
     setupCampusEnvironment() {
-      // 1. Master Campus Ground Turf (Extending north to cover OHK expansion)
+      // 0. Surrounding Regional Landscape (Large outer countryside terrain to eliminate stark white void)
+      const outerGeo = new THREE.PlaneGeometry(1600, 1600);
+      const outerMat = new THREE.MeshStandardMaterial({
+        color: 0x8DA87E, // Soft natural countryside terrain
+        roughness: 0.98,
+        metalness: 0.0
+      });
+      const outerGround = new THREE.Mesh(outerGeo, outerMat);
+      outerGround.rotation.x = -Math.PI / 2;
+      outerGround.position.set(-20, -0.65, -40);
+      outerGround.receiveShadow = true;
+      this.scene.add(outerGround);
+
+      // 1. Master Campus Ground Turf (Rich lush Thai lawn with procedural texture)
+      this.lawnTexture = this.createLawnTexture();
       const groundGeo = new THREE.PlaneGeometry(440, 520);
       const groundMat = new THREE.MeshStandardMaterial({
-        color: 0x7CA96A, // Natural Thai lawn green
-        roughness: 0.92,
-        metalness: 0.05
+        map: this.lawnTexture,
+        color: 0x487535, // Rich healthy Thai lawn green
+        roughness: 0.94,
+        metalness: 0.02
       });
       const ground = new THREE.Mesh(groundGeo, groundMat);
       ground.rotation.x = -Math.PI / 2;
@@ -173,9 +230,9 @@
       this.scene.add(ground);
       this.groundMesh = ground;
 
-      // Campus Perimeter Boundary Base
+      // Campus Perimeter Boundary Base (Architectural stone curb)
       const curbGeo = new THREE.BoxGeometry(444, 1.2, 524);
-      const curbMat = new THREE.MeshStandardMaterial({ color: 0xCBD5E1, roughness: 0.85 });
+      const curbMat = new THREE.MeshStandardMaterial({ color: 0x64748B, roughness: 0.85 });
       const curb = new THREE.Mesh(curbGeo, curbMat);
       curb.position.set(-20, -0.6, -40);
       curb.receiveShadow = true;
@@ -454,7 +511,7 @@
 
       const yardGeo = new THREE.PlaneGeometry(65, 60);
       const yardMat = new THREE.MeshStandardMaterial({
-        color: 0xCBD5E1,
+        color: 0x64748B, // Crushed basalt gravel rock for high-voltage substation
         roughness: 0.95,
         polygonOffset: true,
         polygonOffsetFactor: -1,
@@ -799,7 +856,7 @@
       ohkGroup.name = 'OHK_Infrastructure';
 
       const asphaltMat = new THREE.MeshStandardMaterial({ color: 0x334155, roughness: 0.72 });
-      const concreteApronMat = new THREE.MeshStandardMaterial({ color: 0xDCE3EB, roughness: 0.75 });
+      const concreteApronMat = new THREE.MeshStandardMaterial({ color: 0x94A3B8, roughness: 0.85 });
       const waterMat = new THREE.MeshStandardMaterial({
         map: this.createWaterTexture('lake'),
         color: 0x0284C7,
@@ -2911,26 +2968,26 @@
           }
         });
       } else {
-        // Daylight Sky & Fog
-        this.scene.background = new THREE.Color(0xEDF2F7);
+        // Daylight Sky & Fog (Soft elegant sunny sky blue & balanced fog)
+        this.scene.background = new THREE.Color(0xD4E4F7);
         if (this.scene.fog) {
-          this.scene.fog.color = new THREE.Color(0xEDF2F7);
-          this.scene.fog.density = 0.0018;
+          this.scene.fog.color = new THREE.Color(0xD4E4F7);
+          this.scene.fog.density = 0.0012;
         }
 
-        // Daylight Lighting
+        // Daylight Lighting (Sky fill + Ground bounce green)
         if (this.hemiLight) {
-          this.hemiLight.color.setHex(0xFFFFFF);
-          this.hemiLight.groundColor.setHex(0xCBD5E1);
-          this.hemiLight.intensity = 0.72;
+          this.hemiLight.color.setHex(0xD8EEFD);
+          this.hemiLight.groundColor.setHex(0x3E5C28);
+          this.hemiLight.intensity = 0.60;
         }
         if (this.ambLight) {
           this.ambLight.color.setHex(0xFFFFFF);
-          this.ambLight.intensity = 0.35;
+          this.ambLight.intensity = 0.28;
         }
         if (this.dirLight) {
-          this.dirLight.color.setHex(0xFFFBEB);
-          this.dirLight.intensity = 0.95;
+          this.dirLight.color.setHex(0xFFFDF2);
+          this.dirLight.intensity = 0.82;
         }
 
         // Windows unlit in daylight
@@ -3529,6 +3586,10 @@
       if (this.groundMesh.geometry) this.groundMesh.geometry.dispose();
       this.groundMesh.geometry = new THREE.PlaneGeometry(width, depth);
       this.groundMesh.position.set(centerX, 0, centerZ);
+
+      if (this.lawnTexture) {
+        this.lawnTexture.repeat.set(width / 20, depth / 20);
+      }
 
       if (this.curbMesh.geometry) this.curbMesh.geometry.dispose();
       this.curbMesh.geometry = new THREE.BoxGeometry(width + 4, 1.2, depth + 4);
