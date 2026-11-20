@@ -2289,6 +2289,11 @@
         if (campusScene.setLandmarkVisible) campusScene.setLandmarkVisible(l.id, !l.hidden);
       });
 
+      // 5. Sync Landscaping Trees (Avoid roads, water ponds & buildings dynamically)
+      if (campusScene.syncTreesFromLayout) {
+        campusScene.syncTreesFromLayout();
+      }
+
       campusScene.needsRender = true;
     }
 
@@ -4856,12 +4861,12 @@
         ctx.fillStyle = '#CBD5E1';
         ctx.fillRect(0, 0, this.width, this.height);
 
-        // Campus Lawn Turf
-        ctx.fillStyle = '#E8F5E9';
+        // Campus Ground (Light soil terrain - ดินสีอ่อน)
+        ctx.fillStyle = '#F4EDE4';
         ctx.fillRect(bTopLeft.x, bTopLeft.y, bW, bH);
 
         // Perimeter fence
-        ctx.strokeStyle = '#15803D';
+        ctx.strokeStyle = '#9C8E7C';
         ctx.lineWidth = 2;
         ctx.setLineDash([8, 6]);
         ctx.strokeRect(bTopLeft.x, bTopLeft.y, bW, bH);
@@ -4869,7 +4874,7 @@
 
         // Compass edge labels
         ctx.font = 'bold 11px "JetBrains Mono", sans-serif';
-        ctx.fillStyle = '#166534';
+        ctx.fillStyle = '#786852';
         ctx.textAlign = 'center';
         ctx.fillText('▲ ทิศเหนือ (North -Z)', bTopLeft.x + bW / 2, Math.max(20, bTopLeft.y - 8));
         ctx.fillText('▼ ทิศใต้ (South +Z)', bTopLeft.x + bW / 2, Math.min(this.height - 10, bBotRight.y + 16));

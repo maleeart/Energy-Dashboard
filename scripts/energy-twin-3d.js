@@ -66,46 +66,67 @@
       this.init();
     }
 
-    // Procedural Lush Lawn Turf Texture Generator
-    createLawnTexture() {
+    // Procedural Natural Light Soil Ground Texture Generator (ดินสีอ่อน)
+    createSoilTexture() {
       const canvas = document.createElement('canvas');
       canvas.width = 512;
       canvas.height = 512;
       const ctx = canvas.getContext('2d');
 
-      // 1. Base vibrant natural Thai lawn green
-      ctx.fillStyle = '#416D2E';
+      // 1. Base soft natural warm light earth / sandy loam tone
+      ctx.fillStyle = '#D6C8B2';
       ctx.fillRect(0, 0, 512, 512);
 
-      // 2. Subtle organic grass variation / mowing bands
-      const stripeH = 32;
-      for (let y = 0; y < 512; y += stripeH) {
-        ctx.fillStyle = ((y / stripeH) % 2 === 0) ? 'rgba(78, 126, 56, 0.40)' : 'rgba(54, 92, 38, 0.40)';
-        ctx.fillRect(0, y, 512, stripeH);
-      }
+      // 2. Gentle organic soil tonal drifts & natural terrain gradations
+      const patches = [
+        { x: 128, y: 128, rx: 140, ry: 90, color: 'rgba(240, 233, 222, 0.45)' },
+        { x: 384, y: 320, rx: 160, ry: 100, color: 'rgba(202, 188, 166, 0.35)' },
+        { x: 220, y: 380, rx: 130, ry: 80, color: 'rgba(235, 227, 215, 0.40)' },
+        { x: 360, y: 140, rx: 120, ry: 75, color: 'rgba(196, 182, 160, 0.32)' },
+        { x: 60, y: 440, rx: 100, ry: 60, color: 'rgba(245, 239, 230, 0.38)' }
+      ];
 
-      // 3. Fine grass blade stippling / micro-texture
-      ctx.fillStyle = 'rgba(92, 148, 66, 0.28)';
-      for (let i = 0; i < 1200; i++) {
+      patches.forEach(p => {
+        ctx.fillStyle = p.color;
+        ctx.beginPath();
+        ctx.ellipse(p.x, p.y, p.rx, p.ry, Math.PI / 6, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      // 3. Fine mineral / sand particulate & subtle earthen micro-texture
+      ctx.fillStyle = 'rgba(248, 243, 235, 0.45)'; // Lighter sand specks
+      for (let i = 0; i < 1100; i++) {
         const x = Math.random() * 512;
         const y = Math.random() * 512;
-        const s = Math.random() * 3 + 1;
-        ctx.fillRect(x, y, s, s * 2);
+        const s = Math.random() * 2.2 + 0.8;
+        ctx.fillRect(x, y, s, s);
       }
 
-      ctx.fillStyle = 'rgba(35, 60, 24, 0.32)';
+      ctx.fillStyle = 'rgba(168, 152, 130, 0.32)'; // Warmer earthen clay grain
       for (let i = 0; i < 900; i++) {
         const x = Math.random() * 512;
         const y = Math.random() * 512;
-        const s = Math.random() * 2 + 1;
+        const s = Math.random() * 2.0 + 0.8;
+        ctx.fillRect(x, y, s, s);
+      }
+
+      ctx.fillStyle = 'rgba(135, 120, 100, 0.22)'; // Tiny natural gravel particles
+      for (let i = 0; i < 400; i++) {
+        const x = Math.random() * 512;
+        const y = Math.random() * 512;
+        const s = Math.random() * 1.5 + 0.5;
         ctx.fillRect(x, y, s, s);
       }
 
       const texture = new THREE.CanvasTexture(canvas);
       texture.wrapS = THREE.RepeatWrapping;
       texture.wrapT = THREE.RepeatWrapping;
-      texture.repeat.set(22, 26);
+      texture.repeat.set(20, 24);
       return texture;
+    }
+
+    createLawnTexture() {
+      return this.createSoilTexture();
     }
 
     init() {
@@ -181,8 +202,8 @@
     }
 
     setupLights() {
-      // Natural Hemisphere Ambient Fill (Sky blue + Ground bounce green)
-      this.hemiLight = new THREE.HemisphereLight(0xD8EEFD, 0x3E5C28, 0.60);
+      // Natural Hemisphere Ambient Fill (Sky blue + Ground bounce warm light earth)
+      this.hemiLight = new THREE.HemisphereLight(0xD8EEFD, 0x8C7A5E, 0.60);
       this.hemiLight.position.set(0, 220, 0);
       this.scene.add(this.hemiLight);
 
@@ -211,10 +232,10 @@
        Campus Geography, Roads, Water Bodies, Switchyard, Sports Fields
        ═════════════════════════════════════════════════════════════════ */
     setupCampusEnvironment() {
-      // 0. Surrounding Regional Landscape (Large outer countryside terrain to eliminate stark white void)
+      // 0. Surrounding Regional Landscape (Natural light earthen countryside terrain)
       const outerGeo = new THREE.PlaneGeometry(1600, 1600);
       const outerMat = new THREE.MeshStandardMaterial({
-        color: 0x8DA87E, // Soft natural countryside terrain
+        color: 0xC8BCA8, // Soft natural light earth terrain
         roughness: 0.98,
         metalness: 0.0
       });
@@ -225,14 +246,15 @@
       this.scene.add(outerGround);
       this.outerGroundMesh = outerGround;
 
-      // 1. Master Campus Ground Turf (Rich lush Thai lawn with procedural texture)
-      this.lawnTexture = this.createLawnTexture();
+      // 1. Master Campus Ground (Warm light soil terrain - ดินสีอ่อน)
+      this.soilTexture = this.createSoilTexture();
+      this.lawnTexture = this.soilTexture; // Alias for backward compatibility
       const groundGeo = new THREE.PlaneGeometry(440, 520);
       const groundMat = new THREE.MeshStandardMaterial({
-        map: this.lawnTexture,
-        color: 0x487535, // Rich healthy Thai lawn green
-        roughness: 0.94,
-        metalness: 0.02,
+        map: this.soilTexture,
+        color: 0xD6C9B3, // Clean warm light earth / soil
+        roughness: 0.96,
+        metalness: 0.01,
         polygonOffset: true,
         polygonOffsetFactor: -1,
         polygonOffsetUnits: -1
@@ -247,7 +269,7 @@
 
       // Campus Perimeter Boundary Base (Architectural stone curb pedestal)
       const curbGeo = new THREE.BoxGeometry(444, 1.2, 524);
-      const curbMat = new THREE.MeshStandardMaterial({ color: 0x64748B, roughness: 0.85 });
+      const curbMat = new THREE.MeshStandardMaterial({ color: 0x8C7E6C, roughness: 0.85 });
       const curb = new THREE.Mesh(curbGeo, curbMat);
       curb.position.set(-20, -0.65, -40); // Top face is at -0.65 + 0.6 = -0.05 (strictly BELOW the ground at +0.02)
       curb.receiveShadow = true;
@@ -966,37 +988,6 @@
 
       // Note: OHK access and perimeter roads are now part of the user-drawn dynamic road network
 
-      // ── 6. 230 kV Ang Thong 2 Transmission Line Right-of-Way Crossing ──
-      const pylonGroup = new THREE.Group();
-      const pylonMat = new THREE.MeshStandardMaterial({ color: 0x475569, metalness: 0.85, roughness: 0.3 });
-      const pylonCoords = [
-        [-175, -230],
-        [-65, -150]
-      ];
-
-      pylonCoords.forEach(([px, pz]) => {
-        // 4-legged lattice steel transmission tower
-        const h = 26;
-        [-2.5, 2.5].forEach(ox => {
-          [-2.5, 2.5].forEach(oz => {
-            const leg = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.35, h, 6), pylonMat);
-            leg.position.set(px + ox * 0.7, h / 2, pz + oz * 0.7);
-            leg.castShadow = true;
-            pylonGroup.add(leg);
-          });
-        });
-
-        // 3 Crossarms for 230 kV conductors
-        [h - 7, h - 3.5, h].forEach((ch, ci) => {
-          const armW = 14 - ci * 2.5;
-          const arm = new THREE.Mesh(new THREE.BoxGeometry(armW, 0.6, 0.6), pylonMat);
-          arm.position.set(px, ch, pz);
-          arm.castShadow = true;
-          pylonGroup.add(arm);
-        });
-      });
-      ohkGroup.add(pylonGroup);
-
       this.scene.add(ohkGroup);
     }
 
@@ -1206,24 +1197,13 @@
         this.scene.add(pole);
       });
 
-      const treeCoords = [
-        [24, 120], [24, 90], [24, 60], [24, 30], [24, -10], [24, -40], [24, -70], [24, -100], [24, -130],
-        [46, 120], [46, 90], [46, 60], [46, 30], [46, -70], [46, -100], [46, -130],
-        [44, -2], [44, -12], [44, -24], [44, -36], [86, -2], [86, -12], [86, -24], [86, -36],
-        [-118, 45], [-118, 25], [-118, -5], [-118, -35], [-118, -65],
-        [-72, 45], [-72, 25], [-72, -5], [-72, -35],
-        [-5, -165], [-35, -165], [-65, -165],
-        // OHK Perimeter Trees
-        [-170, -180], [-170, -200], [-170, -220], [-120, -235], [-90, -235], [-60, -210], [-60, -170]
-      ];
-
-      treeCoords.forEach(([tx, tz]) => {
-        const tree = this.createTreeMesh();
-        tree.position.set(tx, 0, tz);
-        const s = 0.85 + Math.random() * 0.35;
-        tree.scale.set(s, s, s);
-        this.scene.add(tree);
-      });
+      // Initialize managed tree group and dynamically sync trees avoiding roads & water
+      if (!this.treeGroup) {
+        this.treeGroup = new THREE.Group();
+        this.treeGroup.name = 'CampusTrees';
+        this.scene.add(this.treeGroup);
+      }
+      this.syncTreesFromLayout();
 
       // ── Shrines & Iconic Campus Monuments from 3D Prototype (19-6-63) ──
       // 1. พระวิษณุกรรม Shrine (Between T.0020 and T.0007)
@@ -1338,6 +1318,147 @@
       group.add(cone2);
 
       return group;
+    }
+
+    isTreePositionValid(tx, tz) {
+      // 1. Campus Boundary bounds check
+      if (tx < -215 || tx > 195 || tz < -218 || tz > 145) return false;
+
+      // 2. Clear from WEST_CANAL perimeter water body (along Z = -235, width 24)
+      if (tz <= -218) return false;
+
+      // 3. Clear from all active Water Bodies (with 5.0m buffer from water edge)
+      const waterList = (window.EnergyTwin && window.EnergyTwin.getWaterList) ? window.EnergyTwin.getWaterList() : [];
+      for (const w of waterList) {
+        if (w.hidden) continue;
+        const wx = Number(w.x) || 0;
+        const wz = Number(w.z) || 0;
+        const halfW = ((Number(w.width) || 20) / 2) + 5.0;
+        const halfD = ((Number(w.depth) || 20) / 2) + 5.0;
+        const rot = Number(w.rotation_y) || 0;
+
+        const dx = tx - wx;
+        const dz = tz - wz;
+        const cos = Math.cos(-rot);
+        const sin = Math.sin(-rot);
+        const lx = dx * cos - dz * sin;
+        const lz = dx * sin + dz * cos;
+
+        if (Math.abs(lx) < halfW && Math.abs(lz) < halfD) {
+          return false;
+        }
+      }
+
+      // 4. Clear from all active Roads (with 4.0m clearance beyond road edge)
+      const roadList = (window.EnergyTwin && window.EnergyTwin.getRoadsList) ? window.EnergyTwin.getRoadsList() : [];
+      for (const r of roadList) {
+        if (r.hidden) continue;
+        const rx = Number(r.x) || 0;
+        const rz = Number(r.z) || 0;
+        const halfW = ((Number(r.width) || 6) / 2) + 4.0;
+        const halfLen = ((Number(r.length) || 50) / 2) + 3.0;
+        const rot = Number(r.rotation_y) || 0;
+
+        const dx = tx - rx;
+        const dz = tz - rz;
+        const cos = Math.cos(-rot);
+        const sin = Math.sin(-rot);
+        const lx = dx * cos - dz * sin;
+        const lz = dx * sin + dz * cos;
+
+        if (Math.abs(lx) < halfW && Math.abs(lz) < halfLen) {
+          return false;
+        }
+      }
+
+      // 5. Clear from all active Buildings (with 4.0m clearance from walls)
+      const bList = (window.EnergyTwin && window.EnergyTwin.getBuildingsList) ? window.EnergyTwin.getBuildingsList() : [];
+      for (const b of bList) {
+        if (b.hidden) continue;
+        const pos = b.layout_position || { x: b.x, z: b.z };
+        const bx = Number(pos.x) || 0;
+        const bz = Number(pos.z) || 0;
+        const dims = b.dimensions || {};
+        const halfW = ((Number(dims.width) || 24) / 2) + 4.0;
+        const halfD = ((Number(dims.depth) || 30) / 2) + 4.0;
+        const rot = Number(b.rotation_y) || 0;
+
+        const dx = tx - bx;
+        const dz = tz - bz;
+        const cos = Math.cos(-rot);
+        const sin = Math.sin(-rot);
+        const lx = dx * cos - dz * sin;
+        const lz = dx * sin + dz * cos;
+
+        if (Math.abs(lx) < halfW && Math.abs(lz) < halfD) {
+          return false;
+        }
+      }
+
+      // 6. Clear from Special Landmarks
+      // Football Pitch: centered at (120, -70), w: 32, d: 62
+      if (Math.abs(tx - 120) < 22 && Math.abs(tz - (-70)) < 36) return false;
+      // Switchyard: centered at (-25, 110), w: 70, d: 65
+      if (Math.abs(tx - (-25)) < 38 && Math.abs(tz - 110) < 35) return false;
+      // East Roundabout: center (200, -165), radius: 15
+      if (Math.hypot(tx - 200, tz - (-165)) < 15) return false;
+      // OHK Roundabout: center (-155, -150), radius: 17
+      if (Math.hypot(tx - (-155), tz - (-150)) < 17) return false;
+
+      return true;
+    }
+
+    syncTreesFromLayout() {
+      if (!this.treeGroup) {
+        this.treeGroup = new THREE.Group();
+        this.treeGroup.name = 'CampusTrees';
+        this.scene.add(this.treeGroup);
+      }
+
+      // Dispose existing tree meshes
+      while (this.treeGroup.children.length > 0) {
+        const c = this.treeGroup.children[0];
+        this.treeGroup.remove(c);
+        if (c.traverse) {
+          c.traverse(node => {
+            if (node.geometry) node.geometry.dispose();
+            if (node.material) {
+              if (Array.isArray(node.material)) node.material.forEach(m => m.dispose());
+              else node.material.dispose();
+            }
+          });
+        }
+      }
+
+      const candidateTrees = [
+        // 1. East Perimeter Green Line (Far eastern edge, expansive open soil verge)
+        [185, -140], [185, -100], [185, -60], [185, -20], [185, 20], [185, 60], [185, 100],
+        // 2. West Perimeter Buffer (East of West Canal bank, safe from canal & buildings)
+        [-195, -135], [-195, -95], [-195, -55], [-195, -15], [-195, 25], [-195, 65],
+        // 3. North Perimeter Boundary
+        [-155, 125], [-115, 125], [-75, 125], [105, 125], [145, 125],
+        // 4. South-East Open Landscape (Near T.0019/T.0020, well outside water & roads)
+        [155, 20], [155, 50], [130, 25], [130, 55],
+        // 5. Central Open Courtyard Axis (X = 0 line between workshop rows)
+        [0, 5], [0, 35], [0, -25], [0, -65], [0, -105],
+        // 6. Main Avenue Open Green Buffer (East of red walkway, X = 78)
+        [78, 30], [78, 60], [78, 90], [78, 120], [78, 150],
+        // 7. Southwest Open Ground
+        [12, 75], [12, 105], [12, 135],
+        // 8. Garden clusters between buildings (will only be placed if clearance is guaranteed)
+        [36, -10], [36, -90], [-40, -10], [-40, -90]
+      ];
+
+      candidateTrees.forEach(([tx, tz]) => {
+        if (!this.isTreePositionValid(tx, tz)) return;
+        const tree = this.createTreeMesh();
+        tree.position.set(tx, 0, tz);
+        const s = 0.85 + Math.random() * 0.35;
+        tree.scale.set(s, s, s);
+        this.treeGroup.add(tree);
+      });
+
+      this.needsRender = true;
     }
 
     // Iconic Steam Turbine Rotor Sculpture Plaza (ลานปฏิมากรรมกังหันไอน้ำ หน้า ท.0020)
@@ -3565,8 +3686,11 @@
       this.groundMesh.position.set(centerX, 0.02, centerZ);
       this.groundMesh.renderOrder = 1;
 
-      if (this.lawnTexture) {
-        this.lawnTexture.repeat.set(width / 20, depth / 20);
+      if (this.soilTexture) {
+        this.soilTexture.repeat.set(width / 24, depth / 24);
+      }
+      if (this.lawnTexture && this.lawnTexture !== this.soilTexture) {
+        this.lawnTexture.repeat.set(width / 24, depth / 24);
       }
 
       if (this.curbMesh.geometry) this.curbMesh.geometry.dispose();
