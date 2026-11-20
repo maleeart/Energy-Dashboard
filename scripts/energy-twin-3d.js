@@ -114,22 +114,31 @@
       this.scene.background = new THREE.Color(0xD4E4F7);
       this.scene.fog = new THREE.FogExp2(0xD4E4F7, 0.0012);
 
-      // 2. Camera Setup
+      // 2. Camera Setup (Optimized near/far for rock-solid depth precision)
       const aspect = this.container.clientWidth / this.container.clientHeight;
-      this.camera = new THREE.PerspectiveCamera(42, aspect, 1, 1400);
+      this.camera = new THREE.PerspectiveCamera(42, aspect, 2.0, 1200);
       this.camera.position.set(this.defaultCameraPos.x, this.defaultCameraPos.y, this.defaultCameraPos.z);
 
-      // 3. WebGL Renderer with High-Performance Settings
+      // 3. WebGL Renderer with Logarithmic Depth Buffer (Eliminates Z-fighting and flicker during zoom)
       try {
         this.renderer = new THREE.WebGLRenderer({
           antialias: true,
           alpha: true,
+          logarithmicDepthBuffer: true,
           powerPreference: 'high-performance'
         });
       } catch (e) {
-        console.warn('WebGL initialization failed, triggering 2D fallback:', e);
-        this.showWebGLFallback();
-        return;
+        try {
+          this.renderer = new THREE.WebGLRenderer({
+            antialias: true,
+            alpha: true,
+            powerPreference: 'high-performance'
+          });
+        } catch (e2) {
+          console.warn('WebGL initialization failed, triggering 2D fallback:', e2);
+          this.showWebGLFallback();
+          return;
+        }
       }
 
       this.renderer.setSize(this.container.clientWidth, this.container.clientHeight);
@@ -193,7 +202,8 @@
       this.dirLight.shadow.camera.right = 240;
       this.dirLight.shadow.camera.top = 260;
       this.dirLight.shadow.camera.bottom = -260;
-      this.dirLight.shadow.bias = -0.0004;
+      this.dirLight.shadow.bias = -0.00005;
+      this.dirLight.shadow.normalBias = 0.04;
       this.scene.add(this.dirLight);
     }
 
@@ -3825,8 +3835,8 @@
       }
 
       if (this.controls) {
-        this.controls.update();
-        if (this.controls.autoRotate) {
+        const controlsMoved = this.controls.update();
+        if (controlsMoved || this.controls.autoRotate) {
           this.needsRender = true;
         }
       }
