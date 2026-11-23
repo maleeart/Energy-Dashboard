@@ -4018,8 +4018,10 @@
       } else if (item.type === 'landmark') {
         const lm = EnergyTwin.landmarks?.[item.id] || EnergyTwin.defaultLandmarks?.[item.id];
         if (lm) {
-          w = lm.width || 10;
-          d = lm.depth || 10;
+          const defW = (item.id === 'SW_YARD' ? 65 : (item.id === 'SUNFLOWER_FIELD' ? 34 : (item.id === 'FOOTBALL' ? 28 : (item.id === 'OHK_ROUNDABOUT' ? 28 : (item.id === 'EAST_ROUNDABOUT' ? 24 : 15)))));
+          const defD = (item.id === 'SW_YARD' ? 60 : (item.id === 'SUNFLOWER_FIELD' ? 44 : (item.id === 'FOOTBALL' ? 56 : (item.id === 'OHK_ROUNDABOUT' ? 28 : (item.id === 'EAST_ROUNDABOUT' ? 24 : 15)))));
+          w = lm.width || defW;
+          d = lm.depth || defD;
           rotRad = lm.rotation_y || 0;
         }
       }
@@ -4299,12 +4301,40 @@
         if (curR) {
           if (dimKey === 'width') curR.width = num;
           else curR.length = num;
+          if (campusScene && campusScene.updateRoadDimensions) {
+            campusScene.updateRoadDimensions(id, curR.width, curR.length);
+          }
+          if (EnergyTwin.saveCustomRoads) {
+            EnergyTwin.saveCustomRoads({ [id]: { width: curR.width, length: curR.length } });
+          }
         }
       } else if (type === 'water') {
         const curW = EnergyTwin.water?.[id] || EnergyTwin.defaultWater?.[id];
         if (curW) {
           if (dimKey === 'width') curW.width = num;
           else curW.depth = num;
+          if (campusScene && campusScene.updateWaterDimensions) {
+            campusScene.updateWaterDimensions(id, curW.width, curW.depth);
+          }
+          if (EnergyTwin.saveCustomWater) {
+            EnergyTwin.saveCustomWater({ [id]: { width: curW.width, depth: curW.depth } });
+          }
+        }
+      } else if (type === 'landmark') {
+        const curLM = EnergyTwin.landmarks?.[id] || EnergyTwin.defaultLandmarks?.[id];
+        if (curLM) {
+          if (dimKey === 'width') curLM.width = num;
+          else if (dimKey === 'depth' || dimKey === 'length') curLM.depth = num;
+          const defW = (id === 'SW_YARD' ? 65 : (id === 'SUNFLOWER_FIELD' ? 34 : (id === 'FOOTBALL' ? 28 : (id === 'OHK_ROUNDABOUT' ? 28 : (id === 'EAST_ROUNDABOUT' ? 24 : 15)))));
+          const defD = (id === 'SW_YARD' ? 60 : (id === 'SUNFLOWER_FIELD' ? 44 : (id === 'FOOTBALL' ? 56 : (id === 'OHK_ROUNDABOUT' ? 28 : (id === 'EAST_ROUNDABOUT' ? 24 : 15)))));
+          const w = curLM.width || defW;
+          const d = curLM.depth || defD;
+          if (campusScene && campusScene.updateLandmarkDimensions) {
+            campusScene.updateLandmarkDimensions(id, w, d);
+          }
+          if (EnergyTwin.saveCustomLandmarks) {
+            EnergyTwin.saveCustomLandmarks({ [id]: { width: w, depth: d } });
+          }
         }
       } else if (type === 'bld') {
         const curB = EnergyTwin.mappingData?.buildings?.[id];
@@ -4348,6 +4378,20 @@
             campusScene.updateWaterDimensions(id, w, d);
           }
           EnergyTwin.saveCustomWater({ [id]: { width: w, depth: d } });
+        }
+      } else if (type === 'landmark') {
+        const def = EnergyTwin.defaultLandmarks?.[id];
+        const defW = def?.width || (id === 'SW_YARD' ? 65 : (id === 'SUNFLOWER_FIELD' ? 34 : (id === 'FOOTBALL' ? 28 : (id === 'OHK_ROUNDABOUT' ? 28 : (id === 'EAST_ROUNDABOUT' ? 24 : 15)))));
+        const defD = def?.depth || (id === 'SW_YARD' ? 60 : (id === 'SUNFLOWER_FIELD' ? 44 : (id === 'FOOTBALL' ? 56 : (id === 'OHK_ROUNDABOUT' ? 28 : (id === 'EAST_ROUNDABOUT' ? 24 : 15)))));
+        if (campusScene && campusScene.updateLandmarkDimensions) {
+          campusScene.updateLandmarkDimensions(id, defW, defD);
+        }
+        if (EnergyTwin.landmarks && EnergyTwin.landmarks[id]) {
+          EnergyTwin.landmarks[id].width = defW;
+          EnergyTwin.landmarks[id].depth = defD;
+        }
+        if (EnergyTwin.saveCustomLandmarks) {
+          EnergyTwin.saveCustomLandmarks({ [id]: { width: defW, depth: defD } });
         }
       }
 
@@ -4606,8 +4650,10 @@
           const lms = EnergyTwin.landmarks;
           for (const id in lms) {
             const lm = lms[id];
-            const hw = (lm.width || 15) * 0.5;
-            const hd = (lm.depth || 15) * 0.5;
+            const defW = (id === 'SW_YARD' ? 65 : (id === 'SUNFLOWER_FIELD' ? 34 : (id === 'FOOTBALL' ? 28 : (id === 'OHK_ROUNDABOUT' ? 28 : (id === 'EAST_ROUNDABOUT' ? 24 : 15)))));
+            const defD = (id === 'SW_YARD' ? 60 : (id === 'SUNFLOWER_FIELD' ? 44 : (id === 'FOOTBALL' ? 56 : (id === 'OHK_ROUNDABOUT' ? 28 : (id === 'EAST_ROUNDABOUT' ? 24 : 15)))));
+            const hw = (lm.width || defW) * 0.5;
+            const hd = (lm.depth || defD) * 0.5;
             const rad = lm.rotation_y || 0;
             const dx = wx - lm.x;
             const dz = wz - lm.z;
@@ -5143,8 +5189,10 @@
         const isSel = selectedGridItem && selectedGridItem.type === 'landmark' && selectedGridItem.id === lm.id;
         const isHov = this.hoveredItem && this.hoveredItem.type === 'landmark' && this.hoveredItem.id === lm.id;
         const p = this.worldToScreen(lm.x, lm.z);
-        const width = (lm.width || 15) * this.camera.zoom;
-        const depth = (lm.depth || 15) * this.camera.zoom;
+        const defW = (lm.id === 'SW_YARD' ? 65 : (lm.id === 'SUNFLOWER_FIELD' ? 34 : (lm.id === 'FOOTBALL' ? 28 : (lm.id === 'OHK_ROUNDABOUT' ? 28 : (lm.id === 'EAST_ROUNDABOUT' ? 24 : 15)))));
+        const defD = (lm.id === 'SW_YARD' ? 60 : (lm.id === 'SUNFLOWER_FIELD' ? 44 : (lm.id === 'FOOTBALL' ? 56 : (lm.id === 'OHK_ROUNDABOUT' ? 28 : (lm.id === 'EAST_ROUNDABOUT' ? 24 : 15)))));
+        const width = (lm.width || defW) * this.camera.zoom;
+        const depth = (lm.depth || defD) * this.camera.zoom;
         const rad = lm.rotRad || 0;
 
         ctx.save();
@@ -5188,11 +5236,25 @@
           ctx.arc(0, 0, r * 0.68, 0, Math.PI * 2);
           ctx.stroke();
         } else if (lm.id === 'SW_YARD') {
-          ctx.fillStyle = '#F3E8FF';
+          ctx.fillStyle = '#E2E8F0';
           ctx.fillRect(-width / 2, -depth / 2, width, depth);
-          ctx.strokeStyle = '#9333EA';
-          ctx.lineWidth = 1.5;
+          ctx.strokeStyle = '#7C3AED';
+          ctx.lineWidth = 1.8;
           ctx.strokeRect(-width / 2, -depth / 2, width, depth);
+          ctx.strokeStyle = '#94A3B8';
+          ctx.setLineDash([4, 4]);
+          ctx.strokeRect(-width / 2 + 3, -depth / 2 + 3, width - 6, depth - 6);
+          ctx.setLineDash([]);
+        } else if (lm.id === 'SUNFLOWER_FIELD') {
+          ctx.fillStyle = '#FEF08A';
+          ctx.fillRect(-width / 2, -depth / 2, width, depth);
+          ctx.strokeStyle = '#CA8A04';
+          ctx.lineWidth = 1.8;
+          ctx.strokeRect(-width / 2, -depth / 2, width, depth);
+          ctx.strokeStyle = '#EAB308';
+          ctx.setLineDash([3, 3]);
+          ctx.strokeRect(-width / 2 + 3, -depth / 2 + 3, width - 6, depth - 6);
+          ctx.setLineDash([]);
         } else {
           ctx.fillStyle = '#FEF3C7';
           ctx.fillRect(-width / 2, -depth / 2, width, depth);
@@ -5423,6 +5485,45 @@
               </div>
             </div>
           `;
+        } else if (type === 'landmark') {
+          const lmObj = (EnergyTwin.landmarks && EnergyTwin.landmarks[id]) || (EnergyTwin.defaultLandmarks && EnergyTwin.defaultLandmarks[id]);
+          const defW = (id === 'SW_YARD' ? 65 : (id === 'SUNFLOWER_FIELD' ? 34 : (id === 'FOOTBALL' ? 28 : (id === 'OHK_ROUNDABOUT' ? 28 : (id === 'EAST_ROUNDABOUT' ? 24 : 15)))));
+          const defD = (id === 'SW_YARD' ? 60 : (id === 'SUNFLOWER_FIELD' ? 44 : (id === 'FOOTBALL' ? 56 : (id === 'OHK_ROUNDABOUT' ? 28 : (id === 'EAST_ROUNDABOUT' ? 24 : 15)))));
+          const curW = lmObj?.width || defW;
+          const curD = lmObj?.depth || defD;
+
+          dimHtml = `
+            <div style="background:#F1F5F9; border-radius:6px; padding:6px 8px; border:1px solid #CBD5E1; display:flex; flex-direction:column; gap:5px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; font-size:11px;">
+                <span style="font-weight:700; color:#1E3A8A;">📏 ปรับขนาดแลนด์มาร์ค (กว้าง × ลึก):</span>
+                <span style="font-weight:700; color:#D97706; font-family:'JetBrains Mono';">ก ${curW} ม. × ล ${curD} ม.</span>
+              </div>
+
+              <!-- Width Adjuster -->
+              <div style="display:flex; justify-content:space-between; align-items:center; gap:6px; font-size:11px;">
+                <span style="font-size:10.5px; font-weight:600; color:#334155; width:45px;">↔️ กว้าง:</span>
+                <div style="display:flex; align-items:center; gap:3px;">
+                  <button type="button" class="dim-preset-chip" onclick="layout2DStudio.adjustDimension('width', -5)" title="ลดความกว้าง 5 ม.">-5m</button>
+                  <button type="button" class="dim-preset-chip" onclick="layout2DStudio.adjustDimension('width', -1)" title="ลดความกว้าง 1 ม.">-1m</button>
+                  <input type="number" min="2" max="300" step="1" value="${curW}" onchange="updateStudioDimension('width', this.value)" style="width:44px; padding:1px 3px; font-size:11px; font-family:'JetBrains Mono'; font-weight:700; text-align:center; border:1px solid #CBD5E1; border-radius:4px;">
+                  <button type="button" class="dim-preset-chip" onclick="layout2DStudio.adjustDimension('width', 1)" title="เพิ่มความกว้าง 1 ม.">+1m</button>
+                  <button type="button" class="dim-preset-chip" onclick="layout2DStudio.adjustDimension('width', 5)" title="เพิ่มความกว้าง 5 ม.">+5m</button>
+                </div>
+              </div>
+
+              <!-- Depth / Length Adjuster -->
+              <div style="display:flex; justify-content:space-between; align-items:center; gap:6px; font-size:11px;">
+                <span style="font-size:10.5px; font-weight:600; color:#334155; width:45px;">↕️ ลึก:</span>
+                <div style="display:flex; align-items:center; gap:3px;">
+                  <button type="button" class="dim-preset-chip" onclick="layout2DStudio.adjustDimension('depth', -5)" title="ลดความลึก 5 ม.">-5m</button>
+                  <button type="button" class="dim-preset-chip" onclick="layout2DStudio.adjustDimension('depth', -1)" title="ลดความลึก 1 ม.">-1m</button>
+                  <input type="number" min="2" max="300" step="1" value="${curD}" onchange="updateStudioDimension('depth', this.value)" style="width:44px; padding:1px 3px; font-size:11px; font-family:'JetBrains Mono'; font-weight:700; text-align:center; border:1px solid #CBD5E1; border-radius:4px;">
+                  <button type="button" class="dim-preset-chip" onclick="layout2DStudio.adjustDimension('depth', 1)" title="เพิ่มความลึก 1 ม.">+1m</button>
+                  <button type="button" class="dim-preset-chip" onclick="layout2DStudio.adjustDimension('depth', 5)" title="เพิ่มความลึก 5 ม.">+5m</button>
+                </div>
+              </div>
+            </div>
+          `;
         }
 
         dock.innerHTML = `
@@ -5620,10 +5721,21 @@
         if (orig && EnergyTwin.landmarks?.[selectedGridItem.id]) {
           EnergyTwin.landmarks[selectedGridItem.id].x = orig.x;
           EnergyTwin.landmarks[selectedGridItem.id].z = orig.z;
+          const origW = orig.width || (selectedGridItem.id === 'SW_YARD' ? 65 : (selectedGridItem.id === 'SUNFLOWER_FIELD' ? 34 : (selectedGridItem.id === 'FOOTBALL' ? 28 : (selectedGridItem.id === 'OHK_ROUNDABOUT' ? 28 : (selectedGridItem.id === 'EAST_ROUNDABOUT' ? 24 : undefined)))));
+          const origD = orig.depth || (selectedGridItem.id === 'SW_YARD' ? 60 : (selectedGridItem.id === 'SUNFLOWER_FIELD' ? 44 : (selectedGridItem.id === 'FOOTBALL' ? 56 : (selectedGridItem.id === 'OHK_ROUNDABOUT' ? 28 : (selectedGridItem.id === 'EAST_ROUNDABOUT' ? 24 : undefined)))));
+          if (origW !== undefined) EnergyTwin.landmarks[selectedGridItem.id].width = origW;
+          if (origD !== undefined) EnergyTwin.landmarks[selectedGridItem.id].depth = origD;
+          EnergyTwin.landmarks[selectedGridItem.id].rotation_y = orig.rotation_y || 0;
           if (campusScene && campusScene.updateLandmarkPosition) {
             campusScene.updateLandmarkPosition(selectedGridItem.id, orig.x, orig.z);
           }
-          EnergyTwin.saveCustomLandmarks({ [selectedGridItem.id]: { x: orig.x, z: orig.z } });
+          if (campusScene && campusScene.updateLandmarkDimensions && origW && origD) {
+            campusScene.updateLandmarkDimensions(selectedGridItem.id, origW, origD);
+          }
+          if (campusScene && campusScene.updateLandmarkRotation) {
+            campusScene.updateLandmarkRotation(selectedGridItem.id, orig.rotation_y || 0);
+          }
+          EnergyTwin.saveCustomLandmarks({ [selectedGridItem.id]: { x: orig.x, z: orig.z, width: origW, depth: origD, rotation_y: orig.rotation_y || 0 } });
         }
       }
       renderInteractiveExcelGrid();
@@ -6215,6 +6327,8 @@
           landmarkMap[lid] = {
             x: l.x,
             z: l.z,
+            ...(l.width !== undefined ? { width: l.width } : {}),
+            ...(l.depth !== undefined ? { depth: l.depth } : {}),
             rotation_y: l.rotation_y !== undefined ? l.rotation_y : 0,
             hidden: Boolean(l.hidden)
           };

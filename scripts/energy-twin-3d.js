@@ -1395,15 +1395,29 @@
         }
       }
 
-      // 6. Clear from Special Landmarks
-      // Football Pitch: centered at (120, -70), w: 32, d: 62
-      if (Math.abs(tx - 120) < 22 && Math.abs(tz - (-70)) < 36) return false;
-      // Switchyard: centered at (-25, 110), w: 70, d: 65
-      if (Math.abs(tx - (-25)) < 38 && Math.abs(tz - 110) < 35) return false;
-      // East Roundabout: center (200, -165), radius: 15
-      if (Math.hypot(tx - 200, tz - (-165)) < 15) return false;
-      // OHK Roundabout: center (-155, -150), radius: 17
-      if (Math.hypot(tx - (-155), tz - (-150)) < 17) return false;
+      // 6. Clear from Landmarks dynamically (using active position, dimensions & rotation)
+      const lmList = (window.EnergyTwin && window.EnergyTwin.getLandmarksList) ? window.EnergyTwin.getLandmarksList() : [];
+      for (const lm of lmList) {
+        if (lm.hidden) continue;
+        const lx = Number(lm.x) || 0;
+        const lz = Number(lm.z) || 0;
+        const lw = Number(lm.width) || (lm.id === 'SW_YARD' ? 65 : (lm.id === 'SUNFLOWER_FIELD' ? 34 : (lm.id === 'FOOTBALL' ? 28 : (lm.id === 'OHK_ROUNDABOUT' ? 28 : (lm.id === 'EAST_ROUNDABOUT' ? 24 : 15)))));
+        const ld = Number(lm.depth) || (lm.id === 'SW_YARD' ? 60 : (lm.id === 'SUNFLOWER_FIELD' ? 44 : (lm.id === 'FOOTBALL' ? 56 : (lm.id === 'OHK_ROUNDABOUT' ? 28 : (lm.id === 'EAST_ROUNDABOUT' ? 24 : 15)))));
+        const halfW = (lw / 2) + 3.0;
+        const halfD = (ld / 2) + 3.0;
+        const rot = Number(lm.rotation_y) || 0;
+
+        const dx = tx - lx;
+        const dz = tz - lz;
+        const cos = Math.cos(-rot);
+        const sin = Math.sin(-rot);
+        const localX = dx * cos - dz * sin;
+        const localZ = dx * sin + dz * cos;
+
+        if (Math.abs(localX) < halfW && Math.abs(localZ) < halfD) {
+          return false;
+        }
+      }
 
       return true;
     }
@@ -3660,10 +3674,9 @@
       const w = Number(newWidth);
       const d = Number(newDepth);
       const def = window.EnergyTwin && window.EnergyTwin.defaultLandmarks && window.EnergyTwin.defaultLandmarks[landmarkId];
-      if (!def) return;
-      const origW = def.width || 28;
-      const origD = def.depth || 56;
-      if (!isNaN(w) && w > 0 && !isNaN(d) && d > 0) {
+      const origW = (def && def.width) ? def.width : (landmarkId === 'SW_YARD' ? 65 : (landmarkId === 'SUNFLOWER_FIELD' ? 34 : (landmarkId === 'FOOTBALL' ? 28 : (landmarkId === 'OHK_ROUNDABOUT' ? 28 : (landmarkId === 'EAST_ROUNDABOUT' ? 24 : 15)))));
+      const origD = (def && def.depth) ? def.depth : (landmarkId === 'SW_YARD' ? 60 : (landmarkId === 'SUNFLOWER_FIELD' ? 44 : (landmarkId === 'FOOTBALL' ? 56 : (landmarkId === 'OHK_ROUNDABOUT' ? 28 : (landmarkId === 'EAST_ROUNDABOUT' ? 24 : 15)))));
+      if (!isNaN(w) && w > 0 && !isNaN(d) && d > 0 && origW > 0 && origD > 0) {
         lm.scale.set(w / origW, 1, d / origD);
       }
       this.needsRender = true;

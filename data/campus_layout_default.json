@@ -826,6 +826,8 @@
       "category": "ระบบส่งไฟฟ้าแรงสูง",
       "x": -10,
       "z": 145,
+      "width": 65,
+      "depth": 60,
       "rotation_y": 0,
       "rotation_deg": 0,
       "hidden": false
@@ -835,6 +837,8 @@
       "category": "สันทนาการและกีฬา",
       "x": 145,
       "z": -125,
+      "width": 28,
+      "depth": 56,
       "rotation_y": 0,
       "rotation_deg": 0,
       "hidden": false
@@ -853,6 +857,8 @@
       "category": "ภูมิทัศน์ธรรมชาติ",
       "x": 20,
       "z": 180,
+      "width": 34,
+      "depth": 44,
       "rotation_y": 0,
       "rotation_deg": 0,
       "hidden": false
@@ -871,6 +877,8 @@
       "category": "ระบบการจราจร",
       "x": -265,
       "z": -160,
+      "width": 28,
+      "depth": 28,
       "rotation_y": 0,
       "rotation_deg": 0,
       "hidden": false
@@ -889,6 +897,8 @@
       "category": "ระบบการจราจร",
       "x": 200,
       "z": -165,
+      "width": 24,
+      "depth": 24,
       "rotation_y": 0,
       "rotation_deg": 0,
       "hidden": false

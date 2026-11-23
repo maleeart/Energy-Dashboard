@@ -774,6 +774,8 @@
           category: l.category,
           x: l.x,
           z: l.z,
+          ...(l.width !== undefined ? { width: l.width } : {}),
+          ...(l.depth !== undefined ? { depth: l.depth } : {}),
           rotation_y: rotRad,
           rotation_deg: rotDeg,
           hidden: Boolean(l.hidden)
@@ -1474,7 +1476,9 @@
             "z": 205,
             "category": "ระบบส่งไฟฟ้าแรงสูง",
             "rotation_y": 0,
-            "hidden": false
+            "hidden": false,
+            "width": 65,
+            "depth": 60
       },
       "FOOTBALL": {
             "name": "สนามฟุตบอลใหญ่ (Main Football Pitch)",
@@ -1500,7 +1504,9 @@
             "z": 260,
             "category": "ภูมิทัศน์ธรรมชาติ",
             "rotation_y": 0,
-            "hidden": false
+            "hidden": false,
+            "width": 34,
+            "depth": 44
       },
       "CAMPUS_SIGN": {
             "name": "ป้ายสัญลักษณ์ กฟผ. ไทรน้อย",
@@ -1603,6 +1609,8 @@
             if (this.landmarks[lid]) {
               if (pos.x !== undefined && !isNaN(Number(pos.x))) this.landmarks[lid].x = Number(pos.x);
               if (pos.z !== undefined && !isNaN(Number(pos.z))) this.landmarks[lid].z = Number(pos.z);
+              if (pos.width !== undefined && !isNaN(Number(pos.width))) this.landmarks[lid].width = Number(pos.width);
+              if (pos.depth !== undefined && !isNaN(Number(pos.depth))) this.landmarks[lid].depth = Number(pos.depth);
               if (pos.rotation_y !== undefined && !isNaN(Number(pos.rotation_y))) this.landmarks[lid].rotation_y = Number(pos.rotation_y);
               if (pos.hidden !== undefined) this.landmarks[lid].hidden = Boolean(pos.hidden);
             }
@@ -1632,6 +1640,8 @@
           if (this.landmarks[lid]) {
             if (pos.x !== undefined && !isNaN(Number(pos.x))) this.landmarks[lid].x = Number(pos.x);
             if (pos.z !== undefined && !isNaN(Number(pos.z))) this.landmarks[lid].z = Number(pos.z);
+            if (pos.width !== undefined && !isNaN(Number(pos.width))) this.landmarks[lid].width = Number(pos.width);
+            if (pos.depth !== undefined && !isNaN(Number(pos.depth))) this.landmarks[lid].depth = Number(pos.depth);
             if (pos.rotation_y !== undefined && !isNaN(Number(pos.rotation_y))) this.landmarks[lid].rotation_y = Number(pos.rotation_y);
             if (pos.hidden !== undefined) this.landmarks[lid].hidden = Boolean(pos.hidden);
           }
@@ -1665,8 +1675,8 @@
         category: lm.category,
         x: lm.x,
         z: lm.z,
-        width: lm.width || (id === 'FOOTBALL' ? 22 : (id === 'EAST_ROUNDABOUT' || id === 'OHK_ROUNDABOUT' ? 24 : 15)),
-        depth: lm.depth || (id === 'FOOTBALL' ? 34 : (id === 'EAST_ROUNDABOUT' || id === 'OHK_ROUNDABOUT' ? 24 : 15)),
+        width: lm.width || (id === 'SW_YARD' ? 65 : (id === 'SUNFLOWER_FIELD' ? 34 : (id === 'FOOTBALL' ? 28 : (id === 'OHK_ROUNDABOUT' ? 28 : (id === 'EAST_ROUNDABOUT' ? 24 : 15))))),
+        depth: lm.depth || (id === 'SW_YARD' ? 60 : (id === 'SUNFLOWER_FIELD' ? 44 : (id === 'FOOTBALL' ? 56 : (id === 'OHK_ROUNDABOUT' ? 28 : (id === 'EAST_ROUNDABOUT' ? 24 : 15))))),
         rotation_y: lm.rotation_y || 0,
         hidden: Boolean(lm.hidden)
       }));
@@ -1776,7 +1786,9 @@
                 x: Number(val.x),
                 z: Number(val.z),
                 ...(rot !== undefined ? { rotation_y: rot } : {}),
-                ...(hid !== undefined ? { hidden: hid } : {})
+                ...(hid !== undefined ? { hidden: hid } : {}),
+                ...(val.width !== undefined ? { width: Number(val.width) } : {}),
+                ...(val.depth !== undefined ? { depth: Number(val.depth) } : {})
               };
             }
           });
