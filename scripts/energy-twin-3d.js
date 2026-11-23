@@ -541,15 +541,19 @@
       });
     }
 
-    // 500 kV Switchyard: High-voltage gantry structures, transformers, gravel ground
+    // 500 kV Switchyard: High-voltage gantry structures, transformers, busbars, control house, gravel ground
     setupSwitchyard() {
       const yardGroup = new THREE.Group();
       yardGroup.name = 'Switchyard500kV';
       yardGroup.position.set(-25, 0, 110);
 
-      const yardGeo = new THREE.PlaneGeometry(65, 60);
+      const yardW = 65;
+      const yardD = 60;
+
+      // 1. Crushed Basalt Substation Gravel Ground
+      const yardGeo = new THREE.PlaneGeometry(yardW, yardD);
       const yardMat = new THREE.MeshStandardMaterial({
-        color: 0x64748B, // Crushed basalt gravel rock for high-voltage substation
+        color: 0x475569, // Crushed basalt gravel rock for high-voltage substation
         roughness: 0.95,
         polygonOffset: true,
         polygonOffsetFactor: -1,
@@ -561,56 +565,168 @@
       yard.receiveShadow = true;
       yardGroup.add(yard);
 
+      // Concrete perimeter curb apron
+      const curbMat = new THREE.MeshStandardMaterial({ color: 0x94A3B8, roughness: 0.8 });
+      const curbH = 0.25;
+      const curbT = 0.6;
+      [-yardD / 2 - curbT / 2, yardD / 2 + curbT / 2].forEach(cz => {
+        const cBeam = new THREE.Mesh(new THREE.BoxGeometry(yardW + curbT * 2, curbH, curbT), curbMat);
+        cBeam.position.set(0, curbH / 2 + 0.03, cz);
+        yardGroup.add(cBeam);
+      });
+      [-yardW / 2 - curbT / 2, yardW / 2 + curbT / 2].forEach(cx => {
+        const cBeam = new THREE.Mesh(new THREE.BoxGeometry(curbT, curbH, yardD), curbMat);
+        cBeam.position.set(cx, curbH / 2 + 0.03, 0);
+        yardGroup.add(cBeam);
+      });
+
+      // Chainlink security fence (wireframe + steel posts)
       const fenceMat = new THREE.MeshStandardMaterial({ color: 0x64748B, wireframe: true });
-      const fenceGeo = new THREE.BoxGeometry(66, 3.5, 61);
+      const fenceGeo = new THREE.BoxGeometry(yardW + 0.8, 3.6, yardD + 0.8);
       const fence = new THREE.Mesh(fenceGeo, fenceMat);
-      fence.position.set(0, 1.75, 0);
+      fence.position.set(0, 1.8, 0);
       yardGroup.add(fence);
 
+      // 2. 500 kV High-Voltage Lattice Gantry Towers (3 Bays: North z=-19, Center z=0, South z=+19)
       const steelMat = new THREE.MeshStandardMaterial({ color: 0x475569, metalness: 0.8, roughness: 0.3 });
-      const gantryPositions = [
-        [-20, -15], [-20, 15], [20, -15], [20, 15]
-      ];
+      const insMat = new THREE.MeshStandardMaterial({ color: 0xD97706, roughness: 0.4 }); // Porcelain insulator brown
+      const busbarMat = new THREE.MeshStandardMaterial({ color: 0x94A3B8, metalness: 0.85, roughness: 0.2 }); // Aluminum busbar
 
-      gantryPositions.forEach(([gx, gz]) => {
-        [-5, 5].forEach(ox => {
-          const col = new THREE.Mesh(new THREE.BoxGeometry(0.8, 16, 0.8), steelMat);
-          col.position.set(gx + ox, 8, gz);
-          col.castShadow = true;
-          yardGroup.add(col);
-        });
+      const bayZs = [-19, 0, 19]; // 3 bays evenly distributed across depth 60m
+      const gantryXs = [-20, 20]; // West and East gantry lines (width span = 50m with columns)
 
-        const beam = new THREE.Mesh(new THREE.BoxGeometry(11, 0.8, 0.8), steelMat);
-        beam.position.set(gx, 15.5, gz);
-        beam.castShadow = true;
-        yardGroup.add(beam);
+      bayZs.forEach(bz => {
+        gantryXs.forEach(gx => {
+          // Dual vertical gantry columns
+          [-5, 5].forEach(ox => {
+            const col = new THREE.Mesh(new THREE.BoxGeometry(0.8, 16, 0.8), steelMat);
+            col.position.set(gx + ox, 8, bz);
+            col.castShadow = true;
+            yardGroup.add(col);
 
-        const insMat = new THREE.MeshStandardMaterial({ color: 0xD97706, roughness: 0.4 });
-        [-3, 0, 3].forEach(ix => {
-          const ins = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.2, 2.5, 8), insMat);
-          ins.position.set(gx + ix, 13.8, gz);
-          yardGroup.add(ins);
+            // Diagonal cross-bracing truss
+            const brace = new THREE.Mesh(new THREE.BoxGeometry(0.35, 14, 0.35), steelMat);
+            brace.position.set(gx + ox * 0.5, 8, bz);
+            brace.rotation.z = (ox > 0 ? 0.3 : -0.3);
+            yardGroup.add(brace);
+          });
+
+          // Horizontal overhead crossbeam
+          const beam = new THREE.Mesh(new THREE.BoxGeometry(11.5, 0.8, 0.8), steelMat);
+          beam.position.set(gx, 15.5, bz);
+          beam.castShadow = true;
+          yardGroup.add(beam);
+
+          // Suspension insulator strings (3 phases)
+          [-3.5, 0, 3.5].forEach(ix => {
+            const ins = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.2, 2.8, 8), insMat);
+            ins.position.set(gx + ix, 13.6, bz);
+            yardGroup.add(ins);
+          });
         });
       });
 
-      // Step-up / Step-down Power Transformers
+      // 3. Overhead 3-Phase Main Busbars running along Z connecting the 3 bays
+      [-23.5, -20, -16.5, 16.5, 20, 23.5].forEach(bx => {
+        const busbar = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 42, 6), busbarMat);
+        busbar.rotation.x = Math.PI / 2;
+        busbar.position.set(bx, 14.5, 0);
+        yardGroup.add(busbar);
+      });
+
+      // 4. Power Transformer Banks (3 Main Units for 3 Bays)
       const transMat = new THREE.MeshStandardMaterial({ color: 0x334155, metalness: 0.5, roughness: 0.5 });
       const finMat = new THREE.MeshStandardMaterial({ color: 0x475569, metalness: 0.6 });
-      const transPositions = [[-5, 0], [5, 0]];
+      const pitMat = new THREE.MeshStandardMaterial({ color: 0x64748B, roughness: 0.9 });
 
-      transPositions.forEach(([tx, tz]) => {
-        const transBody = new THREE.Mesh(new THREE.BoxGeometry(5, 4.5, 6), transMat);
-        transBody.position.set(tx, 2.25, tz);
+      const transConfigs = [
+        { x: -5, z: -16 },
+        { x: 5, z: 0 },
+        { x: -5, z: 16 }
+      ];
+
+      transConfigs.forEach(({ x: tx, z: tz }) => {
+        // Concrete oil catchment pit
+        const pit = new THREE.Mesh(new THREE.BoxGeometry(7, 0.3, 7.5), pitMat);
+        pit.position.set(tx, 0.15, tz);
+        yardGroup.add(pit);
+
+        // Transformer main tank
+        const transBody = new THREE.Mesh(new THREE.BoxGeometry(4.8, 4.5, 5.8), transMat);
+        transBody.position.set(tx, 2.35, tz);
         transBody.castShadow = true;
         yardGroup.add(transBody);
 
-        const fin1 = new THREE.Mesh(new THREE.BoxGeometry(5.4, 3.5, 0.5), finMat);
-        fin1.position.set(tx, 2, tz + 3.2);
-        yardGroup.add(fin1);
+        // Cooling radiator fin banks (North & South)
+        [-2.8, 2.8].forEach(oz => {
+          const fin = new THREE.Mesh(new THREE.BoxGeometry(5.0, 3.6, 0.6), finMat);
+          fin.position.set(tx, 2.1, tz + oz);
+          yardGroup.add(fin);
+        });
 
-        const fin2 = new THREE.Mesh(new THREE.BoxGeometry(5.4, 3.5, 0.5), finMat);
-        fin2.position.set(tx, 2, tz - 3.2);
-        yardGroup.add(fin2);
+        // Top oil conservator cylinder
+        const conservator = new THREE.Mesh(new THREE.CylinderGeometry(0.7, 0.7, 4.4, 12), transMat);
+        conservator.rotation.z = Math.PI / 2;
+        conservator.position.set(tx, 5.0, tz);
+        yardGroup.add(conservator);
+
+        // 3 High-Voltage Bushings (Insulators on top)
+        [-1.3, 0, 1.3].forEach(bx => {
+          const bush = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.2, 1.8, 8), insMat);
+          bush.position.set(tx + bx, 5.6, tz);
+          yardGroup.add(bush);
+        });
+      });
+
+      // 5. Gas Insulated Circuit Breakers & Disconnect Switches in Bays
+      const breakerMat = new THREE.MeshStandardMaterial({ color: 0x1E293B, metalness: 0.6, roughness: 0.4 });
+      [-10, 10].forEach(bx => {
+        bayZs.forEach(bz => {
+          const breaker = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.4, 2.8, 8), breakerMat);
+          breaker.position.set(bx, 1.4, bz + 4);
+          yardGroup.add(breaker);
+
+          const bBush = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.14, 1.5, 6), insMat);
+          bBush.position.set(bx, 3.2, bz + 4);
+          yardGroup.add(bBush);
+        });
+      });
+
+      // 6. Substation Control & Relay House (อาคารควบคุมสวิตช์ยาร์ด)
+      const controlGroup = new THREE.Group();
+      controlGroup.position.set(-20, 0, 21);
+
+      const bldMat = new THREE.MeshStandardMaterial({ color: 0xE2E8F0, roughness: 0.6 });
+      const bldRoofMat = new THREE.MeshStandardMaterial({ color: 0x1E293B, roughness: 0.5 });
+      const bld = new THREE.Mesh(new THREE.BoxGeometry(11, 4.2, 7.5), bldMat);
+      bld.position.set(0, 2.1, 0);
+      bld.castShadow = true;
+      controlGroup.add(bld);
+
+      const bldRoof = new THREE.Mesh(new THREE.BoxGeometry(11.6, 0.4, 8.1), bldRoofMat);
+      bldRoof.position.set(0, 4.3, 0);
+      controlGroup.add(bldRoof);
+
+      // Door & Windows
+      const doorMat = new THREE.MeshStandardMaterial({ color: 0x334155 });
+      const door = new THREE.Mesh(new THREE.BoxGeometry(1.6, 2.6, 0.1), doorMat);
+      door.position.set(2, 1.3, 3.8);
+      controlGroup.add(door);
+
+      yardGroup.add(controlGroup);
+
+      // 7. Corner Lightning Protection Masts (4 tall slender lightning rods)
+      [-28, 28].forEach(lx => {
+        [-25, 25].forEach(lz => {
+          const mast = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.35, 22, 6), steelMat);
+          mast.position.set(lx, 11, lz);
+          mast.castShadow = true;
+          yardGroup.add(mast);
+
+          const tip = new THREE.Mesh(new THREE.ConeGeometry(0.12, 2.5, 6), busbarMat);
+          tip.position.set(lx, 23.2, lz);
+          yardGroup.add(tip);
+        });
       });
 
       this.scene.add(yardGroup);
@@ -1042,55 +1158,141 @@
       this.landmarkMeshes.set('CAMPUS_ENTRANCE', gateGroup);
     }
 
+    // Procedural Sunflower Field Agricultural Soil Texture (Rich dark brown fertile humus with planting furrows)
+    createSunflowerSoilTexture() {
+      const canvas = document.createElement('canvas');
+      canvas.width = 512;
+      canvas.height = 512;
+      const ctx = canvas.getContext('2d');
+
+      // 1. Rich dark fertile agricultural loam base
+      ctx.fillStyle = '#3E2723';
+      ctx.fillRect(0, 0, 512, 512);
+
+      // 2. Planting furrow rows running along depth
+      const numRows = 16;
+      const rowWidth = 512 / numRows;
+      for (let i = 0; i < numRows; i++) {
+        const x = i * rowWidth;
+        const furrowGrad = ctx.createLinearGradient(x, 0, x + rowWidth, 0);
+        furrowGrad.addColorStop(0, '#26160D');
+        furrowGrad.addColorStop(0.35, '#4E342E');
+        furrowGrad.addColorStop(0.65, '#5D4037'); // Sunlit ridge crest
+        furrowGrad.addColorStop(1, '#26160D');
+        ctx.fillStyle = furrowGrad;
+        ctx.fillRect(x, 0, rowWidth, 512);
+      }
+
+      // 3. Natural soil clods and organic humus grain
+      ctx.fillStyle = 'rgba(78, 52, 46, 0.45)';
+      for (let j = 0; j < 600; j++) {
+        const gx = (Math.sin(j * 91) * 0.5 + 0.5) * 512;
+        const gy = (Math.cos(j * 53) * 0.5 + 0.5) * 512;
+        const gr = 1.5 + (j % 4);
+        ctx.beginPath();
+        ctx.arc(gx, gy, gr, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // 4. Subtle mossy green speckles in fertile agricultural soil
+      ctx.fillStyle = 'rgba(77, 124, 15, 0.25)';
+      for (let k = 0; k < 300; k++) {
+        const mx = (Math.sin(k * 137) * 0.5 + 0.5) * 512;
+        const my = (Math.cos(k * 79) * 0.5 + 0.5) * 512;
+        ctx.fillRect(mx, my, 3, 3);
+      }
+
+      const texture = new THREE.CanvasTexture(canvas);
+      texture.wrapS = THREE.RepeatWrapping;
+      texture.wrapT = THREE.RepeatWrapping;
+      texture.repeat.set(2, 3);
+      return texture;
+    }
+
     // Sunflower Field (ทุ่งทานตะวัน)
     setupSunflowerField() {
       const sunflowerGroup = new THREE.Group();
       sunflowerGroup.name = 'SunflowerField';
 
-      // 1. Sunflower field soil bed (Natural agricultural green)
-      const bedGeo = new THREE.PlaneGeometry(34, 44);
+      const fieldW = 34;
+      const fieldD = 44;
+
+      // 1. Sunflower field soil bed (Rich warm fertile garden earth with furrow texture)
+      const bedGeo = new THREE.PlaneGeometry(fieldW, fieldD);
+      const soilTex = this.createSunflowerSoilTexture();
       const bedMat = new THREE.MeshStandardMaterial({
-        color: 0x4D7C0F,
-        roughness: 0.9,
-        metalness: 0.05
+        map: soilTex,
+        roughness: 0.95,
+        metalness: 0.02
       });
       const bed = new THREE.Mesh(bedGeo, bedMat);
       bed.rotation.x = -Math.PI / 2;
-      bed.position.set(0, 0.07, 0);
+      bed.position.set(0, 0.16, 0);
       bed.receiveShadow = true;
       sunflowerGroup.add(bed);
 
-      // Decorative border curb around sunflower field
-      const curbMat = new THREE.MeshStandardMaterial({ color: 0x64748B, roughness: 0.8 });
-      const curb = new THREE.Mesh(new THREE.BoxGeometry(34.8, 0.3, 44.8), curbMat);
-      curb.position.set(0, 0.15, 0);
-      curb.receiveShadow = true;
-      sunflowerGroup.add(curb);
+      // 2. Perimeter landscaping curb border around sunflower field (4 perimeter border beams)
+      const curbMat = new THREE.MeshStandardMaterial({ color: 0x94A3B8, roughness: 0.75 });
+      const curbH = 0.22;
+      const curbT = 0.5; // thickness
+      const halfW = fieldW / 2;
+      const halfD = fieldD / 2;
 
-      // Blooming Sunflower Clusters (Golden yellow disk petals with dark seed centers)
+      // North beam
+      const curbN = new THREE.Mesh(new THREE.BoxGeometry(fieldW + curbT * 2, curbH, curbT), curbMat);
+      curbN.position.set(0, curbH / 2, -halfD - curbT / 2);
+      curbN.receiveShadow = true;
+      sunflowerGroup.add(curbN);
+
+      // South beam
+      const curbS = new THREE.Mesh(new THREE.BoxGeometry(fieldW + curbT * 2, curbH, curbT), curbMat);
+      curbS.position.set(0, curbH / 2, halfD + curbT / 2);
+      curbS.receiveShadow = true;
+      sunflowerGroup.add(curbS);
+
+      // West beam
+      const curbW = new THREE.Mesh(new THREE.BoxGeometry(curbT, curbH, fieldD), curbMat);
+      curbW.position.set(-halfW - curbT / 2, curbH / 2, 0);
+      curbW.receiveShadow = true;
+      sunflowerGroup.add(curbW);
+
+      // East beam
+      const curbE = new THREE.Mesh(new THREE.BoxGeometry(curbT, curbH, fieldD), curbMat);
+      curbE.position.set(halfW + curbT / 2, curbH / 2, 0);
+      curbE.receiveShadow = true;
+      sunflowerGroup.add(curbE);
+
+      // 3. Blooming Sunflower Clusters (Golden yellow disk petals with dark seed centers & leaves)
       const stemMat = new THREE.MeshStandardMaterial({ color: 0x15803D, roughness: 0.8 });
-      const petalMat = new THREE.MeshStandardMaterial({ color: 0xFACC15, roughness: 0.4 });
+      const petalMat = new THREE.MeshStandardMaterial({ color: 0xFACC15, roughness: 0.35 });
       const centerMat = new THREE.MeshStandardMaterial({ color: 0x78350F, roughness: 0.9 });
+      const leafMat = new THREE.MeshStandardMaterial({ color: 0x166534, roughness: 0.7 });
 
       for (let sx = -14; sx <= 14; sx += 3.5) {
         for (let sz = -18; sz <= 18; sz += 4) {
           const ox = sx + (Math.sin(sx * 3 + sz) * 0.4);
           const oz = sz + (Math.cos(sz * 3 + sx) * 0.4);
-          const h = 1.2 + Math.abs(Math.sin(sx + sz)) * 0.4;
+          const h = 1.3 + Math.abs(Math.sin(sx + sz)) * 0.4;
 
-          const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.05, h, 5), stemMat);
-          stem.position.set(ox, h / 2 + 0.1, oz);
+          const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.05, h, 6), stemMat);
+          stem.position.set(ox, h / 2 + 0.16, oz);
           sunflowerGroup.add(stem);
 
+          // Green leaf pair at stem base
+          const leaf1 = new THREE.Mesh(new THREE.BoxGeometry(0.35, 0.04, 0.18), leafMat);
+          leaf1.position.set(ox + 0.15, 0.45, oz);
+          leaf1.rotation.z = -0.3;
+          sunflowerGroup.add(leaf1);
+
           // Yellow Petal Disk
-          const petal = new THREE.Mesh(new THREE.CylinderGeometry(0.42, 0.42, 0.06, 8), petalMat);
-          petal.position.set(ox, h + 0.1, oz);
+          const petal = new THREE.Mesh(new THREE.CylinderGeometry(0.44, 0.44, 0.06, 10), petalMat);
+          petal.position.set(ox, h + 0.16, oz);
           petal.rotation.x = 0.25;
           sunflowerGroup.add(petal);
 
           // Dark Seed Center
-          const center = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.2, 0.08, 8), centerMat);
-          center.position.set(ox, h + 0.12, oz);
+          const center = new THREE.Mesh(new THREE.CylinderGeometry(0.22, 0.22, 0.08, 10), centerMat);
+          center.position.set(ox, h + 0.18, oz);
           center.rotation.x = 0.25;
           sunflowerGroup.add(center);
         }

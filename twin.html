@@ -5236,25 +5236,108 @@
           ctx.arc(0, 0, r * 0.68, 0, Math.PI * 2);
           ctx.stroke();
         } else if (lm.id === 'SW_YARD') {
+          // 1. Crushed basalt gravel yard background
           ctx.fillStyle = '#E2E8F0';
           ctx.fillRect(-width / 2, -depth / 2, width, depth);
+
+          // 2. High-voltage purple perimeter border & security fence dash
           ctx.strokeStyle = '#7C3AED';
-          ctx.lineWidth = 1.8;
+          ctx.lineWidth = 2;
           ctx.strokeRect(-width / 2, -depth / 2, width, depth);
           ctx.strokeStyle = '#94A3B8';
+          ctx.lineWidth = 1;
           ctx.setLineDash([4, 4]);
           ctx.strokeRect(-width / 2 + 3, -depth / 2 + 3, width - 6, depth - 6);
           ctx.setLineDash([]);
+
+          // 3. Three High-Voltage Bay Gantry Lines across width (North, Center, South)
+          const bayFractions = [-0.31, 0, 0.31];
+          ctx.strokeStyle = '#64748B';
+          ctx.lineWidth = 2.5;
+          bayFractions.forEach(bf => {
+            const by = bf * depth;
+            ctx.beginPath();
+            ctx.moveTo(-width * 0.42, by);
+            ctx.lineTo(-width * 0.18, by);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(width * 0.18, by);
+            ctx.lineTo(width * 0.42, by);
+            ctx.stroke();
+
+            // Gantry tower column dots
+            ctx.fillStyle = '#334155';
+            [-width * 0.42, -width * 0.18, width * 0.18, width * 0.42].forEach(colX => {
+              ctx.fillRect(colX - 1.5, by - 1.5, 3, 3);
+            });
+          });
+
+          // 4. Longitudinal overhead busbars connecting the bays
+          ctx.strokeStyle = '#0284C7';
+          ctx.lineWidth = 1;
+          [-width * 0.35, -width * 0.25, width * 0.25, width * 0.35].forEach(bx => {
+            ctx.beginPath();
+            ctx.moveTo(bx, -depth * 0.35);
+            ctx.lineTo(bx, depth * 0.35);
+            ctx.stroke();
+          });
+
+          // 5. Transformer units
+          ctx.fillStyle = '#1E293B';
+          [-depth * 0.26, 0, depth * 0.26].forEach((tz, idx) => {
+            const tx = (idx % 2 === 0 ? -width * 0.08 : width * 0.08);
+            const tw = width * 0.10;
+            const td = depth * 0.12;
+            ctx.fillRect(tx - tw / 2, tz - td / 2, tw, td);
+          });
+
+          // 6. Substation Control Building at SW corner
+          ctx.fillStyle = '#CBD5E1';
+          ctx.strokeStyle = '#475569';
+          ctx.lineWidth = 1;
+          const cbW = width * 0.18;
+          const cbD = depth * 0.14;
+          ctx.fillRect(-width / 2 + 5, depth / 2 - cbD - 5, cbW, cbD);
+          ctx.strokeRect(-width / 2 + 5, depth / 2 - cbD - 5, cbW, cbD);
         } else if (lm.id === 'SUNFLOWER_FIELD') {
-          ctx.fillStyle = '#FEF08A';
+          // 1. Rich dark fertile agricultural soil base
+          ctx.fillStyle = '#3E2723';
           ctx.fillRect(-width / 2, -depth / 2, width, depth);
+
+          // 2. Planting furrow rows running along depth
+          ctx.strokeStyle = '#4E342E';
+          ctx.lineWidth = 1.5;
+          const rowCount = 7;
+          for (let ri = 1; ri < rowCount; ri++) {
+            const rx = -width / 2 + (width / rowCount) * ri;
+            ctx.beginPath();
+            ctx.moveTo(rx, -depth / 2 + 3);
+            ctx.lineTo(rx, depth / 2 - 3);
+            ctx.stroke();
+          }
+
+          // 3. Perimeter garden curb border
           ctx.strokeStyle = '#CA8A04';
-          ctx.lineWidth = 1.8;
+          ctx.lineWidth = 2;
           ctx.strokeRect(-width / 2, -depth / 2, width, depth);
-          ctx.strokeStyle = '#EAB308';
-          ctx.setLineDash([3, 3]);
-          ctx.strokeRect(-width / 2 + 3, -depth / 2 + 3, width - 6, depth - 6);
-          ctx.setLineDash([]);
+
+          // 4. Golden sunflower petal dots in rows
+          const numX = 5;
+          const numZ = 6;
+          for (let ix = 0; ix < numX; ix++) {
+            for (let iz = 0; iz < numZ; iz++) {
+              const fx = -width * 0.38 + (width * 0.76 / (numX - 1)) * ix;
+              const fz = -depth * 0.38 + (depth * 0.76 / (numZ - 1)) * iz;
+              ctx.fillStyle = '#FACC15';
+              ctx.beginPath();
+              ctx.arc(fx, fz, 2.5, 0, Math.PI * 2);
+              ctx.fill();
+              ctx.fillStyle = '#78350F';
+              ctx.beginPath();
+              ctx.arc(fx, fz, 1.0, 0, Math.PI * 2);
+              ctx.fill();
+            }
+          }
         } else {
           ctx.fillStyle = '#FEF3C7';
           ctx.fillRect(-width / 2, -depth / 2, width, depth);
@@ -5265,10 +5348,24 @@
 
         if (this.camera.zoom > 0.6) {
           ctx.font = 'bold 10px "Sarabun", sans-serif';
-          ctx.fillStyle = '#1E293B';
           ctx.textAlign = 'center';
           ctx.textBaseline = 'middle';
-          ctx.fillText(lm.name, 0, 0);
+          if (lm.id === 'SUNFLOWER_FIELD') {
+            ctx.fillStyle = '#FEF08A';
+            ctx.strokeStyle = '#1E1E1E';
+            ctx.lineWidth = 2;
+            ctx.strokeText(lm.name, 0, 0);
+            ctx.fillText(lm.name, 0, 0);
+          } else if (lm.id === 'SW_YARD') {
+            ctx.fillStyle = '#581C87';
+            ctx.strokeStyle = '#FFFFFF';
+            ctx.lineWidth = 2.5;
+            ctx.strokeText(lm.name, 0, 0);
+            ctx.fillText(lm.name, 0, 0);
+          } else {
+            ctx.fillStyle = '#1E293B';
+            ctx.fillText(lm.name, 0, 0);
+          }
         }
 
         ctx.restore();
