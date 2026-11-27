@@ -14,7 +14,7 @@
       "SCB 8",
       "SCB21"
     ],
-    "generated_at": "2026-11-27T08:07:35",
+    "generated_at": "2026-11-27T08:08:36",
     "missing_reading_logic": "Blank or 0 raw_reading uses previous valid reading.",
     "unchanged_reading_logic": "If current equals previous, usage is 0.",
     "allocation_logic": "Fill-down department, then use row allocation_ratio directly."
@@ -37814,11 +37814,11 @@
       "b_code": "T.0006",
       "subb_code": "MDB",
       "building_name": "ท.0006 อาคาร บริหารอะไหล่กังหันก๊าซ1 อรอ.",
-      "raw_reading": "",
-      "raw_unit": "kWh",
-      "normalized_kwh": 44999.188,
-      "usage_kwh": 0,
-      "reader": "",
+      "raw_reading": 46.864432,
+      "raw_unit": "MWh",
+      "normalized_kwh": 46864.432,
+      "usage_kwh": 1865.244,
+      "reader": "ธนวิชญ์",
       "note": ""
     },
     {
@@ -181240,11 +181240,9 @@
       "b_code": "T.0006",
       "subb_code": "MDB",
       "building_name": "ท.0006 อาคาร บริหารอะไหล่กังหันก๊าซ1 อรอ.",
-      "normalized_kwh": 44999.188,
+      "normalized_kwh": 46864.432,
       "is_main_meter": true,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS"
-      ]
+      "flags": []
     },
     {
       "source_form": "forms/2025-W01.csv",
@@ -305060,14 +305058,11 @@
       "subb_code": "MDB",
       "building_name": "ท.0006 อาคาร บริหารอะไหล่กังหันก๊าซ1 อรอ.",
       "is_main_meter": true,
-      "kwh": 0,
-      "raw_delta_kwh": 0.0,
+      "kwh": 1865.244,
+      "raw_delta_kwh": 1865.244,
       "previous_normalized_kwh": 44999.188,
-      "current_normalized_kwh": 44999.188,
-      "flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "current_normalized_kwh": 46864.432,
+      "flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -433244,11 +433239,8 @@
       "building_name": "ท.0006 อาคาร บริหารอะไหล่กังหันก๊าซ1 อรอ.",
       "allocation_ratio": 1.0,
       "allocation_row_no": 34,
-      "kwh": 0.0,
-      "source_flags": [
-        "MISSING_READING_USED_PREVIOUS",
-        "UNCHANGED_READING_USAGE_ZERO"
-      ]
+      "kwh": 1865.244,
+      "source_flags": []
     },
     {
       "week_start_date": "2025-01-03",
@@ -481012,7 +481004,7 @@
       "อสร.": 26864.0,
       "สก.ชธธ.": 50176.397,
       "อหข.": 26968.305,
-      "อรอ.": 43496153.678,
+      "อรอ.": 43498018.922,
       "อบฟ.": 59671.668,
       "อบย.": 17282.296,
       "อคม.": 68701.592
